@@ -19,5 +19,10 @@ module Resj
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+    # disable the automatic generators
+    config.generators.stylesheets = false
+    config.generators.javascripts = false
+    config.generators.helper = false
   end
 end

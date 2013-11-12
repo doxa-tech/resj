@@ -1,0 +1,9 @@
+<table>
+	<tr><th>Name</th></tr>
+	<% @cards.each do |card| %>
+		<tr>
+			<th><%= card.name %></th>
+			<th><%= link_to "Edit", edit_admin_card_path(card) %></th>
+		</tr>
+	<% end %>
+</table>

@@ -1,0 +1,12 @@
+<%= render layout: 'form' do |f| %>
+
+	<%= f.label :name %>
+	<%= f.text_field :name %><br>
+
+	<%= f.label :description %>
+	<%= f.text_area :description %><br>
+
+	<%= f.label :card_type_id %>
+	<%= f.collection_select(:card_type_id, CardType.all, :id, :name) %><br>
+
+<% end %>
