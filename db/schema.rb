@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20131103193704) do
   end
 
   add_index "cards", ["card_type_id"], name: "index_cards_on_card_type_id"
+  add_index "cards", ["responsable_id"], name: "index_cards_on_responsable_id"
 
   create_table "responsables", force: true do |t|
     t.string   "firstname"
