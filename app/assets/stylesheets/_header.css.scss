@@ -1,0 +1,35 @@
+header 
+{
+	width: 1100px;
+	margin: 20px auto 0 auto;
+
+	.logo {
+		width: 403px; height: 95px;
+		margin: 0 100px 0 0;
+		display: inline-block;
+		vertical-align: middle;
+		background: url('/assets/layout/logo.png');
+	}
+
+	nav {
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+		nav a {
+			padding: 10px 8px;
+			font: 300 21px 'Ubuntu', tahoma;
+			color: #000;
+			text-align: center;
+			text-shadow: 1px 0 1px #999;
+		}
+
+		nav a:hover {
+			background: #EE6737;
+			color: #fff;
+		}
+
+		ul li {
+			display: inline-block;
+		}
+}
