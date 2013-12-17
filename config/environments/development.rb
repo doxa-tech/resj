@@ -28,4 +28,5 @@ Resj::Application.configure do
   config.assets.debug = true
 
   # config.cache_store = :mem_cache_store
+
 end

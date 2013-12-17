@@ -1,6 +1,11 @@
-<nav>
-	<%= link_to "Home", root_path %>
-	<%= link_to "Fiches", fiches_path %>
-	<%= link_to "Inscription", inscription_path %>
-	<%= link_to "Connexion", connexion_path %>
-</nav>
+<header>
+	<nav>
+			<ul>
+				<li><%= link_to t('header.home'), root_path %></li>
+				<li>Inspiration</li>
+				<li>Articles</li>
+				<li><%= link_to t('header.resources'), fiches_path %></li>
+				<li>Freebies</li>
+			</ul>
+	</nav>
+</header>
