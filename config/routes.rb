@@ -1,6 +1,13 @@
 Resj::Application.routes.draw do
 
-  root to: 'cards#new'
+  root to: 'pages#home'
+
+  get 'fiches', to: 'cards#index'
+  get 'inscription', to: 'users#new'
+  get 'connexion', to: 'sessions#new'
+
+  resources :users, only: [:create, :edit, :update]
+  resources :sessions, only: [:create, :destroy]
   
   resources :cards, only: [:new, :create] do
     collection do

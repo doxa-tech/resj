@@ -1,11 +1,16 @@
 class CardsController < ApplicationController
 
+	def index
+	end
+
 	def new
 		session[:card_params] ||= {}
 		@card = Card.new(session[:card_params])
 	end
 
+	# Change wizard steps
 	def change
+		# fusion between session and form(POST) params
 		session[:card_params].deep_merge!(card_params)
 		@card = Card.new(session[:card_params])
 		if @card.valid? && @card.steps.include?(step = params[:step].keys.first)
@@ -19,7 +24,7 @@ class CardsController < ApplicationController
 		@card = Card.new(session[:card_params])
 		if @card.save
 			session[:card_params] = nil
-			redirect_to admin_cards_path, success: "Card created"
+			redirect_to admin_cards_path, success: t('card.create.success')
 		else
 			render 'new'
 		end
