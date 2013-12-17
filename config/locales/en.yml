@@ -1,4 +1,6 @@
 en:
+  application:
+    error: "error"
   card:
     create:
       title: "Create a new card"
@@ -6,3 +8,23 @@ en:
     edit:
       title: "Edit a card"
       success: "Card edited"
+    admin:
+      create:
+        title: "Create a new card"
+        success: "Card created"
+      edit:
+        title: "Edit a card"
+        success: "Card edited"
+  user:
+    create:
+      title: "Sign up"
+      success: "Signed up"
+    edit:
+      title: "Update your account"
+      success: "Account updated"
+  session:
+    create:
+      success: "Connected"
+      error: "Invalid email/password"
+    destroy:
+      success: "Signed out"

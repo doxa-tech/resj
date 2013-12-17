@@ -27,5 +27,5 @@ Resj::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  config.cache_store = :mem_cache_store
+  # config.cache_store = :mem_cache_store
 end

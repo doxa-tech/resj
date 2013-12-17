@@ -1,3 +1,5 @@
+# methods for a wizard
+
 module Wizard
 	attr_writer :current_step
 
