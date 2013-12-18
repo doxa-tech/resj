@@ -18,6 +18,8 @@ Resj::Application.routes.draw do
   # admin resources
   namespace :admin do
 
+    resources :pages, only: [:edit, :update]
+
     resources :cards, only: [:index, :edit, :update] do
       member do
         get 'verificate'

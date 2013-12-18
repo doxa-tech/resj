@@ -1,0 +1,10 @@
+<h1><%= t('page.admin.edit.title') %></h1>
+
+<%= form_for [:admin, @page] do |f| %>
+
+	<%= render 'error_messages', object: f.object %>
+
+	<%= f.text_area :content, class: "inline", id: "ckeditor_#{@page.id}" %></h1>
+	
+	<%= f.submit %>
+<% end %>

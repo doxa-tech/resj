@@ -26,6 +26,9 @@ gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
+# Add compatibility between JS events and Turbolinks
+gem 'jquery-turbolinks'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
@@ -45,6 +48,9 @@ gem 'unicorn'
 
 # Use Capistrano for deployment
 gem 'capistrano', '~> 2.15', group: :development
+
+# CK Editor WYSIWYG
+gem 'ckeditor_rails'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]

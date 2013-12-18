@@ -31,3 +31,8 @@ en:
       error: "Invalid email/password"
     destroy:
       success: "Signed out"
+  page:
+    admin:
+      edit:
+        success: "Page edited"
+        title: "Edit a page"
