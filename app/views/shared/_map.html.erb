@@ -29,33 +29,21 @@ for (var i = 0; i < addressPoints.length; i++) {
   var a = addressPoints[i];
   var title = a[2];
   var marker = L.marker(new L.LatLng(a[0], a[1]), {
-  	icon: L.mapbox.marker.icon({'marker-symbol': 'star-stroked', 'marker-color': '#000315'}),
+  	//icon: L.mapbox.marker.icon({'marker-symbol': 'star-stroked', 'marker-color': '#000315'}),
     title: title
   });
   marker.bindPopup(title);
   markers.addLayer(marker);
 }
 
-L.mapbox.markerLayer({
-    // this feature is in the GeoJSON format: see geojson.org
-    // for the full specification
-    type: 'Feature',
-    geometry: {
-        type: 'Point',
-        // coordinates here are in longitude, latitude order because
-        // x, y is the standard for GeoJSON and many formats
-        coordinates: [46.64389, 6.91945]
-    },
-    properties: {
-        title: 'A Single Marker',
-        description: 'Just one of me',
-        // one can customize markers by adding simplestyle properties
-        // http://mapbox.com/developers/simplestyle/
-        'marker-size': 'large',
-        'marker-color': '#f0a'
-    }
-}).addTo(map);
+markers.on('mouseover', function(e) {
+    e.layer.openPopup();
+});
+markers.on('mouseout', function(e) {
+    e.layer.closePopup();
+});
 
 map.scrollWheelZoom.disable();
+map.addControl(L.mapbox.shareControl())
 map.addLayer(markers);
 </script>
