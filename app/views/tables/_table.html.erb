@@ -1,0 +1,38 @@
+<div class="tools">
+<div class="search">
+<%= form_tag request.path, method: :get, remote: true do %>
+  <p>
+    <%= text_field_tag :query, params[:query] %>
+    <%= submit_tag "Rechercher", name: nil %>
+  </p>
+<% end %>
+</div>
+<div class="paginate"><%= will_paginate elements %></div>
+</div>
+<table>
+	<thead>
+		<tr>
+			<% model.column_names.each do |name| %>
+				<th><%= sortable(name, model, link) %></th>
+			<% end %>
+		</tr>
+	</thead>
+	<tbody id="body_table">
+		<% if elements.any? %>
+			<% elements.each do |element| %>
+				<tr class="<%= cycle('odd', 'even') %>" data-url="<%= table.url(element) %>">
+					<% table.attributes(element).each do |attribute| %>
+						<td><%= truncate((strip_tags attribute.to_s), length: 40) %></td>
+					<% end %>
+				</tr>
+			<% end %>
+		<% else %>
+			<tr><td colspan="3">Il n'y a aucun élément à afficher.</td></tr>
+		<% end %>
+	</tbody>
+</table>
+<div class="bottom">
+ <%= will_paginate elements %>
+</div>
+
+<%= javascript_include_tag "table" %>

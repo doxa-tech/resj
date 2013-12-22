@@ -15,4 +15,4 @@
 //= require jquery_ujs
 //= require ckeditor-jquery
 //= require turbolinks
-//= require_tree .
+//= require_tree ./sitewide

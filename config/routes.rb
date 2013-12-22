@@ -2,9 +2,10 @@ Resj::Application.routes.draw do
 
   root to: 'pages#home'
 
-  get 'fiches', to: 'cards#index'
+  get 'resources', to: 'cards#index'
   get 'inscription', to: 'users#new'
   get 'connexion', to: 'sessions#new'
+  get 'profile', to: "users#profile"
 
   resources :users, only: [:create, :edit, :update]
   resources :sessions, only: [:create, :destroy]
@@ -18,7 +19,7 @@ Resj::Application.routes.draw do
   # admin resources
   namespace :admin do
 
-    resources :pages, only: [:edit, :update]
+    resources :pages, only: [:index, :edit, :update]
 
     resources :cards, only: [:index, :edit, :update] do
       member do
