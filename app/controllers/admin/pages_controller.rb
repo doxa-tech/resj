@@ -1,4 +1,4 @@
-class Admin::PagesController < ApplicationController
+class Admin::PagesController < Admin::BaseController
 
 	def edit
 		@page = Page.find(params[:id])

@@ -27,4 +27,9 @@ class UsersController < ApplicationController
 			render 'edit'
 		end
 	end
+
+	# Main page of the user's profile
+	def profile
+		render layout: 'admin'
+	end
 end
