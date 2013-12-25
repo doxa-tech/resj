@@ -1,4 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700);
+@import url(http://fonts.googleapis.com/css?family=Jura:400,300);
 
 html body
 {
@@ -22,7 +23,19 @@ label
 
 #container {
 
-	width: 1200px;
+	width: 80%;
 	margin: 10px auto;
+	padding: 10px;
 
+}
+
+h2 
+{
+	text-align: center;
+	font-weight: 400;
+	-webkit-font-smoothing: antialiased;
+	font-size: 30px;
+	padding: 30px;
+	font: normal 36px 'jura', tahoma;
+	text-shadow: 1px 0px 1px #999;
 }
