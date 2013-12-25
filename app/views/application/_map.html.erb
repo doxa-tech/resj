@@ -1,3 +1,6 @@
+<%= javascript_include_tag "map/a_mapbox_v1.5.2.js" %>
+<%= javascript_include_tag "map/b_leaflet.markercluster.js" %>
+
 <div id='map'></div>
 
 <script type="text/javascript">
@@ -20,8 +23,13 @@ var addressPoints = [
   [46.65389, 6.99945, 'a'],
   [46.64389, 6.91945, 'a'],
 ];
-var map = L.mapbox.map('map', 'nkcr.gjhi4d72')
-  .setView([46.6221, 7.1960], 9);
+
+// Set view of Leaflet map based on screen size
+if ($(window).width() < 626) {
+        var map = L.mapbox.map('map', 'nkcr.gjhi4d72').setView([46.6221, 7.1960], 8);
+} else {
+        var map = L.mapbox.map('map', 'nkcr.gjhi4d72').setView([46.6221, 7.1960], 9);
+}
 
 var markers = new L.MarkerClusterGroup({maxClusterRadius: 30});
 
