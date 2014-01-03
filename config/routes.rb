@@ -2,7 +2,7 @@ Resj::Application.routes.draw do
 
   root to: 'pages#home'
 
-  get 'resources', to: 'cards#index'
+  get 'reseau', to: 'cards#index'
   get 'inscription', to: 'users#new'
   get 'connexion', to: 'sessions#new'
   get 'profile', to: "users#profile"
