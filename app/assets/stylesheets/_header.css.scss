@@ -6,10 +6,14 @@ header
 
 	.logo {
 		width: 403px; height: 95px;
-		margin: 0 100px 0 0;
 		display: inline-block;
 		vertical-align: middle;
 		background: url('/assets/layout/logo.png');
+	}
+
+	.space {
+		display: inline-block;
+		height: 0; width: 100px;
 	}
 
 	nav {

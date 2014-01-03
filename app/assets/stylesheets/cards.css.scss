@@ -1,0 +1,23 @@
+#container.cards {
+
+	.rows {
+		font-size: 0;
+	}
+
+	.rows>* {
+		font-size: 12px;
+	}
+
+	.left {
+		display: inline-block;
+		min-width: 200px;
+		width: 50%;
+	}
+
+	.right {
+		display: inline-block;
+		min-width: 200px;
+		width: 50%;
+	}
+
+}
