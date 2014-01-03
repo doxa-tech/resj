@@ -1,0 +1,25 @@
+<%= render 'table_buttons' %>
+<table>
+	<thead>
+		<tr>
+			<% presenter.elements.column_names.each do |column| %>
+			<th><%= presenter.sortable(column) %></th>
+			<% end %>
+		</tr>
+	</thead>
+	<tbody>
+		<% if presenter.elements.any? %>
+			<% presenter.elements.each do |element| %>
+				<tr class="<%= cycle('odd', 'even') %>" data-url="<%= presenter.url(element) %>">
+					<% presenter.attributes(element).each do |attribute| %>
+						<td><%= truncate((strip_tags attribute.to_s), length: 40) %></td>
+					<% end %>
+				</tr>
+			<% end %>
+		<% else %>
+			<tr><td style="text-align: center;" colspan="<%= presenter.elements.column_names.count %>">Il n'y a aucun élément à afficher.</td></tr>
+		<% end %>
+	</tbody>
+</table>
+<%= will_paginate presenter.elements %>
+<%= javascript_include_tag "table" %>

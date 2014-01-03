@@ -20,6 +20,7 @@ Resj::Application.routes.draw do
   namespace :admin do
 
     resources :pages, only: [:index, :edit, :update]
+    resources :users
 
     resources :cards, only: [:index, :edit, :update] do
       member do

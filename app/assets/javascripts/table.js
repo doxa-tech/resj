@@ -15,22 +15,25 @@ $(document).ready(function() {
     return false;
   });
   // line clickable
-  $('#table tbody').on("click", "tr", function(e) {
+  $('#admin_table tbody').on("click", "tr", function(e) {
     var id = $(this).data('url') ;
-  	if ( $(this).hasClass('row_selected') ) {
-      $(this).removeClass('row_selected');
-      deleteLinkOn.add(editLinkOn).hide();
-      deleteLinkOff.add(editLinkOff).show();
-    }
-    else {
-      $('tr.row_selected').removeClass('row_selected');
-      $(this).addClass('row_selected');
-      deleteLinkOff.add(editLinkOff).hide();
-      editLinkOn.attr('href', window.location.pathname + '/' + id + '/edition').show();
-      deleteLinkOn.attr('href', window.location.pathname + '/' + id).show();
-    }
+    if (typeof id !== 'undefined') {
+    	if ( $(this).hasClass('row_selected') ) {
+        $(this).removeClass('row_selected');
+        deleteLinkOn.add(editLinkOn).hide();
+        deleteLinkOff.add(editLinkOff).show();
+      }
+      else {
+        $('tr.row_selected').removeClass('row_selected');
+        $(this).addClass('row_selected');
+        deleteLinkOff.add(editLinkOff).hide();
+        editLinkOn.attr('href', window.location.pathname + '/' + id + '/edit').show();
+        deleteLinkOn.attr('href', window.location.pathname + '/' + id).show();
+      }
+    } 
 	});
 
+  /*
   // specific for user table in ownerships page
   $('#user_table tbody').on("click", "tr", function(e) {
     var id = $(this).data('url') ;
@@ -47,4 +50,5 @@ $(document).ready(function() {
       newOwnershipOn.attr('href', '/admin/ownerships/nouveau?user_id=' + id).show();
     }
   });
+  */
 });

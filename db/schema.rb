@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131213181128) do
+ActiveRecord::Schema.define(version: 20140103101557) do
 
   create_table "card_responsables", force: true do |t|
     t.integer  "card_id"
@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 20131213181128) do
   create_table "cards", force: true do |t|
     t.integer  "card_type_id"
     t.string   "name"
-    t.integer  "responsable_id"
     t.string   "email"
     t.string   "street"
     t.integer  "npa"
@@ -58,7 +57,6 @@ ActiveRecord::Schema.define(version: 20131213181128) do
   end
 
   add_index "cards", ["card_type_id"], name: "index_cards_on_card_type_id"
-  add_index "cards", ["responsable_id"], name: "index_cards_on_responsable_id"
 
   create_table "pages", force: true do |t|
     t.string   "name"

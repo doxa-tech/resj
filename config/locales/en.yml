@@ -16,6 +16,7 @@ en:
       title: "Edit a card"
       success: "Card edited"
     admin:
+      index: "Cards"
       create:
         title: "Create a new card"
         success: "Card created"
@@ -37,6 +38,7 @@ en:
       success: "Signed out"
   page:
     admin:
+      index: "Pages"
       edit:
         success: "Page edited"
         title: "Edit a page"
