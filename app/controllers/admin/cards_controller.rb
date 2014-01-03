@@ -2,7 +2,11 @@ class Admin::CardsController < Admin::BaseController
 	before_action :verified?, only: [:verificate]
 
 	def index
-		@cards = Card.all 
+		@table = CardTable.new(view_context)
+		respond_to do |format|
+			format.html
+			format.js { render 'sort' }
+		end
 	end
 
 	def edit
