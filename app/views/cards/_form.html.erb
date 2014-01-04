@@ -1,10 +1,11 @@
 <%= form_for @card, url: change_cards_path, remote: true do |f| %>
-<%= yield f %>
-<%= f.hidden_field :current_step, value: @card.current_step %>
+	<%= yield f %>
+	<%= f.hidden_field :current_step, value: @card.current_step %>
 
-<%= f.submit "Back", :name => "step[#{@card.previous_step}]" unless @card.first_step? %>
-<% unless @card.last_step? %>
-	<%= f.submit "Continue", :name => "step[#{@card.next_step}]"  %>
-	<%= f.submit "Final", :name => "step[final]" %>
-<% end %>
+	<%= f.submit "Back", :name => "step[#{@card.previous_step}]" unless @card.first_step? %>
+	
+	<% unless @card.last_step? %>
+		<%= f.submit "Continue", :name => "step[#{@card.next_step}]"  %>
+		<%= f.submit "Final", :name => "step[final]" %>
+	<% end %>
 <% end %>

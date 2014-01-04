@@ -11,7 +11,8 @@ class UserTable < BaseTable
 			element.user_type.try(:name),
 			element.uid,
 			element.created_at,
-			element.updated_at
+			element.updated_at,
+			element.responsable.try(:name)
 		]
 	end
 

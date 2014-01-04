@@ -10,10 +10,11 @@ class CardsController < ApplicationController
 
 	# Change wizard steps
 	def change
-		# fusion between session and form(POST) params
+		# fusion between session and form (POST) params
 		session[:card_params].deep_merge!(card_params)
 		@card = Card.new(session[:card_params])
 		if @card.valid? && @card.steps.include?(step = params[:step].keys.first)
+			# update the step
 			@card.current_step = step
 			session[:card_params][:current_step] = @card.current_step
 		end
