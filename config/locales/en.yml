@@ -3,7 +3,7 @@ en:
     error: "error"
     header:
       home: "Home"
-      network: "Network"
+      reseau: "Réseau"
       profile: "Profile"
       admin:
         card: "Cards"

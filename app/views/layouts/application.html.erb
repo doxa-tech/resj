@@ -13,7 +13,7 @@
 
 <%= render 'layouts/banner' %>
 
-<div id="container">
+<div id="container"  <%= "class=#{yield(:id)}" if yield(:id).presence %>>
 	<%= yield %>
 </div>
 

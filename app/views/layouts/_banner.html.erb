@@ -1,3 +1,8 @@
 <div id="banner">
-
 </div>
+<style type="text/css">
+#banner {
+	width: 100%; height: <%= yield(:banH) %>px;
+	background: url('<%= "/assets/#{yield(:banI)}" %>') no-repeat fixed;
+}
+</style>
