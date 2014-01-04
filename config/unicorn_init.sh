@@ -40,16 +40,12 @@ force-stop)
   sig TERM && exit 0
   echo >&2 "Not running"
   ;;
-#restart|reload)
-  #sig HUP && echo reloaded OK && exit 0
-  #echo >&2 "Couldn't reload, starting '$CMD' instead"
- # run "$CMD"
- # ;;
- restart|reload)
-sig USR2 && echo reloaded OK && exit 0
-echo >&2 "Couldn't reload, starting '$CMD' instead"
-run "$CMD"
-;;
+
+restart|reload)
+  sig USR2 && echo reloaded OK && exit 0
+  echo >&2 "Couldn't reload, starting '$CMD' instead"
+  run "$CMD"
+  ;;
 
 upgrade)
   if sig USR2 && sleep 2 && sig 0 && oldsig QUIT
