@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
 	has_secure_password({ validations: false })
 
   belongs_to :user_type
+  has_many :card_verifications
+  has_many :cards, through: :card_verifications
 
   before_update :authenticate
   before_save :format

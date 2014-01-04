@@ -1,5 +1,11 @@
 <h1><%=t 'card.create.title' %></h1>
 
+<p class="expired"></p>
+
 <div class="wizard">
 	<%=  render "#{@card.current_step}_step" %>
 </div>
+
+<script>
+setTimeout(function() { window.location.reload(); alert('Session expired') }, 1800000);
+</script>

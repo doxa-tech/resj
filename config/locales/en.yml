@@ -3,11 +3,12 @@ en:
     error: "error"
     header:
       home: "Home"
-      resources: "Resources"
+      network: "Network"
       profile: "Profile"
       admin:
         card: "Cards"
         page: "Pages"
+        user: "Users"
   card:
     create:
       title: "Create a new card"

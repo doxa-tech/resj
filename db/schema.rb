@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140103101557) do
+ActiveRecord::Schema.define(version: 20131213181128) do
 
   create_table "card_responsables", force: true do |t|
     t.integer  "card_id"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20140103101557) do
     t.boolean  "validated",       default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "responsable_id"
   end
 
   add_index "cards", ["card_type_id"], name: "index_cards_on_card_type_id"
