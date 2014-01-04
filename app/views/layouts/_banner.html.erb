@@ -3,6 +3,6 @@
 <style type="text/css">
 #banner {
 	width: 100%; height: <%= yield(:banH) %>px;
-	background: url('<%= "/assets/#{yield(:banI)}" %>') no-repeat fixed;
+	background: url(<%= asset_path yield(:banI) %>) no-repeat fixed;
 }
 </style>
