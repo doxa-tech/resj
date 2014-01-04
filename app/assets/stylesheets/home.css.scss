@@ -1,20 +1,21 @@
-#home {
+#container.home {
 
 	.intro {
-		width: 600px;
 		color: #777;
-		margin: auto;
+		text-align: center;
 		.left {
 			display: inline-block;
 			width: 279px;
 			vertical-align: top;
 			padding: 0 10px;
+			text-align: justify;
 		}
 		.right {
 			display: inline-block;
 			width: 278px;
 			vertical-align: top;
 			padding: 0 10px;
+			text-align: justify;
 		}
 	}
 
