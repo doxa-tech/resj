@@ -1,5 +1,11 @@
 #container.cards {
 
+	.deco {
+		width: 100%; 
+		background: #272829;
+		height: 5px;
+	}
+
 	.rows {
 		font-size: 0;
 	}
@@ -10,14 +16,116 @@
 
 	.left {
 		display: inline-block;
-		min-width: 200px;
 		width: 50%;
+		vertical-align: top;
+		padding: 0 15px 0 0;
+		box-sizing: border-box; // prevent padding to take width
 	}
 
 	.right {
 		display: inline-block;
-		min-width: 200px;
 		width: 50%;
+		vertical-align: top;
 	}
+
+		/*
+		* left
+		*/
+
+		.left .tools {
+			width: 100%;
+			background: #272829;
+			box-sizing: border-box;
+			padding: 10px;
+			height: 60px;
+		}
+
+		// Search
+		.left .tools .search {
+
+			form {
+				width: 220px;
+				box-shadow: 0 1px 1px rgba(0, 0, 0, .4) inset, 0 1px 0 rgba(255, 255, 255, .2);
+			}
+
+				form input {
+					width: 138px;
+					height: 20px;
+					padding: 5px 5px;
+					float: left;
+					border: 0;
+					background: #EEE;
+					border-radius: 3px 0 0 3px;
+				}
+				form input:focus {
+					outline: 0;
+			    background: #fff;
+			    box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
+				}
+
+				form button {
+					overflow: visible;
+					position: relative;
+					float: right;
+					border: 0;
+					padding: 0;
+					cursor: pointer;
+					height: 30px;
+					width: 72px;
+					color: white;
+					text-transform: uppercase;
+					background: #D83C3C;
+					border-radius: 0 3px 3px 0;
+					text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
+				}
+				form button:hover {
+					background: #e54040;
+				}
+				form button:active,
+				form button:focus {
+					background: #c42f2f;
+	 			  outline: 0; 
+				}
+				form button:before {
+					content: '';
+			    position: absolute;
+			    border-width: 8px 8px 8px 0;
+			    border-style: solid solid solid none;
+			    border-color: transparent #d83c3c transparent;
+			    top: 8px;
+			    left: -6px;
+				}
+				form button:hover:before {
+					border-right-color: #e54040;
+				}
+				form button:active:before,
+				form button:focus:before {
+					background: #c42f2f;
+				}
+		} // end Search
+
+		// Index
+		.left .index p:hover {
+			background: #eee;
+			cursor: pointer;
+		}
+
+		.left .index .letter {
+			background: #ff7777;
+			padding: 0 0 0 10px; margin: 10px 0 10px 0;
+		}
+
+		.left .index .letter p:hover {
+			background: #ff6666;
+		}
+
+		/*
+		* right
+		*/
+
+		.right #map2 {
+			width: 100%;
+			height: 600px;
+		}
 
 }
