@@ -4,10 +4,10 @@ class CreateOwnerships < ActiveRecord::Migration
       t.belongs_to :element, index: true
       t.belongs_to :user, index: true
       t.belongs_to :ownership_type, index: true
-      t.boolean :create
-      t.boolean :read
-      t.boolean :udate
-      t.boolean :delete
+      t.boolean :right_create
+      t.boolean :right_read
+      t.boolean :right_update
+      t.boolean :right_delete
       t.integer :id_element
 
       t.timestamps

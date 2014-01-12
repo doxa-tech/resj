@@ -6,6 +6,7 @@
 				<li><%= link_to t('application.header.home'), root_path %></li>
 				<li><%= link_to t('application.header.reseau'), reseau_path %></li>
 				<li><%= link_to t('application.header.profile'), profile_path %></li>
+				<li><%= current_user.name if current_user %></li>
 			</ul>
 	</nav>
 </header>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140111115457) do
+ActiveRecord::Schema.define(version: 20140112151907) do
 
   create_table "actions", force: true do |t|
     t.string   "name"
@@ -107,10 +107,10 @@ ActiveRecord::Schema.define(version: 20140111115457) do
     t.integer  "element_id"
     t.integer  "user_id"
     t.integer  "ownership_type_id"
-    t.boolean  "create"
-    t.boolean  "read"
-    t.boolean  "udate"
-    t.boolean  "delete"
+    t.boolean  "right_create"
+    t.boolean  "right_read"
+    t.boolean  "right_update"
+    t.boolean  "right_delete"
     t.integer  "id_element"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -141,6 +141,12 @@ ActiveRecord::Schema.define(version: 20140111115457) do
     t.string   "firstname"
     t.string   "lastname"
     t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_types", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

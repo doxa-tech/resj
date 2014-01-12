@@ -20,8 +20,6 @@ class UserTable < BaseTable
 		element.id
 	end
 
-	private
-
 	def model
 		User
 	end

@@ -14,8 +14,6 @@ class PageTable < BaseTable
 		element.id
 	end
 
-	private
-
 	def model
 		Page
 	end

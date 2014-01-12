@@ -1,7 +1,11 @@
 <div class="table_buttons">
-	<a class="add" href="<%= request.fullpath + '/new' %>">Ajouter</a>
-	<a class="edit off">Editer</a>
-	<a class="edit on" href="#">Editer</a>
-	<a class="delete off">Supprimer</a>
-	<a class="delete on" href="#" data-method="delete" rel="nofollow" data-confirm="Etes-vous sûr de vouloir supprimer cette entrée ?">Supprimer</a>
+	<%= link_to_if current_permission.allow_create?(params[:controller]), "Ajouter", request.fullpath + "/new", class: "add" %>
+	<% if current_permission.allow_modify?(params[:controller], "update") %>
+		<a class="edit off">Editer</a>
+		<a class="edit on" href="#">Editer</a>
+	<% end %>
+	<% if current_permission.allow_modify?(params[:controller], "destroy") %>
+		<a class="delete off">Supprimer</a>
+		<a class="delete on" href="#" data-method="delete" rel="nofollow" data-confirm="Etes-vous sûr de vouloir supprimer cette entrée ?">Supprimer</a>
+	<% end %>
 </div>

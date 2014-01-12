@@ -5,10 +5,11 @@ class UsersController < ApplicationController
 	end
 
 	def create
-		@user = User.new(params[:user])
+		@user = User.new(user_params)
+		@user.user_type = UserType.find_by_name('user')
 		if @user.save
 			sign_in(@user)
-			redirect_to profil_path, success: t('user.create.success')
+			redirect_to profile_path, success: t('user.create.success')
 		else
 			render 'new'
 		end
@@ -22,7 +23,7 @@ class UsersController < ApplicationController
 		@user = current_user
 		if @user.save
 			sign_in(@user)
-			redirect_to profil_path, success: t('user.edit.success')
+			redirect_to profile_path, success: t('user.edit.success')
 		else
 			render 'edit'
 		end
@@ -31,5 +32,11 @@ class UsersController < ApplicationController
 	# Main page of the user's profile
 	def profile
 		render layout: 'admin'
+	end
+
+	private
+
+	def user_params
+		params.require(:user).permit(:name, :email, :password, :password_confirmation)
 	end
 end
