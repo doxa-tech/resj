@@ -4,4 +4,5 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   # add different types of flash messages
   add_flash_types :error, :success
+  include SessionsHelper
 end

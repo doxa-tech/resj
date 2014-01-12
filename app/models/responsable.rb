@@ -12,11 +12,11 @@ class Responsable < ActiveRecord::Base
 	private
 
 	def format
-		self.firstname.strip!
-		self.lastname.strip!
-		self.email.strip!
-		self.firstname.capitalize!
-		self.lastname.capitalize!
-		self.email.downcase!
+		self.firstname.try(:strip!)
+		self.lastname.try(:strip!)
+		self.email.try(:strip!)
+		self.firstname.try(:capitalize!)
+		self.lastname.try(:capitalize!)
+		self.email.try(:downcase!)
 	end
 end

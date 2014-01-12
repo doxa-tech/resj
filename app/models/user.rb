@@ -7,20 +7,32 @@ class User < ActiveRecord::Base
   has_many :card_verifications
   has_many :cards, through: :card_verifications
   has_many :ownerships
+  has_many :parents
+  has_many :users, through: :parents
 
-  before_update :authenticate
-  before_save :format
+  before_save :format, :create_remember_token
+
+  validate :current_password?
 
   private
 
   # Control by an update if the current_password is right
-  def authenticate
-  	errors.add(:current_password, "Does not match password") unless self.authenticate(current_password)
+  def current_password?
+    if current_password && !self.authenticate(current_password)
+  	 errors.add(:current_password, "does not match password")
+    end
   end
+
+  private
 
   # Remove spaces and capitales
   def format
-    self.email = self.email.strip.downcase
-    self.name = self.name.strip
+    self.email.try(:strip!)
+    self.email.try(:downcase!)
+    self.name.try(:strip!)
+  end
+
+  def create_remember_token
+    self.remember_token = SecureRandom.urlsafe_base64
   end
 end

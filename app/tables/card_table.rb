@@ -24,8 +24,6 @@ class CardTable < BaseTable
 		element.id
 	end
 
-	private
-
 	def model
 		Card
 	end

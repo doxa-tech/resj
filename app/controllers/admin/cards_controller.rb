@@ -1,5 +1,6 @@
 class Admin::CardsController < Admin::BaseController
 	before_action :verified?, only: [:verificate]
+	before_action :current_resource, only: [:edit, :update, :destroy]
 
 	def index
 		@table = CardTable.new(view_context)
@@ -25,13 +26,11 @@ class Admin::CardsController < Admin::BaseController
 	end
 
 	def edit
-		@card = Card.find(params[:id])
 		@card.affiliations.build
 		@card.responsables.build
 	end
 
 	def update
-		@card = Card.find(params[:id])
 		if @card.update_attributes(card_params)
 			redirect_to admin_cards_path, success: t('card.admin.edit.success')
 		else
@@ -40,7 +39,7 @@ class Admin::CardsController < Admin::BaseController
 	end
 
 	def destroy
-		Card.find(params[:id]).destroy
+		@card.destroy
 		redirect_to admin_cards_path
 	end
 
@@ -58,5 +57,9 @@ class Admin::CardsController < Admin::BaseController
   # Control if the user already verified
   def verified?
   	redirect_to root_path unless CardVerification.where('user_id = ? AND card_id = ?', current_user.id, params[:id])
+  end
+
+  def current_resource
+  	@card = Card.find(params[:id]) if params[:id]
   end
 end
