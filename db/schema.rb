@@ -11,7 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131213181128) do
+ActiveRecord::Schema.define(version: 20140111115457) do
+
+  create_table "actions", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "affiliations", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "card_affiliations", force: true do |t|
+    t.integer  "card_id"
+    t.integer  "affiliation_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "card_affiliations", ["affiliation_id"], name: "index_card_affiliations_on_affiliation_id"
+  add_index "card_affiliations", ["card_id"], name: "index_card_affiliations_on_card_id"
 
   create_table "card_responsables", force: true do |t|
     t.integer  "card_id"
@@ -42,7 +64,6 @@ ActiveRecord::Schema.define(version: 20131213181128) do
   create_table "cards", force: true do |t|
     t.integer  "card_type_id"
     t.string   "name"
-    t.integer  "responsable_id"
     t.string   "email"
     t.string   "street"
     t.integer  "npa"
@@ -55,10 +76,49 @@ ActiveRecord::Schema.define(version: 20131213181128) do
     t.boolean  "validated",       default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "responsable_id"
   end
 
   add_index "cards", ["card_type_id"], name: "index_cards_on_card_type_id"
-  add_index "cards", ["responsable_id"], name: "index_cards_on_responsable_id"
+
+  create_table "elements", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ownership_actions", force: true do |t|
+    t.integer  "action_id"
+    t.integer  "ownership_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ownership_actions", ["action_id"], name: "index_ownership_actions_on_action_id"
+  add_index "ownership_actions", ["ownership_id"], name: "index_ownership_actions_on_ownership_id"
+
+  create_table "ownership_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ownerships", force: true do |t|
+    t.integer  "element_id"
+    t.integer  "user_id"
+    t.integer  "ownership_type_id"
+    t.boolean  "create"
+    t.boolean  "read"
+    t.boolean  "udate"
+    t.boolean  "delete"
+    t.integer  "id_element"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ownerships", ["element_id"], name: "index_ownerships_on_element_id"
+  add_index "ownerships", ["ownership_type_id"], name: "index_ownerships_on_ownership_type_id"
+  add_index "ownerships", ["user_id"], name: "index_ownerships_on_user_id"
 
   create_table "pages", force: true do |t|
     t.string   "name"
@@ -66,6 +126,16 @@ ActiveRecord::Schema.define(version: 20131213181128) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "parents", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "parents", ["parent_id"], name: "index_parents_on_parent_id"
+  add_index "parents", ["user_id"], name: "index_parents_on_user_id"
 
   create_table "responsables", force: true do |t|
     t.string   "firstname"

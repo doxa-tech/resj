@@ -6,6 +6,7 @@ class CardsController < ApplicationController
 	def new
 		session[:card_params] ||= {}
 		@card = Card.new(session[:card_params])
+		@card.responsables.build
 	end
 
 	# Change wizard steps
@@ -16,10 +17,10 @@ class CardsController < ApplicationController
 		if @card.valid? && @card.steps.include?(step = params[:step].keys.first)
 			# update the step
 			@card.current_step = step
-			session[:card_params][:current_step] = @card.current_step
+			session[:card_params]["current_step"] = @card.current_step
 		end
+		@card.responsables.build
 	end
-
 
 	def create
 		@card = Card.new(session[:card_params])
@@ -34,6 +35,6 @@ class CardsController < ApplicationController
 	private
 
   def card_params
-  	params.require(:card).permit(:name, :description, :street, :npa, :city, :email, :place, :website, :password_digest, :responsable_id, :card_type_id, :current_step) if params[:card]
+  	params.require(:card).permit(:name, :description, :street, :npa, :city, :email, :place, :website, :password_digest, :card_type_id, :current_step, responsables_attributes: [:firstname, :lastname, :email, :_destroy], responsable_attributes: [:firstname, :lastname, :email] )
   end
 end

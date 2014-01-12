@@ -47,7 +47,11 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'unicorn'
 
 # Use Capistrano for deployment
-gem 'capistrano', '~> 2.15', group: :development
+
+group :development do
+	gem 'capistrano', '~> 2.15', group: :development
+	gem 'sunspot_solr'
+end
 
 # CK Editor WYSIWYG
 gem 'ckeditor_rails'
@@ -57,3 +61,6 @@ gem 'ckeditor_rails'
 
 # pagination
 gem 'will_paginate'
+
+# search
+gem 'sunspot_rails'

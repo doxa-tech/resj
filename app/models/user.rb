@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   belongs_to :user_type
   has_many :card_verifications
   has_many :cards, through: :card_verifications
+  has_many :ownerships
 
   before_update :authenticate
   before_save :format

@@ -43,7 +43,7 @@ Resj::Application.configure do
   # config.force_ssl = true
 
   # Set to :debug to see everything in the log.
-  config.log_level = :debug
+  config.log_level = :info
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
@@ -59,7 +59,7 @@ Resj::Application.configure do
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-  config.assets.precompile += %w( map/a_mapbox_v1.5.2.js map/b_leaflet.markercluster.js map/c_map.js table.js)
+  config.assets.precompile += %w( map/a_mapbox_v1.5.2.js map/b_leaflet.markercluster.js map/c_map.js table.js card_wizard.js)
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
