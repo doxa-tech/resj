@@ -13,6 +13,7 @@ Resj::Application.routes.draw do
   resources :cards, only: [:new, :create] do
     collection do
       post 'change'
+      post 'new_responsable'
     end
   end
 
@@ -22,7 +23,7 @@ Resj::Application.routes.draw do
     resources :pages, only: [:index, :edit, :update]
     resources :users
 
-    resources :cards, only: [:index, :edit, :update] do
+    resources :cards do
       member do
         get 'verificate'
       end

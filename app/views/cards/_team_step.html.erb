@@ -3,7 +3,5 @@
 	<%= f.label :email %>
 	<%= f.text_field :email %><br>
 
-	<%= f.label :responsable_id %>
-	<%= f.text_field :responsable_id %><br>
-
+	<%= render 'responsables_fields', f: f %>
 <% end %>

@@ -18,6 +18,7 @@ en:
       success: "Card edited"
     admin:
       index: "Cards"
+      validated_error: "could not be activated. The card has not been verified."
       create:
         title: "Create a new card"
         success: "Card created"

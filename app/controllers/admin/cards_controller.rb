@@ -9,8 +9,25 @@ class Admin::CardsController < Admin::BaseController
 		end
 	end
 
+	def new
+		@card = Card.new
+		@card.affiliations.build
+		@card.responsables.build
+	end
+
+	def create
+		@card = Card.new(card_params)
+		if @card.save
+			redirect_to admin_cards_path, success: t('card.admin.create.success')
+		else
+			render 'new'
+		end
+	end
+
 	def edit
 		@card = Card.find(params[:id])
+		@card.affiliations.build
+		@card.responsables.build
 	end
 
 	def update
@@ -22,6 +39,11 @@ class Admin::CardsController < Admin::BaseController
 		end
 	end
 
+	def destroy
+		Card.find(params[:id]).destroy
+		redirect_to admin_cards_path
+	end
+
 	# Add a verification on a card by an user
 	def verificate
 		CardVerification.create(user_id: current_user.id, card_id: params[:id])
@@ -30,7 +52,7 @@ class Admin::CardsController < Admin::BaseController
 	private
 
   def card_params
-  	params.require(:card).permit(:name, :description, :street, :npa, :city, :contact, :email, :place, :website, :password_digest, :responsables, :card_type_id, :validated)
+  	params.require(:card).permit(:name, :description, :street, :npa, :city, :email, :place, :website, :password_digest, :card_type_id, :current_step, :validated, responsables_attributes: [:firstname, :lastname, :email, :_destroy], responsable_attributes: [:firstname, :lastname, :email], affiliations_attributes: [:name, :_destroy] ) if params[:card]
   end
 
   # Control if the user already verified
