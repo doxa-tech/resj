@@ -6,7 +6,6 @@ class CardsController < ApplicationController
 	def new
 		session[:card_params] ||= {}
 		@card = Card.new(session[:card_params])
-		@card.responsables.build
 	end
 
 	# Change wizard steps
@@ -19,7 +18,6 @@ class CardsController < ApplicationController
 			@card.current_step = step
 			session[:card_params]["current_step"] = @card.current_step
 		end
-		@card.responsables.build
 	end
 
 	def create

@@ -56,7 +56,7 @@ class Card < ActiveRecord::Base
 
   def verified?
     if validated == true && CardVerification.where('card_id = ?', id).count < 3
-      errors.add(:validated, t('card.admin.validated_error') )
+      errors.add(:validated, I18n.t('card.admin.validated_error') )
     end
   end
 end

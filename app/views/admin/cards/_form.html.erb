@@ -1,4 +1,6 @@
 <%= form_for [:admin, @card] do |f| %>
+	
+	<%= render 'error_messages', object: f.object %>
 
 	<%= f.label :name %>
 	<%= f.text_field :name %><br>
@@ -30,7 +32,7 @@
 	<%= @card.affiliations %>
 
 	<div class="association_fields">
-		<%= f.fields_for :affiliations do |affiliation_fields| %>
+		<%= f.fields_for(:affiliations, @card.affiliations.any? || @card.affiliations.build) do |affiliation_fields| %>
 			<div class="fields">
 				<%= affiliation_fields.label :name %>
 				<%= affiliation_fields.text_field :name %>
@@ -46,7 +48,7 @@
 	<%= f.label :card_type_id %>
 	<%= f.collection_select(:card_type_id, CardType.all, :id, :name) %><br>
 
-	<% if !@card.validated %>
+	<% if !@card.validated && current_permission.allow_params?(params[:controller], "validated") %>
 		<%= f.label :validated %>
 		<%= f.check_box :validated, {}, true %>
 	<% end %>

@@ -1,10 +1,10 @@
-<%= f.fields_for :responsable, (@card.responsable or Responsable.new) do |responsable_fields| %>
+<%= f.fields_for :responsable, (@card.responsable || Responsable.new) do |responsable_fields| %>
 	<%= responsable_fields.text_field :firstname %>
 	<%= responsable_fields.text_field :lastname %>
 	<%= responsable_fields.text_field :email %>
 <% end %>
 <div class="association_fields">
-	<%= f.fields_for :responsables do |responsables_fields| %>
+	<%= f.fields_for(:responsables, @card.responsables.any? || @card.responsables.build) do |responsables_fields| %>
 		<div class="fields">
 			<%= responsables_fields.text_field :firstname %>
 			<%= responsables_fields.text_field :lastname %>
