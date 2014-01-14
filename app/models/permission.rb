@@ -51,6 +51,19 @@ class Permission
 		end
   end
 
+  def allow_params?(controller, name)
+  	return true if Ownership.joins(:actions).where(user_id: @ids, element_id: element_id(controller), actions: {name: name}).any?
+  end
+
+  def reject_params(controller, attributes, params)
+  	params.each do |parameter|
+  		if !allow_params?(controller, parameter)
+  			attributes.reject { |a| a == parameter}
+  		end
+  	end
+  	attributes
+  end
+
   private
 
   def element_id(controller)

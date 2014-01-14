@@ -12,8 +12,6 @@ class Admin::CardsController < Admin::BaseController
 
 	def new
 		@card = Card.new
-		@card.affiliations.build
-		@card.responsables.build
 	end
 
 	def create
@@ -26,8 +24,6 @@ class Admin::CardsController < Admin::BaseController
 	end
 
 	def edit
-		@card.affiliations.build
-		@card.responsables.build
 	end
 
 	def update
@@ -50,8 +46,12 @@ class Admin::CardsController < Admin::BaseController
 
 	private
 
+	def attributes
+		["name", "description", "street", "npa", "city", "email", "place", "website", "password_digest", "card_type_id", "current_step", "validated", "responsables_attributes" => ["firstname", "lastname", "email", "_destroy"], "responsable_attributes" => ["firstname", "lastname", "email"], "affiliations_attributes" => ["name", "_destroy"]]
+	end
+
   def card_params
-  	params.require(:card).permit(:name, :description, :street, :npa, :city, :email, :place, :website, :password_digest, :card_type_id, :current_step, :validated, responsables_attributes: [:firstname, :lastname, :email, :_destroy], responsable_attributes: [:firstname, :lastname, :email], affiliations_attributes: [:name, :_destroy] ) if params[:card]
+  	params.require(:card).permit(current_permission.reject_params(params[:controller], attributes, ["validated"]))
   end
 
   # Control if the user already verified
