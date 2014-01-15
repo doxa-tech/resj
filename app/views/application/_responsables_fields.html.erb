@@ -1,14 +1,16 @@
-<%= f.fields_for :responsable, (@card.responsable || Responsable.new) do |responsable_fields| %>
-	<%= responsable_fields.text_field :firstname %>
-	<%= responsable_fields.text_field :lastname %>
-	<%= responsable_fields.text_field :email %>
-<% end %>
-<div class="association_fields">
+<div class="search" data-link="responsables">
+	<%= f.fields_for :responsable, (@card.responsable || Responsable.new) do |responsable_fields| %>
+		<%= responsables_fields.text_field :firstname, data: {attr: "firstname"} %>
+		<%= responsables_fields.text_field :lastname, data: {attr: "lastname"} %>
+		<%= responsables_fields.text_field :email, data: {attr: "email"} %>
+	<% end %>
+</div>
+<div class="association_fields search" data-link="responsables">
 	<%= f.fields_for(:responsables, @card.responsables.any? || @card.responsables.build) do |responsables_fields| %>
 		<div class="fields">
-			<%= responsables_fields.text_field :firstname %>
-			<%= responsables_fields.text_field :lastname %>
-			<%= responsables_fields.text_field :email %>
+			<%= responsables_fields.text_field :firstname, data: {attr: "firstname"} %>
+			<%= responsables_fields.text_field :lastname, data: {attr: "lastname"} %>
+			<%= responsables_fields.text_field :email, data: {attr: "email"} %>
 			<%= responsables_fields.hidden_field :_destroy %>
 			<%= link_to_remove_fields "remove" %>
 		</div>

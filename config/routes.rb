@@ -17,6 +17,10 @@ Resj::Application.routes.draw do
     end
   end
 
+  ["responsables", "affiliations"].each do |search|
+    post "/searches/#{search}", to: "searches##{search}"
+  end
+
   # admin resources
   namespace :admin do
 

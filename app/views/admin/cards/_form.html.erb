@@ -31,11 +31,11 @@
 
 	<%= @card.affiliations %>
 
-	<div class="association_fields">
+	<div class="association_fields search" data-link="affiliations" >
 		<%= f.fields_for(:affiliations, @card.affiliations.any? || @card.affiliations.build) do |affiliation_fields| %>
 			<div class="fields">
 				<%= affiliation_fields.label :name %>
-				<%= affiliation_fields.text_field :name %>
+				<%= affiliation_fields.text_field :name, data: {attr: "name"} %>
 				<%= affiliation_fields.hidden_field :_destroy %>
 				<%= link_to_remove_fields "remove" %>
 			</div>
