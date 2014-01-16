@@ -1,8 +1,8 @@
 <div class="search" data-link="responsables">
 	<%= f.fields_for :responsable, (@card.responsable || Responsable.new) do |responsable_fields| %>
-		<%= responsables_fields.text_field :firstname, data: {attr: "firstname"} %>
-		<%= responsables_fields.text_field :lastname, data: {attr: "lastname"} %>
-		<%= responsables_fields.text_field :email, data: {attr: "email"} %>
+		<%= responsable_fields.text_field :firstname, data: {attr: "firstname"} %>
+		<%= responsable_fields.text_field :lastname, data: {attr: "lastname"} %>
+		<%= responsable_fields.text_field :email, data: {attr: "email"} %>
 	<% end %>
 </div>
 <div class="association_fields search" data-link="responsables">

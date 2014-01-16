@@ -65,3 +65,6 @@ gem 'will_paginate'
 
 # search
 gem 'sunspot_rails'
+
+# config
+gem "figaro"
