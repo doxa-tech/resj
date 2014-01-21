@@ -51,7 +51,6 @@ gem 'unicorn'
 
 group :development do
 	gem 'capistrano', '~> 2.15', group: :development
-	gem 'sunspot_solr'
 end
 
 # CK Editor WYSIWYG
@@ -65,6 +64,10 @@ gem 'will_paginate'
 
 # search
 gem 'sunspot_rails'
+gem 'sunspot_solr'
 
 # config
 gem "figaro"
+
+# add the jquery plugin selectize.js
+gem "selectize-rails"

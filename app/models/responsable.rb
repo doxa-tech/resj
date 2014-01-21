@@ -1,6 +1,6 @@
 class Responsable < ActiveRecord::Base
 	has_many :cards
-	has_many :card_responsables
+	has_many :card_responsables, dependent: :destroy
 	has_many :cards, through: :card_responsables
 
 	validates :firstname, presence: true

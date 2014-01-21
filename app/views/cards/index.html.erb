@@ -5,51 +5,18 @@
 <%= javascript_include_tag "map/a_mapbox_v1.5.2.js" %>
 <%= javascript_include_tag "map/b_leaflet.markercluster.js" %>
 
+<div class="tools">
+  <div class="search">
+    <%= form_tag reseau_path, :method => :get do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Cherchez ici", class: "live-search" %>
+      <%= submit_tag "Go", :name => nil %>
+    <% end %>
+  </div>
+</div>
+
 <div class="deco"></div>
-<div class="rows">
-	<div class="left">
-		<div class="tools">
-			<div class="search">
-				<form>
-					<input type="text" placeholder="cherchez ici" required="">
-					<button type="submit">Go</button>
-				</form>
-			</div>
-		</div>
-		<div class="index">
-			<div class="letter"><p>A</p></div>
-			<p>Abricôts</p>
-			<p>Association des jeunes</p>
-			<p>Activ' your life!</p>
-			<div class="letter"><p>B</p></div>
-			<p>BCD</p>
-			<p>Bayboloss les gars</p>
-			<div class="letter"><p>C</p></div>
-			<p>CANA</p>
-			<p>CEP'4U</p>
-			<p>CFF - Chrétiens Fou Furieux</p>
-			<p>Chez toi</p>
-			<p>Colo</p>
-			<p>com.d'@b</p>
-			<p>Commission de jeunesse mennonite Suisse</p>
-			<p>Contact</p>
-			<p>CTT - chrétiens tous terrains</p>
-			<div class="letter"><p>D</p></div>
-			<p>DeepImpact</p>
-			<p>des-gens-T</p>
-			<p>DKP</p>
-			<div class="letter"><p>E</p></div>
-			<p>Espace-Jeunes</p>
-			<div class="letter"><p>F</p></div>
-			<p>Factory.fm</p>
-			<p>Firestation (C3 Lausanne)</p>
-			<div class="letter"><p>G</p></div>
-			<p>GB</p>
-		</div>
-	</div>
-	<div class="right">
-		<div id="map2"></div>
-	</div>
+<div class="rows" id="results">
+  <%= render 'results' %>
 </div>
 
 <script type="text/javascript">

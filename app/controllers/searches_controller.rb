@@ -16,4 +16,8 @@ class SearchesController < ApplicationController
 		end
 	end
 
+	def tags
+		render json: Tag.where("name like ?", "#{params[:query]}_%" )
+	end
+
 end
