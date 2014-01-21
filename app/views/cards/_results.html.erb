@@ -1,7 +1,5 @@
 <div class="left">
-  <div id="facets">
-
-	<%= @cards %>
+	<div id="facets">
   <h3>Tags</h3>
     <ul>
       <% for row in @search.facet(:tags).rows %>
@@ -46,6 +44,7 @@
 		<p>GB</p>
 	</div>
 </div>
+<div class="space"></div>
 <div class="right">
 	<div id="map2"></div>
 </div>
