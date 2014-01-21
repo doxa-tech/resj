@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140112151907) do
+ActiveRecord::Schema.define(version: 20140117160709) do
 
   create_table "actions", force: true do |t|
     t.string   "name"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20140112151907) do
   create_table "cards", force: true do |t|
     t.integer  "card_type_id"
     t.string   "name"
+    t.integer  "responsable_id"
     t.string   "email"
     t.string   "street"
     t.integer  "npa"
@@ -76,10 +77,10 @@ ActiveRecord::Schema.define(version: 20140112151907) do
     t.boolean  "validated",       default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "responsable_id"
   end
 
   add_index "cards", ["card_type_id"], name: "index_cards_on_card_type_id"
+  add_index "cards", ["responsable_id"], name: "index_cards_on_responsable_id"
 
   create_table "elements", force: true do |t|
     t.string   "name"
@@ -141,6 +142,23 @@ ActiveRecord::Schema.define(version: 20140112151907) do
     t.string   "firstname"
     t.string   "lastname"
     t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "taggings", force: true do |t|
+    t.integer  "card_id"
+    t.integer  "tag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "taggings", ["card_id"], name: "index_taggings_on_card_id"
+  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id"
+
+  create_table "tags", force: true do |t|
+    t.string   "name"
+    t.integer  "popularity", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

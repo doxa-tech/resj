@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 	has_secure_password({ validations: false })
 
   belongs_to :user_type
-  has_many :card_verifications
+  has_many :card_verifications, dependent: :destroy
   has_many :cards, through: :card_verifications
   has_many :ownerships
   has_many :parents

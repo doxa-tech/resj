@@ -2,7 +2,7 @@ class Permission
 
 	def initialize(user)
 		@user = user
-		@ids ||= user.parents.pluck(:parent_id) << user.id
+		user ? @ids ||= (user.parents.pluck(:parent_id) << user.id) : @ids = nil
 		@all_entries_id ||= OwnershipType.find_by_name('all_entries').id
 		@on_ownership_id ||= OwnershipType.find_by_name('on_ownership').id
 		@on_entry_id ||= OwnershipType.find_by_name('on_entry').id
@@ -34,7 +34,7 @@ class Permission
 		elsif ownerships_on_entry.any?
 			@elements = model.where('id IN (?)', ownerships_on_entry)
 		else
-			@elements = []
+			@elements = model.none
 		end
   end
 

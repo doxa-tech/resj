@@ -2,6 +2,10 @@ Resj::Application.routes.draw do
 
   root to: 'pages#home'
 
+  %w[home].each do |page|
+    get page, to: "pages##{page}"
+  end
+
   get 'reseau', to: 'cards#index'
   get 'inscription', to: 'users#new'
   get 'connexion', to: 'sessions#new'
@@ -17,7 +21,7 @@ Resj::Application.routes.draw do
     end
   end
 
-  ["responsables", "affiliations"].each do |search|
+  %w[responsables affiliations tags].each do |search|
     post "/searches/#{search}", to: "searches##{search}"
   end
 

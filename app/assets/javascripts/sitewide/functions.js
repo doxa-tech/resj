@@ -12,3 +12,6 @@ function add_fields(link) {
 	content = "<div class='fields'>" + content.html().replace(new RegExp(count-1, "g"), count) + "</div>";
 	$(content).insertBefore(associationFields.find(">:last-child"));
 }
+function getURLParameter(name) {
+  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
+}

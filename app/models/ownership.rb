@@ -1,8 +1,8 @@
 class Ownership < ActiveRecord::Base
 	belongs_to :element
 	belongs_to :user
-	belongs_to :onwership_type
-	has_many :ownership_actions
+	belongs_to :ownership_type
+	has_many :ownership_actions, dependent: :destroy
 	has_many :actions, through: :ownership_actions
 
 	accepts_nested_attributes_for :actions

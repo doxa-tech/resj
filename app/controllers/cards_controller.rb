@@ -1,6 +1,16 @@
 class CardsController < ApplicationController
 
 	def index
+		@search = Card.search do
+			fulltext params[:search]
+			facet(:tags)
+			with(:tags, params[:tag] ) if params[:tag].present?
+		end
+  	@cards = @search.results
+  	respond_to do |format|
+  		format.html
+  		format.js { render 'index.js' } 
+  	end
 	end
 
 	def new

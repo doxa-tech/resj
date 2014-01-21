@@ -9,7 +9,6 @@ class UsersController < ApplicationController
 		@user.user_type = UserType.find_by_name('user')
 		if @user.save
 			sign_in(@user)
-			UserMailer.signup_confirmation(@user).deliver
 			redirect_to profile_path, success: t('user.create.success')
 		else
 			render 'new'

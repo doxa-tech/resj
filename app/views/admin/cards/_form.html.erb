@@ -46,7 +46,10 @@
 	<%= render 'responsables_fields', f: f %>
 
 	<%= f.label :card_type_id %>
-	<%= f.collection_select(:card_type_id, CardType.all, :id, :name) %><br>
+	<%= f.collection_select :card_type_id, CardType.all, :id, :name, {}, class: "selectize" %><br>
+
+	<%= f.label :tag_names %>
+	<%= f.text_field :tag_names, class: "selectize-tags" %>
 
 	<% if !@card.validated && current_permission.allow_params?(params[:controller], "validated") %>
 		<%= f.label :validated %>
