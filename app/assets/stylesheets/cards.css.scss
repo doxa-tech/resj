@@ -1,3 +1,4 @@
+// Cards
 #container.cards {
 
 	.deco {
@@ -14,12 +15,20 @@
 		font-size: 12px;
 	}
 
+	/*
+	* Global definition of "left / space / right"
+	*/
+
 	.left {
 		display: inline-block;
-		width: 50%;
+		width: 49%;
 		vertical-align: top;
-		padding: 0 15px 0 0;
 		box-sizing: border-box; // prevent padding to take width
+	}
+
+	.space {
+		display: inline-block;
+		width: 1%;
 	}
 
 	.right {
@@ -27,6 +36,10 @@
 		width: 50%;
 		vertical-align: top;
 	}
+
+	/*
+	* Deep definition of "left / right"
+	*/
 
 		/*
 		* left
@@ -105,7 +118,7 @@
 				}
 		} // end Search
 
-		// Index
+		/* index */
 		.left .index p:hover {
 			background: #eee;
 			cursor: pointer;
@@ -129,4 +142,4 @@
 			height: 600px;
 		}
 
-}
+} // end Cards
