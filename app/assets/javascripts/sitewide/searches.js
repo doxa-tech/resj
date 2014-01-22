@@ -57,7 +57,7 @@ $(document).ready(function() {
   })();
 
   $('.live-search').on("keyup", function() {
-    tag = getURLParameter('tag') || "";
+    tag = $('#facets').data('tag');
     query = $(this).val();
     delay(function(){
       $.getScript( "reseau?search="+query+"&tag="+tag );

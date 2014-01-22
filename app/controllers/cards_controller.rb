@@ -7,10 +7,7 @@ class CardsController < ApplicationController
 			with(:tags, params[:tag] ) if params[:tag].present?
 		end
   	@cards = @search.results
-  	respond_to do |format|
-  		format.html
-  		format.js { render 'index.js' } 
-  	end
+  	@options = {tag: params[:tag], search: params[:search]}
 	end
 
 	def new
