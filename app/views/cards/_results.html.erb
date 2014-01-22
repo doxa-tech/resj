@@ -1,13 +1,14 @@
 <div class="left">
-	<div id="facets">
+	<div id="facets" data-tag="<%= @options[:tag] %>">
+		<%= @cards %>
   <h3>Tags</h3>
     <ul>
       <% for row in @search.facet(:tags).rows %>
         <li>
-          <% if params[:tag].blank? %>
-            <%= link_to row.value, {search: params[:search], tag: row.value}, remote: true %> (<%= row.count %>)
+          <% if params[:tag] != row.value %>
+            <%= link_to row.value, {search: @options[:search], tag: row.value}, remote: true %> (<%= row.count %>)
           <% else %>
-            <strong><%= row.value %></strong> (<%= link_to "remove", search: params[:search], :tag => nil, remote: true %>)
+            <strong><%= row.value %></strong> (<%= link_to "remove", search: @options[:search], :tag => nil, remote: true %>)
           <% end %>
         </li>
       <% end %>
