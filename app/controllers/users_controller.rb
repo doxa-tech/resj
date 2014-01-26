@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+	before_action :connected?, only: [:profile, :edit, :update]
 
 	def new
 		@user = User.new
@@ -38,5 +39,9 @@ class UsersController < ApplicationController
 
 	def user_params
 		params.require(:user).permit(:name, :email, :password, :password_confirmation)
+	end
+
+	def connected?
+		redirect_to root_path, error: "Please sign in" if current_user.nil?
 	end
 end
