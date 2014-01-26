@@ -22,4 +22,10 @@ class Admin::BaseController < ApplicationController
 			redirect_to root_path, error: "Not authorize"
 		end
 	end
+
+	def authorize_action
+		if !current_user || !current_permission.allow_action?(params[:controller], params[:action], current_resource)
+			redirect_to root_path, error: "Not authorize"
+		end
+	end
 end
