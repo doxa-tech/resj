@@ -38,13 +38,16 @@
 </div>
 
 <div class="col">
-	<div class="block split2">
+	<div class="block">
 		<div class="header">
 			<h2>Ajouter une oeuvre</h2>
 		</div>
 		<ul>
 			<li>
-				Ajouter
+				<%= link_to 'Via admin', new_admin_card_path %>
+			</li>
+			<li>
+				<%= link_to 'Via accès public', new_card_path %>
 			</li>
 		</ul>
 	</div>
