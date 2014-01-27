@@ -1,5 +1,60 @@
-<h1><%= t('card.admin.index') %></h1>
+<!-- <h1><%= t('card.admin.index') %></h1> -->
 
-<div id="admin_table">
-	<%= present @table %>
+<div class="row">
+	<div class="col split2">
+		<div class="block">
+			<div class="header">
+				<h2>Dernières oeuvres inscrites</h2>
+			</div>
+			<ul>
+				<li>
+					Way <span class="push-right">il y a 2 jours</span>
+				</li>
+				<li>
+					Power Camps <span class="push-right">il y a 2 jours</span>
+				</li>
+				<li>
+					Eglise évangélique des pioanos <span class="push-right">il y a 2 jours</span>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="col split2">
+		<div class="block">
+			<div class="header">
+				<h2>Oeuvres en attentes de validation</h2>
+			</div>
+			<ul>
+				<li>
+					Power Camps <span class="push-right">il y a 2 jours</span>
+				</li>
+				<li>
+					Eglise évangélique des pioanos <span class="push-right">il y a 2 jours</span>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="col">
+	<div class="block split2">
+		<div class="header">
+			<h2>Ajouter une oeuvre</h2>
+		</div>
+		<ul>
+			<li>
+				Ajouter
+			</li>
+		</ul>
+	</div>
+</div>
+
+<div class="col">
+	<div class="block">
+		<h2>Listes des oeuvres incrites</h2>
+		<div id="admin_table">
+			<%= present @table %>
+		</div>
+	</div>
 </div>
