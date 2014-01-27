@@ -1,3 +1,4 @@
+/* http://condorthemes.com/cleanzone/ */
 #admin_header {
 
 	background : #272930;
@@ -47,12 +48,16 @@
 				color: #c9d4f6;
 				display: block;
 
-				&:hover {
+				&:hover, &.active {
 					background: #2A2C34;
 					border-left: 1px solid #2494F2;
 				}
 
 			}
+
+	.vspace {
+		min-height: 100%;
+	}
 
 }
 

@@ -1,10 +1,10 @@
-@import url(http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,600);
 @import url(http://fonts.googleapis.com/css?family=Jura:400,300);
 
 html body
 {
-	font: 300 15px/17px 'Ubuntu', tahoma;
-	height: 2000px;
+	font: 300 15px/17px 'Open Sans', tahoma;
+	height: 100%;
 }
 
 a
@@ -26,6 +26,7 @@ label
 	width: 80%;
 	margin: 10px auto;
 	padding: 10px;
+	min-height: 100%;
 
 }
 
