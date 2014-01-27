@@ -1,34 +1,68 @@
 <%= form_for [:admin, @card] do |f| %>
 	
 	<%= render 'error_messages', object: f.object %>
-
-	<%= f.label :name %>
-	<%= f.text_field :name %><br>
-
-	<%= f.label :description %>
-	<%= f.text_area :description %><br>
-
-	<%= f.label :street %>
-	<%= f.text_field :street %><br>
-
-	<%= f.label :npa %>
-	<%= f.number_field :npa %><br>
-
-	<%= f.label :city %>
-	<%= f.text_field :city %><br>
-
-	<%= f.label :email %>
-	<%= f.text_field :email %><br>
-
-	<%= f.label :place %>
-	<%= f.text_field :place %><br>
-
-	<%= f.label :website %>
-	<%= f.text_field :website %><br>
-
-	<%= f.label :password_digest %>
-	<%= f.password_field :password_digest %><br>
-
+	<div class="col split2">
+		<div class="block">
+			<ul>
+				<li>
+					<%= f.label :name %>
+					<%= f.text_field :name %><br>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<%= f.label :description %>
+					<%= f.text_area :description %><br>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<%= f.label :street %>
+					<%= f.text_field :street %><br>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<%= f.label :npa %>
+					<%= f.number_field :npa %><br>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<%= f.label :city %>
+					<%= f.text_field :city %><br>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="col split2">
+		<div class="block">
+			<ul>
+				<li>
+					<%= f.label :email %>
+					<%= f.text_field :email %><br>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<%= f.label :place %>
+					<%= f.text_field :place %><br>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<%= f.label :website %>
+					<%= f.text_field :website %><br>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<%= f.label :password_digest %>
+					<%= f.password_field :password_digest %><br>
+				</li>
+			</ul>
+		</div>
+	</div>
 	<%= @card.affiliations %>
 
 	<div class="association_fields search" data-link="affiliations" >
