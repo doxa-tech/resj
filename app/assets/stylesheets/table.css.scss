@@ -1,10 +1,10 @@
 /* Table */
 
-#container .table_buttons {
+#admin .table_buttons {
 	text-align: right;
 }
 
-	#container .table_buttons a {
+	#admin .table_buttons a {
 		padding: 7px 10px;
 		border-radius: 3px;
 		color: #fff;
@@ -12,15 +12,15 @@
 		font-size: 14px;
 	}
 
-	#container .table_buttons a.add {
+	#admin .table_buttons a.add {
 		background: #7f72f5;
 	}
 
-	#container .table_buttons a.off {
+	#admin .table_buttons a.off {
 		background: #aaa;
 	}
 
-	#container .table_buttons a.on {
+	#admin .table_buttons a.on {
 		background: #7f72f5;
 		display: none;
 	}
