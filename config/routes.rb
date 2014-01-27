@@ -21,7 +21,7 @@ Resj::Application.routes.draw do
     end
   end
 
-  %w[responsables affiliations tags].each do |search|
+  %w[responsables affiliations tags actions].each do |search|
     post "/searches/#{search}", to: "searches##{search}"
   end
 
@@ -30,6 +30,7 @@ Resj::Application.routes.draw do
 
     resources :pages, only: [:index, :edit, :update]
     resources :users
+    resources :ownerships
 
     resources :cards do
       member do

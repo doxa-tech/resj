@@ -1,2 +1,50 @@
-class Admin::OwnershipsController < ApplicationController
+class Admin::OwnershipsController < Admin::BaseController
+	before_action :current_resource, only: [:edit, :update, :destroy]
+
+	def index
+		@table = OwnershipTable.new(view_context)
+		respond_to do |format|
+			format.html
+			format.js { render 'sort' }
+		end
+	end
+
+	def new
+		@ownership = Ownership.new
+	end
+
+	def create
+		@ownership = Ownership.new(ownership_params)
+		if @ownership.save
+			redirect_to admin_ownerships_path, success: t('ownership.admin.create.success')
+		else
+			render 'new'
+		end
+	end
+
+	def edit
+	end
+
+	def update
+		if @ownership.update_attributes(ownership_params)
+			redirect_to admin_ownerships_path, success: t('ownership.admin.edit.success')
+		else
+			render 'edit'
+		end
+	end
+
+	def destroy
+		@ownership.destroy
+		redirect_to admin_ownerships_path, success: t('ownership.admin.destroy.success')
+	end
+
+	private
+
+	def ownership_params
+		params.require(:ownership).permit(:element_id, :user_id, :onwership_type_id, :right_create, :right_update, :right_read, :right_delete, :id_element, actions_attributes: [:name])
+	end
+
+	def current_resource
+		@ownership = Ownership.find(params[:id])
+	end
 end

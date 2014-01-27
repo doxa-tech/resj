@@ -1,4 +1,5 @@
 class Admin::PagesController < Admin::BaseController
+	before_action :current_resource, only: [:edit, :update, :destroy]
 
 	def index
 		@table = PageTable.new(view_context)
@@ -9,11 +10,9 @@ class Admin::PagesController < Admin::BaseController
 	end
 
 	def edit
-		@page = Page.find(params[:id])
 	end
 
 	def update
-		@page = Page.find(params[:id])
 		if @page.update_attributes(page_params)
 			redirect_to admin_pages, success: 'page.admin.edit.success'
 		else
@@ -25,5 +24,9 @@ class Admin::PagesController < Admin::BaseController
 
 	def page_params
   	params.require(:page).permit(:content)
+  end
+
+  def current_resource
+  	@page = Page.find(params[:id])
   end
 end

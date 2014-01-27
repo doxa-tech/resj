@@ -12,18 +12,16 @@ class User < ActiveRecord::Base
 
   before_save :format, :create_remember_token
 
-  validate :current_password?
+  validate :current_password
 
   private
 
   # Control by an update if the current_password is right
-  def current_password?
+  def current_password
     if current_password && !self.authenticate(current_password)
-  	 errors.add(:current_password, "does not match password")
+  		errors.add(:current_password, "does not match password")
     end
   end
-
-  private
 
   # Remove spaces and capitales
   def format

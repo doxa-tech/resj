@@ -25,6 +25,8 @@ en:
       edit:
         title: "Edit a card"
         success: "Card edited"
+      destroy:
+        success: "Card destroyed"
   user:
     create:
       title: "Sign up"
@@ -32,6 +34,13 @@ en:
     edit:
       title: "Update your account"
       success: "Account updated"
+    admin:
+      create:
+        title: "Create a new user"
+        success: "User created"
+      edit:
+        title: "Edit an user"
+        success: "User updated"
   session:
     create:
       success: "Connected"
@@ -44,3 +53,12 @@ en:
       edit:
         success: "Page edited"
         title: "Edit a page"
+  ownership:
+    admin:
+      index: "Ownership"
+      create:
+        title: "Create a new ownership"
+        success: "Ownership created"
+      edit:
+        title: "Edit an ownership"
+        success: "Ownership updated"
