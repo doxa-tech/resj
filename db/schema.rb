@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140117160709) do
+ActiveRecord::Schema.define(version: 20140128095755) do
 
   create_table "actions", force: true do |t|
     t.string   "name"
@@ -77,6 +77,8 @@ ActiveRecord::Schema.define(version: 20140117160709) do
     t.boolean  "validated",       default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "cards", ["card_type_id"], name: "index_cards_on_card_type_id"
