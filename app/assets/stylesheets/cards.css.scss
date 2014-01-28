@@ -21,14 +21,10 @@
 
 	.left {
 		display: inline-block;
-		width: 49%;
+		width: 50%;
 		vertical-align: top;
 		box-sizing: border-box; // prevent padding to take width
-	}
-
-	.space {
-		display: inline-block;
-		width: 1%;
+		padding: 0 10px 0 0;
 	}
 
 	.right {

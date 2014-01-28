@@ -1,6 +1,5 @@
 <div class="left">
 	<div id="facets" data-tag="<%= @options[:tag] %>">
-		<%= @cards %>
   <h3>Tags</h3>
     <ul>
       <% for row in @search.facet(:tags).rows %>
@@ -15,37 +14,80 @@
     </ul>
   </div>
 	<div class="index">
-		<div class="letter"><p>A</p></div>
-		<p>Abricôts</p>
-		<p>Association des jeunes</p>
-		<p>Activ' your life!</p>
-		<div class="letter"><p>B</p></div>
-		<p>BCD</p>
-		<p>Bayboloss les gars</p>
-		<div class="letter"><p>C</p></div>
-		<p>CANA</p>
-		<p>CEP'4U</p>
-		<p>CFF - Chrétiens Fou Furieux</p>
-		<p>Chez toi</p>
-		<p>Colo</p>
-		<p>com.d'@b</p>
-		<p>Commission de jeunesse mennonite Suisse</p>
-		<p>Contact</p>
-		<p>CTT - chrétiens tous terrains</p>
-		<div class="letter"><p>D</p></div>
-		<p>DeepImpact</p>
-		<p>des-gens-T</p>
-		<p>DKP</p>
-		<div class="letter"><p>E</p></div>
-		<p>Espace-Jeunes</p>
-		<div class="letter"><p>F</p></div>
-		<p>Factory.fm</p>
-		<p>Firestation (C3 Lausanne)</p>
-		<div class="letter"><p>G</p></div>
-		<p>GB</p>
+		<% current = @cards.first.name[0].downcase %>
+		<div class="letter"><p><%= current %></p></div>
+		<% @cards.each do |card| %>
+			<% if card.name[0].downcase != current %>
+				<% current = card.name[0].downcase %>
+				<div class="letter"><p><%= current %></p></div>
+			<% end %>
+			<p><%= card.name %></p>
+		<% end %>
 	</div>
 </div>
-<div class="space"></div>
 <div class="right">
 	<div id="map2"></div>
 </div>
+
+<script type="text/javascript">
+// Import from ruby
+var addressPoints = <%= raw @cards.map {|a| [a.latitude,a.longitude,a.name] } %>;
+<% sum = 0 %>
+<% @cards.map{|a| sum = sum+a.latitude} %>
+var latCenter =  <%= sum / @cards.size %>;
+<% sum = 0 %>
+<% @cards.map{|a| sum = sum+a.longitude} %>
+var longCenter =  <%= sum / @cards.size %>;
+
+/*
+*   Set view of Leaflet map based on screen size
+*/
+if ($(window).width() < 626) {
+        var map = L.mapbox.map('map2', 'nkcr.gjhi4d72').setView([latCenter, longCenter], 8);
+} else {
+        var map = L.mapbox.map('map2', 'nkcr.gjhi4d72', {fullscreenControl: true}).setView([latCenter, longCenter], 9);
+}
+/*
+*   create markercluster
+*/
+var markers = new L.MarkerClusterGroup({
+  maxClusterRadius: 30,
+});
+/*
+*   Add points
+*/
+for (var i = 0; i < addressPoints.length; i++) {
+  var a = addressPoints[i];
+  var title = a[2];
+  var marker = L.marker(new L.LatLng(a[0], a[1]), {
+  	icon: L.icon({
+      iconUrl: '<%= asset_path "map/images/marker-icon-red.png" %>',
+      iconRetinaUrl: 'my-icon@2x.png',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [-3, -76],
+      shadowUrl: '<%= asset_path "map/images/marker-shadow.png" %>',
+      shadowRetinaUrl: 'my-icon-shadow@2x.png',
+      shadowSize: [41, 41],
+      shadowAnchor: [12, 41]
+    }),
+    title: title,
+    riseOnHover: true,
+  });
+  marker.bindPopup(title);
+  markers.addLayer(marker);
+}
+/*
+*   Custom map
+*/
+markers.on('mouseover', function(e) {
+    e.layer.openPopup();
+});
+markers.on('mouseout', function(e) {
+    e.layer.closePopup();
+});
+map.scrollWheelZoom.disable();
+map.addControl(L.mapbox.shareControl())
+map.addControl(L.mapbox.geocoderControl('examples.map-9ijuk24y'))
+map.addLayer(markers);
+</script>

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_action :connected?, only: [:profile, :edit, :update]
+	#before_action :connected?, only: [:profile, :edit, :update]
 
 	def new
 		@user = User.new

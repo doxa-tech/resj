@@ -2,6 +2,18 @@
 /* Large devices */
 @media (max-width: 1200px) 
 {
+	// Cards
+	#container.cards {
+		.rows {
+			.left {
+				padding: 0;
+			}
+			.left, .right {
+				width: 100%;
+			}
+		}
+	}
+
 	// Admin
 	#admin {
 		#admin_content {
