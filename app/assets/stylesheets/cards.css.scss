@@ -45,16 +45,16 @@
 		* left
 		*/
 
-		.left .tools {
+		.tools {
 			width: 100%;
 			background: #272829;
 			box-sizing: border-box;
 			padding: 10px;
-			height: 60px;
+			height: 45px;
 		}
 
 		// Search {}
-		.left .tools .search {
+		.tools .search {
 			// http://codepen.io/anon/pen/lpheC
 
 			form {
@@ -64,7 +64,7 @@
 
 				form input {
 					width: 138px;
-					height: 20px;
+					height: 30px;
 					padding: 5px 5px;
 					float: left;
 					border: 0;
@@ -85,7 +85,7 @@
 					padding: 0;
 					cursor: pointer;
 					height: 30px;
-					width: 72px;
+					width: 82px;
 					color: white;
 					text-transform: uppercase;
 					background: #D83C3C;

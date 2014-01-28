@@ -9,7 +9,8 @@
   <div class="search">
     <%= form_tag reseau_path, :method => :get do %>
       <%= text_field_tag :search, params[:search], placeholder: "Cherchez ici", class: "live-search" %>
-      <%= submit_tag "Go", :name => nil %>
+      <button>Tapez</button>
+      <%= submit_tag "Go", :name => nil, type: :hidden %>
     <% end %>
   </div>
 </div>
