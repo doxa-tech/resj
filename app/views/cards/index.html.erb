@@ -5,6 +5,9 @@
 <%= javascript_include_tag "map/a_mapbox_v1.5.2.js" %>
 <%= javascript_include_tag "map/b_leaflet.markercluster.js" %>
 
+<!-- <div class="marketing">
+  <p> notre objectif :</p>
+</div> -->
 <div class="tools">
   <div class="search">
     <%= form_tag reseau_path, :method => :get do %>
@@ -15,7 +18,6 @@
   </div>
 </div>
 
-<div class="deco"></div>
 <div class="rows" id="results">
   <%= render 'results' %>
 </div>
