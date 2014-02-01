@@ -1,0 +1,29 @@
+// Public form to create cards
+#container.cards-form {
+
+	.top {
+		width: 100%;
+		background: #272829;
+		box-sizing: border-box;
+		padding: 10px;
+		position: relative;
+
+		&:after, &:before {
+			display: table;
+			content: " ";
+		}
+
+		&:after {clear: both}
+
+		h1 {
+			color: #fff;
+			font-family: "Raleway", Helvetica, sans-serif;
+			font-weight: 200;
+			font-size: 29px;
+			line-height: 38px;
+			font-smoothing: antialiased;
+			-webkit-font-smoothing: antialiased;
+		}
+	} // top
+
+}
