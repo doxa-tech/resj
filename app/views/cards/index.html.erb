@@ -5,17 +5,38 @@
 <%= javascript_include_tag "map/a_mapbox_v1.5.2.js" %>
 <%= javascript_include_tag "map/b_leaflet.markercluster.js" %>
 
-<div class="tools">
-  <div class="search">
-    <%= form_tag reseau_path, :method => :get do %>
-      <%= text_field_tag :search, params[:search], placeholder: "Cherchez ici", class: "live-search" %>
-      <button>Tapez</button>
-      <%= submit_tag "Go", :name => nil, type: :hidden %>
-    <% end %>
-  </div>
+<!-- <div class="marketing">
+  <p> notre objectif :</p>
+</div> -->
+<div class="top">
+	<div class="right">
+	 	<ul class="nav">
+	 		<li class="hder">
+	 			<div class="infos">
+	 				<p>Vous n'y êtes pas encore?</p>
+	 			</div>
+	 			<div class="btn">
+	 				<%= link_to "Rejoindre le réseau", new_card_path %>
+	 			</div>
+	 		</li>
+	 		<li class="marketing">
+	 			<div class="marketing">
+	 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum, felis sit amet adipiscing dapibus, magna erat gravida risus, a rhoncus lorem velit eget felis.</p>
+	 			</div>
+	 		</li>
+	 	<ul>
+	 </div>
+	<div class="left">	
+	  <div class="search">
+	    <%= form_tag reseau_path, :method => :get do %>
+	      <%= text_field_tag :search, params[:search], placeholder: "essayez 'gdj', 'camps', 'Lausanne'", class: "live-search" %>
+	      <button>Tapez</button>
+	      <%= submit_tag "Go", :name => nil, type: :hidden %>
+	    <% end %>
+	  </div>	
+	 </div>				
 </div>
 
-<div class="deco"></div>
 <div class="rows" id="results">
   <%= render 'results' %>
 </div>
