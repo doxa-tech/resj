@@ -10,6 +10,7 @@ class Card < ActiveRecord::Base
   has_many :affiliations, through: :card_affiliations
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
+  has_many :verificator_comments
 
   accepts_nested_attributes_for :responsables, :allow_destroy => true, :reject_if => lambda { |a| a[:lastname].blank? || a[:firstname].blank? || a[:email].blank?}
   accepts_nested_attributes_for :responsable

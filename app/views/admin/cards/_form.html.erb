@@ -75,7 +75,7 @@
 			</ul>
 		</div>
 	</div>
-	<%= @card.affiliations %>
+	<%= @card[:affiliations] %>
 
 	<div class="association_fields search" data-link="affiliations" >
 		<%= f.fields_for(:affiliations, @card.affiliations.any? || @card.affiliations.build) do |affiliation_fields| %>

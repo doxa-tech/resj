@@ -1,4 +1,4 @@
-class Admin::ActionsController < ApplicationController
+class Admin::ActionsController < Admin::BaseController
 	before_action :current_resource, only: [:edit, :update, :destroy]
 
 	def index

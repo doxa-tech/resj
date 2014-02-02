@@ -1,4 +1,4 @@
-class Admin::CardTypesController < ApplicationController
+class Admin::CardTypesController < Admin::BaseController
 	before_action :current_resource, only: [:edit, :update, :destroy]
 
 	def index

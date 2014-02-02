@@ -121,3 +121,11 @@ en:
         success: "Tag updated"
       destroy:
         success: "Tag deleted"
+  verificator_comment:
+    admin:
+      create:
+        success: "Comment created"
+      edit:
+        success: "Comment updated"
+      destroy:
+        success: "Comment deleted"
