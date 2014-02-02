@@ -1,4 +1,4 @@
-class Admin::AffiliationsController < ApplicationController
+class Admin::AffiliationsController < Admin::BaseController
 	before_action :current_resource, only: [:edit, :update, :destroy]
 
 	def index

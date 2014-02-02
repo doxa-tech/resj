@@ -22,9 +22,9 @@ class UsersController < ApplicationController
 
 	def update
 		@user = current_user
-		if @user.save
+		if @user.update_attributes(user_params)
 			sign_in(@user)
-			redirect_to profile_path, success: t('user.edit.success')
+			redirect_to edit_user_path(@user), success: t('user.edit.success')
 		else
 			render 'edit'
 		end

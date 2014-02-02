@@ -1,4 +1,4 @@
-class Admin::TagsController < ApplicationController
+class Admin::TagsController < Admin::BaseController
 	before_action :current_resource, only: [:edit, :update, :destroy]
 
 	def index

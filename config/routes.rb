@@ -9,9 +9,16 @@ Resj::Application.routes.draw do
   get 'reseau', to: 'cards#index'
   get 'inscription', to: 'users#new'
   get 'connexion', to: 'sessions#new'
+
   get 'profile', to: "users#profile"
 
-  resources :users, only: [:create, :edit, :update]
+  resources :users, only: [:create] do
+    collection do
+      get 'edit'
+      patch 'update'
+    end
+  end
+
   resources :sessions, only: [:create, :destroy]
   
   resources :cards, only: [:new, :create] do
@@ -36,6 +43,7 @@ Resj::Application.routes.draw do
     resources :card_types, except: [:show]
     resources :responsables, except: [:show]
     resources :tags, except: [:show]
+    resources :verificator_comments, except: [:show]
 
     resources :cards do
       member do
