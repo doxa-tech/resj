@@ -20,14 +20,19 @@ label
   display: block;
   width: 30%;
   min-width: 100px;
-  float: left;
+  padding: 0 0 5px 17px;
 }
 
 input, textarea 
 {
-	width: 70%; height: 100%;
-	padding: 5px;
-	border: 0px;
+	width: 100%; height: 40px;
+	padding: 15px;
+	border: 1px dashed #A9D;
+	border-radius: 15px;
+	&:focus {
+		border: 1px solid #8A7DB1;
+		outline: none;
+	}
 }
 
 #container {
