@@ -9,15 +9,28 @@
 		</div>
 	</div>
 	<ul>
-		<li>
-			<%= link_to t('application.header.admin.card'), admin_cards_path %>
+		<li class="parent">
+			<a href="#">Groupes<span class="foundicong-down-arrow"></span></a>
+			<ul>
+				<li>
+					<%= link_to_active t('application.header.admin.card'), admin_cards_path %>
+				</li>
+			</ul>
 		</li>
 		<li>
-			<%= link_to t('application.header.admin.page'), admin_pages_path %>
+			<%= link_to_active t('application.header.admin.page'), admin_pages_path %>
 		</li>
 		<li>
-			<%= link_to t('application.header.admin.user'), admin_users_path %>
+			<%= link_to_active t('application.header.admin.user'), admin_users_path %>
 		</li>
 	</ul>
 	<div class="vspace"></div>
 </div>
+
+<script>
+	$('.parent > ul').hide();
+	$('.parent a:first-child').click(function(){
+		$(this).next().slideToggle('1000', 'linear');
+	});
+	$('.active').parents('.parent ul').show();
+</script>

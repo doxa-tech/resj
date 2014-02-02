@@ -1,141 +1,191 @@
 // Cards
 #container.cards {
 
-	.deco {
-		width: 100%; 
+	.top {
+		width: 100%;
 		background: #272829;
-		height: 5px;
-	}
+		box-sizing: border-box;
+		padding: 10px;
+		position: relative;
+
+		&:after, &:before {
+			display: table;
+			content: " ";
+		}
+
+		&:after {clear: both}
+
+		.left {
+			float: left;
+			width: 40%;
+			padding-top: 45px;
+			&:after, &:before {
+				display: table;
+				content: " ";
+			}
+			&:after {clear: both}
+			.search {
+				// http://codepen.io/anon/pen/lpheC
+				position: absolute;
+				bottom: 10px;
+
+				form {
+					box-shadow: 0 1px 1px rgba(0, 0, 0, .4) inset, 0 1px 0 rgba(255, 255, 255, .2);
+				}
+
+					form input {
+						width: 200px;
+						height: 37px;
+						padding: 5px 5px;
+						float: left;
+						border: 0;
+						background: #EEE;
+						border-radius: 3px 0 0 3px;
+					}
+					form input:focus {
+						outline: 0;
+				    background: #fff;
+				    box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
+					}
+
+					form button {
+						overflow: visible;
+						position: relative;
+						float: right;
+						border: 0;
+						padding: 0;
+						cursor: pointer;
+						height: 37px;
+						width: 82px;
+						color: white;
+						text-transform: uppercase;
+						background: #D83C3C;
+						border-radius: 0 3px 3px 0;
+						text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
+					}
+					form button:hover {
+						background: #e54040;
+					}
+					form button:active,
+					form button:focus {
+						background: #c42f2f;
+		 			  outline: 0; 
+					}
+					form button:before {
+						content: '';
+				    position: absolute;
+				    border-width: 8px 8px 8px 0;
+				    border-style: solid solid solid none;
+				    border-color: transparent #d83c3c transparent;
+				    top: 11px;
+				    left: -6px;
+					}
+					form button:hover:before {
+						border-right-color: #e54040;
+					}
+					form button:active:before,
+					form button:focus:before {
+						background: #c42f2f;
+					}
+			} // Search
+		} // left
+
+		.right {
+			float: right;
+			width: 60%;
+			li.marketing {
+				width: 50%;
+				padding: 0 10px 0 0;
+				div.marketing {
+					background: #EEE;
+					padding: 10px;
+					min-height: 74px;
+					font-size: 13px;
+				}
+			}
+			.nav {
+				&:after, &:before {
+					display: table;
+					content: " ";
+				}
+
+		&:after {clear: both}
+				li {
+					text-align: center;
+					float: right;
+					.infos {
+						width: 200px;
+						background: #EEE;
+						color: #827c7c;
+						border-radius: 3px 3px 0 0;
+						font-size: 13px;
+						padding: 10px;
+						position: relative;
+						&:before {
+							content: '';
+							position: absolute;
+							border-width: 8px 8px 8px 8px;
+							border-style: solid solid solid solid;
+							border-color: #EEE transparent transparent;
+							top: 36px;
+							left: 5px;
+						}
+					}
+					.btn {
+						background: #D83C3C;
+						padding: 11px 0 8px 0;
+						border-radius: 0 0 3px 3px;
+						&:hover {
+							background: #e54040;
+						}
+						a {
+							color: #fff;
+							text-transform: uppercase;
+							text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
+							font-size: 11px;
+							font-weight: 600;
+							padding: 10px 40px; // un peu nul...
+						}
+					}
+				}
+			}
+		}
+	} // top
 
 	.rows {
 		font-size: 0;
-	}
-
-	.rows>* {
-		font-size: 12px;
-	}
-
-	/*
-	* Global definition of "left / space / right"
-	*/
-
-	.left {
-		display: inline-block;
-		width: 50%;
-		vertical-align: top;
-		box-sizing: border-box; // prevent padding to take width
-		padding: 0 10px 0 0;
-	}
-
-	.right {
-		display: inline-block;
-		width: 50%;
-		vertical-align: top;
-	}
-
-	/*
-	* Deep definition of "left / right"
-	*/
-
-		/*
-		* left
-		*/
-
-		.tools {
-			width: 100%;
-			background: #272829;
-			box-sizing: border-box;
-			padding: 10px;
-			height: 45px;
+		* {
+			font-size: 12px;
 		}
-
-		// Search {}
-		.tools .search {
-			// http://codepen.io/anon/pen/lpheC
-
-			form {
-				width: 220px;
-				box-shadow: 0 1px 1px rgba(0, 0, 0, .4) inset, 0 1px 0 rgba(255, 255, 255, .2);
-			}
-
-				form input {
-					width: 138px;
-					height: 30px;
-					padding: 5px 5px;
-					float: left;
-					border: 0;
-					background: #EEE;
-					border-radius: 3px 0 0 3px;
-				}
-				form input:focus {
-					outline: 0;
-			    background: #fff;
-			    box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
-				}
-
-				form button {
-					overflow: visible;
-					position: relative;
-					float: right;
-					border: 0;
-					padding: 0;
+		.left {
+			display: inline-block;
+			width: 50%;
+			vertical-align: top;
+			box-sizing: border-box; // prevent padding to take width
+			padding: 0 10px 0 0;
+			.index {
+				p:hover{
+					background: #eee;
 					cursor: pointer;
-					height: 30px;
-					width: 82px;
-					color: white;
-					text-transform: uppercase;
-					background: #D83C3C;
-					border-radius: 0 3px 3px 0;
-					text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
 				}
-				form button:hover {
-					background: #e54040;
-				}
-				form button:active,
-				form button:focus {
-					background: #c42f2f;
-	 			  outline: 0; 
-				}
-				form button:before {
-					content: '';
-			    position: absolute;
-			    border-width: 8px 8px 8px 0;
-			    border-style: solid solid solid none;
-			    border-color: transparent #d83c3c transparent;
-			    top: 8px;
-			    left: -6px;
-				}
-				form button:hover:before {
-					border-right-color: #e54040;
-				}
-				form button:active:before,
-				form button:focus:before {
-					background: #c42f2f;
-				}
-		} // end Search
-
-		/* index */
-		.left .index p:hover {
-			background: #eee;
-			cursor: pointer;
+			}
+			.letter {
+				background: #ff7777;
+				padding: 0 0 0 10px; margin: 10px 0 10px 0;
+				p:hover {
+					background: #ff6666;
+				}			
+			}
 		}
-
-		.left .index .letter {
-			background: #ff7777;
-			padding: 0 0 0 10px; margin: 10px 0 10px 0;
-		}
-
-		.left .index .letter p:hover {
-			background: #ff6666;
-		}
-
-		/*
-		* right
-		*/
-
-		.right #map2 {
-			width: 100%;
-			height: 600px;
+			.right {
+				display: inline-block;
+				width: 50%;
+				vertical-align: top;
+				#map2 {
+					width: 100%;
+					height: 600px;
+				}
+			}
 		}
 
 } // end Cards
