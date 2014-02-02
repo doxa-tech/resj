@@ -1,12 +1,27 @@
 <%= render layout: 'form' do |f| %>
+	
+	<div class="block">
+		<div class="label">
+			<p><span class="num">1</span> Choisissez le <span class="b">nom</span> de votre groupe</p>
+		</div>
+		<!-- 	<%= f.label :name %> -->
+		<%= f.text_field :name %>
+	</div>
+	
+	<div class="block">
+		<div class="label">
+			<p><span class="num">2</span> Entrez une courte <span class="b">description</span>. Une bonne description améliore les résultats de recherche.</p>
+		</div>
+		<!-- 	<%= f.label :description %> -->	
+		<%= f.text_area :description %>
+	</div>
 
-	<%= f.label :name %>
-	<%= f.text_field :name %><br>
-
-	<%= f.label :description %>
-	<%= f.text_area :description %><br>
-
-	<%= f.label :card_type_id %>
+	<div class="block">
+	<!-- 	<%= f.label :card_type_id %> -->
+	<div class="label">
+		<p><span class="num">2</span> Quelle <span class="b">catégorie</span> vous correspond le mieux?</p>
+	</div>
 	<%= f.collection_select(:card_type_id, CardType.all, :id, :name) %><br>
+	</div>
 
 <% end %>

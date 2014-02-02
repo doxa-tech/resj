@@ -26,4 +26,34 @@
 		}
 	} // top
 
+	.wizard {
+		text-align: center;
+		.block {
+			vertical-align: bottom;
+			width: 300px;
+			display: inline-block;
+			padding: 20px;
+			.label {
+				padding: 20px;
+				line-height: 20px;
+				.num {
+					background: #D83C3C;
+					text-transform: uppercase;
+					font-weight: 400;
+					text-shadow:0 1px 1px rgba(0,0,0,0.5);
+					color: #fff;
+					padding: 1px 5px;
+				}
+				.b {
+					text-transform: uppercase;
+					font-weight: 400;
+					background: #97B88C;
+					text-shadow:0 -1px 1px rgba(0,0,0,0.5);
+					color: #fff;
+					padding: 1px 5px;
+				}
+			}
+		}
+	}
+
 }
