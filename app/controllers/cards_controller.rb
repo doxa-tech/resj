@@ -41,7 +41,7 @@ class CardsController < ApplicationController
 	private
 
   def card_params
-  	params.require(:card).permit(:name, :description, :street, :npa, :city, :email, :place, :website, :password_digest, :card_type_id, :current_step, responsables_attributes: [:firstname, :lastname, :email, :_destroy], responsable_attributes: [:firstname, :lastname, :email] )
+  	params.require(:card).permit(:name, :description, :street, :npa, :city, :email, :place, :latitude, :longitude, :website, :password_digest, :card_type_id, :current_step, responsables_attributes: [:firstname, :lastname, :email, :_destroy], responsable_attributes: [:firstname, :lastname, :email] )
   end
 
   def validator

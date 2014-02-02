@@ -29,8 +29,13 @@ Resj::Application.routes.draw do
   namespace :admin do
 
     resources :pages, only: [:index, :edit, :update]
-    resources :users
-    resources :ownerships
+    resources :users, except: [:show]
+    resources :ownerships, except: [:show]
+    resources :actions, except: [:show]
+    resources :affiliations, except: [:show]
+    resources :card_types, except: [:show]
+    resources :responsables, except: [:show]
+    resources :tags, except: [:show]
 
     resources :cards do
       member do
