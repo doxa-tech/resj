@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	#before_action :connected?, only: [:profile, :edit, :update]
+	before_action :connected?, only: [:profile, :edit, :update]
 
 	def new
 		@user = User.new
@@ -42,6 +42,6 @@ class UsersController < ApplicationController
 	end
 
 	def connected?
-		redirect_to root_path, error: "Please sign in" if current_user.nil?
+		redirect_to connexion_path, error: "Please sign in" if current_user.nil?
 	end
 end

@@ -26,7 +26,7 @@ en:
         title: "Edit a card"
         success: "Card edited"
       destroy:
-        success: "Card destroyed"
+        success: "Card deleted"
   user:
     create:
       title: "Sign up"
@@ -41,6 +41,8 @@ en:
       edit:
         title: "Edit an user"
         success: "User updated"
+      destroy:
+        success: "User deleted"
   session:
     create:
       success: "Connected"
@@ -62,3 +64,60 @@ en:
       edit:
         title: "Edit an ownership"
         success: "Ownership updated"
+      destroy:
+        success: "Ownership deleted"
+  action:
+    admin:
+      index: "Actions"
+      create:
+        title: "Create a new action"
+        success: "Action created"
+      edit:
+        title: "Edit an action"
+        success: "Action updated"
+      destroy:
+        success: "Action deleted"
+  affiliation:
+    admin:
+      index: "Affiliations"
+      create:
+        title: "Create a new affiliation"
+        success: "Affiliation created"
+      edit:
+        title: "Edit an affiliation"
+        success: "Affiliation updated"
+      destroy:
+        success: "Affiliation deleted"
+  card_type:
+    admin:
+      index: "Card types"
+      create:
+        title: "Create a new card type"
+        success: "Card type created"
+      edit:
+        title: "Edit an card type"
+        success: "Card type updated"
+      destroy:
+        success: "Card type deleted"
+  responsable:
+    admin:
+      index: "Responsables"
+      create:
+        title: "Create a new responsable"
+        success: "Responsable created"
+      edit:
+        title: "Edit an responsable"
+        success: "Responsable updated"
+      destroy:
+        success: "Responsable deleted"
+  tag:
+    admin:
+      index: "Tags"
+      create:
+        title: "Create a new tag"
+        success: "Tag created"
+      edit:
+        title: "Edit an tag"
+        success: "Tag updated"
+      destroy:
+        success: "Tag deleted"
