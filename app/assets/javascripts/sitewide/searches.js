@@ -1,21 +1,5 @@
 $(document).ready(function() {
-	$('.autocomplete').find('input').autocomplete({
-    source: function(request, response) {
-      var attr = this.element.data('attr'),
-      		link = this.element.parents('.autocomplete').data('link');
-    	$.ajax({
-        url:'/searches/' + link,
-        type:"post",
-        dataType: 'json',
-        data: 'term=' + request.term + '&attr=' + attr,
-        async: true,
-        cache: true,
-        success: function(data){
-         	response(data); 
-        }
-    	});
-    }
-  });
+  autocomplete();
   $('.selectize-tags').selectize({
     delimiter: ' ',
     valueField: 'name',

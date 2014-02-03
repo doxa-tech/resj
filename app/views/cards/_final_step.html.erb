@@ -1,4 +1,5 @@
 <%= form_for @card, url: change_cards_path, remote: true do |f| %>
+
 	<%= f.hidden_field :current_step, value: @card.current_step %>
 	<%= f.submit "General", :name => "step[general]" %>
 	Name: <%= @card.name %>
@@ -8,4 +9,3 @@
 	Website: <%= @card.website %>
 <% end %>
 <%= link_to "Sent", cards_path, method: :post %>
-<%= render 'form' %>

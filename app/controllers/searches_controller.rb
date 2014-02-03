@@ -2,7 +2,7 @@ class SearchesController < ApplicationController
 
 	def responsables
 		if params[:attr].in? %[firstname lastname email]
-			render json: Responsable.where("#{params[:attr]} like ?", "#{params[:term]}_%" ).pluck(params[:attr])
+			render json: Responsable.where("#{params[:attr]} like ?", "#{params[:term]}_%" ).uniq.pluck(params[:attr])
 		else
 			render nothing: true
 		end

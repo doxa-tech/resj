@@ -1,4 +1,7 @@
 <%= form_for @card, url: change_cards_path, remote: true do |f| %>
+
+	<%= render 'step_header', f: f %>
+
 	<%= render 'error_messages', object: f.object %>
 	<%= yield f %>
 	<%= f.hidden_field :current_step, value: @card.current_step %>
@@ -10,5 +13,3 @@
 		<%= f.submit "Final", :name => "step[final]" %>
 	<% end %>
 <% end %>
-
-<%= session[:card_params] %>
