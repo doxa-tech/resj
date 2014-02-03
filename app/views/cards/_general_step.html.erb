@@ -1,8 +1,9 @@
+<%= javascript_include_tag "chosen.jquery.min.js" %>
 <%= render layout: 'form' do |f| %>
 	
 	<div class="block">
 		<div class="label">
-			<p><span class="num">1</span> Choisissez le <span class="b">nom</span> de votre groupe</p>
+			<p><span class="num">1</span> Indiquez le <span class="b">nom</span> de votre groupe</p>
 		</div>
 		<!-- 	<%= f.label :name %> -->
 		<%= f.text_field :name %>
@@ -17,11 +18,15 @@
 	</div>
 
 	<div class="block">
-	<!-- 	<%= f.label :card_type_id %> -->
-	<div class="label">
-		<p><span class="num">2</span> Quelle <span class="b">catégorie</span> vous correspond le mieux?</p>
-	</div>
-	<%= f.collection_select(:card_type_id, CardType.all, :id, :name) %><br>
+		<!-- 	<%= f.label :card_type_id %> -->
+		<div class="label">
+			<p><span class="num">2</span> Quelle <span class="b">catégorie</span> vous correspond le mieux?</p>
+		</div>
+		<%= f.collection_select(:card_type_id, CardType.all, :id, :name) %>
 	</div>
 
 <% end %>
+
+<script type="text/javascript">
+	$('#card_card_type_id').chosen({disable_search: true});
+</script>
