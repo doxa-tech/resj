@@ -1,7 +1,14 @@
 <%= render layout: 'form' do |f| %>
 
-	<%= f.label :email %>
-	<%= f.text_field :email %><br>
+	<div class="block">
+		<div class="label">
+			<!-- 	<%= f.label :email %> -->
+			<p>
+				<span class="num">7</span> Un petit <span class="b">email</span> de <span class="b">contact</span> au cas ou
+			</p>
+		</div>
+	<%= f.text_field :email, placeholder: "contact@mail.ch" %>
+	</div>
 
 	<div class="autocomplete" data-link="responsables">
 	<%= f.fields_for :responsable, (@card.responsable || Responsable.new) do |responsable_fields| %>

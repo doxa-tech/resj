@@ -6,10 +6,18 @@
 	<%= yield f %>
 	<%= f.hidden_field :current_step, value: @card.current_step %>
 
-	<%= f.submit "Back", :name => "step[#{@card.previous_step}]" unless @card.first_step? %>
-	
+	<div class="clear"></div>
+	<% if !@card.first_step? %>
+		<div class="back">
+			<%= f.submit "Revenir en arrière", :name => "step[#{@card.previous_step}]" %>
+		</div>
+	<% end %>
 	<% unless @card.last_step? %>
-		<%= f.submit "Continue", :name => "step[#{@card.next_step}]"  %>
-		<%= f.submit "Final", :name => "step[final]" %>
+		<div class="next">
+			<%= f.submit "Prochaine étape", :name => "step[#{@card.next_step}]", class: 'next'  %>
+		</div>
+		<div class="final">
+			<%= f.submit "aller à la fin", :name => "step[final]", class: 'final' %>
+		</div>
 	<% end %>
 <% end %>
