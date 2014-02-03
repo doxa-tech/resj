@@ -13,11 +13,13 @@ class Card < ActiveRecord::Base
   has_many :verificator_comments
 
   accepts_nested_attributes_for :responsables, :allow_destroy => true, :reject_if => lambda { |a| a[:lastname].blank? || a[:firstname].blank? || a[:email].blank?}
-  accepts_nested_attributes_for :responsable
+  #accepts_nested_attributes_for :responsable
   accepts_nested_attributes_for :affiliations, :allow_destroy => true, :reject_if => lambda { |a| a[:name].blank? }
 
   #validates :name, presence: true, uniqueness: true, length: { maximum: 15 }
   validate :verified?
+
+  before_save :assign_responsable
 
   searchable do
     text :name, boost: 5
@@ -52,22 +54,11 @@ class Card < ActiveRecord::Base
   # Methods called before card's associations are saved (bound to accepts_nested_attributes_for)
   # Find a responsable or create a new one 
   def autosave_associated_records_for_responsables
-    responsables.each do |responsable|
+    responsables.reject{ |r| r.is_contact == "true"}.each do |responsable|
       if new_responsable = Responsable.where('firstname = ? AND lastname = ? AND email = ?', responsable.firstname, responsable.lastname, responsable.email).first
         self.responsables << new_responsable
       else
         self.responsables << responsable
-      end
-    end
-  end
-
-  def autosave_associated_records_for_responsable
-    unless responsable.nil?
-      if new_responsable = Responsable.where('firstname = ? AND lastname = ? AND email = ?', responsable.firstname, responsable.lastname, responsable.email).first
-        self.responsable = new_responsable
-     else
-        self.responsable.save!
-        self.responsable_id = self.responsable.id
       end
     end
   end
@@ -87,6 +78,17 @@ class Card < ActiveRecord::Base
   def verified?
     if validated == true && CardVerification.where('card_id = ?', id).count < 3
       errors.add(:validated, I18n.t('card.admin.validated_error') )
+    end
+  end
+
+  def assign_responsable
+    if contact = responsables.select{ |r| r.is_contact == "true"}.first
+      if new_contact = Responsable.where('firstname = ? AND lastname = ? AND email = ?', contact.firstname, contact.lastname, contact.email).first
+        self.responsable_id = new_contact.id
+      else
+        contact.save!
+        self.responsable_id = contact.id
+      end
     end
   end
 

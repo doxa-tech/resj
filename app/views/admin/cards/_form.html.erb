@@ -89,7 +89,20 @@
 		<%= link_to_add_fields("New affiliation") %>
 	</div>
 
-	<%= render 'responsables_fields', f: f %>
+	<div class="association_fields autocomplete" data-link="responsables">
+		<%= f.fields_for(:responsables, @card.responsables.any? || @card.responsables.build) do |responsables_fields| %>
+			<div class="fields">
+				<%= responsables_fields.text_field :firstname, data: {attr: "firstname"} %>
+				<%= responsables_fields.text_field :lastname, data: {attr: "lastname"} %>
+				<%= responsables_fields.text_field :email, data: {attr: "email"} %>
+				<%= responsables_fields.hidden_field :_destroy, identifier: "destroy" %>
+				<%= link_to_remove_fields "remove" %>
+				<%= responsables_fields.hidden_field :is_contact, identifier: "is_contact" %>
+				<%= link_to_add_contact "Mark as contact" %>
+			</div>
+		<% end %>
+		<%= link_to_add_fields("New responsable") %>
+	</div>
 
 	<%= f.label :card_type_id %>
 	<%= f.collection_select :card_type_id, CardType.all, :id, :name, {}, class: "selectize" %><br>
