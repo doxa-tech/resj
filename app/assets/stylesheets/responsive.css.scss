@@ -55,6 +55,11 @@
 /* Small devices */
 @media (max-width: 768px) 
 {
+	// container
+	#container {
+		width: 100%;
+	}
+
 	//Cards
 	#container.cards {
 		.top {

@@ -5,7 +5,7 @@
 		width: 100%;
 		background: #272829;
 		box-sizing: border-box;
-		padding: 10px;
+		padding: 0 0 0 7px;
 		position: relative;
 
 		&:after, &:before {
@@ -23,11 +23,32 @@
 			line-height: 38px;
 			font-smoothing: antialiased;
 			-webkit-font-smoothing: antialiased;
+			position: relative;
+			z-index: 10;
 		}
 	} // top
 
 	.wizard {
 		text-align: center;
+		.head {
+			width: 100%;
+			background: #272829;
+			text-align: right;
+			position: relative;
+			margin-top: -15px;
+			padding: 0 5px 0 0;
+			input {
+				width: initial;
+				display: inline-block;
+				border: none;
+				background: none;
+				color: #777;
+				position: relative;
+				z-index: 10;
+				cursor: pointer;
+				padding: 0 5px;
+			}
+		}
 		.block {
 			vertical-align: middle;
 			width: 300px;
@@ -57,6 +78,28 @@
 				font-size: 11px;
 				padding: 2px 0 0 8px;
 				text-align: left;
+			}
+			&.team {
+				width: initial;
+				.fields {
+					background: #EEE;
+					padding: 5px;
+					margin: 0 0 5px 0;
+					.field {
+						display: inline-block;
+						width: 120px;
+						input {
+							height: 30px;
+							border-radius: 5px;
+						}
+						a {
+							color: #777;
+							&:hover {
+								font-weight: 500;
+							}
+						}
+					}
+				}
 			}
 		}
 		.next, .final, .back {

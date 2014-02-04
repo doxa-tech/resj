@@ -4,32 +4,45 @@
 		<div class="label">
 			<!-- 	<%= f.label :email %> -->
 			<p>
-				<span class="num">7</span> Un petit <span class="b">email</span> de <span class="b">contact</span> au cas ou
+				<span class="num">7</span> Un petit <span class="b">email</span> de <span class="b">contact</span> public si vous le désirez (affiché publiquement)
 			</p>
 		</div>
 	<%= f.text_field :email, placeholder: "contact@mail.ch" %>
 	</div>
 
-	<div class="autocomplete" data-link="responsables">
-	<%= f.fields_for :responsable, (@card.responsable || Responsable.new) do |responsable_fields| %>
-		<%= responsable_fields.text_field :firstname, data: {attr: "firstname"} %>
-		<%= responsable_fields.text_field :lastname, data: {attr: "lastname"} %>
-		<%= responsable_fields.text_field :email, data: {attr: "email"} %>
-	<% end %>
-	</div>
-	<div class="association_fields autocomplete" data-link="responsables">
-		<%= f.fields_for(:responsables, @card.responsables.any? || @card.responsables.build) do |responsables_fields| %>
-			<div class="fields">
-				<%= responsables_fields.text_field :firstname, data: {attr: "firstname"} %>
-				<%= responsables_fields.text_field :lastname, data: {attr: "lastname"} %>
-				<%= responsables_fields.text_field :email, data: {attr: "email"} %>
-				<%= responsables_fields.hidden_field :_destroy, identifier: "destroy" %>
-				<%= link_to_remove_fields "remove" %>
-				<%= responsables_fields.hidden_field :is_contact, identifier: "is_contact" %>
-				<%= link_to_add_contact "Mark as contact" %>
-			</div>
-		<% end %>
-		<%= link_to_add_fields("New responsable") %>
+	<div class="clear"></div>
+
+	<div class="block team">
+		<div class="label">
+			<p>
+				<span class="num">8</span> Qui sont les <span class="b">responsables</span> du groupe?
+			</p>
+		</div>
+		<div class="association_fields autocomplete" data-link="responsables">
+			<%= f.fields_for(:responsables, @card.responsables.any? || @card.responsables.build) do |responsables_fields| %>
+				<div class="fields">
+					<div class="field">
+						<%= responsables_fields.label :firstname %>
+						<%= responsables_fields.text_field :firstname, data: {attr: "firstname"} %>
+					</div>
+					<div class="field">
+						<%= responsables_fields.label :lastname %>
+						<%= responsables_fields.text_field :lastname, data: {attr: "lastname"} %>
+					</div>
+					<div class="field">
+						<%= responsables_fields.label :email %>
+						<%= responsables_fields.text_field :email, data: {attr: "email"} %>
+					</div>
+					<div class="field">
+						<%= responsables_fields.hidden_field :_destroy, identifier: "destroy" %>
+						<%= link_to_remove_fields "remove" %>
+						<%= responsables_fields.hidden_field :is_contact, identifier: "is_contact" %>
+						<%= link_to_add_contact "Mark as contact" %>
+					</div>
+				</div>
+			<% end %>
+			<%= link_to_add_fields("New responsable") %>
+		</div>
 	</div>
 
 <% end %>
