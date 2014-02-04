@@ -1,7 +1,8 @@
 function remove_fields(link) {
-  $(link).prev("input[identifier=destroy]").val("1");
-  $(link).nextAll("input[identifier=is_contact]").val("false")
-  $(link).parent(".fields").hide();
+  fields = $(link).parents(".fields");
+  fields.find("input[identifier=destroy]").val("1");
+  fields.find("input[identifier=is_contact]").val("false")
+  fields.hide();
 }
 function add_fields(link) {
 	associationFields = $(link).parent('.association_fields')
@@ -15,10 +16,11 @@ function add_fields(link) {
 	autocomplete();
 }
 function add_contact(link) {
+  fields = $(link).parents(".fields");
 	$('input[value=true][identifier=is_contact]').val("false");
 	$(".fields").removeClass("contact");
-	$(link).prev("input[identifier=is_contact]").val("true");
-	$(link).parent(".fields").addClass("contact");
+	fields.find("input[identifier=is_contact]").val("true");
+	fields.addClass("contact");
 }
 
 function autocomplete() {
@@ -37,6 +39,45 @@ function autocomplete() {
          	response(data); 
         }
     	});
+    }
+  });
+}
+function selectize() {
+    $('#card_card_type_id').selectize({
+      create: true,
+      sortField: 'text'
+    });
+  };
+
+function tags() {
+  $('.selectize-tags').selectize({
+    delimiter: ' ',
+    valueField: 'name',
+    labelField: 'name',
+    searchField: 'name',
+    maxItems: 5,
+    persist: false,
+    sortField: [{field: 'popularity', direction: 'desc'}],
+    create: true,
+    render: {
+      option: function(item, escape) {
+        return '<div><span>' + escape(item.name) + '</span><span>' + escape(item.popularity || "None") + '</span></div>';
+      }
+    },
+    load: function(query, callback) {
+      if (!query.length) return callback();
+      $.ajax({
+        url: '/searches/tags',
+        type: 'POST',
+        data: 'query=' + query,
+        dataType: 'json',
+        error: function() {
+          callback();
+        },
+        success: function(res) {
+          callback(res);
+        }
+      });
     }
   });
 }
