@@ -1,4 +1,3 @@
-<%= javascript_include_tag "chosen.jquery.min.js" %>
 <%= render layout: 'form' do |f| %>
 	
 	<div class="block">
@@ -27,6 +26,17 @@
 
 <% end %>
 
-<script type="text/javascript">
-	$('#card_card_type_id').chosen({disable_search: true});
-</script>
+<style type="text/css">
+.selectize-control {
+	height: 40px;
+}
+	.selectize-control .selectize-input {
+		height: 100%;
+	}
+		.selectize-control .selectize-input input {
+			padding-bottom: 18px !important;
+			display: none;
+		}
+</style>
+
+<script type="text/javascript">window.onload=select();</script>

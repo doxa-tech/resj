@@ -19,4 +19,17 @@ var gmap = {
     });
     google.maps.event.addDomListener(window, 'load');
   }
+  codeAddress: function(addr) {
+    geocoder.geocode( { 'address': addr}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+      } else {
+        alert('Impossible de trouver ' addr + " - " + status);
+      }
+    });
+  }
 };
