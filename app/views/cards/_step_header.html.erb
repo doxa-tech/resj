@@ -1,7 +1,7 @@
 <div class="head">
-	<%= f.submit "General", :name => "step[general]" %>
-	<%= f.submit "Location", :name => "step[location]" %>
-	<%= f.submit "Contact", :name => "step[team]" %>
-	<%= f.submit "Extra", :name => "step[extra]" %>
-	<%= f.submit "Final", :name => "step[final]" %>
+	<%= f.submit "General", :name => "step[general]", class: ("current_step" if @card.current_step == "general") %>
+	<%= f.submit "Location", :name => "step[location]", class: ("current_step" if @card.current_step == "location") %>
+	<%= f.submit "Contact", :name => "step[team]", class: ("current_step" if @card.current_step == "team") %>
+	<%= f.submit "Extra", :name => "step[extra]", class: ("current_step" if @card.current_step == "extra")  %>
+	<%= f.submit "Final", :name => "step[final]", class: ("current_step" if @card.current_step == "final")  %>
 </div>

@@ -20,7 +20,7 @@
 		</div>
 		<div class="association_fields autocomplete" data-link="responsables">
 			<%= f.fields_for(:responsables, @card.responsables.any? || @card.responsables.build) do |responsables_fields| %>
-				<div class="fields">
+				<div class="fields <%= 'contact' if responsables_fields.object.is_contact == 'true' %>">
 					<div class="field">
 						<%= responsables_fields.label :firstname %>
 						<%= responsables_fields.text_field :firstname, data: {attr: "firstname"} %>
@@ -36,7 +36,7 @@
 					<div class="field">
 						<%= responsables_fields.hidden_field :_destroy, identifier: "destroy" %>
 						<%= link_to_remove_fields "remove" %>
-						<%= responsables_fields.hidden_field :is_contact, identifier: "is_contact" %>
+						<%= responsables_fields.hidden_field :is_contact, identifier: "is_contact", value: ("true" if responsables_fields.object.is_contact == "true") %>
 						<%= link_to_add_contact "Mark as contact" %>
 					</div>
 				</div>
@@ -46,3 +46,5 @@
 	</div>
 
 <% end %>
+
+<script type="text/javascript">window.onload=autocomplete();</script>

@@ -7,5 +7,7 @@
 	<%= f.submit "Contact", :name => "step[team]" %>
 	Email: <%= @card.email %>
 	Website: <%= @card.website %>
+	
 <% end %>
+
 <%= link_to "Sent", cards_path, method: :post %>

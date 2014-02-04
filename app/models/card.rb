@@ -12,12 +12,12 @@ class Card < ActiveRecord::Base
   has_many :tags, through: :taggings
   has_many :verificator_comments
 
-  accepts_nested_attributes_for :responsables, :allow_destroy => true, :reject_if => lambda { |a| a[:lastname].blank? || a[:firstname].blank? || a[:email].blank?}
-  #accepts_nested_attributes_for :responsable
-  accepts_nested_attributes_for :affiliations, :allow_destroy => true, :reject_if => lambda { |a| a[:name].blank? }
+  accepts_nested_attributes_for :responsables, :allow_destroy => true
+  accepts_nested_attributes_for :affiliations, :allow_destroy => true
 
   #validates :name, presence: true, uniqueness: true, length: { maximum: 15 }
   validate :verified?
+  validate :contact?
 
   before_save :assign_responsable
 
@@ -78,6 +78,12 @@ class Card < ActiveRecord::Base
   def verified?
     if validated == true && CardVerification.where('card_id = ?', id).count < 3
       errors.add(:validated, I18n.t('card.admin.validated_error') )
+    end
+  end
+
+  def contact?
+    if responsables && !responsables.select{ |r| r.is_contact == "true" }.any?
+      errors.add(:responsable, "has no contact" )
     end
   end
 
