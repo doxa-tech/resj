@@ -2,7 +2,9 @@ class Admin::VerificatorCommentsController < Admin::BaseController
 	before_action :current_resource, only: [:update, :destroy]
 
 	def create
-		@verificator_comment = VerificatorComment.new(verificator_comment_params)
+		@card = Card.find(params[:card_id])
+		@verificator_comment = @card.verificator_comments.new(verificator_comment_params)
+		@verificator_comment.user = current_user
 		if @verificator_comment.save
 			render 'create_success'
 		else

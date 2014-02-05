@@ -71,3 +71,10 @@ gem "figaro"
 
 # add the jquery plugin selectize.js
 gem "selectize-rails"
+
+# image uploader
+gem 'carrierwave'
+gem 'fog'
+
+# image manipulating
+gem "mini_magick"
