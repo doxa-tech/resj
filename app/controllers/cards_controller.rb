@@ -10,6 +10,10 @@ class CardsController < ApplicationController
   	@options = {tag: params[:tag], search: params[:search]}
 	end
 
+	def show
+		@card = Card.find(params[:id])
+	end
+
 	def new
 		session[:card_params] ||= {}
 		@card = Card.new(session[:card_params])

@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :parents
   has_many :users, through: :parents
   has_many :cards
+  has_many :verificator_comments
 
   before_save :format, :create_remember_token
 

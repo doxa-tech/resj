@@ -21,7 +21,7 @@ Resj::Application.routes.draw do
 
   resources :sessions, only: [:create, :destroy]
   
-  resources :cards, only: [:new, :create] do
+  resources :cards, only: [:new, :create, :show] do
     collection do
       post 'change'
       post 'new_responsable'
@@ -43,9 +43,9 @@ Resj::Application.routes.draw do
     resources :card_types, except: [:show]
     resources :responsables, except: [:show]
     resources :tags, except: [:show]
-    resources :verificator_comments, except: [:show]
 
     resources :cards do
+      resources :verificator_comments, only: [:create, :update, :destroy]
       member do
         get 'verificate'
       end

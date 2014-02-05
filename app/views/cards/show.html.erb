@@ -36,18 +36,3 @@
 <% @card.tags.each do |tag| %>
 	<%= tag.name %>
 <% end %>
-
-<div id="verificator_comments">
-	<%= render @card.verificator_comments  %>
-</div>
-
-<%= form_for [:admin, @card, VerificatorComment.new], remote: true do |f| %>
-
-	<div class="errors">
-		<%= render 'error_messages', object: f.object %>	
-	</div>
-
-	<%= f.label :content %>
-	<%= f.text_area :content %>
-	<%= f.submit %>
-<% end %>

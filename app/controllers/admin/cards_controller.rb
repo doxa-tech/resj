@@ -1,5 +1,5 @@
 class Admin::CardsController < Admin::BaseController
-	before_action :current_resource, only: [:edit, :update, :destroy, :verificate]
+	before_action :current_resource, only: [:show, :edit, :update, :destroy, :verificate]
 	before_action :authorize_action, only: [:verificate]
 	before_action :verified?, only: [:verificate]
 
@@ -13,6 +13,9 @@ class Admin::CardsController < Admin::BaseController
 
 	def new
 		@card = Card.new
+	end
+
+	def show
 	end
 
 	def create
@@ -63,14 +66,14 @@ class Admin::CardsController < Admin::BaseController
   end
 
   def current_resource
-  	@card = Card.find(params[:id]) if params[:id]
+  	@card = Card.find(params[:id])
   end
 
-  def checkers_emails
-  	@checkers_emails = User.joins(:ownerships, ownerships: [:actions, :element]).where(elements: {name: "admin/cards"}, actions: {name: "verificate"})
+  def verificators_emails
+  	@checkers_emails ||= User.joins(:ownerships, ownerships: [:actions, :element]).where(elements: {name: "admin/cards"}, actions: {name: "verificate"})
   end
 
   def card_admins
-  	@card_admins = User.joins(:ownerships, ownerships: [:actions, :element]).where(elements: {name: "admin/cards"}, actions: {name: ["verificate", "validated"]})
+  	@card_admins ||= User.joins(:ownerships, ownerships: [:actions, :element]).where(elements: {name: "admin/cards"}, actions: {name: ["verificate", "validated"]})
   end
 end

@@ -17,6 +17,12 @@
 			</ul>
 			<ul>
 				<li>
+					<%= f.label :card_id %>
+					<%= f.collection_select :card_id, Card.where('card_type_id = ?', CardType.find_by_name("réseau régional") ), :name, :id %>
+				</li>
+			</ul>
+			<ul>
+				<li>
 					<%= f.label :street %>
 					<%= f.text_field :street %><br>
 				</li>
@@ -109,6 +115,16 @@
 
 	<%= f.label :tag_names %>
 	<%= f.text_field :tag_names, class: "selectize-tags" %>
+
+	<%= f.label :avatar %>
+	<%= image_tag(@card.avatar_url) if @card.avatar? %>
+	<%= f.file_field :avatar %>
+	<%= f.check_box :remove_avatar %>
+
+	<%= f.label :banner %>
+	<%= image_tag(@card.banner_url) if @card.banner? %>
+	<%= f.file_field :banner %>
+	<%= f.check_box :remove_banner %>
 
 	<% if !@card.validated && current_permission.allow_params?(params[:controller], "validated") %>
 		<%= f.label :validated %>

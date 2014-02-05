@@ -11,11 +11,12 @@ class Card < ActiveRecord::Base
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
   has_many :verificator_comments
+  belongs_to :card
+  has_one :card
 
   accepts_nested_attributes_for :responsables, :allow_destroy => true
   accepts_nested_attributes_for :affiliations, :allow_destroy => true
 
-  #validates :name, presence: true, uniqueness: true, length: { maximum: 15 }
   validate :verified?
   with_options if: Proc.new { |c| c.current_step?("team")} do |team|
     team.validate :contact?
@@ -30,6 +31,9 @@ class Card < ActiveRecord::Base
       tags.map { |a| a.name }
     end
   end
+
+  mount_uploader :avatar, AvatarUploader
+  mount_uploader :banner, BannerUploader
 
   def tag_names
     @tag_names || tags.map(&:name).join(' ')
