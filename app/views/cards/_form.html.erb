@@ -2,7 +2,9 @@
 
 	<%= render 'step_header', f: f %>
 
-	<%= render 'error_messages', object: f.object %>
+	<div class="error">
+		<%= render 'error_messages', object: f.object %>
+	</div>
 	<%= yield f %>
 	<%= f.hidden_field :current_step, value: @card.current_step %>
 
@@ -21,5 +23,3 @@
 		</div>
 	<% end %>
 <% end %>
-
-<%= session[:card_params] %>
