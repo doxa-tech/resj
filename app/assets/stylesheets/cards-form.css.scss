@@ -101,6 +101,27 @@
 					}
 				}
 			}
+			.map-panel {
+				position: absolute;
+				bottom: 42px;
+				right: 24px;
+				input {
+					height: 20px;
+					width: 50px;
+					border-radius: 2px;
+					&#address {
+						width: 188px;
+						border: 1px solid #76E;
+						padding: 0 4px;
+					}
+					&#geocode-addr{
+						background: #77E;
+						border: none;
+						color: #EEE;
+						cursor: pointer;
+					}
+				}
+			}
 		}
 		.next, .final, .back {
 			position: relative;
