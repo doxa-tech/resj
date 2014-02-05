@@ -1,24 +1,26 @@
+<% content_for :banH, '0' %>
+<% content_for :banI, '' %>
+<% content_for :id, 'connexion' %>
+
+<div class="top">
+	<h1>Connexion</h1>
+</div>
+
 <%= form_for :session, url: sessions_path do |f| %>
-	<table>
-		<tr>
-			<td><%= f.label :email %></td>
-			<td><%= f.email_field :email %></td>
-		</tr>
-
-		<tr>
-			<td><%= f.label :password %></td>
-			<td><%= f.password_field :password %></td>
-		</tr>
-
-		<tr>
-			<td><%= f.label :remember_me %></td>
-			<td><%= f.check_box :remember_me %></td>
-		</tr>
-		
-	</table>
-
-	<%= f.submit %>
+	<div class="field">
+		<%= f.label :email %>
+		<%= f.email_field :email %>
+	</div>
+	<div class="field">
+		<%= f.label :password %>
+		<%= f.password_field :password %>
+	</div>
+	<div class="field">
+		<%= f.label :remember_me %>
+		<%= f.check_box :remember_me %>
+	</div>
+	<div class="field">
+		<%= f.submit class: 'submit' %>
+	</div>
 
 <% end %>
-
-</div>
