@@ -17,7 +17,9 @@ class Card < ActiveRecord::Base
 
   #validates :name, presence: true, uniqueness: true, length: { maximum: 15 }
   validate :verified?
-  validate :contact?
+  with_options if: Proc.new { |c| c.current_step?("team")} do |team|
+    team.validate :contact?
+  end
 
   before_save :assign_responsable
 
@@ -71,6 +73,10 @@ class Card < ActiveRecord::Base
         self.affiliations << affiliation
       end
     end
+  end
+
+  def current_step?(step)
+    current_step.nil? || current_step == step
   end
 
   private
