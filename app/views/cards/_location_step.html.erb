@@ -42,13 +42,32 @@
 	<!-- 	<%= f.label :longitude %> -->
 	<%= f.text_field :longitude, id: "lng", type: :hidden %>
 
-	<div class="block">
+	<div class="block" style="position:relative">
 		<div class="label">
 			<p><span class="num">7</span> Sur une carte, quelle est votre <span class="b">emplacement</span>? Positionnez le curseur en cliquant sur la carte au bon endroit </p>
 		</div>
-		<div id="map-canvas"></div>	
+		<div id="map-canvas"></div>
+		<div class="map-panel">
+			<input id="address" type="textbox" value="Switzerland">
+      <input type="button" value="find" id="geocode-addr">
+		</div>	
 	</div>
 
 <% end %>
 
-<script type="text/javascript">window.onload=gmap.initialize();</script>
+<script type="text/javascript">
+	map = gmap.initialize();
+	var street = document.getElementById('card_street');
+	var city = document.getElementById('card_city');
+	var address = document.getElementById('address');
+	var btn = document.getElementById('geocode-addr');
+	street.onchange = function(){
+		address.value = street.value + " " + city.value + ", Switzerland";
+	}
+	city.onchange = function(){
+		address.value = street.value + " " + city.value + ", Switzerland";
+	}
+	btn.onclick = function(){
+		gmap.codeAddress(address.value, map.map, map.marker);
+	};
+</script>

@@ -18,17 +18,18 @@ var gmap = {
       document.getElementById("lng").value =  coord.lng();
     });
     google.maps.event.addDomListener(window, 'load');
-  }
-  codeAddress: function(addr) {
+    return {map: map, marker: marker};
+  },
+  codeAddress: function(addr, map, marker) {
     geocoder.geocode( { 'address': addr}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
-        map.setCenter(results[0].geometry.location);
-        var marker = new google.maps.Marker({
-            map: map,
-            position: results[0].geometry.location
-        });
+        var coord = results[0].geometry.location;
+        map.setCenter(coord);
+        marker.setPosition(coord);
+        document.getElementById("lat").value =  coord.lat();
+        document.getElementById("lng").value =  coord.lng();
       } else {
-        alert('Impossible de trouver ' addr + " - " + status);
+        alert('Impossible de trouver ' + addr + " - " + status);
       }
     });
   }
