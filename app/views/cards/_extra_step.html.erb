@@ -1,16 +1,41 @@
 <%= render layout: 'form' do |f| %>
 
-	<%= f.label :website %>
-	<%= f.text_field :website %><br>
+	<div class="block">
+		<div class="label">
+			<p>
+				<span class="num">9</span> Avez-vous un <span class="b">site web</span>?
+			</p>
+		</div>
+		<%= f.text_field :website %>
+	</div>
 
-	<%= f.label :password_digest %>
-	<%= f.password_field :password_digest %><br>
+	<div class="block">
+		<div class="label">
+			<p>
+				<span class="num">10</span> Insérez le <span class="b">mot de passe</span> pour pouvoir modifier vos informations plsu tard et bénéficier des ressources du site
+			</p>
+		</div>
+		<%= f.password_field :password_digest %>
+	</div>
 
-	<%= f.label :affiliations %>
-	<%= f.text_area :affiliations %>
+	<div class="block">
+		<div class="label">
+			<p>
+				<span class="num">11</span> Possédez-vous une <span class="b">affiliation</span> avec une église, un mouvement?
+			</p>
+		</div>
+		<%= f.text_area :affiliation %>
+	</div>
 
-	<%= f.label :tag_names %>
-	<%= f.text_field :tag_names, class: "selectize-tags" %>
+	<div class="block">
+		<div class="label">
+			<p>
+				<span class="num">12</span> Ici, vous pouvez aidez le moteur de recherche avec maximum 5<span class="b">tags</span>. Mettez des mots-clefs qui vous identifient le plus (évangélisation, camps, louage, ...)
+			</p>
+		</div>
+		<%= f.text_field :tag_names, class: "selectize-tags" %>
+	</div>	
+
 <% end %>
 
 <script type="text/javascript">window.onload=tags();</script>

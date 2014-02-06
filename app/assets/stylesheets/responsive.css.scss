@@ -55,6 +55,15 @@
 /* Small devices */
 @media (max-width: 768px) 
 {
+
+	// Global
+	header {
+		width: 100%;
+		.logo {
+			width: 100%;
+		}
+	}
+
 	// container
 	#container {
 		width: 100%;

@@ -51,6 +51,7 @@ gem 'unicorn'
 
 group :development do
 	gem 'capistrano', '~> 2.15', group: :development
+	gem 'railroady'
 end
 
 # CK Editor WYSIWYG

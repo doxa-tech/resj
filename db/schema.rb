@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140205171638) do
+ActiveRecord::Schema.define(version: 20140206155026) do
 
   create_table "actions", force: true do |t|
     t.string   "name"
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 20140205171638) do
     t.string   "website"
     t.string   "password_digest"
     t.text     "description"
-    t.text     "affiliations"
+    t.text     "affiliation"
     t.boolean  "validated",       default: false
     t.datetime "created_at"
     t.datetime "updated_at"

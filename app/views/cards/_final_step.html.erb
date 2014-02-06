@@ -1,13 +1,46 @@
-<%= form_for @card, url: change_cards_path, remote: true do |f| %>
+<div class="final-step">
+	<div class="text">
+		<p> <i class="foundicong-star"></i> Vous avez maintenant terminé l'enregistrement. Vous pouvez controller les informations et revenir sur l'une des étapes pour faire des modifications. </p>
+	</div>
+	<%= form_for @card, url: change_cards_path, remote: true do |f| %>
+		<%= f.hidden_field :current_step, value: @card.current_step %>
+		<%= f.submit "General", :name => "step[general]" %>
+		<ul>
+			<li><%= label_tag :name %> <p><%= @card.name %></p></li>
+			<li><%= label_tag :description %> <p><%= @card.description %></p></li>
+			<li><%= label_tag :category %> <p><%= @card.card_type.name %></p></li>
+			<li><%= label_tag "Réseau régional" %> <p><%= @card.card.try(:name) or '-' %></p></li>
+		</ul>
+		
+		<%= f.submit "Location", :name => "step[location]" %>
+		<ul>
+			<li><%= label_tag :rue %> <p><%= @card.street %></p></li>
+			<li><%= label_tag :npa %> <p><%= @card.npa %></p></li>
+			<li><%= label_tag :ville %> <p><%= @card.city %></p></li>
+			<li><%= label_tag :lieu %> <p><%= @card.place %></p></li>
+		</ul>
 
-	<%= f.hidden_field :current_step, value: @card.current_step %>
-	<%= f.submit "General", :name => "step[general]" %>
-	Name: <%= @card.name %>
-	Description: <%= @card.description %>
-	<%= f.submit "Contact", :name => "step[team]" %>
-	Email: <%= @card.email %>
-	Website: <%= @card.website %>
-	
-<% end %>
+		<%= f.submit "Team", :name => "step[team]" %>
+		<ul>
+			<li><%= label_tag :email_contact %> <p><%= @card.email %></p></li>
+			<% @card.responsables.each do |a| %>
+				<li>
+					<%= label_tag (a == @card.responsables.select{|r|r.is_contact=="true"}.first)? "Responsable de contact" : "Responsable" %> <p><%= "#{a.firstname} #{a.lastname} - #{a.email}" %></p>
+				</li>
+			<% end %>
+		</ul>
 
-<%= link_to "Sent", cards_path, method: :post %>
+		<%= f.submit "Extra", :name => "step[extra]" %>
+		<ul>
+			<li><%= label_tag :site_web %> <p><%= @card.website or " - " %></p></li>
+			<li><%= label_tag :password %> <p>* * * * *</p></li>
+			<li><%= label_tag :affiliation %> <p><%= @card.affiliation %></p></li>
+			<li><%= label_tag :tags %> <p><%= @card.tag_names %></p></li>
+		</ul>		
+
+	<% end %>
+
+	<div class="send">
+		<%= link_to "Sent", cards_path, method: :post, class: 'send' %>
+	</div>
+</div>
