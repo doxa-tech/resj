@@ -24,8 +24,15 @@
 		<%= f.collection_select(:card_type_id, CardType.all, :id, :name) %>
 	</div>
 
-	<%= f.label :card_id %>
-	<%= f.collection_select :card_id, Card.where('card_type_id = ?', CardType.find_by_name("réseau régional") ), :name, :id %>
+	<div class="block">
+		<!-- 	<%= f.label :card_id %> -->
+		<div class="label">
+			<p>
+				<span class="num">3</span> Faites-vous partie d'un <span class="b">réseau régional</span>?
+			</p>
+		</div>
+		<%= f.collection_select :card_id, Card.where('card_type_id = ?', CardType.find_by_name("Réseau régional") ), :name, :id %>
+	</div>
 
 <% end %>
 

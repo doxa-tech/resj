@@ -1,25 +1,43 @@
-<%= image_tag(@card.avatar_url) %>
-<%= image_tag(@card.banner_url) %>
+<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyDNsGj5h-WJXPiLtYVn0TSfiisPwhEAbjg&sensor=false" %>
+<%= javascript_include_tag "card-show-map.js" %>
 
-<%= @card.name %>
+<% content_for :banH, '0' %>
+<% content_for :banI, '' %>
+<% content_for :id, 'cards-show' %>
 
-<%= @card.description %>
+<div class="top">
+	<h1><%= @card.name %></h1>
+</div>
 
-<%= @card.card_type.try(:name) %>
+<div class="row">
+	<div class="left">
+		<%= img = image_tag(@card.avatar_url) if img.present? %>
+		<%= img = image_tag(@card.banner_url) if img.present? %>
 
-<%= @card.street %>
+		<div class="description"><%= @card.description %></div>
 
-<%= @card.city %>
+		<div class="location">
+			<i class="foundicong-location"></i>
+			<%= @card.card_type.try(:name) %>
+			<p><%= @card.street %></p>
+			<p><%= @card.npa %> <%= @card.city %></p>
+			<p><%= @card.place %></p>
+		</div>
+		<div class="contact">
+			<i class="foundicong-mail"></i>
+			<p><%= @card.email or ' - ' %></p>
+		</div>
+		<div class="website">
+			<i class="foundicong-globe"></i>
+			<p><%= @card.website or ' - ' %></p>
+		</div>
+	</div>
+	<div class="right">
+		<div id="map-canvas"></div>
+	</div>
+</div>
 
-<%= @card.npa %>
-
-<%= @card.latitude %>
-
-<%= @card.longitude %>
-
-<%= @card.place %>
-
-<%= @card.email %>
+<div class="clear"></div>
 
 <% @card.responsables.each do |responsable| %>
 	<%= responsable.firstname %>
@@ -31,8 +49,12 @@
 	<%= affiliation.name %>
 <% end %>
 
-<%= @card.website %>
+
 
 <% @card.tags.each do |tag| %>
 	<%= tag.name %>
 <% end %>
+
+<script type="text/javascript">
+	window.onload=gmap.initialize(<%= @card.latitude %>, <%= @card.longitude %>);
+</script>

@@ -5,7 +5,7 @@
 <div id="clear_map"></div>
 
 <script type="text/javascript">
-var addressPoints = <%= raw @cards.map {|a| [a.latitude,a.longitude,"#{a.name} #{link_to 'voir fiche', cards_path(a)}"] } %>;
+var addressPoints = <%= raw @cards.map {|a| [a.latitude,a.longitude,"#{a.name} #{link_to 'voir fiche', card_path(a)}"] } %>;
 
 /*
 *   Set view of Leaflet map based on screen size

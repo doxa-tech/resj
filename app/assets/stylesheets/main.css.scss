@@ -40,7 +40,7 @@ textarea {
 	height: 80px;
 	padding: 15px;
 }
-input {
+input:not([type="checkbox"]) {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 }
@@ -52,6 +52,7 @@ input {
 	margin: 10px auto;
 	padding: 10px;
 	min-height: 100%;
+	max-width: 1920px;
 
 }
 

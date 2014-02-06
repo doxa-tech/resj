@@ -87,6 +87,13 @@
 			}
 		}
 	}
+
+	// card show
+	#container.cards-show {
+		.row {
+			.left, .right {width: 100%}
+		}
+	}
 }
 
 /* For home mapbox */
