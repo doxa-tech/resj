@@ -10,4 +10,10 @@
 		Phasellus non viverra turpis. Vivamus massa diam, dapibus id dolor sagittis, lacinia cursus arcu. Maecenas vitae varius sapien.
 	</div>
 </div>
+<script type="text/javascript">
+  var addressPoints = <%= raw @cards.map {|a| [a.latitude,a.longitude,"#{a.name} #{link_to 'voir fiche', card_path(a)}"] } %>;
+  var latCenter = 46.6221;
+  var lngCenter = 7.1960;
+</script>
 <%= render 'map' %>
+<div id="clear_map"></div>

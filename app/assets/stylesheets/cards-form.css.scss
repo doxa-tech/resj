@@ -67,12 +67,18 @@
 				padding: 2px 0 0 8px;
 				text-align: left;
 			}
+
 			&.team {
 				width: initial;
+				max-width: 750px;
 				.fields {
 					background: #EEE;
 					padding: 5px;
 					margin: 0 0 5px 0;
+					&.contact {
+						border: 3px solid #DDD;
+						margin: 10px 0 10px 0;
+					}
 					.field {
 						display: inline-block;
 						width: 120px;
@@ -89,6 +95,7 @@
 					}
 				}
 			}
+
 			.map-panel {
 				position: absolute;
 				bottom: 42px;
@@ -110,7 +117,16 @@
 					}
 				}
 			}
-		}
+			#map-canvas {
+				width: 100%;
+				height: 300px;
+				margin: auto;
+				box-shadow: 4px 4px 0px rgba(151,184,140,1);
+				border: 1px solid rgba(151,184,140,.5);
+			}			
+
+		} // block
+
 		.next, .final, .back {
 			position: relative;
 			width: 150px;
@@ -169,13 +185,54 @@
 		}
 		.clear{clear: both}
 
-		#map-canvas {
-			width: 100%;
-			height: 300px;
-			margin: auto;
-			box-shadow: 4px 4px 0px rgba(151,184,140,1);
-			border: 1px solid rgba(151,184,140,.5);
-		}
-	}
+		.final-step {
+			.text {
+				padding: 30px;
+				max-width: 700px;
+				color: #333;
+				text-align: left;
+				i {
+					padding: 7px 18px 10px 0;
+					font-size: 50px;
+					float: left;
+					color: #EEE;
+				}
+			}
+			input {
+				width: 100%;
+				background: #272829;
+				height: 20px;
+				margin: 10px 0;
+				color: #EEE;
+				border-radius: 0;
+				border: 0;
+				-webkit-font-smoothing: antialiased;
+				cursor: pointer;
+				&:hover {
+					font-weight: 700;
+				}
+			}			
+			ul {
+				li {
+					max-width: 405px;
+					margin: 10px auto;
+					text-align: left;
+					p {
+						display: inline-block;
+						width: 260px;
+						vertical-align: top;
+					}
+					label {
+						width: 140px;
+						font-size: 12px;
+						font-weight: 600;
+						padding: 0;
+						display: inline-block;
+					}
+				}
+			}
+		} // final steps
+
+	} // wizzard
 
 }
