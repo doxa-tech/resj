@@ -9,6 +9,6 @@ module FormsHelper
 	end
 
 	def link_to_add_contact(name)
-		link_to_function(name, "add_contact(this)")
+		link_to_function(name, "add_contact(this)", class: "add_contact")
 	end
 end

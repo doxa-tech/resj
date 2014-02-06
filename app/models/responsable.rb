@@ -5,9 +5,9 @@ class Responsable < ActiveRecord::Base
 	has_many :card_responsables, dependent: :destroy
 	has_many :cards, through: :card_responsables
 
-	validates :firstname, presence: true
-	validates :lastname, presence: true
-	validates :email, presence: true
+	#validates :firstname, presence: true
+	#validates :lastname, presence: true
+	#validates :email, presence: true
 
 	after_validation :format
 

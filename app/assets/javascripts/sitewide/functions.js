@@ -11,34 +11,40 @@ function add_fields(link) {
 	content = associationFields.find(".fields:last").clone();
 	content.find('input').attr('value', '');
 	content.find('span').remove();
+  content.find('.add_contact').show();
 	content = "<div class='fields'>" + content.html().replace(new RegExp(count-1, "g"), count) + "</div>";
 	$(content).insertBefore(associationFields.find(">:last-child"));
 	autocomplete();
 }
 function add_contact(link) {
   fields = $(link).parents(".fields");
-	$('input[value=true][identifier=is_contact]').val("false");
+  currentContact = $('.fields.contact')
+	currentContact.find('input[identifier=is_contact]').val("false");
+  currentContact.find('.add_contact').show();
 	$(".fields").removeClass("contact");
 	fields.find("input[identifier=is_contact]").val("true");
 	fields.addClass("contact");
+  $(link).hide();
 }
 
 function autocomplete() {
 	$('.autocomplete').find('input').autocomplete({
     source: function(request, response) {
-      var attr = this.element.data('attr'),
-      		link = this.element.parents('.autocomplete').data('link');
-    	$.ajax({
-        url:'/searches/' + link,
-        type:"post",
-        dataType: 'json',
-        data: 'term=' + request.term + '&attr=' + attr,
-        async: true,
-        cache: true,
-        success: function(data){
-         	response(data); 
-        }
-    	});
+      attr = this.element.data('attr');
+      link = this.element.parents('.autocomplete').data('link');
+      if (attr) {
+      	$.ajax({
+          url:'/searches/' + link,
+          type:"post",
+          dataType: 'json',
+          data: 'term=' + request.term + '&attr=' + attr,
+          async: true,
+          cache: true,
+          success: function(data){
+           	response(data); 
+          }
+      	});
+      }
     }
   });
 }
