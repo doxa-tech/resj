@@ -1,29 +1,11 @@
+@import 'partial_top';
+
 #container.connexion {
 
 	.top {
-		width: 100%;
-		background: #272829;
-		box-sizing: border-box;
-		padding: 0 0 0 7px;
-		position: relative;
-
-		&:after, &:before {
-			display: table;
-			content: " ";
-		}
-
-		&:after {clear: both}
-
+			@include top;
 		h1 {
-			color: #fff;
-			font-family: "Raleway", Helvetica, sans-serif;
-			font-weight: 200;
-			font-size: 29px;
-			line-height: 38px;
-			font-smoothing: antialiased;
-			-webkit-font-smoothing: antialiased;
-			position: relative;
-			z-index: 10;
+			@include h1;
 		}
 	} // top
 
