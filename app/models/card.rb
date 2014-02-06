@@ -19,7 +19,7 @@ class Card < ActiveRecord::Base
 
   validate :verified?
   with_options if: Proc.new { |c| c.current_step?("team")} do |team|
-    team.validate :contact?
+    #team.validate :contact?
   end
 
   before_save :assign_responsable

@@ -1,7 +1,5 @@
 <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyDNsGj5h-WJXPiLtYVn0TSfiisPwhEAbjg&sensor=false" %>
 <%= javascript_include_tag "cards-new-map.js" %>
-<%= javascript_include_tag "chosen.jquery.min.js" %>
-
 
 <% content_for :banH, '0' %>
 <% content_for :banI, '' %>
@@ -18,5 +16,15 @@
 </div>
 
 <script>
-	setTimeout(function() { window.location.reload(); alert("La session de création d'un groupe a expiré") }, 1800000);
+$(function(){
+  var idleTimer;
+  function resetTimer(){
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(function() { window.location.reload(); alert("La session de création d'un groupe a expiré") }, 1800000);
+  }
+  $(document).on('click', resetTimer );
+  resetTimer();
+});
 </script>
+
+<%= session[:card_params] %>

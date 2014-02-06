@@ -53,7 +53,7 @@ class Admin::CardsController < Admin::BaseController
 	private
 
 	def attributes
-		["name", "description", "street", "npa", "city", "email", "place", "latitude", "longitude", "website", "password_digest", "card_type_id", "current_step", "validated", "tag_names", "responsables_attributes" => ["firstname", "lastname", "email", "_destroy", "is_contact"], "affiliations_attributes" => ["name", "_destroy"]]
+		["name", "description", "street", "npa", "city", "email", "place", "latitude", "longitude", "website", "password_digest", "card_type_id", "current_step", "validated", "tag_names", "avatar", "banner", "responsables_attributes" => ["firstname", "lastname", "email", "_destroy", "is_contact"], "affiliations_attributes" => ["name", "_destroy"]]
 	end
 
   def card_params
