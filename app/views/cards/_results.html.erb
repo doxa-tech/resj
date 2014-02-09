@@ -1,11 +1,11 @@
 <div class="left">
 	<div id="facets" data-tag="<%= @options[:tag] %>">
-  <h3>Tags</h3>
+  <h3>Tags <span class="show">voir</span></h3>
     <ul>
       <% for row in @search.facet(:tags).rows %>
         <li>
           <% if params[:tag] != row.value %>
-            <%= link_to row.value, {search: @options[:search], tag: row.value}, remote: true %> (<%= row.count %>)
+            <%= link_to row.value, {search: @options[:search], tag: row.value}, remote: true %> <span class="count"><%= row.count %>x</span>
           <% else %>
             <strong><%= row.value %></strong> (<%= link_to "remove", search: @options[:search], :tag => nil, remote: true %>)
           <% end %>
@@ -14,27 +14,83 @@
     </ul>
   </div>
 	<div class="index">
-		<% current = @cards.first.name[0].downcase %>
-		<div class="letter"><p><%= current %></p></div>
-		<% @cards.each do |card| %>
-			<% if card.name[0].downcase != current %>
-				<% current = card.name[0].downcase %>
-				<div class="letter"><p><%= current %></p></div>
-			<% end %>
-			<p><%= link_to card.name, card_path(card) %></p>
-		<% end %>
+    <% if @cards.any? %>
+      <ul>
+    		<% current = @cards.first.name[0].downcase %>
+    		<li class="letter"><%= current %></li>
+    		<% @cards.each do |card| %>
+    			<% if card.name[0].downcase != current %>
+    				<% current = card.name[0].downcase %>
+    				<li class="letter"><%= current %></li>
+    			<% end %>
+    			<li class="card">
+            <%= content_tag :span, card.card_type.name, class: 'type' %> <%= link_to card.name, card_path(card) %>
+            <i class="foundicong-down-arrow show-description"></i>
+            <i class="foundicong-location show-on-map" data-id="<%= card.id %>"></i>
+            <p class="description"><i class="foundicong-compass"></i><%= card.description %></p>
+          </li>
+    		<% end %>
+      </ul>
+      <% else %>
+        <p>Votre recherche n'a donné aucun résultat.</p>
+      <% end %>
 	</div>
 </div>
 <div class="right">
-  <script type="text/javascript">
-    // Import from ruby
-    <% sum = 0 %>
-    <% @cards.map{|a| sum = sum+a.latitude} %>
-    var latCenter =  <%= sum / @cards.size %>;
-    <% sum = 0 %>
-    <% @cards.map{|a| sum = sum+a.longitude} %>
-    var lngCenter =  <%= sum / @cards.size %>;
-    var addressPoints = <%= raw @cards.map {|a| [a.latitude,a.longitude,"#{a.name} #{link_to 'voir fiche', card_path(a)}"] } %>;
-  </script>
-	<%= render 'map' %>
+  <% if @cards.any? %>
+    <script type="text/javascript">
+      // Import from ruby
+      <% sum = 0 %>
+      <% @cards.map{|a| sum = sum+a.latitude} %>
+      var latCenter =  <%= sum / @cards.size %>;
+      <% sum = 0 %>
+      <% @cards.map{|a| sum = sum+a.longitude} %>
+      var lngCenter =  <%= sum / @cards.size %>;
+      var addressPoints = <%= raw @cards.map {|a| [a.latitude,a.longitude,"#{content_tag :p, a.card_type.name, class:'type'} #{a.name} #{link_to 'voir fiche', card_path(a)}",a.id] } %>;
+    </script>
+    <%= render 'map' %>
+    <% end %>
 </div>
+<div class="clear"></div>
+
+<script type="text/javascript">
+/* Show marker when click */
+  $('.show-on-map').click(function(){
+    var link = $(this);
+    document.getElementById('map').scrollIntoView();
+    markers.eachLayer(function(layer){
+      if(layer.options.id == parseInt(link.data("id"))) {
+        markers.zoomToShowLayer(layer, function() {
+          layer.openPopup();
+        });
+      }
+    });
+  });
+</script>
+
+<script type="text/javascript">
+/* Tags */
+  $('#facets ul').hide();
+  $('#facets h3 span').click(function(){
+    var btn = $(this);
+    $('#facets ul').slideToggle();
+    if (btn.text()=="voir") { 
+      btn.text("fermer");
+    } else { 
+      btn.text("voir"); 
+    }
+  });
+
+  /* Description */
+  $('.index .description').hide();
+  $('.show-description').click(function(){
+    var btn = $(this)
+    var el = btn.next().next();
+    if(el.css("display")=="none") {
+      btn.css("color", "rgba(39,40,41,1)");
+    } else {
+      btn.css("color", "rgba(39,40,41,.6)");
+    }
+    el.slideToggle();
+  });
+</script>

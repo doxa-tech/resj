@@ -153,32 +153,114 @@
 	} // top
 
 	.rows {
-		font-size: 0;
-		* {
-			font-size: 12px;
-		}
+
 		.left {
-			display: inline-block;
+			float: left;
 			width: 50%;
 			vertical-align: top;
 			box-sizing: border-box; // prevent padding to take width
 			padding: 0 10px 0 0;
-			.index {
-				p:hover{
-					background: #eee;
-					cursor: pointer;
+
+			#facets {
+				background: #272829;
+				h3 {
+					background: rgb(39,40,41);
+					color: #EEE;
+					margin: 10px 0;
+					padding: 4px 6px;
+					font-weight: 100;
+					font-size: 13px;
+					position: relative;
+					span {
+						float: right;
+						background: #D83C3C;
+						padding: 0 15px 0 15px;
+						border-radius: 0 0 0 3px;
+						position: absolute;
+						right: 0;
+						top: 0;
+						cursor: pointer;
+						&:hover {
+							background: #e54040;
+						}						
+					}
+				}
+				ul {
+					padding: 7px;
+					background: #EEE;
+					border: 5px solid #272829;
+					li {
+						display: inline-block;
+						padding: 5px 25px 0 0;
+						position: relative;
+						a {
+							color: #000;
+							&:hover {
+								font-weight: 400;
+							}
+						}
+						.count {
+							font-size: 12px;
+							position: absolute;
+							top: 3px;
+							right: 11px;
+						}
+					}
 				}
 			}
-			.letter {
-				background: #ff7777;
-				padding: 0 0 0 10px; margin: 10px 0 10px 0;
-				p:hover {
-					background: #ff6666;
-				}			
+
+			.index {
+				li.card {
+					line-height: 24px;
+					padding: 5px;
+					&:hover {
+						background: #eee;
+					}
+					.type {
+						font-size: 12px;
+						padding: 0 5px 0 0;
+					}
+					a {
+						font-size: 14px;
+						color: #000000;
+						font-weight: 400;
+						&:hover {
+							font-weight: 600;
+						}
+					}
+					i {
+						font-size: 18px;
+						vertical-align: middle;
+						float: right;
+						color: rgba(39,40,41,.6);
+						cursor: pointer;
+						&:hover {
+							color: rgba(39,40,41,1);
+						}
+					}
+					.description {
+						padding: 10px;
+						box-shadow: 0 1px 1px rgba(0,0,0,.3);
+						color: rgba(0,0,0,.9);
+						i {
+							float: left;
+							padding: 0 10px 0 0;
+							color: #CCC;
+							cursor: auto;
+							&:hover {
+								color: auto;
+							}
+						}
+					}
+				}
+				li.letter {
+					background: #ff7777;
+					padding: 0 0 0 10px; margin: 10px 0 10px 0;
+				}				
 			}
 		}
 		.right {
-			display: inline-block;
+			float: right;
 			width: 50%;
 			vertical-align: top;
 			#map {
@@ -186,6 +268,8 @@
 				height: 600px;
 			}
 		}
+
+		.clear {clear:both}
 	}
 
 } // end Cards
