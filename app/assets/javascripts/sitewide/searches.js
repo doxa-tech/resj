@@ -17,9 +17,10 @@ $(document).ready(function() {
 
   $('.live-search').on("keyup", function() {
     tag = $('#facets').data('tag');
+    page = $('#facets').data('page');
     query = $(this).val();
     delay(function(){
-      $.getScript( "reseau?search="+query+"&tag="+tag );
+      $.getScript( "reseau?search="+query+"&tag="+tag+"&page="+page );
     }, 500 );
   });
 });

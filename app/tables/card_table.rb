@@ -16,7 +16,12 @@ class CardTable < BaseTable
 			element.affiliations,
 			element.validated,
 			element.created_at,
-			element.updated_at
+			element.updated_at,
+			element.latitude,
+			element.longitude,
+			element.avatar_url,
+			element.banner_url,
+			element.card.try(:name)
 		]
 	end
 

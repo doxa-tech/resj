@@ -28,13 +28,13 @@ class Permission
 	def elements(controller, model)
 		ownerships_on_entry = Ownership.where("user_id IN (?) AND element_id = ? AND ownership_type_id = ? AND right_read = ?", @ids, element_id(controller), @on_entry_id, true).pluck('id_element')
 		if Ownership.where("user_id IN (?) AND element_id = ? AND ownership_type_id = ? AND right_read = ?", @ids, element_id(controller), @all_entries_id, true).any?
-    	@elements = model.all
+    	@elements ||= model.all
     elsif Ownership.where("user_id IN (?) AND element_id = ? AND ownership_type_id = ? AND right_read = ?", @ids, element_id(controller), @on_ownership_id, true).any?
-			@elements = model.where('user_id = ? or id IN (?)', user.id, ownerships_on_entry)
+			@elements ||= model.where('user_id = ? or id IN (?)', user.id, ownerships_on_entry)
 		elsif ownerships_on_entry.any?
-			@elements = model.where('id IN (?)', ownerships_on_entry)
+			@elements ||= model.where('id IN (?)', ownerships_on_entry)
 		else
-			@elements = model.none
+			@elements ||= model.none
 		end
   end
 
