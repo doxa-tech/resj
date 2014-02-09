@@ -22,6 +22,7 @@ namespace :db do
 		OwnershipType.destroy_all
 		Ownership.destroy_all
 		Element.destroy_all
+		Action.destroy_all
 
 
 		# Create groups
@@ -55,6 +56,8 @@ namespace :db do
 		admin_card_types = Element.create(name: 'admin/card_types')
 		admin_verificator_comments = Element.create(name: 'admin/verificator_comments')
 
+		validated = Action.create(name: "validated")
+
 		# ownerships for admin group :
 		Ownership.create(element_id: admin_pages.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
 		Ownership.create(element_id: admin_users.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
@@ -66,5 +69,7 @@ namespace :db do
 		Ownership.create(element_id: admin_responsables.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
 		Ownership.create(element_id: admin_card_types.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
 		Ownership.create(element_id: admin_verificator_comments.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
+
+		Ownership.create(element_id: admin_cards, user_id: admin.id, ownership_type_id: type2.id, actions: [validated])
 	end
 end

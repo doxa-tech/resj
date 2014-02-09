@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 		@user = current_user
 		if @user.update_attributes(user_params)
 			sign_in(@user)
-			redirect_to edit_user_path(@user), success: t('user.edit.success')
+			redirect_to edit_users_path, success: t('user.edit.success')
 		else
 			render 'edit'
 		end
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 	private
 
 	def user_params
-		params.require(:user).permit(:name, :email, :password, :password_confirmation)
+		params.require(:user).permit(:name, :email, :password, :password_confirmation, :current_password)
 	end
 
 	def connected?

@@ -11,15 +11,16 @@ Resj::Application.routes.draw do
   get 'connexion', to: 'sessions#new'
 
   get 'profile', to: "users#profile"
+  patch 'users/update', to: "users#update"
 
   resources :users, only: [:create] do
     collection do
       get 'edit'
-      patch 'update'
     end
   end
 
   resources :sessions, only: [:create, :destroy]
+  resources :password_resets, except: [:index, :show, :destroy]
   
   resources :cards, only: [:new, :create, :show] do
     collection do
