@@ -11,6 +11,8 @@
 	.intro {
 		padding: 20px;
 		font-size: 14px;
+		max-width: 600px;
+		margin: auto;
 		img {
 			float: left;
 			width: 160px;
@@ -31,7 +33,7 @@
 			font-weight: 200;
 		}
 		ul {
-			padding: 10px 0 0 10px;
+			padding: 10px 0 0 30px;
 			list-style-type: inherit;
 		}
 
@@ -44,6 +46,13 @@
 						width: 100px;
 						float: left;
 						vertical-align: middle;
+						padding: 10px;
+					}
+					div {
+						padding: 20px;
+						.name {
+							font-weight: 400;
+						}
 					}
 				}
 			}
