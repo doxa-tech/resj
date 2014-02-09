@@ -18,7 +18,7 @@ var markers = new L.MarkerClusterGroup({
 for (var i = 0; i < addressPoints.length; i++) {
   var a = addressPoints[i];
   var title = a[2];
-  var marker = L.marker(new L.LatLng(a[0], a[1]), {
+  var marker = L.marker(new L.LatLng(a[0], a[1]), options={
   	icon: L.icon({
       iconUrl: icon,
       iconRetinaUrl: 'my-icon@2x.png',
@@ -32,6 +32,7 @@ for (var i = 0; i < addressPoints.length; i++) {
     }),
     title: title,
     riseOnHover: true,
+    id: a[3],
   });
   marker.bindPopup(title);
   markers.addLayer(marker);

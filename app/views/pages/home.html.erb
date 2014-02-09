@@ -11,7 +11,7 @@
 	</div>
 </div>
 <script type="text/javascript">
-  var addressPoints = <%= raw @cards.map {|a| [a.latitude,a.longitude,"#{a.name} #{link_to 'voir fiche', card_path(a)}"] } %>;
+  var addressPoints = <%= raw @cards.map {|a| [a.latitude,a.longitude,"#{content_tag :p, a.card_type.name, class:'type'} #{a.name} #{link_to 'voir fiche', card_path(a)}"] } %>;
   var latCenter = 46.6221;
   var lngCenter = 7.1960;
 </script>
