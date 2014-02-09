@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140206155026) do
+ActiveRecord::Schema.define(version: 20140208125910) do
 
   create_table "actions", force: true do |t|
     t.string   "name"
@@ -184,6 +184,8 @@ ActiveRecord::Schema.define(version: 20140206155026) do
     t.string   "uid"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "reset_token"
+    t.datetime "reset_sent_at"
   end
 
   add_index "users", ["user_type_id"], name: "index_users_on_user_type_id"
