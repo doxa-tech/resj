@@ -1,0 +1,52 @@
+@import 'partial_top';
+
+#container.about {
+	.top {
+		@include top;
+		h1 {
+			@include h1;
+		}
+	}
+
+	.intro {
+		padding: 20px;
+		font-size: 14px;
+		img {
+			float: left;
+			width: 160px;
+			padding: 9px;
+		}
+		p {
+			padding: 40px 0 0 0;
+		}
+	}
+
+	.clear {
+		clear: both;
+	}
+
+	.block {
+		h2 {
+			font-family: "Raleway", Helvetica, sans-serif;
+			font-weight: 200;
+		}
+		ul {
+			padding: 10px 0 0 10px;
+			list-style-type: inherit;
+		}
+
+		&.team {
+			ul {
+				list-style-type: none;
+				li {
+					clear: both;
+					img {
+						width: 100px;
+						float: left;
+						vertical-align: middle;
+					}
+				}
+			}
+		}
+	}
+}

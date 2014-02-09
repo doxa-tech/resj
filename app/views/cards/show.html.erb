@@ -6,7 +6,7 @@
 <% content_for :id, 'cards-show' %>
 
 <div class="top">
-	<h1><%= @card.card_type %>: <%= @card.name %></h1>
+	<h1><%= @card.card_type.name %>: <%= @card.name %></h1>
 </div>
 
 <div class="row">
@@ -18,7 +18,6 @@
 
 		<div class="location">
 			<i class="foundicong-location"></i>
-			<%= @card.card_type.try(:name) %>
 			<p><%= @card.street %></p>
 			<p><%= @card.npa %> <%= @card.city %></p>
 			<p><%= @card.place %></p>
