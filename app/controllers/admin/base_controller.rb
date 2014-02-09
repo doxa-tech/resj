@@ -1,5 +1,6 @@
 class Admin::BaseController < ApplicationController
-	layout 'admin'	
+	layout 'admin'
+	before_action :authorize_read
 	before_action :authorize_create, only: [:new, :create]
 	before_action :authorize_modify, only: [:edit, :update, :destroy]
 
@@ -10,6 +11,12 @@ class Admin::BaseController < ApplicationController
 	helper_method :current_permission
 
 	private
+
+	def authorize_read
+		if !current_user
+			redirect_to root_path, error: "Please log in"
+		end
+	end
 
 	def authorize_create
 		if !current_user || !current_permission.allow_create?(params[:controller])

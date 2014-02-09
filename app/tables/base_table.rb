@@ -5,7 +5,7 @@ class BaseTable
 	end
 
 	def elements
-		h.current_permission.elements(h.params[:controller], model).order(sort_column + " " + sort_direction).paginate(page: h.params[:page], per_page: 5)
+		h.current_permission.elements(h.params[:controller], model).order(sort_column + " " + sort_direction).paginate(page: h.params[:page], per_page: 30)
 	end
 
 	def sort_column

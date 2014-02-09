@@ -5,9 +5,10 @@ class CardsController < ApplicationController
 			fulltext params[:search]
 			facet(:tags)
 			with(:tags, params[:tag] ) if params[:tag].present?
+			paginate page: params[:page] if params[:page].present?
 		end
   	@cards = @search.results
-  	@options = {tag: params[:tag], search: params[:search]}
+  	@options = {tag: params[:tag] || "", search: params[:search], page: params[:page] || ""}
 	end
 
 	def show
@@ -51,4 +52,5 @@ class CardsController < ApplicationController
   def validator
   	@validator ||= User.joins(:ownerships, ownerships: [:actions]).where(actions: {name: "validated"}).first
   end
+
 end

@@ -1,18 +1,19 @@
+<%= will_paginate @cards %>
 <div class="left">
-	<div id="facets" data-tag="<%= @options[:tag] %>">
+  <%= content_tag :div, data: {tag: @options[:tag], page: @options[:page]}, id: "facets" do %>
   <h3>Tags <span class="show">voir</span></h3>
     <ul>
       <% for row in @search.facet(:tags).rows %>
         <li>
           <% if params[:tag] != row.value %>
-            <%= link_to row.value, {search: @options[:search], tag: row.value}, remote: true %> <span class="count"><%= row.count %>x</span>
+            <%= link_to row.value, {search: @options[:search], page: @options[:page], tag: row.value}, remote: true %> <span class="count"><%= row.count %>x</span>
           <% else %>
-            <strong><%= row.value %></strong> (<%= link_to "remove", search: @options[:search], :tag => nil, remote: true %>)
+            <strong><%= row.value %></strong> (<%= link_to "remove", search: @options[:search], page: @options[:page], :tag => nil, remote: true %>)
           <% end %>
         </li>
       <% end %>
     </ul>
-  </div>
+  <% end %>
 	<div class="index">
     <% if @cards.any? %>
       <ul>
