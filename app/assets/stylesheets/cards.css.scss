@@ -161,7 +161,7 @@
 			box-sizing: border-box; // prevent padding to take width
 			padding: 0 10px 0 0;
 
-			#facets {
+			#facets, #filter {
 				background: #272829;
 				h3 {
 					background: rgb(39,40,41);
@@ -209,6 +209,31 @@
 				}
 			}
 
+			#filter {
+				ul {
+					li {
+						width: 100%;
+						h4 {
+							text-align: center;
+							font-weight: 600;
+							font-size: 12px;
+						}
+						.field {
+							display: inline-block;
+							input {
+								vertical-align: middle;
+								width: 20px;
+							}
+							p {
+								display: inline-block;
+								vertical-align: middle;
+								padding: 0 10px 0 0;
+							}
+						}
+					}
+				}
+			}
+
 			.index {
 				li.card {
 					line-height: 24px;
@@ -233,6 +258,7 @@
 						vertical-align: middle;
 						float: right;
 						color: rgba(39,40,41,.6);
+						padding: 0 2px;
 						cursor: pointer;
 						&:hover {
 							color: rgba(39,40,41,1);
