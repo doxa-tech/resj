@@ -11,13 +11,15 @@
 	.intro {
 		padding: 20px;
 		font-size: 14px;
+		max-width: 700px;
+		margin: auto;
 		img {
 			float: left;
 			width: 160px;
 			padding: 9px;
 		}
 		p {
-			padding: 40px 0 0 0;
+			padding: 24px 0 0 0;
 		}
 	}
 
@@ -26,27 +28,51 @@
 	}
 
 	.block {
+		max-width: 700px;
+		margin: auto;
+
 		h2 {
+			padding: 40px 0 10px 0;
 			font-family: "Raleway", Helvetica, sans-serif;
 			font-weight: 200;
 		}
 		ul {
-			padding: 10px 0 0 10px;
-			list-style-type: inherit;
+			padding: 10px 0 0 30px;
+			text-align: center;
+		}
+
+		i {
+			float: left;
+			font-size: 50px;
+			padding: 20px;
+			color: #EEE;
+		}
+
+		p {
+			overflow: hidden;
 		}
 
 		&.team {
 			ul {
 				list-style-type: none;
+				text-align: left;
+				padding: 0;
 				li {
 					clear: both;
 					img {
 						width: 100px;
 						float: left;
 						vertical-align: middle;
+						padding: 10px;
+					}
+					div {
+						padding: 20px;
+						.name {
+							font-weight: 400;
+						}
 					}
 				}
 			}
-		}
-	}
+		} // team
+	} // block
 }
