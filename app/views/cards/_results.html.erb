@@ -1,5 +1,6 @@
 <%= will_paginate @cards %>
 <div class="left">
+
   <%= content_tag :div, data: {tag: @options[:tag], page: @options[:page]}, id: "facets" do %>
   <h3>Tags <span class="show">voir</span></h3>
     <ul>
@@ -14,6 +15,32 @@
       <% end %>
     </ul>
   <% end %>
+
+  <%= content_tag :div, data: {tag: @options[:tag], page: @options[:page]}, id: "filter" do %>
+  <h3>Filtres <span class="show">voir</span></h3>
+    <ul>
+      <li>
+        <h4>Type</h4>  
+      <li>
+        <div class="field"><input type="checkbox" name="chk_group" value="value1" /><p>Groupe de jeunes</p></div>
+        <div class="field"><input type="checkbox" name="chk_group" value="value2" /><p>Groupe de jeunes adultes</p></div>
+        <div class="field"><input type="checkbox" name="chk_group" value="value3" /><p>Groupe d'action</p></div>
+        <div class="field"><input type="checkbox" name="chk_group" value="value3" /><p>Oeuvre jeunesse</p></div>
+        <div class="field"><input type="checkbox" name="chk_group" value="value3" /><p>Réseau régional</p></div>
+      </li>
+      <li>
+        <h4>Canton</h4>
+      </li>
+      <li>
+        <div class="field"><input type="checkbox" name="chk_group" value="value1" /><p>Fribourg</p></div>
+        <div class="field"><input type="checkbox" name="chk_group" value="value2" /><p>Vaud</p></div>
+        <div class="field"><input type="checkbox" name="chk_group" value="value3" /><p>Genève</p></div>
+        <div class="field"><input type="checkbox" name="chk_group" value="value3" /><p>Oeuvre jeunesse</p></div>
+        <div class="field"><input type="checkbox" name="chk_group" value="value3" /><p>Réseau régional</p></div>
+      </li>
+    </ul>
+  <% end %>
+
 	<div class="index">
     <% if @cards.any? %>
       <ul>
@@ -26,9 +53,9 @@
     			<% end %>
     			<li class="card">
             <%= content_tag :span, card.card_type.name, class: 'type' %> <%= link_to card.name, card_path(card) %>
-            <i class="foundicong-down-arrow show-description"></i>
-            <i class="foundicong-location show-on-map" data-id="<%= card.id %>"></i>
-            <p class="description"><i class="foundicong-compass"></i><%= card.description %></p>
+            <i class="fi-arrow-down show-description"></i>
+            <i class="fi-marker show-on-map" data-id="<%= card.id %>"></i>
+            <p class="description"><i class="fi-megaphone"></i><%= card.description %></p>
           </li>
     		<% end %>
       </ul>
@@ -47,7 +74,7 @@
       <% sum = 0 %>
       <% @cards.map{|a| sum = sum+a.longitude} %>
       var lngCenter =  <%= sum / @cards.size %>;
-      var addressPoints = <%= raw @cards.map {|a| [a.latitude,a.longitude,"#{content_tag :p, a.card_type.name, class:'type'} #{a.name} #{link_to 'voir fiche', card_path(a)}",a.id] } %>;
+      var addressPoints = <%= map_points(@cards) %>;
     </script>
     <%= render 'map' %>
     <% end %>
@@ -60,6 +87,7 @@
     var link = $(this);
     document.getElementById('map').scrollIntoView();
     markers.eachLayer(function(layer){
+      console.log("ga");
       if(layer.options.id == parseInt(link.data("id"))) {
         markers.zoomToShowLayer(layer, function() {
           layer.openPopup();
@@ -70,11 +98,23 @@
 </script>
 
 <script type="text/javascript">
-/* Tags */
+  /* Tags */
   $('#facets ul').hide();
   $('#facets h3 span').click(function(){
     var btn = $(this);
     $('#facets ul').slideToggle();
+    if (btn.text()=="voir") { 
+      btn.text("fermer");
+    } else { 
+      btn.text("voir"); 
+    }
+  });
+
+  /* Filters */
+  $('#filter ul').hide();
+  $('#filter h3 span').click(function(){
+    var btn = $(this);
+    $('#filter ul').slideToggle();
     if (btn.text()=="voir") { 
       btn.text("fermer");
     } else { 

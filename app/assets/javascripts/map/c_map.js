@@ -20,7 +20,7 @@ for (var i = 0; i < addressPoints.length; i++) {
   var title = a[2];
   var marker = L.marker(new L.LatLng(a[0], a[1]), options={
   	icon: L.icon({
-      iconUrl: icon,
+      iconUrl: icon+a[3]+".png",
       iconRetinaUrl: 'my-icon@2x.png',
       iconSize: [25, 41],
       iconAnchor: [12, 41],
@@ -32,7 +32,7 @@ for (var i = 0; i < addressPoints.length; i++) {
     }),
     title: title,
     riseOnHover: true,
-    id: a[3],
+    id: a[4],
   });
   marker.bindPopup(title);
   markers.addLayer(marker);
