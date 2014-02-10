@@ -6,8 +6,8 @@ class Card < ActiveRecord::Base
   has_many :responsables, through: :card_responsables
   has_many :card_verifications, dependent: :destroy
   has_many :users, through: :card_verifications
-  has_many :card_affiliations, dependent: :destroy
-  has_many :affiliations, through: :card_affiliations
+  has_many :card_affiliations, dependent: :destroy, autosave: true
+  has_many :affiliations, through: :card_affiliations, autosave: true
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
   has_many :verificator_comments
@@ -60,23 +60,19 @@ class Card < ActiveRecord::Base
   # Methods called before card's associations are saved (bound to accepts_nested_attributes_for)
   # Find a responsable or create a new one 
   def autosave_associated_records_for_responsables
-    responsables.reject{ |r| r.is_contact == "true"}.each do |responsable|
-      if new_responsable = Responsable.where('firstname = ? AND lastname = ? AND email = ?', responsable.firstname, responsable.lastname, responsable.email).first
-        self.responsables << new_responsable
-      else
-        self.responsables << responsable
-      end
+    new_responsables = []
+    responsables.select{ |r| r.new_record? }.each do |responsable|
+      new_responsables << Responsable.where('firstname = ? AND lastname = ? AND email = ?', responsable.firstname, responsable.lastname, responsable.email).first_or_create
     end
+    self.responsables = new_responsables
   end
 
   def autosave_associated_records_for_affiliations
-    affiliations.each do |affiliation|
-      if new_affiliation = Affiliation.where('name = ?', affiliation.name).first
-        self.affiliations << new_affiliation
-      else
-        self.affiliations << affiliation
-      end
+    new_affiliations = []
+    affiliations.select{ |a| a.new_record? }.each do |affiliation|
+      new_affiliations << Affiliation.where('name = ?', affiliation.name).first_or_create
     end
+    self.affiliations = new_affiliations
   end
 
   def current_step?(step)
