@@ -9,6 +9,7 @@ en:
         card: "Cards"
         page: "Pages"
         user: "Users"
+        affiliation: "Affiliations"
   card:
     create:
       title: "Create a new card"
