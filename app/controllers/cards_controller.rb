@@ -1,10 +1,9 @@
 class CardsController < ApplicationController
 
 	def index
-		@search = Card.search do
-			fulltext params[:search]
-			facet(:tags)
-			with(:tags, params[:tag] ) if params[:tag].present?
+		@search = Card.search do 
+			fulltext params[:query]
+			with(:card_type_id, params[:card_type_ids]) if params[:card_type_ids]
 			paginate page: params[:page] if params[:page].present?
 		end
   	@cards = @search.results

@@ -30,6 +30,7 @@ class Card < ActiveRecord::Base
     string :tags, multiple: true do
       tags.map { |a| a.name }
     end
+    integer :card_type_id, multiple: true
   end
 
   mount_uploader :avatar, AvatarUploader

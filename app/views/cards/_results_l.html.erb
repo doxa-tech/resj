@@ -1,0 +1,26 @@
+<%= javascript_include_tag 'cards_results' %>
+<%= will_paginate @cards, remote: true %>
+
+
+<div class="index">
+  <% if @cards.any? %>
+    <ul>
+  		<% current = @cards.first.name[0].downcase %>
+  		<li class="letter"><%= current %></li>
+  		<% @cards.each do |card| %>
+  			<% if card.name[0].downcase != current %>
+  				<% current = card.name[0].downcase %>
+  				<li class="letter"><%= current %></li>
+  			<% end %>
+  			<li class="card">
+          <%= content_tag :span, card.card_type.name, class: 'type' %> <%= link_to card.name, card_path(card) %>
+          <i class="fi-arrow-down show-description"></i>
+          <i class="fi-marker show-on-map" data-id="<%= card.id %>"></i>
+          <p class="description"><i class="fi-megaphone"></i><%= card.description %></p>
+        </li>
+  		<% end %>
+    </ul>
+    <% else %>
+      <p>Votre recherche n'a donné aucun résultat.</p>
+    <% end %>
+</div>

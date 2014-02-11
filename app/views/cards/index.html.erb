@@ -4,38 +4,58 @@
 
 <%= javascript_include_tag "map/a_mapbox_v1.5.2.js" %>
 <%= javascript_include_tag "map/b_leaflet.markercluster.js" %>
+<%= javascript_include_tag "cards_index.js" %>
 
-<!-- <div class="marketing">
-  <p> notre objectif :</p>
-</div> -->
-<div class="top">
-	<div class="right">
-	 	<ul class="nav">
-	 		<li class="hder">
-	 			<div class="infos">
-	 				<p>Vous n'y êtes pas encore?</p>
-	 			</div>
-	 			<div class="btn">
-	 				<%= link_to "Rejoindre le réseau", new_card_path %>
-	 			</div>
-	 		</li>
-	 		<li class="marketing">
-	 			<div class="marketing">
-	 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum, felis sit amet adipiscing dapibus, magna erat gravida risus, a rhoncus lorem velit eget felis.</p>
-	 			</div>
-	 		</li>
-	 	<ul>
-	 </div>
-	<div class="left">	
-	  <div class="search">
-	    <%= form_tag reseau_path, :method => :get do %>
-	      <%= text_field_tag :search, params[:search], placeholder: "essayez 'gdj', 'camps', 'Lausanne'", class: "live-search" %>
-	      <button>Tapez</button>
-	      <%= submit_tag "Go", :name => nil, type: :hidden %>
-	    <% end %>
-	  </div>	
-	 </div>				
-</div>
-<div class="rows" id="results">
-  <%= render 'results' %>
-</div>
+<%= form_tag reseau_path, method: :get, remote: true, id: "card-search-form" do %>
+	<div class="top">
+		<div class="right">
+		 	<ul class="nav">
+		 		<li class="hder">
+		 			<div class="infos">
+		 				<p>Vous n'y êtes pas encore?</p>
+		 			</div>
+		 			<div class="btn">
+		 				<%= link_to "Rejoindre le réseau", new_card_path %>
+		 			</div>
+		 		</li>
+		 		<li class="marketing">
+		 			<div class="marketing">
+		 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum, felis sit amet adipiscing dapibus, magna erat gravida risus, a rhoncus lorem velit eget felis.</p>
+		 			</div>
+		 		</li>
+		 	<ul>
+		</div>
+		<div class="left">	
+		  <div class="search">
+		  	<div class="form">
+					<%= search_field_tag :query, nil, placeholder: "essayez 'gdj', 'camps', 'Lausanne'" %>
+					<button>Tapez</button>
+					<%= submit_tag "", :name => nil, type: :hidden %>
+				</div>
+		  </div>	
+		</div>		
+	</div>
+
+	<div class="rows" id="results">
+		<div class="left">
+				<%= content_tag :div, id: "filter" do %>
+			  	<h3>Filtres <span class="show">voir</span></h3>
+			    <ul>
+			      <li>
+			        <h4>Type</h4>  
+			      <li>
+			        <% CardType.all.each do |card_type| %>
+								<%= label_tag card_type.name %>
+								<%= check_box_tag "card_type_ids[]", card_type.id, true %>
+							<% end %>
+			      </li>
+			    </ul>
+			  <% end %>	
+			<div class="left-content"><%= render 'results_l' %></div>
+		</div>
+		<div class="right">
+			<%= render 'results_r' %>
+		</div>
+		<div class="clear"></div>
+	</div>
+<% end %>	

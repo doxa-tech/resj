@@ -15,12 +15,9 @@ $(document).ready(function() {
     };
   })();
 
-  $('.live-search').on("keyup", function() {
-    tag = $('#facets').data('tag');
-    page = $('#facets').data('page');
-    query = $(this).val();
+  $('#card-search-form').find('input').on("keyup click", function() {
     delay(function(){
-      $.getScript( "reseau?search="+query+"&tag="+tag+"&page="+page );
+      $('#card-search-form').submit();
     }, 500 );
   });
 });
