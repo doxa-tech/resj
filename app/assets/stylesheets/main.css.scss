@@ -2,10 +2,16 @@
 // @import url(http://fonts.googleapis.com/css?family=Jura:400,300);
 @import url(http://fonts.googleapis.com/css?family=Raleway:100,200,300,400);
 
-html body
+html, body
 {
 	font: 300 15px/17px 'Open Sans', tahoma;
 	height: 100%;
+}
+
+#wrapper {
+	min-height:100%;
+	position:relative;
+	padding-bottom:52px; // height of footer
 }
 
 a
@@ -62,7 +68,7 @@ h2
 	font-weight: 400;
 	-webkit-font-smoothing: antialiased;
 	font-size: 30px;
-	padding: 30px;
+	padding: 10px;
 	font: normal 36px 'jura', tahoma;
 	text-shadow: 1px 0px 1px #999;
 }

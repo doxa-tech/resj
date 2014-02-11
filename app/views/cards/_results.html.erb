@@ -1,4 +1,3 @@
-<%= will_paginate @cards %>
 <div class="left">
 
   <%= content_tag :div, data: {tag: @options[:tag], page: @options[:page]}, id: "facets" do %>
@@ -40,6 +39,8 @@
       </li>
     </ul>
   <% end %>
+
+  <%= will_paginate @cards %>
 
 	<div class="index">
     <% if @cards.any? %>
