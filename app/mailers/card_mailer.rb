@@ -1,5 +1,5 @@
 class CardMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "admin@reseaujeunesse.ch"
 
   def created(validator)
   	@validator = validator

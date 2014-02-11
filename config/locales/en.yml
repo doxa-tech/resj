@@ -130,3 +130,7 @@ en:
         success: "Comment updated"
       destroy:
         success: "Comment deleted"
+  will_paginate:
+    previous_label: "<i class='fi-arrow-left'></i> Previous"
+    next_label: "Next <i class='fi-arrow-right'></i>"
+    page_gap: "&hellip;"

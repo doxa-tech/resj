@@ -8,16 +8,18 @@
   <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
 </head>
 <body>
+	<div id="wrapper">
 
-<%= render 'layouts/header' %>
+		<%= render 'layouts/header' %>
 
-<%= render 'layouts/banner' %>
+		<%= render 'layouts/banner' %>
 
-<div id="container"  <%= "class=#{yield(:id)}" if yield(:id).presence %>>
-	<%= yield %>
-</div>
+		<div id="container"  <%= "class=#{yield(:id)}" if yield(:id).presence %>>
+			<%= yield %>
+		</div>
 
-<%= render 'layouts/footer' %>
+		<%= render 'layouts/footer' %>
 
+	</div>
 </body>
 </html>
