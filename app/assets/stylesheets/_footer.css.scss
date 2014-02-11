@@ -1,14 +1,18 @@
+/* http://www.cssreset.com/how-to-keep-footer-at-bottom-of-page-with-css/ */
 footer {
 	margin: auto;
 	text-align: center;
-	background : #272930;
+	background : #272829;
 	color: #fff;
 	padding: 20px;
 	font-weight: 100;
 	font-smoothing: antialiased;
 	-webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-size: 12px;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 12px;
+  width: 100%;
+  position: absolute;
+  bottom: 0; left: 0; 
 
 	a {
 		color: #ebebeb;
