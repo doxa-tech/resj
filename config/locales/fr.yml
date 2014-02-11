@@ -2,3 +2,7 @@ en:
   titles:
     create: 
       card: "Créer une nouvelle fiche"
+  will_paginate:
+    previous_label: "<i class='fi-arrow-left'></i> Précédent"
+    next_label: "Suivant <i class='fi-arrow-right'></i>"
+    page_gap: "&hellip;"

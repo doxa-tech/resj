@@ -24,7 +24,7 @@
 		</div>
 		<div class="contact">
 			<i class="fi-mail"></i>
-			<p><%= @card.email or ' - ' %></p>
+			<p><%= @card.email if @card.email.present? or ' - ' %>-</p>
 		</div>
 		<div class="website">
 			<i class="fi-web"></i>
