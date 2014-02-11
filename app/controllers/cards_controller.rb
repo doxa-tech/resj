@@ -36,7 +36,8 @@ class CardsController < ApplicationController
 		@card = Card.new(session[:card_params])
 		if @card.save
 			session[:card_params] = nil
-			CardMailer.created(validator).deliver
+			# CardMailer.created(validator).deliver
+			CardMailer.welcome(@card).deliver
 			redirect_to admin_cards_path, success: t('card.create.success')
 		else
 			render 'new'
