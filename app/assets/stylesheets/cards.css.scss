@@ -29,11 +29,11 @@
 				position: absolute;
 				bottom: 10px;
 
-				form {
+				.form {
 					box-shadow: 0 1px 1px rgba(0, 0, 0, .4) inset, 0 1px 0 rgba(255, 255, 255, .2);
 				}
 
-					form input {
+					.form input {
 						width: 200px;
 						height: 37px;
 						padding: 5px 5px;
@@ -42,13 +42,13 @@
 						background: #EEE;
 						border-radius: 3px 0 0 3px;
 					}
-					form input:focus {
+					.form input:focus {
 						outline: 0;
 				    background: #fff;
 				    box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
 					}
 
-					form button {
+					.form button {
 						overflow: visible;
 						position: relative;
 						float: right;
@@ -63,15 +63,15 @@
 						border-radius: 0 3px 3px 0;
 						text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
 					}
-					form button:hover {
+					.form button:hover {
 						background: #e54040;
 					}
-					form button:active,
-					form button:focus {
+					.form button:active,
+					.form button:focus {
 						background: #c42f2f;
 		 			  outline: 0; 
 					}
-					form button:before {
+					.form button:before {
 						content: '';
 				    position: absolute;
 				    border-width: 8px 8px 8px 0;
@@ -80,11 +80,11 @@
 				    top: 11px;
 				    left: -6px;
 					}
-					form button:hover:before {
+					.form button:hover:before {
 						border-right-color: #e54040;
 					}
-					form button:active:before,
-					form button:focus:before {
+					.form button:active:before,
+					.form button:focus:before {
 						background: #c42f2f;
 					}
 			} // Search
