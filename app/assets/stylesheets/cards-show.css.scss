@@ -3,10 +3,11 @@
 @mixin info {
 	padding: 24px 0 20px 14px;
 	i {
-		padding: 7px 18px 0 0;
+		padding: 7px 0 10px 0;
 		font-size: 50px;
 		float: left;
 		color: #EEE;
+		width: 60px;
 	}
 }
 
@@ -30,6 +31,7 @@
 			}
 			.location {
 				@include info;
+				.txt {overflow: auto}
 			}
 			.contact {
 				@include info;
