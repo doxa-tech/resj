@@ -59,7 +59,7 @@ Resj::Application.configure do
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-  config.assets.precompile += %w( map/a_mapbox_v1.5.2.js map/b_leaflet.markercluster.js map/c_map.js table.js card_wizard.js)
+  config.assets.precompile += %w( map/a_mapbox_v1.5.2.js map/b_leaflet.markercluster.js map/c_map.js table.js card-show-map.js cards-new-map.js cards_index.js cards_results.js)
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
