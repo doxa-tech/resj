@@ -20,7 +20,7 @@
 		</div>
 		<div class="association_fields autocomplete" data-link="responsables">
 			<%= f.fields_for(:responsables, @card.responsables.any? || @card.responsables.build) do |responsables_fields| %>
-				<%= content_tag :div, class: "fields" + ("contact" if responsables_fields.object.is_contact == "true").to_s do %>
+				<%= content_tag :div, class: "fields" + (" contact" if responsables_fields.object.is_contact == "true").to_s do %>
 					<div class="field">
 						<%= responsables_fields.label :firstname %>
 						<%= responsables_fields.text_field :firstname, data: {attr: "firstname"} %>
