@@ -61,9 +61,20 @@ Resj::Application.configure do
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
   config.assets.precompile += %w( map/a_mapbox_v1.5.2.js map/b_leaflet.markercluster.js map/c_map.js table.js card_show_map.js card_new_map.js cards_index.js cards_results.js)
 
-  # Ignore bad email addresses and do not raise email delivery errors.
-  # Set this to true and configure the email server for immediate delivery to raise delivery errors.
+  # email stuff by nkcr
+  config.action_mailer.default_url_options = { :host => 'reseaujeunesse.ch' }
+  # ActionMailer Config
+  # Setup for production - deliveries, no errors raised
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default :charset => "utf-8"
+  config.action_mailer.smtp_settings = {
+    :address   => "smtp.mandrillapp.com",
+    :port      => 587,
+    :user_name => ENV["MAILUSR"],
+    :password  => ENV["MAILPSWD"]
+  }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found).
