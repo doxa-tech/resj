@@ -9,6 +9,7 @@ Resj::Application.routes.draw do
   get 'reseau', to: 'cards#index'
   get 'inscription', to: 'users#new'
   get 'connexion', to: 'sessions#new'
+  delete 'signout', to: 'sessions#destroy'
 
   get 'profile', to: "users#profile"
   patch 'users/update', to: "users#update"
