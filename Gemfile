@@ -50,7 +50,7 @@ gem 'unicorn'
 # Use Capistrano for deployment
 
 group :development do
-	gem 'capistrano', '~> 2.15', group: :development
+	gem 'capistrano', '~> 2.15'
 	gem 'railroady'
 end
 
