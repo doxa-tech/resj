@@ -18,7 +18,6 @@
     var link = $(this);
     document.getElementById('map').scrollIntoView();
     markers.eachLayer(function(layer){
-      console.log("ga");
       if(layer.options.id == parseInt(link.data("id"))) {
         markers.zoomToShowLayer(layer, function() {
           layer.openPopup();
