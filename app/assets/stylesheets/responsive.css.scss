@@ -108,12 +108,14 @@
 /* For home mapbox */
 @media (max-height: 600px)
 {
-	#map {
-		position: relative;
-		width: 90%;
-		margin: auto;
-	}
-	#clear_map {
-		display: none;
+	#container.home {
+		#map {
+			position: relative;
+			width: 90%;
+			margin: auto;
+		}
+		#clear_map {
+			display: none;
+		}
 	}
 }
