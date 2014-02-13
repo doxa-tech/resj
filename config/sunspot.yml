@@ -1,8 +1,8 @@
 production:
   solr:
-    hostname: solrserver
-    port: 8080 
-    path: '/solr'
+    hostname: localhost
+    port: 8080
+    path: /solr
     log_level: WARNING
 
 development:
