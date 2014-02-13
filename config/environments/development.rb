@@ -17,13 +17,13 @@ Resj::Application.configure do
   config.action_mailer.raise_delivery_errors = true
 
   # Change mail delvery to either :smtp, :sendmail, :file, :test
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    :address   => "smtp.mandrillapp.com",
-    :port      => 587,
-    :user_name => ENV["nkcr.je@gmail.com"],
-    :password  => ENV["DXvxxuW9pIiITYbRFKGktw"]
-  }
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   :address   => "smtp.mandrillapp.com",
+  #   :port      => 587,
+  #   :user_name => ENV["nkcr.je@gmail.com"],
+  #   :password  => ENV["DXvxxuW9pIiITYbRFKGktw"]
+  # }
 
   # Specify what domain to use for mailer URLs
   config.action_mailer.default_url_options = {host: "localhost:3000"}
