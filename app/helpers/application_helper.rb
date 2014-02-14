@@ -14,7 +14,7 @@ module ApplicationHelper
 			a.latitude,
 			a.longitude,
 			"#{content_tag :p, a.card_type.name, class:'type'} #{a.name} #{link_to 'voir fiche', card_path(a)}",
-			map_marker_color(a),
+			asset_path("map/images/marker-icon-#{map_marker_color(a)}.png"),
 			a.id
 			] 
 		}
