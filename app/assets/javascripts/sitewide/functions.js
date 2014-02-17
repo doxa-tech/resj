@@ -49,10 +49,14 @@ function autocomplete() {
   });
 }
 function selectize() {
+<<<<<<< HEAD
   $('#card_card_type_id, #card_card_id').selectize({
     create: true,
     sortField: 'text'
   });
+=======
+  $('.selectize').selectize();
+>>>>>>> bb9137356f5d3d1da423a448da06b5c9d972e763
 };
 
 function tags() {

@@ -14,7 +14,11 @@
 		<div class="label">
 			<p>A completer</p>
 		</div>
+<<<<<<< HEAD
 		<%= f.collection_select :location_id, Location.all, :id, :full_name, id: '.selectize-search' %>
+=======
+		<%= f.collection_select :location_id, Location.all, :id, :full_name, {include_blank: "Select a city"}, {class: "selectize"} %>
+>>>>>>> bb9137356f5d3d1da423a448da06b5c9d972e763
 	</div>
 	
 	<div class="block">
@@ -46,7 +50,10 @@
 
 <% end %>
 
+
 <script type="text/javascript">
+	window.onload=selectize();
+
 	map = gmap.initialize();
 	var street = document.getElementById('card_street');
 	var city = document.getElementById('card_city');
@@ -61,4 +68,6 @@
 	btn.onclick = function(){
 		gmap.codeAddress(address.value, map.map, map.marker);
 	};
+
 </script>
+

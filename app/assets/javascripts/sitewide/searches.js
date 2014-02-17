@@ -2,10 +2,7 @@ $(document).ready(function() {
 
   autocomplete();
 
-  selectize();
-
   tags();
-
 
   var delay = (function(){
     var timer = 0;
