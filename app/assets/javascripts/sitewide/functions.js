@@ -49,11 +49,8 @@ function autocomplete() {
   });
 }
 function selectize() {
-    $('#card_card_type_id, #card_card_id').selectize({
-      create: true,
-      sortField: 'text'
-    });
-  };
+  $('.selectize').selectize();
+};
 
 function tags() {
   $('.selectize-tags').selectize({
