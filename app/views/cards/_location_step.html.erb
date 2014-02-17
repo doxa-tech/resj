@@ -14,11 +14,7 @@
 		<div class="label">
 			<p>A completer</p>
 		</div>
-<<<<<<< HEAD
-		<%= f.collection_select :location_id, Location.all, :id, :full_name, id: '.selectize-search' %>
-=======
 		<%= f.collection_select :location_id, Location.all, :id, :full_name, {include_blank: "Select a city"}, {class: "selectize"} %>
->>>>>>> bb9137356f5d3d1da423a448da06b5c9d972e763
 	</div>
 	
 	<div class="block">
@@ -70,4 +66,3 @@
 	};
 
 </script>
-

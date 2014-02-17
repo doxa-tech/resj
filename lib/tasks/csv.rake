@@ -35,8 +35,12 @@ namespace :csv do
 				street: a[5], 
 				location: Location.first(:order => "RANDOM()"), 
 				website: a[8], 
+<<<<<<< HEAD
 				card_type: CardType.find(a[9]),
 				responsable: resp
+=======
+				card_type: CardType.first(:order => "RANDOM()")
+>>>>>>> 2b32ab448f34294a850d65cd1dfcd0dd3be2477e
 			)
 		end
 	end
