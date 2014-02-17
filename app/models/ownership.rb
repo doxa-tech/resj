@@ -5,15 +5,17 @@ class Ownership < ActiveRecord::Base
 	has_many :ownership_actions, dependent: :destroy
 	has_many :actions, through: :ownership_actions
 
-	accepts_nested_attributes_for :actions
+	accepts_nested_attributes_for :actions, allow_destroy: true,  reject_if: proc { |attributes| attributes['name'].blank? }
+
+  validates :user_id, presence: true
+  validates :element_id, presence: true
+  validates :ownership_type_id, presence: true
 
 	def autosave_associated_records_for_actions
+    new_actions = []
     actions.each do |action|
-      if new_action = Action.where('name = ?', action.name).first
-        self.actions << new_action
-      else
-        self.actions << action
-      end
+      new_actions << Action.where('name = ?', action.name).first_or_create
     end
+    self.actions = new_actions
   end
 end

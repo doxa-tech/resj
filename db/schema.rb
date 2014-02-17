@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140208125910) do
+ActiveRecord::Schema.define(version: 20140217195831) do
 
   create_table "actions", force: true do |t|
     t.string   "name"
@@ -21,6 +21,13 @@ ActiveRecord::Schema.define(version: 20140208125910) do
 
   create_table "affiliations", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cantons", force: true do |t|
+    t.string   "name"
+    t.string   "abbreviation"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -67,8 +74,6 @@ ActiveRecord::Schema.define(version: 20140208125910) do
     t.integer  "responsable_id"
     t.string   "email"
     t.string   "street"
-    t.integer  "npa"
-    t.string   "city"
     t.string   "place"
     t.string   "website"
     t.string   "password_digest"
@@ -82,9 +87,11 @@ ActiveRecord::Schema.define(version: 20140208125910) do
     t.string   "avatar"
     t.string   "banner"
     t.integer  "card_id"
+    t.integer  "location_id"
   end
 
   add_index "cards", ["card_type_id"], name: "index_cards_on_card_type_id"
+  add_index "cards", ["location_id"], name: "index_cards_on_location_id"
   add_index "cards", ["responsable_id"], name: "index_cards_on_responsable_id"
 
   create_table "elements", force: true do |t|
@@ -92,6 +99,17 @@ ActiveRecord::Schema.define(version: 20140208125910) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "locations", force: true do |t|
+    t.float    "npa"
+    t.string   "official_name"
+    t.string   "post_name"
+    t.integer  "canton_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "locations", ["canton_id"], name: "index_locations_on_canton_id"
 
   create_table "ownership_actions", force: true do |t|
     t.integer  "action_id"
@@ -175,7 +193,6 @@ ActiveRecord::Schema.define(version: 20140208125910) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "name"
     t.string   "email"
     t.string   "gravatar_email"
     t.string   "password_digest"
@@ -186,6 +203,8 @@ ActiveRecord::Schema.define(version: 20140208125910) do
     t.datetime "updated_at"
     t.string   "reset_token"
     t.datetime "reset_sent_at"
+    t.string   "firstname"
+    t.string   "lastname"
   end
 
   add_index "users", ["user_type_id"], name: "index_users_on_user_type_id"

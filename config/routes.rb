@@ -12,13 +12,10 @@ Resj::Application.routes.draw do
   delete 'signout', to: 'sessions#destroy'
 
   get 'profile', to: "users#profile"
-  patch 'users/update', to: "users#update"
+  patch 'user/update', to: "users#update"
+  get 'user/edit', to: "users#edit"
 
-  resources :users, only: [:create] do
-    collection do
-      get 'edit'
-    end
-  end
+  resources :users, only: [:create]
 
   resources :sessions, only: [:create, :destroy]
   resources :password_resets, except: [:index, :show, :destroy]
@@ -45,6 +42,7 @@ Resj::Application.routes.draw do
     resources :card_types, except: [:show]
     resources :responsables, except: [:show]
     resources :tags, except: [:show]
+    resources :parents, except: [:show]
 
     resources :cards do
       resources :verificator_comments, only: [:create, :update, :destroy]

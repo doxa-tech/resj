@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  npa: 1.5
+  official_name: MyString
+  post_name: MyString
+  canton_id: 
+
+two:
+  npa: 1.5
+  official_name: MyString
+  post_name: MyString
+  canton_id: 

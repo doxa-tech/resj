@@ -12,20 +12,11 @@
 
 	<div class="block">
 		<div class="label">
-			<p><span class="num">4</span> Le <span class="b">npa</span> de votre localité</p>
+			<p>A completer</p>
 		</div>
-		<!-- 	<%= f.label :npa %> -->
-		<%= f.number_field :npa %>
+		<%= f.collection_select :location_id, Location.all, :id, :full_name %>
 	</div>
 	
-	<div class="block">
-		<div class="label">
-			<p><span class="num">5</span> Dans quelle <span class="b">ville</span> êtes-vous?</p>
-		</div>
-		<!-- 	<%= f.label :city %> -->
-		<%= f.text_field :city %>
-	</div>
-
 	<div class="block">
 		<div class="label">
 			<p><span class="num">6</span> Où est votre <span class="b">lieu</span> de rencontre? (à l'église, dans la rue, en face de la gare)</p>

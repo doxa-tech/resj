@@ -12,14 +12,26 @@ class User < ActiveRecord::Base
   has_many :verificator_comments
 
   before_save :format, :create_remember_token
+  before_create :assign_gravatar
 
-  validate :match_current_password
+  with_options unless: :is_group? do |user|
+    user.validates :firstname, presence: true, length: { maximum: 15 }
+    user.validates :lastname, presence: true, length: { maximum: 15 }
+    user.validates :email, :format => { :with => /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/ }, uniqueness: true
+    user.validates :gravatar_email, :format => { :with => /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/ }, on: :update?
+    user.validates :password, presence: true, length: { minimum: 5 }, confirmation: true
+    user.validate :match_current_password
+  end
 
   def send_password_reset
     self.reset_token =  SecureRandom.urlsafe_base64
     self.reset_sent_at = Time.zone.now
     save!
     UserMailer.password_reset(self).deliver
+  end
+
+  def full_name
+    "#{firstname} #{lastname}"
   end
 
   private
@@ -35,10 +47,19 @@ class User < ActiveRecord::Base
   def format
     self.email.try(:strip!)
     self.email.try(:downcase!)
-    self.name.try(:strip!)
+    self.firstname.try(:strip!)
+    self.lastname.try(:strip!)
   end
 
   def create_remember_token
     self.remember_token = SecureRandom.urlsafe_base64
+  end
+
+  def assign_gravatar
+    self.gravatar_email = self.email
+  end
+
+  def is_group?
+    user_type_id == UserType.find_by_name('group').id
   end
 end

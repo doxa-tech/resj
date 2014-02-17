@@ -7,8 +7,6 @@ class CardTable < BaseTable
 			element.name,
 			element.email,
 			element.street,
-			element.npa,
-			element.city,
 			element.place,
 			element.website,
 			element.password_digest,
@@ -21,7 +19,8 @@ class CardTable < BaseTable
 			element.longitude,
 			element.avatar_url,
 			element.banner_url,
-			element.card.try(:name)
+			element.card.try(:name),
+			element.location.full_name
 		]
 	end
 

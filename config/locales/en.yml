@@ -130,6 +130,17 @@ en:
         success: "Comment updated"
       destroy:
         success: "Comment deleted"
+  parent:
+    admin:
+      index: "Inheritances"
+      create:
+        title: "Create a new inheritance"
+        success: "inheritance created"
+      edit:
+        title: "Edit an inheritance"
+        success: "Inheritance updated"
+      destroy:
+        success: "Inheritance deleted"
   will_paginate:
     previous_label: "<i class='fi-arrow-left'></i> Previous"
     next_label: "Next <i class='fi-arrow-right'></i>"

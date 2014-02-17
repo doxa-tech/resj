@@ -28,16 +28,8 @@
 				</li>
 			</ul>
 			<ul>
-				<li>
-					<%= f.label :npa %>
-					<%= f.number_field :npa %><br>
-				</li>
-			</ul>
-			<ul>
-				<li>
-					<%= f.label :city %>
-					<%= f.text_field :city %><br>
-				</li>
+				<li><%= f.label :location_id %></li>
+				<li><%= f.collection_select :location_id, Location.all, :id, :full_name %></li>
 			</ul>
 			<ul>
 				<li>
@@ -73,12 +65,6 @@
 					<%= f.text_field :website %><br>
 				</li>
 			</ul>
-			<ul>
-				<li>
-					<%= f.label :password_digest %>
-					<%= f.password_field :password_digest %><br>
-				</li>
-			</ul>
 		</div>
 	</div>
 	<%= @card.affiliation %>
@@ -103,7 +89,7 @@
 		</div>
 		<div class="association_fields autocomplete" data-link="responsables">
 			<%= f.fields_for(:responsables, @card.responsables.any? || @card.responsables.build) do |responsables_fields| %>
-				<%= content_tag :div, class: "fields" + ("contact" if responsables_fields.object.id == @card.responsable.id).to_s do %>
+				<%= content_tag :div, class: "fields" + (" contact" if responsables_fields.object.id == @card.responsable.id).to_s do %>
 					<div class="field">
 						<%= responsables_fields.label :firstname %>
 						<%= responsables_fields.text_field :firstname, data: {attr: "firstname"} %>

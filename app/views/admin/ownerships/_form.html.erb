@@ -39,7 +39,7 @@
 			<%= f.fields_for(:actions, @ownership.actions.any? || @ownership.actions.build) do |actions_fields| %>
 				<div class="fields">
 					<%= actions_fields.text_field :name, data: {attr: "name"} %>
-					<%= actions_fields.hidden_field :_destroy %>
+					<%= actions_fields.hidden_field :_destroy, identifier: "destroy" %>
 					<%= link_to_remove_fields "remove" %>
 				</div>
 			<% end %>

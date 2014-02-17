@@ -5,6 +5,8 @@ class Tag < ActiveRecord::Base
 	after_save :reindex_tags
   around_destroy :reindex_tags
 
+  validates :name, presence: true, length: { maximum: 15 }, uniqueness: true
+
   private
 
   def reindex_tags
