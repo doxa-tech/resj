@@ -31,7 +31,7 @@
 			}
 			.location {
 				@include info;
-				.txt {overflow: auto}
+				.txt {overflow: hidden}
 			}
 			.contact {
 				@include info;

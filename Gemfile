@@ -52,6 +52,7 @@ gem 'unicorn'
 group :development do
 	gem 'capistrano', '~> 2.15'
 	gem 'railroady'
+	gem "rails-erd"
 end
 
 # CK Editor WYSIWYG
@@ -79,3 +80,5 @@ gem 'fog'
 
 # image manipulating
 gem "mini_magick"
+
+gem 'mandrill_mailer' # send mail woth mandrill

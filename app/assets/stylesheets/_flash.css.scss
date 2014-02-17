@@ -1,0 +1,30 @@
+@mixin flash {
+	text-align: center;
+	padding: 6px 30px;
+	max-width: 1200px;
+	margin: 5px auto;
+	font-size: 13px;
+	.close {
+		text-decoration: underline;
+		padding: 0 0 0 2px;
+		cursor: pointer;
+		&:hover {
+			font-weight: 400;
+		}
+	}
+}
+
+#flash.flash-success {
+	@include flash;
+	background: #a4ff8c;
+}
+
+#flash.flash-error {
+	@include flash;
+	background: #ff9a8c;
+}
+
+#flash.flash-notice {
+	@include flash;
+	background: #8ce8ff;
+}
