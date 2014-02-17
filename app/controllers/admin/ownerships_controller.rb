@@ -41,7 +41,7 @@ class Admin::OwnershipsController < Admin::BaseController
 	private
 
 	def ownership_params
-		params.require(:ownership).permit(:element_id, :user_id, :onwership_type_id, :right_create, :right_update, :right_read, :right_delete, :id_element, actions_attributes: [:name])
+		params.require(:ownership).permit(:element_id, :user_id, :ownership_type_id, :right_create, :right_update, :right_read, :right_delete, :id_element, actions_attributes: [:id, :name, :_destroy])
 	end
 
 	def current_resource

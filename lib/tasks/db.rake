@@ -5,15 +5,7 @@ namespace :db do
 		
 		Page.create(name: 'home', content: 'content')
 	end
-
-	desc "Create the user's types"
-	task usertypes: :environment do
-		UserType.destroy_all
-
-		UserType.create(name: 'user')
-		UserType.create(name: 'group')
-	end
-
+	
 	desc "Add the admin user and ownerships"
 	task admin: :environment do
 		# Reset DB
@@ -23,18 +15,22 @@ namespace :db do
 		Ownership.destroy_all
 		Element.destroy_all
 		Action.destroy_all
+		UserType.destroy_all
+
+		UserType.create(name: 'user')
+		UserType.create(name: 'group')
 
 
 		# Create groups
 		user_type_group = UserType.find_by_name('group')
-		g_admin = user_type_group.users.create(name: 'g_admin')
-		g_user = user_type_group.users.create(name: 'g_user')
-		g_base = user_type_group.users.create(name: 'g_base')
-		g_ext = user_type_group.users.create(name: 'g_ext')
+		g_admin = user_type_group.users.create(firstname: 'g_admin')
+		g_user = user_type_group.users.create(firstname: 'g_user')
+		g_base = user_type_group.users.create(firstname: 'g_base')
+		g_ext = user_type_group.users.create(firstname: 'g_ext')
 
 		# Create admin
 		user_type_user = UserType.find_by_name('user')
-		admin = user_type_user.users.create(email: 'kocher.ke@gmail.com', name: 'Admin', password: '12341', password_confirmation: '12341')
+		admin = user_type_user.users.create(email: 'kocher.ke@gmail.com', firstname: 'Keran', lastname: "Kocher", password: '12341', password_confirmation: '12341')
 		
 		# Add admin to groups
 		Parent.create(user_id: admin.id, parent_id: g_admin.id)
@@ -55,6 +51,7 @@ namespace :db do
 		admin_responsables = Element.create(name: 'admin/responsables')
 		admin_card_types = Element.create(name: 'admin/card_types')
 		admin_verificator_comments = Element.create(name: 'admin/verificator_comments')
+		admin_parents = Element.create(name: 'admin/parents')
 
 		validated = Action.create(name: "validated")
 
@@ -69,6 +66,7 @@ namespace :db do
 		Ownership.create(element_id: admin_responsables.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
 		Ownership.create(element_id: admin_card_types.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
 		Ownership.create(element_id: admin_verificator_comments.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
+		Ownership.create(element_id: admin_parents.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
 
 		Ownership.create(element_id: admin_cards, user_id: admin.id, ownership_type_id: type2.id, actions: [validated])
 	end

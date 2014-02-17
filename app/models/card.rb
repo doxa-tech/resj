@@ -6,20 +6,36 @@ class Card < ActiveRecord::Base
   has_many :responsables, through: :card_responsables
   has_many :card_verifications, dependent: :destroy
   has_many :users, through: :card_verifications
-  has_many :card_affiliations, dependent: :destroy, autosave: true
-  has_many :affiliations, through: :card_affiliations, autosave: true
+  has_many :card_affiliations, dependent: :destroy
+  has_many :affiliations, through: :card_affiliations
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
   has_many :verificator_comments
+  belongs_to :location
   belongs_to :card
   has_one :card
 
   accepts_nested_attributes_for :responsables, :allow_destroy => true
   accepts_nested_attributes_for :affiliations, :allow_destroy => true
 
-  validate :verified?
-  with_options if: Proc.new { |c| c.current_step?("team")} do |team|
-    #team.validate :contact?
+  with_options if: Proc.new { |c| c.current_step?("general")} do |card|
+    card.validates :name, presence: true, length: { maximum: 25 }, uniqueness: true
+    card.validates :description, presence: true, length: { maximum: 500 }
+    card.validates :card_type_id, presence: true
+  end
+  with_options if: Proc.new { |c| c.current_step?("location")} do |card|
+    card.validates :street, presence: true
+    card.validates :location_id, presence: true
+    card.validates :place, presence: true, length: { maximum: 25 }
+    card.validates :latitude, presence: true
+    card.validates :longitude, presence: true
+  end
+  with_options if: Proc.new { |c| c.current_step?("team")} do |card|
+    card.validate :contact?
+    card.validates :email, :format => { :with => /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/ }
+  end
+  with_options if: Proc.new { |c| c.current_step?("extra")} do |card|
+    card.validates :website, presence: true, length: { maximum: 15 }
   end
 
   before_save :assign_responsable
@@ -62,7 +78,7 @@ class Card < ActiveRecord::Base
   # Find a responsable or create a new one 
   def autosave_associated_records_for_responsables
     new_responsables = []
-    responsables.select{ |r| r.new_record? }.each do |responsable|
+    responsables.each do |responsable|
       new_responsables << Responsable.where('firstname = ? AND lastname = ? AND email = ?', responsable.firstname, responsable.lastname, responsable.email).first_or_create
     end
     self.responsables = new_responsables
@@ -70,7 +86,7 @@ class Card < ActiveRecord::Base
 
   def autosave_associated_records_for_affiliations
     new_affiliations = []
-    affiliations.select{ |a| a.new_record? }.each do |affiliation|
+    affiliations.each do |affiliation|
       new_affiliations << Affiliation.where('name = ?', affiliation.name).first_or_create
     end
     self.affiliations = new_affiliations
@@ -81,12 +97,6 @@ class Card < ActiveRecord::Base
   end
 
   private
-
-  def verified?
-    if validated == true && CardVerification.where('card_id = ?', id).count < 3
-      errors.add(:validated, I18n.t('card.admin.validated_error') )
-    end
-  end
 
   def contact?
     if responsables && !responsables.select{ |r| r.is_contact == "true" }.any?

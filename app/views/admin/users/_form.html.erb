@@ -12,15 +12,17 @@
 			<td><%= f.text_field :gravatar_email %></td>
 		</tr>
 		<tr>
-			<td><%= f.label :name %></td>
-			<td><%= f.text_field :name %></td>
+			<td><%= f.text_field :firstname %></td>
+			<td><%= f.label :firstname %></td>
 		</tr>
-		<%= fields_for :user_type, @user do |user_type_fields| %>
-			<tr>
-				<td><%= user_type_fields.label :user_type_id %></td>
-				<td><%= user_type_fields.collection_select(:user_type_id, UserType.all, :id, :name) %></td>
-			</tr>
-		<% end %>
+		<tr>
+			<td><%= f.text_field :lastname %></td>
+			<td><%= f.label :lastname %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :user_type_id %></td>
+			<td><%= f.collection_select(:user_type_id, UserType.all, :id, :name) %></td>
+		</tr>
 		<tr>
 			<td><%= f.label :password %></td>
 			<td><%= f.password_field :password %></td>
