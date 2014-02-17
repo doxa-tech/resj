@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140217195831) do
+ActiveRecord::Schema.define(version: 20140217211635) do
 
   create_table "actions", force: true do |t|
     t.string   "name"
@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 20140217195831) do
   end
 
   create_table "locations", force: true do |t|
-    t.float    "npa"
+    t.integer  "npa"
     t.string   "official_name"
     t.string   "post_name"
     t.integer  "canton_id"
