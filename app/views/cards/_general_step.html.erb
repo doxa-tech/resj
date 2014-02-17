@@ -28,7 +28,7 @@
 		<div class="label">
 			<p><span class="num">2</span> Quelle <span class="b">catégorie</span> vous correspond le mieux?</p>
 		</div>
-		<%= f.collection_select(:card_type_id, CardType.all, :id, :name) %>
+		<%= f.collection_select :card_type_id, CardType.all, :id, :name, {include_blank: "Category"}, {class: "selectize"} %>
 	</div>
 
 	<div class="block">
@@ -38,22 +38,9 @@
 				<span class="num">3</span> Faites-vous partie d'un <span class="b">réseau régional</span>?
 			</p>
 		</div>
-		<%= f.collection_select :card_id, Card.where('card_type_id = ?', CardType.find_by_name("Réseau régional") ), :id, :name, prompt: true %>
+		<%= f.collection_select :card_id, Card.where('card_type_id = ?', CardType.find_by_name("Réseau régional") ), :id, :name, {include_blank: "Aucun"}, {class: "selectize"} %>
 	</div>
 
 <% end %>
-
-<style type="text/css">
-.selectize-control {
-	height: 40px;
-}
-	.selectize-control .selectize-input {
-		height: 100%;
-	}
-		.selectize-control .selectize-input input {
-			padding-bottom: 18px !important;
-			display: none;
-		}
-</style>
 
 <script type="text/javascript">window.onload=selectize();</script>
