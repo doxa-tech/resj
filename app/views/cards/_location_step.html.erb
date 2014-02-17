@@ -14,7 +14,7 @@
 		<div class="label">
 			<p>A completer</p>
 		</div>
-		<%= f.collection_select :location_id, Location.all, :id, :full_name %>
+		<%= f.collection_select :location_id, Location.all, :id, :full_name, id: '.selectize-search' %>
 	</div>
 	
 	<div class="block">
