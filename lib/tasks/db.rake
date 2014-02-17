@@ -70,4 +70,5 @@ namespace :db do
 
 		Ownership.create(element_id: admin_cards, user_id: admin.id, ownership_type_id: type2.id, actions: [validated])
 	end
+
 end
