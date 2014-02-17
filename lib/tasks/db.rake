@@ -5,6 +5,17 @@ namespace :db do
 		
 		Page.create(name: 'home', content: 'content')
 	end
+
+	desc "Create the card's types"
+	task card_types: :environment do
+		CardType.destroy_all
+
+		CardType.create(name: "Groupe de jeunes")
+		CardType.create(name: "Groupe de jeunes adultes")
+		CardType.create(name: "Groupe d'action")
+		CardType.create(name: "Oeuvre jeunesse")
+		CardType.create(name: "Réseau régional")
+	end
 	
 	desc "Add the admin user and ownerships"
 	task admin: :environment do

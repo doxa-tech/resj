@@ -34,7 +34,7 @@ namespace :csv do
 				street: a[5], 
 				location: Location.first(:order => "RANDOM()"), 
 				website: a[8], 
-				card_type: CardType.find(a[9])
+				card_type: CardType.first(:order => "RANDOM()")
 			)
 		end
 	end
