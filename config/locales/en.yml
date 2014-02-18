@@ -1,6 +1,7 @@
 en:
   application:
     error: "error"
+  layout:
     header:
       home: "Home"
       reseau: "Réseau"
@@ -10,6 +11,11 @@ en:
         page: "Pages"
         user: "Users"
         affiliation: "Affiliations"
+        tag: "Tags"
+        responsable: "Responsables"
+        ownership: "Ownerships"
+        action: "Actions"
+        parent: "Inheritances"
   card:
     create:
       title: "Create a new card"
