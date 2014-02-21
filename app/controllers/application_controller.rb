@@ -5,4 +5,8 @@ class ApplicationController < ActionController::Base
   # add different types of flash messages
   add_flash_types :error, :success, :notice
   include SessionsHelper
+
+  def track_activity(trackable, action = params[:action])
+  	Activity.create! action: action, trackable: trackable, user: current_user
+	end
 end

@@ -10,6 +10,10 @@ class User < ActiveRecord::Base
   has_many :parents
   has_many :users, through: :parents
   has_many :verificator_comments
+  has_many :activities
+  has_one :orator
+
+  accepts_nested_attributes_for :orator
 
   before_save :format, :create_remember_token
   before_create :assign_gravatar

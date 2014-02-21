@@ -36,5 +36,26 @@
 		<td><%= f.password_field :password_confirmation %></td>
 		<td><%= f.label :password_confirmation %></td>
 	</tr>
+
+	<%= f.fields_for :orator do |orator_fields| %>
+
+		<%= orator_fields.label :street %>
+		<%= orator_fields.text_field :street %>
+
+		<%= orator_fields.label :location_id %>
+		<%= orator_fields.collection_select :location_id, Location.all, :id, :full_name, {include_blank: "Select a city"}, {class: "selectize"} %>
+
+		<%= orator_fields.label :phone %>
+		<%= orator_fields.text_field :phone %>
+
+		<%= orator_fields.label :disponibilities %>
+		<%= orator_fields.collection_check_boxes :disponibilities, Disponibility.all, :id, :name %>
+
+		<%= orator_fields.label :disponibility %>
+		<%= orator_fields.text_field :disponibility %>
+	<% end %>
+
 </table>
 <%= f.submit %>
+
+<script type="text/javascript">window.onload=selectize();</script>

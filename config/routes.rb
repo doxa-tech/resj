@@ -16,6 +16,7 @@ Resj::Application.routes.draw do
   get 'user/edit', to: "users#edit"
 
   resources :users, only: [:create]
+  resources :orators, only: [:index, :new, :create]
 
   resources :sessions, only: [:create, :destroy]
   resources :password_resets, except: [:index, :show, :destroy]
