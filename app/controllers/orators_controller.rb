@@ -10,13 +10,18 @@ class OratorsController < ApplicationController
 	end
 
 	def create
-		@orator = User.new(user_params)
-		if @orator.save
+		@user = User.new(orator_params)
+		if @user.save
+			sign_in @user
 			redirect_to profile_path, success: t('orator.create.success')
 		else
-			render 'edit'
+			render 'new'
 		end
 	end
 
 	private
+
+	def orator_params
+		params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation, :current_password, orator_attributes: [:street, :location_id, :phone, :disponibility, { :theme_ids =>[]} , { :disponibility_ids => [] } ])
+	end
 end

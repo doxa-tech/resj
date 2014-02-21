@@ -15,8 +15,7 @@
 		<%= f.submit "Location", :name => "step[location]" %>
 		<ul>
 			<li><%= label_tag :rue %> <p><%= @card.street %></p></li>
-			<li><%= label_tag :npa %> <p><%= @card.npa %></p></li>
-			<li><%= label_tag :ville %> <p><%= @card.city %></p></li>
+			<li><%= label_tag :ville %> <p><%= @card.location.full_name %></p></li>
 			<li><%= label_tag :lieu %> <p><%= @card.place %></p></li>
 		</ul>
 
