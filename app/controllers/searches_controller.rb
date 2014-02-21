@@ -28,4 +28,8 @@ class SearchesController < ApplicationController
 		end
 	end
 
+	def themes
+		render json: Theme.where("name like ?", "#{params[:query]}_%" )
+	end
+
 end

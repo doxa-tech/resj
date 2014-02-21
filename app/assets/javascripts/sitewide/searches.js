@@ -17,4 +17,8 @@ $(document).ready(function() {
       $('#card-search-form').submit();
     }, 500 );
   });
+
+  $('.selectize-themes').selectize({
+    maxItems: 10  
+  });
 });

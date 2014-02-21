@@ -42,7 +42,7 @@ class Admin::UsersController < Admin::BaseController
 	private
 
 	def user_params
-		params.require(:card).permit(:name, :email, :gravatar_email)
+		params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation)
 	end
 
 	def current_resource
