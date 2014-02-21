@@ -11,13 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140217211635) do
+ActiveRecord::Schema.define(version: 20140220192207) do
+
+  create_table "access_tokens", force: true do |t|
+    t.string   "token"
+    t.boolean  "valid"
+    t.integer  "ownership_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "access_tokens", ["ownership_id"], name: "index_access_tokens_on_ownership_id"
 
   create_table "actions", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "activities", force: true do |t|
+    t.integer  "user_id"
+    t.string   "action"
+    t.integer  "trackable_id"
+    t.string   "trackable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "activities", ["trackable_id"], name: "index_activities_on_trackable_id"
+  add_index "activities", ["user_id"], name: "index_activities_on_user_id"
 
   create_table "affiliations", force: true do |t|
     t.string   "name"
@@ -94,6 +116,12 @@ ActiveRecord::Schema.define(version: 20140217211635) do
   add_index "cards", ["location_id"], name: "index_cards_on_location_id"
   add_index "cards", ["responsable_id"], name: "index_cards_on_responsable_id"
 
+  create_table "disponibilities", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "elements", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -110,6 +138,39 @@ ActiveRecord::Schema.define(version: 20140217211635) do
   end
 
   add_index "locations", ["canton_id"], name: "index_locations_on_canton_id"
+
+  create_table "orator_disponibilities", force: true do |t|
+    t.integer  "orator_id"
+    t.integer  "disponibility_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "orator_disponibilities", ["disponibility_id"], name: "index_orator_disponibilities_on_disponibility_id"
+  add_index "orator_disponibilities", ["orator_id"], name: "index_orator_disponibilities_on_orator_id"
+
+  create_table "orator_themes", force: true do |t|
+    t.integer  "orator_id"
+    t.integer  "theme_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "orator_themes", ["orator_id"], name: "index_orator_themes_on_orator_id"
+  add_index "orator_themes", ["theme_id"], name: "index_orator_themes_on_theme_id"
+
+  create_table "orators", force: true do |t|
+    t.integer  "user_id"
+    t.string   "street"
+    t.integer  "location_id"
+    t.string   "phone"
+    t.string   "disponibility"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "orators", ["location_id"], name: "index_orators_on_location_id"
+  add_index "orators", ["user_id"], name: "index_orators_on_user_id"
 
   create_table "ownership_actions", force: true do |t|
     t.integer  "action_id"
@@ -161,6 +222,23 @@ ActiveRecord::Schema.define(version: 20140217211635) do
   add_index "parents", ["parent_id"], name: "index_parents_on_parent_id"
   add_index "parents", ["user_id"], name: "index_parents_on_user_id"
 
+  create_table "resource_themes", force: true do |t|
+    t.integer  "resource_id"
+    t.integer  "theme_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "resource_themes", ["resource_id"], name: "index_resource_themes_on_resource_id"
+  add_index "resource_themes", ["theme_id"], name: "index_resource_themes_on_theme_id"
+
+  create_table "resources", force: true do |t|
+    t.string   "name"
+    t.string   "file"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "responsables", force: true do |t|
     t.string   "firstname"
     t.string   "lastname"
@@ -182,6 +260,13 @@ ActiveRecord::Schema.define(version: 20140217211635) do
   create_table "tags", force: true do |t|
     t.string   "name"
     t.integer  "popularity", default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "themes", force: true do |t|
+    t.string   "name"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

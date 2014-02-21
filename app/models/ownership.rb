@@ -4,6 +4,7 @@ class Ownership < ActiveRecord::Base
 	belongs_to :ownership_type
 	has_many :ownership_actions, dependent: :destroy
 	has_many :actions, through: :ownership_actions
+  has_many :access_tokens
 
 	accepts_nested_attributes_for :actions, allow_destroy: true,  reject_if: proc { |attributes| attributes['name'].blank? }
 

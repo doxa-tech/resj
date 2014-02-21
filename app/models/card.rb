@@ -74,6 +74,10 @@ class Card < ActiveRecord::Base
   	["general", "location", "team", "extra", "final"]
   end
 
+  def verified?
+    card_verifications.count >= 3
+  end
+
   # Methods called before card's associations are saved (bound to accepts_nested_attributes_for)
   # Find a responsable or create a new one 
   def autosave_associated_records_for_responsables

@@ -47,7 +47,12 @@ class Admin::CardsController < Admin::BaseController
 	# Add a verification on a card by an user
 	def verificate
 		CardVerification.create(user_id: current_user.id, card_id: @card.id)
-		CardMailer.verified(card_admins).deliver if @card.card_verifications.count >= 3
+		if @card.verified?
+			CardMailer.verified(card_admins).deliver
+			password = SecureRandom.hex(8)
+			User.create(firstname: @card.responsable.firstname, lastname: @card.responsable.lastname, email: @card.responsable.email, password: password, password_confirmation: password)
+			# CardMailer
+		end
 	end
 
 	private
@@ -62,7 +67,9 @@ class Admin::CardsController < Admin::BaseController
 
   # Control if the user already verified
   def verified?
-  	redirect_to root_path if @card.users.pluck(:id).include? current_user.id
+  	if @card.users.pluck(:id).include? current_user.id || @card.verified?
+  		redirect_to root_path 
+  	end
   end
 
   def current_resource
