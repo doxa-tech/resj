@@ -1,11 +1,11 @@
 <header>
-	<div class="logo"></div>
+	<div class="logo"><%= link_to '', root_path %></div>
 	<div class="space"></div>
 	<nav>
 			<ul>
 				<li><%= link_to t('application.header.home'), root_path %></li>
 				<li><%= link_to t('application.header.reseau'), reseau_path %></li>
-				<li><%= link_to "A propos", about_path %></li>
+				<li><%= link_to "ResJ", resj_path %></li>
 				<li><%= link_to current_user.full_name, profile_path unless current_user.nil? %></li>
 			</ul>
 	</nav>

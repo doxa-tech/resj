@@ -31,6 +31,15 @@
 /* Medium devices */
 @media (max-width: 992px) 
 {
+	// home
+	#container.home {
+		.new {
+			.left, .right {
+				width: 100%;
+			}
+		}
+	}
+
 	//Cards
 	#container.cards {
 		.top {

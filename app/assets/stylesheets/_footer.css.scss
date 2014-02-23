@@ -16,5 +16,9 @@ footer {
 
 	a {
 		color: #ebebeb;
+		text-transform: uppercase;
+		&:hover {
+			font-weight: 500;
+		}
 	}
 }
