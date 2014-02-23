@@ -23,9 +23,9 @@ class User < ActiveRecord::Base
     user.validates :lastname, presence: true, length: { maximum: 15 }
     user.validates :email, :format => { :with => /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/ }, uniqueness: true
     user.validates :gravatar_email, :format => { :with => /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/ }, on: :update?
-    user.validates :password, presence: true, length: { minimum: 5 }, confirmation: true, :unless => lambda { |v| v.validate_password? }
     user.validate :match_current_password
   end
+  validates :password, presence: true, length: { minimum: 5 }, confirmation: true, :unless => lambda { |v| v.validate_password? || v.is_group? }
 
   def send_password_reset
     self.reset_token =  SecureRandom.urlsafe_base64
@@ -40,6 +40,10 @@ class User < ActiveRecord::Base
 
   def validate_password?
     password.blank? && password_confirmation.blank? && !self.new_record?
+  end
+
+  def is_group?
+    user_type_id == UserType.find_by_name('group').id
   end
 
   private
@@ -65,9 +69,5 @@ class User < ActiveRecord::Base
 
   def assign_gravatar
     self.gravatar_email = self.email
-  end
-
-  def is_group?
-    user_type_id == UserType.find_by_name('group').id
   end
 end

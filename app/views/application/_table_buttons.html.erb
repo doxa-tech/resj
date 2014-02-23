@@ -1,5 +1,5 @@
 <div class="table_buttons">
-	<%= link_to_if current_permission.allow_create?(params[:controller]), "Ajouter", request.path + "/new", class: "add" %>
+	<%= link_to "Ajouter", request.path + "/new", class: "add" if current_permission.allow_create?(params[:controller]) %>
 	<% if current_permission.allow_modify?(params[:controller], "update") %>
 		<a class="edit off">Editer</a>
 		<a class="edit on" href="#">Editer</a>
