@@ -1,5 +1,23 @@
-<%= form_for @user, url: orators_path do |f| %>
+<% content_for :id, 'orators-form' %>
 
-	<%= render 'form', f: f %>
+<div class="top">
+	<h1>Enregistrement d'un orateur</h1>
+</div>
 
-<% end %>
+<h2>Nous savions que nous pourrions compter sur vous!</h2>
+
+<div class="intro">
+	<div class="visu">
+		<i class="fi-bookmark"></i>
+	</div>
+	<div class="text">
+		<p> Bonjour chère personne active parmis la jeunesse. Nous sommes heureux de pouvoir compter sur vous pour soutenir la jeunesse de suisse-romande au travers de vos compétences. Voici rapide formulaire qui vous permettra de vous enregistrer. Après création, vous disposerez de votre propre compte sur le site vous permettant de mettre à n'importe quelle moment vos informations à jour. </p>
+	</div>
+	<div id="clear"></div>
+</div>
+
+<div class="form">
+	<%= form_for @user, url: orators_path do |f| %>
+		<%= render 'form', f: f %>
+	<% end %>
+</div>

@@ -21,6 +21,11 @@ a
   text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
 }
 
+#clear
+{
+	clear: both;
+}
+
 label
 {
   display: block;
@@ -50,6 +55,8 @@ input:not([type="checkbox"]) {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 }
+
+.selectize-control.single .selectize-input, .selectize-control.single .selectize-input input, .selectize-input > input {height:inherit}	/* correct a proble with empty or default item */
 
 
 #container {
