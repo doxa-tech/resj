@@ -1,4 +1,5 @@
-class OratorsController < ApplicationController
+class OratorsController < BaseController
+	before_action :authorize_token, only: [:new, :create]
 
 	def index
 	 @orators = Orator.all 
@@ -18,10 +19,26 @@ class OratorsController < ApplicationController
 			render 'new'
 		end
 	end
+	
+	def update
+		@user = User.find(params[:id])
+		if @user.update_attributes(orator_params)
+			sign_in @user
+			redirect_to user_edit_path, success: t('orator.edit.success')
+		else
+			render 'edit'
+		end
+	end
 
 	private
 
 	def orator_params
-		params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation, :current_password, orator_attributes: [:street, :location_id, :phone, :disponibility, { :theme_ids =>[]} , { :disponibility_ids => [] } ])
+		params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation, :current_password, orator_attributes: [:id, :street, :location_id, :phone, :disponibility, { :theme_ids =>[]} , { :disponibility_ids => [] } ])
+	end
+
+	def authorize_token
+		if !current_permission.allow_token?(params[:controller], params[:action], params[:token])
+			redirect_to root_path, error: "Not authorize"
+		end
 	end
 end

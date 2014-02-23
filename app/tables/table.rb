@@ -1,8 +1,10 @@
 class Table < BaseTable
 
-	def initialize(template, model)
+	def initialize(template, model, collection = nil, options = {})
 		@template = template
 		@model = model
+		@collection = collection
+		@options = options
 	end
 
 	def attributes(element)

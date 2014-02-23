@@ -1,4 +1,4 @@
-class PagesController < ApplicationController
+class PagesController < BaseController
 
 	def home
 		@page = Page.find_by_name('home')

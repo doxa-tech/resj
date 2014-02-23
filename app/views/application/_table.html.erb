@@ -1,4 +1,4 @@
-<%= render 'table_buttons' %>
+<%= render 'table_buttons' unless presenter.options[:buttons] == false %>
 <table>
 	<thead>
 		<tr>

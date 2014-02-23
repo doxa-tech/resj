@@ -1,4 +1,4 @@
-class SearchesController < ApplicationController
+class SearchesController < BaseController
 
 	def responsables
 		if params[:attr].in? %[firstname lastname email]

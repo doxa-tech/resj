@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140220192207) do
+ActiveRecord::Schema.define(version: 20140222095137) do
 
   create_table "access_tokens", force: true do |t|
     t.string   "token"
-    t.boolean  "valid"
+    t.boolean  "is_valid"
     t.integer  "ownership_id"
     t.datetime "created_at"
     t.datetime "updated_at"

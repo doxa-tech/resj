@@ -1,11 +1,14 @@
+<%= form_for [:admin, AccessToken.new] do |f| %>
+	<%= f.collection_select :ownership_id, User.find_by_firstname('g_token').ownerships, :id, :full_name %>
+	<%= f.submit %>
+<% end %>
+
 <div class="table_buttons">
-	<%= link_to_if current_permission.allow_create?(params[:controller]), "Ajouter", request.path + "/new", class: "add" %>
-	<% if current_permission.allow_modify?(params[:controller], "update") %>
-		<a class="edit off">Editer</a>
-		<a class="edit on" href="#">Editer</a>
-	<% end %>
 	<% if current_permission.allow_modify?(params[:controller], "destroy") %>
 		<a class="delete off">Supprimer</a>
 		<a class="delete on" href="#" data-method="delete" rel="nofollow" data-confirm="Etes-vous sûr de vouloir supprimer cette entrée ?">Supprimer</a>
 	<% end %>	
+</div>
+<div id="admin_table">
+	<%= present @table %>
 </div>

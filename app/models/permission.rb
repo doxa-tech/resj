@@ -2,7 +2,7 @@ class Permission
 
 	def initialize(user)
 		@user = user
-		user ? @ids ||= (user.parents.pluck(:parent_id) << user.id) : @ids = nil
+		@ids ||= user.parents.pluck(:parent_id) << user.id if user
 		@all_entries_id ||= OwnershipType.find_by_name('all_entries').id
 		@on_ownership_id ||= OwnershipType.find_by_name('on_ownership').id
 		@on_entry_id ||= OwnershipType.find_by_name('on_entry').id
@@ -53,7 +53,11 @@ class Permission
 
   def allow_token?(controller, action, token, current_resource = nil)
   	@token = AccessToken.find_by_token(token)
-  	return true if !@token.nil? && @token.ownership.element.name == controller && (@token.ownership[right[action]] == true || @token.ownership.actions.pluck(:name).include? action)
+  	if !@token.nil? && @token.ownership.element.name == controller && (@token.ownership[right[action]] == true || @token.ownership.actions.pluck(:name).include?(action))
+  		return true if @token.ownership.ownership_type_id == @all_entries_id
+  		return true if @token.ownership.ownership_type_id == @on_ownership_id && current_resource.try(:user_id) == @user.try(:id)
+  		return true if @token.ownership.ownership_type_id == @on_entry_id && @token.ownership.id_element == current_resource.try(:id)
+  	end
   end
 
   def allow_params?(controller, name)
@@ -76,6 +80,6 @@ class Permission
   end
 
 	def right
-		{"show" => "right_read", "edit" => "right_update", "update" => "right_update", "destroy" => "right_delete"}
+		{"new" => "right_create", "create" => "right_create", "show" => "right_read", "edit" => "right_update", "update" => "right_update", "destroy" => "right_delete"}
 	end
 end

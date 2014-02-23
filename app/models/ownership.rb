@@ -19,4 +19,8 @@ class Ownership < ActiveRecord::Base
     end
     self.actions = new_actions
   end
+
+  def full_name
+    "#{id} - #{element.name} - R:#{right_read} - C:#{right_create}- U:#{right_update} - D:#{right_delete} - #{id_element} - #{actions.to_a}"
+  end
 end

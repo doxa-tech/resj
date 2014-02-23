@@ -38,6 +38,7 @@ namespace :db do
 		g_user = user_type_group.users.create(firstname: 'g_user')
 		g_base = user_type_group.users.create(firstname: 'g_base')
 		g_ext = user_type_group.users.create(firstname: 'g_ext')
+		g_token = user_type_group.users.create(firstname: 'g_token')
 
 		# Create admin
 		user_type_user = UserType.find_by_name('user')
@@ -63,6 +64,8 @@ namespace :db do
 		admin_card_types = Element.create(name: 'admin/card_types')
 		admin_verificator_comments = Element.create(name: 'admin/verificator_comments')
 		admin_parents = Element.create(name: 'admin/parents')
+		admin_access_tokens = Element.create(name: 'admin/access_tokens')
+		orators = Element.create(name: 'orators')
 
 		validated = Action.create(name: "validated")
 
@@ -78,8 +81,13 @@ namespace :db do
 		Ownership.create(element_id: admin_card_types.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
 		Ownership.create(element_id: admin_verificator_comments.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
 		Ownership.create(element_id: admin_parents.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
+		Ownership.create(element_id: admin_access_tokens.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
 
-		Ownership.create(element_id: admin_cards, user_id: admin.id, ownership_type_id: type2.id, actions: [validated])
+		# ownership for the admin user
+		Ownership.create(element_id: admin_cards.id, user_id: admin.id, ownership_type_id: type2.id, actions: [validated])
+
+		# ownership for the tokens
+		Ownership.create(element_id: orators.id, user_id: g_token.id, right_create: true)
 	end
 
 end

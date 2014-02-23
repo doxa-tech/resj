@@ -1,11 +1,13 @@
 class BaseTable
 
-	def initialize(template)
+	def initialize(template, collection = nil, options = {})
 		@template = template
+		@collection = collection
+		@options = options
 	end
 
 	def elements
-		h.current_permission.elements(h.params[:controller], model).order(sort_column + " " + sort_direction).paginate(page: h.params[:page], per_page: 30)
+		@collection || h.current_permission.elements(h.params[:controller], model).order(sort_column + " " + sort_direction).paginate(page: h.params[:page], per_page: 30)
 	end
 
 	def sort_column
@@ -25,6 +27,10 @@ class BaseTable
 	 	else
 	 		model.human_attribute_name(column)
 	 	end
+	end
+
+	def options
+		@options
 	end
 
 	private

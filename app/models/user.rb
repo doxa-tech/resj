@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
     user.validates :lastname, presence: true, length: { maximum: 15 }
     user.validates :email, :format => { :with => /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/ }, uniqueness: true
     user.validates :gravatar_email, :format => { :with => /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/ }, on: :update?
-    user.validates :password, presence: true, length: { minimum: 5 }, confirmation: true
+    user.validates :password, presence: true, length: { minimum: 5 }, confirmation: true, :unless => lambda { |v| v.validate_password? }
     user.validate :match_current_password
   end
 
@@ -36,6 +36,10 @@ class User < ActiveRecord::Base
 
   def full_name
     "#{firstname} #{lastname}"
+  end
+
+  def validate_password?
+    password.blank? && password_confirmation.blank? && !self.new_record?
   end
 
   private

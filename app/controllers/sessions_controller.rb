@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController
+class SessionsController < BaseController
 	before_action :connected?, only: [:new]
 
 	def new

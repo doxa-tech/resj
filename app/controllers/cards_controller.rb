@@ -1,4 +1,4 @@
-class CardsController < ApplicationController
+class CardsController < BaseController
 
 	def index
 		@search = Card.search do 

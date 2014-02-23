@@ -16,6 +16,7 @@ en:
         ownership: "Ownerships"
         action: "Actions"
         parent: "Inheritances"
+        access_token: "Tokens"
   card:
     create:
       title: "Create a new card"
@@ -147,6 +148,21 @@ en:
         success: "Inheritance updated"
       destroy:
         success: "Inheritance deleted"
+  access_token:
+    admin:
+      index: "Tokens"
+      create:
+        title: "Create a new access token"
+        success: "Token created"
+      destroy:
+        success: "Token deleted"
+  orator:
+    index: "Orators"
+    create:
+      title: "Create an orator's account"
+      success: "Orator's account created"
+    edit:
+      success: "Orator's account updated"
   will_paginate:
     previous_label: "<i class='fi-arrow-left'></i> Previous"
     next_label: "Next <i class='fi-arrow-right'></i>"
