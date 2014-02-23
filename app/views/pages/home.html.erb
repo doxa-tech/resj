@@ -10,10 +10,62 @@
 		Phasellus non viverra turpis. Vivamus massa diam, dapibus id dolor sagittis, lacinia cursus arcu. Maecenas vitae varius sapien.
 	</div>
 </div>
-<script type="text/javascript">
-  var addressPoints = <%= map_points(@cards) %>;
-  var latCenter = 46.6221;
-  var lngCenter = 7.1960;
-</script>
-<%= render 'map' %>
-<div id="clear_map"></div>
+<div class="new">
+	<div class="title">
+		<div class="wrapper">
+			<h2>Dernières apparitions sur ResJ</h2>
+			<span>Découvrez des ressources et pleins de contenus spécialement pour vous <%= link_to '/ressources', root_path %></span>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="block left">
+		<div class="wrapper">
+			<div class="type">Article <i class="fi-clipboard-notes"></i></div>
+			<div class="graphic">
+				<img src="http://profilesasiapacific.com/blog/wp-content/uploads/2014/01/hand-fist-power1-1024x682.jpg">
+			</div>
+			<div class="text">
+				<h3>Comment booster vos jeunes</h3>
+				<div class="content">
+					<p>C'est une question qui revient souvent et qui est certainement apparu au moins une fois dans votre activité de responsable: comment redonner le feux à vos jeunes. Et par là j'entend pas leur faire infligé de terribles brûlure mais bien de leur redonner cette énergie qui les anime durant leur tendre adolescence. Pour répondre à cette ... <a href="/">lire la suite...</a></p>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="block right">
+		<div class="wrapper">
+			<div class="type">Activité du site <i class="fi-battery-full"></i></div>
+			<div class="graphic">
+				<img src="https://cdn4.iconfinder.com/data/icons/award-icons/500/award_fist_star_winning_excellent_ribbon_medallion_power_hand__achievement_thumbs_up_security_insignia_collection_badge_okay_sign_first_place_win-512.png">
+			</div>
+			<div class="text">
+				<h3>La barre des 200 oeuvres jeunesses dépassée</h3>
+				<div class="content">
+					<p>A ce jour nous sommes heureux d'annoncer un nouveau cap franchis, et pas des moindre: 200 oeuvres jeunesses inscrites en moins de 2 mois! Commes d'habitude, l'équipe vous réserve encore pleins de nouveautés pour la fin de l'année, n'oubliez pas de rejoindre notre page facebook et d'encourager d'autres oeuvres que nous connaissez à s'inscrire.</p>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+
+<div class="map">
+
+	<div class="title">
+		<div class="wrapper">
+			<h2>Votre réseau</h2>
+			<span>Vous cherchez une oeuvre particulière? Rendez-vous sur <%= link_to '/reseau', cards_path %></span>
+			<div class="clear"></div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+	  var addressPoints = <%= map_points(@cards) %>;
+	  var latCenter = 46.6221;
+	  var lngCenter = 7.1960;
+	</script>
+	<%= render 'map' %>
+	<div id="clear_map"></div>
+</div>

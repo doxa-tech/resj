@@ -9,6 +9,11 @@ header
 		display: inline-block;
 		vertical-align: middle;
 		background: image-url('layout/logo.png') center top no-repeat;
+		a {
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
 	}
 
 	.space {

@@ -1,0 +1,11 @@
+@import 'partial_top';
+
+#container.about {
+	.top {
+		@include top;
+		h1 {
+			@include h1;
+		}
+	}
+
+}

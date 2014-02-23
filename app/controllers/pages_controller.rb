@@ -5,8 +5,12 @@ class PagesController < ApplicationController
 		@cards = Card.all
 	end
 
-	def about
-		@page = Page.find_by_name('about')
+	def resj
+		@page = Page.find_by_name('resj')
+	end
+
+	def contact
+		@page = Page.find_by_name('contact')
 	end
 	
 end
