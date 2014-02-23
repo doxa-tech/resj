@@ -5,7 +5,7 @@
 	<table>
 		<tr>
 			<td><%= f.label :user_id %></td>
-			<td><%= f.collection_select(:user_id, User.all, :id, :name) %></td>
+			<td><%= f.collection_select(:user_id, User.all, :id, :full_name) %></td>
 		</tr>
 		<tr>
 			<td><%= f.label :element_id %></td>

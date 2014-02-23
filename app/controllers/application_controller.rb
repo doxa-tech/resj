@@ -4,7 +4,14 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   # add different types of flash messages
   add_flash_types :error, :success, :notice
+  
   include SessionsHelper
+
+  def current_permission
+		@current_permission ||= Permission.new(current_user)
+	end
+
+	helper_method :current_permission
 
   def track_activity(trackable, action = params[:action])
   	Activity.create! action: action, trackable: trackable, user: current_user

@@ -16,7 +16,7 @@ Resj::Application.routes.draw do
   get 'user/edit', to: "users#edit"
 
   resources :users, only: [:create]
-  resources :orators, only: [:index, :new, :create]
+  resources :orators, except: [:show, :destroy]
 
   resources :sessions, only: [:create, :destroy]
   resources :password_resets, except: [:index, :show, :destroy]
@@ -44,6 +44,7 @@ Resj::Application.routes.draw do
     resources :responsables, except: [:show]
     resources :tags, except: [:show]
     resources :parents, except: [:show]
+    resources :access_tokens, except: [:show]
 
     resources :cards do
       resources :verificator_comments, only: [:create, :update, :destroy]

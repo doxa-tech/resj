@@ -1,0 +1,22 @@
+class	AccessTokenTable < BaseTable
+
+	def attributes(element)
+		[
+			element.id,
+			element.token,
+			element.is_valid,
+			element.ownership.full_name,
+			element.created_at,
+			element.updated_at
+		]
+	end
+
+	def url(element)
+		element.id
+	end
+
+	def model
+		AccessToken
+	end
+
+end
