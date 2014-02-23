@@ -1,8 +1,2 @@
-<div id="banner">
+<div id="banner" <%= "class=#{yield(:id)}" if yield(:id).presence %>>
 </div>
-<style type="text/css">
-#banner {
-	width: 100%; height: <%= yield(:banH) %>px;
-	background: url(<%= asset_path yield(:banI) %>) no-repeat fixed;
-}
-</style>

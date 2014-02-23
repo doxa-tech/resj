@@ -1,28 +1,68 @@
 <%= render 'users/form', f: f  %>
-
+<% num = 4 %>
 <%= f.fields_for :orator do |orator_fields| %>
+	<div class="section">
+		<h3>Information spécifiques orateur</h3>
+		<div class="block">
+			<div class="label">
+				<p>
+					<span class="num"><%= num+=1 %></span> Dans quelle<span class="b">localité</span>habitez-vous?
+				</p>
+			</div>
+			<%= orator_fields.collection_select :location_id, Location.all, :id, :full_name, {include_blank: "Select a city"}, {class: "selectize"} %>
+		</div>
 
-	<%= orator_fields.label :street %>
-	<%= orator_fields.text_field :street %>
+		<div class="block">
+			<div class="label">
+				<p>
+					<span class="num"><%= num+=1 %></span>Quelle est votre<span class="b">adresse</span>? Cette information est optionnel
+				</p>
+			</div>
+			<%= orator_fields.text_field :street, placeholder: 'addresse (optionnel)' %>
+		</div>	
 
-	<%= orator_fields.label :location_id %>
-	<%= orator_fields.collection_select :location_id, Location.all, :id, :full_name, {include_blank: "Select a city"}, {class: "selectize"} %>
+		<div class="block">
+			<div class="label">
+				<p>
+					<span class="num"><%= num+=1 %></span>Votre numéro de<span class="b">téléphone</span>. Cette inforamtion n'est pas obligatoire
+				</p>
+			</div>
+			<%= orator_fields.text_field :phone, placeholder: 'Téléphone (optionnel)' %>
+		</div>
 
-	<%= orator_fields.label :phone %>
-	<%= orator_fields.text_field :phone %>
+		<div class="block">
+			<div class="label">
+				<p>
+					<span class="num"><%= num+=1 %></span>Choisissez parmis la liste maximum 10<span class="b">thèmes</span>que vous seriez d'accord d'aborder
+				</p>
+			</div>
+			<%= orator_fields.collection_select :theme_ids, Theme.all, :id, :name, {include_blank: "Select themes"}, {class: "selectize-themes", multiple: true} %>
+		</div>
 
-	<%= orator_fields.label :theme_ids %>
-	<%= orator_fields.collection_select :theme_ids, Theme.all, :id, :name, {include_blank: "Select themes"}, {class: "selectize-themes", multiple: true} %>
+		<div class="block">
+			<div class="label">
+				<p>
+					<span class="num"><%= num+=1 %></span>Quelles sont vos<span class="b">disponibilités</span>?
+				</p>
+			</div>
+			<%= orator_fields.collection_check_boxes :disponibility_ids, Disponibility.all, :id, :name do |b| %>
+				<%= content_tag :div, "#{b.label} #{b.check_box}".html_safe, class: 'dispo' %>
+			<% end %>
+		</div>
 
-	<%= orator_fields.label :disponibility_ids %>
-	<%= orator_fields.collection_check_boxes :disponibility_ids, Disponibility.all, :id, :name %>
-
-	<%= orator_fields.label :disponibility %>
-	<%= orator_fields.text_field :disponibility %>
+		<div class="block">
+			<div class="label">
+				<p>
+					<span class="num"><%= num+=1 %></span>Ou alors, avez-vous des<span class="b">disponibilités spéciales</span> (par exemple seulement les soirées d'été, ...). Cette information est optionnel
+				</p>
+			</div>
+			<%= orator_fields.text_field :disponibility, placeholder: 'Disponibilités spéciales' %>
+		</div>	
+	</div>
 <% end %>
 
 <%= hidden_field_tag :token, params[:token] if params[:token] %>
 
-<%= f.submit %>
+<%= f.submit class: 'submit' %>
 
 <script type="text/javascript">window.onload=selectize();</script>

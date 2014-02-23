@@ -20,6 +20,11 @@
 	}	
 }
 
+#banner.home {
+	width: 100%; height: 304px;
+	background: url('/assets/layout/banner.jpg') no-repeat fixed;
+}
+
 #container.home {
 	.top {
 		@include top;
