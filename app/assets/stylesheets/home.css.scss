@@ -1,4 +1,32 @@
+@import 'partial_top';
+@mixin h2title {
+	padding: 0 10px;
+	.wrapper {
+		background: #eaeaea;
+		padding: 3px 10px;
+		h2 {
+			font-size: 27px;
+			float: left;
+			width: 40%;
+			text-align: left;
+		}
+		span {
+			vertical-align: middle;
+			float: right;
+			width: 60%;
+			text-align: right;
+			padding: 10px;
+		}
+	}	
+}
+
 #container.home {
+	.top {
+		@include top;
+		h2 {
+			@include h1;
+		}
+	}
 
 	.intro {
 		color: #777;
@@ -19,14 +47,76 @@
 		}
 	}
 
-	#map {
-		position: absolute;
-		left:0;
-		width: 100%; height: 600px;
+	.new {
+		margin: 15px 0;
+		.left {
+			float: left;
+			width: 50%;
+		}
+		.right {
+			float: right;
+			width: 50%;
+		}
+		.title {
+			@include h2title;
+		}
+		.block {
+			padding: 10px;
+			.wrapper {
+				position: relative;
+				background: #eaeaea;
+				padding: 20px;
+				.type {
+					position: absolute;
+					right: 10px;
+					top: 7px;
+					color: #555;
+					font-size: 12px;
+				}
+				.graphic {
+					float: left;
+					width: 30%;
+					img {
+						width: 100%;
+					}
+				}
+				.text {
+					float: right;
+					width: 70%;
+					padding: 0 0 0 10px;
+					vertical-align: top;
+					h3 {
+						padding: 10px 0px;
+						font: 300 22px 'jura', tahoma;
+						color: #555;
+					}
+				}
+			}
+		}
+		.clear {
+			clear: both;
+		}
 	}
 
-	#clear_map {
-		height: 610px;
+	.map {
+		.title {
+			@include h2title;
+			margin: 0 0 10px 0;
+		}
+		h2 {
+
+		}
+		#map {
+			position: absolute;
+			left:0;
+			width: 100%; height: 600px;
+		}
+		#clear_map {
+			height: 610px;
+		}
+		.clear {
+			clear: both;
+		}
 	}
 
 }

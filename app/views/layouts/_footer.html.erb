@@ -1,3 +1,5 @@
 <footer>
-	<p> Réseau Evangélique Suisse (RES) - Ministère Jeunesse | <%= link_to 'Admin', profile_path %> | <%= link_to "Sign out", signout_path, method: :delete if !current_user.nil? %> </p>
+	<p> 
+		Réseau Evangélique Suisse (RES) - Ministère Jeunesse | <%= link_to 'Admin', profile_path %> | <%= link_to "Sign out", signout_path, method: :delete if !current_user.nil? %> <%= link_to 'Contact', contact_path %> 
+	</p>
 </footer>
