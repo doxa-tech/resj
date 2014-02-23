@@ -53,7 +53,7 @@ class Permission
 
   def allow_token?(controller, action, token, current_resource = nil)
   	@token = AccessToken.find_by_token(token)
-  	return true if !@token.nil? && @token.ownership.element.name == controller && (@token.ownership[right[action]] == true || @token.ownership.actions.pluck(:name).include? action)
+  	return true if !@token.nil? && @token.ownership.element.name == controller && (@token.ownership[right[action]] == true || @token.ownership.actions.pluck(:name).include?(action))
   end
 
   def allow_params?(controller, name)

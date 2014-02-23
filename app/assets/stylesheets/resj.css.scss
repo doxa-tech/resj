@@ -52,22 +52,30 @@
 		}
 
 		&.team {
-			ul {
-				list-style-type: none;
-				text-align: left;
-				padding: 0;
-				li {
-					clear: both;
-					img {
-						width: 100px;
-						float: left;
-						vertical-align: middle;
-						padding: 10px;
+			.member {
+				display: inline-block;
+				img {
+					width: 100px;
+					float: left;
+					vertical-align: middle;
+					padding: 10px;
+				}
+				.infos {
+					text-align: left;
+					padding: 20px;
+					overflow: auto;
+					.name {
+						font-weight: 400;
 					}
-					div {
-						padding: 20px;
-						.name {
-							font-weight: 400;
+					ul {
+						padding: 10px 0 0 0;
+						li {
+							text-align: left;
+							.field {
+								font-size: 12px;
+								font-weight: bold;
+								padding: 0 3px 0 0;
+							}
 						}
 					}
 				}
