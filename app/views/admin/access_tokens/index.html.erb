@@ -1,5 +1,5 @@
 <%= form_for [:admin, AccessToken.new] do |f| %>
-	<%= f.collection_select :ownership_id, User.find_by_firstname('g_token').ownerships, :id, :full_name %>
+	<%= f.collection_select :ownership_id, Ownership.joins(:user).where(users: {firstname: "g_token"}), :id, :full_name %>
 	<%= f.submit %>
 <% end %>
 
