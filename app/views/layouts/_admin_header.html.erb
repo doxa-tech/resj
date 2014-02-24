@@ -9,45 +9,24 @@
 			<%= link_to "Déconnexion", signout_path, method: :delete %>
 		</div>
 	</div>
+
+	<% card_group = ["admin/cards", "admin/card_types"] %>
 	<ul>
 		<li class="parent">
 			<a href="#">Groupes<span class="fi-arrow-down"></span></a>
 			<ul>
+				<% admin_links.select{ |l| l.in? card_group}.each do |link| %>
 				<li>
-					<%= link_to_active t('layout.header.admin.card'), admin_cards_path %>
+					<%= link_to_active t('layout.header.admin.' + link.split('/').last), "/" + link %>
 				</li>
-				<li>
-					<%= link_to_active 'Type', admin_card_types_path %>
-				</li>
+				<% end %>
 			</ul>
 		</li>
-		<li>
-			<%= link_to_active t('layout.header.admin.page'), admin_pages_path %>
-		</li>
-		<li>
-			<%= link_to_active t('layout.header.admin.user'), admin_users_path %>
-		</li>
-		<li>
-			<%= link_to_active t('layout.header.admin.affiliation'), admin_affiliations_path %>
-		</li>
-		<li>
-			<%= link_to_active t('layout.header.admin.action'), admin_actions_path %>
-		</li>
-		<li>
-			<%= link_to_active t('layout.header.admin.ownership'), admin_ownerships_path %>
-		</li>
-		<li>
-			<%= link_to_active t('layout.header.admin.parent'), admin_parents_path %>
-		</li>
-		<li>
-			<%= link_to_active t('layout.header.admin.responsable'), admin_responsables_path %>
-		</li>
-		<li>
-			<%= link_to_active t('layout.header.admin.tag'), admin_tags_path %>
-		</li>
-		<li>
-			<%= link_to_active t('layout.header.admin.access_token'), admin_access_tokens_path %>
-		</li>
+		<% admin_links.reject{ |l| l.in? card_group}.each do |link| %>
+			<li>
+				<%= link_to_active t('layout.header.admin.' + link.split('/').last), "/" + link %>
+			</li>
+		<% end %>
 	</ul>
 	<div class="vspace"></div>
 </div>

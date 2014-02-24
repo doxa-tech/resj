@@ -25,6 +25,10 @@ class Permission
 		return true if Ownership.where("user_id IN (?) AND element_id = ? AND right_create = ?", @ids, element_id(controller), true).any?
 	end
 
+	def allow_read?(controller)
+		return true if Ownership.where("user_id IN (?) AND element_id = ? AND right_read = ?", @ids, element_id(controller), true).any?
+	end
+
 	def elements(controller, model)
 		ownerships_on_entry = Ownership.where("user_id IN (?) AND element_id = ? AND ownership_type_id = ? AND right_read = ?", @ids, element_id(controller), @on_entry_id, true).pluck('id_element')
 		if Ownership.where("user_id IN (?) AND element_id = ? AND ownership_type_id = ? AND right_read = ?", @ids, element_id(controller), @all_entries_id, true).any?
