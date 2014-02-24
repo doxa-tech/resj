@@ -12,6 +12,7 @@ class Admin::AccessTokensController < Admin::BaseController
 		if @access_token.save
 			redirect_to admin_access_tokens_path, success: t('access_token.admin.create.success')
 		else
+			@table = AccessTokenTable.new(view_context, nil, { buttons: false } )
 			render 'index'
 		end
 	end

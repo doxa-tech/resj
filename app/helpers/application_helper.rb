@@ -8,6 +8,11 @@ module ApplicationHelper
 		link_to label, path, class: (current_page?(path)? 'active' : nil)
 	end
 
+	def admin_links
+		active = %w[admin/cards admin/card_types admin/pages admin/users admin/affiliations admin/tags admin/responsables admin/ownerships admin/actions admin/parents admin/access_tokens]
+    @admin_links ||= Element.joins(:ownerships).where(ownerships: {user_id: current_user.parents.pluck(:parent_id) << current_user.id }, name: active ).pluck(:name).uniq
+  end
+
 	def map_points(cards)
 		raw cards.map {|a| 
 			[

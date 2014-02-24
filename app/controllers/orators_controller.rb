@@ -37,8 +37,9 @@ class OratorsController < BaseController
 	end
 
 	def authorize_token
-		if !current_permission.allow_token?(params[:controller], params[:action], params[:token])
-			redirect_to root_path, error: "Not authorize"
+		session[:token] = params[:token] if params[:token]
+		if !current_permission.allow_token?(params[:controller], params[:action], session[:token])
+			redirect_to root_path, error: "Invalid token !"
 		end
 	end
 end

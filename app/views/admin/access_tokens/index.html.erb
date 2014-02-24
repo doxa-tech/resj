@@ -1,6 +1,7 @@
 <% if current_permission.allow_create?(params[:controller]) %>
 	<%= form_for [:admin, AccessToken.new] do |f| %>
-		<%= f.collection_select :ownership_id, Ownership.joins(:user).where(users: {firstname: "g_token"}), :id, :full_name %>
+		<%= render 'error_messages', object: f.object %>
+		<%= f.collection_select :ownership_id, Ownership.joins(:user).where(users: {firstname: "g_token"}), :id, :full_name, include_blank: "Please select" %>
 		<%= f.submit %>
 	<% end %>
 <% end %>
