@@ -22,8 +22,10 @@ Resj::Application.configure do
   config.action_mailer.smtp_settings = {
     :address   => "smtp.mandrillapp.com",
     :port      => 587,
+    :enable_starttls_auto => true,
     :user_name => ENV["MAILUSR"],
-    :password  => ENV["MAILPSWD"]
+    :password  => ENV["MAILPSWD"],
+    :authentication => 'login'
   }
 
   # Print deprecation notices to the Rails logger.
