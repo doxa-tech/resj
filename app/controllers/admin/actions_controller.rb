@@ -23,11 +23,9 @@ class Admin::ActionsController < Admin::BaseController
 	end
 
 	def edit
-		@action = Action.find(params[:id])
 	end
 
 	def update
-		@action = Action.find(params[:id])
 		if @action.update_attributes(action_params)
 			redirect_to admin_actions_path, success: t('action.admin.edit.success')
 		else
@@ -36,7 +34,7 @@ class Admin::ActionsController < Admin::BaseController
 	end
 
 	def destroy
-		Action.find(params[:id]).destroy
+		@action.destroy
 		redirect_to admin_pathreplace_path, success: t('action.admin.destroy.success')
 	end
 

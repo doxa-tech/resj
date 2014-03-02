@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
 
 	has_secure_password({ validations: false })
 
+  scope :users, -> { joins(:user_type).where(user_types: {name: "user"}) }
+
   belongs_to :user_type
   has_many :card_verifications, dependent: :destroy
   has_many :cards, through: :card_verifications
@@ -11,6 +13,8 @@ class User < ActiveRecord::Base
   has_many :users, through: :parents
   has_many :verificator_comments
   has_many :activities
+  has_many :card_users
+  has_many :cards, through: :card_users
   has_one :orator
 
   accepts_nested_attributes_for :orator
@@ -57,10 +61,12 @@ class User < ActiveRecord::Base
 
   # Remove spaces and capitales
   def format
-    self.email.try(:strip!)
-    self.email.try(:downcase!)
     self.firstname.try(:strip!)
     self.lastname.try(:strip!)
+    self.email.try(:strip!)
+    self.firstname.try(:capitalize!)
+    self.lastname.try(:capitalize!)
+    self.email.try(:downcase!)
   end
 
   def create_remember_token

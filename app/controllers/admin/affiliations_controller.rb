@@ -23,21 +23,19 @@ class Admin::AffiliationsController < Admin::BaseController
 	end
 
 	def edit
-		@affiliation = Affiliation.find(params[:id])
 	end
 
 	def update
-		@affiliation = Affiliation.find(params[:id])
 		if @affiliation.update_attributes(affiliation_params)
-			redirect_to admin_affiliations_path, success: t('affiliation.admin.create.success')
+			redirect_to admin_affiliations_path, success: t('affiliation.admin.edit.success')
 		else
 			render 'edit'
 		end
 	end
 
 	def destroy
-		Affiliation.find(params[:id]).destroy
-		redirect_to admin_affiliations_path, success: t('affiliation.admin.create.success')
+		@affiliation.destroy
+		redirect_to admin_affiliations_path, success: t('affiliation.admin.destroy.success')
 	end
 
 	private

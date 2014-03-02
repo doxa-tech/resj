@@ -64,6 +64,10 @@ class Permission
   	end
   end
 
+  def allow_resource?
+  	return true if @user.cards.any?
+  end
+
   def allow_params?(controller, name)
   	return true if Ownership.joins(:actions).where(user_id: @ids, element_id: element_id(controller), actions: {name: name}).any?
   end

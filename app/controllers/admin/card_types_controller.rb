@@ -29,7 +29,7 @@ class Admin::CardTypesController < Admin::BaseController
 	def update
 		@card_type = CardType.find(params[:id])
 		if @card_type.update_attributes(card_type_params)
-			redirect_to admin_card_types_path, success: t('card_type.admin.create.success')
+			redirect_to admin_card_types_path, success: t('card_type.admin.edit.success')
 		else
 			render 'edit'
 		end
@@ -37,7 +37,7 @@ class Admin::CardTypesController < Admin::BaseController
 
 	def destroy
 		CardType.find(params[:id]).destroy
-		redirect_to admin_card_types_path, success: t('card_type.admin.create.success')
+		redirect_to admin_card_types_path, success: t('card_type.admin.destroy.success')
 	end
 
 	private

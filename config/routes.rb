@@ -14,9 +14,12 @@ Resj::Application.routes.draw do
   get 'profile', to: "users#profile"
   patch 'user/update', to: "users#update"
   get 'user/edit', to: "users#edit"
+  post 'user/confirmation', to: "users#card_confirmation"
+  post 'user/request', to: "users#card_request"
 
   resources :users, only: [:create]
   resources :orators, except: [:show, :destroy]
+  resources :resources, only: [:index, :show]
 
   resources :sessions, only: [:create, :destroy]
   resources :password_resets, except: [:index, :show, :destroy]
@@ -45,11 +48,15 @@ Resj::Application.routes.draw do
     resources :tags, except: [:show]
     resources :parents, except: [:show]
     resources :access_tokens, except: [:show]
+    resources :resources, except: [:show]
+    resources :themes, except: [:show]
 
     resources :cards do
       resources :verificator_comments, only: [:create, :update, :destroy]
       member do
         get 'verificate'
+        post 'user_confirmation'
+        post 'user_request'
       end
     end
 
