@@ -16,7 +16,21 @@
 
 	// Admin
 	#admin {
+		#admin_header {
+			width: 100%;
+			ul {
+				li {
+					display: inline-block;
+					a {
+						span {
+							padding: 0 0 0 5px;
+						}
+					}
+				}
+			}
+		}
 		#admin_content {
+			overflow-x: initial;
 			h2 {
 				font-size: 20px;
 				text-align: left;
