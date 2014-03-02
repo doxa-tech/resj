@@ -23,21 +23,19 @@ class Admin::ResponsablesController < Admin::BaseController
 	end
 
 	def edit
-		@responsable = Responsable.find(params[:id])
 	end
 
 	def update
-		@responsable = Responsable.find(params[:id])
 		if @responsable.update_attributes(responsable_params)
-			redirect_to admin_responsables_path, success: t('responsable.admin.create.success')
+			redirect_to admin_responsables_path, success: t('responsable.admin.edit.success')
 		else
 			render 'edit'
 		end
 	end
 
 	def destroy
-		Responsable.find(params[:id]).destroy
-		redirect_to admin_responsables_path, success: t('responsable.admin.create.success')
+		@responsable.destroy
+		redirect_to admin_responsables_path, success: t('responsable.admin.destroy.success')
 	end
 
 	private

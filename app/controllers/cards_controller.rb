@@ -17,6 +17,7 @@ class CardsController < BaseController
 	def new
 		session[:card_params] ||= {}
 		@card = Card.new(session[:card_params])
+		@card.current_step ||= @card.steps.first 
 	end
 
 	# Change wizard steps

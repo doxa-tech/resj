@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140222095137) do
+ActiveRecord::Schema.define(version: 20140226165725) do
 
   create_table "access_tokens", force: true do |t|
     t.string   "token"
@@ -79,6 +79,18 @@ ActiveRecord::Schema.define(version: 20140222095137) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "card_users", force: true do |t|
+    t.integer  "card_id"
+    t.integer  "user_id"
+    t.boolean  "user_validated"
+    t.boolean  "card_validated"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "card_users", ["card_id"], name: "index_card_users_on_card_id"
+  add_index "card_users", ["user_id"], name: "index_card_users_on_user_id"
 
   create_table "card_verifications", force: true do |t|
     t.integer  "card_id"

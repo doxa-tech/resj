@@ -1,5 +1,5 @@
 class Admin::CardsController < Admin::BaseController
-	before_action :current_resource, only: [:show, :edit, :update, :destroy, :verificate]
+	before_action :current_resource, only: [:show, :edit, :update, :destroy, :verificate, :user_confirmation, :user_request]
 	before_action :authorize_action, only: [:verificate]
 	before_action :verified?, only: [:verificate]
 
@@ -55,10 +55,30 @@ class Admin::CardsController < Admin::BaseController
 		end
 	end
 
+	def user_request
+		if CardUser.where(user_id: params[:user_id], card_id: @card.id).any?
+			redirect_to edit_admin_card_path(@card), error: t('user.card.request.error')
+		else
+			CardUser.create(user_id: params[:user_id], card_id: @card.id, card_validated: true)
+			redirect_to edit_admin_card_path(@card), success: t('user.card.request.success')
+		end
+	end
+
+	def user_confirmation
+		@card_user = CardUser.find(params[:card_user_id])
+		if @card_user && @card_user.card_id == @card.id
+			@card_user.update_attribute(:card_validated, true)
+			redirect_to edit_admin_card_path(@card), success: t('user.card.confirmation.success')
+		else
+			@card_user.update_attribute(card_validated: true)
+			redirect_to edit_admin_card_path(@card), error: t('user.card.confirmation.error')
+		end
+	end
+
 	private
 
 	def attributes
-		["name", "description", "street", "location_id", "email", "place", "latitude", "longitude", "website", "password_digest", "card_type_id", "card_id", "current_step", "validated", "tag_names", "avatar", "banner", "responsables_attributes" => ["id", "firstname", "lastname", "email", "_destroy", "is_contact"], "affiliations_attributes" => ["id", "name", "_destroy"]]
+		["name", "description", "street", "location_id", "email", "place", "latitude", "longitude", "website", "password_digest", "card_type_id", "card_id", "current_step", "validated", "tag_names", "avatar", "banner", "remove_avatar", "remove_banner", "responsables_attributes" => ["id", "firstname", "lastname", "email", "_destroy", "is_contact"], "affiliations_attributes" => ["id", "name", "_destroy"]]
 	end
 
   def card_params

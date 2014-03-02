@@ -89,7 +89,8 @@
 		</div>
 		<div class="association_fields autocomplete" data-link="responsables">
 			<%= f.fields_for(:responsables, @card.responsables.any? || @card.responsables.build) do |responsables_fields| %>
-				<%= content_tag :div, class: "fields" + (" contact" if responsables_fields.object.id == @card.responsable.id).to_s do %>
+				<% is_responsable = (!@card.responsable.nil? && responsables_fields.object.id == @card.responsable.id) %>
+				<%= content_tag :div, class: "fields" + (" contact" if is_responsable ).to_s do %>
 					<div class="field">
 						<%= responsables_fields.label :firstname %>
 						<%= responsables_fields.text_field :firstname, data: {attr: "firstname"} %>
@@ -105,14 +106,22 @@
 					<div class="field">
 						<%= responsables_fields.hidden_field :_destroy, identifier: "destroy" %>
 						<%= link_to_remove_fields "remove" %>
-						<%= responsables_fields.hidden_field :is_contact, identifier: "is_contact", value: ("true" if responsables_fields.object.id == @card.responsable.id) %>
-						<%= link_to_add_contact "Mark as contact" unless responsables_fields.object.id == @card.responsable.id %>
+						<%= responsables_fields.hidden_field :is_contact, identifier: "is_contact", value: is_responsable %>
+						<%= link_to_add_contact "Mark as contact" unless is_responsable %>
 					</div>
 				<% end %>
 			<% end %>
 			<%= link_to_add_fields("New responsable") %>
 		</div>
 	</div>
+
+	<%= f.fields_for :users do |user_fields| %>
+		<div class="fields">
+			<%= user_fields.object.full_name %>
+			<%= user_fields.hidden_field :_destroy, identifier: "destroy" %>
+			<%= link_to_remove_fields "remove" %>
+		</div>
+	<% end %>
 
 	<%= f.label :card_type_id %>
 	<%= f.collection_select :card_type_id, CardType.all, :id, :name, {include_blank: "Category"}, {class: "selectize"} %>
@@ -137,5 +146,16 @@
 
 	<%= f.submit %>
 <% end %>
+
+<%= form_tag user_request_admin_card_path(@card) do %>
+	<%= select_tag :user_id, options_from_collection_for_select(User.users - @card.users, :id, :full_name), class: "selectize" %>
+	<%= submit_tag %>
+<% end %>
+
+<% @card.unconfirmed_card.each do |card_user| %>
+	<%= card_user.user.full_name %>
+	<%= link_to "Confirm", user_confirmation_admin_card_path(@card, card_user_id: card_user.id), method: :post %>
+<% end %>
+<%= params[:card] %>
 
 <script type="text/javascript">window.onload=selectize();</script>
