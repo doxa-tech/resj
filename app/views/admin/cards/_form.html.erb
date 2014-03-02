@@ -106,7 +106,7 @@
 					<div class="field">
 						<%= responsables_fields.hidden_field :_destroy, identifier: "destroy" %>
 						<%= link_to_remove_fields "remove" %>
-						<%= responsables_fields.hidden_field :is_contact, identifier: "is_contact", value: is_responsable %>
+						<%= responsables_fields.hidden_field :is_contact, identifier: "is_contact", value: ("true" if is_responsable) %>
 						<%= link_to_add_contact "Mark as contact" unless is_responsable %>
 					</div>
 				<% end %>
@@ -156,6 +156,5 @@
 	<%= card_user.user.full_name %>
 	<%= link_to "Confirm", user_confirmation_admin_card_path(@card, card_user_id: card_user.id), method: :post %>
 <% end %>
-<%= params[:card] %>
 
 <script type="text/javascript">window.onload=selectize();</script>

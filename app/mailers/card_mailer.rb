@@ -2,11 +2,12 @@ class CardMailer < ActionMailer::Base
   default from: "admin@reseaujeunesse.ch"
 
   def welcome(card)
-    mail to:      card.responsable.email,
+    mail to:      "nkcr.je@gmail.com",
          from:    "\"Noémien de ResJ\" <admin@reseaujeunesse.ch>",
-         subject: 'Bienvenue sur RéseauJeunesse'
+         subject: 'Bienvenue sur RéseauJeunesse',
+         body:
     headers['X-MC-MergeVars'] = "{\"TYPE\":\"#{card.card_type.name}\"}" # variables
-    headers['X-MC-Template'] = "welcome"  # template
+    headers['X-MC-Template'] = "welcome2"  # template
     headers['X-MC-AutoText'] = 1 # generate text version
     headers['X-MC-InlineCSS'] = "true" # inline css
   end
