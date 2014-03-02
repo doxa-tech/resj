@@ -2,7 +2,7 @@ Resj::Application.routes.draw do
 
   root to: 'pages#home'
 
-  %w[home resj contact].each do |page|
+  %w[home resj contact ressources].each do |page|
     get page, to: "pages##{page}"
   end
 

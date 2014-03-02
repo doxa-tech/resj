@@ -10,19 +10,20 @@
     var addressPoints = <%= map_points(@cards) %>;
   </script>
   <%= render 'map' %>
-<% end %>
 
-<script type="text/javascript">
-/* Show marker when click */
-  $('.show-on-map').click(function(){
-    var link = $(this);
-    document.getElementById('map').scrollIntoView();
-    markers.eachLayer(function(layer){
-      if(layer.options.id == parseInt(link.data("id"))) {
-        markers.zoomToShowLayer(layer, function() {
-          layer.openPopup();
-        });
-      }
+  <script type="text/javascript">
+  /* Show marker when click */
+    $('.show-on-map').click(function(){
+      var link = $(this);
+      document.getElementById('map').scrollIntoView();
+      markers.eachLayer(function(layer){
+        if(layer.options.id == parseInt(link.data("id"))) {
+          markers.zoomToShowLayer(layer, function() {
+            layer.openPopup();
+          });
+        }
+      });
     });
-  });
-</script>
+  </script>
+
+  <% end %>
