@@ -1,18 +1,28 @@
 <%= form_for [:admin, @card] do |f| %>
 	
 	<%= render 'error_messages', object: f.object %>
+
 	<div class="col split2">
 		<div class="block">
+			<div class="header">
+				<h2>Informations Générales</h2>
+			</div>
 			<ul>
 				<li>
 					<%= f.label :name %>
-					<%= f.text_field :name %><br>
+					<%= f.text_field :name %>
 				</li>
 			</ul>
 			<ul>
 				<li>
 					<%= f.label :description %>
-					<%= f.text_area :description %><br>
+					<%= f.text_area :description %>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<%= f.label :card_type_id %>
+					<%= f.collection_select :card_type_id, CardType.all, :id, :name, {include_blank: "Category"}, {class: "selectize"} %>
 				</li>
 			</ul>
 			<ul>
@@ -21,121 +31,187 @@
 					<%= f.collection_select :card_id, Card.where('card_type_id = ?', CardType.find_by_name("Réseau régional") ), :id, :name, {include_blank: "Aucun"}, {class: "selectize"} %>
 				</li>
 			</ul>
+		</div>
+	</div>
+
+	<div class="col split2">
+		<div class="block">
+			<div class="header">
+				<h2>Location</h2>
+			</div>
 			<ul>
 				<li>
 					<%= f.label :street %>
-					<%= f.text_field :street %><br>
-				</li>
-			</ul>
-			<ul>
-				<li><%= f.label :location_id %></li>
-				<li><%= f.collection_select :location_id, Location.all, :id, :full_name, {include_blank: "Select a city"}, {class: "selectize"} %></li>
-			</ul>
-			<ul>
-				<li>
-					<%= f.label :latitude %>
-					<%= f.text_field :latitude %><br>
+					<%= f.text_field :street %>
 				</li>
 			</ul>
 			<ul>
 				<li>
-					<%= f.label :longitude %>
-					<%= f.text_field :longitude %><br>
-				</li>
-			</ul>
-		</div>
-	</div>
-	<div class="col split2">
-		<div class="block">
-			<ul>
-				<li>
-					<%= f.label :email %>
-					<%= f.text_field :email %><br>
+					<%= f.label :location_id %>
+					<%= f.collection_select :location_id, Location.all, :id, :full_name, {include_blank: "Select a city"}, {class: "selectize"} %>
 				</li>
 			</ul>
 			<ul>
 				<li>
 					<%= f.label :place %>
-					<%= f.text_field :place %><br>
+					<%= f.text_field :place %>
 				</li>
 			</ul>
 			<ul>
 				<li>
-					<%= f.label :website %>
-					<%= f.text_field :website %><br>
+					<%= f.label :latitude %>
+					<%= f.text_field :latitude %>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<%= f.label :longitude %>
+					<%= f.text_field :longitude %>
 				</li>
 			</ul>
 		</div>
 	</div>
-	<%= @card.affiliation %>
 
-	<div class="association_fields autocomplete" data-link="affiliations" >
-		<%= f.fields_for(:affiliations, @card.affiliations.any? || @card.affiliations.build) do |affiliation_fields| %>
-			<div class="fields">
-				<%= affiliation_fields.label :name %>
-				<%= affiliation_fields.text_field :name, data: {attr: "name"} %>
-				<%= affiliation_fields.hidden_field :_destroy, identifier: "destroy" %>
-				<%= link_to_remove_fields "remove" %>
+	<div class="col split2">
+		<div class="block">
+			<div class="header">
+				<h2>Contact</h2>
 			</div>
-		<% end %>
-		<%= link_to_add_fields("New affiliation") %>
+			<ul>
+				<li>
+					<%= f.label :email %>
+					<%= f.text_field :email %>
+				</li>
+			</ul>
+		</div>
+		<div class="block">
+			<div class="header">
+				<h2>Team</h2>
+			</div>
+				<ul class="team">
+					<li>
+						<div class="association_fields autocomplete" data-link="responsables">
+							<%= f.fields_for(:responsables, @card.responsables.any? || @card.responsables.build) do |responsables_fields| %>
+								<%= content_tag :div, class: "fields" + (" contact" if responsables_fields.object.id == @card.responsable.id).to_s do %>
+									<div class="field">
+										<%= responsables_fields.label :firstname %>
+										<%= responsables_fields.text_field :firstname, data: {attr: "firstname"} %>
+									</div>
+									<div class="field">
+										<%= responsables_fields.label :lastname %>
+										<%= responsables_fields.text_field :lastname, data: {attr: "lastname"} %>
+									</div>
+									<div class="field">
+										<%= responsables_fields.label :email %>
+										<%= responsables_fields.text_field :email %>
+									</div>
+									<div class="field">
+										<%= responsables_fields.hidden_field :_destroy, identifier: "destroy" %>
+										<%= link_to_remove_fields "remove" %>
+										<%= responsables_fields.hidden_field :is_contact, identifier: "is_contact", value: ("true" if responsables_fields.object.id == @card.responsable.id) %>
+										<%= link_to_add_contact "Mark as contact" unless responsables_fields.object.id == @card.responsable.id %>
+									</div>
+								<% end %>
+							<% end %>
+							<%= link_to_add_fields("New responsable") %>
+						</div>
+					</li>
+				</ul>
+			</div>
 	</div>
 
-	<div class="block team">
-		<div class="label">
-			<p>
-				<span class="num">8</span> Qui sont les <span class="b">responsables</span> du groupe? La personne de contact sera le référent du groupe. Il est nécessaire de marquer une personne
-			</p>
+	<div class="col split2">
+		<div class="block">
+			<div class="header">
+				<h2>Extra infos</h2>
+			</div>
+			<ul>
+				<li>
+					<%= f.label :website %>
+					<%= f.text_field :website %>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<%= f.label :tag_names %>
+					<%= f.text_field :tag_names, class: "selectize-tags" %>
+				</li>
+			</ul>
 		</div>
-		<div class="association_fields autocomplete" data-link="responsables">
-			<%= f.fields_for(:responsables, @card.responsables.any? || @card.responsables.build) do |responsables_fields| %>
-				<%= content_tag :div, class: "fields" + (" contact" if responsables_fields.object.id == @card.responsable.id).to_s do %>
-					<div class="field">
-						<%= responsables_fields.label :firstname %>
-						<%= responsables_fields.text_field :firstname, data: {attr: "firstname"} %>
+		<div class="block">
+			<div class="header">
+				<h2>Affiliations</h2>
+			</div>
+			<ul>
+				<li>
+					<%= @card.affiliation %>
+				</li>
+			</ul>
+			<ul class="affiliation">
+				<li>
+					<div class="association_fields autocomplete" data-link="affiliations" >
+						<%= f.fields_for(:affiliations, @card.affiliations.any? || @card.affiliations.build) do |affiliation_fields| %>
+							<div class="fields">
+								<div class="field">
+									<%= affiliation_fields.label :name %>
+									<%= affiliation_fields.text_field :name, data: {attr: "name"} %>
+									<%= affiliation_fields.hidden_field :_destroy, identifier: "destroy" %>
+								</div>
+								<div class="field">
+									<%= link_to_remove_fields "remove" %>
+								</div>
+							</div>
+						<% end %>
+						<%= link_to_add_fields("New affiliation") %>
 					</div>
-					<div class="field">
-						<%= responsables_fields.label :lastname %>
-						<%= responsables_fields.text_field :lastname, data: {attr: "lastname"} %>
-					</div>
-					<div class="field">
-						<%= responsables_fields.label :email %>
-						<%= responsables_fields.text_field :email %>
-					</div>
-					<div class="field">
-						<%= responsables_fields.hidden_field :_destroy, identifier: "destroy" %>
-						<%= link_to_remove_fields "remove" %>
-						<%= responsables_fields.hidden_field :is_contact, identifier: "is_contact", value: ("true" if responsables_fields.object.id == @card.responsable.id) %>
-						<%= link_to_add_contact "Mark as contact" unless responsables_fields.object.id == @card.responsable.id %>
-					</div>
-				<% end %>
-			<% end %>
-			<%= link_to_add_fields("New responsable") %>
+				</li>
+			</ul>
+		</div>
+	</div>		
+
+	<div class="col split2">
+		<div class="block">
+			<div class="header">
+				<h2>Graphics</h2>
+			</div>
+			<ul>
+				<li>
+					<%= f.label :avatar %>
+					<%= image_tag(@card.avatar_url) if @card.avatar? %>
+					<%= f.file_field :avatar %>
+					<%= f.check_box :remove_avatar %>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<%= f.label :banner %>
+					<%= image_tag(@card.banner_url) if @card.banner? %>
+					<%= f.file_field :banner %>
+					<%= f.check_box :remove_banner %>
+				</li>
+			</ul>
 		</div>
 	</div>
-
-	<%= f.label :card_type_id %>
-	<%= f.collection_select :card_type_id, CardType.all, :id, :name, {include_blank: "Category"}, {class: "selectize"} %>
-
-	<%= f.label :tag_names %>
-	<%= f.text_field :tag_names, class: "selectize-tags" %>
-
-	<%= f.label :avatar %>
-	<%= image_tag(@card.avatar_url) if @card.avatar? %>
-	<%= f.file_field :avatar %>
-	<%= f.check_box :remove_avatar %>
-
-	<%= f.label :banner %>
-	<%= image_tag(@card.banner_url) if @card.banner? %>
-	<%= f.file_field :banner %>
-	<%= f.check_box :remove_banner %>
 
 	<% if !@card.validated && current_permission.allow_params?(params[:controller], "validated") %>
-		<%= f.label :validated %>
-		<%= f.check_box :validated, {}, true %>
+		<div class="col split2">
+			<div class="block">
+				<div class="header">
+					<h2>Admin</h2>
+				</div>
+				<ul>
+					<li>
+						<%= f.label :validated %>
+						<%= f.check_box :validated, {}, true %>
+					</li>
+				</ul>
+			</div>
+		</div>
 	<% end %>
-
-	<%= f.submit %>
+	<div id="clear"></div>
+	<div class="button">
+		<%= f.submit %>
+	</div>
 <% end %>
 
 <script type="text/javascript">window.onload=selectize();</script>

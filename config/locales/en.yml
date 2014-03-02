@@ -168,3 +168,7 @@ en:
     previous_label: "<i class='fi-arrow-left'></i> Previous"
     next_label: "Next <i class='fi-arrow-right'></i>"
     page_gap: "&hellip;"
+  activerecord:
+    attributes:
+      card:
+        card_id: "Regional network"

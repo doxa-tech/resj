@@ -11468,3 +11468,14 @@ INFO  - 2014-02-28 23:42:40.875; org.apache.solr.core.SolrCore; [collection1] we
 INFO  - 2014-02-28 23:42:44.462; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=30&q=*:*&wt=ruby&fq=type:Card&fq=card_type_id_im:(1+OR+2+OR+3+OR+4+OR+5)&rows=30} hits=36 status=0 QTime=1 
 INFO  - 2014-03-01 09:20:52.314; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=36 status=0 QTime=13 
 INFO  - 2014-03-01 09:20:52.615; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=36 status=0 QTime=1 
+INFO  - 2014-03-01 09:22:01.291; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=36 status=0 QTime=1 
+INFO  - 2014-03-01 09:22:01.548; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=36 status=0 QTime=1 
+INFO  - 2014-03-01 09:22:51.130; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=36 status=0 QTime=0 
+INFO  - 2014-03-01 09:23:06.716; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=36 status=0 QTime=1 
+INFO  - 2014-03-01 09:23:21.992; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=36 status=0 QTime=0 
+INFO  - 2014-03-02 16:15:44.017; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=36 status=0 QTime=16 
+INFO  - 2014-03-02 16:15:44.316; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=36 status=0 QTime=1 
+INFO  - 2014-03-02 16:18:49.943; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=36 status=0 QTime=1 
+INFO  - 2014-03-02 16:18:50.314; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=36 status=0 QTime=1 
+INFO  - 2014-03-02 16:52:39.398; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=36 status=0 QTime=1 
+INFO  - 2014-03-02 16:52:39.673; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=36 status=0 QTime=0 
