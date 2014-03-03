@@ -9,13 +9,14 @@ class User < ActiveRecord::Base
   has_many :card_verifications, dependent: :destroy
   has_many :cards, through: :card_verifications
   has_many :ownerships
-  has_many :parents
+  has_many :parents, dependent: :destroy
   has_many :users, through: :parents
   has_many :verificator_comments
   has_many :activities
-  has_many :card_users
+  has_many :card_users, dependent: :destroy
   has_many :cards, through: :card_users
   has_one :orator
+  has_many :cards, as: :contact
 
   accepts_nested_attributes_for :orator
 

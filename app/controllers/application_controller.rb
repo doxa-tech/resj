@@ -62,4 +62,9 @@ class ApplicationController < ActionController::Base
     redirect_to(session[:return_to] || default, message)
     session.delete(:return_to)
   end
+
+  def replace_responsable(user, card)
+    responsable = Responsable.find_by_email(user.email)
+    CardResponsable.find_by_card_id_and_responsable_id(card.id, responsable.id).try(:destroy)
+  end
 end
