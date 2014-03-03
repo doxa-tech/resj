@@ -12,9 +12,5 @@ class PagesController < BaseController
 	def contact
 		@page = Page.find_by_name('contact')
 	end
-
-	def ressources
-		@page = Page.find_by_name('ressources')
-	end
 	
 end
