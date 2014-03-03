@@ -89,7 +89,7 @@
 		</div>
 		<div class="association_fields autocomplete" data-link="responsables">
 			<%= f.fields_for(:responsables, @card.responsables.any? || @card.responsables.build) do |responsables_fields| %>
-				<% is_responsable = (!@card.responsable.nil? && responsables_fields.object.id == @card.responsable.id) %>
+				<% is_responsable = (!@card.contact.nil? && responsables_fields.object == @card.contact) %>
 				<%= content_tag :div, class: "fields" + (" contact" if is_responsable ).to_s do %>
 					<div class="field">
 						<%= responsables_fields.label :firstname %>
@@ -154,7 +154,8 @@
 
 <% @card.unconfirmed_card.each do |card_user| %>
 	<%= card_user.user.full_name %>
-	<%= link_to "Confirm", user_confirmation_admin_card_path(@card, card_user_id: card_user.id), method: :post %>
+	<%= link_to "Confirm", user_confirmation_admin_card_path(@card, card_user_id: card_user.id, validated: "true"), method: :post %>
+	<%= link_to "Refus", user_confirmation_admin_card_path(@card, card_user_id: card_user.id, validated: "false"), method: :post %>
 <% end %>
 
 <script type="text/javascript">window.onload=selectize();</script>

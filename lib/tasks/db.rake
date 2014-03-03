@@ -37,7 +37,6 @@ namespace :db do
 		g_admin = user_type_group.users.create(firstname: 'g_admin')
 		g_user = user_type_group.users.create(firstname: 'g_user')
 		g_base = user_type_group.users.create(firstname: 'g_base')
-		g_ext = user_type_group.users.create(firstname: 'g_ext')
 		g_token = user_type_group.users.create(firstname: 'g_token')
 
 		# Create admin
@@ -68,9 +67,12 @@ namespace :db do
 		orators = Element.create(name: 'orators')
 		admin_resources = Element.create(name: 'admin/resources')
 		admin_themes = Element.create(name: 'admin/themes')
+		cards = Element.create(name: 'cards')
 
 		validated = Action.create(name: "validated")
 		verificate = Action.create(name: "verificate")
+		user_request = Action.create(name: "user_request")
+		user_request = Action.create(name: "user_confirmation")
 
 		# ownerships for admin group :
 		Ownership.create(element_id: admin_pages.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
@@ -87,6 +89,7 @@ namespace :db do
 		Ownership.create(element_id: admin_access_tokens.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
 		Ownership.create(element_id: admin_resources.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
 		Ownership.create(element_id: admin_themes.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
+		Ownership.create(element_id: cards.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true, actions: [user_request, user_confirmation])
 
 		# ownership for the admin user
 		Ownership.create(element_id: admin_cards.id, user_id: admin.id, ownership_type_id: type2.id, actions: [validated])

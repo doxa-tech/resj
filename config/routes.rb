@@ -24,7 +24,7 @@ Resj::Application.routes.draw do
   resources :sessions, only: [:create, :destroy]
   resources :password_resets, except: [:index, :show, :destroy]
   
-  resources :cards, only: [:new, :create, :show] do
+  resources :cards, except: [:destroy] do
     collection do
       post 'change'
       post 'new_responsable'
