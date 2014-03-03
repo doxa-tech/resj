@@ -11479,3 +11479,5 @@ INFO  - 2014-03-02 16:18:49.943; org.apache.solr.core.SolrCore; [collection1] we
 INFO  - 2014-03-02 16:18:50.314; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=36 status=0 QTime=1 
 INFO  - 2014-03-02 16:52:39.398; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=36 status=0 QTime=1 
 INFO  - 2014-03-02 16:52:39.673; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=36 status=0 QTime=0 
+INFO  - 2014-03-03 18:38:26.034; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=36 status=0 QTime=10 
+INFO  - 2014-03-03 18:38:26.248; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=36 status=0 QTime=0 
