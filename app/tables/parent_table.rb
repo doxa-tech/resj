@@ -3,8 +3,8 @@ class ParentTable < BaseTable
 	def attributes(element)
 		[
 			element.id,
-			element.user.name,
-			element.parent.name,
+			element.user.full_name,
+			element.parent.full_name,
 			element.created_at,
 			element.updated_at
 		]

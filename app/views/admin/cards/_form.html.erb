@@ -93,7 +93,8 @@
 						<li>
 							<div class="association_fields autocomplete" data-link="responsables">
 								<%= f.fields_for(:responsables, @card.responsables.any? || @card.responsables.build) do |responsables_fields| %>
-									<%= content_tag :div, class: "fields" + (" contact" if responsables_fields.object.id == @card.responsable.id).to_s do %>
+									<% is_responsable = (!@card.contact.nil? && responsables_fields.object == @card.contact) %>
+									<%= content_tag :div, class: "fields" + (" contact" if is_responsable ).to_s do %>
 										<div class="field">
 											<%= responsables_fields.label :firstname %>
 											<%= responsables_fields.text_field :firstname, data: {attr: "firstname"} %>
@@ -109,8 +110,8 @@
 										<div class="field">
 											<%= responsables_fields.hidden_field :_destroy, identifier: "destroy" %>
 											<%= link_to_remove_fields "remove" %>
-											<%= responsables_fields.hidden_field :is_contact, identifier: "is_contact", value: ("true" if responsables_fields.object.id == @card.responsable.id) %>
-											<%= link_to_add_contact "Mark as contact" unless responsables_fields.object.id == @card.responsable.id %>
+											<%= responsables_fields.hidden_field :is_contact, identifier: "is_contact", value: ("true" if is_responsable ) %>
+											<%= link_to_add_contact "Mark as contact" unless is_responsable %>
 										</div>
 									<% end %>
 								<% end %>
@@ -131,7 +132,6 @@
 						</ul>
 				</div>
 		</div>
-
 		<div class="col split2">
 			<div class="block">
 				<div class="header">
@@ -235,7 +235,8 @@
 
 <% @card.unconfirmed_card.each do |card_user| %>
 	<%= card_user.user.full_name %>
-	<%= link_to "Confirm", user_confirmation_admin_card_path(@card, card_user_id: card_user.id), method: :post %>
+	<%= link_to "Confirm", user_confirmation_admin_card_path(@card, card_user_id: card_user.id, validated: "true"), method: :post %>
+	<%= link_to "Refus", user_confirmation_admin_card_path(@card, card_user_id: card_user.id, validated: "false"), method: :post %>
 <% end %>
 
 <script type="text/javascript">window.onload=selectize();</script>

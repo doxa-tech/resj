@@ -31,19 +31,27 @@ class UsersController < BaseController
 	end
 
 	def card_request
-		if CardUser.where(user_id: current_user.id, card_id: params[:card_id]).any?
-			redirect_to profile_path, error: t('user.card.request.error')
-		else
-			CardUser.create(user_id: current_user.id, card_id: params[:card_id], user_validated: true)
+		card_user = CardUser.where(user_id: current_user.id, card_id: params[:card_id]).first
+		card = Card.find(params[:card_id])
+		if card_user && card_user.card_validated == false && card_user.updated_at < 1.months.ago
+			card_user.update_attribute(:card_validated, nil)
 			redirect_to profile_path, success: t('user.card.request.success')
+		elsif card_user.user_validated == false
+			card_user.update_attribute(:user_validated, true)
+			redirect_to profile_path, success: t('user.card.request.success')
+		elsif card_user && card
+			CardUser.create(user_id: current_user.id, card_id: card.id, user_validated: true)
+			redirect_to profile_path, success: t('user.card.request.success')
+		else
+			redirect_to profile_path, error: t('user.card.request.error')
 		end
 	end
 
 	def card_confirmation
-		if @card_user = CardUser.find(params[:card_user_id]) && @card_user.user_id == current_user.id
-			@card_user.update_attribute(:user_validated, true)
-			responsable = Responsable.where(firstname: current_user.firstname, lastname: current_user.lastname, emai: current_user.email)
-			CardResponsable.find_by_card_id_and_responsable_id(@card_user.card_id, responsable.id).try(:destroy)
+		card_user = CardUser.find(params[:card_user_id])
+		if card_user && card_user.user_id == current_user.id && params[:validated].in?(["false", "true"])
+			card_user.update_attribute(:user_validated, params[:validated])
+			replace_responsable(current_user, card_user.card)
 			redirect_to profile_path, success: t('user.card.confirmation.success')
 		else
 			redirect_to profile_path, error: t('user.card.confirmation.error')

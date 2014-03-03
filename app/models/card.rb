@@ -2,7 +2,7 @@ class Card < ActiveRecord::Base
   include Wizard
 
   belongs_to :card_type
-  belongs_to :responsable
+  belongs_to :contact, polymorphic: true
   has_many :card_responsables, dependent: :destroy
   has_many :responsables, through: :card_responsables
   has_many :card_verifications, dependent: :destroy
@@ -43,14 +43,21 @@ class Card < ActiveRecord::Base
   searchable do
     text :name, boost: 5
     text :description
-    string :tags, multiple: true do
-      tags.map { |a| a.name }
-    end
     integer :card_type_id, multiple: true
+    integer :canton_ids, multiple: true
+    integer :tag_ids, multiple: true
   end
 
   mount_uploader :avatar, AvatarUploader
   mount_uploader :banner, BannerUploader
+
+  def canton_ids
+    location.canton.id
+  end
+
+  def tag_ids
+    tags.pluck(:id)
+  end
 
   def unconfirmed_card
     card_users.where(card_validated: nil)
@@ -87,8 +94,8 @@ class Card < ActiveRecord::Base
   def autosave_associated_records_for_responsables
     new_responsables = []
     responsables.each do |responsable|
-      if user = User.where(firstname: responsable.firstname, lastname: responsable.lastname, email: responsable.email).first
-        Card.users << user
+      if user = User.find_by_email(responsable.email)
+        CardUser.create(user_id: user.id, card_id: id, card_validated: true)
       else
         new_responsables << Responsable.where(firstname: responsable.firstname, lastname: responsable.lastname, email: responsable.email).first_or_create
       end
@@ -111,18 +118,17 @@ class Card < ActiveRecord::Base
   private
 
   def contact?
-    #if responsables && !responsables.select{ |r| r.is_contact == "true" }.any?
+    if responsables && !responsables.select{ |r| r.is_contact == "true" }.any?
       errors.add(:responsable, "has no contact" )
-    #end
+    end
   end
 
   def assign_responsable
-    if contact = responsables.select{ |r| r.is_contact == "true"}.first
-      if new_contact = Responsable.where('firstname = ? AND lastname = ? AND email = ?', contact.firstname, contact.lastname, contact.email).first
-        self.responsable_id = new_contact.id
+    if p_contact = responsables.select{ |r| r.is_contact == "true"}.first
+      if user = User.find_by_email(p_contact.email)
+        self.contact = user
       else
-        contact.save!
-        self.responsable = contact
+        self.contact = Responsable.where(firstname: p_contact.firstname, lastname: p_contact.lastname, email: p_contact.email).first_or_create
       end
     end
   end
