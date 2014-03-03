@@ -23,21 +23,19 @@ class Admin::TagsController < Admin::BaseController
 	end
 
 	def edit
-		@tag = Tag.find(params[:id])
 	end
 
 	def update
-		@tag = Tag.find(params[:id])
 		if @tag.update_attributes(tag_params)
-			redirect_to admin_tags_path, success: t('tag.admin.create.success')
+			redirect_to admin_tags_path, success: t('tag.admin.edit.success')
 		else
 			render 'edit'
 		end
 	end
 
 	def destroy
-		Tag.find(params[:id]).destroy
-		redirect_to admin_tags_path, success: t('tag.admin.create.success')
+		@tag.destroy
+		redirect_to admin_tags_path, success: t('tag.admin.destroy.success')
 	end
 
 	private

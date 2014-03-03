@@ -66,14 +66,17 @@ namespace :db do
 		admin_parents = Element.create(name: 'admin/parents')
 		admin_access_tokens = Element.create(name: 'admin/access_tokens')
 		orators = Element.create(name: 'orators')
+		admin_resources = Element.create(name: 'admin/resources')
+		admin_themes = Element.create(name: 'admin/themes')
 
 		validated = Action.create(name: "validated")
+		verificate = Action.create(name: "verificate")
 
 		# ownerships for admin group :
 		Ownership.create(element_id: admin_pages.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
 		Ownership.create(element_id: admin_users.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
 		Ownership.create(element_id: admin_ownerships.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
-		Ownership.create(element_id: admin_cards.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
+		Ownership.create(element_id: admin_cards.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true, actions: [verificate])
 		Ownership.create(element_id: admin_actions.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
 		Ownership.create(element_id: admin_affiliations.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
 		Ownership.create(element_id: admin_tags.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
@@ -82,6 +85,8 @@ namespace :db do
 		Ownership.create(element_id: admin_verificator_comments.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
 		Ownership.create(element_id: admin_parents.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
 		Ownership.create(element_id: admin_access_tokens.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
+		Ownership.create(element_id: admin_resources.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
+		Ownership.create(element_id: admin_themes.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
 
 		# ownership for the admin user
 		Ownership.create(element_id: admin_cards.id, user_id: admin.id, ownership_type_id: type2.id, actions: [validated])
