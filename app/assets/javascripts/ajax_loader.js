@@ -1,6 +1,11 @@
+var timer;
 $(document).ajaxStart(function(){
-  $("#overlay").show(1000);
+	timer && clearTimeout(timer);
+	timer = setTimeout(function(){
+		$("#overlay").fadeIn(500);
+	}, 800);
 });
 $(document).ajaxStop(function(){
-  $("#overlay").hide();
+	clearTimeout(timer);
+  $("#overlay").fadeOut(400);
 });
