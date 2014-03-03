@@ -79,3 +79,20 @@ h2
 	font: normal 36px 'jura', tahoma;
 	text-shadow: 1px 0px 1px #999;
 }
+
+#overlay {
+	position: absolute;
+	top: 0; bottom: 0; right: 0; left: 0;
+	background: rgba(255,255,255,.5);
+	z-index: 10;
+	display: none;
+	p {
+		position: absolute;
+		top: 40%;
+		text-align: center;
+		width: 100%;
+		font-weight: 900;
+		font-size: 25px;
+		font-family: "Raleway";
+	}
+}
