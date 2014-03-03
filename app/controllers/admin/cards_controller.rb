@@ -1,5 +1,5 @@
 class Admin::CardsController < Admin::BaseController
-	before_action :current_resource, only: [:show, :edit, :update, :destroy, :verificate, :user_confirmation, :user_request]
+	before_action :current_resource, only: [:show, :edit, :update, :destroy, :verificate]
 	before_action :authorize_action, only: [:verificate]
 	before_action :verified?, only: [:verificate]
 
@@ -48,30 +48,14 @@ class Admin::CardsController < Admin::BaseController
 	def verificate
 		CardVerification.create(user_id: current_user.id, card_id: @card.id)
 		if @card.verified?
+			# attr is visible
 			CardMailer.verified(card_admins).deliver
 			password = SecureRandom.hex(8)
-			User.create(firstname: @card.responsable.firstname, lastname: @card.responsable.lastname, email: @card.responsable.email, password: password, password_confirmation: password)
-			# CardMailer
-		end
-	end
-
-	def user_request
-		if CardUser.where(user_id: params[:user_id], card_id: @card.id).any?
-			redirect_to edit_admin_card_path(@card), error: t('user.card.request.error')
-		else
-			CardUser.create(user_id: params[:user_id], card_id: @card.id, card_validated: true)
-			redirect_to edit_admin_card_path(@card), success: t('user.card.request.success')
-		end
-	end
-
-	def user_confirmation
-		@card_user = CardUser.find(params[:card_user_id])
-		if @card_user && @card_user.card_id == @card.id
-			@card_user.update_attribute(:card_validated, true)
-			redirect_to edit_admin_card_path(@card), success: t('user.card.confirmation.success')
-		else
-			@card_user.update_attribute(card_validated: true)
-			redirect_to edit_admin_card_path(@card), error: t('user.card.confirmation.error')
+			user = User.create(firstname: @card.responsable.firstname, lastname: @card.responsable.lastname, email: @card.responsable.email, password: password, password_confirmation: password)
+			actions = Action.where(name: ["user_request", "user_confirmation"])
+			Ownership.create(user_id: user.id, element_id: Element.find_by_name('cards').id, ownership_type_id: Ownership.find_by_name('on_entry').id, id_element: @card.id, right_read: true, right_update: true, right_create: true, actions: actions)
+			# CardMailer contact person ( pass user )
+			# CardMailer pour les responsable
 		end
 	end
 
@@ -88,7 +72,7 @@ class Admin::CardsController < Admin::BaseController
   # Control if the user already verified
   def verified?
   	if @card.users.pluck(:id).include? current_user.id || @card.verified?
-  		redirect_to root_path 
+  		redirect_to admin_cards_path
   	end
   end
 

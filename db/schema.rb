@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140226165725) do
+ActiveRecord::Schema.define(version: 20140303185747) do
 
   create_table "access_tokens", force: true do |t|
     t.string   "token"
@@ -105,7 +105,6 @@ ActiveRecord::Schema.define(version: 20140226165725) do
   create_table "cards", force: true do |t|
     t.integer  "card_type_id"
     t.string   "name"
-    t.integer  "responsable_id"
     t.string   "email"
     t.string   "street"
     t.string   "place"
@@ -122,11 +121,13 @@ ActiveRecord::Schema.define(version: 20140226165725) do
     t.string   "banner"
     t.integer  "card_id"
     t.integer  "location_id"
+    t.integer  "contact_id"
+    t.string   "contact_type"
+    t.boolean  "visible"
   end
 
   add_index "cards", ["card_type_id"], name: "index_cards_on_card_type_id"
   add_index "cards", ["location_id"], name: "index_cards_on_location_id"
-  add_index "cards", ["responsable_id"], name: "index_cards_on_responsable_id"
 
   create_table "disponibilities", force: true do |t|
     t.string   "name"
