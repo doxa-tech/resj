@@ -1,6 +1,7 @@
 <%= form_for [:admin, @card] do |f| %>
 	
 	<%= render 'error_messages', object: f.object %>
+
 	<div class="row">
 		<div class="col split2">
 			<div class="block">
@@ -117,6 +118,17 @@
 							</div>
 						</li>
 					</ul>
+					<ul>
+						<li>
+								<%= f.fields_for :users do |user_fields| %>
+									<div class="fields">
+										<%= user_fields.object.full_name %>
+										<%= user_fields.hidden_field :_destroy, identifier: "destroy" %>
+										<%= link_to_remove_fields "remove" %>
+									</div>
+								<% end %>
+							</li>
+						</ul>
 				</div>
 		</div>
 
@@ -212,7 +224,18 @@
 		<div class="button">
 			<%= f.submit %>
 		</div>
-		<% end %>
 	</div>
+
+<% end %>
+
+<%= form_tag user_request_admin_card_path(@card) do %>
+	<%= select_tag :user_id, options_from_collection_for_select(User.users - @card.users, :id, :full_name), class: "selectize" %>
+	<%= submit_tag %>
+<% end %>
+
+<% @card.unconfirmed_card.each do |card_user| %>
+	<%= card_user.user.full_name %>
+	<%= link_to "Confirm", user_confirmation_admin_card_path(@card, card_user_id: card_user.id), method: :post %>
+<% end %>
 
 <script type="text/javascript">window.onload=selectize();</script>

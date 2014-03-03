@@ -5,7 +5,8 @@ en:
     header:
       home: "Home"
       reseau: "Réseau"
-      profile: "Profile"
+      resources: "Resources"
+      resj: "ResJ"
       admin:
         cards: "Cards"
         pages: "Pages"
@@ -18,6 +19,8 @@ en:
         parents: "Inheritances"
         access_tokens: "Tokens"
         card_types: "Card Types"
+        themes: "Themes"
+        resources: "Resources"
   card:
     create:
       title: "Create a new card"
@@ -43,6 +46,13 @@ en:
     edit:
       title: "Update your account"
       success: "Account updated"
+    card:
+      confirmation:
+        success: "You're now an official responsable"
+        error: "Error in the process"
+      request:
+        success: "Card request sent"
+        error: "Error in the process"
     admin:
       create:
         title: "Create a new user"
@@ -130,6 +140,28 @@ en:
         success: "Tag updated"
       destroy:
         success: "Tag deleted"
+  theme:
+    admin:
+      index: "Themes"
+      create:
+        title: "Create a new theme"
+        success: "Theme created"
+      edit:
+        title: "Edit an theme"
+        success: "Theme updated"
+      destroy:
+        success: "Theme deleted"
+  resource:
+    admin:
+      index: "Resources"
+      create:
+        title: "Create a new resource"
+        success: "Resource created"
+      edit:
+        title: "Edit an resource"
+        success: "Resource updated"
+      destroy:
+        success: "Resource deleted"
   verificator_comment:
     admin:
       create:

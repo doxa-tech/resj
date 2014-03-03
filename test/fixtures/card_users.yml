@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  card_id: 
+  user_id: 
+  user_validated: false
+  card_validated: false
+
+two:
+  card_id: 
+  user_id: 
+  user_validated: false
+  card_validated: false

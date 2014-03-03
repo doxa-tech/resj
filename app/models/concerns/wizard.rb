@@ -4,7 +4,7 @@ module Wizard
 	attr_writer :current_step
 
   def current_step
-  	@current_step ||= steps.first
+  	@current_step
   end
 
   def next_step
