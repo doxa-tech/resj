@@ -42,8 +42,8 @@
 			&:after, &:before {
 				display: table;
 				content: " ";
+				clear: both;
 			}
-			&:after {clear: both}
 		}
 
 		.col {
@@ -53,7 +53,10 @@
 
 			&.split2 {
 				width: 50%;
-				} // &.split2
+			} // &.split2
+			&.split1 {
+				width: 100%;
+			}
 
 		} // .col
 
@@ -68,9 +71,24 @@
 			background: #fff;
 			border-radius: 3px;
 			text-align: left;
+			background: rgba(1,1,1,.01);
 
 			.header {
 				padding: 20px;
+				h3 {
+					font-family: 'Open Sans', tahoma;
+					text-align: center;
+					font-weight: 200;
+					font-size: 18px;
+					line-height: 0;
+					padding: 0;
+				}
+				h5 {
+					font-family: "Raleway", Helvetica, sans-serif;
+					font-size: 13px;
+					font-weight: 200;
+					line-height: 21px;
+				}
 			}
 
 			ul {

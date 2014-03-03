@@ -5,7 +5,8 @@ en:
     header:
       home: "Home"
       reseau: "Réseau"
-      profile: "Profile"
+      resources: "Resources"
+      resj: "ResJ"
       admin:
         cards: "Cards"
         pages: "Pages"
