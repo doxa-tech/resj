@@ -50,7 +50,7 @@ class Admin::CardsController < Admin::BaseController
 		if @card.verified?
 			CardMailer.verified(card_admins).deliver
 			password = SecureRandom.hex(8)
-			User.create(firstname: @card.responsable.firstname, lastname: @card.responsable.lastname, email: @card.responsable.email, password: password, password_confirmation: password)
+			User.create(firstname: @card.contact.firstname, lastname: @card.contact.lastname, email: @card.contact.email, password: password, password_confirmation: password)
 			# CardMailer
 		end
 	end
