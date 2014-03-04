@@ -1,3 +1,5 @@
+require 'json'
+
 class CardMailer < ActionMailer::Base
   default from: "admin@reseaujeunesse.ch"
 
@@ -6,11 +8,11 @@ class CardMailer < ActionMailer::Base
          from:    "\"Noémien de ResJ\" <admin@reseaujeunesse.ch>",
          subject: 'Nouveau groupe sur réseauJeunesse.ch',
          body:
-    headers['X-MC-MergeVars'] = "{
-                                    \"TYPE\":\"#{card.card_type.name}\",
-                                    \"NAME\":\"#{card.name}\",
-                                    \"DATE\":\"#{card.created_at}\"
-                                  }" # variables
+    headers['X-MC-MergeVars'] = {
+                                  TYPE: card.card_type.name,
+                                  NAME: card.name,
+                                  DATE: card.created_at
+                                }.to_json # variables
     headers['X-MC-Template'] = "welcome2"  # template
     headers['X-MC-AutoText'] = 1 # generate text version
     headers['X-MC-InlineCSS'] = "true" # inline css
@@ -29,5 +31,11 @@ class CardMailer < ActionMailer::Base
   def verified(card_admins)
   	@card_admins = card_admins
   	mail to: card_admins.pluck(:email), subject: "Card verified"
+  end
+
+  private
+
+  def s(string)
+    string.gsub /"/
   end
 end

@@ -72,7 +72,7 @@ namespace :db do
 		validated = Action.create(name: "validated")
 		verificate = Action.create(name: "verificate")
 		user_request = Action.create(name: "user_request")
-		user_request = Action.create(name: "user_confirmation")
+		user_confirmation = Action.create(name: "user_confirmation")
 
 		# ownerships for admin group :
 		Ownership.create(element_id: admin_pages.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)

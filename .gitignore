@@ -20,4 +20,6 @@
 /config/application.yml
 
 solr/
-/config/sunspot.yml
+
+
+config/sunspot.yml
