@@ -93,8 +93,7 @@
 						<li>
 							<div class="association_fields autocomplete" data-link="responsables">
 								<%= f.fields_for(:responsables, @card.responsables.any? || @card.responsables.build) do |responsables_fields| %>
-									<% is_responsable = (!@card.contact.nil? && responsables_fields.object == @card.contact) %>
-									<%= content_tag :div, class: "fields" + (" contact" if is_responsable ).to_s do %>
+									<%= content_tag :div, class: "fields" do %>
 										<div class="field">
 											<%= responsables_fields.label :firstname %>
 											<%= responsables_fields.text_field :firstname, data: {attr: "firstname"} %>
@@ -110,8 +109,10 @@
 										<div class="field">
 											<%= responsables_fields.hidden_field :_destroy, identifier: "destroy" %>
 											<%= link_to_remove_fields "remove" %>
-											<%= responsables_fields.hidden_field :is_contact, identifier: "is_contact", value: ("true" if is_responsable ) %>
-											<%= link_to_add_contact "Mark as contact" unless is_responsable %>
+											<% if @card.new_record? %>
+												<%= responsables_fields.hidden_field :is_contact, identifier: "is_contact" %>
+												<%= link_to_add_contact "Mark as contact" %>
+											<% end %>
 										</div>
 									<% end %>
 								<% end %>

@@ -48,8 +48,9 @@ class Admin::CardsController < Admin::BaseController
 	def verificate
 		CardVerification.create(user_id: current_user.id, card_id: @card.id)
 		if @card.verified?
-			# attr is visible
+			@card.update_attribute(:visible, true)
 			CardMailer.verified(card_admins).deliver
+<<<<<<< HEAD
 			password = SecureRandom.hex(8)
 			User.create(firstname: @card.contact.firstname, lastname: @card.contact.lastname, email: @card.contact.email, password: password, password_confirmation: password)
 			actions = Action.where(name: ["user_request", "user_confirmation"])
@@ -57,6 +58,9 @@ class Admin::CardsController < Admin::BaseController
 			# CardMailer
 			# CardMailer contact person ( pass user )
 			# CardMailer pour les responsable
+=======
+			# CardMailer
+>>>>>>> FETCH_HEAD
 		end
 	end
 
