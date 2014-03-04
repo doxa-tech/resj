@@ -2,7 +2,7 @@ class Card < ActiveRecord::Base
   include Wizard
 
   belongs_to :card_type
-  belongs_to :contact, polymorphic: true
+  belongs_to :user
   has_many :card_responsables, dependent: :destroy
   has_many :responsables, through: :card_responsables
   has_many :card_verifications, dependent: :destroy
@@ -29,7 +29,7 @@ class Card < ActiveRecord::Base
   with_options if: Proc.new { |c| c.current_step?("location")} do |card|
     card.validates :street, presence: true
     card.validates :location_id, presence: true
-    card.validates :place, presence: true, length: { maximum: 25 }
+    card.validates :place, length: { maximum: 60 }
     card.validates :latitude, presence: true
     card.validates :longitude, presence: true
   end
@@ -38,7 +38,7 @@ class Card < ActiveRecord::Base
     card.validates :email, :format => { :with => /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/ }, :allow_blank => true
   end
 
-  before_save :assign_responsable
+  before_create :create_owner
 
   searchable do
     text :name, boost: 5
@@ -118,18 +118,22 @@ class Card < ActiveRecord::Base
   private
 
   def contact?
-    if responsables && !responsables.select{ |r| r.is_contact == "true" }.any?
+    if new_record? && responsables && !responsables.select{ |r| r.is_contact == "true" }.any?
       errors.add(:responsable, "has no contact" )
     end
   end
 
-  def assign_responsable
-    if p_contact = responsables.select{ |r| r.is_contact == "true"}.first
-      if user = User.find_by_email(p_contact.email)
-        self.contact = user
-      else
-        self.contact = Responsable.where(firstname: p_contact.firstname, lastname: p_contact.lastname, email: p_contact.email).first_or_create
-      end
+  def create_owner
+    contact = responsables.select{ |r| r.is_contact == "true"}.first
+    if user = User.find_by_email(contact.email)
+      self.user = user
+    else
+      password = SecureRandom.hex(8)
+      user = User.create(firstname: contact.firstname, lastname: contact.lastname, email: contact.email, password: password, password_confirmation: password)
+      actions = Action.where(name: ["user_request", "user_confirmation"])
+      Ownership.create(user_id: user.id, element_id: Element.find_by_name('cards').id, ownership_type_id: Ownership.find_by_name('on_entry').id, id_element: @card.id, right_read: true, right_update: true, right_create: true, actions: actions)
+      self.user = user
+      # UserMailer
     end
   end
 end

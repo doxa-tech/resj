@@ -65,6 +65,6 @@ class ApplicationController < ActionController::Base
 
   def replace_responsable(user, card)
     responsable = Responsable.find_by_email(user.email)
-    CardResponsable.find_by_card_id_and_responsable_id(card.id, responsable.id).try(:destroy)
+    CardResponsable.find_by_card_id_and_responsable_id(card.id, responsable.try(:id)).try(:destroy)
   end
 end

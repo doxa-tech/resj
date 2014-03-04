@@ -121,7 +121,12 @@ ActiveRecord::Schema.define(version: 20140226165725) do
     t.string   "banner"
     t.integer  "card_id"
     t.integer  "location_id"
+<<<<<<< HEAD
     t.integer  "responsable_id"
+=======
+    t.integer  "user_id"
+    t.boolean  "visible"
+>>>>>>> FETCH_HEAD
   end
 
   add_index "cards", ["card_type_id"], name: "index_cards_on_card_type_id"
