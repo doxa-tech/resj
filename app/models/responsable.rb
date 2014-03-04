@@ -1,7 +1,6 @@
 class Responsable < ActiveRecord::Base
 	attr_accessor :is_contact
 	
-	has_many :cards, as: :contact
 	has_many :card_responsables, dependent: :destroy
 	has_many :cards, through: :card_responsables
 

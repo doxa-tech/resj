@@ -15,8 +15,8 @@ class Admin::ResourcesController < Admin::BaseController
 
 	def create
 		@resource = Resource.new(resource_params)
-		if @resource
-			redirect_to resources_path, success: t('resource.create.success')
+		if @resource.save
+			redirect_to admin_resources_path, success: t('resource.create.success')
 		else
 			render 'new'
 		end
@@ -27,7 +27,7 @@ class Admin::ResourcesController < Admin::BaseController
 
 	def update
 		if @resource.update_attributes(resource_params)
-			redirect_to resources_path, success: t('resource.edit.success')
+			redirect_to admin_resources_path, success: t('resource.edit.success')
 		else
 			render 'edit'
 		end
@@ -35,7 +35,7 @@ class Admin::ResourcesController < Admin::BaseController
 
 	def destroy
 		@resource.destroy
-		redirect_to resources_path, success: t('resource.destroy.success')
+		redirect_to admin_resources_path, success: t('resource.destroy.success')
 	end
 
 	private
