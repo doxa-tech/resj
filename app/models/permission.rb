@@ -65,7 +65,7 @@ class Permission
   end
 
   def allow_resource?
-  	return true if @user.cards.any?
+  	return true if @user.cards.where(visible: true).any?
   end
 
   def allow_params?(controller, name)

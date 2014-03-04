@@ -48,13 +48,8 @@ class Admin::CardsController < Admin::BaseController
 	def verificate
 		CardVerification.create(user_id: current_user.id, card_id: @card.id)
 		if @card.verified?
-			# attr is visible
+			@card.update_attribute(:visible, true)
 			CardMailer.verified(card_admins).deliver
-			password = SecureRandom.hex(8)
-			user = User.create(firstname: @card.responsable.firstname, lastname: @card.responsable.lastname, email: @card.responsable.email, password: password, password_confirmation: password)
-			actions = Action.where(name: ["user_request", "user_confirmation"])
-			Ownership.create(user_id: user.id, element_id: Element.find_by_name('cards').id, ownership_type_id: Ownership.find_by_name('on_entry').id, id_element: @card.id, right_read: true, right_update: true, right_create: true, actions: actions)
-			# CardMailer contact person ( pass user )
 			# CardMailer pour les responsable
 		end
 	end

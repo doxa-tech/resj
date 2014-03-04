@@ -121,8 +121,7 @@ ActiveRecord::Schema.define(version: 20140303185747) do
     t.string   "banner"
     t.integer  "card_id"
     t.integer  "location_id"
-    t.integer  "contact_id"
-    t.string   "contact_type"
+    t.integer  "user_id"
     t.boolean  "visible"
   end
 

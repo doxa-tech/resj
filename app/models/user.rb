@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   has_many :card_users, dependent: :destroy
   has_many :cards, through: :card_users
   has_one :orator
-  has_many :cards, as: :contact
+  has_many :cards
 
   accepts_nested_attributes_for :orator
 
