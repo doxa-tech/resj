@@ -50,7 +50,7 @@ class Admin::CardsController < Admin::BaseController
 		if @card.verified?
 			@card.update_attribute(:visible, true)
 			CardMailer.verified(card_admins).deliver
-			# CardMailer pour les responsable
+			# CardMailer
 		end
 	end
 
