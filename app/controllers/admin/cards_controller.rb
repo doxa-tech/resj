@@ -50,17 +50,9 @@ class Admin::CardsController < Admin::BaseController
 		if @card.verified?
 			@card.update_attribute(:visible, true)
 			CardMailer.verified(card_admins).deliver
-<<<<<<< HEAD
-			password = SecureRandom.hex(8)
-			User.create(firstname: @card.contact.firstname, lastname: @card.contact.lastname, email: @card.contact.email, password: password, password_confirmation: password)
-			actions = Action.where(name: ["user_request", "user_confirmation"])
-			Ownership.create(user_id: user.id, element_id: Element.find_by_name('cards').id, ownership_type_id: Ownership.find_by_name('on_entry').id, id_element: @card.id, right_read: true, right_update: true, right_create: true, actions: actions)
 			# CardMailer
-			# CardMailer contact person ( pass user )
 			# CardMailer pour les responsable
-=======
 			# CardMailer
->>>>>>> FETCH_HEAD
 		end
 	end
 
@@ -85,7 +77,7 @@ class Admin::CardsController < Admin::BaseController
   	@card = Card.find(params[:id])
   end
 
-  def verificators_emails
+  def checkers_emails
   	@checkers_emails ||= User.joins(:ownerships, ownerships: [:actions, :element]).where(elements: {name: "admin/cards"}, actions: {name: "verificate"})
   end
 

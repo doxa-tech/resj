@@ -5,6 +5,11 @@ class ResourcesController < BaseController
 		@resources = Resource.all
 	end
 
+	def download
+  	@resource = Resource.find(params[:id])
+  	send_file @resource.file.path, disposition: 'attachment', x_sendfile: true
+	end
+
 	private
 
 	def authorize_resource
