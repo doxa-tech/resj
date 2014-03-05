@@ -24,9 +24,9 @@ namespace :csv do
 
 	desc "Load some example cards"
 	task card: :environment do
-		resp = Responsable.create(firstname: "Noémien", lastname: "Kocher", email: "nkcr.je@gmail.com")
+		user = User.create(firstname: "Noémien", lastname: "Kocher", email: "nkcr.je@gmail.com", password: '12341', password_confirmation: '12341')
 		CSV.open('public/csv/cards.csv','r').each do |a|
-			Card.create(
+			card = Card.create(
 				name: a[0], 
 				latitude: a[1], 
 				longitude: a[2], 
@@ -35,9 +35,10 @@ namespace :csv do
 				street: a[5], 
 				location: Location.first(:order => "RANDOM()"), 
 				website: a[8], 
-				responsable: resp,
+				user: user,
 				card_type: CardType.first(:order => "RANDOM()")
 			)
+			card.users << user
 		end
 	end
 end

@@ -129,10 +129,10 @@ class Card < ActiveRecord::Base
       self.user = user
     else
       password = SecureRandom.hex(8)
-      user = User.create(firstname: contact.firstname, lastname: contact.lastname, email: contact.email, password: password, password_confirmation: password)
+      new_user = User.create(firstname: contact.firstname, lastname: contact.lastname, email: contact.email, password: password, password_confirmation: password)
       actions = Action.where(name: ["user_request", "user_confirmation"])
       Ownership.create(user_id: user.id, element_id: Element.find_by_name('cards').id, ownership_type_id: Ownership.find_by_name('on_entry').id, id_element: @card.id, right_read: true, right_update: true, right_create: true, actions: actions)
-      self.user = user
+      self.user = new_user
       # UserMailer
     end
   end
