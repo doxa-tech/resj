@@ -7,7 +7,7 @@ class UserTable < BaseTable
 			element.gravatar_email,
 			element.password_digest,
 			element.remember_token,
-			element.user_type.try(:name),
+			element.user_type.name,
 			element.uid,
 			element.created_at,
 			element.updated_at,
@@ -25,5 +25,4 @@ class UserTable < BaseTable
 	def model
 		User
 	end
-
 end
