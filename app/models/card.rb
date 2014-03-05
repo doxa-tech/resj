@@ -38,8 +38,6 @@ class Card < ActiveRecord::Base
     card.validates :email, :format => { :with => /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/ }, :allow_blank => true
   end
 
-  before_create :create_owner
-
   searchable do
     text :name, boost: 5
     text :description
@@ -115,14 +113,6 @@ class Card < ActiveRecord::Base
     current_step.nil? || current_step == step
   end
 
-  private
-
-  def contact?
-    if new_record? && responsables && !responsables.select{ |r| r.is_contact == "true" }.any?
-      errors.add(:responsable, "has no contact" )
-    end
-  end
-
   def create_owner
     contact = responsables.select{ |r| r.is_contact == "true"}.first
     if user = User.find_by_email(contact.email)
@@ -134,6 +124,14 @@ class Card < ActiveRecord::Base
       Ownership.create(user_id: user.id, element_id: Element.find_by_name('cards').id, ownership_type_id: Ownership.find_by_name('on_entry').id, id_element: @card.id, right_read: true, right_update: true, right_create: true, actions: actions)
       self.user = new_user
       # UserMailer
+    end
+  end
+
+  private
+
+  def contact?
+    if new_record? && responsables.any? && !responsables.select{ |r| r.is_contact == "true" }.any?
+      errors.add(:responsable, "has no contact" )
     end
   end
 end

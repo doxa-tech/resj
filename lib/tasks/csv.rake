@@ -38,7 +38,7 @@ namespace :csv do
 				user: user,
 				card_type: CardType.first(:order => "RANDOM()")
 			)
-			card.users << user
+			CardUser.create(user_id: user.id, card_id: card.id, card_validated: true, user_validated: true)
 		end
 	end
 end

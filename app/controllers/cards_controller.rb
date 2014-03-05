@@ -41,6 +41,7 @@ class CardsController < BaseController
 		@card = Card.new(session[:card_params])
 		if @card.save
 			session[:card_params] = nil
+			@card.create_owner
 			# CardMailer.created(validator).deliver
 			CardMailer.welcome(@card).deliver
 			redirect_to reseau_path, success: t('card.create.success')

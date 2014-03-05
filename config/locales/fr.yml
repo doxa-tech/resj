@@ -6,3 +6,11 @@ fr:
     previous_label: "<i class='fi-arrow-left'></i> Précédent"
     next_label: "Suivant <i class='fi-arrow-right'></i>"
     page_gap: "&hellip;"
+  helpers:
+    submit:
+      user:
+        create: "S'inscrire"
+        update: "Mettre à jour"
+      create: "Créer"
+      update: "Enregistrer"
+      submit: "Enregistrer"

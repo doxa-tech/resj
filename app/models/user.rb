@@ -20,7 +20,8 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :orator
 
-  before_save :format, :create_remember_token
+  after_validation :format
+  before_save :create_remember_token
   before_create :assign_gravatar
 
   with_options unless: :is_group? do |user|
@@ -62,12 +63,12 @@ class User < ActiveRecord::Base
 
   # Remove spaces and capitales
   def format
-    self.firstname.try(:strip!)
-    self.lastname.try(:strip!)
-    self.email.try(:strip!)
-    self.firstname.try(:capitalize!)
-    self.lastname.try(:capitalize!)
-    self.email.try(:downcase!)
+    self.firstname.strip!
+    self.lastname.strip!
+    self.email.strip
+    self.firstname.capitalize!
+    self.lastname.capitalize!
+    self.email.downcase!
   end
 
   def create_remember_token
