@@ -19,7 +19,11 @@ Resj::Application.routes.draw do
 
   resources :users, only: [:create]
   resources :orators, except: [:show, :destroy]
-  resources :resources, only: [:index, :show]
+  resources :resources, only: [:index, :show] do
+    member do
+      get 'download'
+    end
+  end
 
   resources :sessions, only: [:create, :destroy]
   resources :password_resets, except: [:index, :show, :destroy]
