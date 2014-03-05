@@ -81,13 +81,13 @@ h2
 }
 
 #overlay {
-	position: absolute;
+	position: fixed;
 	top: 0; bottom: 0; right: 0; left: 0;
 	background: rgba(255,255,255,.5);
-	z-index: 10;
+	z-index: 9999;
 	display: none;
 	p {
-		position: absolute;
+		position: fixed;
 		top: 300px;
 		text-align: center;
 		width: 100%;
