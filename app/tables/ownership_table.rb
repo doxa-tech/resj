@@ -3,9 +3,9 @@ class OwnershipTable < BaseTable
 	def attributes(element)
 		[
 			element.id,
-			element.element.try(:name),
-			element.user.try(:name),
-			element.ownership_type.try(:name),
+			element.element.name,
+			element.user.full_name,
+			element.ownership_type.name,
 			element.right_create,
 			element.right_read,
 			element.right_update,

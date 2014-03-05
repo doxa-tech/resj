@@ -21,6 +21,7 @@ class Admin::CardsController < Admin::BaseController
 	def create
 		@card = Card.new(card_params)
 		if @card.save
+			@card.create_owner
 			redirect_to admin_cards_path, success: t('card.admin.create.success')
 		else
 			render 'new'
