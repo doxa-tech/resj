@@ -2,7 +2,7 @@ Resj::Application.routes.draw do
 
   root to: 'pages#home'
 
-  %w[home resj contact].each do |page|
+  %w[home resj contact resources].each do |page|
     get page, to: "pages##{page}"
   end
 
@@ -19,7 +19,7 @@ Resj::Application.routes.draw do
 
   resources :users, only: [:create]
   resources :orators, except: [:show, :destroy]
-  resources :resources, only: [:index, :show] do
+  resources :resources, only: [:index, :show], as: :documents do
     member do
       get 'download'
     end

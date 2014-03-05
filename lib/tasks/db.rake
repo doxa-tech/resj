@@ -4,6 +4,9 @@ namespace :db do
 		Page.destroy_all
 		
 		Page.create(name: 'home', content: 'content')
+		Page.create(name: 'resj', content: 'content')
+		Page.create(name: 'resources', content: 'content')
+		Page.create(name: 'contact', content: 'content')
 	end
 
 	desc "Create the card's types"

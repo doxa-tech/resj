@@ -24,4 +24,8 @@ class ResourcesUploader < CarrierWave::Uploader::Base
     "/PATH/RAILSAPPLICATION/tmp/uploads/resources/cache/#{model.id}"
   end
 
+  def extension_white_list
+    %w(doc docx ppt pptx pdf odt odp)
+  end
+
 end

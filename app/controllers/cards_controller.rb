@@ -9,10 +9,9 @@ class CardsController < BaseController
 			with(:card_type_id, params[:card_type_ids]) if params[:card_type_ids]
 			with(:canton_ids, params[:canton_ids]) if params[:canton_ids]
 			with(:tag_ids, params[:tag_ids]) if params[:tag_ids]
-			paginate page: params[:page] if params[:page].present?
+			paginate page: params[:page] if params[:page]
 		end
   	@cards = @search.results
-  	@options = {tag: params[:tag] || "", search: params[:search], page: params[:page] || ""}
 	end
 
 	def show

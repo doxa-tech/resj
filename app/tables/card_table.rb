@@ -3,7 +3,7 @@ class CardTable < BaseTable
 	def attributes(element)
 		[
 			element.id,
-			element.card_type.try(:name),
+			element.card_type.name,
 			element.name,
 			element.email,
 			element.street,
@@ -11,7 +11,7 @@ class CardTable < BaseTable
 			element.website,
 			element.password_digest,
 			element.description,
-			element.affiliations,
+			element.affiliation,
 			element.validated,
 			element.created_at,
 			element.updated_at,
@@ -20,7 +20,9 @@ class CardTable < BaseTable
 			element.avatar_url,
 			element.banner_url,
 			element.card.try(:name),
-			element.location.full_name
+			element.location.full_name,
+			element.user.full_name,
+			element.visible
 		]
 	end
 
