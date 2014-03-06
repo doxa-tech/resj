@@ -17,14 +17,17 @@ Resj::Application.routes.draw do
   post 'user/confirmation', to: "users#card_confirmation"
   post 'user/request', to: "users#card_request"
 
-  resources :users, only: [:create]
-  resources :orators, except: [:show, :destroy]
-  resources :resources, only: [:index, :show], as: :documents do
-    member do
-      get 'download'
+  # resources
+  scope 'resources' do
+    resources :orators, except: [:show, :destroy]
+    resources :documents, controller: 'resources', only: [:index, :show] do
+      member do
+        get 'download'
+      end
     end
   end
 
+  resources :users, only: [:create]
   resources :sessions, only: [:create, :destroy]
   resources :password_resets, except: [:index, :show, :destroy]
   
