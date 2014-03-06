@@ -21,6 +21,7 @@ en:
         card_types: "Card Types"
         themes: "Themes"
         resources: "Resources"
+        articles: "Articles"
   card:
     create:
       title: "Create a new card"
@@ -196,6 +197,28 @@ en:
       success: "Orator's account created"
     edit:
       success: "Orator's account updated"
+  article:
+    admin:
+      index: "Articles"
+      create:
+        title: "Create a new article"
+        success: "Article created"
+      edit:
+        title: "Edit an article"
+        success: "Article updated"
+      destroy:
+        success: "Article deleted"
+  resource:
+    admin:
+      index: "Resources"
+      create:
+        title: "Create a new resource"
+        success: "Resource created"
+      edit:
+        title: "Edit an resource"
+        success: "Resource updated"
+      destroy:
+        success: "Resource deleted"
   will_paginate:
     previous_label: "<i class='fi-arrow-left'></i> Previous"
     next_label: "Next <i class='fi-arrow-right'></i>"

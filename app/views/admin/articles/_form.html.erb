@@ -1,0 +1,16 @@
+<%= form_for [:admin, @article] do |f| %>
+
+	<%= render 'error_messages', object: f.object %>
+
+	<%= f.label :title %>
+	<%= f.text_field :title %>
+
+	<%= f.label :content %>
+	<%= f.text_area :content %>
+
+	<%= f.label :image %>
+	<%= f.file_field :image %>
+
+	<%= f.submit %>
+
+<% end %>

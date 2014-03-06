@@ -20,6 +20,7 @@ Resj::Application.routes.draw do
   # resources
   scope 'resources' do
     resources :orators, except: [:show, :destroy]
+    resources :articles, only: [:index, :show]
     resources :documents, controller: 'resources', only: [:index, :show] do
       member do
         get 'download'
@@ -57,6 +58,7 @@ Resj::Application.routes.draw do
     resources :access_tokens, except: [:show]
     resources :resources, except: [:show]
     resources :themes, except: [:show]
+    resources :articles, except: [:show]
 
     resources :cards do
       resources :verificator_comments, only: [:create, :update, :destroy]
