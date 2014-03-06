@@ -71,6 +71,7 @@ namespace :db do
 		admin_resources = Element.create(name: 'admin/resources')
 		admin_themes = Element.create(name: 'admin/themes')
 		cards = Element.create(name: 'cards')
+		admin_articles = Element.create(name: 'admin/articles')
 
 		validated = Action.create(name: "validated")
 		verificate = Action.create(name: "verificate")
@@ -93,6 +94,7 @@ namespace :db do
 		Ownership.create(element_id: admin_resources.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
 		Ownership.create(element_id: admin_themes.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
 		Ownership.create(element_id: cards.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true, actions: [user_request, user_confirmation])
+		Ownership.create(element_id: admin_articles.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
 
 		# ownership for the admin user
 		Ownership.create(element_id: admin_cards.id, user_id: admin.id, ownership_type_id: type2.id, actions: [validated])

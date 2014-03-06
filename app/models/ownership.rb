@@ -6,7 +6,7 @@ class Ownership < ActiveRecord::Base
 	has_many :actions, through: :ownership_actions
   has_many :access_tokens
 
-	accepts_nested_attributes_for :actions, allow_destroy: true,  reject_if: proc { |attributes| attributes['name'].blank? }
+	accepts_nested_attributes_for :actions, allow_destroy: true, reject_if: proc { |attributes| attributes['name'].blank? }
 
   validates :user_id, presence: true
   validates :element_id, presence: true

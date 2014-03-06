@@ -17,12 +17,9 @@ class User < ActiveRecord::Base
   has_many :cards, through: :card_users
   has_one :orator
   has_many :cards
+  has_many :articles
 
   accepts_nested_attributes_for :orator
-
-  after_validation :format
-  before_save :create_remember_token
-  before_create :assign_gravatar
 
   with_options unless: :is_group? do |user|
     user.validates :firstname, presence: true, length: { maximum: 15 }
@@ -30,6 +27,10 @@ class User < ActiveRecord::Base
     user.validates :email, :format => { :with => /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/ }, uniqueness: true
     user.validates :gravatar_email, :format => { :with => /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/ }, on: :update?
     user.validate :match_current_password
+
+    user.after_validation :format
+    user.before_save :create_remember_token
+    user.before_create :assign_gravatar
   end
   validates :password, presence: true, length: { minimum: 5 }, confirmation: true, :unless => lambda { |v| v.validate_password? || v.is_group? }
 

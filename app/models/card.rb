@@ -22,7 +22,7 @@ class Card < ActiveRecord::Base
   accepts_nested_attributes_for :affiliations, :allow_destroy => true, reject_if: proc { |a| a[:name].blank? }
 
   with_options if: Proc.new { |c| c.current_step?("general")} do |card|
-    card.validates :name, presence: true, length: { maximum: 25 }, uniqueness: true
+    card.validates :name, presence: true, length: { maximum: 30 }, uniqueness: true
     card.validates :description, presence: true, length: { maximum: 500 }
     card.validates :card_type_id, presence: true
   end
