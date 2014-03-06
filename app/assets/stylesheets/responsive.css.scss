@@ -1,7 +1,36 @@
 /* http://getbootstrap.com/css/#responsive-utilities */
+/* Very Large devices */
+@media (max-width: 1435px)
+{
+	// Banner
+	#banner {
+		min-height: 400px !important;
+	}
+} 
 /* Large devices */
 @media (max-width: 1200px) 
 {
+	// Bannner
+	#banner {
+		min-height: 360px !important;
+		.content_banner {
+			padding: 0 0 5px 0 !important;
+			.block {
+				width: 280px !important;
+				.btn {
+					padding: 0 !important;
+					p {
+						padding: 6px !important;
+						border-radius: 0 0 4px 4px !important;
+						font-size: 12px !important;
+						width: 100% !important;
+						text-align: center !important;
+					}
+				}
+			}
+		}
+	}
+
 	// Cards
 	#container.cards {
 		.rows {
@@ -45,6 +74,11 @@
 /* Medium devices */
 @media (max-width: 992px) 
 {
+	// Banner
+	#banner {
+		min-height: 300px !important;
+	}
+
 	// home
 	#container.home {
 		.new {
@@ -78,6 +112,23 @@
 /* Small devices */
 @media (max-width: 768px) 
 {
+	// Banner
+	#banner {
+		min-height: 200px !important;
+		.content_banner {
+			.block {
+				width: 100% !important;
+				.content {
+					padding: 0 !important;
+				}
+				.btn {
+					p {
+						width: 115px !important;
+					}
+				}
+			}
+		}
+	}
 
 	// Global
 	header {
@@ -131,7 +182,7 @@
 /* For home mapbox */
 @media (max-height: 600px)
 {
-	#container.home {
+	#container.home .map {
 		#map {
 			position: relative;
 			width: 90%;

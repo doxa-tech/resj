@@ -1,0 +1,182 @@
+<% content_for :id, 'ressources' %>
+
+<% content_for :content_banner do %>
+	<div class="content_banner">
+		<div class="block">
+			<div class="content">
+				<h2>Des articles pertinents</h2>
+				<p>Retrouvez tous les mois un article édifiant et d'actualité</p>
+			</div>
+			<div class="btn" id="btn-articles">
+				<p>Découvrir</p>
+			</div>
+		</div>
+		<div class="block">
+			<div class="content">
+				<h2>Des documents, PDF, powerpoint ...</h2>
+				<p>Créés par des leaders pour des leaders</p>
+			</div>
+			<div class="btn" id="btn-docs">
+				<p>Découvrir</p>
+			</div>
+		</div>
+		<div class="block">
+			<div class="content">
+				<h2>Liste d'orateurs</h2>
+				<p>Trouvez la bonne personne pour votre prochaine soirée</p>
+			</div>
+			<div class="btn" id="btn-orators">
+				<p>Découvrir</p>
+			</div>
+		</div>
+	</div>
+<% end %>
+
+<div class="top">
+	<h1>Ressources</h1>
+</div>
+
+<div class="new">
+	<div class="title" id="articles">
+		<div class="wrapper">
+			<h2>Dernier arcticle</h2>
+			<span>Visitez tous les articles sur <%= link_to '/articles', root_path %></span>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="block full">
+		<div class="wrapper">
+			<div class="type">Article <i class="fi-clipboard-notes"></i></div>
+			<div class="graphic">
+				<img src="http://profilesasiapacific.com/blog/wp-content/uploads/2014/01/hand-fist-power1-1024x682.jpg">
+			</div>
+			<div class="text">
+				<h3>Comment booster vos jeunes</h3>
+				<div class="content">
+					<p>C'est une question qui revient souvent et qui est certainement apparu au moins une fois dans votre activité de responsable: comment redonner le feux à vos jeunes. Et par là j'entend pas leur faire infligé de terribles brûlure mais bien de leur redonner cette énergie qui les anime durant leur tendre adolescence. Pour répondre à cette question laissez-moi vous poser une question.</p> 
+					<p>Nullam faucibus neque vitae tincidunt sagittis. Sed dictum lacinia turpis, non pellentesque tellus pretium eu. Cras iaculis tincidunt turpis eget laoreet. Nulla lacinia ante mi, ut cursus felis porttitor non. Donec egestas commodo velit. Nam mauris sem, convallis a lorem in, faucibus adipiscing lacus. Maecenas id luctus mauris. Mauris interdum velit eget turpis tempor, vel laoreet lorem ornare. Mauris vestibulum mattis fringilla.</p>
+					<p>Fusce eu metus tempor, placerat elit ac, gravida neque. Sed nibh sem, dapibus nec arcu vel, hendrerit porta sapien. Nulla sit amet massa eget nisl commodo suscipit sit amet a urna. Duis ultrices vitae velit sed vestibulum. Sed accumsan lorem dolor, semper eleifend libero molestie non.</p>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="clear"></div>
+
+
+
+	<div class="title" id="docs">
+		<div class="wrapper">
+			<h2>Derniers documents</h2>
+			<span>Vous recherchez tous les documents? Rendez-vous sur <%= link_to '/documents', documents_path %></span>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="block split4">
+		<div class="wrapper">
+			<div class="type">Article <i class="fi-clipboard-notes"></i></div>
+			<div class="graphic">
+				<img src="http://austechqld.com.au/wp-content/uploads/2012/12/pdf-Logo.png">
+			</div>
+			<div class="text">
+				<h3>Gérez les finances de votre groupe</h3>
+				<div class="content">
+					<p>Un document qui répond aux essentiels questions qui peuvent survenir sur la gestion des finances dans votre groupe et laisse place au dialogue avec votre église.</p>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="block split4">
+		<div class="wrapper">
+			<div class="type">Activité du site <i class="fi-battery-full"></i></div>
+			<div class="graphic">
+				<img src="http://austechqld.com.au/wp-content/uploads/2012/12/pdf-Logo.png">
+			</div>
+			<div class="text">
+				<h3>La gestion de conflit</h3>
+				<div class="content">
+					<p>Un thème souvent peu maîtrisé mais qui merrite qu'on s'y arrête. Ce document fournis quelque clefs.</p>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="block split4">
+		<div class="wrapper">
+			<div class="type">Activité du site <i class="fi-battery-full"></i></div>
+			<div class="graphic">
+				<img src="http://www.freeresponsivedesign.com/wp-content/uploads/word-2013-logo.jpg">
+			</div>
+			<div class="text">
+				<h3>Organiser un camps</h3>
+				<div class="content">
+					<p>Incontournable dans la vie d'un leader, l'organisation d0'un camps. Ce document fournis non-seulement quelques conseil mais aussi des modèles prêt à l'emplois.</p>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="block split4">
+		<div class="wrapper">
+			<div class="type">Activité du site <i class="fi-battery-full"></i></div>
+			<div class="graphic">
+				<img src="http://upload.wikimedia.org/wikipedia/fr/c/c2/Logo_Microsoft_PowerPoint_2013.png">
+			</div>
+			<div class="text">
+				<h3>Message: Ecouter Dieu</h3>
+				<div class="content">
+					<p>Un support pour un message sur l'écoute de Dieu. A utiliser sans modération.</p>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="clear"></div>
+
+
+<div class="new">
+	<div class="title" id="orators">
+		<div class="wrapper">
+			<h2>Liste d'orateurs</h2>
+			<span>Liste complète sur <%= link_to '/orators', orators_path %></span>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="block full">
+		<div class="wrapper">
+			<div class="type">Article <i class="fi-clipboard-notes"></i></div>
+			<div class="full-text">
+				<h3>Vous recherchez un orateur pour votre soirée?</h3>
+				<div class="content">
+					<p>Notre base de donnée compte pas moins de 200 orateurs référencés pour vous faciliter la tâche. Cherchez par thème, région, nom et trouvez celui qui apportera le thème de votre prochaine soirée.</p>
+					<p>Rendez-vous <%= link_to 'ici', root_path %>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="clear"></div>
+
+
+</div>
+
+<script type="text/javascript">
+function goToByScroll(el){
+$('html,body').animate({
+  scrollTop: el.offset().top},
+  'slow');
+}
+$('#btn-articles').click(function(e){
+	e.preventDefault();
+	goToByScroll($('#articles'));  
+});
+$('#btn-docs').click(function(e){
+	e.preventDefault();
+	goToByScroll($('#docs'));  
+});
+$('#btn-orators').click(function(e){
+	e.preventDefault();
+	goToByScroll($('#orators'));  
+});
+</script>

@@ -21,7 +21,8 @@
 }
 
 #banner.home {
-	width: 100%; height: 304px;
+	display: block;
+	width: 100%; min-height: 473px;
 	background: image-url('layout/banner.jpg') no-repeat fixed;
 }
 
@@ -112,6 +113,7 @@
 			position: absolute;
 			left:0;
 			width: 100%; height: 600px;
+			&:before, &:after {clear:both;}
 		}
 		#clear_map {
 			height: 610px;

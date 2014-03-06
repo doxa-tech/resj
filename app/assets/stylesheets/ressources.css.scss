@@ -1,4 +1,62 @@
 @import 'partial_top';
+@mixin h2title {
+	padding: 0 10px;
+	.wrapper {
+		background: #eaeaea;
+		padding: 3px 10px;
+		h2 {
+			font-size: 27px;
+			float: left;
+			width: 40%;
+			text-align: left;
+		}
+		span {
+			vertical-align: middle;
+			float: right;
+			width: 60%;
+			text-align: right;
+			padding: 10px;
+		}
+	}	
+}
+
+#banner.ressources {
+	display: block;
+	width: 100%; min-height: 473px;
+	background: image-url('layout/banner3.jpg') no-repeat fixed;
+	.content_banner {
+		text-align: center;
+		padding: 80px 10px 10px 10px;
+		&:before, &:after{clear:both}
+		.block {
+			display: inline-block;
+			vertical-align: middle;
+			width: 380px;
+			padding: 10px 0 0 0;
+			.content {
+				color: #fff;
+				padding: 13px 20px 25px 20px;
+				background: image-url('layout/feat-slider-bg.png');
+				h2 {
+					font-size: 25px;
+				}
+				p {
+					font-size: 13px;
+				}
+			}
+			.btn {
+				padding: 10px 0 0 0;
+				p {
+					background: #d84418;
+					width: 115px;
+					padding: 8px;
+					color: #fff;
+					cursor: pointer;
+				}
+			}
+		}
+	}
+}
 
 #container.ressources {
 	.top {
@@ -7,5 +65,77 @@
 			@include h1;
 		}
 	}
+
+	.new {
+		margin: 15px 0;
+		.left {
+			float: left;
+			width: 50%;
+		}
+		.right {
+			float: right;
+			width: 50%;
+		}
+		.full {
+			width: 100%;
+		}
+		.split4 {
+			width: 25%;
+			float: left;
+		}
+		.title {
+			@include h2title;
+		}
+		.block {
+			padding: 10px;
+			.wrapper {
+				position: relative;
+				background: #eaeaea;
+				padding: 20px;
+				.type {
+					position: absolute;
+					right: 10px;
+					top: 7px;
+					color: #555;
+					font-size: 12px;
+				}
+				.graphic {
+					float: left;
+					width: 30%;
+					img {
+						width: 100%;
+					}
+				}
+				.text {
+					float: right;
+					width: 70%;
+					padding: 0 0 0 10px;
+					vertical-align: top;
+					h3 {
+						padding: 10px 0px;
+						font: 300 22px 'jura', tahoma;
+						color: #555;
+					}
+					p {
+						padding: 10px 0 0 0;
+					}
+				}
+				.full-text {
+					width: 100%;
+					h3 {
+						padding: 10px 0px;
+						font: 300 22px 'jura', tahoma;
+						color: #555;
+					}
+					p {
+						padding: 10px 0 0 0;
+					}
+				}
+			}
+		}
+		.clear {
+			clear: both;
+		}
+	}	
 
 }
