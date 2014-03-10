@@ -208,7 +208,7 @@ en:
         success: "Article updated"
       destroy:
         success: "Article deleted"
-  resource:
+  subject:
     admin:
       index: "Resources"
       create:

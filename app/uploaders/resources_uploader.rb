@@ -17,11 +17,7 @@ class ResourcesUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "/PATH/RAILSAPPLICATION/uploads/resources/#{model.id}"
-  end
-
-  def cache_dir
-    "/PATH/RAILSAPPLICATION/tmp/uploads/resources/cache/#{model.id}"
+    "uploads/resources/#{model.id}"
   end
 
   def extension_white_list

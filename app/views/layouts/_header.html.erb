@@ -8,7 +8,11 @@
 				<li><%= link_to t('layout.header.reseau'), reseau_path %></li>
 				<li><%= link_to t('layout.header.resources'), resources_path %></li>
 				<li><%= link_to t('layout.header.resj'), resj_path %></li>
-				<li class="profil"><%= link_to current_user.full_name, profile_path unless current_user.nil? %></li>
+				<% if current_user.nil? %>
+					<li class="profil"><%= link_to "Login", connexion_path, remote: true %></li>
+				<% else %>
+					<li class="profil"><%= link_to current_user.full_name, profile_path unless current_user.nil? %></li>
+				<% end %>
 			</ul>
 		</div>
 <!-- 		<div class="login">

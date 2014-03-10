@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140306170904) do
+ActiveRecord::Schema.define(version: 20140310171454) do
 
   create_table "access_tokens", force: true do |t|
     t.string   "token"
@@ -246,27 +246,35 @@ ActiveRecord::Schema.define(version: 20140306170904) do
   add_index "parents", ["parent_id"], name: "index_parents_on_parent_id"
   add_index "parents", ["user_id"], name: "index_parents_on_user_id"
 
-  create_table "resource_themes", force: true do |t|
-    t.integer  "resource_id"
-    t.integer  "theme_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "resource_themes", ["resource_id"], name: "index_resource_themes_on_resource_id"
-  add_index "resource_themes", ["theme_id"], name: "index_resource_themes_on_theme_id"
-
   create_table "resources", force: true do |t|
     t.string   "name"
     t.string   "file"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "subject_id"
   end
 
   create_table "responsables", force: true do |t|
     t.string   "firstname"
     t.string   "lastname"
     t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "subject_themes", force: true do |t|
+    t.integer  "subject_id"
+    t.integer  "theme_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "subject_themes", ["subject_id"], name: "index_subject_themes_on_subject_id"
+  add_index "subject_themes", ["theme_id"], name: "index_subject_themes_on_theme_id"
+
+  create_table "subjects", force: true do |t|
+    t.string   "name"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
