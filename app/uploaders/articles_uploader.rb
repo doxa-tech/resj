@@ -14,7 +14,7 @@ class ArticlesUploader < CarrierWave::Uploader::Base
   process :right_orientation
 
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "public/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
   def extension_white_list

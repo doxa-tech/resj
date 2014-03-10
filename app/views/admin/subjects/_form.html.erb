@@ -1,0 +1,28 @@
+<%= form_for [:admin, @subject], remote: true do |f| %>
+	
+	<%= render 'error_messages', object: f.object %>
+
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+
+	<%= f.label :description %>
+	<%= f.text_area :description %>
+
+		<%= f.label :theme_id %>
+		<%= f.collection_select :theme_ids, Theme.all, :id, :name, {include_blank: "Select themes"}, {class: "selectize-themes", multiple: true} %>
+
+	<%= f.fields_for :resources, @subject.resources << Resource.new do |resources_fields| %>
+		<%= resources_fields.label :name %>
+		<%= resources_fields.text_field :name %>
+
+		<%= resources_fields.label :file %>
+		<%= resources_fields.file_field :file %>
+
+		<%= resources_fields.label :_destroy %>
+		<%= resources_fields.check_box :_destroy %>
+
+	<% end %>
+
+	<%= f.submit %><div class="updated"></div>
+
+<% end %>

@@ -1,7 +1,5 @@
 class Resource < ActiveRecord::Base
-
-	has_many :resource_themes
-	has_many :themes, through: :resource_themes
+	belongs_to :subject
 
 	validates :name, presence: true, length: { maximum: 30 }
 
