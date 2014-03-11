@@ -22,12 +22,14 @@
 		<div class="wrapper">
 			<div class="type">Article <i class="fi-clipboard-notes"></i></div>
 			<div class="graphic">
-				<img src="http://profilesasiapacific.com/blog/wp-content/uploads/2014/01/hand-fist-power1-1024x682.jpg">
+				<%= image_tag @article.image %>
 			</div>
 			<div class="text">
-				<h3>Comment booster vos jeunes</h3>
+				<h3><%= @article.title %></h3>
 				<div class="content">
-					<p>C'est une question qui revient souvent et qui est certainement apparu au moins une fois dans votre activité de responsable: comment redonner le feux à vos jeunes. Et par là j'entend pas leur faire infligé de terribles brûlure mais bien de leur redonner cette énergie qui les anime durant leur tendre adolescence. Pour répondre à cette ... <a href="/">lire la suite...</a></p>
+					<p>
+						<%= truncate(@article.content, length: 300, omission: " ... %s") % link_to('lire la suite', article_path(@article)) %>
+					</p>
 				</div>
 			</div>
 			<div class="clear"></div>

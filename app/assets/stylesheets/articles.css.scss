@@ -1,0 +1,33 @@
+@import 'partial_top';
+
+#container.articles {
+	.top {
+		@include top;
+		h1 {
+			@include h1;
+		}
+	}
+	.article {
+		padding: 0 0 30px 0;
+		.img {
+			text-align: center;
+			img {
+				max-width: 100%;
+			}
+		}
+		.content {
+			padding: 10px 0 0 0;
+			p {
+				padding: 0 0 8px 0;
+				text-align: justify;
+			}
+		}
+		.end {
+			border-bottom: 1px solid #efefef;
+			margin: 10px 0 0 0;
+			text-align: right;
+			font-size: 12px;
+			color: #aaa;
+		}
+	}
+}
