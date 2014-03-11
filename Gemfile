@@ -76,6 +76,7 @@ gem "selectize-rails"
 
 # image uploader
 gem 'carrierwave'
+gem 'carrierwave-processing'
 gem 'fog'
 
 # image manipulating

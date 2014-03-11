@@ -14,7 +14,7 @@ class Admin::ArticlesController < Admin::BaseController
 	end
 
 	def create 
-		@article = current_user.articles.new.new(article_params)
+		@article = current_user.articles.new(article_params)
 		if @article.save
 			redirect_to admin_articles_path, success: t('article.admin.create.success')
 		else

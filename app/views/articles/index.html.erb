@@ -1,0 +1,13 @@
+<% content_for :id, 'articles' %>
+<div class="top">
+	<h1>Articles</h1>
+</div>
+
+<% @articles.each do |article| %>
+<div class="article">
+	<h2><%= article.title %></h2>
+	<%= content_tag :div, (image_tag article.image), class: "img" %>
+	<%= content_tag :div, (raw simple_format(article.content, {}, sanitize: false)), class: "content"  %>
+	<div class="end"><%= l article.created_at %></div>
+</div>
+<% end %>

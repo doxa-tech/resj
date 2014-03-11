@@ -3,6 +3,7 @@ class PagesController < BaseController
 	def home
 		@page = Page.find_by_name('home')
 		@cards = Card.all
+		@article = Article.last
 	end
 
 	def resj

@@ -43,6 +43,15 @@
 		}
 	}
 
+	// Ressources
+	#container.resources {
+		.new {
+			.split4 {
+				width: 50%;
+			}
+		}
+	}
+
 	// Admin
 	#admin {
 		#admin_header {
@@ -141,6 +150,34 @@
 	// container
 	#container {
 		width: 100%;
+	}
+
+	//Home & //Ressources
+	#container.home, #container.resources {
+		.new {
+			.split4 {
+				width: 100%;
+			}
+			.title {
+				.wrapper {
+					h2 {
+						width: 100%;
+					}
+					span {
+						width: 100%;
+					}
+				}
+			}
+			.block {
+				.wrapper {
+					.graphic {
+					}
+					.text {
+						width: 100%;
+					}
+				}
+			}
+		}
 	}
 
 	//Cards
