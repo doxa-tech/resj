@@ -113,18 +113,18 @@ class Card < ActiveRecord::Base
     current_step.nil? || current_step == step
   end
 
-  def create_owner
-    contact = responsables.select{ |r| r.is_contact == "true"}.first
-    if user = User.find_by_email(contact.email)
+  def create_owner(owner)
+    if user = User.find_by_email(owner.email)
       self.user = user
     else
       password = SecureRandom.hex(8)
-      new_user = User.create(firstname: contact.firstname, lastname: contact.lastname, email: contact.email, password: password, password_confirmation: password)
+      new_user = User.create(firstname: owner.firstname, lastname: owner.lastname, email: owner.email, password: password, password_confirmation: password)
       actions = Action.where(name: ["user_request", "user_confirmation"])
       Ownership.create(user_id: user.id, element_id: Element.find_by_name('cards').id, ownership_type_id: Ownership.find_by_name('on_entry').id, id_element: @card.id, right_read: true, right_update: true, right_create: true, actions: actions)
       self.user = new_user
       # UserMailer
     end
+    save
   end
 
   private

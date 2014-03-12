@@ -13,6 +13,7 @@ class Admin::UsersController < Admin::BaseController
 	end
 
 	def create
+		@user.confirmed = true
 		@user = User.new(user_params)
 		@user.user_type_id = params[:user_type][:user_type_id]
 		if @user.save

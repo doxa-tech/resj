@@ -5,5 +5,4 @@ CarrierWave.configure do |config|
     :google_storage_secret_access_key => ''
   }
   config.fog_directory = ''
-  config.root = Rails.root
 end
