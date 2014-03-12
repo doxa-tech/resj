@@ -1,15 +1,7 @@
 @import 'partial_top';
 
-#container.connexion {
-
-	.top {
-			@include top;
-		h1 {
-			@include h1;
-		}
-	} // top
-
-	.field {
+@mixin connexion {
+		.field {
 		width: 200px;
 		margin: auto;
 		label {
@@ -33,7 +25,63 @@
 					background: #e54040;
 				}
 			}
+			&[type="checkbox"] {
+				margin: 0;
+				border: initial;
+			}
 		}
 	}
+	.reset {
+		width: 100%;
+		text-align: center;
+		padding: 10px 0 0 0;
+	}
+}
 
+#container.connexion {
+
+	.top {
+			@include top;
+		h1 {
+			@include h1;
+		}
+	} // top
+	@include connexion;
+
+}
+
+#login-over {
+	display: none;
+	position: fixed;
+	width: 300px;
+	height: 300px;
+	overflow: auto;
+	margin: auto;
+	top: 0; left: 0; right: 0; bottom: 0;
+	z-index: 9999;
+	color: #fff;
+	background: rgba(0,0,0,.8);
+	padding: 20px;
+	border-radius: 5px;
+	a {
+		color: #D84418;
+		font-weight: 500;
+	}
+	@include connexion;
+}
+#login-overlay {
+	position: fixed;
+	top: 0; bottom: 0; right: 0; left: 0;
+	background: rgba(0,0,0,.7);
+	z-index: 9998;
+	display: none;
+	p {
+		color: #D84418;
+		font-weight: 500;
+		cursor: pointer;
+		position: fixed;
+		left: 50%;
+		top: 50%;
+		margin: -170px 0 0 100px;
+	}
 }

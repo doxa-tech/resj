@@ -55,6 +55,30 @@ input:not([type="checkbox"]) {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 }
+input[type="checkbox"] {
+	margin: -15px 0 0 0;
+}
+input[type="submit"] {
+	line-height: 0;
+	background: #D83C3C;
+	border-radius: 0 0 3px 3px;
+	border: 0;
+	color: #fff;
+	text-transform: uppercase;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
+	font-size: 11px;
+	font-weight: 600;
+	cursor: pointer;
+	-webkit-font-smoothing: antialiased;
+	&:hover {
+		background: #e54040;
+	}
+	&:active,
+	&:focus {
+		background: #c42f2f;
+		  outline: 0; 
+	}
+}
 
 .selectize-control.single .selectize-input, .selectize-control.single .selectize-input input, .selectize-input > input {height:inherit}	/* correct a proble with empty or default item */
 
