@@ -111,12 +111,11 @@
 					content: " ";
 				}
 
-		&:after {clear: both}
+				&:after {clear: both}
 				li {
 					text-align: center;
 					float: right;
 					.infos {
-						width: 200px;
 						background: #EEE;
 						color: #827c7c;
 						border-radius: 3px 3px 0 0;
