@@ -38,11 +38,12 @@ class CardsController < BaseController
 
 	def create
 		@card = Card.new(session[:card_params])
+		owner = @card.responsables.select{ |r| r.is_contact == "true"}.first
 		if @card.save
-			session[:card_params] = nil
-			@card.create_owner
+			@card.create_owner(owner)
 			# CardMailer.created(validator).deliver
 			CardMailer.welcome(@card).deliver
+			session[:card_params] = nil
 			redirect_to reseau_path, success: t('card.create.success')
 		else
 			render 'new'

@@ -9,7 +9,7 @@ class UsersController < BaseController
 		@user = User.new(user_params)
 		@user.user_type = UserType.find_by_name('user')
 		if @user.save
-			sign_in(@user)
+			# UserMailer.confirmation...
 			redirect_to profile_path, success: t('user.create.success')
 		else
 			render 'new'
@@ -28,6 +28,20 @@ class UsersController < BaseController
 		else
 			render 'edit'
 		end
+	end
+
+	def confirmation
+		if @user = User.find_by_remember_token(params[:token])
+			@user.update_attribute(:confirmed, true)
+			sign(@user)
+			redirect_to profile_path, success: "Account confirmed."
+		end
+	end
+
+	def resend_mail
+		@user = User.find(params[:id])
+		# UserMailer
+		redirect_to root_path, success: "We sent you a new email."
 	end
 
 	def card_request

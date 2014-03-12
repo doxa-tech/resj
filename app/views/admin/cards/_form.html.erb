@@ -229,15 +229,15 @@
 
 <% end %>
 
-<%= form_tag user_request_admin_card_path(@card) do %>
+<%= form_tag user_request_card_path(@card) do %>
 	<%= select_tag :user_id, options_from_collection_for_select(User.users - @card.users, :id, :full_name), class: "selectize" %>
 	<%= submit_tag %>
 <% end %>
 
 <% @card.unconfirmed_card.each do |card_user| %>
 	<%= card_user.user.full_name %>
-	<%= link_to "Confirm", user_confirmation_admin_card_path(@card, card_user_id: card_user.id, validated: "true"), method: :post %>
-	<%= link_to "Refus", user_confirmation_admin_card_path(@card, card_user_id: card_user.id, validated: "false"), method: :post %>
+	<%= link_to "Confirm", user_confirmation_card_path(@card, card_user_id: card_user.id, validated: "true"), method: :post %>
+	<%= link_to "Refus", user_confirmation_card_path(@card, card_user_id: card_user.id, validated: "false"), method: :post %>
 <% end %>
 
 <script type="text/javascript">window.onload=selectize();</script>

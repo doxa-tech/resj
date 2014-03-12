@@ -14,8 +14,9 @@ Resj::Application.routes.draw do
   get 'profile', to: "users#profile"
   patch 'user/update', to: "users#update"
   get 'user/edit', to: "users#edit"
-  post 'user/confirmation', to: "users#card_confirmation"
-  post 'user/request', to: "users#card_request"
+  post 'user/card/confirmation', to: "users#card_confirmation"
+  post 'user/card/request', to: "users#card_request"
+  get 'user/confirmation', to: "users#confirmation"
 
   # resources
   scope 'resources' do
@@ -28,14 +29,19 @@ Resj::Application.routes.draw do
     end
   end
 
-  resources :users, only: [:create]
+  resources :users, only: [:create] do
+    member do
+      post 'resend_mail'
+    end
+  end
   resources :sessions, only: [:create, :destroy]
   resources :password_resets, except: [:index, :show, :destroy]
   
   resources :cards, except: [:destroy] do
     collection do
       post 'change'
-      post 'new_responsable'
+      post 'user_request'
+      post 'user_confirmation'
     end
   end
 
@@ -64,8 +70,6 @@ Resj::Application.routes.draw do
       resources :verificator_comments, only: [:create, :update, :destroy]
       member do
         get 'verificate'
-        post 'user_confirmation'
-        post 'user_request'
       end
     end
 
