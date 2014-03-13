@@ -39,7 +39,12 @@
 <div id="clear"></div>
 
 <div class="team">
-	<h3>Team</h3>
+	<div class="resp">
+		<h3>Team</h3>
+		<%= @card.user.firstname %>
+		<%= content_tag :span, @card.user.lastname, class: 'lastname' %>
+		<%= @card.user.email %>
+	</div>
 	<% @card.responsables.each do |responsable| %>
 		<div class="resp">
 			<p>
