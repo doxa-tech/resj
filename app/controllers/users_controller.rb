@@ -18,6 +18,7 @@ class UsersController < BaseController
 
 	def edit
 		@user = current_user
+		render layout: "admin"
 	end
 
 	def update

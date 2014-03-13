@@ -32,7 +32,6 @@
 		<%= f.submit "Extra", :name => "step[extra]" %>
 		<ul>
 			<li><%= label_tag :site_web %> <p><%= @card.website or " - " %></p></li>
-			<li><%= label_tag :password %> <p>* * * * *</p></li>
 			<li><%= label_tag :affiliation %> <p><%= @card.affiliation %></p></li>
 			<li><%= label_tag :tags %> <p><%= @card.try(:tag_names) %></p></li>
 		</ul>		

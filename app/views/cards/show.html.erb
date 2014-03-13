@@ -36,23 +36,25 @@
 	</div>
 </div>
 
-<div class="clear"></div>
+<div id="clear"></div>
 
-<% @card.responsables.each do |responsable| %>
-	<%= responsable.firstname %>
-	<%= responsable.lastname %>
-	<%= responsable.email %>
-<% end %>
+<div class="team">
+	<h3>Team</h3>
+	<% @card.responsables.each do |responsable| %>
+		<div class="resp">
+			<p>
+				<%= responsable.firstname %>
+				<%= content_tag :span, responsable.lastname, class: 'lastname' %>
+				<%= responsable.email %>
+			</p>
+		</div>
+	<% end %>
+</div>
 
 <% @card.affiliations.each do |affiliation| %>
 	<%= affiliation.name %>
 <% end %>
 
-
-
-<% @card.tags.each do |tag| %>
-	<%= tag.name %>
-<% end %>
 
 <script type="text/javascript">
 	window.onload=gmap.initialize(<%= @card.latitude %>, <%= @card.longitude %>);
