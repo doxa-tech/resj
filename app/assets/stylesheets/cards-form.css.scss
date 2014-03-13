@@ -210,6 +210,7 @@
 				cursor: pointer;
 				&:hover {
 					font-weight: 700;
+					color: #D83C3C;
 				}
 			}			
 			ul {
@@ -228,6 +229,26 @@
 						font-weight: 600;
 						padding: 0;
 						display: inline-block;
+					}
+				}
+			}
+			.send {
+				padding: 30px 0;
+				a {
+					padding: 10px 30px;
+					margin: 50px 0 20px 0;
+					line-height: 0;
+					background: #D83C3C;
+					border-radius: 0 0 3px 3px;
+					border: 0;
+					color: #fff;
+					text-transform: uppercase;
+					text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
+					font-size: 11px;
+					font-weight: 600;
+					cursor: pointer;
+					&:hover {
+						background: #e54040;
 					}
 				}
 			}
