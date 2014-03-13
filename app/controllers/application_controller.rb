@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 		@current_permission ||= Permission.new(current_user)
 	end
 
-	helper_method :current_permission
+	helper_method :current_permission, :store_location
 
   def track_activity(trackable, action = params[:action])
   	Activity.create! action: action, trackable: trackable, user: current_user

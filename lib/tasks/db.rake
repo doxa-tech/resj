@@ -44,7 +44,7 @@ namespace :db do
 
 		# Create admin
 		user_type_user = UserType.find_by_name('user')
-		admin = user_type_user.users.create(email: 'kocher.ke@gmail.com', firstname: 'Keran', lastname: "Kocher", password: '12341', password_confirmation: '12341')
+		admin = user_type_user.users.create(email: 'kocher.ke@gmail.com', firstname: 'Keran', lastname: "Kocher", password: '12341', password_confirmation: '12341', confirmed: true)
 		
 		# Add admin to groups
 		Parent.create(user_id: admin.id, parent_id: g_admin.id)
