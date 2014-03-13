@@ -11844,3 +11844,351 @@ INFO  - 2014-03-11 20:57:58.048; org.apache.solr.core.SolrCore; [collection1] we
 INFO  - 2014-03-11 20:57:59.979; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=37 status=0 QTime=0 
 INFO  - 2014-03-11 21:28:18.822; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=37 status=0 QTime=5 
 INFO  - 2014-03-11 21:28:19.266; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=37 status=0 QTime=1 
+INFO  - 2014-03-12 20:37:38.570; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=37 status=0 QTime=102 
+INFO  - 2014-03-12 20:37:39.061; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=37 status=0 QTime=1 
+INFO  - 2014-03-12 20:49:35.657; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 211 (-1462400477411934208)]} 0 233
+INFO  - 2014-03-12 20:49:35.733; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 212 (-1462400477541957632)]} 0 20
+INFO  - 2014-03-12 20:49:35.766; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 213 (-1462400477577609216)]} 0 1
+INFO  - 2014-03-12 20:49:35.818; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 214 (-1462400477627940864)]} 0 9
+INFO  - 2014-03-12 20:49:35.864; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 215 (-1462400477679321088)]} 0 5
+INFO  - 2014-03-12 20:49:35.887; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 216 (-1462400477704486912)]} 0 0
+INFO  - 2014-03-12 20:49:35.942; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 217 (-1462400477762158592)]} 0 1
+INFO  - 2014-03-12 20:49:35.965; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 218 (-1462400477785227264)]} 0 1
+INFO  - 2014-03-12 20:49:36.002; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 219 (-1462400477825073152)]} 0 1
+INFO  - 2014-03-12 20:49:36.029; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 220 (-1462400477852336128)]} 0 1
+INFO  - 2014-03-12 20:49:36.054; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 221 (-1462400477879599104)]} 0 1
+INFO  - 2014-03-12 20:49:36.072; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 222 (-1462400477898473472)]} 0 0
+INFO  - 2014-03-12 20:49:36.122; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 223 (-1462400477949853696)]} 0 1
+INFO  - 2014-03-12 20:49:36.244; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 224 (-1462400478077779968)]} 0 1
+INFO  - 2014-03-12 20:49:36.261; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 225 (-1462400478095605760)]} 0 1
+INFO  - 2014-03-12 20:49:36.310; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 226 (-1462400478148034560)]} 0 0
+INFO  - 2014-03-12 20:49:36.333; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 227 (-1462400478172151808)]} 0 0
+INFO  - 2014-03-12 20:49:36.369; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 228 (-1462400478209900544)]} 0 1
+INFO  - 2014-03-12 20:49:36.399; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 229 (-1462400478241357824)]} 0 2
+INFO  - 2014-03-12 20:49:36.432; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 230 (-1462400478275960832)]} 0 1
+INFO  - 2014-03-12 20:49:36.468; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 231 (-1462400478300078080)]} 0 15
+INFO  - 2014-03-12 20:49:36.490; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 232 (-1462400478336778240)]} 0 0
+INFO  - 2014-03-12 20:49:36.530; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 233 (-1462400478378721280)]} 0 0
+INFO  - 2014-03-12 20:49:36.550; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 234 (-1462400478399692800)]} 0 1
+INFO  - 2014-03-12 20:49:36.607; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 235 (-1462400478459461632)]} 0 4
+INFO  - 2014-03-12 20:49:36.627; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 236 (-1462400478480433152)]} 0 1
+INFO  - 2014-03-12 20:49:36.660; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 237 (-1462400478515036160)]} 0 1
+INFO  - 2014-03-12 20:49:36.677; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 238 (-1462400478531813376)]} 0 1
+INFO  - 2014-03-12 20:49:36.699; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 239 (-1462400478555930624)]} 0 1
+INFO  - 2014-03-12 20:49:36.737; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 240 (-1462400478595776512)]} 0 1
+INFO  - 2014-03-12 20:49:36.768; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 241 (-1462400478628282368)]} 0 1
+INFO  - 2014-03-12 20:49:36.802; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 242 (-1462400478663933952)]} 0 1
+INFO  - 2014-03-12 20:49:36.841; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 243 (-1462400478703779840)]} 0 2
+INFO  - 2014-03-12 20:49:36.868; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 244 (-1462400478732091392)]} 0 4
+INFO  - 2014-03-12 20:49:36.896; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 245 (-1462400478762500096)]} 0 0
+INFO  - 2014-03-12 20:49:36.912; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 246 (-1462400478779277312)]} 0 0
+INFO  - 2014-03-12 20:49:36.965; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {delete=[Card 247 (-1462400478834851840)]} 0 1
+INFO  - 2014-03-12 20:49:42.995; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=37 status=0 QTime=1 
+INFO  - 2014-03-12 20:49:47.156; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=37 status=0 QTime=0 
+INFO  - 2014-03-12 20:49:50.630; org.apache.solr.update.DirectUpdateHandler2; start commit{,optimize=false,openSearcher=false,waitSearcher=true,expungeDeletes=false,softCommit=false,prepareCommit=false}
+INFO  - 2014-03-12 20:49:50.699; org.apache.solr.core.SolrDeletionPolicy; SolrDeletionPolicy.onCommit: commits: num=2
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_6,generation=6}
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_7,generation=7}
+INFO  - 2014-03-12 20:49:50.700; org.apache.solr.core.SolrDeletionPolicy; newest commit generation = 7
+INFO  - 2014-03-12 20:49:50.756; org.apache.solr.search.SolrIndexSearcher; Opening Searcher@1f7606e7 realtime
+INFO  - 2014-03-12 20:49:50.761; org.apache.solr.update.DirectUpdateHandler2; end_commit_flush
+INFO  - 2014-03-12 20:50:10.843; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=37 status=0 QTime=1 
+INFO  - 2014-03-12 20:51:36.330; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=37 status=0 QTime=1 
+INFO  - 2014-03-12 20:51:36.455; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=37 status=0 QTime=1 
+INFO  - 2014-03-12 20:54:02.359; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=37 status=0 QTime=0 
+INFO  - 2014-03-12 20:54:20.028; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=37 status=0 QTime=1 
+INFO  - 2014-03-12 20:54:20.143; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=37 status=0 QTime=0 
+INFO  - 2014-03-12 21:11:42.861; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {} 0 1
+INFO  - 2014-03-12 21:11:42.947; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {} 0 0
+INFO  - 2014-03-12 21:11:45.538; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {} 0 0
+INFO  - 2014-03-12 21:11:45.551; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {} 0 0
+INFO  - 2014-03-12 21:11:45.811; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462401872148037632)]} 0 160
+INFO  - 2014-03-12 21:11:45.816; org.apache.solr.update.DirectUpdateHandler2; start commit{,optimize=false,openSearcher=true,waitSearcher=true,expungeDeletes=false,softCommit=false,prepareCommit=false}
+INFO  - 2014-03-12 21:11:45.925; org.apache.solr.core.SolrDeletionPolicy; SolrDeletionPolicy.onCommit: commits: num=2
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_7,generation=7}
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_8,generation=8}
+INFO  - 2014-03-12 21:11:45.926; org.apache.solr.core.SolrDeletionPolicy; newest commit generation = 8
+INFO  - 2014-03-12 21:11:45.938; org.apache.solr.search.SolrIndexSearcher; Opening Searcher@61dbd8af main
+INFO  - 2014-03-12 21:11:45.949; org.apache.solr.update.DirectUpdateHandler2; end_commit_flush
+INFO  - 2014-03-12 21:11:45.950; org.apache.solr.core.QuerySenderListener; QuerySenderListener sending requests to Searcher@61dbd8af main{StandardDirectoryReader(segments_8:21:nrt _5(4.6):C1)}
+INFO  - 2014-03-12 21:11:45.950; org.apache.solr.core.QuerySenderListener; QuerySenderListener done.
+INFO  - 2014-03-12 21:11:45.967; org.apache.solr.core.SolrCore; [collection1] Registered new searcher Searcher@61dbd8af main{StandardDirectoryReader(segments_8:21:nrt _5(4.6):C1)}
+INFO  - 2014-03-12 21:11:45.971; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {commit=} 0 155
+INFO  - 2014-03-12 21:11:45.998; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462401872412278784)]} 0 14
+INFO  - 2014-03-12 21:11:46.003; org.apache.solr.update.DirectUpdateHandler2; start commit{,optimize=false,openSearcher=true,waitSearcher=true,expungeDeletes=false,softCommit=false,prepareCommit=false}
+INFO  - 2014-03-12 21:11:46.028; org.apache.solr.core.SolrDeletionPolicy; SolrDeletionPolicy.onCommit: commits: num=2
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_8,generation=8}
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_9,generation=9}
+INFO  - 2014-03-12 21:11:46.029; org.apache.solr.core.SolrDeletionPolicy; newest commit generation = 9
+INFO  - 2014-03-12 21:11:46.034; org.apache.solr.search.SolrIndexSearcher; Opening Searcher@14939c77 main
+INFO  - 2014-03-12 21:11:46.035; org.apache.solr.update.DirectUpdateHandler2; end_commit_flush
+INFO  - 2014-03-12 21:11:46.035; org.apache.solr.core.QuerySenderListener; QuerySenderListener sending requests to Searcher@14939c77 main{StandardDirectoryReader(segments_9:25:nrt _6(4.6):C1)}
+INFO  - 2014-03-12 21:11:46.036; org.apache.solr.core.QuerySenderListener; QuerySenderListener done.
+INFO  - 2014-03-12 21:11:46.046; org.apache.solr.core.SolrCore; [collection1] Registered new searcher Searcher@14939c77 main{StandardDirectoryReader(segments_9:25:nrt _6(4.6):C1)}
+INFO  - 2014-03-12 21:11:46.048; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {commit=} 0 45
+INFO  - 2014-03-12 21:11:46.068; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462401872496164864)]} 0 4
+INFO  - 2014-03-12 21:12:01.068; org.apache.solr.update.DirectUpdateHandler2; start commit{,optimize=false,openSearcher=false,waitSearcher=true,expungeDeletes=false,softCommit=false,prepareCommit=false}
+INFO  - 2014-03-12 21:12:01.101; org.apache.solr.core.SolrDeletionPolicy; SolrDeletionPolicy.onCommit: commits: num=2
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_9,generation=9}
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_a,generation=10}
+INFO  - 2014-03-12 21:12:01.102; org.apache.solr.core.SolrDeletionPolicy; newest commit generation = 10
+INFO  - 2014-03-12 21:12:01.107; org.apache.solr.search.SolrIndexSearcher; Opening Searcher@135ade60 realtime
+INFO  - 2014-03-12 21:12:01.110; org.apache.solr.update.DirectUpdateHandler2; end_commit_flush
+INFO  - 2014-03-12 21:13:13.209; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462401963868028928)]} 0 7
+INFO  - 2014-03-12 21:13:13.239; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462401963900534784)]} 0 6
+INFO  - 2014-03-12 21:13:13.312; org.apache.solr.update.DirectUpdateHandler2; start commit{,optimize=false,openSearcher=true,waitSearcher=true,expungeDeletes=false,softCommit=false,prepareCommit=false}
+INFO  - 2014-03-12 21:13:13.353; org.apache.solr.core.SolrDeletionPolicy; SolrDeletionPolicy.onCommit: commits: num=2
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_a,generation=10}
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_b,generation=11}
+INFO  - 2014-03-12 21:13:13.353; org.apache.solr.core.SolrDeletionPolicy; newest commit generation = 11
+INFO  - 2014-03-12 21:13:13.358; org.apache.solr.search.SolrIndexSearcher; Opening Searcher@3bd8dce7 main
+INFO  - 2014-03-12 21:13:13.359; org.apache.solr.update.DirectUpdateHandler2; end_commit_flush
+INFO  - 2014-03-12 21:13:13.360; org.apache.solr.core.QuerySenderListener; QuerySenderListener sending requests to Searcher@3bd8dce7 main{StandardDirectoryReader(segments_b:33:nrt _8(4.6):C2/1:delGen=1)}
+INFO  - 2014-03-12 21:13:13.360; org.apache.solr.core.QuerySenderListener; QuerySenderListener done.
+INFO  - 2014-03-12 21:13:13.364; org.apache.solr.core.SolrCore; [collection1] Registered new searcher Searcher@3bd8dce7 main{StandardDirectoryReader(segments_b:33:nrt _8(4.6):C2/1:delGen=1)}
+INFO  - 2014-03-12 21:13:13.365; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {commit=} 0 53
+INFO  - 2014-03-12 21:13:20.802; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462401971829866496)]} 0 7
+INFO  - 2014-03-12 21:13:20.828; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462401971857129472)]} 0 7
+INFO  - 2014-03-12 21:13:20.894; org.apache.solr.update.DirectUpdateHandler2; start commit{,optimize=false,openSearcher=true,waitSearcher=true,expungeDeletes=false,softCommit=false,prepareCommit=false}
+INFO  - 2014-03-12 21:13:20.910; org.apache.solr.core.SolrDeletionPolicy; SolrDeletionPolicy.onCommit: commits: num=2
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_b,generation=11}
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_c,generation=12}
+INFO  - 2014-03-12 21:13:20.910; org.apache.solr.core.SolrDeletionPolicy; newest commit generation = 12
+INFO  - 2014-03-12 21:13:20.919; org.apache.solr.search.SolrIndexSearcher; Opening Searcher@3fe0d4df main
+INFO  - 2014-03-12 21:13:20.920; org.apache.solr.core.QuerySenderListener; QuerySenderListener sending requests to Searcher@3fe0d4df main{StandardDirectoryReader(segments_c:37:nrt _9(4.6):C2/1:delGen=1)}
+INFO  - 2014-03-12 21:13:20.921; org.apache.solr.core.QuerySenderListener; QuerySenderListener done.
+INFO  - 2014-03-12 21:13:20.925; org.apache.solr.core.SolrCore; [collection1] Registered new searcher Searcher@3fe0d4df main{StandardDirectoryReader(segments_c:37:nrt _9(4.6):C2/1:delGen=1)}
+INFO  - 2014-03-12 21:13:20.929; org.apache.solr.update.DirectUpdateHandler2; end_commit_flush
+INFO  - 2014-03-12 21:13:20.931; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {commit=} 0 38
+INFO  - 2014-03-12 21:13:23.645; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462401974814113792)]} 0 4
+INFO  - 2014-03-12 21:13:23.666; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462401974835085312)]} 0 5
+INFO  - 2014-03-12 21:13:23.702; org.apache.solr.update.DirectUpdateHandler2; start commit{,optimize=false,openSearcher=true,waitSearcher=true,expungeDeletes=false,softCommit=false,prepareCommit=false}
+INFO  - 2014-03-12 21:13:23.722; org.apache.solr.core.SolrDeletionPolicy; SolrDeletionPolicy.onCommit: commits: num=2
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_c,generation=12}
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_d,generation=13}
+INFO  - 2014-03-12 21:13:23.723; org.apache.solr.core.SolrDeletionPolicy; newest commit generation = 13
+INFO  - 2014-03-12 21:13:23.736; org.apache.solr.search.SolrIndexSearcher; Opening Searcher@5cbb87b9 main
+INFO  - 2014-03-12 21:13:23.738; org.apache.solr.core.QuerySenderListener; QuerySenderListener sending requests to Searcher@5cbb87b9 main{StandardDirectoryReader(segments_d:41:nrt _a(4.6):C2/1:delGen=1)}
+INFO  - 2014-03-12 21:13:23.740; org.apache.solr.core.QuerySenderListener; QuerySenderListener done.
+INFO  - 2014-03-12 21:13:23.742; org.apache.solr.update.DirectUpdateHandler2; end_commit_flush
+INFO  - 2014-03-12 21:13:23.752; org.apache.solr.core.SolrCore; [collection1] Registered new searcher Searcher@5cbb87b9 main{StandardDirectoryReader(segments_d:41:nrt _a(4.6):C2/1:delGen=1)}
+INFO  - 2014-03-12 21:13:23.754; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {commit=} 0 52
+INFO  - 2014-03-12 21:13:35.151; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462401986877980672)]} 0 4
+INFO  - 2014-03-12 21:13:35.181; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462401986906292224)]} 0 8
+INFO  - 2014-03-12 21:13:35.230; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 249 (1462401986962915328)]} 0 3
+INFO  - 2014-03-12 21:13:35.235; org.apache.solr.update.DirectUpdateHandler2; start commit{,optimize=false,openSearcher=true,waitSearcher=true,expungeDeletes=false,softCommit=false,prepareCommit=false}
+INFO  - 2014-03-12 21:13:35.259; org.apache.solr.core.SolrDeletionPolicy; SolrDeletionPolicy.onCommit: commits: num=2
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_d,generation=13}
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_e,generation=14}
+INFO  - 2014-03-12 21:13:35.260; org.apache.solr.core.SolrDeletionPolicy; newest commit generation = 14
+INFO  - 2014-03-12 21:13:35.264; org.apache.solr.search.SolrIndexSearcher; Opening Searcher@2e608fc2 main
+INFO  - 2014-03-12 21:13:35.266; org.apache.solr.core.QuerySenderListener; QuerySenderListener sending requests to Searcher@2e608fc2 main{StandardDirectoryReader(segments_e:45:nrt _b(4.6):C3/1:delGen=1)}
+INFO  - 2014-03-12 21:13:35.272; org.apache.solr.core.QuerySenderListener; QuerySenderListener done.
+INFO  - 2014-03-12 21:13:35.276; org.apache.solr.core.SolrCore; [collection1] Registered new searcher Searcher@2e608fc2 main{StandardDirectoryReader(segments_e:45:nrt _b(4.6):C3/1:delGen=1)}
+INFO  - 2014-03-12 21:13:35.277; org.apache.solr.update.DirectUpdateHandler2; end_commit_flush
+INFO  - 2014-03-12 21:13:35.279; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {commit=} 0 44
+INFO  - 2014-03-12 21:13:35.304; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 249 (1462401987034218496)]} 0 8
+INFO  - 2014-03-12 21:13:35.311; org.apache.solr.update.DirectUpdateHandler2; start commit{,optimize=false,openSearcher=true,waitSearcher=true,expungeDeletes=false,softCommit=false,prepareCommit=false}
+INFO  - 2014-03-12 21:13:35.331; org.apache.solr.core.SolrDeletionPolicy; SolrDeletionPolicy.onCommit: commits: num=2
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_e,generation=14}
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_f,generation=15}
+INFO  - 2014-03-12 21:13:35.331; org.apache.solr.core.SolrDeletionPolicy; newest commit generation = 15
+INFO  - 2014-03-12 21:13:35.341; org.apache.solr.search.SolrIndexSearcher; Opening Searcher@1e18c53c main
+INFO  - 2014-03-12 21:13:35.346; org.apache.solr.core.QuerySenderListener; QuerySenderListener sending requests to Searcher@1e18c53c main{StandardDirectoryReader(segments_f:48:nrt _b(4.6):C3/2:delGen=2 _c(4.6):C1)}
+INFO  - 2014-03-12 21:13:35.349; org.apache.solr.core.QuerySenderListener; QuerySenderListener done.
+INFO  - 2014-03-12 21:13:35.349; org.apache.solr.update.DirectUpdateHandler2; end_commit_flush
+INFO  - 2014-03-12 21:13:35.354; org.apache.solr.core.SolrCore; [collection1] Registered new searcher Searcher@1e18c53c main{StandardDirectoryReader(segments_f:48:nrt _b(4.6):C3/2:delGen=2 _c(4.6):C1)}
+INFO  - 2014-03-12 21:13:35.355; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {commit=} 0 45
+INFO  - 2014-03-12 21:13:35.376; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 249 (1462401987110764544)]} 0 8
+INFO  - 2014-03-12 21:13:50.376; org.apache.solr.update.DirectUpdateHandler2; start commit{,optimize=false,openSearcher=false,waitSearcher=true,expungeDeletes=false,softCommit=false,prepareCommit=false}
+INFO  - 2014-03-12 21:13:50.404; org.apache.solr.core.SolrDeletionPolicy; SolrDeletionPolicy.onCommit: commits: num=2
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_f,generation=15}
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_g,generation=16}
+INFO  - 2014-03-12 21:13:50.404; org.apache.solr.core.SolrDeletionPolicy; newest commit generation = 16
+INFO  - 2014-03-12 21:13:50.410; org.apache.solr.search.SolrIndexSearcher; Opening Searcher@6d6b20fe realtime
+INFO  - 2014-03-12 21:13:50.420; org.apache.solr.update.DirectUpdateHandler2; end_commit_flush
+INFO  - 2014-03-12 21:14:07.160; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462402020440801280), Card 249 (1462402020443947008)]} 0 6
+INFO  - 2014-03-12 21:14:07.186; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462402020469112832), Card 249 (1462402020472258560)]} 0 4
+INFO  - 2014-03-12 21:14:08.244; org.apache.solr.update.DirectUpdateHandler2; start commit{,optimize=false,openSearcher=true,waitSearcher=true,expungeDeletes=false,softCommit=false,prepareCommit=false}
+INFO  - 2014-03-12 21:14:08.297; org.apache.solr.core.SolrDeletionPolicy; SolrDeletionPolicy.onCommit: commits: num=2
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_g,generation=16}
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_h,generation=17}
+INFO  - 2014-03-12 21:14:08.298; org.apache.solr.core.SolrDeletionPolicy; newest commit generation = 17
+INFO  - 2014-03-12 21:14:08.303; org.apache.solr.search.SolrIndexSearcher; Opening Searcher@7e97c438 main
+INFO  - 2014-03-12 21:14:08.306; org.apache.solr.core.QuerySenderListener; QuerySenderListener sending requests to Searcher@7e97c438 main{StandardDirectoryReader(segments_h:56:nrt _e(4.6):C4/2:delGen=1)}
+INFO  - 2014-03-12 21:14:08.311; org.apache.solr.core.QuerySenderListener; QuerySenderListener done.
+INFO  - 2014-03-12 21:14:08.309; org.apache.solr.update.DirectUpdateHandler2; end_commit_flush
+INFO  - 2014-03-12 21:14:08.316; org.apache.solr.core.SolrCore; [collection1] Registered new searcher Searcher@7e97c438 main{StandardDirectoryReader(segments_h:56:nrt _e(4.6):C4/2:delGen=1)}
+INFO  - 2014-03-12 21:14:08.317; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {commit=} 0 73
+INFO  - 2014-03-12 21:14:19.714; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462402033604624384), Card 249 (1462402033608818688)]} 0 5
+INFO  - 2014-03-12 21:14:19.745; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462402033637130240), Card 249 (1462402033640275968)]} 0 6
+INFO  - 2014-03-12 21:14:19.818; org.apache.solr.update.DirectUpdateHandler2; start commit{,optimize=false,openSearcher=true,waitSearcher=true,expungeDeletes=false,softCommit=false,prepareCommit=false}
+INFO  - 2014-03-12 21:14:19.835; org.apache.solr.core.SolrDeletionPolicy; SolrDeletionPolicy.onCommit: commits: num=2
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_h,generation=17}
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_i,generation=18}
+INFO  - 2014-03-12 21:14:19.835; org.apache.solr.core.SolrDeletionPolicy; newest commit generation = 18
+INFO  - 2014-03-12 21:14:19.840; org.apache.solr.search.SolrIndexSearcher; Opening Searcher@2855b039 main
+INFO  - 2014-03-12 21:14:19.841; org.apache.solr.core.QuerySenderListener; QuerySenderListener sending requests to Searcher@2855b039 main{StandardDirectoryReader(segments_i:60:nrt _f(4.6):C4/2:delGen=1)}
+INFO  - 2014-03-12 21:14:19.842; org.apache.solr.core.QuerySenderListener; QuerySenderListener done.
+INFO  - 2014-03-12 21:14:19.841; org.apache.solr.update.DirectUpdateHandler2; end_commit_flush
+INFO  - 2014-03-12 21:14:19.849; org.apache.solr.core.SolrCore; [collection1] Registered new searcher Searcher@2855b039 main{StandardDirectoryReader(segments_i:60:nrt _f(4.6):C4/2:delGen=1)}
+INFO  - 2014-03-12 21:14:19.851; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {commit=} 0 34
+INFO  - 2014-03-12 21:14:21.443; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462402035417612288), Card 249 (1462402035421806592)]} 0 6
+INFO  - 2014-03-12 21:14:21.475; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462402035445923840), Card 249 (1462402035453263872)]} 0 11
+INFO  - 2014-03-12 21:14:21.550; org.apache.solr.update.DirectUpdateHandler2; start commit{,optimize=false,openSearcher=true,waitSearcher=true,expungeDeletes=false,softCommit=false,prepareCommit=false}
+INFO  - 2014-03-12 21:14:21.567; org.apache.solr.core.SolrDeletionPolicy; SolrDeletionPolicy.onCommit: commits: num=2
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_i,generation=18}
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_j,generation=19}
+INFO  - 2014-03-12 21:14:21.568; org.apache.solr.core.SolrDeletionPolicy; newest commit generation = 19
+INFO  - 2014-03-12 21:14:21.572; org.apache.solr.search.SolrIndexSearcher; Opening Searcher@292012c main
+INFO  - 2014-03-12 21:14:21.573; org.apache.solr.core.QuerySenderListener; QuerySenderListener sending requests to Searcher@292012c main{StandardDirectoryReader(segments_j:64:nrt _g(4.6):C4/2:delGen=1)}
+INFO  - 2014-03-12 21:14:21.573; org.apache.solr.update.DirectUpdateHandler2; end_commit_flush
+INFO  - 2014-03-12 21:14:21.574; org.apache.solr.core.QuerySenderListener; QuerySenderListener done.
+INFO  - 2014-03-12 21:14:21.578; org.apache.solr.core.SolrCore; [collection1] Registered new searcher Searcher@292012c main{StandardDirectoryReader(segments_j:64:nrt _g(4.6):C4/2:delGen=1)}
+INFO  - 2014-03-12 21:14:21.579; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {commit=} 0 29
+INFO  - 2014-03-12 21:14:30.763; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462402045190340608), Card 249 (1462402045193486336)]} 0 6
+INFO  - 2014-03-12 21:14:30.796; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462402045223895040), Card 249 (1462402045228089344)]} 0 6
+INFO  - 2014-03-12 21:14:30.883; org.apache.solr.update.DirectUpdateHandler2; start commit{,optimize=false,openSearcher=true,waitSearcher=true,expungeDeletes=false,softCommit=false,prepareCommit=false}
+INFO  - 2014-03-12 21:14:30.903; org.apache.solr.core.SolrDeletionPolicy; SolrDeletionPolicy.onCommit: commits: num=2
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_j,generation=19}
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_k,generation=20}
+INFO  - 2014-03-12 21:14:30.904; org.apache.solr.core.SolrDeletionPolicy; newest commit generation = 20
+INFO  - 2014-03-12 21:14:30.920; org.apache.solr.search.SolrIndexSearcher; Opening Searcher@25ee9a5d main
+INFO  - 2014-03-12 21:14:30.921; org.apache.solr.update.DirectUpdateHandler2; end_commit_flush
+INFO  - 2014-03-12 21:14:30.921; org.apache.solr.core.QuerySenderListener; QuerySenderListener sending requests to Searcher@25ee9a5d main{StandardDirectoryReader(segments_k:68:nrt _h(4.6):C4/2:delGen=1)}
+INFO  - 2014-03-12 21:14:30.922; org.apache.solr.core.QuerySenderListener; QuerySenderListener done.
+INFO  - 2014-03-12 21:14:30.925; org.apache.solr.core.SolrCore; [collection1] Registered new searcher Searcher@25ee9a5d main{StandardDirectoryReader(segments_k:68:nrt _h(4.6):C4/2:delGen=1)}
+INFO  - 2014-03-12 21:14:30.927; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {commit=} 0 44
+INFO  - 2014-03-12 21:14:32.818; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462402047345164288), Card 249 (1462402047348310016)]} 0 6
+INFO  - 2014-03-12 21:14:32.851; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462402047379767296), Card 249 (1462402047382913024)]} 0 6
+INFO  - 2014-03-12 21:14:32.914; org.apache.solr.update.DirectUpdateHandler2; start commit{,optimize=false,openSearcher=true,waitSearcher=true,expungeDeletes=false,softCommit=false,prepareCommit=false}
+INFO  - 2014-03-12 21:14:32.926; org.apache.solr.core.SolrDeletionPolicy; SolrDeletionPolicy.onCommit: commits: num=2
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_k,generation=20}
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_l,generation=21}
+INFO  - 2014-03-12 21:14:32.926; org.apache.solr.core.SolrDeletionPolicy; newest commit generation = 21
+INFO  - 2014-03-12 21:14:32.931; org.apache.solr.search.SolrIndexSearcher; Opening Searcher@44c05a21 main
+INFO  - 2014-03-12 21:14:32.932; org.apache.solr.core.QuerySenderListener; QuerySenderListener sending requests to Searcher@44c05a21 main{StandardDirectoryReader(segments_l:72:nrt _i(4.6):C4/2:delGen=1)}
+INFO  - 2014-03-12 21:14:32.934; org.apache.solr.core.QuerySenderListener; QuerySenderListener done.
+INFO  - 2014-03-12 21:14:32.933; org.apache.solr.update.DirectUpdateHandler2; end_commit_flush
+INFO  - 2014-03-12 21:14:32.937; org.apache.solr.core.SolrCore; [collection1] Registered new searcher Searcher@44c05a21 main{StandardDirectoryReader(segments_l:72:nrt _i(4.6):C4/2:delGen=1)}
+INFO  - 2014-03-12 21:14:32.939; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {commit=} 0 25
+INFO  - 2014-03-12 21:14:34.468; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462402049075314688), Card 249 (1462402049078460416)]} 0 6
+INFO  - 2014-03-12 21:14:34.496; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462402049104674816), Card 249 (1462402049107820544)]} 0 6
+INFO  - 2014-03-12 21:14:34.537; org.apache.solr.update.DirectUpdateHandler2; start commit{,optimize=false,openSearcher=true,waitSearcher=true,expungeDeletes=false,softCommit=false,prepareCommit=false}
+INFO  - 2014-03-12 21:14:34.549; org.apache.solr.core.SolrDeletionPolicy; SolrDeletionPolicy.onCommit: commits: num=2
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_l,generation=21}
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_m,generation=22}
+INFO  - 2014-03-12 21:14:34.550; org.apache.solr.core.SolrDeletionPolicy; newest commit generation = 22
+INFO  - 2014-03-12 21:14:34.554; org.apache.solr.search.SolrIndexSearcher; Opening Searcher@37e60017 main
+INFO  - 2014-03-12 21:14:34.555; org.apache.solr.core.QuerySenderListener; QuerySenderListener sending requests to Searcher@37e60017 main{StandardDirectoryReader(segments_m:76:nrt _j(4.6):C4/2:delGen=1)}
+INFO  - 2014-03-12 21:14:34.556; org.apache.solr.core.QuerySenderListener; QuerySenderListener done.
+INFO  - 2014-03-12 21:14:34.556; org.apache.solr.update.DirectUpdateHandler2; end_commit_flush
+INFO  - 2014-03-12 21:14:34.559; org.apache.solr.core.SolrCore; [collection1] Registered new searcher Searcher@37e60017 main{StandardDirectoryReader(segments_m:76:nrt _j(4.6):C4/2:delGen=1)}
+INFO  - 2014-03-12 21:14:34.560; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {commit=} 0 24
+INFO  - 2014-03-12 21:14:36.342; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462402051038248960), Card 249 (1462402051044540416)]} 0 8
+INFO  - 2014-03-12 21:14:36.372; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462402051070754816), Card 249 (1462402051074949120)]} 0 6
+INFO  - 2014-03-12 21:14:36.413; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 250 (1462402051117940736)]} 0 2
+INFO  - 2014-03-12 21:14:36.425; org.apache.solr.update.DirectUpdateHandler2; start commit{,optimize=false,openSearcher=true,waitSearcher=true,expungeDeletes=false,softCommit=false,prepareCommit=false}
+INFO  - 2014-03-12 21:14:36.451; org.apache.solr.core.SolrDeletionPolicy; SolrDeletionPolicy.onCommit: commits: num=2
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_m,generation=22}
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_n,generation=23}
+INFO  - 2014-03-12 21:14:36.451; org.apache.solr.core.SolrDeletionPolicy; newest commit generation = 23
+INFO  - 2014-03-12 21:14:36.456; org.apache.solr.search.SolrIndexSearcher; Opening Searcher@7735832f main
+INFO  - 2014-03-12 21:14:36.457; org.apache.solr.update.DirectUpdateHandler2; end_commit_flush
+INFO  - 2014-03-12 21:14:36.457; org.apache.solr.core.QuerySenderListener; QuerySenderListener sending requests to Searcher@7735832f main{StandardDirectoryReader(segments_n:80:nrt _k(4.6):C5/2:delGen=1)}
+INFO  - 2014-03-12 21:14:36.458; org.apache.solr.core.QuerySenderListener; QuerySenderListener done.
+INFO  - 2014-03-12 21:14:36.461; org.apache.solr.core.SolrCore; [collection1] Registered new searcher Searcher@7735832f main{StandardDirectoryReader(segments_n:80:nrt _k(4.6):C5/2:delGen=1)}
+INFO  - 2014-03-12 21:14:36.463; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {commit=} 0 38
+INFO  - 2014-03-12 21:14:36.479; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 250 (1462402051186098176)]} 0 4
+INFO  - 2014-03-12 21:14:36.491; org.apache.solr.update.DirectUpdateHandler2; start commit{,optimize=false,openSearcher=true,waitSearcher=true,expungeDeletes=false,softCommit=false,prepareCommit=false}
+INFO  - 2014-03-12 21:14:36.516; org.apache.solr.core.SolrDeletionPolicy; SolrDeletionPolicy.onCommit: commits: num=2
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_n,generation=23}
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_o,generation=24}
+INFO  - 2014-03-12 21:14:36.517; org.apache.solr.core.SolrDeletionPolicy; newest commit generation = 24
+INFO  - 2014-03-12 21:14:36.525; org.apache.solr.search.SolrIndexSearcher; Opening Searcher@5f39d431 main
+INFO  - 2014-03-12 21:14:36.526; org.apache.solr.core.QuerySenderListener; QuerySenderListener sending requests to Searcher@5f39d431 main{StandardDirectoryReader(segments_o:83:nrt _k(4.6):C5/3:delGen=2 _l(4.6):C1)}
+INFO  - 2014-03-12 21:14:36.528; org.apache.solr.core.QuerySenderListener; QuerySenderListener done.
+INFO  - 2014-03-12 21:14:36.532; org.apache.solr.core.SolrCore; [collection1] Registered new searcher Searcher@5f39d431 main{StandardDirectoryReader(segments_o:83:nrt _k(4.6):C5/3:delGen=2 _l(4.6):C1)}
+INFO  - 2014-03-12 21:14:36.528; org.apache.solr.update.DirectUpdateHandler2; end_commit_flush
+INFO  - 2014-03-12 21:14:36.537; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {commit=} 0 46
+INFO  - 2014-03-12 21:14:36.567; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 250 (1462402051273129984)]} 0 8
+INFO  - 2014-03-12 21:14:51.429; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462402066846580736), Card 249 (1462402066861260800), Card 250 (1462402066863357952)]} 0 19
+INFO  - 2014-03-12 21:14:51.459; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462402066891669504), Card 249 (1462402066893766656), Card 250 (1462402066894815232)]} 0 6
+INFO  - 2014-03-12 21:14:51.540; org.apache.solr.update.DirectUpdateHandler2; start commit{,optimize=false,openSearcher=true,waitSearcher=true,expungeDeletes=false,softCommit=false,prepareCommit=false}
+INFO  - 2014-03-12 21:14:51.557; org.apache.solr.core.SolrDeletionPolicy; SolrDeletionPolicy.onCommit: commits: num=2
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_o,generation=24}
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_p,generation=25}
+INFO  - 2014-03-12 21:14:51.558; org.apache.solr.core.SolrDeletionPolicy; newest commit generation = 25
+INFO  - 2014-03-12 21:14:51.563; org.apache.solr.search.SolrIndexSearcher; Opening Searcher@592133b0 main
+INFO  - 2014-03-12 21:14:51.564; org.apache.solr.core.QuerySenderListener; QuerySenderListener sending requests to Searcher@592133b0 main{StandardDirectoryReader(segments_p:87:nrt _m(4.6):C7/4:delGen=1)}
+INFO  - 2014-03-12 21:14:51.565; org.apache.solr.core.QuerySenderListener; QuerySenderListener done.
+INFO  - 2014-03-12 21:14:51.564; org.apache.solr.update.DirectUpdateHandler2; end_commit_flush
+INFO  - 2014-03-12 21:14:51.568; org.apache.solr.core.SolrCore; [collection1] Registered new searcher Searcher@592133b0 main{StandardDirectoryReader(segments_p:87:nrt _m(4.6):C7/4:delGen=1)}
+INFO  - 2014-03-12 21:14:51.570; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {commit=} 0 30
+INFO  - 2014-03-12 21:14:53.082; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462402068592459776), Card 249 (1462402068595605504), Card 250 (1462402068597702656)]} 0 7
+INFO  - 2014-03-12 21:14:53.126; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462402068637548544), Card 249 (1462402068640694272), Card 250 (1462402068642791424)]} 0 8
+INFO  - 2014-03-12 21:14:53.202; org.apache.solr.update.DirectUpdateHandler2; start commit{,optimize=false,openSearcher=true,waitSearcher=true,expungeDeletes=false,softCommit=false,prepareCommit=false}
+INFO  - 2014-03-12 21:14:53.254; org.apache.solr.core.SolrDeletionPolicy; SolrDeletionPolicy.onCommit: commits: num=2
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_p,generation=25}
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_q,generation=26}
+INFO  - 2014-03-12 21:14:53.254; org.apache.solr.core.SolrDeletionPolicy; newest commit generation = 26
+INFO  - 2014-03-12 21:14:53.259; org.apache.solr.search.SolrIndexSearcher; Opening Searcher@867460 main
+INFO  - 2014-03-12 21:14:53.260; org.apache.solr.core.QuerySenderListener; QuerySenderListener sending requests to Searcher@867460 main{StandardDirectoryReader(segments_q:91:nrt _n(4.6):C6/3:delGen=1)}
+INFO  - 2014-03-12 21:14:53.260; org.apache.solr.update.DirectUpdateHandler2; end_commit_flush
+INFO  - 2014-03-12 21:14:53.261; org.apache.solr.core.QuerySenderListener; QuerySenderListener done.
+INFO  - 2014-03-12 21:14:53.265; org.apache.solr.core.SolrCore; [collection1] Registered new searcher Searcher@867460 main{StandardDirectoryReader(segments_q:91:nrt _n(4.6):C6/3:delGen=1)}
+INFO  - 2014-03-12 21:14:53.266; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {commit=} 0 65
+INFO  - 2014-03-12 21:14:54.172; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462402069734359040), Card 249 (1462402069737504768), Card 250 (1462402069739601920)]} 0 9
+INFO  - 2014-03-12 21:14:54.206; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462402069768962048), Card 249 (1462402069773156352), Card 250 (1462402069775253504)]} 0 9
+INFO  - 2014-03-12 21:14:54.276; org.apache.solr.update.DirectUpdateHandler2; start commit{,optimize=false,openSearcher=true,waitSearcher=true,expungeDeletes=false,softCommit=false,prepareCommit=false}
+INFO  - 2014-03-12 21:14:54.299; org.apache.solr.core.SolrDeletionPolicy; SolrDeletionPolicy.onCommit: commits: num=2
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_q,generation=26}
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_r,generation=27}
+INFO  - 2014-03-12 21:14:54.299; org.apache.solr.core.SolrDeletionPolicy; newest commit generation = 27
+INFO  - 2014-03-12 21:14:54.304; org.apache.solr.search.SolrIndexSearcher; Opening Searcher@216a55de main
+INFO  - 2014-03-12 21:14:54.306; org.apache.solr.core.QuerySenderListener; QuerySenderListener sending requests to Searcher@216a55de main{StandardDirectoryReader(segments_r:95:nrt _o(4.6):C6/3:delGen=1)}
+INFO  - 2014-03-12 21:14:54.307; org.apache.solr.core.QuerySenderListener; QuerySenderListener done.
+INFO  - 2014-03-12 21:14:54.306; org.apache.solr.update.DirectUpdateHandler2; end_commit_flush
+INFO  - 2014-03-12 21:14:54.310; org.apache.solr.core.SolrCore; [collection1] Registered new searcher Searcher@216a55de main{StandardDirectoryReader(segments_r:95:nrt _o(4.6):C6/3:delGen=1)}
+INFO  - 2014-03-12 21:14:54.312; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {commit=} 0 36
+INFO  - 2014-03-12 21:16:32.949; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462402173309550592), Card 249 (1462402173312696320), Card 250 (1462402173314793472)]} 0 8
+INFO  - 2014-03-12 21:16:32.980; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462402173342056448), Card 249 (1462402173345202176), Card 250 (1462402173347299328)]} 0 8
+INFO  - 2014-03-12 21:16:33.065; org.apache.solr.update.DirectUpdateHandler2; start commit{,optimize=false,openSearcher=true,waitSearcher=true,expungeDeletes=false,softCommit=false,prepareCommit=false}
+INFO  - 2014-03-12 21:16:33.092; org.apache.solr.core.SolrDeletionPolicy; SolrDeletionPolicy.onCommit: commits: num=2
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_r,generation=27}
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_s,generation=28}
+INFO  - 2014-03-12 21:16:33.092; org.apache.solr.core.SolrDeletionPolicy; newest commit generation = 28
+INFO  - 2014-03-12 21:16:33.101; org.apache.solr.search.SolrIndexSearcher; Opening Searcher@438544d6 main
+INFO  - 2014-03-12 21:16:33.102; org.apache.solr.update.DirectUpdateHandler2; end_commit_flush
+INFO  - 2014-03-12 21:16:33.103; org.apache.solr.core.QuerySenderListener; QuerySenderListener sending requests to Searcher@438544d6 main{StandardDirectoryReader(segments_s:99:nrt _p(4.6):C6/3:delGen=1)}
+INFO  - 2014-03-12 21:16:33.103; org.apache.solr.core.QuerySenderListener; QuerySenderListener done.
+INFO  - 2014-03-12 21:16:33.107; org.apache.solr.core.SolrCore; [collection1] Registered new searcher Searcher@438544d6 main{StandardDirectoryReader(segments_s:99:nrt _p(4.6):C6/3:delGen=1)}
+INFO  - 2014-03-12 21:16:33.109; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {commit=} 0 44
+INFO  - 2014-03-12 21:21:44.425; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462402499914760192), Card 249 (1462402499917905920), Card 250 (1462402499922100224)]} 0 21
+INFO  - 2014-03-12 21:21:44.465; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462402499950411776), Card 249 (1462402499953557504), Card 250 (1462402499962994688)]} 0 15
+INFO  - 2014-03-12 21:21:44.551; org.apache.solr.update.DirectUpdateHandler2; start commit{,optimize=false,openSearcher=true,waitSearcher=true,expungeDeletes=false,softCommit=false,prepareCommit=false}
+INFO  - 2014-03-12 21:21:44.567; org.apache.solr.core.SolrDeletionPolicy; SolrDeletionPolicy.onCommit: commits: num=2
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_s,generation=28}
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_t,generation=29}
+INFO  - 2014-03-12 21:21:44.567; org.apache.solr.core.SolrDeletionPolicy; newest commit generation = 29
+INFO  - 2014-03-12 21:21:44.576; org.apache.solr.search.SolrIndexSearcher; Opening Searcher@2c8cb4d6 main
+INFO  - 2014-03-12 21:21:44.579; org.apache.solr.update.DirectUpdateHandler2; end_commit_flush
+INFO  - 2014-03-12 21:21:44.580; org.apache.solr.core.QuerySenderListener; QuerySenderListener sending requests to Searcher@2c8cb4d6 main{StandardDirectoryReader(segments_t:103:nrt _q(4.6):C6/3:delGen=1)}
+INFO  - 2014-03-12 21:21:44.582; org.apache.solr.core.QuerySenderListener; QuerySenderListener done.
+INFO  - 2014-03-12 21:21:44.585; org.apache.solr.core.SolrCore; [collection1] Registered new searcher Searcher@2c8cb4d6 main{StandardDirectoryReader(segments_t:103:nrt _q(4.6):C6/3:delGen=1)}
+INFO  - 2014-03-12 21:21:44.586; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {commit=} 0 36
+INFO  - 2014-03-12 21:22:10.532; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462402527290982400), Card 249 (1462402527295176704), Card 250 (1462402527296225280)]} 0 7
+INFO  - 2014-03-12 21:22:10.574; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {add=[Card 248 (1462402527333974016), Card 249 (1462402527337119744), Card 250 (1462402527341314048)]} 0 8
+INFO  - 2014-03-12 21:22:10.656; org.apache.solr.update.DirectUpdateHandler2; start commit{,optimize=false,openSearcher=true,waitSearcher=true,expungeDeletes=false,softCommit=false,prepareCommit=false}
+INFO  - 2014-03-12 21:22:10.675; org.apache.solr.core.SolrDeletionPolicy; SolrDeletionPolicy.onCommit: commits: num=2
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_t,generation=29}
+	commit{dir=NRTCachingDirectory(org.apache.lucene.store.NIOFSDirectory@/usr/local/Cellar/solr/4.6.1/libexec/example/solr/collection1/data/index lockFactory=org.apache.lucene.store.NativeFSLockFactory@1a8cde0e; maxCacheMB=48.0 maxMergeSizeMB=4.0),segFN=segments_u,generation=30}
+INFO  - 2014-03-12 21:22:10.676; org.apache.solr.core.SolrDeletionPolicy; newest commit generation = 30
+INFO  - 2014-03-12 21:22:10.683; org.apache.solr.search.SolrIndexSearcher; Opening Searcher@7401e56b main
+INFO  - 2014-03-12 21:22:10.684; org.apache.solr.core.QuerySenderListener; QuerySenderListener sending requests to Searcher@7401e56b main{StandardDirectoryReader(segments_u:107:nrt _r(4.6):C6/3:delGen=1)}
+INFO  - 2014-03-12 21:22:10.685; org.apache.solr.core.QuerySenderListener; QuerySenderListener done.
+INFO  - 2014-03-12 21:22:10.692; org.apache.solr.core.SolrCore; [collection1] Registered new searcher Searcher@7401e56b main{StandardDirectoryReader(segments_u:107:nrt _r(4.6):C6/3:delGen=1)}
+INFO  - 2014-03-12 21:22:10.684; org.apache.solr.update.DirectUpdateHandler2; end_commit_flush
+INFO  - 2014-03-12 21:22:10.698; org.apache.solr.update.processor.LogUpdateProcessor; [collection1] webapp=/solr path=/update params={wt=ruby} {commit=} 0 43
+INFO  - 2014-03-13 20:10:45.587; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=3 status=0 QTime=26 
+INFO  - 2014-03-13 20:10:45.781; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=3 status=0 QTime=1 

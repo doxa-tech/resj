@@ -52,6 +52,19 @@
 		}
 	}
 
-	.clear {clear: both}
+	.team {
+		padding: 10px 0 20px 14px;
+		h3 {
+			font-size: 15px;
+			padding: 0 0 10px 0;
+		}
+		.resp {
+			padding: 0 0 7px 0;
+			.lastname {
+				padding: 0 7px;
+				color: #777;
+			}
+		}
+	}
 
 }

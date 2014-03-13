@@ -26,4 +26,12 @@
     });
   </script>
 
-  <% end %>
+<% else %>
+
+  <script type="text/javascript">
+    var latCenter = 46.6221;
+    var lngCenter = 7.1960;
+  </script>
+  <%= render 'map' %>
+
+<% end %>

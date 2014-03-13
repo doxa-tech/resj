@@ -1,10 +1,18 @@
-<% if @user.orator.nil? %>
-	<%= form_for @user, url: user_update_path do |f| %>
-		<%= render 'form', f: f %>
-	<%= f.submit %>
+<% content_for :id, 'user-edit' %>
+
+<div class="top">
+	<h1>Editer son profil</h1>
+</div>
+
+<div class="form">
+	<% if @user.orator.nil? %>
+		<%= form_for @user, url: user_update_path do |f| %>
+			<%= render 'form', f: f %>
+		<%= f.submit %>
+		<% end %>
+	<% else %>
+		<%= form_for @user, url: orator_path(@user) do |f| %>
+			<%= render 'orators/form', f: f %>
+		<% end %>
 	<% end %>
-<% else %>
-	<%= form_for @user, url: orator_path(@user) do |f| %>
-		<%= render 'orators/form', f: f %>
-	<% end %>
-<% end %>
+</div>

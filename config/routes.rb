@@ -37,6 +37,9 @@ Resj::Application.routes.draw do
       post 'change'
       post 'new_responsable'
     end
+    member do
+      get 'overview'
+    end
   end
 
   %w[responsables affiliations tags actions themes].each do |search|

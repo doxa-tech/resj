@@ -18,6 +18,10 @@ class CardsController < BaseController
 		@card = Card.find(params[:id])
 	end
 
+	def overview
+		@card = Card.find(params[:id])
+	end
+
 	def new
 		session[:card_params] ||= {}
 		@card = Card.new(session[:card_params])
