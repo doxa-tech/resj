@@ -4,7 +4,7 @@ class CardMailer < ActionMailer::Base
   default from: "admin@reseaujeunesse.ch"
 
   def welcome(card)
-    mail to:      card.contact.email,
+    mail to:      card.user.email,
          from:    "\"Noémien de ResJ\" <admin@reseaujeunesse.ch>",
          subject: 'Nouveau groupe sur réseauJeunesse.ch',
          body:

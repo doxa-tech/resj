@@ -16,16 +16,19 @@
 		<div id="login-over"></div>
 		<div id="login-overlay"><p class="close">fermer</p></div>
 
-		<%= render 'layouts/header' %>
-
+		<div id="header">
+			<%= render 'layouts/header' %>
+		</div>
+		
 		<%= render 'layouts/banner' %>
 
 		<div id="container"  <%= "class=#{yield(:id)}" if yield(:id).presence %>>
 			<%= yield %>
 		</div>
 
-		<%= render 'layouts/footer' %>
-
+		<div id="footer">
+			<%= render 'layouts/footer' %>
+		</div>
 	</div>
 </body>
 </html>

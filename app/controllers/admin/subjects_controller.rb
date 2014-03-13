@@ -13,18 +13,24 @@ class Admin::SubjectsController < Admin::BaseController
 		@subject = Subject.new
 	end
 
-	def create
+	def create 
 		@subject = Subject.new(subject_params)
-		@subject.save
-		render 'form'
+		if @subject.save
+			redirect_to admin_subjects_path, success: t('subject.admin.create.success')
+		else
+			render 'new'
+		end
 	end
 
 	def edit
 	end
 
 	def update
-		@subject.update_attributes(subject_params)
-		render 'form'
+		if @subject.update_attributes(subject_params)
+			redirect_to admin_subjects_path, success: t('subject.admin.edit.success')
+		else
+			render 'edit'
+		end
 	end
 
 	def destroy

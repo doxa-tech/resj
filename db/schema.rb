@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140310171454) do
+ActiveRecord::Schema.define(version: 20140312164922) do
 
   create_table "access_tokens", force: true do |t|
     t.string   "token"
@@ -322,6 +322,7 @@ ActiveRecord::Schema.define(version: 20140310171454) do
     t.datetime "reset_sent_at"
     t.string   "firstname"
     t.string   "lastname"
+    t.boolean  "confirmed",       default: false
   end
 
   add_index "users", ["user_type_id"], name: "index_users_on_user_type_id"
