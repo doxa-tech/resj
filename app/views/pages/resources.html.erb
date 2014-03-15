@@ -48,14 +48,12 @@
 		<div class="wrapper">
 			<div class="type">Article <i class="fi-clipboard-notes"></i></div>
 			<div class="graphic">
-				<img src="http://profilesasiapacific.com/blog/wp-content/uploads/2014/01/hand-fist-power1-1024x682.jpg">
+				<%= image_tag image_url @article.image %>
 			</div>
 			<div class="text">
-				<h3>Comment booster vos jeunes</h3>
+				<h3><%= @article.title %></h3>
 				<div class="content">
-					<p>C'est une question qui revient souvent et qui est certainement apparu au moins une fois dans votre activité de responsable: comment redonner le feux à vos jeunes. Et par là j'entend pas leur faire infligé de terribles brûlure mais bien de leur redonner cette énergie qui les anime durant leur tendre adolescence. Pour répondre à cette question laissez-moi vous poser une question.</p> 
-					<p>Nullam faucibus neque vitae tincidunt sagittis. Sed dictum lacinia turpis, non pellentesque tellus pretium eu. Cras iaculis tincidunt turpis eget laoreet. Nulla lacinia ante mi, ut cursus felis porttitor non. Donec egestas commodo velit. Nam mauris sem, convallis a lorem in, faucibus adipiscing lacus. Maecenas id luctus mauris. Mauris interdum velit eget turpis tempor, vel laoreet lorem ornare. Mauris vestibulum mattis fringilla.</p>
-					<p>Fusce eu metus tempor, placerat elit ac, gravida neque. Sed nibh sem, dapibus nec arcu vel, hendrerit porta sapien. Nulla sit amet massa eget nisl commodo suscipit sit amet a urna. Duis ultrices vitae velit sed vestibulum. Sed accumsan lorem dolor, semper eleifend libero molestie non.</p>
+					<%= simple_format @article.content %>
 				</div>
 			</div>
 			<div class="clear"></div>
@@ -76,7 +74,7 @@
 		<div class="wrapper">
 			<div class="type">Article <i class="fi-clipboard-notes"></i></div>
 			<div class="graphic">
-				<img width="100px" src="http://austechqld.com.au/wp-content/uploads/2012/12/pdf-Logo.png">
+				<%= image_tag image_url 'resources/documents/pdf.png' %>
 			</div>
 			<div class="text">
 				<h3>Gérez les finances de votre groupe</h3>
@@ -91,7 +89,7 @@
 		<div class="wrapper">
 			<div class="type">Activité du site <i class="fi-battery-full"></i></div>
 			<div class="graphic">
-				<img width="100px" src="https://cdn1.iconfinder.com/data/icons/appicns/513/appicns_Address-Book.png">
+				<%= image_tag image_url 'resources/documents/files.png' %>
 			</div>
 			<div class="text">
 				<h3>La gestion de conflit</h3>
@@ -106,7 +104,7 @@
 		<div class="wrapper">
 			<div class="type">Activité du site <i class="fi-battery-full"></i></div>
 			<div class="graphic">
-				<img width="100px" src="http://www.freeresponsivedesign.com/wp-content/uploads/word-2013-logo.jpg">
+				<%= image_tag image_url 'resources/documents/Word.png' %>
 			</div>
 			<div class="text">
 				<h3>Organiser un camps</h3>
@@ -121,7 +119,7 @@
 		<div class="wrapper">
 			<div class="type">Activité du site <i class="fi-battery-full"></i></div>
 			<div class="graphic">
-				<img width="100px !important" src="http://upload.wikimedia.org/wikipedia/fr/c/c2/Logo_Microsoft_PowerPoint_2013.png">
+				<%= image_tag image_url 'resources/documents/gallery.png' %>
 			</div>
 			<div class="text">
 				<h3>Message: Ecouter Dieu</h3>

@@ -23,3 +23,5 @@ solr/
 
 
 config/sunspot.yml
+
+public/uploads
