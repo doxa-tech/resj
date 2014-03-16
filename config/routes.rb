@@ -1,80 +1,84 @@
 Resj::Application.routes.draw do
 
-  root to: 'pages#home'
+  scope "(:locale)" do
 
-  %w[home resj contact resources].each do |page|
-    get page, to: "pages##{page}"
-  end
-
-  get 'reseau', to: 'cards#index'
-  get 'inscription', to: 'users#new'
-  get 'connexion', to: 'sessions#new'
-  delete 'signout', to: 'sessions#destroy'
-
-  get 'profile', to: "users#profile"
-  patch 'user/update', to: "users#update"
-  get 'user/edit', to: "users#edit"
-  post 'user/card/confirmation', to: "users#card_confirmation"
-  post 'user/card/request', to: "users#card_request"
-  get 'user/confirmation', to: "users#confirmation"
-
-  # resources
-  scope 'resources' do
-    resources :orators, except: [:show, :destroy]
-    resources :articles, only: [:index, :show]
-    resources :documents, controller: 'subjects', only: [:index, :show] do
-      member do
-        get 'download'
-      end
+    %w[home resj contact resources].each do |page|
+      get page, to: "pages##{page}"
     end
-  end
 
-  resources :users, only: [:create] do
-    member do
-      post 'resend_mail'
-    end
-  end
-  resources :sessions, only: [:create, :destroy]
-  resources :password_resets, except: [:index, :show, :destroy]
-  
-  resources :cards, except: [:destroy] do
-    collection do
-      post 'change'
-      post 'user_request'
-      post 'user_confirmation'
-    end
-    member do
-      get 'overview'
-    end
-  end
+    get 'reseau', to: 'cards#index'
+    get 'inscription', to: 'users#new'
+    get 'connexion', to: 'sessions#new'
+    delete 'signout', to: 'sessions#destroy'
 
-  %w[responsables affiliations tags actions themes].each do |search|
-    post "/searches/#{search}", to: "searches##{search}"
-  end
+    get 'profile', to: "users#profile"
+    patch 'user/update', to: "users#update"
+    get 'user/edit', to: "users#edit"
+    post 'user/card/confirmation', to: "users#card_confirmation"
+    post 'user/card/request', to: "users#card_request"
+    get 'user/confirmation', to: "users#confirmation"
 
-  # admin resources
-  namespace :admin do
-
-    resources :pages, only: [:index, :edit, :update]
-    resources :users, except: [:show]
-    resources :ownerships, except: [:show]
-    resources :actions, except: [:show]
-    resources :affiliations, except: [:show]
-    resources :card_types, except: [:show]
-    resources :responsables, except: [:show]
-    resources :tags, except: [:show]
-    resources :parents, except: [:show]
-    resources :access_tokens, except: [:show]
-    resources :subjects, except: [:show]
-    resources :themes, except: [:show]
-    resources :articles, except: [:show]
-
-    resources :cards do
-      resources :verificator_comments, only: [:create, :update, :destroy]
-      member do
-        get 'verificate'
+    # resources
+    scope 'resources' do
+      resources :orators, except: [:show, :destroy]
+      resources :articles, only: [:index, :show]
+      resources :documents, controller: 'subjects', only: [:index, :show] do
+        member do
+          get 'download'
+        end
       end
     end
 
+    resources :users, only: [:create] do
+      member do
+        post 'resend_mail'
+      end
+    end
+    resources :sessions, only: [:create, :destroy]
+    resources :password_resets, except: [:index, :show, :destroy]
+    
+    resources :cards, except: [:destroy] do
+      collection do
+        post 'change'
+        post 'user_request'
+        post 'user_confirmation'
+      end
+      member do
+        get 'overview'
+      end
+    end
+
+    %w[responsables affiliations tags actions themes].each do |search|
+      post "/searches/#{search}", to: "searches##{search}"
+    end
+
+    # admin resources
+    namespace :admin do
+
+      resources :pages, only: [:index, :edit, :update]
+      resources :users, except: [:show]
+      resources :ownerships, except: [:show]
+      resources :actions, except: [:show]
+      resources :affiliations, except: [:show]
+      resources :card_types, except: [:show]
+      resources :responsables, except: [:show]
+      resources :tags, except: [:show]
+      resources :parents, except: [:show]
+      resources :access_tokens, except: [:show]
+      resources :subjects, except: [:show]
+      resources :themes, except: [:show]
+      resources :articles, except: [:show]
+
+      resources :cards do
+        resources :verificator_comments, only: [:create, :update, :destroy]
+        member do
+          get 'verificate'
+        end
+      end
+
+    end
+
+    root to: 'pages#home'
+    
   end
 end
