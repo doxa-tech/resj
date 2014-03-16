@@ -1,11 +1,16 @@
 class ApplicationController < ActionController::Base
+  include SessionsHelper
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   # add different types of flash messages
   add_flash_types :error, :success, :notice
-  
-  include SessionsHelper
+
+  before_action :set_locale
+ 
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+  end
 
   def current_permission
 		@current_permission ||= Permission.new(current_user)
