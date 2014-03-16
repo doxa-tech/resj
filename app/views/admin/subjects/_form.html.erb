@@ -10,18 +10,21 @@
 
 		<%= f.label :theme_id %>
 		<%= f.collection_select :theme_ids, Theme.all, :id, :name, {include_blank: "Select themes"}, {class: "selectize-themes", multiple: true} %>
+	<div class="association_fields">
+		<%= f.fields_for :resources, (@subject.resources.any? || @subject.resources.build) do |resources_fields| %>
+			<%= content_tag :div, class: "fields" do %>
+				<%= resources_fields.label :name %>
+				<%= resources_fields.text_field :name %>
 
-	<%= f.fields_for :resources, @subject.resources << Resource.new do |resources_fields| %>
-		<%= resources_fields.label :name %>
-		<%= resources_fields.text_field :name %>
+				<%= resources_fields.label :file %>
+				<%= resources_fields.file_field :file %>
 
-		<%= resources_fields.label :file %>
-		<%= resources_fields.file_field :file %>
-
-		<%= resources_fields.label :_destroy %>
-		<%= resources_fields.check_box :_destroy %>
-
-	<% end %>
+				<%= resources_fields.hidden_field :_destroy, identifier: "destroy" %>
+				<%= link_to_remove_fields "remove" %>
+			<% end %>
+		<% end %>
+		<%= link_to_add_fields("New upload") %>
+	</div>
 
 	<%= f.submit %><div class="updated"></div>
 
