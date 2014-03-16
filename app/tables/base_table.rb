@@ -15,7 +15,7 @@ class BaseTable
   end
   
   def sort_direction
-    %w[asc desc].include?(h.params[:direction]) ? h.params[:direction] : "asc"
+    %w[asc desc].include?(h.params[:direction]) ? h.params[:direction] : "desc"
   end
 
   def sortable(column)
