@@ -17,7 +17,19 @@
 				<%= resources_fields.text_field :name %>
 
 				<%= resources_fields.label :file %>
-				<%= resources_fields.file_field :file %>
+				<% # accept : .doc, .docx, .ppt, .pptx, .xls, .xlsx, odt, ods, odp %>
+				<%= resources_fields.file_field :file, 
+					accept: '
+						application/pdf,application/msword,
+						application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+						application/vnd.ms-powerpoint,
+						application/vnd.openxmlformats-officedocument.presentationml.presentation,
+						application/vnd.ms-excel,
+						application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,
+						application/vnd.oasis.opendocument.text,
+						application/vnd.oasis.opendocument.spreadsheet,
+						application/vnd.oasis.opendocument.presentation' 
+				%>
 
 				<%= resources_fields.hidden_field :_destroy, identifier: "destroy" %>
 				<%= link_to_remove_fields "remove" %>
