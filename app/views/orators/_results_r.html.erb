@@ -1,3 +1,22 @@
 <% if @orators.any? %>
 
 <% end %>
+
+<div id="map-canvas"></div>
+
+<script type="text/javascript">
+  map = gmap.initialize();
+
+  <% @orators %>
+  var string = "<%= j %q[
+          <div class="infowindow">
+            <p class="location">Bulle - Bulle</p>
+            <p class="info">3 orateurs dans cette région</p>
+            <p>Noémien Kocher <a href="#">voir</a></p>
+            <p>Baptiste François <a href="#">voir</a></p>
+            <p>Luc Skywalker <a href="#">voir</a></p>
+          </div>
+  ].html_safe %>";
+  gmap.addIcon("Bulle, switzerland", map, string);
+
+</script>

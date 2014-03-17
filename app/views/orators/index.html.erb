@@ -1,3 +1,6 @@
+<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyDNsGj5h-WJXPiLtYVn0TSfiisPwhEAbjg&sensor=false" %>
+<%= javascript_include_tag "orators_index_map.js" %>
+
 <% content_for :id, 'orators' %>
 
 <div class="top">
@@ -8,13 +11,12 @@
 
 	<div class="rows" id="results">
 		<div class="left">
-				
 			<div class="left-content"><%= render 'results_l' %></div>
 		</div>
 		<div class="right">
 			<%= render 'results_r' %>
 		</div>
-		<div class="clear"></div>
+		<div id="clear"></div>
 	</div>
 <% end %>
 
