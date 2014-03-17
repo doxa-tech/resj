@@ -1,0 +1,21 @@
+<% content_for :id, 'orators' %>
+
+<div class="top">
+	<h1>Vos orateurs</h1>
+</div>
+
+<%= form_tag reseau_path, method: :get, remote: true, id: "card-search-form" do %>
+
+	<div class="rows" id="results">
+		<div class="left">
+				
+			<div class="left-content"><%= render 'results_l' %></div>
+		</div>
+		<div class="right">
+			<%= render 'results_r' %>
+		</div>
+		<div class="clear"></div>
+	</div>
+<% end %>
+
+<%= render 'ajax_loader' %>

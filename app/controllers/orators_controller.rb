@@ -2,7 +2,11 @@ class OratorsController < BaseController
 	before_action :authorize_token, only: [:new, :create]
 
 	def index
-	 @orators = Orator.all 
+		@search = Orator.search do 
+			fulltext params[:query]
+			paginate page: params[:page] if params[:page]
+		end
+  	@orators = Orator.all
 	end
 
 	def new

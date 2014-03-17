@@ -1,0 +1,18 @@
+<%= javascript_include_tag 'cards_results' %>
+<%= will_paginate @cards, remote: true %>
+
+
+<div class="index">
+  <% if @orators.any? %>
+    <ul>
+  		<li class="letter"><%= current %></li>
+  		<% @orators.each do |orator| %>
+  			<li class="card">
+          <p class="description"><i class="fi-megaphone"></i><%= orator.firstname %></p>
+        </li>
+  		<% end %>
+    </ul>
+  <% else %>
+    <p>Votre recherche n'a donné aucun résultat.</p>
+  <% end %>
+</div>

@@ -62,7 +62,6 @@
 	<div class="clear"></div>
 
 
-
 	<div class="title" id="docs">
 		<div class="wrapper">
 			<h2>Derniers documents</h2>
@@ -70,66 +69,24 @@
 			<div class="clear"></div>
 		</div>
 	</div>
-	<div class="block split4 doc">
-		<div class="wrapper">
-			<div class="type">Article <i class="fi-clipboard-notes"></i></div>
-			<div class="graphic">
-				<%= image_tag image_url 'resources/documents/pdf.png' %>
-			</div>
-			<div class="text">
-				<h3>Gérez les finances de votre groupe</h3>
-				<div class="content">
-					<p>Un document qui répond aux essentiels questions qui peuvent survenir sur la gestion des finances dans votre groupe et laisse place au dialogue avec votre église.</p>
+	<% @subjects.each do |subject| %>
+		<% type = type(subject) %>
+		<div class="block split4 doc">
+			<div class="wrapper">
+				<div class="type">.<%= type.html_safe %></div>
+				<div class="graphic">
+					<%= image_tag image_url "resources/documents/#{type}.png" %>
 				</div>
-			</div>
-			<div class="clear"></div>
-		</div>
-	</div>
-	<div class="block split4 doc">
-		<div class="wrapper">
-			<div class="type">Activité du site <i class="fi-battery-full"></i></div>
-			<div class="graphic">
-				<%= image_tag image_url 'resources/documents/files.png' %>
-			</div>
-			<div class="text">
-				<h3>La gestion de conflit</h3>
-				<div class="content">
-					<p>Un thème souvent peu maîtrisé mais qui merrite qu'on s'y arrête. Ce dossier fournis plusieurs documents traitant du sujet.</p>
+				<div class="text">
+					<h3><%= subject.name %></h3>
+					<div class="content">
+						<p><%= truncate subject.description, length: 170 %></p>
+					</div>
 				</div>
+				<div class="clear"></div>
 			</div>
-			<div class="clear"></div>
-		</div>
-	</div>
-	<div class="block split4 doc">
-		<div class="wrapper">
-			<div class="type">Activité du site <i class="fi-battery-full"></i></div>
-			<div class="graphic">
-				<%= image_tag image_url 'resources/documents/Word.png' %>
-			</div>
-			<div class="text">
-				<h3>Organiser un camps</h3>
-				<div class="content">
-					<p>Incontournable dans la vie d'un leader, l'organisation d0'un camps. Ce document fournis non-seulement quelques conseil mais aussi des modèles prêt à l'emplois.</p>
-				</div>
-			</div>
-			<div class="clear"></div>
-		</div>
-	</div>
-	<div class="block split4 doc">
-		<div class="wrapper">
-			<div class="type">Activité du site <i class="fi-battery-full"></i></div>
-			<div class="graphic">
-				<%= image_tag image_url 'resources/documents/gallery.png' %>
-			</div>
-			<div class="text">
-				<h3>Message: Ecouter Dieu</h3>
-				<div class="content">
-					<p>Un support pour un message sur l'écoute de Dieu. A utiliser sans modération.</p>
-				</div>
-			</div>
-			<div class="clear"></div>
-		</div>
-	</div>
+		</div>		
+	<% end %>
 	<div class="clear"></div>
 
 

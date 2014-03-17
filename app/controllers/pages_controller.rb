@@ -17,6 +17,7 @@ class PagesController < BaseController
 	def resources
 		@page = Page.find_by_name('resources')
 		@article = Article.last
+		@subjects = Subject.last(4).reverse
 	end
 	
 end
