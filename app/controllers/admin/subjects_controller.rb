@@ -41,7 +41,7 @@ class Admin::SubjectsController < Admin::BaseController
 	private
 
 	def subject_params
-		params.require(:subject).permit(:name, :description, { :theme_ids =>[] }, resources_attributes: [:id, :file, :name, :_destroy] )
+		params.require(:subject).permit(:name, :description, { :theme_ids =>[] }, documents_attributes: [:id, :file, :name, :_destroy] )
 	end
 
 	def current_resource
