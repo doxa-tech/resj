@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class ResourcesUploader < CarrierWave::Uploader::Base
+class DocumentsUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
@@ -17,7 +17,7 @@ class ResourcesUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "#{Rails.root}/uploads/resources/#{model.id}"
+    "#{Rails.root}/uploads/documents/#{model.id}"
   end
 
   def extension_white_list

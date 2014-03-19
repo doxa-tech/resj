@@ -6,8 +6,9 @@ class SubjectsController < ApplicationController
 	end
 
 	def download
-  	@resource = Resource.find(params[:resource_id])
-  	send_file @resource.file.path, disposition: 'attachment', x_sendfile: true
+  	if @document = Document.find(params[:document_id])
+  		send_file @document.file.path, disposition: 'attachment', x_sendfile: true
+  	end
 	end
 
 	private

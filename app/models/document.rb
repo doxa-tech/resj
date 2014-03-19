@@ -1,8 +1,8 @@
-class Resource < ActiveRecord::Base
+class Document < ActiveRecord::Base
 	belongs_to :subject
 
 	validates :name, presence: true, length: { maximum: 30 }
 	validates :file, presence: true
 
-	mount_uploader :file, ResourcesUploader
+	mount_uploader :file, DocumentsUploader
 end

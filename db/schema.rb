@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140312164922) do
+ActiveRecord::Schema.define(version: 20140319183107) do
 
   create_table "access_tokens", force: true do |t|
     t.string   "token"
@@ -146,6 +146,14 @@ ActiveRecord::Schema.define(version: 20140312164922) do
     t.datetime "updated_at"
   end
 
+  create_table "documents", force: true do |t|
+    t.string   "name"
+    t.string   "file"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "subject_id"
+  end
+
   create_table "elements", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -245,14 +253,6 @@ ActiveRecord::Schema.define(version: 20140312164922) do
 
   add_index "parents", ["parent_id"], name: "index_parents_on_parent_id"
   add_index "parents", ["user_id"], name: "index_parents_on_user_id"
-
-  create_table "resources", force: true do |t|
-    t.string   "name"
-    t.string   "file"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "subject_id"
-  end
 
   create_table "responsables", force: true do |t|
     t.string   "firstname"

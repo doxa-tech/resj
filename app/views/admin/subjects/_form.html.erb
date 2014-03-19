@@ -11,14 +11,14 @@
 		<%= f.label :theme_id %>
 		<%= f.collection_select :theme_ids, Theme.all, :id, :name, {include_blank: "Select themes"}, {class: "selectize-themes", multiple: true} %>
 	<div class="association_fields">
-		<%= f.fields_for :resources, (@subject.resources.any? || @subject.resources.build) do |resources_fields| %>
+		<%= f.fields_for :documents, (@subject.documents.any? || @subject.documents.build) do |documents_fields| %>
 			<%= content_tag :div, class: "fields" do %>
-				<%= resources_fields.label :name %>
-				<%= resources_fields.text_field :name %>
+				<%= documents_fields.label :name %>
+				<%= documents_fields.text_field :name %>
 
-				<%= resources_fields.label :file %>
+				<%= documents_fields.label :file %>
 				<% # accept : .doc, .docx, .ppt, .pptx, .xls, .xlsx, odt, ods, odp %>
-				<%= resources_fields.file_field :file, 
+				<%= documents_fields.file_field :file, 
 					accept: '
 						application/pdf,application/msword,
 						application/vnd.openxmlformats-officedocument.wordprocessingml.document,
@@ -31,7 +31,7 @@
 						application/vnd.oasis.opendocument.presentation' 
 				%>
 
-				<%= resources_fields.hidden_field :_destroy, identifier: "destroy" %>
+				<%= documents_fields.hidden_field :_destroy, identifier: "destroy" %>
 				<%= link_to_remove_fields "remove" %>
 			<% end %>
 		<% end %>

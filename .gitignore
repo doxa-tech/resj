@@ -21,7 +21,7 @@ config/application.yml
 
 solr/
 
-
 config/sunspot.yml
 
 public/uploads
+uploads
