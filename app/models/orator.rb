@@ -7,10 +7,26 @@ class Orator < ActiveRecord::Base
   has_many :disponibilities, through: :orator_disponibilities
 
   searchable do
-    #text :firstname
-    #text :last_name
-    #integer :canton_ids, multiple: true
-    #integer :theme_ids, multiple: true
+    text :firstname
+    text :lastname
+    integer :canton_ids, multiple: true
+    integer :theme_ids, multiple: true
+  end
+
+  def firstname
+    user.firstname
+  end
+
+  def lastname
+    user.lastname
+  end
+
+  def canton_ids
+    location.canton.id  
+  end
+
+  def theme_ids
+    themes.pluck(:id)
   end
 
 end

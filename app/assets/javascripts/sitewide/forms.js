@@ -12,9 +12,9 @@ $(document).ready(function() {
     };
   })();
 
-  $('#card-search-form').find('input').on("keyup click", function() {
+  $('#search-form').find('input').on("keyup click", function() {
     delay(function(){
-      $('#card-search-form').submit();
+      $('#search-form').submit();
     }, 500 );
   });
 
