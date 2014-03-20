@@ -5,8 +5,10 @@ class OratorsController < BaseController
 		@search = Orator.search do 
 			fulltext params[:query]
 			paginate page: params[:page] if params[:page]
+			with(:theme_ids, params[:theme_ids]) if params[:theme_ids]
+			with(:canton_ids, params[:canton_ids]) if params[:canton_ids]
 		end
-  	@orators = Orator.all
+  	@orators = @search.results
 	end
 
 	def new
@@ -18,7 +20,7 @@ class OratorsController < BaseController
 		@user = User.new(orator_params)
 		if @user.save
 			sign_in @user
-			redirect_to profile_path, success: t('orator.create.success')
+			redirect_to root_path, success: t('orator.create.success')
 		else
 			render 'new'
 		end
