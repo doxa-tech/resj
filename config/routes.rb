@@ -23,10 +23,8 @@ Resj::Application.routes.draw do
       resources :orators, except: [:show, :destroy]
       resources :articles, only: [:index, :show]
       resources :documents, controller: 'subjects', only: [:index, :show] do
-        member do
-          get 'download'
-        end
       end
+      get '/document/:id/download', to: "documents#download"
     end
 
     resources :users, only: [:create] do
