@@ -2,7 +2,7 @@
   <% if @orators.any? %>
     <ul>
   		<% @orators.each do |orator| %>
-  			<li class="card">
+  			<li class="card" id="<%= "orator#{orator.id}" %>">
           <div class="wrapper">
             <p class="description">
               <i class="fi-megaphone"></i>
