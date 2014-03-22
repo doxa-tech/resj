@@ -1,0 +1,33 @@
+<% content_for :id, 'subject-show' %>
+<% type = type(@subject) %>
+
+<div class="top">
+	<h1><%= "Document / #{@subject.name}" %></h1>
+</div>
+<%= render "resource_goback" %>
+
+<h3><%= @subject.name %></h3>
+<div class="content">
+	<%= image_tag image_url "resources/documents/#{type}.png" %>
+	<div class="txt">
+		<%= simple_format @subject.description %>
+	</div>
+</div>
+<div id="clear"></div>
+<% @subject.documents.each do |document| %>
+	<div class="infos">
+		<div class="left">
+			<p>Titre</p>
+			<p>Ajouté le</p>
+			<p>Taille</p>
+		</div>
+		<div class="right">
+			<p><%= File.basename(document.file.path) %></p>
+			<p><%= l document.created_at, format: :long %></p>
+			<p><%= number_to_human_size document.file.size %></p>
+		</div>
+		<div class="get">
+			<%= link_to 'Télécharger', '#' %>
+		</div>
+	</div>
+<% end %>

@@ -5,18 +5,22 @@
 <div id="map-canvas"></div>
 
 <script type="text/javascript">
-  map = gmap.initialize();
+  map_params = gmap.initialize();
 
-  <% @orators %>
-  var string = "<%= j %q[
-          <div class="infowindow">
-            <p class="location">Bulle - Bulle</p>
-            <p class="info">3 orateurs dans cette région</p>
-            <p>Noémien Kocher <span class="see">voir</span></p>
-            <p>Baptiste François <span class="see">voir</span></p>
-            <p>Luc Skywalker <span class="see">voir</span></p>
-          </div>
-  ].html_safe %>";
-  gmap.addIcon("Bulle, switzerland", map, string);
+  <% grouped = @orators.group_by{ |a| [a.location]} %>
+  <% grouped.values.each do |group| %>
+    <% names = "" %>
+    <% group.each do |orator| %>
+      <% names += %Q[<p>#{orator.user.firstname} #{orator.user.lastname} #{link_to "voir", "#orator#{orator.id}", data: {id: orator.id}}</p>] %>
+    <% end %>
+    var string = "<%= j %Q[
+            <div class="infowindow">
+              <p class="location">#{group.first.location.full_name}</p>
+              <p class="info">#{group.size} orateur#{'s' if group.size > 1} dans cette région</p>
+              #{names}
+            </div>
+    ].html_safe %>";
+    gmap.addIcon('<%= group.first.location.map_name %>', map_params["map"], string, map_params["infowindow"]);
+  <% end %>
 
 </script>

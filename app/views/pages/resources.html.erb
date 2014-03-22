@@ -78,7 +78,7 @@
 					<%= image_tag image_url "resources/documents/#{type}.png" %>
 				</div>
 				<div class="text">
-					<h3><%= subject.name %></h3>
+					<h3><%= link_to subject.name, document_path(subject) %></h3>
 					<div class="content">
 						<p><%= truncate subject.description, length: 170 %></p>
 					</div>

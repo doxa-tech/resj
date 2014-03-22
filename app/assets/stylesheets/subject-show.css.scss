@@ -1,0 +1,39 @@
+@import 'partial_top';
+
+#container.subject-show {
+	.top {
+		@include top;
+		h1 {
+			@include h1;
+		}
+	}
+	h3 {
+		padding: 30px;
+		text-align: center;
+	}
+	.content {
+		img {
+			float: left;
+			padding: 0 10px 10px 0;
+		}
+		.txt {
+			padding: 10px 0 0 0;
+		}
+	}
+	.infos {
+		margin: 2px auto;
+		text-align: center;
+		background: #dbdbdb;
+		max-width: 500px;
+		font-size: 13px;
+		padding: 10px;
+		.left {
+			float: left;
+			width: 100px;
+			font-weight: 400;
+		}
+		.right {
+			text-align: left;
+		}
+	}
+}
