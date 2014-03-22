@@ -10,7 +10,7 @@ class UsersController < BaseController
 		@user.user_type = UserType.find_by_name('user')
 		if @user.save
 			# UserMailer.confirmation...
-			redirect_to profile_path, success: t('user.create.success')
+			redirect_to root_path, success: t('user.create.success')
 		else
 			render 'new'
 		end
