@@ -75,6 +75,7 @@ fr:
       short: "%d.%m.%y %H:%M"
       long: "%A %d %B %Y %H:%M"
       text: "le %d %b %Y à %H:%M"
+      normal: "%d %B %Y"
     am: 'am'
     pm: 'pm'
 
