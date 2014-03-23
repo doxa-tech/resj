@@ -3,7 +3,8 @@ class DocumentsController < BaseController
 
 	def download
   	if @document = Document.find(params[:id])
-  		send_file @document.file.path, disposition: 'attachment', x_sendfile: true
+  		data = open(@document.file.url) 
+  		send_data data.read, filename: "ResJ-#{File.basename(@document.file.path)}", disposition: 'attachment', x_sendfile: true
   	end
 	end
 
