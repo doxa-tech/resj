@@ -8,7 +8,7 @@ class Tagging < ActiveRecord::Base
   private
 
   def reindex_tags
-    card.index!
+    #card.index(card)
   end
 
 end
