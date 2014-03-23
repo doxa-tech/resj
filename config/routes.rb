@@ -24,7 +24,11 @@ Resj::Application.routes.draw do
       resources :articles, only: [:index, :show]
       resources :documents, controller: 'subjects', only: [:index, :show] do
       end
-      get '/document/:id/download', to: "documents#download"
+      resources :documents, only: [] do
+        member do
+          get 'download'
+        end
+      end
     end
 
     resources :users, only: [:create] do
