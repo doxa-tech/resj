@@ -1,12 +1,14 @@
 require "bundler/capistrano"
  
-server "146.185.183.84", :web, :app, :db, primary: true
+server "146.185.183.84:77", :web, :app, :db, primary: true
  
 set :application, "resj"
 set :user, "resj"
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :deploy_via, :remote_cache
 set :use_sudo, false
+
+set :shared_children, shared_children + %w{config/sunspot.yml}
  
 set :scm, "git"
 set :repository, "git@github.com:khcr/resj.git"
