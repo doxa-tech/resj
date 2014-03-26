@@ -25,7 +25,7 @@ class Admin::AccessTokensController < Admin::BaseController
 	private
 
 	def access_token_params
-		params.require(:access_token).permit(:ownership_id)
+		params.require(:access_token).permit(:ownership_id, :exp_at)
 	end
 
 	def current_resource

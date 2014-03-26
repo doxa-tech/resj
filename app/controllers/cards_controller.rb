@@ -1,6 +1,6 @@
 class CardsController < BaseController
-	before_action :current_resource, only: [:edit, :update, :user_confirmation, :user_request]
-	before_action :authorize_modify, only: [:edit, :update]
+	before_action :current_resource, only: [:edit, :update, :overview, :team, :user_confirmation, :user_request]
+	before_action :authorize_modify, only: [:edit, :update, :overview, :team]
 	before_action :authorize_action, only: [:user_confirmation, :user_request]
 
 	def index
@@ -19,7 +19,9 @@ class CardsController < BaseController
 	end
 
 	def overview
-		@card = Card.find(params[:id])
+	end
+
+	def team
 	end
 
 	def new

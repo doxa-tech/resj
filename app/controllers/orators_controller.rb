@@ -39,7 +39,7 @@ class OratorsController < BaseController
 	private
 
 	def orator_params
-		params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation, :current_password, orator_attributes: [:id, :street, :location_id, :phone, :disponibility, { :theme_ids =>[]} , { :disponibility_ids => [] } ])
+		params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation, :current_password, orator_attributes: [:id, :street, :location_id, :phone, :disponibility, :description, :disabled, { :theme_ids =>[]} , { :disponibility_ids => [] } ])
 	end
 
 	def authorize_token

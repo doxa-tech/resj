@@ -7,11 +7,11 @@ class ApplicationController < ActionController::Base
   add_flash_types :error, :success, :notice
 
   before_action :set_locale
- 
-  def set_locale
-    I18n.locale = params[:locale] || I18n.default_locale
-  end
 
+  def default_url_options(options={})
+    { locale: I18n.locale }
+  end
+ 
   def current_permission
 		@current_permission ||= Permission.new(current_user)
 	end
@@ -72,4 +72,11 @@ class ApplicationController < ActionController::Base
     responsable = Responsable.find_by_email(user.email)
     CardResponsable.find_by_card_id_and_responsable_id(card.id, responsable.try(:id)).try(:destroy)
   end
+
+  private
+
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+  end
+
 end
