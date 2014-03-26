@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140312164922) do
+ActiveRecord::Schema.define(version: 20140326191321) do
 
   create_table "access_tokens", force: true do |t|
     t.string   "token"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20140312164922) do
     t.integer  "ownership_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "exp_at"
   end
 
   add_index "access_tokens", ["ownership_id"], name: "index_access_tokens_on_ownership_id"
@@ -46,6 +47,16 @@ ActiveRecord::Schema.define(version: 20140312164922) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "article_themes", force: true do |t|
+    t.integer  "article_id"
+    t.integer  "theme_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "article_themes", ["article_id"], name: "index_article_themes_on_article_id"
+  add_index "article_themes", ["theme_id"], name: "index_article_themes_on_theme_id"
 
   create_table "articles", force: true do |t|
     t.string   "title"
@@ -199,6 +210,8 @@ ActiveRecord::Schema.define(version: 20140312164922) do
     t.string   "disponibility"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "description"
+    t.boolean  "disabled",      default: false
   end
 
   add_index "orators", ["location_id"], name: "index_orators_on_location_id"

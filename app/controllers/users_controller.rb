@@ -1,5 +1,5 @@
 class UsersController < BaseController
-	before_action :connected?, only: [:profile, :edit, :update, :card_request, :card_confirmation]
+	before_action :connected?, only: [:profile, :edit, :update, :card_request, :card_confirmation, :my_cards]
 
 	def new
 		@user = User.new
@@ -14,6 +14,10 @@ class UsersController < BaseController
 		else
 			render 'new'
 		end
+	end
+
+	def my_cards
+		@user = current_user
 	end
 
 	def edit

@@ -41,7 +41,7 @@ class Admin::ArticlesController < Admin::BaseController
 	private
 
 	def article_params
-		params.require(:article).permit(:title, :content, :image)
+		params.require(:article).permit(:title, :content, :image, { :theme_ids =>[] })
 	end
 
 	def current_resource

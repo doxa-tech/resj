@@ -1,6 +1,6 @@
 Resj::Application.routes.draw do
 
-  scope "(:locale)" do
+  scope "(:locale)", locale: /en|fr/ do
 
     %w[home resj contact resources].each do |page|
       get page, to: "pages##{page}"
@@ -17,6 +17,7 @@ Resj::Application.routes.draw do
     post 'user/card/confirmation', to: "users#card_confirmation"
     post 'user/card/request', to: "users#card_request"
     get 'user/confirmation', to: "users#confirmation"
+    get 'user/my_cards', to: "users#my_cards"
 
     # resources
     scope 'resources' do
@@ -47,6 +48,7 @@ Resj::Application.routes.draw do
       end
       member do
         get 'overview'
+        get 'team'
       end
     end
 

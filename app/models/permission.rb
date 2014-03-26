@@ -9,13 +9,14 @@ class Permission
 	end
 
 	def allow_modify?(controller, action, current_resource = nil)
-		if Ownership.where("user_id IN (?) AND element_id = ? AND ownership_type_id = ? AND #{right[action]} = ?", @ids, element_id(controller), @all_entries_id, true).any?
+		right_to = right[action] || "right_update"
+		if Ownership.where("user_id IN (?) AND element_id = ? AND ownership_type_id = ? AND #{right_to} = ?", @ids, element_id(controller), @all_entries_id, true).any?
 			return true
 		else
-			if Ownership.where("user_id IN (?) AND element_id = ? AND ownership_type_id = ? AND #{right[action]} = ?", @ids, element_id(controller), @on_ownership_id, true).any?
+			if Ownership.where("user_id IN (?) AND element_id = ? AND ownership_type_id = ? AND #{right_to} = ?", @ids, element_id(controller), @on_ownership_id, true).any?
 				return true if current_resource.try(:user_id) == @user.id
 			end
-			if Ownership.where("user_id IN (?) AND element_id = ? AND ownership_type_id = ? AND #{right[action]} = ?", @ids, element_id(controller), @on_entry_id, true).pluck('id_element').include? current_resource.try(:id)
+			if Ownership.where("user_id IN (?) AND element_id = ? AND ownership_type_id = ? AND #{right_to} = ?", @ids, element_id(controller), @on_entry_id, true).pluck('id_element').include? current_resource.try(:id)
 				return true
 			end
 		end
