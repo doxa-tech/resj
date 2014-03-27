@@ -7,8 +7,6 @@ set :user, "resj"
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :deploy_via, :remote_cache
 set :use_sudo, false
-
-set :shared_children, shared_children + %w{config/sunspot.yml}
  
 set :scm, "git"
 set :repository, "git@github.com:khcr/resj.git"
@@ -32,13 +30,16 @@ namespace :deploy do
     sudo "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
     run "mkdir -p #{shared_path}/config"
     put File.read("config/database.example.yml"), "#{shared_path}/config/database.yml"
-    put File.read("config/sunspot.yml"), "#{shared_path}/config/sunspot.yml"
+    put File.read("config/sunspot.example.yml"), "#{shared_path}/config/sunspot.yml"
+    put File.read("config/application.example.yml"), "#{shared_path}/config/application.yml"
     puts "Now edit the config files in #{shared_path}."
   end
   after "deploy:setup", "deploy:setup_config"
 
   task :symlink_config, roles: :app do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+    run "ln -nfs #{shared_path}/config/sunspot.yml #{release_path}/config/sunspot.yml"
+    run "ln -nfs #{shared_path}/config/application.yml #{release_path}/config/application.yml"
   end
   after "deploy:finalize_update", "deploy:symlink_config"
 
