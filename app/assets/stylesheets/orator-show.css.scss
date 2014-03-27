@@ -1,0 +1,11 @@
+@import 'partial_top';
+
+#container.orator-show {
+
+	.top {
+		@include top;
+		h1 {
+			@include h1;
+		}
+	} // top
+}

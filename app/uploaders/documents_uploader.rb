@@ -28,4 +28,8 @@ class DocumentsUploader < CarrierWave::Uploader::Base
     %w(doc docx ppt pptx xls xlsx pdf odt odp ods)
   end
 
+  def self.fog_public
+    false
+  end
+
 end

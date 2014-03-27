@@ -6,7 +6,7 @@
           <div class="wrapper">
             <p class="description">
               <i class="fi-megaphone"></i>
-              <%= "#{orator.user.firstname} #{orator.user.lastname}" %>
+              <%= link_to "#{orator.user.firstname} #{orator.user.lastname}", orator_path(orator) %>
             </p>
             <div class="tags">
               <% orator.themes.each do |tag| %>

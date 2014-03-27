@@ -1,28 +1,52 @@
 <div id="admin_header">
 	<div class="side-user">
 		<div class="avatar">
-			<a href="<%= profile_path %>"><%= image_tag "avatar.jpg" %></a>
+			<a href="<%= profile_path %>"><%= image_tag image_url current_user.gravatar %></a>
 		</div>
 		<div class="infos">
-			<a href="<%= profile_path %>">Noémien Kocher</a>
-			<a class="type" href="<%= profile_path %>">Groupe</a>
-			<%= link_to "Déconnexion", signout_path, method: :delete %>
+			<%= link_to "#{current_user.firstname} #{current_user.lastname}", profile_path %>
+			<%= link_to "Déconnexion", signout_path, method: :delete, class: "exit" %>
 		</div>
 	</div>
 
-	<% card_group = ["admin/cards", "admin/card_types"] %>
+	<% card_group = [
+		["Groupes",%w"
+			admin/cards
+			admin/card_types
+			admin/tags
+		"],
+		["Securité",%w"
+			admin/ownerships
+			admin/access_tokens
+			admin/parents
+			admin/actions
+		"],
+		["Resources",%w"
+			admin/subjects
+			admin/articles
+			admin/themes
+		"],
+		["Utilisateurs",%w"
+			admin/users
+			admin/responsables
+		"],
+	] %>
+	<% card_group_flattened = card_group.flatten %>
+	<% card_left = admin_links.reject{ |l| l.in? card_group_flattened } %>
 	<ul>
-		<li class="parent">
-			<a href="#">Groupes<span class="fi-arrow-down"></span></a>
-			<ul>
-				<% admin_links.select{ |l| l.in? card_group}.each do |link| %>
-				<li>
-					<%= link_to_active t('layout.header.admin.' + link.split('/').last), "/" + link %>
-				</li>
-				<% end %>
-			</ul>
-		</li>
-		<% admin_links.reject{ |l| l.in? card_group}.each do |link| %>
+		<% card_group.each do |group| %>
+			<li class="parent">
+				<a href="#"><%= group.first %><span class="fi-arrow-down"></span></a>
+				<ul>
+					<% admin_links.select{ |l| l.in? group.last}.each do |link| %>
+						<li>
+							<%= link_to_active t('layout.header.admin.' + link.split('/').last), "/" + link %>
+						</li>
+					<% end %>
+				</ul>
+			</li>
+		<% end %>
+		<% card_left.each do |link| %>
 			<li>
 				<%= link_to_active t('layout.header.admin.' + link.split('/').last), "/" + link %>
 			</li>
