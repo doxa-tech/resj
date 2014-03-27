@@ -26,6 +26,10 @@ var gmap = {
           infowindow.close();
           infowindow.setContent(text);
           infowindow.open(map,marker);
+            $('.link_orator').click(function(){
+              console.log($(this).data('id'));
+              $($(this).data('id')).animate({backgroundColor: '#A1FFA1'}, 'slow');
+            });
         });
 
       } else {

@@ -5,7 +5,8 @@ CarrierWave.configure do |config|
     :google_storage_secret_access_key => 'nTfuXcIBbD9NC020ZBzYhTkXURD5tDlf2sw/nz1G'
   }
   config.fog_directory = 'reseaujeunesse-ch'
-  config.fog_public = false
 
   CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
+
+  config.fog_public = true # changed in documents
 end
