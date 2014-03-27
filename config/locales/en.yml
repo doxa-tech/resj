@@ -43,7 +43,7 @@ en:
   user:
     create:
       title: "Sign up"
-      success: "Signed up"
+      success: "You will receive a email with a link to confirm it !"
     edit:
       title: "Update your account"
       success: "Account updated"

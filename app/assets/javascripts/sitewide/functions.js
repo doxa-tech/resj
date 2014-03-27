@@ -83,4 +83,27 @@ function tags() {
       });
     }
   });
-}
+};
+
+function selectize_location() {
+  $('.selectize-location').selectize({
+    valueField: 'id',
+    labelField: 'name',
+    searchField: 'name',
+    load: function(query, callback) {
+      if (!query.length) return callback();
+      $.ajax({
+        url: '/searches/locations',
+        type: 'POST',
+        data: 'query=' + query,
+        dataType: 'json',
+        error: function() {
+          callback();
+        },
+        success: function(res) {
+          callback(res);
+        }
+      });
+    }
+  });
+};

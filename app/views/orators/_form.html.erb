@@ -9,7 +9,8 @@
 					<span class="num"><%= num+=1 %></span> Dans quelle<span class="b">localité</span>habitez-vous?
 				</p>
 			</div>
-			<%= orator_fields.collection_select :location_id, Location.all, :id, :full_name, {include_blank: "Séléctionnez une ville"}, {class: "selectize"} %>
+			<% location = orator_fields.object.location %>
+			<%= orator_fields.collection_select :location_id, (location.nil? ? [] : [location] ), :id, :full_name, {include_blank: "Select a city"}, {class: "selectize-location"} %>
 		</div>
 
 		<div class="block">
@@ -62,5 +63,3 @@
 <% end %>
 
 <%= f.submit class: 'submit' %>
-
-<script type="text/javascript">window.onload=selectize();</script>

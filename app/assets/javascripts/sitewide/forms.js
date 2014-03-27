@@ -2,6 +2,10 @@ $(document).ready(function() {
 
   autocomplete();
 
+  selectize();
+
+  selectize_location();
+
   tags();
 
   var delay = (function(){

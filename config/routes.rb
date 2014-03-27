@@ -43,16 +43,16 @@ Resj::Application.routes.draw do
     resources :cards, except: [:destroy] do
       collection do
         post 'change'
-        post 'user_request'
-        post 'user_confirmation'
       end
       member do
         get 'overview'
         get 'team'
+        post 'user_request'
+        post 'user_confirmation'
       end
     end
 
-    %w[responsables affiliations tags actions themes].each do |search|
+    %w[responsables affiliations tags actions themes locations].each do |search|
       post "/searches/#{search}", to: "searches##{search}"
     end
 
