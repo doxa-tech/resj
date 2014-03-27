@@ -53,6 +53,32 @@ class User < ActiveRecord::Base
     user_type_id == UserType.find_by_name('group').id
   end
 
+  def gravatar(size = 100)
+    default_url = URI.escape "identicon"
+    if self.gravatar_email
+      "http://gravatar.com/avatar/#{Digest::MD5.hexdigest(self.gravatar_email.downcase)}.png?d=#{default_url}&s=#{size}"
+    else
+      "http://gravatar.com/avatar/#{Digest::MD5.hexdigest('no')}.png?d=#{default_url}&s=#{size}"
+    end
+  end
+
+    def gravatar?
+    if seflf.gravatar_email && Rails.env.production?
+      gravatar_check = "http://gravatar.com/avatar/#{Digest::MD5.hexdigest(selft.gravatar_email.downcase)}.png?d=404"
+      uri = URI.parse(gravatar_check)
+      http = Net::HTTP.new(uri.host, uri.port)
+      request = Net::HTTP::Get.new(uri.request_uri)
+      response = http.request(request)
+      if (response.code.to_i == 404)
+        return false
+      else
+        return true
+      end 
+    else
+      return false 
+    end
+  end
+
   private
 
   # Control by an update if the current_password is right

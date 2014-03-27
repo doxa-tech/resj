@@ -10,7 +10,7 @@ class ArticlesUploader < CarrierWave::Uploader::Base
     storage :file
   end
 
-  process :resize_to_limit => [512, 512]
+  process :resize_to_limit => [1200, 740]
   process :quality => 90
   process :right_orientation
 

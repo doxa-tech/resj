@@ -1,12 +1,29 @@
 <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyDNsGj5h-WJXPiLtYVn0TSfiisPwhEAbjg&sensor=false" %>
 <%= javascript_include_tag "orators_index_map.js" %>
+<%= javascript_include_tag "orators_index.js" %>
+<%= javascript_include_tag "jquery.animate_colors.js" %>
 
 <% content_for :id, 'orators' %>
 <%= form_tag orators_path, method: :get, remote: true, id: "search-form" do %>
 
-
 	<div class="top">
-		<h1>Vos orateurs</h1>
+		<div class="right">
+		 	<ul class="nav">
+		 		<li class="hder">
+		 			<div class="infos">
+		 				<p>Vous êtes un orateur jeunesse?</p>
+		 			</div>
+		 			<div class="btn">
+		 				<%= link_to "Faire une demande", new_card_path %>
+		 			</div>
+		 		</li>
+		 		<li class="marketing">
+		 			<div class="marketing">
+		 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum, felis sit amet adipiscing dapibus, magna erat gravida risus, a rhoncus lorem velit eget felis.</p>
+		 			</div>
+		 		</li>
+		 	<ul>
+		</div>
 		<div class="left">	
 		  <div class="search">
 		  	<div class="form">
@@ -15,7 +32,7 @@
 					<%= submit_tag "", :name => nil, type: :hidden %>
 				</div>
 		  </div>	
-		</div>
+		</div>		
 	</div>
 
 	<%= render "resource_goback" %>

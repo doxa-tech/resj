@@ -11,7 +11,7 @@
   <% grouped.values.each do |group| %>
     <% names = "" %>
     <% group.each do |orator| %>
-      <% names += %Q[<p>#{orator.user.firstname} #{orator.user.lastname} #{link_to "voir", "#orator#{orator.id}", data: {id: orator.id}}</p>] %>
+      <% names += %Q[<p>#{orator.user.firstname} #{orator.user.lastname} #{content_tag :span, "voir", data: {id: "#orator#{orator.id}"}, class: "link_orator"}</p>] %>
     <% end %>
     var string = "<%= j %Q[
             <div class="infowindow">

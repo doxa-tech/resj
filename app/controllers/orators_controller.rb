@@ -11,6 +11,10 @@ class OratorsController < BaseController
   	@orators = @search.results
 	end
 
+	def show
+		@orator = Orator.find(params[:id])
+	end
+
 	def new
 		@user = User.new
 		@user.build_orator
