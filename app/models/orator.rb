@@ -6,6 +6,10 @@ class Orator < ActiveRecord::Base
   has_many :orator_disponibilities
   has_many :disponibilities, through: :orator_disponibilities
 
+  validates :location_id, presence: true
+  validates :themes, presence: true
+  validates :disponibilities, presence: true
+
   searchable do
     text :firstname
     text :lastname
