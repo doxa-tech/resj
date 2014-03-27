@@ -14,6 +14,7 @@ class SessionsController < BaseController
 				format.js { render 'success' }
 			end
 		else
+			@message = "Wrong password or username"
 			respond_to do |format|
 				format.html { flash.now[:error] = t('session.create.error'); render 'new' }
 				format.js { render 'error' }
@@ -34,6 +35,12 @@ class SessionsController < BaseController
 
 	def confirmed?
 		@user = User.find_by_email(params[:session][:email].strip.downcase)
-		redirect_to root_path, error: 'Your account is unconfirmed. Please see follow the link we sent you. <a data-method="post" href="/users/102/resend_mail" rel="nofollow">Resend mail</a>.'.html_safe unless @user.confirmed
+		if @user && !@user.confirmed
+			@message = 'Your account is unconfirmed. Please see follow the link we sent you. <a data-method="post" href="/users/102/resend_mail" rel="nofollow">Resend mail</a>.'.html_safe
+			respond_to do |format|
+				format.html { redirect_to root_path, error: @message }
+				format.js { render 'error'}
+			end
+		end
 	end
 end

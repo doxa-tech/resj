@@ -6,4 +6,6 @@ CarrierWave.configure do |config|
   }
   config.fog_directory = 'reseaujeunesse-ch'
   config.fog_public = false
+
+  CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
 end
