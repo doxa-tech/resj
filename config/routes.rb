@@ -21,7 +21,7 @@ Resj::Application.routes.draw do
 
     # resources
     scope 'resources' do
-      resources :orators, except: [:show, :destroy]
+      resources :orators, except: [:destroy]
       resources :articles, only: [:index, :show]
       resources :documents, controller: 'subjects', only: [:index, :show] do
       end

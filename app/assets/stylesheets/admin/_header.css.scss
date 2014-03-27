@@ -12,7 +12,7 @@
 		div.avatar {
 			display: inline-block;
 			img {
-				border-radius: 25px;
+				border-radius: 50px;
 				margin: 0 5px 0 0;
 			}
 		}
@@ -24,10 +24,16 @@
 			a {
 				color: #fff;
 				display: block;
+				&:hover {
+					font-weight: 400;
+				}
 			}
-			a.type {
+			a.exit {
 				font-size: 11px;
-				color: #DBDBDB;
+				color: #AFAFAF;
+				&:hover {
+					color: #fff;
+				}
 			}
 		}
 

@@ -6,7 +6,7 @@
 		</div>
 		<ul>
 			<li>
-				Kocher Noémien <%= link_to '<span class="settings push-right fi-widget"></span>'.html_safe, user_edit_path %>
+				<%= "#{current_user.firstname} #{current_user.lastname}" %> <%= link_to '<span class="settings push-right fi-widget"></span>'.html_safe, user_edit_path %>
 			</li>
 			<li>
 				Groupe <span class="settings push-right fi-widget"></span>
