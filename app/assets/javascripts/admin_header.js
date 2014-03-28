@@ -1,6 +1,7 @@
 $(document).ready(function() {
-	$('.parent > ul').hide();
-	$('.parent a:first-child').click(function(){
+	$('.parent').find('ul').hide();
+	$('.parent').find('.group_link').click(function(e) {
+		e.preventDefault();
 		$(this).next().slideToggle('1000', 'linear');
 	});
 	$('.active').parents('.parent ul').show();
