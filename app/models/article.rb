@@ -9,4 +9,8 @@ class Article < ActiveRecord::Base
   validates :content, presence: true
   validates :image, presence: true
   validates :themes, presence: true
+
+  def to_param
+    "#{id}-#{title}".parameterize
+  end
 end
