@@ -9,34 +9,11 @@
 		</div>
 	</div>
 
-	<% card_group = [
-		["Groupes",%w"
-			admin/cards
-			admin/card_types
-			admin/tags
-		"],
-		["Securité",%w"
-			admin/ownerships
-			admin/access_tokens
-			admin/parents
-			admin/actions
-		"],
-		["Resources",%w"
-			admin/subjects
-			admin/articles
-			admin/themes
-		"],
-		["Utilisateurs",%w"
-			admin/users
-			admin/responsables
-		"],
-	] %>
-	<% card_group_flattened = card_group.flatten %>
 	<% card_left = admin_links.reject{ |l| l.in? card_group_flattened } %>
 	<ul>
 		<% card_group.each do |group| %>
 			<li class="parent">
-				<a href="#"><%= group.first %><span class="fi-arrow-down"></span></a>
+				<a class="group_link" href="#"><%= group.first %><span class="fi-arrow-down"></span></a>
 				<ul>
 					<% admin_links.select{ |l| l.in? group.last}.each do |link| %>
 						<li>
