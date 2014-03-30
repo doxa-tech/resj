@@ -34,7 +34,7 @@ class Admin::CardsController < Admin::BaseController
 
 	def update
 		if @card.update_attributes(card_params)
-			CardMailer.validated(checkers_emails).deliver if params[:card][:validated] == "true"
+			CardMailer.admin_validated(checkers_emails).deliver if params[:card][:validated] == "true"
 			redirect_to admin_cards_path, success: t('card.admin.edit.success')
 		else
 			render 'edit'
@@ -51,10 +51,12 @@ class Admin::CardsController < Admin::BaseController
 		CardVerification.create(user_id: current_user.id, card_id: @card.id)
 		if @card.verified?
 			@card.update_attribute(:visible, true)
-			CardMailer.verified(card_admins).deliver
-			# CardMailer
-			# CardMailer pour les responsable
-			# CardMailer
+			# for verificators and validators
+			CardMailer.admin_verified(card_admins).deliver
+			# for card owner
+			CardMailer.owner_verified(@card.user)
+			# for card co-responsables
+			CardMailer.team_verified(@card.users, @card.responsables)
 		end
 	end
 

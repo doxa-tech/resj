@@ -115,17 +115,20 @@ class Card < ActiveRecord::Base
 
   def create_owner(owner)
     actions = Action.where(name: ["user_request", "user_confirmation"])
-    if user = User.find_by_email(owner.email)
-      self.user = user
-      Ownership.create(user_id: user.id, element_id: Element.find_by_name('cards').id, ownership_type_id: OwnershipType.find_by_name('on_entry').id, id_element: id, right_read: true, right_update: true, right_create: true, actions: actions)
+    password = ""; new_user = false
+    if card_user = User.find_by_email(owner.email)
+      self.user = card_user
+      Ownership.create(user_id: card_user.id, element_id: Element.find_by_name('cards').id, ownership_type_id: OwnershipType.find_by_name('on_entry').id, id_element: id, right_read: true, right_update: true, right_create: true, actions: actions)
     else
       password = SecureRandom.hex(8)
-      new_user = User.create(firstname: owner.firstname, lastname: owner.lastname, email: owner.email, password: password, password_confirmation: password, user_type: UserType.find_by_name('user'))
-      Ownership.create(user_id: new_user.id, element_id: Element.find_by_name('cards').id, ownership_type_id: OwnershipType.find_by_name('on_entry').id, id_element: id, right_read: true, right_update: true, right_create: true, actions: actions)
-      self.user = new_user
-      # UserMailer
+      card_user = User.create(firstname: owner.firstname, lastname: owner.lastname, email: owner.email, password: password, password_confirmation: password, user_type: UserType.find_by_name('user'))
+      UserMailer.confirmation(card_user).deliver
+      Ownership.create(user_id: card_user.id, element_id: Element.find_by_name('cards').id, ownership_type_id: OwnershipType.find_by_name('on_entry').id, id_element: id, right_read: true, right_update: true, right_create: true, actions: actions)
+      new_user = true
+      self.user = card_user
     end
     save
+    return {new_user?: new_user, password: password}
   end
 
   private

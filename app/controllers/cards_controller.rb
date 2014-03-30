@@ -46,9 +46,11 @@ class CardsController < BaseController
 		@card = Card.new(session[:card_params])
 		owner = @card.responsables.select{ |r| r.is_contact == "true"}.first
 		if @card.save
-			@card.create_owner(owner)
-			# CardMailer.created(validator).deliver
-			CardMailer.welcome(@card).deliver
+			user_hash = @card.create_owner(owner)
+			# for validator
+			CardMailer.admin_created(validator).deliver
+			# for owner
+			CardMailer.owner_created(@card, user_hash).deliver
 			session[:card_params] = nil
 			redirect_to reseau_path, success: t('card.create.success')
 		else
@@ -72,15 +74,18 @@ class CardsController < BaseController
 		user = User.find(params[:user_id])
 		if card_user && card_user.user_validated == false && card_user.updated_at < 1.months.ago
 			card_user.update_attribute(:user_validated, nil)
+			send_request_mail(@card, user)
 			redirect_to edit_admin_card_path(@card), success: t('card.user.request.success')
 		elsif card_user.card_validated == false
 			card_user.update_attribute(:card_validated, true)
+			send_request_mail(@card, user)
 			redirect_to edit_admin_card_path(@card), success: t('card.user.request.success')
 		elsif card_user && user
 			CardUser.create(user_id: user.id, card_id: @card.id, card_validated: true)
+			send_request_mail(@card, user)
 			redirect_to edit_admin_card_path(@card), success: t('card.user.request.success')
 		else
-			redirect_to edit_admin_card_path(@card), success: t('card.user.request.error')
+			redirect_to edit_admin_card_path(@card), error: t('card.user.request.error')
 		end
 	end
 
@@ -89,8 +94,10 @@ class CardsController < BaseController
 		if card_user && card_user.card_id == @card.id && params[:validated].in?(["false", "true"])
 			card_user.update_attribute(:card_validated, params[:validated])
 			replace_responsable(card_user.user, @card)
+			UserMailer.confirmed_card(@card, card_user.user)
 			redirect_to edit_admin_card_path(@card), success: t('card.user.confirmation.success')
 		else
+			UserMailer.unconfirmed_card(@card, card_user.user)
 			redirect_to edit_admin_card_path(@card), error: t('card.user.confirmation.error')
 		end
 	end
@@ -108,5 +115,10 @@ class CardsController < BaseController
   def validator
   	@validator ||= User.joins(:ownerships, ownerships: [:actions]).where(actions: {name: "validated"}).first
   end
+
+  # notify user that a card wants to be affiliated with user
+	def send_request_mail(card, user)
+		UserMailer.request(card, user)
+	end
 
 end

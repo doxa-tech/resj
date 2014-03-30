@@ -57,7 +57,15 @@
 				</p>
 			</div>
 			<%= orator_fields.text_field :disponibility, placeholder: 'Disponibilités spéciales' %>
-		</div>	
+		</div>
+		<div class="block">
+			<div class="label">
+				<p>
+					<span class="num"><%= num+=1 %></span>Ici, vous pouvez ajouter des<span class="b">informations complémentaires</span>. Nous vous recommandons de mentionner le cardre dans lequel vous enseigner
+				</p>
+			</div>
+			<%= orator_fields.text_area :description, placeholder: 'Informations complémentaires' %>
+		</div>		
 	</div>
 <% end %>
 
