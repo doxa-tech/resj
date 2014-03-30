@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_many :activities
   has_many :card_users, dependent: :destroy
   has_many :cards, through: :card_users
-  has_one :orator
+  has_one :orator, dependent: :destroy
   has_many :cards
   has_many :articles
 
@@ -38,6 +38,7 @@ class User < ActiveRecord::Base
     self.reset_token =  SecureRandom.urlsafe_base64
     self.reset_sent_at = Time.zone.now
     save!
+    # sends reset link
     UserMailer.password_reset(self).deliver
   end
 
