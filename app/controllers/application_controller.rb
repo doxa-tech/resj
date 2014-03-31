@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   # add different types of flash messages
   add_flash_types :error, :success, :notice
 
-  before_action :set_locale
+  before_action :set_locale, :restrict_access
 
   def default_url_options(options={})
     locale = I18n.locale
@@ -20,8 +20,10 @@ class ApplicationController < ActionController::Base
 
 	helper_method :current_permission, :store_location
 
-  def track_activity(trackable, action = params[:action])
-  	Activity.create! action: action, trackable: trackable, user: current_user
+  def track_activity(trackable, action = params[:action], controller = params[:controller])
+    if !trackable.nil? && !trackable.changed?
+  	 Activity.create! action: action, controller: controller, trackable: trackable, user: current_user unless trackable.changed?
+    end
 	end
 
   def connected?
@@ -79,6 +81,12 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
+  end
+
+  def restrict_access
+    if !request.path.in?(%w[/resources/orators/new /resources/orators /]) && params[:access] != "rubyforever"
+      redirect_to root_path
+    end
   end
 
 end

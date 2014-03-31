@@ -1,5 +1,6 @@
 class Admin::ArticlesController < Admin::BaseController
 	before_action :current_resource, only: [:edit, :update, :destroy]
+	after_action only: [:create, :update, :destroy] { |c| c. track_activity @article }
 
 	def index
 		@table = ArticleTable.new(view_context)

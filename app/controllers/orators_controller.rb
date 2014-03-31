@@ -1,5 +1,6 @@
 class OratorsController < BaseController
 	before_action :authorize_token, only: [:new, :create]
+	after_action only: [:create, :update] { |c| c. track_activity @user }
 
 	def index
 		@search = Orator.search do 
@@ -22,6 +23,7 @@ class OratorsController < BaseController
 
 	def create
 		@user = User.new(orator_params)
+		@user.user_type = UserType.find_by_name('user')
 		if @user.save
 			sign_in @user
 			OratorMailer.orator_created(@user).deliver

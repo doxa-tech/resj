@@ -1,4 +1,4 @@
-<%= form_for [:admin, @action] do |f| %>
+<%= form_for [:admin, @action], as: :own_action do |f| %>
 
 	<%= render 'error_messages', object: f.object %>
 

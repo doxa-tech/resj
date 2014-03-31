@@ -1,5 +1,6 @@
 class Admin::ActionsController < Admin::BaseController
 	before_action :current_resource, only: [:edit, :update, :destroy]
+	after_action only: [:create, :update, :destroy] { |c| c. track_activity @action }
 
 	def index
 		@table = Table.new(view_context, Action)
@@ -35,13 +36,13 @@ class Admin::ActionsController < Admin::BaseController
 
 	def destroy
 		@action.destroy
-		redirect_to admin_pathreplace_path, success: t('action.admin.destroy.success')
+		redirect_to admin_actions_path, success: t('action.admin.destroy.success')
 	end
 
 	private
 
 	def action_params
-		params.require(:action).permit(:name)
+		params.require(:own_action).permit(:name)
 	end
 
 	def current_resource

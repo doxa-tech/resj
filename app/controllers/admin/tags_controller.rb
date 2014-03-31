@@ -1,5 +1,6 @@
 class Admin::TagsController < Admin::BaseController
 	before_action :current_resource, only: [:edit, :update, :destroy]
+	after_action only: [:create, :update, :destroy] { |c| c. track_activity @tag }
 
 	def index
 		@table = Table.new(view_context, Tag)
