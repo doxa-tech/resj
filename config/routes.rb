@@ -2,7 +2,7 @@ Resj::Application.routes.draw do
 
   scope "(:locale)", locale: /en|fr/ do
 
-    %w[home resj contact resources].each do |page|
+    %w[home resj contact resources coming_soon].each do |page|
       get page, to: "pages##{page}"
     end
 
