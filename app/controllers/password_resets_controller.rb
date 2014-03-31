@@ -8,6 +8,7 @@ class PasswordResetsController < BaseController
   	if @user
   		@user.send_password_reset
   		redirect_to root_url, notice: "Reset instruction sent"
+  		track_activity @user
   	else
   		redirect_to new_password_reset_path, error: "Email doesn't exist"
   	end
@@ -22,6 +23,7 @@ class PasswordResetsController < BaseController
 		if @user.reset_sent_at < 2.hours.ago
 	    redirect_to new_password_reset_path, :error => "Password reset has expired."
 	  elsif @user.update_attributes(user_params)
+	  	track_activity @user
 	    redirect_to connexion_path, :success => "Password has been reset!"
 	  else
 	    render 'edit'

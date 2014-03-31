@@ -1,5 +1,5 @@
-$('#header').fadeOut(1000, function() {
-   $(this).html('<%=j render "layouts/header" %>').fadeIn(1000);
+$('#header').find('.profile').fadeOut(500, function() {
+   $(this).html('<%=j render "layouts/profile" %>').fadeIn(500);
 });
 $('#footer').html('<%=j render "layouts/footer" %>');
 $("#login-over").hide();

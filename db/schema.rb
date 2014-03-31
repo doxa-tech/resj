@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140326191321) do
+ActiveRecord::Schema.define(version: 20140331194041) do
 
   create_table "access_tokens", force: true do |t|
     t.string   "token"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20140326191321) do
     t.string   "trackable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "controller"
   end
 
   add_index "activities", ["trackable_id"], name: "index_activities_on_trackable_id"

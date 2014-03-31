@@ -1,5 +1,6 @@
 class Admin::AccessTokensController < Admin::BaseController
 	before_action :current_resource, only: [:destroy]
+	after_action only: [:create, :destroy] { |c| c. track_activity @access_token }
 
 	def index
 		@table = AccessTokenTable.new(view_context, nil, { buttons: false } ) 

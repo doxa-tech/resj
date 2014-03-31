@@ -2,6 +2,7 @@ class Admin::CardsController < Admin::BaseController
 	before_action :current_resource, only: [:show, :edit, :update, :destroy, :verificate]
 	before_action :authorize_action, only: [:verificate]
 	before_action :verified?, only: [:verificate]
+	after_action only: [:create, :update, :destroy] { |c| c. track_activity @card }
 
 	def index
 		@table = CardTable.new(view_context)

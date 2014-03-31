@@ -1,4 +1,6 @@
 class Admin::UsersController < Admin::BaseController
+	before_action :current_resource, only: [:edit, :update, :destroy]
+	after_action only: [:create, :update, :destroy] { |c| c. track_activity @user }
 
 	def index
 		@table = UserTable.new(view_context)
@@ -15,7 +17,6 @@ class Admin::UsersController < Admin::BaseController
 	def create
 		@user.confirmed = true
 		@user = User.new(user_params)
-		@user.user_type_id = params[:user_type][:user_type_id]
 		if @user.save
 			redirect_to admin_users_path, success: t('user.admin.create.success')
 		else
@@ -43,7 +44,7 @@ class Admin::UsersController < Admin::BaseController
 	private
 
 	def user_params
-		params.require(:user).permit(:firstname, :lastname, :email, :gravatar_email, :password, :password_confirmation)
+		params.require(:user).permit(:firstname, :lastname, :email, :gravatar_email, :password, :password_confirmation, :user_type_id)
 	end
 
 	def current_resource

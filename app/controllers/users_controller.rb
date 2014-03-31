@@ -1,5 +1,6 @@
 class UsersController < BaseController
 	before_action :connected?, only: [:profile, :edit, :update, :card_request, :card_confirmation, :my_cards]
+	after_action only: [:create, :update, :confirmation] { |c| c. track_activity @user }
 
 	def new
 		@user = User.new
@@ -64,8 +65,9 @@ class UsersController < BaseController
 			card_user.update_attribute(:user_validated, true)
 			send_request_mail(current_user, card)
 			redirect_to profile_path, success: t('user.card.request.success')
-		elsif card_user && card
-			CardUser.create(user_id: current_user.id, card_id: card.id, user_validated: true)
+		elsif card
+			new_card_user = CardUser.create(user_id: current_user.id, card_id: card.id, user_validated: true)
+			track_activity new_card_user
 			send_request_mail(current_user, card)
 			redirect_to profile_path, success: t('user.card.request.success')
 		else
@@ -78,10 +80,14 @@ class UsersController < BaseController
 		if card_user && card_user.user_id == current_user.id && params[:validated].in?(["false", "true"])
 			card_user.update_attribute(:user_validated, params[:validated])
 			replace_responsable(current_user, card_user.card)
-			CardMailer.confirmed_user(current_user, card_user.card)
+			if params[:validated] == "true"
+				track_activity card_user
+				CardMailer.confirmed_user(current_user, card_user.card).deliver
+			else
+				CardMailer.unconfirmed_user(current_user, card_user.card).deliver
+			end
 			redirect_to profile_path, success: t('user.card.confirmation.success')
 		else
-			CardMailer.unconfirmed_user(current_user, card_user.card)
 			redirect_to profile_path, error: t('user.card.confirmation.error')
 		end
 	end

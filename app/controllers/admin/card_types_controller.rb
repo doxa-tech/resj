@@ -1,5 +1,6 @@
 class Admin::CardTypesController < Admin::BaseController
 	before_action :current_resource, only: [:edit, :update, :destroy]
+	after_action only: [:create, :update, :destroy] { |c| c. track_activity @card_type }
 
 	def index
 		@table = Table.new(view_context, CardType)
@@ -36,7 +37,7 @@ class Admin::CardTypesController < Admin::BaseController
 	end
 
 	def destroy
-		CardType.find(params[:id]).destroy
+		@card_type.destroy
 		redirect_to admin_card_types_path, success: t('card_type.admin.destroy.success')
 	end
 
