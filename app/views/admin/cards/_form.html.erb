@@ -49,7 +49,8 @@
 				<ul>
 					<li>
 						<%= f.label :location_id %>
-						<%= f.collection_select :location_id, Location.all, :id, :full_name, {include_blank: "Select a city"}, {class: "selectize"} %>
+						<% location = f.object.location %>
+						<%= f.collection_select :location_id, (location.nil? ? [] : [location] ), :id, :full_name, {include_blank: "Select a city"}, {class: "selectize-location"} %>
 					</li>
 				</ul>
 				<ul>
@@ -228,16 +229,15 @@
 	</div>
 
 <% end %>
+<% unless @card.new_record? %>
+	<%= form_tag user_request_card_path(@card) do %>
+		<%= select_tag :user_id, options_from_collection_for_select(User.users - @card.users, :id, :full_name), class: "selectize" %>
+		<%= submit_tag %>
+	<% end %>
 
-<%= form_tag user_request_card_path(@card) do %>
-	<%= select_tag :user_id, options_from_collection_for_select(User.users - @card.users, :id, :full_name), class: "selectize" %>
-	<%= submit_tag %>
+	<% @card.unconfirmed_card.each do |card_user| %>
+		<%= card_user.user.full_name %>
+		<%= link_to "Confirm", user_confirmation_card_path(@card, card_user_id: card_user.id, validated: "true"), method: :post %>
+		<%= link_to "Refus", user_confirmation_card_path(@card, card_user_id: card_user.id, validated: "false"), method: :post %>
+	<% end %>
 <% end %>
-
-<% @card.unconfirmed_card.each do |card_user| %>
-	<%= card_user.user.full_name %>
-	<%= link_to "Confirm", user_confirmation_card_path(@card, card_user_id: card_user.id, validated: "true"), method: :post %>
-	<%= link_to "Refus", user_confirmation_card_path(@card, card_user_id: card_user.id, validated: "false"), method: :post %>
-<% end %>
-
-<script type="text/javascript">window.onload=selectize();</script>

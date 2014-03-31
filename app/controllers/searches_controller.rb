@@ -34,4 +34,14 @@ class SearchesController < BaseController
 		render json: Theme.where("name like ?", "%#{params[:query]}%" )
 	end
 
+	def locations
+		data = Location.where("post_name like ? OR official_name like ?", "%#{params[:query]}%", "%#{params[:query]}%").map do |location|
+			{
+				"name" => "#{location.official_name} - #{location.post_name} - #{location.npa} - #{location.canton.name}",
+				"id" => location.id
+			}
+		end
+		render json: data
+	end
+
 end

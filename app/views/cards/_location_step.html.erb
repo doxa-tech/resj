@@ -14,7 +14,8 @@
 		<div class="label">
 			<p>A completer</p>
 		</div>
-		<%= f.collection_select :location_id, Location.all, :id, :full_name, {include_blank: "Select a city"}, {class: "selectize"} %>
+		<% location = f.object.location %>
+		<%= f.collection_select :location_id, (location.nil? ? [] : [location] ), :id, :full_name, {include_blank: "Select a city"}, {class: "selectize-location"} %>
 	</div>
 	
 	<div class="block">
