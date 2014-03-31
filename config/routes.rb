@@ -52,7 +52,7 @@ Resj::Application.routes.draw do
       end
     end
 
-    %w[responsables affiliations tags actions themes locations].each do |search|
+    %w[responsables affiliations tags actions locations].each do |search|
       post "/searches/#{search}", to: "searches##{search}"
     end
 
