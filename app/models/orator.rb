@@ -14,7 +14,7 @@ class Orator < ActiveRecord::Base
     text :firstname
     text :lastname
     integer :canton_ids, multiple: true
-    integer :theme_ids, multiple: true
+    integer :themes_ids, multiple: true
   end
 
   def to_param
@@ -33,7 +33,7 @@ class Orator < ActiveRecord::Base
     location.canton.id  
   end
 
-  def theme_ids
+  def themes_ids
     themes.pluck(:id)
   end
 

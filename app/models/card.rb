@@ -18,8 +18,9 @@ class Card < ActiveRecord::Base
   belongs_to :card
   has_one :card
 
-  accepts_nested_attributes_for :responsables, :users, :allow_destroy => true
+  accepts_nested_attributes_for :responsables, :users, :allow_destroy => true, reject_if: proc { |a| a[:firstname].blank? && a[:lastname].blank? && a[:email].blank? }
   accepts_nested_attributes_for :affiliations, :allow_destroy => true, reject_if: proc { |a| a[:name].blank? }
+  accepts_nested_attributes_for :users, :allow_destroy => true
 
   with_options if: Proc.new { |c| c.current_step?("general")} do |card|
     card.validates :name, presence: true, length: { maximum: 30 }, uniqueness: true

@@ -5,7 +5,7 @@ class OratorsController < BaseController
 		@search = Orator.search do 
 			fulltext params[:query]
 			paginate page: params[:page] if params[:page]
-			with(:theme_ids, params[:theme_ids]) if params[:theme_ids]
+			with(:themes_ids, params[:themes_ids]) if params[:themes_ids]
 			with(:canton_ids, params[:canton_ids]) if params[:canton_ids]
 		end
   	@orators = @search.results
@@ -44,7 +44,7 @@ class OratorsController < BaseController
 	private
 
 	def orator_params
-		params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation, :current_password, orator_attributes: [:id, :street, :location_id, :phone, :disponibility, :description, :disabled, { :theme_ids =>[]} , { :disponibility_ids => [] } ])
+		params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation, :current_password, orator_attributes: [:id, :street, :location_id, :phone, :disponibility, :description, :disabled, { :theme_ids =>[] } , { :disponibility_ids => [] } ])
 	end
 
 	def authorize_token
