@@ -12963,3 +12963,5 @@ INFO  - 2014-03-31 22:31:21.714; org.apache.solr.servlet.SolrDispatchFilter; use
 INFO  - 2014-03-31 22:31:21.715; org.apache.solr.servlet.SolrDispatchFilter; SolrDispatchFilter.init() done
 INFO  - 2014-03-31 22:31:22.164; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=1 status=0 QTime=40 
 INFO  - 2014-03-31 22:31:22.165; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=1 status=0 QTime=41 
+INFO  - 2014-03-31 23:45:26.013; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=1 status=0 QTime=17 
+INFO  - 2014-03-31 23:45:26.348; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={start=0&q=*:*&wt=ruby&fq=type:Card&rows=30} hits=1 status=0 QTime=1 

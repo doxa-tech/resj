@@ -10,7 +10,7 @@
 				</p>
 			</div>
 			<% location = orator_fields.object.location %>
-			<%= orator_fields.collection_select :location_id, (location.nil? ? [] : [location] ), :id, :full_name, {include_blank: "Select a city"}, {class: "selectize-location"} %>
+			<%= orator_fields.collection_select :location_id, (location.nil? ? [] : [location] ), :id, :full_name, {include_blank: "Tapez votre ville"}, {class: "selectize-location"} %>
 		</div>
 
 		<div class="block">
