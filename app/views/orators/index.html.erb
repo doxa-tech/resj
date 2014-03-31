@@ -48,7 +48,7 @@
 		        <% Theme.all.each do |theme| %>
 		        	<div class="field">
 								<%= label_tag theme.name %>
-								<%= check_box_tag "theme_ids[]", theme.id %>
+								<%= check_box_tag "themes_ids[]", theme.id %>
 							</div>
 						<% end %>
 		      </li>
