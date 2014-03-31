@@ -31,7 +31,7 @@ class SearchesController < BaseController
 	end
 
 	def locations
-		data = Location.where("post_name like ? OR official_name like ?", "%#{params[:query]}%", "%#{params[:query]}%").map do |location|
+		data = Location.where("post_name ilike ? OR official_name ilike ?", "%#{params[:query]}%", "%#{params[:query]}%").map do |location|
 			{
 				"name" => "#{location.official_name} - #{location.post_name} - #{location.npa} - #{location.canton.name}",
 				"id" => location.id
