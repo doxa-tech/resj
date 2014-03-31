@@ -35,16 +35,12 @@ class SessionsController < BaseController
 
 	def confirmed?
 		@user = User.find_by_email(params[:session][:email].strip.downcase)
-<<<<<<< HEAD
-		redirect_to root_path, error: ("Your account is unconfirmed. Please see follow the link we sent you."+ view_context.link_to("Resend mail", resend_mail_user_path(@user), method: :post)).html_safe unless @user.confirmed
-=======
 		if @user && !@user.confirmed
-			@message = 'Your account is unconfirmed. Please see follow the link we sent you. <a data-method="post" href="/users/102/resend_mail" rel="nofollow">Resend mail</a>.'.html_safe
+			@message = ("Your account is unconfirmed. Please see follow the link we sent you."+ view_context.link_to("Resend mail", resend_mail_user_path(@user), method: :post)).html_safe
 			respond_to do |format|
 				format.html { redirect_to root_path, error: @message }
 				format.js { render 'error'}
 			end
 		end
->>>>>>> FETCH_HEAD
 	end
 end
