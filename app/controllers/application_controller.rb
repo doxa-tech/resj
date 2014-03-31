@@ -9,9 +9,9 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale, :restrict_access
 
-  def default_url_options(options={})
-    locale = I18n.locale
-    { locale: (locale == :fr ? nil : locale), access: params[:access] }
+
+  def url_options
+    { locale: (locale == :fr ? nil : locale), access: params[:access] }.merge(super)
   end
  
   def current_permission
@@ -84,7 +84,7 @@ class ApplicationController < ActionController::Base
   end
 
   def restrict_access
-    if !request.path.in?(%w[/resources/orators/new /resources/orators /coming_soon /searches/locations /searches/responsables /searches/tags ]) && params[:access] != "rubyforever"
+    if !current_user && !request.path.in?(%w[/resources/orators/new /resources/orators /coming_soon /searches/locations /searches/responsables /searches/tags ]) && params[:access] != "rubyforever"
       redirect_to coming_soon_path
     end
   end
