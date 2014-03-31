@@ -32,23 +32,4 @@ $(document).ready(function() {
       }
     } 
 	});
-
-  /*
-  // specific for user table in ownerships page
-  $('#user_table tbody').on("click", "tr", function(e) {
-    var id = $(this).data('url') ;
-    if ( $(this).hasClass('row_selected') ) {
-      $(this).removeClass('row_selected');
-      newRelationOn.add(newOwnershipOn).hide();
-      newRelationOff.add(newOwnershipOff).show();
-    }
-    else {
-      $('tr.row_selected').removeClass('row_selected');
-      $(this).addClass('row_selected');
-      newRelationOff.add(newOwnershipOff).hide();
-      newRelationOn.attr('href', '/admin/parents/nouveau?user_id=' + id).show();
-      newOwnershipOn.attr('href', '/admin/ownerships/nouveau?user_id=' + id).show();
-    }
-  });
-  */
 });

@@ -17,6 +17,10 @@ class Orator < ActiveRecord::Base
     integer :theme_ids, multiple: true
   end
 
+  def to_param
+    "#{id}-#{firstname}-#{lastname}".parameterize
+  end
+
   def firstname
     user.firstname
   end

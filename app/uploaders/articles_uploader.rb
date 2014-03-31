@@ -22,6 +22,8 @@ class ArticlesUploader < CarrierWave::Uploader::Base
     %w(jpg jpeg gif png)
   end
 
+  CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
+
   def right_orientation
     manipulate! do |img|
       img.auto_orient

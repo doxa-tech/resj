@@ -49,6 +49,10 @@ class Card < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
   mount_uploader :banner, BannerUploader
 
+  def to_param
+    "#{id}-#{name}".parameterize
+  end
+
   def canton_ids
     location.canton.id
   end

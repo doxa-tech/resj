@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
+  include HeaderHelper
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -9,7 +10,8 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
 
   def default_url_options(options={})
-    { locale: I18n.locale }
+    locale = I18n.locale
+    { locale: (locale == :fr ? nil : locale) }
   end
  
   def current_permission

@@ -1,3 +1,4 @@
+<%= javascript_include_tag "table" %>
 <%= render 'table_buttons' unless presenter.options[:buttons] == false %>
 <table>
 	<thead>
@@ -22,4 +23,3 @@
 	</tbody>
 </table>
 <%= will_paginate presenter.elements %>
-<%= javascript_include_tag "table" %>
