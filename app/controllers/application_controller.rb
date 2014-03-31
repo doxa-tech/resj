@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   def default_url_options(options={})
     locale = I18n.locale
-    { locale: (locale == :fr ? nil : locale) }
+    { locale: (locale == :fr ? nil : locale), access: params[:access] }
   end
  
   def current_permission
