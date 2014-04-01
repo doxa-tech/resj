@@ -5,7 +5,7 @@ function remove_fields(link) {
   fields.hide();
 }
 function add_fields(link) {
-	associationFields = $(link).parent('.association_fields')
+	associationFields = $(link).parents('.association_fields')
 	fields = associationFields.find('.fields')
 	count = fields.length;
 	content = associationFields.find(".fields:last").clone();

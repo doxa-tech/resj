@@ -23,6 +23,7 @@ $(document).ready(function() {
   });
 
   $('.selectize-themes').selectize({
-    maxItems: 10  
+    maxItems: 10  ,
+    dropdownParent: "body" // prevent overflow error in admin
   });
 });
