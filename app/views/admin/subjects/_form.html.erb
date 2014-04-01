@@ -2,40 +2,66 @@
 	
 	<%= render 'error_messages', object: f.object %>
 
-	<%= f.label :name %>
-	<%= f.text_field :name %>
+	<div class="row">
+		<div class="col split2">
+			<div class="block">
+				<div class="header">
+					<h2>Information sur le sujet</h2>
+				</div>
+				<ul>
+					<li>
+						<%= f.label :name %>
+						<%= f.text_field :name %>
+					</li>
+					<li>
+						<%= f.label :description %>
+						<%= f.text_area :description %>
+					</li>
+					<li>
+						<%= f.label :theme_id %>
+						<%= f.collection_select :theme_ids, Theme.all, :id, :name, {include_blank: "Select themes"}, {class: "selectize-themes", multiple: true} %>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col split2">
+			<div class="block">
+				<div class="header">
+					<h2>Documents</h2>
+					<h5>Formats acceptés: .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx, odt, ods, odp. <br>Pour chaque document, lui mettre un titre.</h5>
+				</div>
+				<ul class="association_fields">
+					<%= f.fields_for :documents, (@subject.documents.any? || @subject.documents.build) do |documents_fields| %>
+						<%= content_tag :div, class: "fields" do %>
+							<li>
+								<%= documents_fields.label :name %>
+								<%= documents_fields.text_field :name %>
 
-	<%= f.label :description %>
-	<%= f.text_area :description %>
-
-		<%= f.label :theme_id %>
-		<%= f.collection_select :theme_ids, Theme.all, :id, :name, {include_blank: "Select themes"}, {class: "selectize-themes", multiple: true} %>
-	<div class="association_fields">
-		<%= f.fields_for :documents, (@subject.documents.any? || @subject.documents.build) do |documents_fields| %>
-			<%= content_tag :div, class: "fields" do %>
-				<%= documents_fields.label :name %>
-				<%= documents_fields.text_field :name %>
-
-				<%= documents_fields.label :file %>
-				<% # accept : .doc, .docx, .ppt, .pptx, .xls, .xlsx, odt, ods, odp %>
-				<%= documents_fields.file_field :file, 
-					accept: '
-						application/pdf,application/msword,
-						application/vnd.openxmlformats-officedocument.wordprocessingml.document,
-						application/vnd.ms-powerpoint,
-						application/vnd.openxmlformats-officedocument.presentationml.presentation,
-						application/vnd.ms-excel,
-						application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,
-						application/vnd.oasis.opendocument.text,
-						application/vnd.oasis.opendocument.spreadsheet,
-						application/vnd.oasis.opendocument.presentation' 
-				%>
-
-				<%= documents_fields.hidden_field :_destroy, identifier: "destroy" %>
-				<%= link_to_remove_fields "remove" %>
-			<% end %>
-		<% end %>
-		<%= link_to_add_fields("New upload") %>
+								<%= documents_fields.label :file %>
+								<% # accept : .doc, .docx, .ppt, .pptx, .xls, .xlsx, odt, ods, odp %>
+								<%= documents_fields.file_field :file, 
+									accept: '
+										application/pdf,application/msword,
+										application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+										application/vnd.ms-powerpoint,
+										application/vnd.openxmlformats-officedocument.presentationml.presentation,
+										application/vnd.ms-excel,
+										application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,
+										application/vnd.oasis.opendocument.text,
+										application/vnd.oasis.opendocument.spreadsheet,
+										application/vnd.oasis.opendocument.presentation' 
+								%>
+								<%= documents_fields.hidden_field :_destroy, identifier: "destroy" %>
+								<%= link_to_remove_fields "remove" %>
+							</li>
+						<% end %>
+					<% end %>
+					<li>
+						<%= link_to_add_fields("New upload") %>
+					</li>
+				</ul>
+			</div>
+		</div>
 	</div>
 
 	<%= f.submit %><div class="updated"></div>

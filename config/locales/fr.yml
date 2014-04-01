@@ -201,7 +201,7 @@ fr:
         card_types: "Card Types"
         themes: "Themes"
         resources: "Resources"
-        subjects: "Sujets"
+        subjects: "Sujets (docs)"
         articles: "Articles"
   card:
     create:

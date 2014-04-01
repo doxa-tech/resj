@@ -79,6 +79,9 @@ input[type="submit"] {
 		  outline: 0; 
 	}
 }
+input[type="file"] {
+	padding: 10px;
+}
 
 .selectize-control.single .selectize-input, .selectize-control.single .selectize-input input, .selectize-input > input {height:inherit}	/* correct a proble with empty or default item */
 
