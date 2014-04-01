@@ -15,8 +15,8 @@ class Admin::UsersController < Admin::BaseController
 	end
 
 	def create
-		@user.confirmed = true
 		@user = User.new(user_params)
+		@user.confirmed = true
 		if @user.save
 			redirect_to admin_users_path, success: t('user.admin.create.success')
 		else

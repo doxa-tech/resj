@@ -58,7 +58,7 @@ class Permission
 
   def allow_token?(controller, action, token, current_resource = nil)
   	@token = AccessToken.find_by_token(token)
-  	if !@token.nil? && @token.ownership.element.name == controller && (@token.ownership[right[action]] == true || @token.ownership.actions.pluck(:name).include?(action))
+  	if !@token.nil? && @token.exp_at > Time.now && @token.ownership.element.name == controller && (@token.ownership[right[action]] == true || @token.ownership.actions.pluck(:name).include?(action))
   		return true if @token.ownership.ownership_type_id == @all_entries_id
   		return true if @token.ownership.ownership_type_id == @on_ownership_id && current_resource.try(:user_id) == @user.try(:id)
   		return true if @token.ownership.ownership_type_id == @on_entry_id && @token.ownership.id_element == current_resource.try(:id)

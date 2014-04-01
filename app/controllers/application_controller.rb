@@ -9,9 +9,9 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale, :restrict_access
 
-
   def url_options
-    { locale: (locale == :fr ? nil : locale), access: params[:access] }.merge(super)
+    locale = I18n.locale
+    { locale: (locale == :fr ? nil : locale), access: params[:access] }
   end
  
   def current_permission
