@@ -23,8 +23,8 @@ Resj::Application.configure do
     :address   => "smtp.mandrillapp.com",
     :port      => 587,
     :enable_starttls_auto => true,
-    :user_name => ENV["MAILUSR"],
-    :password  => ENV["MAILPSWD"],
+    :user_name => ENV["MAIL_USR"],
+    :password  => ENV["MAIL_PSWD"],
     :authentication => 'login'
   }
 

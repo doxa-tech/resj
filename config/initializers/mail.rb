@@ -1,3 +1,3 @@
 MandrillMailer.configure do |config|
-  config.api_key = ENV['MAILPSWD']
+  config.api_key = ENV['MAIL_PSWD']
 end

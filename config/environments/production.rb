@@ -72,8 +72,8 @@ Resj::Application.configure do
   config.action_mailer.smtp_settings = {
     :address   => "smtp.mandrillapp.com",
     :port      => 587,
-    :user_name => ENV["MAILUSR"],
-    :password  => ENV["MAILPSWD"]
+    :user_name => ENV["MAIL_USR"],
+    :password  => ENV["MAIL_PSWD"]
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
