@@ -8,8 +8,7 @@ class Orator < ActiveRecord::Base
 
   validates :location_id, presence: true
   validates :themes, presence: true
-  validates :disponibilities, presence: true
-
+  
   searchable do
     text :firstname
     text :lastname

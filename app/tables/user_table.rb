@@ -14,7 +14,8 @@ class UserTable < BaseTable
 			element.reset_token,
 			element.reset_sent_at,
 			element.firstname,
-			element.lastname
+			element.lastname,
+			element.confirmed
 		]
 	end
 
