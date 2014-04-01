@@ -47,15 +47,19 @@
 	<div class="block full">
 		<div class="wrapper">
 			<div class="type">Article <i class="fi-clipboard-notes"></i></div>
-			<div class="graphic">
-				<%= image_tag image_url @article.image %>
-			</div>
-			<div class="text">
-				<h3><%= @article.title %></h3>
-				<div class="content">
-					<%= simple_format @article.content %>
+			<% if @article.nil? %>
+				<p>Pas d'article</p>
+			<% else %>
+				<div class="graphic">
+					<%= image_tag image_url @article.image %>
 				</div>
-			</div>
+				<div class="text">
+					<h3><%= @article.title %></h3>
+					<div class="content">
+						<%= simple_format @article.content %>
+					</div>
+				</div>
+			<% end %>
 			<div class="clear"></div>
 		</div>
 	</div>
