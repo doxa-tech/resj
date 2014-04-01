@@ -24,6 +24,7 @@ class OratorsController < BaseController
 	def create
 		@user = User.new(orator_params)
 		@user.user_type = UserType.find_by_name('user')
+		@user.confirmed = true
 		if @user.save
 			OratorMailer.orator_created(@user).deliver
 			redirect_to root_path, success: t('orator.create.success')
