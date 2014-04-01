@@ -25,7 +25,6 @@ class OratorsController < BaseController
 		@user = User.new(orator_params)
 		@user.user_type = UserType.find_by_name('user')
 		if @user.save
-			sign_in @user
 			OratorMailer.orator_created(@user).deliver
 			redirect_to root_path, success: t('orator.create.success')
 		else
