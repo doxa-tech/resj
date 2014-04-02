@@ -82,4 +82,5 @@ gem 'fog'
 # image manipulating
 gem "mini_magick"
 
-gem 'mandrill_mailer' # send mail woth mandrill
+# new relic
+gem 'newrelic_rpm'
