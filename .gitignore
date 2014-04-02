@@ -25,3 +25,4 @@ config/sunspot.yml
 
 public/uploads
 uploads
+logs/solr.log

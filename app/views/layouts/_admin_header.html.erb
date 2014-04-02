@@ -9,19 +9,22 @@
 		</div>
 	</div>
 
-	<% card_left = admin_links.reject{ |l| l.in? card_group_flattened } %>
+	<% a = card_group_flattened %>
+	<% card_left = admin_links.reject{ |l| l.in? a } %>
 	<ul>
 		<% card_group.each do |group| %>
-			<li class="parent">
-				<a class="group_link" href="#"><%= group.first %><span class="fi-arrow-down"></span></a>
-				<ul>
-					<% admin_links.select{ |l| l.in? group.last}.each do |link| %>
-						<li>
-							<%= link_to_active t('layout.header.admin.' + link.split('/').last), controller: link, action: :index %>
-						</li>
-					<% end %>
-				</ul>
-			</li>
+			<% if admin_links.select.any? %>
+				<li class="parent">
+					<a class="group_link" href="#"><%= group.first %><span class="fi-arrow-down"></span></a>
+					<ul>
+						<% admin_links.select{ |l| l.in? group.last}.each do |link| %>
+							<li>
+								<%= link_to_active t('layout.header.admin.' + link.split('/').last), controller: link, action: :index %>
+							</li>
+						<% end %>
+					</ul>
+				</li>
+			<% end %>
 		<% end %>
 		<% card_left.each do |link| %>
 			<li>
