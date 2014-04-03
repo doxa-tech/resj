@@ -24,6 +24,7 @@ $(document).ready(function() {
 
   $('.selectize-themes').selectize({
     maxItems: 10  ,
+    plugins: ['remove_button'],
     dropdownParent: "body" // prevent overflow error in admin
   });
 });
