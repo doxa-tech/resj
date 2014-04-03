@@ -73,6 +73,17 @@
 		color: #D84418;
 		font-weight: 500;
 	}
+	.sessions-error {
+		font-size: 12px;
+		position: fixed;
+		left: 50%;
+		top: 50%;
+		margin: -186px -150px;
+		background: rgba(255,0,0,0.62);
+		padding: 3px;
+		border-radius: 3px;
+		max-width: 245px;
+	}
 	@include connexion;
 }
 #login-overlay {
