@@ -4,15 +4,15 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.3'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3', group: :development
+gem 'sqlite3', '~> 1.3.9', group: :development
 
-gem 'pg', group: :production
+gem 'pg', '~> 0.17.1', group: :production
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier', '~> 2.0.0'
 
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
@@ -21,17 +21,17 @@ gem 'coffee-rails', '~> 4.0.0'
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
-gem 'jquery-ui-rails'
+gem 'jquery-rails', '~> 3.1.0'
+gem 'jquery-ui-rails', '~> 4.2.0'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+gem 'turbolinks', '~> 2.2.1'
 
 # Add compatibility between JS events and Turbolinks
-gem 'jquery-turbolinks'
+gem 'jquery-turbolinks', '~> 2.0.2'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder', '~> 2.0.5'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -42,10 +42,10 @@ end
 # gem 'dalli'
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.1.0'
 
 # Use unicorn as the app server
-gem 'unicorn'
+gem 'unicorn', '~> 4.8.2'
 
 # Use Capistrano for deployment
 
@@ -56,31 +56,31 @@ group :development do
 end
 
 # CK Editor WYSIWYG
-gem 'ckeditor_rails'
+gem 'ckeditor_rails', '~> 4.3.1'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
 # pagination
-gem 'will_paginate'
+gem 'will_paginate', '~> 3.0.5'
 
 # search
-gem 'sunspot_rails'
+gem 'sunspot_rails', '~> 2.1.0'
 gem 'sunspot_solr', group: :development
 
 # config
-gem "figaro"
+gem "figaro", '~> 0.7.0'
 
 # add the jquery plugin selectize.js
-gem "selectize-rails"
+gem "selectize-rails", '~> 0.9.0'
 
 # image uploader
-gem 'carrierwave'
-gem 'carrierwave-processing'
-gem 'fog'
+gem 'carrierwave', '~> 0.10.0'
+gem 'carrierwave-processing', '~> 1.0.0'
+gem 'fog', '~> 1.21.0'
 
 # image manipulating
-gem "mini_magick"
+gem "mini_magick", '~> 3.7.0'
 
 # new relic
-gem 'newrelic_rpm'
+gem 'newrelic_rpm', '~> 3.7.3.204'
