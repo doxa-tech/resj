@@ -41,4 +41,8 @@ module ApplicationHelper
 		return color
 	end
 
+	def mask_email(email)
+		email.gsub(/.{0,4}@/, '****@')
+	end
+
 end

@@ -34,8 +34,10 @@ class Admin::CardsController < Admin::BaseController
 	end
 
 	def update
-		if @card.update_attributes(card_params)
-			CardMailer.admin_validated(checkers_emails).deliver if params[:card][:validated] == "true"
+		@card.assign_attributes(card_params)
+		validated_changed = @card.validated_changed?
+		if @card.save
+			CardMailer.admin_validated(checkers_emails).deliver if validated_changed
 			redirect_to admin_cards_path, success: t('card.admin.edit.success')
 		else
 			render 'edit'

@@ -35,21 +35,27 @@
 	}
 
 	.intro {
-		color: #777;
+		color: #8B8B8B;
 		text-align: center;
+		line-height: 23px;
+		font-size: 15px;
 		.left {
 			display: inline-block;
 			width: 279px;
 			vertical-align: top;
 			padding: 10px 10px;
-			text-align: justify;
+			text-align: right;
 		}
 		.right {
 			display: inline-block;
 			width: 278px;
 			vertical-align: top;
 			padding: 10px 10px;
-			text-align: justify;
+			text-align: left;
+		}
+		.shade {
+			color: #333233;
+			text-shadow: 2px 1px 0px #fff, 3px 2px 0px rgba(0,0,0,0.15);
 		}
 	}
 

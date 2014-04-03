@@ -1,4 +1,4 @@
-<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyDNsGj5h-WJXPiLtYVn0TSfiisPwhEAbjg&sensor=false" %>
+<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyBgFFWiaY1lm8ex24rqBlwLmYnVU_bwmuU&sensor=false" %>
 <%= javascript_include_tag "card_show_map.js" %>
 
 <% content_for :id, 'cards-show' %>
@@ -43,14 +43,14 @@
 		<h3>Team</h3>
 		<%= @card.user.firstname %>
 		<%= content_tag :span, @card.user.lastname, class: 'lastname' %>
-		<%= @card.user.email %>
+		<%= mask_email @card.user.email %>
 	</div>
 	<% @card.responsables.each do |responsable| %>
 		<div class="resp">
 			<p>
 				<%= responsable.firstname %>
 				<%= content_tag :span, responsable.lastname, class: 'lastname' %>
-				<%= responsable.email %>
+				<%= mask_email responsable.email %>
 			</p>
 		</div>
 	<% end %>

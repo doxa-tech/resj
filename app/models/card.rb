@@ -146,7 +146,7 @@ class Card < ActiveRecord::Base
   end
 
   def responsables?
-    if !responsables.any?
+    if new_record? && !responsables.any?
       errors.add(:responsables, "ne contient aucun responsable (min. 1)")
     end
   end
