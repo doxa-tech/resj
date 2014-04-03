@@ -35,6 +35,7 @@ class Card < ActiveRecord::Base
     card.validates :longitude, presence: true
   end
   with_options if: Proc.new { |c| c.current_step?("team")} do |card|
+    card.validate :responsables?
     card.validate :contact?
     card.validates :email, :format => { :with => /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/ }, :allow_blank => true
   end
@@ -140,7 +141,13 @@ class Card < ActiveRecord::Base
 
   def contact?
     if new_record? && responsables.any? && !responsables.select{ |r| r.is_contact == "true" }.any?
-      errors.add(:responsable, "has no contact" )
+      errors.add(:responsables, "has no contact" )
+    end
+  end
+
+  def responsables?
+    if !responsables.any?
+      errors.add(:responsables, "ne contient aucun responsable (min. 1)")
     end
   end
 end
