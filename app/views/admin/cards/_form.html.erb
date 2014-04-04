@@ -207,7 +207,7 @@
 			</div>
 		</div>
 
-		<% if !@card.validated && current_permission.allow_params?(params[:controller], "validated") %>
+		<% if (@card.validated_changed? || !@card.validated) && current_permission.allow_params?(params[:controller], "validated") %>
 			<div class="col split2">
 				<div class="block">
 					<div class="header">

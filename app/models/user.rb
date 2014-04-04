@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
 	has_secure_password({ validations: false })
 
-  scope :users, -> { joins(:user_type).where(user_types: {name: "user"}) }
+  scope :users, -> { joins(:user_type).where(user_types: {name: "user"}).readonly(false) }
 
   belongs_to :user_type
   has_many :card_verifications, dependent: :destroy
@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   has_one :orator, dependent: :destroy
   has_many :cards
   has_many :articles
+  has_many :connections
 
   accepts_nested_attributes_for :orator
 
