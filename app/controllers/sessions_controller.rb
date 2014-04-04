@@ -9,6 +9,7 @@ class SessionsController < BaseController
 	def create
 		if @user && @user.authenticate(params[:session][:password])
 			params[:session][:remember_me] == '1' ? sign_in_permanent(@user) : sign_in(@user)
+			Connection.create(user: @user, ip: request.remote_ip)
 			respond_to do |format|
 				format.html { redirect_back_or(profile_path, success: t('session.create.success')) }
 				format.js { render 'success' }
