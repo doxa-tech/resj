@@ -7,7 +7,8 @@ class	AccessTokenTable < BaseTable
 			element.is_valid,
 			element.ownership.full_name,
 			element.created_at,
-			element.updated_at
+			element.updated_at,
+			element.exp_at
 		]
 	end
 

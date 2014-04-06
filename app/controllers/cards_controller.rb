@@ -76,18 +76,18 @@ class CardsController < BaseController
 		if card_user && card_user.user_validated == false && card_user.updated_at < 1.weeks.ago
 			card_user.update_attribute(:user_validated, nil)
 			send_request_mail(@card, user)
-			redirect_to edit_admin_card_path(@card), success: t('card.user.request.success')
-		elsif card_user.card_validated == false
+			redirect_to team_card_path(@card), success: t('card.user.request.success')
+		elsif card_user && card_user.card_validated == false
 			card_user.update_attribute(:card_validated, true)
 			send_request_mail(@card, user)
-			redirect_to edit_admin_card_path(@card), success: t('card.user.request.success')
-		elsif user
+			redirect_to team_card_path(@card), success: t('card.user.request.success')
+		elsif !card_user && user && @card.user_id != params[:user_id]
 			new_card_user = CardUser.create(user_id: user.id, card_id: @card.id, card_validated: true)
 			track_activity new_card_user
 			send_request_mail(@card, user)
-			redirect_to edit_admin_card_path(@card), success: t('card.user.request.success')
+			redirect_to team_card_path(@card), success: t('card.user.request.success')
 		else
-			redirect_to edit_admin_card_path(@card), error: t('card.user.request.error')
+			redirect_to team_card_path(@card), error: t('card.user.request.error')
 		end
 	end
 
@@ -102,16 +102,16 @@ class CardsController < BaseController
 			else 
 				UserMailer.unconfirmed_card(@card, card_user.user).deliver
 			end
-			redirect_to edit_admin_card_path(@card), success: t('card.user.confirmation.success')
+			redirect_to team_card_path(@card), success: t('card.user.confirmation.success')
 		else
-			redirect_to edit_admin_card_path(@card), error: t('card.user.confirmation.error')
+			redirect_to team_card_path(@card), error: t('card.user.confirmation.error')
 		end
 	end
 
 	private
 
   def card_params
-  	params.require(:card).permit(:name, :description, :street, :location_id, :email, :place, :latitude, :longitude, :website, :password_digest, :card_type_id, :affiliation, :card_id, :tag_names, :current_step, responsables_attributes: [:id, :firstname, :lastname, :email, :_destroy, :is_contact])
+  	params.require(:card).permit(:name, :description, :street, :location_id, :email, :place, :latitude, :longitude, :website, :password_digest, :card_type_id, :affiliation, :tag_names, :current_step, { parent_ids: [] }, responsables_attributes: [:id, :firstname, :lastname, :email, :_destroy, :is_contact])
   end
 
   def current_resource

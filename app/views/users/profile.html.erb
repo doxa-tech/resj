@@ -9,7 +9,7 @@
 				<%= "#{current_user.firstname} #{current_user.lastname}" %> <%= link_to '<span class="settings push-right fi-widget"></span>'.html_safe, user_edit_path %>
 			</li>
 			<li>
-				Groupe <span class="settings push-right fi-widget"></span>
+				Groupe <%= link_to '<span class="settings push-right fi-widget"></span>'.html_safe, user_my_cards_path %>
 			</li>
 			<li>
 				Avatar <span class="settings push-right fi-widget"></span>

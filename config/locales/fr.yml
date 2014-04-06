@@ -178,7 +178,7 @@ fr:
       two_words_connector: " et "
       last_word_connector: " et "
   application:
-    error: "error"
+    error: "erreur(s)"
   layout:
     header:
       home: "Home"
@@ -204,7 +204,7 @@ fr:
   card:
     create:
       title: "Create a new card"
-      success: "Card created"
+      success: "Vous êtres entré dans le Réseau avec succès !"
     edit:
       title: "Edit a card"
       success: "Card edited"
@@ -376,6 +376,17 @@ fr:
       success: "Orator's account created"
     edit:
       success: "Orator's account updated"
+  subject:
+    admin:
+      index: "Resources"
+      create:
+        title: "Create a new resource"
+        success: "Resource created"
+      edit:
+        title: "Edit an resource"
+        success: "Resource updated"
+      destroy:
+        success: "Resource deleted"
   will_paginate:
     previous_label: "<i class='fi-arrow-left'></i> Previous"
     next_label: "Next <i class='fi-arrow-right'></i>"
@@ -429,19 +440,21 @@ fr:
     errors:
       <<: *errors
   attributes:
+    name: "Nom"
+    description: "Description"
     email: "Email"
     firstname: "Prénom"
     lastname: "Nom"
     password: "Mot de passe"
     password_confirmation: "Confirmation"
-    location_id: "Location"
+    location_id: "Localité"
     street: "Adresse"
     phone: "Téléphone"
     themes: "Thèmes"
     disponibilities: "Disponibilités"
     disponibility: "Disponibilités spéciales"
   activerecord:
-    models:
     attributes:
       card:
-        card_id: "Regional network"
+        card_type_id: "Catégorie"
+        street: "Rue"

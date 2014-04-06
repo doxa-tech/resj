@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140331194041) do
+ActiveRecord::Schema.define(version: 20140404185631) do
 
   create_table "access_tokens", force: true do |t|
     t.string   "token"
@@ -88,6 +88,16 @@ ActiveRecord::Schema.define(version: 20140331194041) do
   add_index "card_affiliations", ["affiliation_id"], name: "index_card_affiliations_on_affiliation_id"
   add_index "card_affiliations", ["card_id"], name: "index_card_affiliations_on_card_id"
 
+  create_table "card_parents", force: true do |t|
+    t.integer  "card_id"
+    t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "card_parents", ["card_id"], name: "index_card_parents_on_card_id"
+  add_index "card_parents", ["parent_id"], name: "index_card_parents_on_parent_id"
+
   create_table "card_responsables", force: true do |t|
     t.integer  "card_id"
     t.integer  "responsable_id"
@@ -143,7 +153,6 @@ ActiveRecord::Schema.define(version: 20140331194041) do
     t.float    "longitude"
     t.string   "avatar"
     t.string   "banner"
-    t.integer  "card_id"
     t.integer  "location_id"
     t.integer  "user_id"
     t.boolean  "visible"
@@ -151,6 +160,15 @@ ActiveRecord::Schema.define(version: 20140331194041) do
 
   add_index "cards", ["card_type_id"], name: "index_cards_on_card_type_id"
   add_index "cards", ["location_id"], name: "index_cards_on_location_id"
+
+  create_table "connections", force: true do |t|
+    t.string   "ip"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "connections", ["user_id"], name: "index_connections_on_user_id"
 
   create_table "disponibilities", force: true do |t|
     t.string   "name"
@@ -179,6 +197,8 @@ ActiveRecord::Schema.define(version: 20140331194041) do
     t.integer  "canton_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "locations", ["canton_id"], name: "index_locations_on_canton_id"
