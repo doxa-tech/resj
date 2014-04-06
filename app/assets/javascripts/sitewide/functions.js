@@ -64,7 +64,7 @@ function tags() {
     create: true,
     render: {
       option: function(item, escape) {
-        return '<div><span>' + escape(item.name) + '</span><span>' + escape(item.popularity || "None") + '</span></div>';
+        return '<div><span>' + escape(item.name) + '</span><span style="float: right;">' + escape(item.popularity || "None") + '</span></div>';
       }
     },
     load: function(query, callback) {
@@ -105,5 +105,12 @@ function selectize_location() {
         }
       });
     }
+  });
+};
+function selectize_cards() {
+  $('.selectize-cards').selectize({
+    maxItems: 4,
+    plugins: ['remove_button'],
+    dropdownParent: "body" // prevent overflow error in admin
   });
 };
