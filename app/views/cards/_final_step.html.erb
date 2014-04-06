@@ -4,22 +4,22 @@
 	</div>
 	<%= form_for @card, url: change_cards_path, remote: true do |f| %>
 		<%= f.hidden_field :current_step, value: @card.current_step %>
-		<%= f.submit "General", :name => "step[general]" %>
+		<%= f.submit "Général", :name => "step[general]" %>
 		<ul>
 			<li><%= label_tag :name %> <p><%= @card.name %></p></li>
 			<li><%= label_tag :description %> <p><%= @card.description %></p></li>
 			<li><%= label_tag :category %> <p><%= @card.card_type.name %></p></li>
-			<li><%= label_tag "Réseau régional" %> <p><%= @card.card.try(:name) or '-' %></p></li>
+			<li><%= label_tag "Réseau régional" %> <p><%= @card.cards.pluck(:name).join(",") or '-' %></p></li>
 		</ul>
 		
-		<%= f.submit "Location", :name => "step[location]" %>
+		<%= f.submit "Lieu", :name => "step[location]" %>
 		<ul>
 			<li><%= label_tag :rue %> <p><%= @card.street %></p></li>
 			<li><%= label_tag :ville %> <p><%= @card.location.full_name %></p></li>
 			<li><%= label_tag :lieu %> <p><%= @card.place %></p></li>
 		</ul>
 
-		<%= f.submit "Team", :name => "step[team]" %>
+		<%= f.submit "Equipe", :name => "step[team]" %>
 		<ul>
 			<li><%= label_tag :email_contact %> <p><%= @card.email %></p></li>
 			<% @card.responsables.each do |a| %>

@@ -6,6 +6,8 @@ $(document).ready(function() {
 
   selectize_location();
 
+  selectize_cards()
+
   tags();
 
   var delay = (function(){
@@ -23,7 +25,7 @@ $(document).ready(function() {
   });
 
   $('.selectize-themes').selectize({
-    maxItems: 10  ,
+    maxItems: 10,
     plugins: ['remove_button'],
     dropdownParent: "body" // prevent overflow error in admin
   });

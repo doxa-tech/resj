@@ -19,7 +19,6 @@ class CardTable < BaseTable
 			element.longitude,
 			element.avatar_url,
 			element.banner_url,
-			element.card.try(:name),
 			element.location.full_name,
 			element.user.full_name,
 			element.visible

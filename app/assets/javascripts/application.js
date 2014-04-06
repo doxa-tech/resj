@@ -15,6 +15,6 @@
 //= require jquery.ui.autocomplete
 //= require jquery_ujs
 //= require ckeditor-jquery
-//= require turbolinks
 //= require selectize
 //= require_tree ./sitewide
+//= require turbolinks

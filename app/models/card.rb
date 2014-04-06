@@ -1,6 +1,8 @@
 class Card < ActiveRecord::Base
   include Wizard
 
+  scope :regional, -> { joins(:card_type).where(card_types: {name: "Réseau régional"}) }
+
   belongs_to :card_type
   belongs_to :user
   has_many :card_responsables, dependent: :destroy
@@ -15,8 +17,9 @@ class Card < ActiveRecord::Base
   has_many :card_users
   has_many :users, through: :card_users
   belongs_to :location
-  belongs_to :card
-  has_one :card
+  has_many :card_parents
+  has_many :cards, through: :card_parents
+  has_many :parents, through: :card_parents
 
   accepts_nested_attributes_for :responsables, :users, :allow_destroy => true, reject_if: proc { |a| a[:firstname].blank? && a[:lastname].blank? && a[:email].blank? }
   accepts_nested_attributes_for :affiliations, :allow_destroy => true, reject_if: proc { |a| a[:name].blank? }
@@ -63,8 +66,12 @@ class Card < ActiveRecord::Base
     tags.pluck(:id)
   end
 
-  def unconfirmed_card
-    card_users.where(card_validated: nil)
+  def unconfirmed_users
+    card_users.where(card_validated: nil, user_validated: true)
+  end
+
+  def confirmed_users
+    User.joins(:card_users).where(card_users: {user_validated: true, card_validated: true, card_id: id} ) << user
   end
 
   def tag_names
@@ -97,8 +104,8 @@ class Card < ActiveRecord::Base
   # Find a responsable or create a new one 
   def autosave_associated_records_for_responsables
     new_responsables = []
-    responsables.each do |responsable|
-      if user = User.find_by_email(responsable.email)
+    responsables.reject{ |r| r.is_contact == "true" }.each do |responsable|
+      if user = User.find_by_email(responsable.email) 
         CardUser.create(user_id: user.id, card_id: id, card_validated: true)
       else
         new_responsables << Responsable.where(firstname: responsable.firstname, lastname: responsable.lastname, email: responsable.email).first_or_create
@@ -141,7 +148,7 @@ class Card < ActiveRecord::Base
 
   def contact?
     if new_record? && responsables.any? && !responsables.select{ |r| r.is_contact == "true" }.any?
-      errors.add(:responsables, "has no contact" )
+      errors.add(:responsables, "n'a pas de propriétaire (Marquer comme propriétaire)" )
     end
   end
 

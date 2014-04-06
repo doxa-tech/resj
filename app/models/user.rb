@@ -81,6 +81,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def unconfirmed_cards
+    card_users.where(user_validated: nil)
+  end
+
+  def confirmed_cards
+    Card.joins(:card_users).where(card_users: {user_validated: true, card_validated: true, user_id: id} ) + Card.where(user_id: id)
+  end
+
   private
 
   # Control by an update if the current_password is right
