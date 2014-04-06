@@ -27,7 +27,7 @@ class Card < ActiveRecord::Base
 
   with_options if: Proc.new { |c| c.current_step?("general")} do |card|
     card.validates :name, presence: true, length: { maximum: 30 }, uniqueness: true
-    card.validates :description, presence: true, length: { maximum: 600 }
+    card.validates :description, presence: true, length: { maximum: 800 }
     card.validates :card_type_id, presence: true
   end
   with_options if: Proc.new { |c| c.current_step?("location")} do |card|
