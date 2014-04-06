@@ -2,3 +2,7 @@ $('.wizard').html('<%=j render "#{@card.current_step}_step" %>');
 selectize();
 selectize_location();
 selectize_cards();
+<% if @card.current_step == "location" %>
+	map = gmap.initialize();
+	gmap.loc_search(map);
+<% end %>

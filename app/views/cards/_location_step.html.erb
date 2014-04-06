@@ -3,7 +3,7 @@
 	<div class="block">
 		<div class="label">
 			<p>
-				<span class="num">3</span> Quelle est votre <span class="b">rue</span>?
+				<span class="num">5</span> Quelle est votre <span class="b">rue</span>?
 			</p>
 		</div>
 		<!-- 	<%= f.label :street %> -->
@@ -13,7 +13,7 @@
 	<div class="block">
 		<div class="label">
 			<p>
-				<span class="num">4</span> Dans quelle<span class="b">localité</span>habitez-vous?
+				<span class="num">6</span> Dans quelle<span class="b">localité</span>habitez-vous?
 			</p>
 		</div>
 		<% location = f.object.location %>
@@ -22,7 +22,7 @@
 	
 	<div class="block">
 		<div class="label">
-			<p><span class="num">6</span> Où est votre <span class="b">lieu</span> de rencontre? (à l'église, dans la rue, en face de la gare ...)</p>
+			<p><span class="num">7</span> Où est votre <span class="b">lieu</span> de rencontre? (à l'église, dans la rue, en face de la gare ...) (ptionnel)</p>
 		</div>
 		<!-- 	<%= f.label :place %> -->
 		<%= f.text_field :place %>
@@ -38,7 +38,7 @@
 
 	<div class="block" style="position:relative">
 		<div class="label">
-			<p><span class="num">7</span> Sur une carte, quelle est votre <span class="b">emplacement</span>? Positionnez le curseur en cliquant sur la carte au bon endroit </p>
+			<p><span class="num">8</span> Sur une carte, quelle est votre <span class="b">emplacement</span>? Positionnez le curseur en cliquant sur la carte au bon endroit </p>
 		</div>
 		<div id="map-canvas"></div>
 		<div class="map-panel">
@@ -51,19 +51,8 @@
 
 
 <script type="text/javascript">
-
+$(function(){
 	map = gmap.initialize();
-	var street = document.getElementById('card_street');
-	var address = document.getElementById('address');
-	var btn = document.getElementById('geocode-addr');
-	street.onchange = function(){
-		address.value = street.value + " " + $('.item').html() + ", Switzerland";
-	}
-	document.getElementById('card_location_id').onchange = function(){
-		address.value = street.value + " " + $('.item').html() + ", Switzerland";
-	}
-	btn.onclick = function(){
-		gmap.codeAddress(address.value, map.map, map.marker);
-	};
-
+	gmap.loc_search(map);
+});
 </script>
