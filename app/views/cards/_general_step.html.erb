@@ -26,7 +26,7 @@
 	<div class="block">
 		<!-- 	<%= f.label :card_type_id %> -->
 		<div class="label">
-			<p><span class="num">2</span> Quelle <span class="b">catégorie</span> vous correspond le mieux?</p>
+			<p><span class="num">3</span> Quelle <span class="b">catégorie</span> vous correspond le mieux?</p>
 		</div>
 		<%= f.collection_select :card_type_id, CardType.all, :id, :name, {include_blank: "Catégorie"}, {class: "selectize"} %>
 	</div>
@@ -34,7 +34,7 @@
 	<div class="block">
 		<div class="label">
 			<p>
-				<span class="num">3</span>Faites-vous partie d'un <span class="b">réseau régional</span>?
+				<span class="num">4</span>Faites-vous partie d'un <span class="b">réseau régional</span>? (optionnel)
 			</p>
 		</div>
 		<%= f.collection_select :parent_ids, Card.regional, :id, :name, {include_blank: "Sélectionnez des réseaux"}, {class: "selectize-cards", multiple: true} %>
