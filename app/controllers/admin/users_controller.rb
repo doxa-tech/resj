@@ -27,8 +27,7 @@ class Admin::UsersController < Admin::BaseController
 	def edit
 	end
 
-	def update 
-		@user.user_type_id = params[:user_type][:user_type_id]
+	def update
 		if @user.update_attributes(user_params)
 			redirect_to admin_users_path, success: t('user.admin.edit.success')
 		else

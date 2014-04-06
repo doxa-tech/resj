@@ -41,9 +41,11 @@
 <div class="team">
 	<div class="resp">
 		<h3>Team</h3>
-		<%= @card.user.firstname %>
-		<%= content_tag :span, @card.user.lastname, class: 'lastname' %>
-		<%= mask_email @card.user.email %>
+		<% @card.confirmed_users.each do |user| %>
+			<%=	user.firstname %>
+			<%= content_tag :span, user.lastname, class: 'lastname' %>
+			<%= mask_email user.email %>
+		<% end %>
 	</div>
 	<% @card.responsables.each do |responsable| %>
 		<div class="resp">

@@ -60,18 +60,18 @@ class UsersController < BaseController
 		if card_user && card_user.card_validated == false && card_user.updated_at < 1.weeks.ago
 			card_user.update_attribute(:card_validated, nil)
 			send_request_mail(current_user, card)
-			redirect_to profile_path, success: t('user.card.request.success')
-		elsif card_user.user_validated == false
+			redirect_to user_my_cards_path, success: t('user.card.request.success')
+		elsif card_user && card_user.user_validated == false
 			card_user.update_attribute(:user_validated, true)
 			send_request_mail(current_user, card)
-			redirect_to profile_path, success: t('user.card.request.success')
-		elsif card
+			redirect_to user_my_cards_path, success: t('user.card.request.success')
+		elsif !card_user && card && card.user_id != current_user.id
 			new_card_user = CardUser.create(user_id: current_user.id, card_id: card.id, user_validated: true)
 			track_activity new_card_user
 			send_request_mail(current_user, card)
-			redirect_to profile_path, success: t('user.card.request.success')
+			redirect_to user_my_cards_path, success: t('user.card.request.success')
 		else
-			redirect_to profile_path, error: t('user.card.request.error')
+			redirect_to user_my_cards_path, error: t('user.card.request.error')
 		end
 	end
 
@@ -86,9 +86,9 @@ class UsersController < BaseController
 			else
 				CardMailer.unconfirmed_user(current_user, card_user.card).deliver
 			end
-			redirect_to profile_path, success: t('user.card.confirmation.success')
+			redirect_to user_my_cards_path, success: t('user.card.confirmation.success')
 		else
-			redirect_to profile_path, error: t('user.card.confirmation.error')
+			redirect_to user_my_cards_path, error: t('user.card.confirmation.error')
 		end
 	end
 

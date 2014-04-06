@@ -34,10 +34,8 @@ class Admin::CardsController < Admin::BaseController
 	end
 
 	def update
-		@card.assign_attributes(card_params)
-		validated_changed = @card.validated_changed?
-		if @card.save
-			CardMailer.admin_validated(checkers_emails, @card).deliver if validated_changed
+		if @card.update_attributes(card_params)
+			CardMailer.admin_validated(checkers_emails, @card).deliver if params[:card][:validated] == "true"
 			redirect_to admin_cards_path, success: t('card.admin.edit.success')
 		else
 			render 'edit'
@@ -66,7 +64,7 @@ class Admin::CardsController < Admin::BaseController
 	private
 
 	def attributes
-		["name", "description", "street", "location_id", "email", "place", "latitude", "longitude", "website", "password_digest", "card_type_id", "card_id", "current_step", "validated", "tag_names", "avatar", "banner", "remove_avatar", "remove_banner", "responsables_attributes" => ["id", "firstname", "lastname", "email", "_destroy", "is_contact"], "affiliations_attributes" => ["id", "name", "_destroy"]]
+		["name", "description", "street", "location_id", "email", "place", "latitude", "longitude", "website", "password_digest", "card_type_id", "current_step", "validated", "tag_names", "avatar", "banner", "remove_avatar", "remove_banner", { "parent_ids" => [] }, "responsables_attributes" => ["id", "firstname", "lastname", "email", "_destroy", "is_contact"], "affiliations_attributes" => ["id", "name", "_destroy"]]
 	end
 
   def card_params

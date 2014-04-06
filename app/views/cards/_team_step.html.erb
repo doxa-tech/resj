@@ -36,13 +36,13 @@
 					</div>
 					<div class="field">
 						<%= responsables_fields.hidden_field :_destroy, identifier: "destroy" %>
-						<%= link_to_remove_fields "remove" %>
+						<%= link_to_remove_fields "Supprimer" %>
 						<%= responsables_fields.hidden_field :is_contact, identifier: "is_contact", value: ("true" if is_contact) %>
-						<%= link_to_add_contact "Mark as owner" unless is_contact %>
+						<%= link_to_add_contact "Marquer comme propriétaire" unless is_contact %>
 					</div>
 				<% end %>
 			<% end %>
-			<%= link_to_add_fields("New responsable") %>
+			<%= link_to_add_fields("Ajouter un responsable") %>
 		</div>
 	</div>
 
