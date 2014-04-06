@@ -26,21 +26,54 @@ class CardMailer < ActionMailer::Base
   end
 
   # a new card has been created, let's validate!
-  def admin_created(validator)
+  def admin_created(validator, card)
   	@validator = validator
-  	mail to: validator.email, body:'', subject: "New card submitted !" 
+    mail to:      @validator.email,
+         from:    "\"Noémien de ResJ\" <noemien@resj.ch>",
+         subject: 'Validation d\'une carte',
+         body:
+    headers['X-MC-MergeVars'] = {
+                                  TYPE: card.card_type.name,
+                                  GNAME: card.name,
+                                  LINK: edit_admin_card_url(card, locale: I18n.locale)
+                                }.to_json # variables
+    headers['X-MC-Template'] = "card-created-admin"  # template
+    headers['X-MC-AutoText'] = 1 # generate text version
+    headers['X-MC-InlineCSS'] = "true" # inline css
   end
 
   # card has been validated (so you can verified)
-  def admin_validated(checkers)
+  def admin_validated(checkers, card)
   	@checkers = checkers
-  	mail to: checkers.pluck(:email), body:'', subject: "New card validated"
+    mail to:      @checkers.pluck(:email),
+         from:    "\"Noémien de ResJ\" <noemien@resj.ch>",
+         subject: 'Vérification d\'une carte',
+         body:
+    headers['X-MC-MergeVars'] = {
+                                  TYPE: card.card_type.name,
+                                  GNAME: card.name,
+                                  LINK: edit_admin_card_url(card, locale: I18n.locale)
+                                }.to_json # variables
+    headers['X-MC-Template'] = "card-validated-admin"  # template
+    headers['X-MC-AutoText'] = 1 # generate text version
+    headers['X-MC-InlineCSS'] = "true" # inline css
   end
 
   # card has been verified (so it is published)
-  def admin_verified(card_admins)
+  def admin_verified(card_admins, card)
   	@card_admins = card_admins
-  	mail to: card_admins.pluck(:email), body:'', subject: "Card verified"
+    mail to:      @card_admins.pluck(:email),
+         from:    "\"Noémien de ResJ\" <noemien@resj.ch>",
+         subject: 'Nouvelle care',
+         body:
+    headers['X-MC-MergeVars'] = {
+                                  TYPE: card.card_type.name,
+                                  GNAME: card.name,
+                                  LINK: card_url(card, locale: I18n.locale)
+                                }.to_json # variables
+    headers['X-MC-Template'] = "card-verified-admin"  # template
+    headers['X-MC-AutoText'] = 1 # generate text version
+    headers['X-MC-InlineCSS'] = "true" # inline css
   end
 
   # hey owner, your card is now online

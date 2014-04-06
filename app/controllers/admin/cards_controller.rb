@@ -37,7 +37,7 @@ class Admin::CardsController < Admin::BaseController
 		@card.assign_attributes(card_params)
 		validated_changed = @card.validated_changed?
 		if @card.save
-			CardMailer.admin_validated(checkers_emails).deliver if validated_changed
+			CardMailer.admin_validated(checkers_emails, @card).deliver if validated_changed
 			redirect_to admin_cards_path, success: t('card.admin.edit.success')
 		else
 			render 'edit'
@@ -55,7 +55,7 @@ class Admin::CardsController < Admin::BaseController
 		if @card.verified?
 			@card.update_attribute(:visible, true)
 			# for verificators and validators
-			CardMailer.admin_verified(card_admins).deliver
+			CardMailer.admin_verified(card_admins, @card).deliver
 			# for card owner
 			CardMailer.owner_verified(@card.user)
 			# for card co-responsables

@@ -49,7 +49,7 @@ class CardsController < BaseController
 		if @card.save
 			user_hash = @card.create_owner(owner)
 			# for validator
-			CardMailer.admin_created(validator).deliver
+			CardMailer.admin_created(validator,@card).deliver
 			# for owner
 			CardMailer.owner_created(@card, user_hash).deliver
 			session[:card_params] = nil
