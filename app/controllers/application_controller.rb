@@ -84,7 +84,7 @@ class ApplicationController < ActionController::Base
   end
 
   def restrict_access
-    if !current_user && !request.path.in?(%w[/resources/orators/new /resources/orators /coming_soon /searches/locations /searches/responsables /searches/tags ]) && params[:access] != "rubyforever"
+    if !current_user && !request.path.in?(%w[/resources/orators/new /resources/orators /coming_soon /searches/locations /searches/responsables /searches/tags /cards/new /cards /cards/change ]) && params[:access] != "rubyforever"
       redirect_to coming_soon_path
     end
   end
