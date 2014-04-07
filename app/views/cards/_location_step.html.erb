@@ -6,7 +6,6 @@
 				<span class="num">5</span> Quelle est votre <span class="b">rue</span>?
 			</p>
 		</div>
-		<!-- 	<%= f.label :street %> -->
 		<%= f.text_field :street %>
 	</div>
 
@@ -24,16 +23,13 @@
 		<div class="label">
 			<p><span class="num">7</span> Où est votre <span class="b">lieu</span> de rencontre? (à l'église, dans la rue, en face de la gare ...) (ptionnel)</p>
 		</div>
-		<!-- 	<%= f.label :place %> -->
 		<%= f.text_field :place %>
 	</div>
 
 	<div class="clear"></div>	
 
-	<!-- 	<%= f.label :latitude %> -->
 	<%= f.text_field :latitude, id: "lat", type: :hidden %>
 
-	<!-- 	<%= f.label :longitude %> -->
 	<%= f.text_field :longitude, id: "lng", type: :hidden %>
 
 	<div class="block" style="position:relative">
@@ -51,7 +47,7 @@
 
 
 <script type="text/javascript">
-$(function(){
+$(function() {
 	load_map_stuff();
 });
 </script>

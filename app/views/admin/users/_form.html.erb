@@ -29,32 +29,34 @@
 	<%= f.label :password_confirmation %>
 	<%= f.password_field :password_confirmation %>
 			
-	<%= f.fields_for :orator, @user.orator || @user.build_orator do |orator_fields| %>
+	<% if !@user.orator.nil? %>
+		<%= f.fields_for :orator, @user.orator || @user.build_orator do |orator_fields| %>
 
-		<%= orator_fields.label :location_id %>
-		<% location = orator_fields.object.location %>
-		<%= orator_fields.collection_select :location_id, (location.nil? ? [] : [location] ), :id, :full_name, {include_blank: "Tapez votre ville"}, {class: "selectize-location"} %>
+			<%= orator_fields.label :location_id %>
+			<% location = orator_fields.object.location %>
+			<%= orator_fields.collection_select :location_id, (location.nil? ? [] : [location] ), :id, :full_name, {include_blank: "Tapez votre ville"}, {class: "selectize-location"} %>
 
-		<%= orator_fields.label :street %>
-		<%= orator_fields.text_field :street %>
+			<%= orator_fields.label :street %>
+			<%= orator_fields.text_field :street %>
 
-		<%= orator_fields.label :phone %>
-		<%= orator_fields.text_field :phone %>
+			<%= orator_fields.label :phone %>
+			<%= orator_fields.text_field :phone %>
 
-		<%= orator_fields.label :theme_ids %>
-		<%= orator_fields.collection_select :theme_ids, Theme.all, :id, :name, {include_blank: "Sélectionnez des thèmes"}, {class: "selectize-themes", multiple: true} %>
+			<%= orator_fields.label :theme_ids %>
+			<%= orator_fields.collection_select :theme_ids, Theme.all, :id, :name, {include_blank: "Sélectionnez des thèmes"}, {class: "selectize-themes", multiple: true} %>
 
-		<%= orator_fields.label :disponibility_ids %>
-		<%= orator_fields.collection_check_boxes :disponibility_ids, Disponibility.all, :id, :name do |b| %>
-			<%= content_tag :div, "#{b.label} #{b.check_box}".html_safe, class: 'dispo' %>
+			<%= orator_fields.label :disponibility_ids %>
+			<%= orator_fields.collection_check_boxes :disponibility_ids, Disponibility.all, :id, :name do |b| %>
+				<%= content_tag :div, "#{b.label} #{b.check_box}".html_safe, class: 'dispo' %>
+			<% end %>
+
+			<%= orator_fields.label :disponibility %>
+			<%= orator_fields.text_field :disponibility %>
+
+			<%= orator_fields.label :description %>
+			<%= orator_fields.text_area :description %>
+
 		<% end %>
-
-		<%= orator_fields.label :disponibility %>
-		<%= orator_fields.text_field :disponibility %>
-
-		<%= orator_fields.label :description %>
-		<%= orator_fields.text_area :description %>
-
 	<% end %>
 
 	<%= f.submit %>

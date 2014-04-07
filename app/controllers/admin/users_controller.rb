@@ -43,7 +43,7 @@ class Admin::UsersController < Admin::BaseController
 	private
 
 	def user_params
-		params.require(:user).permit(:firstname, :lastname, :email, :gravatar_email, :password, :password_confirmation, :user_type_id)
+		params.require(:user).permit(:firstname, :lastname, :email, :gravatar_email, :password, :password_confirmation, :user_type_id, orator_attributes: [:id, :street, :location_id, :phone, :disponibility, :description, :disabled, { :theme_ids =>[] } , { :disponibility_ids => [] } ])
 	end
 
 	def current_resource

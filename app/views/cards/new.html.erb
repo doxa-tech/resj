@@ -1,6 +1,3 @@
-<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyBgFFWiaY1lm8ex24rqBlwLmYnVU_bwmuU&sensor=false" %>
-<%= javascript_include_tag "card_new_map.js" %>
-
 <% content_for :id, 'cards-form' %>
 
 <div class="top">
@@ -14,7 +11,7 @@
 </div>
 
 <script>
-$(function(){
+$(function() {
   var idleTimer;
   function resetTimer(){
     clearTimeout(idleTimer);

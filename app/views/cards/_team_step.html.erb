@@ -2,7 +2,6 @@
 
 	<div class="block">
 		<div class="label">
-			<!-- 	<%= f.label :email %> -->
 			<p>
 				<span class="num">9</span> Un petit <span class="b">email</span> de <span class="b">contact</span> public si vous le désirez (affiché publiquement, optionnel)
 			</p>
@@ -38,7 +37,7 @@
 						<%= responsables_fields.hidden_field :_destroy, identifier: "destroy" %>
 						<%= link_to_remove_fields "Supprimer" %>
 						<%= responsables_fields.hidden_field :is_contact, identifier: "is_contact", value: ("true" if is_contact) %>
-						<%= link_to_add_contact "Marquer comme propriétaire" unless is_contact %>
+						<%= link_to_add_contact "Marquer comme propriétaire" %>
 					</div>
 				<% end %>
 			<% end %>
@@ -48,4 +47,8 @@
 
 <% end %>
 
-<script type="text/javascript">window.onload=autocomplete();</script>
+<script type="text/javascript">
+$(function() {
+	$(".contact").find(".add_contact").hide();
+});
+</script>
