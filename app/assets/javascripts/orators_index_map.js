@@ -12,29 +12,21 @@ var gmap = {
     google.maps.event.addDomListener(window, 'load');
     return {"map":map,"infowindow": infowindow};
   },
-  addIcon: function(addr, map, text, infowindow) {
-    geocoder.geocode( { 'address': addr}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        var coord = results[0].geometry.location;
-
-        var marker = new google.maps.Marker({
-          position: coord,
-          map: map,
-          title:"Click to open"
+  addIcon: function(lat, lng, map, text, infowindow) {
+    var myLatlng = new google.maps.LatLng(lat,lng);
+    var marker = new google.maps.Marker({
+      position: myLatlng,
+      map: map,
+      title:"Click to open"
+    });
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.close();
+      infowindow.setContent(text);
+      infowindow.open(map,marker);
+        $('.link_orator').click(function(){
+          console.log($(this).data('id'));
+          $($(this).data('id')).animate({backgroundColor: '#A1FFA1'}, 'slow');
         });
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.close();
-          infowindow.setContent(text);
-          infowindow.open(map,marker);
-            $('.link_orator').click(function(){
-              console.log($(this).data('id'));
-              $($(this).data('id')).animate({backgroundColor: '#A1FFA1'}, 'slow');
-            });
-        });
-
-      } else {
-        alert('Impossible de trouver ' + addr + " - " + status + " Merci de reporter le bug.");
-      }
     });
   }
 };
