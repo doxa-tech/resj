@@ -2,13 +2,13 @@ $(document).ready(function() {
 
   autocomplete();
 
-  selectize();
+  selectize.default();
 
-  selectize_location();
+  selectize.location();
 
-  selectize_cards()
+  selectize.cards();
 
-  tags();
+  selectize.tags();
 
   var delay = (function(){
     var timer = 0;

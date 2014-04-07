@@ -1,4 +1,6 @@
-<%= javascript_include_tag "ajax_loader" %>
+<% content_for :javascript do %>
+	<% javascript_include_tag "ajax_loader", "data-turbolinks-track" => true  %>
+<% end %>
 <div id="overlay">
 	<p>Loading<br><br><%= image_tag "layout/ajax-loader.gif" %></p>
 </div>

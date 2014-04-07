@@ -1,7 +1,13 @@
 $('.wizard').html('<%=j render "#{@card.current_step}_step" %>');
-selectize();
-selectize_location();
-selectize_cards();
-<% if @card.current_step == "location" %>
-	load_map_stuff();
+<% case @card.current_step %>
+	<% when "general" %>
+		selectize.cards();
+		selectize.default();
+	<% when "location" %>
+		selectize.location();
+		load_map_stuff();
+	<% when "team" %>
+		autocomplete();
+	<% when "extra" %>
+		selectize.tags();
 <% end %>

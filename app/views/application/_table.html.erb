@@ -1,4 +1,6 @@
-<%= javascript_include_tag "table" %>
+<% content_for :javascript do %>
+	<%= javascript_include_tag "table", "data-turbolinks-track" => true %>
+<% end %>
 
 <%= render 'table_buttons' unless presenter.options[:buttons] == false %>
 <table>
