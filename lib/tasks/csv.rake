@@ -41,4 +41,14 @@ namespace :csv do
 			CardUser.create(user_id: user.id, card_id: card.id, card_validated: true, user_validated: true)
 		end
 	end
+
+	desc "Update geographic attributes of locations"
+	task location_geo: :environment do
+		csv = CSV.read('public/csv/coordinates.csv','r')
+		Location.all.each_with_index do |a, i| 
+			a.latitude=csv[i][0]
+			a.longitude=csv[i][1]
+			a.save
+		end
+	end
 end
