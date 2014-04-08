@@ -123,7 +123,7 @@ class Card < ActiveRecord::Base
   end
 
   def current_step?(step)
-    current_step.nil? || current_step == step
+    current_step.nil? || current_step == step || current_step == "final"
   end
 
   def create_owner(owner)
