@@ -1,0 +1,18 @@
+@import 'partial_top';
+
+#container.help {
+	.top {
+		@include top;
+		h1 {
+			@include h1;
+		}
+	}
+	form {
+		input {
+			width: initial;
+			height: initial;
+			border: initial;
+			border-radius: 0px;
+		}
+	}
+}
