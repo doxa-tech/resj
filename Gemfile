@@ -84,3 +84,5 @@ gem "mini_magick", '~> 3.7.0'
 
 # new relic
 gem 'newrelic_rpm', '~> 3.7.3.204'
+
+gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
