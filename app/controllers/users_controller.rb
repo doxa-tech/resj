@@ -40,7 +40,7 @@ class UsersController < BaseController
 	def confirmation
 		if @user = User.find_by_remember_token(params[:token])
 			@user.update_attribute(:confirmed, true)
-			sign_in(@user)
+			#sign_in(@user)
 			redirect_to profile_path, success: "Account confirmed."
 		else
 			redirect_to root_path, error: "Invalid token."
