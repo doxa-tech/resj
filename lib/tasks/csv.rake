@@ -1,4 +1,5 @@
 require 'csv'
+require 'securerandom'
 
 namespace :csv do
 	desc "Fill cantons, city tables"
@@ -24,21 +25,26 @@ namespace :csv do
 
 	desc "Load some example cards"
 	task card: :environment do
-		user = User.create(firstname: "Noémien", lastname: "Kocher", email: "nkcr.je@gmail.com", password: '12341', password_confirmation: '12341')
 		CSV.open('public/csv/cards.csv','r').each do |a|
-			card = Card.create(
-				name: a[0], 
-				latitude: a[1], 
-				longitude: a[2], 
-				description: a[3], 
-				email: a[4], 
-				street: a[5], 
-				location: Location.first(:order => "RANDOM()"), 
-				website: a[8], 
-				user: user,
-				card_type: CardType.first(:order => "RANDOM()")
-			)
-			CardUser.create(user_id: user.id, card_id: card.id, card_validated: true, user_validated: true)
+			params = {
+				"name"=> a[0], 
+				"description"=>a[3], 
+				"card_type_id"=>CardType.first(:order => "RANDOM()").id, 
+				"current_step"=>"final", 
+				"parent_ids"=>[""], 
+				"street"=>a[5], 
+				"location_id"=>Location.first(:order => "RANDOM()").id, 
+				"place"=>"", 
+				"latitude"=>a[1], 
+				"longitude"=>a[2], 
+				"email"=>a[4], 
+				"responsables_attributes"=>{"0"=>{"firstname"=>"Baptiste", "lastname"=>"Dupont", "email"=>"#{SecureRandom.hex(13)}@dup.sas", "_destroy"=>"false", "is_contact"=>"true"}}, 
+				"website"=>a[8], 
+				"affiliation"=>"", 
+				"tag_names"=>""
+			}
+			card = Card.new(params)
+			card.save
 		end
 	end
 
