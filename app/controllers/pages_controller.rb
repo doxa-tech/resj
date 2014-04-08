@@ -19,5 +19,9 @@ class PagesController < BaseController
 		@article = Article.last
 		@subjects = Subject.last(4).reverse
 	end
+
+	def help
+		@page = Page.find_by_name('help')
+	end
 	
 end

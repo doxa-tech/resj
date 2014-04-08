@@ -1,0 +1,10 @@
+@import 'partial_top';
+
+#container.help {
+	.top {
+		@include top;
+		h1 {
+			@include h1;
+		}
+	}
+}
