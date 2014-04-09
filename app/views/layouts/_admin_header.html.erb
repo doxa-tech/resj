@@ -13,7 +13,7 @@
 	<% card_left = admin_links.reject{ |l| l.in? a } %>
 	<ul>
 		<% card_group.each do |group| %>
-			<% if admin_links.select.any? %>
+			<% if admin_links.select{ |l| l.in? group.last}.any? %>
 				<li class="parent">
 					<a class="group_link" href="#"><%= group.first %><span class="fi-arrow-down"></span></a>
 					<ul>
