@@ -29,7 +29,7 @@ class UsersController < BaseController
 
 	def update
 		@user = current_user
-		if @user.update_attributes(user_params)
+		if @user.update_with_password(user_params)
 			sign_in(@user)
 			redirect_to user_edit_path, success: t('user.edit.success')
 		else

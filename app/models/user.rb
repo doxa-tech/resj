@@ -27,7 +27,6 @@ class User < ActiveRecord::Base
     user.validates :lastname, presence: true, length: { maximum: 15 }
     user.validates :email, :format => { :with => /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/ }, uniqueness: true
     user.validates :gravatar_email, :format => { :with => /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/ }, on: :update?
-    user.validate :match_current_password
 
     user.after_validation :format
     user.before_save :create_remember_token
@@ -89,14 +88,17 @@ class User < ActiveRecord::Base
     Card.joins(:card_users).where(card_users: {user_validated: true, card_validated: true, user_id: id} ) + Card.where(user_id: id)
   end
 
-  private
-
-  # Control by an update if the current_password is right
-  def match_current_password
-    if current_password && !self.authenticate(current_password)
-  		errors.add(:current_password, "does not match password")
+  def update_with_password(params)
+    authenticated = authenticate(params[:current_password])
+    if authenticated && update_attributes(params)
+      true
+    else
+      errors.add(:current_password, "does not match") unless authenticated
+      false
     end
   end
+
+  private
 
   # Remove spaces and capitales
   def format

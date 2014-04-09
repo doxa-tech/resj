@@ -373,7 +373,7 @@ fr:
     index: "Orators"
     create:
       title: "Create an orator's account"
-      success: "Orator's account created"
+      success: "Compte d'orateur créé"
     edit:
       success: "Orator's account updated"
   subject:

@@ -30,7 +30,7 @@
 		</div>
 		<div class="website">
 			<i class="fi-web"></i>
-			<p><%= @card.website or ' - ' %></p>
+			<p><%= link_to(@card.website, "http://#{@card.website}", target: "_blank") or ' - ' %></p>
 		</div>
 	</div>
 	<div class="right">
@@ -41,14 +41,16 @@
 <div id="clear"></div>
 
 <div class="team">
-	<div class="resp">
-		<h3>Team</h3>
-		<% @card.confirmed_users.each do |user| %>
-			<%=	user.firstname %>
-			<%= content_tag :span, user.lastname, class: 'lastname' %>
-			<%= mask_email user.email %>
-		<% end %>
-	</div>
+	<h3>Team</h3>
+	<% @card.confirmed_users.each do |user| %>
+		<div class="resp">
+			<p>
+				<%=	user.firstname %>
+				<%= content_tag :span, user.lastname, class: 'lastname' %>
+				<%= mask_email user.email %>
+			</p>
+		</div>
+	<% end %>
 	<% @card.responsables.each do |responsable| %>
 		<div class="resp">
 			<p>
