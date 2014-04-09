@@ -1,0 +1,60 @@
+<%= content_tag :div, (render 'error_messages', object: f.object), class: 'error' %>
+<% num = 0 %>
+<div class="section">
+	<h3>Information générales</h3>
+	<% if !@user.new_record? %>
+		<div class="block">
+			<div class="label">
+				<p>
+					<span class="num"><%= num+=1 %></span> Mot de passe actuel<span class="b"></span>
+				</p>
+			</div>
+			<%= f.password_field :current_password %>
+		</div>
+	<% end %>
+
+	<div class="block">
+		<div class="label">
+			<p>
+				<span class="num"><%= num+=1 %></span> Addresse<span class="b">Email</span>, nécessaire pour vous connecter par la suite
+			</p>
+		</div>
+		<%= f.email_field :email, placeholder: 'my@email.ch' %>
+	</div>
+
+	<div class="block">
+		<div class="label">
+			<p>
+				<span class="num"><%= num+=1 %></span>Votre<span class="b">Prénom</span>
+			</p>
+		</div>
+		<%= f.text_field :firstname, placeholder: 'Prénom' %>
+	</div>
+
+	<div class="block">
+		<div class="label">
+			<p>
+				<span class="num"><%= num+=1 %></span>Votre<span class="b">nom</span>
+			</p>
+		</div>
+		<%= f.text_field :lastname, placeholder: 'Nom' %>
+	</div>
+
+	<div class="block">
+		<div class="label">
+			<p>
+				<span class="num"><%= num+=1 %></span>Entrez un<span class="b">mot de passe</span>, utile pour modifier vos informations par la suite
+			</p>
+		</div>
+		<%= f.password_field :password, placeholder: 'mot de passe' %>
+	</div>
+
+	<div class="block">
+		<div class="label">
+			<p>
+				<span class="num"><%= num+=1 %></span><span class="b">Confirmation</span>du mot de passe
+			</p>
+		</div>
+		<%= f.password_field :password_confirmation, placeholder: 'confirmation du mot de passe' %>
+	</div>
+</div>

@@ -19,9 +19,11 @@ Resj::Application.routes.draw do
     get 'user/confirmation', to: "users#confirmation"
     get 'user/my_cards', to: "users#my_cards"
 
+    patch 'orator/update', to: "orators#update"
+
     # resources
     scope 'resources' do
-      resources :orators, except: [:destroy]
+      resources :orators, except: [:destroy, :update, :edit]
       resources :articles, only: [:index, :show]
       resources :documents, controller: 'subjects', only: [:index, :show] do
       end

@@ -28,23 +28,22 @@ class OratorsController < BaseController
 		if @user.save
 			#sign_in(@user)
 			OratorMailer.orator_created(@user).deliver
-			Parent.create(user: @user, parent: User.find_by_name('g_orator'))
+			Parent.create(user: @user, parent: User.find_by_firstname('g_orator'))
 			redirect_to root_path, success: t('orator.create.success')
 		else
 			render 'new'
 		end
 	end
-	
+
 	def update
-		@user = User.find(params[:id])
-		if @user.update_attributes(orator_params)
-			sign_in @user
+		@user = current_user
+		if @user.update_with_password(orator_params)
+			sign_in(@user)
 			redirect_to user_edit_path, success: t('orator.edit.success')
 		else
-			render 'edit'
+			render 'users/edit'
 		end
 	end
-
 	private
 
 	def orator_params
