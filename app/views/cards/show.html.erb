@@ -30,7 +30,7 @@
 		</div>
 		<div class="website">
 			<i class="fi-web"></i>
-			<p><%= link_to(@card.website, "http://#{@card.website}", target: "_blank") or ' - ' %></p>
+			<p><%= link_to(@card.website, @card.website, target: "_blank") or ' - ' %></p>
 		</div>
 	</div>
 	<div class="right">
