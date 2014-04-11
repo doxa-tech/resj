@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140408184453) do
+ActiveRecord::Schema.define(version: 20140411155754) do
 
   create_table "access_tokens", force: true do |t|
     t.string   "token"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20140408184453) do
   end
 
   add_index "access_tokens", ["ownership_id"], name: "index_access_tokens_on_ownership_id"
+  add_index "access_tokens", ["token"], name: "index_access_tokens_on_token"
 
   create_table "actions", force: true do |t|
     t.string   "name"
@@ -202,6 +203,8 @@ ActiveRecord::Schema.define(version: 20140408184453) do
   end
 
   add_index "locations", ["canton_id"], name: "index_locations_on_canton_id"
+  add_index "locations", ["official_name"], name: "index_locations_on_official_name"
+  add_index "locations", ["post_name"], name: "index_locations_on_post_name"
 
   create_table "orator_disponibilities", force: true do |t|
     t.integer  "orator_id"
@@ -340,6 +343,8 @@ ActiveRecord::Schema.define(version: 20140408184453) do
     t.datetime "updated_at"
   end
 
+  add_index "tags", ["name"], name: "index_tags_on_name"
+
   create_table "themes", force: true do |t|
     t.string   "name"
     t.text     "description"
@@ -369,6 +374,7 @@ ActiveRecord::Schema.define(version: 20140408184453) do
     t.boolean  "confirmed",       default: false
   end
 
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
   add_index "users", ["user_type_id"], name: "index_users_on_user_type_id"
 
   create_table "verificator_comments", force: true do |t|
