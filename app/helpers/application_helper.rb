@@ -42,7 +42,7 @@ module ApplicationHelper
 	end
 
 	def mask_email(email)
-		email.gsub(/.{0,4}@/, '****@')
+		email.gsub(/(?<=.{2}).(.*@)/, '*****@')
 	end
 
 end
