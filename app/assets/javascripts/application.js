@@ -16,5 +16,5 @@
 //= require jquery_ujs
 //= require ckeditor-jquery
 //= require selectize
-//= require_tree ./sitewide
 //= require turbolinks
+//= require_tree ./sitewide

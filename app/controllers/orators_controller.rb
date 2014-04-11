@@ -1,5 +1,6 @@
 class OratorsController < BaseController
 	before_action :authorize_token, only: [:new, :create]
+	before_action :authorize_resource, only: [:index, :show]
 	after_action only: [:create, :update] { |c| c. track_activity @user }
 
 	def index
