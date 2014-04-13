@@ -1,5 +1,6 @@
 class Card < ActiveRecord::Base
   include Wizard
+  attr_writer :tag_names
 
   scope :regional, -> { joins(:card_type).where(card_types: {name: "Réseau régional"}) }
 
@@ -54,6 +55,8 @@ class Card < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
   mount_uploader :banner, BannerUploader
 
+  after_save :assign_tags
+
   def to_param
     "#{id}-#{name}".parameterize
   end
@@ -80,19 +83,6 @@ class Card < ActiveRecord::Base
 
   def tag_names
     @tag_names || tags.map(&:name).join(' ')
-  end
-
-  def tag_names=(tags)
-    current_tags = []
-    tags.split(' ').each do |tag|
-      if new_tag = Tag.find_by_name(tag)
-        new_tag.update_attribute(:popularity, new_tag.popularity + 1)
-        current_tags << new_tag
-      else
-        current_tags << Tag.create(name: tag)
-      end
-    end
-    self.tags = current_tags
   end
 
   # define the wizard's steps
@@ -160,5 +150,18 @@ class Card < ActiveRecord::Base
     if new_record? && !responsables.any?
       errors.add(:responsables, "ne contient aucun responsable (min. 1)")
     end
+  end
+
+  def assign_tags
+    current_tags = []
+    tag_names.split(' ').each do |tag|
+      if new_tag = Tag.find_by_name(tag)
+        new_tag.update_attribute(:popularity, new_tag.popularity + 1)
+        current_tags << new_tag
+      else
+        current_tags << Tag.create(name: tag)
+      end
+    end
+    self.tags = current_tags
   end
 end
