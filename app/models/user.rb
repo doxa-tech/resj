@@ -63,7 +63,7 @@ class User < ActiveRecord::Base
     end
   end
 
-    def gravatar?
+  def gravatar?
     if seflf.gravatar_email && Rails.env.production?
       gravatar_check = "http://gravatar.com/avatar/#{Digest::MD5.hexdigest(selft.gravatar_email.downcase)}.png?d=404"
       uri = URI.parse(gravatar_check)
