@@ -77,7 +77,7 @@ gem "selectize-rails", '~> 0.9.0'
 # image uploader
 gem 'carrierwave', '~> 0.10.0'
 gem 'carrierwave-processing', '~> 1.0.0'
-gem 'fog', '~> 1.21.0'
+gem "fog", "~> 1.3.1"
 
 # image manipulating
 gem "mini_magick", '~> 3.7.0'
