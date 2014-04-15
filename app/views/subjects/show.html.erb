@@ -27,7 +27,7 @@
 			<p><%= number_to_human_size document.file.size %></p>
 		</div>
 		<div class="get">
-			<%= link_to 'Télécharger', download_document_path(document) %>
+			<%= link_to 'Télécharger', download_document_path(document), target: "_blank" %>
 		</div>
 	</div>
 <% end %>
