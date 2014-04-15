@@ -39,7 +39,7 @@ Resj::Application.routes.draw do
         post 'resend_mail'
       end
     end
-    resources :sessions, only: [:create, :destroy]
+    resources :sessions, only: [:create]
     resources :password_resets, except: [:index, :show, :destroy]
     
     resources :cards, except: [:destroy] do
