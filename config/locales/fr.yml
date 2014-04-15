@@ -407,7 +407,7 @@ fr:
       inclusion: "n'est pas inclus(e) dans la liste"
       exclusion: "n'est pas disponible"
       invalid: "n'est pas valide"
-      confirmation: "ne concorde pas avec la confirmation"
+      confirmation: "ne concorde pas"
       accepted: "doit être accepté(e)"
       empty: "doit être rempli(e)"
       blank: "doit être rempli(e)"
@@ -458,3 +458,9 @@ fr:
       card:
         card_type_id: "Catégorie"
         street: "Rue"
+  helpers:
+    label:
+      session:
+        name: "Nom d'utilisateur"
+        remember_me: "Se souvenir de moi"
+        password: "Mot de passe"
