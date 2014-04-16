@@ -2,7 +2,7 @@ class SubjectsController < BaseController
 	before_action :authorize_resource
 
 	def index
-		@subjects = Subject.all
+		@subjects = Subject.all.reverse
 	end
 
 	def show
