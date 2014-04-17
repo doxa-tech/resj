@@ -28,6 +28,10 @@ class DocumentsUploader < CarrierWave::Uploader::Base
     end
   end
 
+  def cache_dir
+    "/tmp/uploads/documents/#{model.id}"
+  end
+
   def extension_white_list
     %w(doc docx ppt pptx xls xlsx pdf odt odp ods)
   end
