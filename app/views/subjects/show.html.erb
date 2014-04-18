@@ -24,7 +24,7 @@
 		<div class="right">
 			<p><%= File.basename(document.file.path) %></p>
 			<p><%= l document.created_at, format: :long %></p>
-			<p><%= number_to_human_size document.file.size %></p>
+			<p><%= number_to_human_size document.size %></p>
 		</div>
 		<div class="get">
 			<%= link_to 'Télécharger', download_document_path(document), target: "_blank" %>
