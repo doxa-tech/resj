@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140411155754) do
+ActiveRecord::Schema.define(version: 20140418083104) do
 
   create_table "access_tokens", force: true do |t|
     t.string   "token"
@@ -183,6 +183,8 @@ ActiveRecord::Schema.define(version: 20140411155754) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "subject_id"
+    t.integer  "size"
+    t.string   "extension"
   end
 
   create_table "elements", force: true do |t|

@@ -398,9 +398,17 @@ fr:
       user:
         create: "S'inscrire"
         update: "Mettre à jour"
+      session:
+        submit: "Connexion"
       create: "Créer"
       update: "Enregistrer"
       submit: "Enregistrer"
+    label:
+      session:
+        submit: "Caca"
+        name: "Nom d'utilisateur"
+        remember_me: "Se souvenir de moi"
+        password: "Mot de passe"
   errors: &errors
     format: 'Le champs "%{attribute}" %{message}'
     messages: &errors_messages
@@ -458,9 +466,3 @@ fr:
       card:
         card_type_id: "Catégorie"
         street: "Rue"
-  helpers:
-    label:
-      session:
-        name: "Nom d'utilisateur"
-        remember_me: "Se souvenir de moi"
-        password: "Mot de passe"
