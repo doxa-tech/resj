@@ -11,11 +11,11 @@ class Admin::SubjectsController < Admin::BaseController
 	end
 
 	def new
-		@subject = Subject.new
+		@subject = current_user.subjects.new
 	end
 
 	def create 
-		@subject = Subject.new(subject_params)
+		@subject = current_user.subjects.new(subject_params)
 		if @subject.save
 			redirect_to admin_subjects_path, success: t('subject.admin.create.success')
 		else
