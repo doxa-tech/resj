@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   has_many :cards
   has_many :articles
   has_many :connections
+  has_many :subjects
 
   accepts_nested_attributes_for :orator
 
