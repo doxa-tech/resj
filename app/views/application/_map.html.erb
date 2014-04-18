@@ -1,5 +1,9 @@
+<% content_for :javascript do %>
+	<%= javascript_include_tag "map/a_mapbox_v1.5.2.js", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "map/b_leaflet.markercluster.js", "data-turbolinks-track" => true %>
+<% end %>
+
 <div id='map'></div>
 
-<%= javascript_include_tag "map/a_mapbox_v1.5.2.js" %>
-<%= javascript_include_tag "map/b_leaflet.markercluster.js" %>
+
 <%= javascript_include_tag "map/c_map" %>
