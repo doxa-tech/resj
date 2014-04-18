@@ -4,7 +4,7 @@ module ResourcesHelper
 		if subject.documents.count > 1
 			return "folder"
 		else
-			return subject.documents.last.extension
+			return subject.documents.last.extension[0..2]
 		end   
 	end
 	
