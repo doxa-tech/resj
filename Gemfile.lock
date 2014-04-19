@@ -190,6 +190,8 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    unicorn-worker-killer (0.4.2)
+      unicorn (~> 4)
     will_paginate (3.0.5)
 
 PLATFORMS
@@ -224,4 +226,5 @@ DEPENDENCIES
   turbolinks (~> 2.2.1)
   uglifier (~> 2.0.0)
   unicorn (~> 4.8.2)
+  unicorn-worker-killer
   will_paginate (~> 3.0.5)
