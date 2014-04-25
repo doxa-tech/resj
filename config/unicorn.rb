@@ -5,7 +5,7 @@ stderr_path "#{root}/log/unicorn.log"
 stdout_path "#{root}/log/unicorn.log"
  
 listen "/tmp/unicorn.resj.sock"
-worker_processes 4
+worker_processes 2
 timeout 30
  
 before_exec do |server|
