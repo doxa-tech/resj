@@ -41,7 +41,7 @@
 		<div class="wrapper">
 			<h2>Dernier arcticle</h2>
 			<span>Visitez tous les articles sur <%= link_to '/articles', articles_path %></span>
-			<div class="clear"></div>
+			<div id="clear"></div>
 		</div>
 	</div>
 	<div class="block full">
@@ -60,17 +60,17 @@
 					</div>
 				</div>
 			<% end %>
-			<div class="clear"></div>
+			<div id="clear"></div>
 		</div>
 	</div>
-	<div class="clear"></div>
+	<div id="clear"></div>
 
 
 	<div class="title" id="docs">
 		<div class="wrapper">
 			<h2>Derniers documents</h2>
 			<span>Vous recherchez tous les documents? Rendez-vous sur <%= link_to '/documents', documents_path %></span>
-			<div class="clear"></div>
+			<div id="clear"></div>
 		</div>
 	</div>
 	<% @subjects.each do |subject| %>
@@ -87,36 +87,38 @@
 						<p><%= truncate subject.description, length: 170 %></p>
 					</div>
 				</div>
-				<div class="clear"></div>
+				<div id="clear"></div>
 			</div>
 		</div>		
 	<% end %>
-	<div class="clear"></div>
+	<div id="clear"></div>
 
-
-<div class="new">
-	<div class="title" id="orators">
-		<div class="wrapper">
-			<h2>Liste d'orateurs</h2>
-			<span>Liste complète sur <%= link_to '/orators', orators_path %></span>
-			<div class="clear"></div>
-		</div>
-	</div>
-	<div class="block full">
-		<div class="wrapper">
-			<!--<div class="type">Article <i class="fi-clipboard-notes"></i></div>-->
-			<div class="full-text">
-				<h3>Vous recherchez un orateur pour votre soirée?</h3>
-				<div class="content">
-					<%= image_tag image_url 'resources/orator.jpg' %>
-					<p>Notre base de donnée compte pas moins de 200 orateurs référencés pour vous faciliter la tâche. Cherchez par thème, région, nom et trouvez celui qui apportera le thème de votre prochaine soirée.</p>
-					<p>Rendez-vous <%= link_to 'ici', orators_path %>
-				</div>
+	<div class="orator">
+		<div class="title" id="orators">
+			<div class="wrapper">
+				<h2>Liste d'orateurs</h2>
+				<span>Liste complète sur <%= link_to '/orators', orators_path %></span>
+				<div id="clear"></div>
 			</div>
-			<div class="clear"></div>
 		</div>
+		<div class="block full">
+			<div class="wrapper">
+				<!--<div class="type">Article <i class="fi-clipboard-notes"></i></div>-->
+				<div class="full-text">
+					<h3>Vous recherchez un orateur pour votre soirée?</h3>
+					<div class="content">
+						<div class="img">
+							<%= link_to(image_tag(image_url "resources/orator.jpg"), orators_path) %>
+						</div>
+						<p>Notre base de donnée compte pas moins de 200 orateurs référencés pour vous faciliter la tâche. Cherchez par thème, région, nom et trouvez celui qui apportera le thème de votre prochaine soirée.</p>
+						<p>Rendez-vous <%= link_to 'ici', orators_path %></p>
+					</div>
+				</div>
+				<div id="clear"></div>
+			</div>
+		</div>
+		<div id="clear"></div>
 	</div>
-	<div class="clear"></div>
 
 
 </div>

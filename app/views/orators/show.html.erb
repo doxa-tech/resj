@@ -1,5 +1,51 @@
+<% content_for :javascript do %>
+	<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyBgFFWiaY1lm8ex24rqBlwLmYnVU_bwmuU&sensor=false", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "card_show_map.js", "data-turbolinks-track" => true %>
+<% end %>
 <% content_for :id, 'orator-show' %>
 
 <div class="top">
 	<h1>Orateur <%= @orator.firstname %></h1>
 </div>
+
+<div class="row">
+	<div class="left">
+
+		<div class="description"><%= simple_format @orator.description %></div>
+
+		<div class="location">
+			<i class="fi-marker"></i>
+			<div class="txt">
+				<p><%= @orator.street %></p>
+				<p><%= @orator.location.npa %> <%= @orator.location.official_name %></p>
+			</div>
+		</div>
+		<div class="contact">
+			<i class="fi-mail"></i>
+			<p><%= @orator.user.email if @orator.user.email.present? or ' - ' %>-</p>
+		</div>
+		<div class="website">
+			<i class="fi-web"></i>
+			<p><%= @orator.phone or ' - ' %></p>
+		</div>
+	</div>
+	<div class="right">
+		<div id="map-canvas"></div>
+	</div>
+</div>
+
+<div id="clear"></div>
+
+<div class="themes">
+	<h3>Themes</h3>
+	<div class="tags">
+		<% @orator.themes.each do |theme| %>
+	    <div class="tag"><%= theme.name %></div>
+		<% end %>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	window.onload=gmap.initialize(<%= @orator.location.latitude %>, <%= @orator.location.longitude %>);
+</script>
