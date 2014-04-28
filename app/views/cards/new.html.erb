@@ -14,15 +14,3 @@
 <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyBgFFWiaY1lm8ex24rqBlwLmYnVU_bwmuU&sensor=false", "data-turbolinks-track" => true %>
 <%= javascript_include_tag "card_new_map.js", "data-turbolinks-track" => true %>
 <% end %>
-
-<script>
-$(function() {
-  var idleTimer;
-  function resetTimer(){
-    clearTimeout(idleTimer);
-    idleTimer = setTimeout(function() { window.location.reload(); alert("La session de création d'un groupe a expiré") }, 1800000);
-  }
-  $(document).on('click', resetTimer );
-  resetTimer();
-});
-</script>

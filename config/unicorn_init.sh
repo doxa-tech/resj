@@ -42,7 +42,7 @@ force-stop)
   ;;
 
 restart|reload)
-  sig USR2 && echo reloaded OK && exit 0
+  sig HUP && echo reloaded OK && exit 0
   echo >&2 "Couldn't reload, starting '$CMD' instead"
   run "$CMD"
   ;;
