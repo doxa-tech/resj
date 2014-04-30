@@ -28,11 +28,28 @@
 			line-height: 20px;
 			.member {
 				display: inline-block;
-				img {
+				.img {
 					float: left;
 					vertical-align: middle;
 					padding: 10px;
-					border-radius: 35px;
+					border-radius: 74px;
+					width: 124px;
+					height: 124px;
+					overflow: hidden;
+					// ------
+					-webkit-transition-duration: 0.8s;
+			    -moz-transition-duration: 0.8s;
+			    -o-transition-duration: 0.8s;
+			    transition-duration: 0.8s;
+					-webkit-transition-property: -webkit-transform;
+					-moz-transition-property: -moz-transform;
+					-o-transition-property: -o-transform;
+					transition-property: transform;
+					&:hover {
+						-webkit-transform:rotate(360deg);
+				    -moz-transform:rotate(360deg); 
+				    -o-transform:rotate(360deg);
+					}
 				}
 				.infos {
 					text-align: left;
