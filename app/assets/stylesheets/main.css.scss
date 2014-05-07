@@ -11,7 +11,7 @@ html, body
 #wrapper {
 	min-height:100%;
 	position:relative;
-	padding-bottom:200px; // height of footer
+	padding-bottom:300px; // height of footer
 }
 
 a
@@ -127,4 +127,11 @@ h2
 #banner {
 	position: relative;
 	display: none;
+}
+
+#shapes {
+	position: absolute;
+	right: 0;
+	top: -20px;
+	z-index: -10;
 }
