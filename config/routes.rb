@@ -74,6 +74,7 @@ Resj::Application.routes.draw do
       resources :subjects, except: [:show]
       resources :themes, except: [:show]
       resources :articles, except: [:show]
+      resources :newsletters, only: [:new, :create]
 
       resources :cards do
         resources :verificator_comments, only: [:create, :update, :destroy]
