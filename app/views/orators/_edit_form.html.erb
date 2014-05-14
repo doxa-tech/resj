@@ -66,7 +66,15 @@
 				</p>
 			</div>
 			<%= orator_fields.text_area :description, placeholder: 'Informations complémentaires' %>
-		</div>		
+		</div>
+		<div class="block">
+			<div class="label">
+				<p>
+					<span class="num"><%= num+=1 %></span>Passer en mode <span class="b">vacacances</span>. Cocher pour disparaitre des listes momentanément.
+				</p>
+			</div>
+			<%= orator_fields.check_box :disabled %>
+		</div>			
 	</div>
 <% end %>
 
