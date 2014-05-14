@@ -276,6 +276,18 @@
 		}
 	}
 
+	// Footer
+	footer {
+		.img {
+			padding: 0;
+		}
+		.block {
+			padding: 5px 0 0 0;
+			width: 100% !important;
+			text-align: center;
+		}
+	}
+
 }
 
 /* For home mapbox */
