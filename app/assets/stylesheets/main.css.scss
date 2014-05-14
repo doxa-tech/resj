@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,600);
 @import url(http://fonts.googleapis.com/css?family=Jura:500,400,300);
 @import url(http://fonts.googleapis.com/css?family=Raleway:100,200,300,400);
 
@@ -11,7 +11,7 @@ html, body
 #wrapper {
 	min-height:100%;
 	position:relative;
-	padding-bottom:200px; // height of footer
+	padding-bottom:300px; // height of footer
 }
 
 a
@@ -127,4 +127,11 @@ h2
 #banner {
 	position: relative;
 	display: none;
+}
+
+#shapes {
+	position: absolute;
+	right: 0;
+	top: -20px;
+	z-index: -10;
 }
