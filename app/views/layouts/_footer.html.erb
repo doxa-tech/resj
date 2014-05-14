@@ -1,20 +1,24 @@
 <footer>
-	<div class="infos">
-		<p class="resj">
-			 RES-J<br>Réseau Evangélique Suisse (RES) - Jeunesse<br>
+	<div class="img"><%= image_tag image_url "layout/logo-footer.png" %></div>
+	<div class="block a">
+		<p>
+			RES-J <br>Réseau Evangélique Suisse (RES) - Jeunesse
 		</p>
 		<p>
 			<% if current_user.nil? %>
-				<%= link_to "Connexion", connexion_path %> |
+				<%= link_to "Connexion", connexion_path %> &nbsp; | &nbsp;
 			<% else %>
-				<%= link_to 'Profile', profile_path %> |
-				<%= link_to "Sign out", signout_path, method: :delete %> |
+				<%= link_to 'Profile', profile_path %> &nbsp; | &nbsp;
+				<%= link_to "Sign out", signout_path, method: :delete %> &nbsp; | &nbsp;
 			<% end %>
 			<%= link_to 'Contact', contact_path %> 
 		</p>
 	</div>
-	<div class="donate">
+	<div class="block b">
 		Le réseau a aussi besoin de vous !<br>
 		<%=link_to "Soutenir", help_path %><br>
+	</div>
+	<div class="end">
+		<a href="#">Mentions légales</a> <a href="#">Developper</a> <a href="http://www.evangelique.ch/">Evangélique</a>
 	</div>
 </footer>
