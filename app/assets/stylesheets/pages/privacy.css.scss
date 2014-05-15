@@ -1,0 +1,18 @@
+#container.privacy {
+	line-height: 25px;
+	color: #555;
+	p {
+		padding: 0 0 15px 0;
+	}
+	h4 {
+		color: #222;
+	}
+	ul {
+
+		li {
+			background: image-url('layout/bullet.svg') no-repeat 3px 10px;
+			background-size: 7px;
+			padding: 0 0 0 25px;
+		}
+	}
+}
