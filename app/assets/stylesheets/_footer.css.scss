@@ -20,7 +20,6 @@ footer {
 		display: inline-block;
 		vertical-align: top;
 		text-align: left;
-		padding: 44px 0 0 0;
 		a {
 			color: #F6DC1F;
 			text-transform: uppercase;
@@ -30,9 +29,11 @@ footer {
 		}
 		&.a {
 			width: 380px;
+			padding: 44px 0 0 0;
 		}
 		&.b {
 			width: 200px;
+			padding: 61px 0 0 0;
 		}
 	}
 	.img {
