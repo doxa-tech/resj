@@ -282,8 +282,8 @@
 		.img {
 			padding: 0;
 		}
-		.block {
-			padding: 5px 0 0 0;
+		.a, .b {
+			padding: 5px 0 0 0 !important;
 			width: 100% !important;
 			text-align: center;
 		}

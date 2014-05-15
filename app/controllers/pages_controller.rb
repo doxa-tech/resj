@@ -27,5 +27,9 @@ class PagesController < BaseController
 	def privacy
 		@page = Page.find_by_name('privacy')
 	end
+
+	def developer
+		@page = Page.find_by_name('developer')
+	end
 	
 end
