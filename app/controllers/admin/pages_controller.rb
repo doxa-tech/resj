@@ -15,7 +15,7 @@ class Admin::PagesController < Admin::BaseController
 
 	def update
 		if @page.update_attributes(page_params)
-			redirect_to admin_pages, success: 'page.admin.edit.success'
+			redirect_to admin_pages_path, success: t('page.admin.edit.success')
 		else
 			render 'edit'
 		end
