@@ -5,9 +5,7 @@
 	<ul>
 		<li><%= text_field_tag :subject, nil, placeholder: "Sujet" %></li>
 
-		<li><%= text_area_tag :content, nil, class: "inline" %></li>
-
-		
+		<li><%= text_area_tag :content, nil, class: "ckeditor" %></li>
 
 		<li><%= submit_tag "Envoyer", data: {confirm: "Confirmez-vous l'envoi de cette newsletter ?"} %></li>
 	</ul>

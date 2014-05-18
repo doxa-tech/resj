@@ -6,7 +6,7 @@
 	<%= f.text_field :title %>
 
 	<%= f.label :content %>
-	<%= f.text_area :content %>
+	<%= f.text_area :content, class: "ckeditor" %>
 
 	<%= f.label :theme_ids %>
 	<%= f.collection_select :theme_ids, Theme.all, :id, :name, {include_blank: "Sélectionnez des thèmes"}, {class: "selectize-themes", multiple: true} %>
