@@ -1,38 +1,3 @@
 <% content_for :id, 'developer' %>
 
-<h4>Développeurs</h4>
-<p>
-	Nous avons à coeur de développer un réseau de qualité.
-</p>
-<p>
-	Notre architecture utilise le framework <a href="http://rubyonrails.org/">ruby on rails</a>, basé entièrement sur une architecture MVC et RESTfull.<br>
-	Les sources du projet sont disponibles sur github :
-</p>
-<div class="deco">
-	<i class="fi-social-github"></i><br>
-	<a href="https://github.com/khcr/resj" target="_blank">github.com/khcr/resj</a>
-</div>
-
-<p>
-	Nos technologies préférées :
-	<ul>
-		<li>Google cloud storage</li>
-		<li>Image magick</li>
-		<li>Capistrano</li>
-		<li>Nginx</li>
-		<li>Unicorn</li>
-		<li>PostgreSQL</li>
-		<li>Solr - Tomcat</li>
-		<li>Sass</li>
-		<li>Javascript - JQuery</li>
-		<li>RSpec</li>
-	</ul>
-</p>
-
-<p>
-	Nous sommes hébergé sur DigitalOcean, les contenus utilisent le CDN google cloud storage
-</p>
-
-<div class="img">
-	<p><%= image_tag image_url 'developer/do.jpg' %><%= image_tag image_url 'developer/gc.jpg' %></p>
-</div>
+<%= raw @page.content %>
