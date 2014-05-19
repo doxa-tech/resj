@@ -31,6 +31,9 @@
 				<%= link_to_active t('layout.header.admin.' + link.split('/').last), "/" + link %>
 			</li>
 		<% end %>
+		<li>
+			<%= link_to t('layout.header.admin.newsletter'), new_admin_newsletter_path if current_permission.allow_create?('admin/newsletters') %>
+		</li>
 	</ul>
 	<div class="vspace"></div>
 </div>
