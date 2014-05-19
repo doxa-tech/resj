@@ -201,6 +201,7 @@ fr:
         resources: "Resources"
         subjects: "Sujets (docs)"
         articles: "Articles"
+        newsletter: "Newsletter"
   card:
     create:
       title: "Create a new card"
