@@ -3,4 +3,9 @@ CKEDITOR.editorConfig = function(config)
 	config.height = '400px';
 	// It's magic but allow table style class
 	config.allowedContent = true;
+	// All that stuff to keep original source code
+	config.htmlEncodeOutput = false;
+	config.entities = false;
+	config.protectedSource.push(/<i[^>]*><\/i>/g); // prevent i tag strip
+	config.protectedSource.push(/\r|\n|\t/g); // prevent return and tab strip
 };
