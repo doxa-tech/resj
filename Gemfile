@@ -90,3 +90,6 @@ gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 
 # Test <3
 gem 'rspec-rails'
+
+# Jquery select plugin
+gem 'multi-select-rails'
