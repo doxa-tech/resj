@@ -1,6 +1,10 @@
 class Admin::NewslettersController < Admin::BaseController
 
 	def new
+		@orators = User.joins(:orator)
+    @owners = User.joins(:cards)
+		@resps = User.joins(:card_users).where(card_users: {user_validated: true, card_validated: true}) - @owners
+		@users = User.users - @orators - @owners - @resps
 	end
 
 	def create

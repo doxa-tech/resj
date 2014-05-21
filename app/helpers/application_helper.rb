@@ -45,4 +45,8 @@ module ApplicationHelper
 		email.gsub(/(?<=.{2}).(.*@)/, '*****@')
 	end
 
+	def map_users(users)
+		users.map{ |user| [user.full_name, user.email]}
+	end
+
 end
