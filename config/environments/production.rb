@@ -59,7 +59,7 @@ Resj::Application.configure do
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-  config.assets.precompile += %w( ajax_loader.js map/a_mapbox_v1.5.2.js map/b_leaflet.markercluster.js map/c_map.js table.js card_show_map.js card_new_map.js cards_index.js cards_results.js admin_header.js orators_index_map.js)
+  config.assets.precompile += %w( multiselect.js jquery.quicksearch.js ajax_loader.js map/a_mapbox_v1.5.2.js map/b_leaflet.markercluster.js map/c_map.js table.js card_show_map.js card_new_map.js cards_index.js cards_results.js admin_header.js orators_index_map.js)
 
   # email stuff by nkcr
   config.action_mailer.default_url_options = { :host => 'reseaujeunesse.ch' }
