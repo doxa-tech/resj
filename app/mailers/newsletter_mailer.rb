@@ -1,4 +1,4 @@
-class OratorMailer < BaseMailer
+class NewsletterMailer < BaseMailer
 
   # sends welcome
   def news(content,subject,mails)
