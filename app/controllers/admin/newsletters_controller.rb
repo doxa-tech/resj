@@ -8,7 +8,7 @@ class Admin::NewslettersController < Admin::BaseController
 	end
 
 	def create
-		NewsMailer.news(params[:content], params[:subject], params[:mails]).deliver
+		NewsletterMailer.news(params[:content], params[:subject], params[:emails]).deliver
 		Activity.create(action: "create", controller: "admin/newsletters")
 		redirect_to new_admin_newsletter_path, success: t('newsletter.admin.new.success')
 	end
