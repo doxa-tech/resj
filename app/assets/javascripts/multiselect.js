@@ -1,20 +1,3 @@
-<h1>Newsletter</h1>
-
-<%= form_tag admin_newsletters_path do %>
-
-	<ul>
-		<li><%= text_field_tag :subject, nil, placeholder: "Sujet" %></li>
-
-		<li><%= text_area_tag :content, nil, class: "ckeditor" %></li>
-
-		<li><%= select_tag :emails, grouped_options_for_select([["Orateurs", map_users(@orators)], ["Propriétaires", map_users(@owners)], ["Responables", map_users(@resps)], ["Utilisateurs", map_users(@users)]]), multiple: true, id: "email-select" %></li>
-		<li><%= submit_tag "Envoyer", data: {confirm: "Confirmez-vous l'envoi de cette newsletter ?"} %></li>
-	</ul>
-
-<% end %>
-
-<%= javascript_include_tag "jquery.quicksearch.js" %>
-<script type="text/javascript">
 $(function() {
 	$('#email-select').multiSelect({
 		selectableOptgroup: true,
@@ -53,4 +36,3 @@ $(function() {
 	  }
 	});
 });
-</script>
