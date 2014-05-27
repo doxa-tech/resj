@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140418124107) do
+ActiveRecord::Schema.define(version: 20140527174847) do
 
   create_table "access_tokens", force: true do |t|
     t.string   "token"
@@ -375,6 +375,7 @@ ActiveRecord::Schema.define(version: 20140418124107) do
     t.string   "firstname"
     t.string   "lastname"
     t.boolean  "confirmed",       default: false
+    t.string   "avatar"
   end
 
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
