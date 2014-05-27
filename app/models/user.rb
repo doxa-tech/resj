@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
   has_many :connections
   has_many :subjects
 
+  mount_uploader :avatar, AvatarUploader
+
   accepts_nested_attributes_for :orator
 
   with_options unless: :is_group? do |user|

@@ -21,6 +21,8 @@
 	<%= f.label :user_type_id %>
 	<%= f.collection_select(:user_type_id, UserType.all, :id, :name) %>
 
+	<%= f.label :avatar %>
+	<%= f.file_field :avatar %>
 
 	<%= f.label :password %>
 	<%= f.password_field :password %>
