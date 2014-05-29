@@ -1,25 +1,28 @@
 // ATTENTION easypiechart.js needs to be included !!
 $(function() {
-	var show = false;
-	var stop = false;
+	var check = true;
+	if(isScrolledIntoView('.easy-chart')) {
+		initChart();
+	}
 	$(window).scroll(function(){
-		if(show) {
-			show = false;
-			stop = true;
-	    $('.easy-chart').easyPieChart({
-	        animate: 1000,
-	        onStep: function(from, to, percent) {
-						$(this.el).find('span').text(Math.round(percent));
-					},
-					barColor:function(percent) {
-						return "rgba(255,97,41,"+percent/100+")";
-					}
-	    });
-		} else if( !stop && isScrolledIntoView('.easy-chart')) {
-			show = true;
+		if(check && isScrolledIntoView('.easy-chart')) {
+			check = false;
+	    initChart();
 		}
 	});
 });
+
+function initChart() {
+  $('.easy-chart').easyPieChart({
+      animate: 1000,
+      onStep: function(from, to, percent) {
+				$(this.el).find('span').text(Math.round(percent));
+			},
+			barColor:function(percent) {
+				return "rgba(255,97,41,"+percent/100+")";
+			}
+  });
+}
 
 function isScrolledIntoView(elem)
 {
