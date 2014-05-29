@@ -1,6 +1,7 @@
 <% content_for :id, 'home' %>
 <% content_for :javascript do %>
 	<%= javascript_include_tag "jquery.easypiechart.min.js", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "home.js", "data-turbolinks-track" => true %>
 <% end %>
 <%= raw @page.content.html_safe %>
 <div class="new">
@@ -32,9 +33,9 @@
 	<% end %>
 	<div class="block right">
 		<div class="wrapper">
-			<div class="type">Activité du site <i class="fi-battery-full"></i></div>
+			<div class="type"><i class="fi-battery-full"></i></div>
 			<div class="text full">
-				<h3>La barre des 200 oeuvres jeunesses dépassée</h3>
+				<h3>Activité du site</h3>
 				<div class="content">
 					<div class="charts">
 						<div class="chart">
