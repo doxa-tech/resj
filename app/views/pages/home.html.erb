@@ -1,4 +1,7 @@
 <% content_for :id, 'home' %>
+<% content_for :javascript do %>
+	<%= javascript_include_tag "jquery.easypiechart.min.js", "data-turbolinks-track" => true %>
+<% end %>
 <%= raw @page.content.html_safe %>
 <div class="new">
 	<div class="title">
@@ -30,12 +33,27 @@
 	<div class="block right">
 		<div class="wrapper">
 			<div class="type">Activité du site <i class="fi-battery-full"></i></div>
-			<div class="graphic">
-				<img src="https://cdn4.iconfinder.com/data/icons/award-icons/500/award_fist_star_winning_excellent_ribbon_medallion_power_hand__achievement_thumbs_up_security_insignia_collection_badge_okay_sign_first_place_win-512.png">
-			</div>
-			<div class="text">
+			<div class="text full">
 				<h3>La barre des 200 oeuvres jeunesses dépassée</h3>
 				<div class="content">
+					<div class="charts">
+						<div class="chart">
+							<div class="easy-chart" data-percent="93" data-color="#FFB606"><span></span></div>
+							<div class="label">Oeuvres enregistrées</div>
+						</div>
+						<div class="chart">
+							<div class="easy-chart" data-percent="133" data-color="#FFAC2A"><span></span></div>
+							<div class="label">Orateurs inscrits</div>
+						</div>
+						<div class="chart">
+							<div class="easy-chart" data-percent="53" data-color="#FF830F"><span></span></div>
+							<div class="label">Docuemnts disponibles</div>
+						</div>
+						<div class="chart">
+							<div class="easy-chart" data-percent="83" data-color="#FFC63A"><span></span></div>
+							<div class="label">Utilisateurs enregistrés</div>
+						</div>
+					</div>
 					<p>A ce jour nous sommes heureux d'annoncer un nouveau cap franchis, et pas des moindre: 200 oeuvres jeunesses inscrites en moins de 2 mois! Commes d'habitude, l'équipe vous réserve encore pleins de nouveautés pour la fin de l'année, n'oubliez pas de rejoindre notre page facebook et d'encourager d'autres oeuvres que nous connaissez à s'inscrire.</p>
 				</div>
 			</div>
