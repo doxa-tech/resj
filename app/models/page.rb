@@ -1,5 +1,5 @@
 class Page < ActiveRecord::Base
 
-	validates :content
+	validates :content, presence: true
 	
 end
