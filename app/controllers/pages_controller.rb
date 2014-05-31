@@ -4,6 +4,10 @@ class PagesController < BaseController
 		@page = Page.find_by_name('home')
 		@cards = Card.all
 		@article = Article.last
+		@card_count = Card.count
+		@orator_count = Orator.count
+		@doc_count = Document.count
+		@user_count = User.users.count
 	end
 
 	def resj

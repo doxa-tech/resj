@@ -16,11 +16,12 @@ function initChart() {
   $('.easy-chart').easyPieChart({
       animate: 1000,
       onStep: function(from, to, percent) {
-				$(this.el).find('span').text(Math.round(percent));
+				$(this.el).find('span').text(Math.round(percent) / to * $(this.el).data('value'));
 			},
 			barColor:function(percent) {
 				return "rgba(255,97,41,"+percent/100+")";
-			}
+			},
+			scaleColor: "#ccc",
   });
 }
 
