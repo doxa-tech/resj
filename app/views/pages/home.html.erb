@@ -3,7 +3,13 @@
 	<%= javascript_include_tag "jquery.easypiechart.min.js", "data-turbolinks-track" => true %>
 	<%= javascript_include_tag "home.js", "data-turbolinks-track" => true %>
 <% end %>
-<%= raw @page.content.html_safe %>
+<%
+	card_aim = 100
+	orator_aim = 100
+	doc_aim = 30
+	user_aim = 100
+%>
+<%#= raw @page.content.html_safe %>
 <div class="new">
 	<div class="title">
 		<div class="wrapper">
@@ -39,23 +45,24 @@
 				<div class="content">
 					<div class="charts">
 						<div class="chart">
-							<div class="easy-chart" data-percent="93" data-color="#FFB606"><span></span></div>
+							<div class="easy-chart" data-value="<%= @card_count %>" data-percent="<%= @card_count / card_aim * 100 %>" data-color="#FFB606"><span></span></div>
 							<div class="label">Oeuvres enregistrées</div>
 						</div>
 						<div class="chart">
-							<div class="easy-chart" data-percent="133" data-color="#FFAC2A"><span></span></div>
+							<div class="easy-chart" data-value="<%= @orator_count %>" data-percent="<%= @orator_count %>" data-color="#FFAC2A"><span></span></div>
 							<div class="label">Orateurs inscrits</div>
 						</div>
 						<div class="chart">
-							<div class="easy-chart" data-percent="53" data-color="#FF830F"><span></span></div>
-							<div class="label">Docuemnts disponibles</div>
+							<div class="easy-chart" data-value="<%= @doc_count %>" data-percent="<%= @doc_count %>" data-color="#FF830F"><span></span></div>
+							<div class="label">Documents disponibles</div>
 						</div>
 						<div class="chart">
-							<div class="easy-chart" data-percent="83" data-color="#FFC63A"><span></span></div>
+							<div class="easy-chart" data-value="<%= @user_count %>" data-percent="<%= @user_count %>" data-color="#FFC63A"><span></span></div>
 							<div class="label">Utilisateurs enregistrés</div>
 						</div>
 					</div>
-					<p>A ce jour nous sommes heureux d'annoncer un nouveau cap franchis, et pas des moindre: 200 oeuvres jeunesses inscrites en moins de 2 mois! Commes d'habitude, l'équipe vous réserve encore pleins de nouveautés pour la fin de l'année, n'oubliez pas de rejoindre notre page facebook et d'encourager d'autres oeuvres que nous connaissez à s'inscrire.</p>
+					<p>Objectif pour le prochain palier :</p>
+					<p><b><%= card_aim %> oeuvres</b>, <b><%= orator_aim %> orateurs</b>, <b><%= doc_aim %> documents</b> et <b><%= user_aim %> utilisateurs</b> !</p>
 				</div>
 			</div>
 			<div class="clear"></div>
