@@ -24,6 +24,41 @@
 	display: block;
 	width: 100%; min-height: 473px;
 	background: image-url('layout/banner.jpg') no-repeat fixed top center;
+	.content_banner {
+		width: 1200px;
+		margin: auto;
+		.marketing {
+			float: left;
+			width: 500px;
+			padding: 100px 10px 0 0;
+
+			h2 {
+				text-align: left;
+				color: #fff;
+				padding: 13px 20px 25px 20px;
+				background: image-url('layout/feat-slider-bg.png');
+				font-size: 30px;
+			}
+			.btn {
+				padding: 20px 0 0 0;
+				a {
+					background: #d84418;
+					width: 160px;
+					padding: 8px;
+					color: #fff;
+					cursor: pointer;
+					font-size: 18px;
+				}
+			}
+		}
+		.video {
+			text-align: center;
+			float: right;
+			width: 700px;
+			height: 400px;
+			padding: 58px 0 0 10px;
+		}
+	}
 }
 
 #container.home {

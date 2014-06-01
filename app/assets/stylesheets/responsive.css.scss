@@ -6,6 +6,13 @@
 	#banner {
 		min-height: 400px !important;
 	}
+	// Home
+	#banner.home {
+		.video {
+			height: 350px !important;
+			padding: 25px 0 20px 10px;
+		}
+	}
 } 
 /* Large devices */
 @media (max-width: 1200px) 
@@ -27,6 +34,19 @@
 						text-align: center !important;
 					}
 				}
+			}
+		}
+	}
+
+	// Home
+	#banner.home {
+		.content_banner {
+			width: 992px !important;
+			.marketing {
+				width: 450px !important;
+			}
+			.video {
+				width: 542px !important;
 			}
 		}
 	}
@@ -101,6 +121,20 @@
 	}
 
 	// home
+	#banner.home {
+		.content_banner {
+			width: 768px !important;
+			.marketing {
+				width: 400px !important;
+				padding: 10px 10px 0 0 !important;
+			}
+			.video {
+				width: 368px !important;
+				padding: 10px 0 0 10px;
+				height: 300px !important;
+			}
+		}
+	}
 	#container.home {
 		.new {
 			.left, .right {
@@ -156,7 +190,7 @@
 {
 	// Banner
 	#banner {
-		min-height: 200px !important;
+		min-height: 500px !important; // For video
 		.content_banner {
 			.block {
 				width: 100% !important;
@@ -168,6 +202,21 @@
 						width: 115px !important;
 					}
 				}
+			}
+		}
+	}
+
+	// Home
+	#banner.home {
+		.content_banner {
+			width: 100% !important;
+			.marketing {
+				width: 100% !important;
+				padding: 10px !important;
+			}
+			.video {
+				width: 100% !important;
+				padding: 10px !important;
 			}
 		}
 	}
