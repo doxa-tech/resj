@@ -53,7 +53,7 @@
 				<h3><%= @article.title %></h3>
 				<div class="content">
 					<p>
-						<%= truncate(@article.content, length: 300, omission: " ... %s") % link_to('lire la suite', 'resources#articles') %>
+						<%= truncate(@article.content, length: 400, omission: " ... %s") % link_to('lire la suite', 'resources#articles') %>
 					</p>
 				</div>
 			</div>
@@ -69,19 +69,19 @@
 				<div class="content">
 					<div class="charts">
 						<div class="chart">
-							<div class="easy-chart" data-value="<%= @card_count %>" data-percent="<%= @card_count / card_aim * 100 %>" data-color="#FFB606"><span></span></div>
+							<div class="easy-chart" data-value="<%= @card_count %>" data-percent="<%= @card_count %>" ><span></span></div>
 							<div class="label">Oeuvres enregistrées</div>
 						</div>
 						<div class="chart">
-							<div class="easy-chart" data-value="<%= @orator_count %>" data-percent="<%= @orator_count %>" data-color="#FFAC2A"><span></span></div>
+							<div class="easy-chart" data-value="<%= @orator_count %>" data-percent="<%= @orator_count %>" ><span></span></div>
 							<div class="label">Orateurs inscrits</div>
 						</div>
 						<div class="chart">
-							<div class="easy-chart" data-value="<%= @doc_count %>" data-percent="<%= @doc_count %>" data-color="#FF830F"><span></span></div>
+							<div class="easy-chart" data-value="<%= @doc_count %>" data-percent="<%= @doc_count %>" ><span></span></div>
 							<div class="label">Documents disponibles</div>
 						</div>
 						<div class="chart">
-							<div class="easy-chart" data-value="<%= @user_count %>" data-percent="<%= @user_count %>" data-color="#FFC63A"><span></span></div>
+							<div class="easy-chart" data-value="<%= @user_count %>" data-percent="<%= @user_count %>" ><span></span></div>
 							<div class="label">Utilisateurs enregistrés</div>
 						</div>
 					</div>
