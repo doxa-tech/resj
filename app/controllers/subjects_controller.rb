@@ -2,7 +2,12 @@ class SubjectsController < BaseController
 	before_action :authorize_resource
 
 	def index
-		@subjects = Subject.all.reverse
+		@search = Subject.search do 
+			fulltext params[:query]
+			paginate page: params[:page] if params[:page]
+			with(:themes_ids, params[:themes_ids]) if params[:themes_ids]
+		end
+  	@subjects = @search.results
 	end
 
 	def show

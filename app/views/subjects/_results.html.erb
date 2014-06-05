@@ -1,0 +1,25 @@
+<ul>
+	<% @subjects.each do |subject| %>
+		<% type = type(subject) %>
+		<li>
+			<h3><%= subject.name %></h3>
+			<div class="description">
+				<%= image_tag image_url "resources/documents/#{type}.png" %>
+				<p><%= truncate subject.description, length: 200 %></p>
+				<% if subject.themes.any? %>
+					<p class="themes">
+					Thèmes
+						<% subject.themes.each do |theme| %>
+							<%= content_tag :spam, theme.name, class: "theme" %>
+						<% end %>
+					</p>
+				<% end %>
+			</div>
+			<div class="infos">
+					<div class="txt"><p>Ajouté le: <%= l subject.created_at, format: :normal %></p></div>
+					<div class="link"><%= link_to "Voir le sujet", document_path(subject) %></div>
+			</div>
+			<div id="clear"></div>
+		</li>
+	<% end %>
+</ul>
