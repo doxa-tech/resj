@@ -10,7 +10,17 @@ class Subject < ActiveRecord::Base
 
 	accepts_nested_attributes_for :documents, allow_destroy: true, reject_if: proc { |a| a[:name].blank? && a[:file].blank? }
 
+	searchable do
+    text :name, boost: 5
+    text :description
+    integer :themes_ids, multiple: true
+  end
+
 	def to_param
     "#{id}-#{name}".parameterize
+  end
+
+  def themes_ids
+    themes.pluck(:id)
   end
 end

@@ -1,31 +1,52 @@
 <% content_for :id, 'subjects' %>
 
-<div class="top">
-	<h1>Documents</h1>
-</div>
+<%= form_tag documents_path, method: :get, remote: true, id: "search-form" do %>
 
-<ul>
-	<% @subjects.each do |subject| %>
-		<% type = type(subject) %>
-		<li>
-			<h3><%= subject.name %></h3>
-			<div class="description">
-				<%= image_tag image_url "resources/documents/#{type}.png" %>
-				<p><%= truncate subject.description, length: 200 %></p>
-				<% if subject.themes.any? %>
-					<p class="themes">
-					Thèmes
-						<% subject.themes.each do |theme| %>
-							<%= content_tag :spam, theme.name, class: "theme" %>
+	<div class="top">
+		<h1>Documents</h1>
+		<div class="right">
+		 	<ul class="nav">
+		 		<li class="marketing">
+		 			<div class="marketing">
+		 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum, felis sit amet adipiscing dapibus, magna erat gravida risus, a rhoncus lorem velit eget felis.</p>
+		 			</div>
+		 		</li>
+		 	<ul>
+		</div>
+		<div class="left">	
+		  <div class="search">
+		  	<div class="form">
+					<%= search_field_tag :query, nil, placeholder: "Rechercher un document" %>
+					<button>Tapez</button>
+					<%= submit_tag "", :name => nil, type: :hidden %>
+				</div>
+		  </div>	
+		</div>		
+	</div>
+
+	<div class="rows" id="results">
+		<div class="left">
+			<%= content_tag :div, id: "filter" do %>
+		  	<h3>Filtres <span class="show">voir</span></h3>
+		    <ul>
+		      <li>
+		        <h4>Themes</h4>  
+		      <li>
+		        <% Theme.all.each do |theme| %>
+		        	<div class="field">
+								<%= label_tag theme.name %>
+								<%= check_box_tag "themes_ids[]", theme.id %>
+							</div>
 						<% end %>
-					</p>
-				<% end %>
-			</div>
-			<div class="infos">
-					<div class="txt"><p>Ajouté le: <%= l subject.created_at, format: :normal %></p></div>
-					<div class="link"><%= link_to "Voir le sujet", document_path(subject) %></div>
-			</div>
-			<div id="clear"></div>
-		</li>
-	<% end %>
-</ul>
+		      </li>
+		    </ul>
+		  <% end %>	
+		</div>
+		<div class="results">
+			<%= render 'results' %>
+		</div>
+		<div id="clear"></div>
+	</div>
+<% end %>
+
+<%= render 'ajax_loader' %>
