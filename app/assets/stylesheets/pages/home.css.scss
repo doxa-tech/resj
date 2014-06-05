@@ -2,8 +2,10 @@
 @mixin h2title {
 	padding: 0 10px;
 	.wrapper {
+		position: relative;
+		z-index: 10;
 		background: #eaeaea;
-		padding: 3px 10px;
+		padding: 0px 0 0 10px;
 		h2 {
 			font-size: 27px;
 			float: left;
@@ -15,7 +17,35 @@
 			float: right;
 			width: 60%;
 			text-align: right;
-			padding: 10px;
+			padding: 16px 113px 0 0;
+			a {
+				margin: 0 0 0 30px;
+				background: #d84418;
+				color: #fff;
+				font-weight: 400;
+				position: absolute;
+				top: 0; right: 0;
+				float: right;
+				padding: 16px 10px 0 0;
+				height: 47px;
+				&:hover {
+					background: #e54040;
+				}
+				&:before {
+					content: '';
+			    position: absolute;
+			    top: 0;
+			    left: -40px;
+			    width: 0;
+					height: 0;
+					border-top: 47px solid #d84418;
+					border-left: 40px solid transparent;
+					z-index: -10;
+				}
+				&:hover:before {
+					border-top: 47px solid #e54040;
+				}
+			}
 		}
 	}	
 }
@@ -48,6 +78,9 @@
 					color: #fff;
 					cursor: pointer;
 					font-size: 18px;
+					&:hover {
+						background: #e54040;
+					}
 				}
 			}
 		}

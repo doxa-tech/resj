@@ -263,6 +263,23 @@
 		}
 	}
 
+	// Home
+	#container.home {
+		.map,.new {
+			.title {
+				.wrapper {
+					h2 {
+						width: 80%; // Avoid collision with the link
+					}
+					span {
+						width: 100%;
+						padding: 10px;
+					}
+				}
+			}
+		}
+	}
+
 	//Cards
 	#container.cards {
 		.top {
