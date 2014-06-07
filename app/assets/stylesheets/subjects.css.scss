@@ -7,6 +7,60 @@
 	//
 	@include search-top; 
 
+	#filter {
+		background: #272829;
+		h3 {
+			background: rgb(39,40,41);
+			color: #EEE;
+			margin: 10px 0;
+			padding: 4px 6px;
+			font-weight: 100;
+			font-size: 13px;
+			position: relative;
+			span {
+				float: right;
+				background: #D83C3C;
+				padding: 0 15px 0 15px;
+				border-radius: 0 0 0 3px;
+				position: absolute;
+				right: 0;
+				top: 0;
+				cursor: pointer;
+				&:hover {
+					background: #e54040;
+				}						
+			}
+		}
+		ul {
+			padding: 7px;
+			background: #EEE;
+			border: 5px solid #272829;
+			li {
+				display: inline-block;
+				padding: 5px 25px 0 0;
+				position: relative;
+				width: 100%;
+				h4 {
+					text-align: center;
+					font-weight: 600;
+					font-size: 12px;							
+				}
+				.field {
+					display: inline-block;
+					font-size: 13px;
+					&>* {
+						width: initial;
+						display: inline-block;
+						vertical-align: middle;
+					}
+					label {
+						width: 123px;
+					}
+				}
+			}
+		}
+	} // filter
+
 	.results {
 		ul {
 			li {

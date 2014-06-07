@@ -77,6 +77,7 @@ Resj::Application.configure do
     jquery.animate_colors.js
     jquery.easypiechart.min.js
     home.js
+    subjects.js
   )
 
   # email stuff by nkcr

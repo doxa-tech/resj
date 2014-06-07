@@ -1,16 +1,17 @@
 @import 'partial_top';
 
 @mixin search-top {
-	h1 {
-		@include h1;
-		float: left;
-	}
-	.top {
+	#_search-top {
 		width: 100%;
 		background: #272829;
 		box-sizing: border-box;
 		padding: 10px;
 		position: relative;
+
+		h1 {
+			@include h1;
+			float: left;
+		}
 
 		&:after, &:before {
 			display: table;

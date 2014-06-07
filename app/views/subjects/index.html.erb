@@ -1,8 +1,10 @@
 <% content_for :id, 'subjects' %>
 
+<%= javascript_include_tag "subjects.js" %>
+
 <%= form_tag documents_path, method: :get, remote: true, id: "search-form" do %>
 
-	<div class="top">
+	<div id="_search-top">
 		<h1>Documents</h1>
 		<div class="right">
 		 	<ul class="nav">
