@@ -13,6 +13,7 @@
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
+/log
 /tmp
 
 config/database.yml
@@ -25,4 +26,3 @@ config/sunspot.yml
 
 public/uploads
 uploads
-logs/solr.log
