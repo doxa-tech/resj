@@ -1,54 +1,5 @@
 @import 'partials/partial_top';
-@mixin h2title {
-	padding: 0 10px;
-	.wrapper {
-		position: relative;
-		z-index: 10;
-		background: #eaeaea;
-		padding: 0px 0 0 10px;
-		h2 {
-			font-size: 27px;
-			float: left;
-			width: 40%;
-			text-align: left;
-		}
-		span {
-			vertical-align: middle;
-			float: right;
-			width: 60%;
-			text-align: right;
-			padding: 16px 113px 0 0;
-			a {
-				margin: 0 0 0 30px;
-				background: #d84418;
-				color: #fff;
-				font-weight: 400;
-				position: absolute;
-				top: 0; right: 0;
-				float: right;
-				padding: 16px 10px 0 0;
-				height: 47px;
-				&:hover {
-					background: #e54040;
-				}
-				&:before {
-					content: '';
-			    position: absolute;
-			    top: 0;
-			    left: -40px;
-			    width: 0;
-					height: 0;
-					border-top: 47px solid #d84418;
-					border-left: 40px solid transparent;
-					z-index: -10;
-				}
-				&:hover:before {
-					border-top: 47px solid #e54040;
-				}
-			}
-		}
-	}	
-}
+@import 'partials/title_large';
 
 #banner.home {
 	display: block;
@@ -102,46 +53,20 @@
 		}
 	}
 
-	.intro {
-		color: #333233;
-		text-align: center;
-		line-height: 23px;
-		font-size: 15px;
-		.left {
-			display: inline-block;
-			width: 279px;
-			vertical-align: top;
-			padding: 10px 10px;
-			text-align: right;
-		}
-		.right {
-			display: inline-block;
-			width: 278px;
-			vertical-align: top;
-			padding: 10px 10px;
-			text-align: left;
-		}
-		.shade {
-			color: #e8681d;
-			text-shadow: 2px 1px 0px #fff, 3px 2px 0px rgba(0,0,0,0.15);
-		}
-	}
-
 	.new {
 		margin: 15px 0;
+		@include title-large;
 		.left {
 			float: left;
 			width: 50%;
+			padding: 10px 5px 10px 0;
 		}
 		.right {
 			float: right;
 			width: 50%;
-		}
-		.title {
-			@include h2title;
+			padding: 10px 0 10px 5px;
 		}
 		.block {
-			padding: 10px;
 			.wrapper {
 				position: relative;
 				background: #eaeaea;
@@ -183,12 +108,11 @@
 	}
 
 	.map {
-		.title {
-			@include h2title;
-			margin: 0 0 10px 0;
-		}
+		@include title-large;
+
 		#map {
 			position: absolute;
+			margin: 10px 0 0 0;
 			left:0;
 			width: 100%; height: 600px;
 			&:before, &:after {clear:both;}
