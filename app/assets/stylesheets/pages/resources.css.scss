@@ -1,24 +1,5 @@
 @import 'partials/partial_top';
-@mixin h2title {
-	padding: 0 10px;
-	.wrapper {
-		background: #eaeaea;
-		padding: 3px 10px;
-		h2 {
-			font-size: 27px;
-			float: left;
-			width: 40%;
-			text-align: left;
-		}
-		span {
-			vertical-align: middle;
-			float: right;
-			width: 60%;
-			text-align: right;
-			padding: 10px;
-		}
-	}	
-}
+@import 'partials/title_large';
 
 #banner.resources {
 	display: block;
@@ -86,11 +67,15 @@
 				overflow: hidden;
 			}
 		}
-		.title {
-			@include h2title;
-		}
+		@include title-large;
 		.block {
 			padding: 10px;
+			&.first-child {
+				padding-left: 0px;
+			}
+			&.last-child {
+				padding-right: 0px;
+			}
 			.wrapper {
 				position: relative;
 				background: #eaeaea;
@@ -145,10 +130,7 @@
 	.orator {
 		.content {
 			img:hover {
-				filter: url(filters.svg#grayscale); /* Firefox 3.5+ */
-      	filter: gray; /* IE5+ */
-      	-webkit-filter: grayscale(1); /* Webkit Nightlies & Chrome Canary */
-      	-webkit-transition: all .5s ease-in-out;
+				
 			}
 		}
 	}

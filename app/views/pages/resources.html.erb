@@ -37,14 +37,14 @@
 </div>
 
 <div class="new">
-	<div class="title" id="articles">
+	<div class="_title-large" id="articles">
 		<div class="wrapper">
 			<h2>Dernier arcticle</h2>
-			<span>Visitez tous les articles sur <%= link_to '/articles', articles_path %></span>
+			<span>Visitez tous les articles sur <%= link_to 'articles', articles_path %></span>
 			<div id="clear"></div>
 		</div>
 	</div>
-	<div class="block full">
+	<div class="block full first-child last-child">
 		<div class="wrapper">
 			<div class="type">Article <i class="fi-clipboard-notes"></i></div>
 			<% if @article.nil? %>
@@ -66,16 +66,16 @@
 	<div id="clear"></div>
 
 
-	<div class="title" id="docs">
+	<div class="_title-large" id="docs">
 		<div class="wrapper">
 			<h2>Derniers documents</h2>
-			<span>Vous recherchez tous les documents? Rendez-vous sur <%= link_to '/documents', documents_path %></span>
+			<span>Vous recherchez tous les documents? Rendez-vous sur <%= link_to 'documents', documents_path %></span>
 			<div id="clear"></div>
 		</div>
 	</div>
-	<% @subjects.each do |subject| %>
+	<% @subjects.each_with_index do |subject, i| %>
 		<% type = type(subject) %>
-		<div class="block split4 doc">
+		<div class="block split4 doc <%= "first-child" if i==0 %> <%= "last-child" if i==3 %>">
 			<div class="wrapper">
 				<div class="type">.<%= type %></div>
 				<div class="graphic">
@@ -94,14 +94,14 @@
 	<div id="clear"></div>
 
 	<div class="orator">
-		<div class="title" id="orators">
+		<div class="_title-large" id="orators">
 			<div class="wrapper">
 				<h2>Liste d'orateurs</h2>
-				<span>Liste complète sur <%= link_to '/orators', orators_path %></span>
+				<span>Liste complète sur <%= link_to 'orateurs', orators_path %></span>
 				<div id="clear"></div>
 			</div>
 		</div>
-		<div class="block full">
+		<div class="block full first-child last-child">
 			<div class="wrapper">
 				<!--<div class="type">Article <i class="fi-clipboard-notes"></i></div>-->
 				<div class="full-text">
