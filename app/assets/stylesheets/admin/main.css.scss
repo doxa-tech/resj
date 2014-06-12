@@ -98,14 +98,11 @@
 					transition: background 0.25s ease-in-out;
 					&:hover {
 						background:#F4F4F4;
-						span.settings{color: #000}
 					}
 					span.push-right {
 						float: right;
 					}
-					span.settings {
-						color: #e8e8e8;
-					}
+
 				} // .li
 			} // .ul
 

@@ -88,6 +88,7 @@
 	#admin {
 		#admin_header {
 			width: 100%;
+			float: none;
 			ul {
 				li {
 					display: inline-block;
@@ -107,6 +108,9 @@
 			}
 			.col.split2 {
 				width: 100%;
+			}
+			.col {
+				float: none;
 			}
 		}
 	}
