@@ -35,6 +35,9 @@
 		.error {
 			margin: 0 0 20px 0;
 			background: #f16264;
+			.title {
+				font-weight: bold;
+			}
 			& > * {padding: 5px}
 		}
 		.block {
