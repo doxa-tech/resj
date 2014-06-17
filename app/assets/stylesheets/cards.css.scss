@@ -132,6 +132,21 @@
 						&:hover {
 							color: rgba(39,40,41,1);
 						}
+						&.red {
+							color: #ee7856;
+						}
+						&.green {
+							color: #ccdd56;
+						}
+						&.orange {
+							color: #e7c052;
+						}
+						&.blue {
+							color: #52dbe7;
+						}
+						&.violet {
+							color: #cd52e7;
+						}
 					}
 					.description {
 						padding: 10px;
