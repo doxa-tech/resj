@@ -30,18 +30,7 @@
 		<div class="left">
 			<%= content_tag :div, id: "filter" do %>
 		  	<h3>Filtres <span class="show">voir</span></h3>
-		    <ul>
-		      <li>
-		        <h4>Themes</h4>  
-		      <li>
-		        <% Theme.all.each do |theme| %>
-		        	<div class="field">
-								<%= label_tag theme.name %>
-								<%= check_box_tag "themes_ids[]", theme.id %>
-							</div>
-						<% end %>
-		      </li>
-		    </ul>
+		    <%= render 'theme_filter' %>
 		  <% end %>	
 		</div>
 		<div class="results">
