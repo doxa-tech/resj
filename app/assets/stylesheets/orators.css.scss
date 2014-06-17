@@ -91,11 +91,15 @@
 							font-size: 13px;
 							&>* {
 								width: initial;
+								height: initial;
 								display: inline-block;
 								vertical-align: middle;
 							}
 							label {
 								width: 120px;
+							}
+							input {
+								margin: -4px 0 0 0;
 							}
 						}
 					}

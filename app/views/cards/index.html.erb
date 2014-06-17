@@ -18,7 +18,7 @@
 		 		</li>
 		 		<li class="marketing">
 		 			<div class="marketing">
-		 				<p><b>Votre réseau!</b> En connectant ton groupe, ton organisation ou ton événement à tout ce qui se fait en Suisse romande, tu contribues à une vue d’ensemble motivante et à une visibilité nouvelle dans ta région et bien au-delà. Zoom dans ta région et sois encouragé de voir tout ce qui s'y vit!</p>
+		 				<p><b>Le réseau!</b> En connectant ton groupe, ton organisation ou ton événement à tout ce qui se fait en Suisse romande, tu contribues à une vue d’ensemble motivante et à une visibilité nouvelle dans ta région et bien au-delà. Zoom dans ta région et sois encouragé de voir tout ce qui s'y vit!</p>
 		 			</div>
 		 		</li>
 		 	<ul>
@@ -40,11 +40,11 @@
 			  	<h3>Filtres <span class="show">voir</span></h3>
 			    <ul>
 			      <li>
-			        <h4>Type</h4>  
+			        <h4>Types</h4>  
 			      <li>
 			        <% CardType.all.each do |card_type| %>
 			        	<div class="field">
-									<%= label_tag "card_type_#{card_type.id}", card_type.name %>
+									<%= label_tag "card_type_#{card_type.id}", card_type.name, class: color_color_type(card_type) %>
 									<%= check_box_tag "card_type_ids[]", card_type.id, false, { id: "card_type_#{card_type.id}" } %>
 								</div>
 							<% end %>

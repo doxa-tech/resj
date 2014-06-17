@@ -92,11 +92,35 @@
 							font-size: 13px;
 							&>* {
 								width: initial;
+								height: initial;
 								display: inline-block;
 								vertical-align: middle;
 							}
 							label {
 								width: 120px;
+								&.red {
+									color: #ee7856;
+									font-weight: 600;
+								}
+								&.green {
+									color: #ccdd56;
+									font-weight: 600;
+								}
+								&.orange {
+									color: #e7c052;
+									font-weight: 600;
+								}
+								&.blue {
+									color: #52dbe7;
+									font-weight: 600;
+								}
+								&.violet {
+									color: #cd52e7;
+									font-weight: 600;
+								}
+							}
+							input {
+								margin: -4px 0 0 0;
 							}
 						}
 					}
@@ -131,6 +155,21 @@
 						cursor: pointer;
 						&:hover {
 							color: rgba(39,40,41,1);
+						}
+						&.red {
+							color: #ee7856;
+						}
+						&.green {
+							color: #ccdd56;
+						}
+						&.orange {
+							color: #e7c052;
+						}
+						&.blue {
+							color: #52dbe7;
+						}
+						&.violet {
+							color: #cd52e7;
 						}
 					}
 					.description {
