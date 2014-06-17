@@ -5,14 +5,19 @@ class CardsController < BaseController
 	after_action only: [:create, :update] { |c| c. track_activity @card }
 
 	def index
-		@search = Card.search do 
-			fulltext params[:query]
-			with(:card_type_id, params[:card_type_ids]) if params[:card_type_ids]
-			with(:canton_ids, params[:canton_ids]) if params[:canton_ids]
-			with(:tag_ids, params[:tag_ids]) if params[:tag_ids]
-			paginate page: params[:page] if params[:page]
-		end
-  	@cards = @search.results
+		if params[:query].blank?
+			@cards = Card.order(:name).paginate(page: params[:page])
+			@cards_map = Card.all
+		else
+			@search = Card.search do 
+				fulltext params[:query]
+				with(:card_type_id, params[:card_type_ids]) if params[:card_type_ids]
+				with(:canton_ids, params[:canton_ids]) if params[:canton_ids]
+				with(:tag_ids, params[:tag_ids]) if params[:tag_ids]
+				paginate page: params[:page] if params[:page]
+			end
+	  	@cards = @cards_map = @search.results
+	  end
 	end
 
 	def show

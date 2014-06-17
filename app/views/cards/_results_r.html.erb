@@ -1,13 +1,13 @@
-<% if @cards.any? %>
+<% if @cards_map.any? %>
   <script type="text/javascript">
     // Import from ruby
     <% sum = 0 %>
-    <% @cards.map{|a| sum = sum+a.latitude} %>
-    var latCenter =  <%= sum / @cards.size %>;
+    <% @cards_map.map{|a| sum = sum+a.latitude} %>
+    var latCenter =  <%= sum / @cards_map.size %>;
     <% sum = 0 %>
-    <% @cards.map{|a| sum = sum+a.longitude} %>
-    var lngCenter =  <%= sum / @cards.size %>;
-    var addressPoints = <%= map_points(@cards) %>;
+    <% @cards_map.map{|a| sum = sum+a.longitude} %>
+    var lngCenter =  <%= sum / @cards_map.size %>;
+    var addressPoints = <%= map_points(@cards_map) %>;
   </script>
   <%= render 'map' %>
 
