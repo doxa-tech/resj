@@ -44,32 +44,21 @@
 			      <li>
 			        <% CardType.all.each do |card_type| %>
 			        	<div class="field">
-									<%= label_tag card_type.name %>
-									<%= check_box_tag "card_type_ids[]", card_type.id %>
+									<%= label_tag "card_type_#{card_type.id}", card_type.name %>
+									<%= check_box_tag "card_type_ids[]", card_type.id, false, { id: "card_type_#{card_type.id}" } %>
 								</div>
 							<% end %>
 			      </li>
 			    </ul>
-			    <ul>
-			      <li>
-			        <h4>Canton</h4>  
-			      <li>
-			        <% Canton.all.each do |canton| %>
-			        	<div class="field">
-									<%= label_tag canton.name %>
-									<%= check_box_tag "canton_ids[]", canton.id %>
-								</div>
-							<% end %>
-			      </li>
-			    </ul>
+			    <%= render 'canton_filter' %>
 			    <ul>
 			      <li>
 			        <h4>Tags</h4>  
 			      <li>
 			        <% Tag.all.each do |tag| %>
 			        	<div class="field">
-									<%= label_tag tag.name %>
-									<%= check_box_tag "tag_ids[]", tag.id %>
+									<%= label_tag "tag_#{tag.id}", tag.name %>
+									<%= check_box_tag "tag_ids[]", tag.id, false, { id: "tag_#{tag.id}" } %>
 								</div>
 							<% end %>
 			      </li>
