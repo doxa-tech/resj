@@ -5,7 +5,7 @@
 		<div class="block">
 			<div class="content">
 				<h2>Des articles pertinents</h2>
-				<p>Retrouvez tous les mois un article édifiant et d'actualité</p>
+				<p>Trouvez régulièrement des articles édifiants et d’actualités</p>
 			</div>
 			<div class="btn" id="btn-articles">
 				<p>Découvrir</p>
@@ -13,8 +13,8 @@
 		</div>
 		<div class="block">
 			<div class="content">
-				<h2>Pleins de documents</h2>
-				<p>Créés par des leaders pour des leaders</p>
+				<h2>Plein de document</h2>
+				<p>Des ressources utile pour ton groupe, œuvre ou réseau</p>
 			</div>
 			<div class="btn" id="btn-docs">
 				<p>Découvrir</p>
@@ -39,7 +39,7 @@
 <div class="new">
 	<div class="_title-large" id="articles">
 		<div class="wrapper">
-			<h2>Dernier arcticle</h2>
+			<h2>Dernier article</h2>
 			<span>Visitez tous les articles sur <%= link_to 'articles', articles_path %></span>
 			<div id="clear"></div>
 		</div>
@@ -55,6 +55,7 @@
 				</div>
 				<div class="text">
 					<h3><%= @article.title %></h3>
+					<h5>Par <%= @article.user.full_name %>, le <%= l @article.created_at, format: :normal %></h5>
 					<div class="content">
 						<%= simple_format @article.content %>
 					</div>
@@ -69,7 +70,7 @@
 	<div class="_title-large" id="docs">
 		<div class="wrapper">
 			<h2>Derniers documents</h2>
-			<span>Vous recherchez tous les documents? Rendez-vous sur <%= link_to 'documents', documents_path %></span>
+			<span>Tous les documents ? Rendez-vous sur <%= link_to 'documents', documents_path %></span>
 			<div id="clear"></div>
 		</div>
 	</div>
@@ -105,13 +106,12 @@
 			<div class="wrapper">
 				<!--<div class="type">Article <i class="fi-clipboard-notes"></i></div>-->
 				<div class="full-text">
-					<h3>Vous recherchez un orateur pour votre soirée?</h3>
+					<h3>Vous chercher des intervenants pour vos rencontres ?</h3>
 					<div class="content">
 						<div class="img">
 							<%= link_to(image_tag(image_url "resources/orator.jpg"), orators_path) %>
 						</div>
-						<p>Notre base de donnée compte pas moins de 200 orateurs référencés pour vous faciliter la tâche. Cherchez par thème, région, nom et trouvez celui qui apportera le thème de votre prochaine soirée.</p>
-						<p>Rendez-vous <%= link_to 'ici', orators_path %></p>
+						<p>Profitez de la base de donnée pour trouver vos intervenants. Cherchez par thèmes, régions, nom et trouvez les personnes adaptées pour vos rencontres.</p>
 					</div>
 				</div>
 				<div id="clear"></div>

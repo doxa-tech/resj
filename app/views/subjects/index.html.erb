@@ -32,9 +32,9 @@
 		  	<h3>Filtres <span class="show">voir</span></h3>
 		    <ul>
 		      <li>
-		        <h4>Themes</h4>  
+		        <h4>Thèmes</h4>  
 		      <li>
-		        <% Theme.all.each do |theme| %>
+		        <% Theme.order(:name).each do |theme| %>
 		        	<div class="field">
 								<%= label_tag theme.name %>
 								<%= check_box_tag "themes_ids[]", theme.id %>
