@@ -17,13 +17,16 @@
 /* Large devices */
 @media (max-width: 1200px) 
 {
-	// Bannner
-	#banner {
+	// Resources Bannner
+	#banner.resources {
 		min-height: 360px !important;
 		.content_banner {
 			padding: 0 0 5px 0 !important;
 			.block {
 				width: 280px !important;
+				.content {
+					height: 140px;
+				}
 				.btn {
 					padding: 0 !important;
 					p {
@@ -210,26 +213,10 @@
 /* Small devices */
 @media (max-width: 768px) 
 {
-	// Banner
-	#banner {
-		min-height: 500px !important; // For video
-		.content_banner {
-			.block {
-				width: 100% !important;
-				.content {
-					padding: 0 !important;
-				}
-				.btn {
-					p {
-						width: 115px !important;
-					}
-				}
-			}
-		}
-	}
 
 	// Home
 	#banner.home {
+		min-height: 500px !important; // For video
 		.content_banner {
 			width: 100% !important;
 			.marketing {
