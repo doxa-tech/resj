@@ -41,30 +41,8 @@
 		<div class="left">
 			<%= content_tag :div, id: "filter" do %>
 		  	<h3>Filtres <span class="show">voir</span></h3>
-		    <ul>
-		      <li>
-		        <h4>Themes</h4>  
-		      <li>
-		        <% Theme.all.each do |theme| %>
-		        	<div class="field">
-								<%= label_tag theme.name %>
-								<%= check_box_tag "themes_ids[]", theme.id %>
-							</div>
-						<% end %>
-		      </li>
-		    </ul>
-		    <ul>
-		      <li>
-		        <h4>Canton</h4>  
-		      <li>
-		        <% Canton.all.each do |canton| %>
-		        	<div class="field">
-								<%= label_tag canton.name %>
-								<%= check_box_tag "canton_ids[]", canton.id %>
-							</div>
-						<% end %>
-		      </li>
-		    </ul>
+		    <%= render 'theme_filter' %>
+		   	<%= render 'canton_filter'
 		  <% end %>	
 			<div class="left-content"><%= render 'results_l' %></div>
 		</div>
