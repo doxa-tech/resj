@@ -20,6 +20,7 @@ class UsersController < BaseController
 
 	def my_cards
 		@user = current_user
+		render layout: "admin"
 	end
 
 	def edit

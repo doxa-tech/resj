@@ -25,6 +25,7 @@ namespace :csv do
 
 	desc "Load some example cards"
 	task card: :environment do
+		b = User.find_by_email("kocher.ke@gmail.com")
 		CSV.open('public/csv/cards.csv','r').each do |a|
 			params = {
 				"name"=> a[0], 
@@ -44,6 +45,7 @@ namespace :csv do
 				"tag_names"=>""
 			}
 			card = Card.new(params)
+			card.user = b
 			card.save
 		end
 	end

@@ -1,14 +1,69 @@
-<h2>Request a card</h2>
+<% unconfirmed = @user.unconfirmed_cards %>
+<% confirmed = @user.confirmed_cards %>
 
-<%= form_tag user_card_request_path do %>
-	<%= select_tag :card_id, options_from_collection_for_select(Card.all - current_user.confirmed_cards, :id, :name), class: "selectize" %>
-	<%= submit_tag %>
-<% end %>
+<div class="row">
+	<div class="col split1">
+		<div class="block">
+			<div class="header">
+				<h2>Vos liens</h2>
+				<h5>Groupes, oeuvres ou réseaux auxquels vous appartenez</h5>
+			</div>
+			<ul>
+				<% if confirmed.empty? %>
+					<li>
+						Vous n'avez pas d'affiliations
+					</li>
+					<% else %>
+						<% confirmed.each do |card_user| %>
+						<li><%= card_user.name %></li>
+						<% end %>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</div>
 
-<h2>Card request</h2>
+<div clas="row">
+	<div class="col split1">
+		<div class="block">
+			<div class="header">
+				<h2>Créer un lien</h2>
+				<h5>S'annoncer en tant que responsable d'un groupe, d'une oeuvres ou d'un réseaux</h5>
+			</div>
+			<%= form_tag user_card_request_path do %>
+			<ul>
+				<li>
+					<%= select_tag :card_id, options_from_collection_for_select(Card.all - confirmed, :id, :name), class: "selectize" %>
+					<%= submit_tag %>
+				</li>
+			</ul>
+			<% end %>
+		</div>
+	</div>
+</div>
 
-<% @user.unconfirmed_cards.each do |card_user| %>
-	<%= card_user.card.name %>
-	<%= link_to "Confirmer", user_card_confirmation_path(card_user_id: card_user.id, validated: "true"), method: :post %>
-	<%= link_to "Refuser", user_card_confirmation_path(card_user_id: card_user.id, validated: "false"), method: :post %>
-<% end %>
+<div clas="row">
+	<div class="col split1">
+		<div class="block">
+			<div class="header">
+				<h2>Demandes de liens</h2>
+				<h5>Gérer les demandes pour s'annoncer comme responsabel de votre groupe, oeuvre ou réseau</h5>
+			</div>
+			<% if !unconfirmed.empty? %>
+				<% unconfirmed.each do |card_user| %>
+					<ul>
+						<li>
+							<%= card_user.card.name %>
+							<%= link_to "Confirmer", user_card_confirmation_path(card_user_id: card_user.id, validated: "true"), method: :post %>
+							<%= link_to "Refuser", user_card_confirmation_path(card_user_id: card_user.id, validated: "false"), method: :post %>
+						</li>
+					</ul>
+				<% end %>
+			<% else %>
+				<ul>
+					<li> Pas de demandes en cours </li>
+				</ul>
+			<% end %>
+		</div>
+	</div>
+</div>

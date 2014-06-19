@@ -88,7 +88,7 @@ class User < ActiveRecord::Base
   end
 
   def confirmed_cards
-    Card.joins(:card_users).where("card_users.user_validated = ? AND card_users.card_validated = ? AND card_users.user_id = ? OR cards.user_id = ?", true, true, id, id)
+    Card.joins(:card_users).where("card_users.user_validated = ? AND card_users.card_validated = ? AND card_users.user_id = ?", true, true, id) + Card.where(user_id: id)
   end
 
   def update_with_password(params)
