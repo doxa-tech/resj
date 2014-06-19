@@ -6,7 +6,10 @@ namespace :db do
 		Page.create(name: 'home', content: 'content')
 		Page.create(name: 'resj', content: 'content')
 		Page.create(name: 'resources', content: 'content')
+		Page.create(name: 'privacy', content: 'content')
+		Page.create(name: 'help', content: 'content')
 		Page.create(name: 'contact', content: 'content')
+		Page.create(name: 'developer', content: 'content')
 	end
 
 	desc "Create the card's types"

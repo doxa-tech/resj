@@ -77,10 +77,6 @@ class Card < ActiveRecord::Base
     User.joins(:card_users).where(card_users: {user_validated: true, card_validated: true, card_id: id} ) << user
   end
 
-  def confirmed_cards
-    User.joins(:card_users).where("card_users.user_validated = ? AND card_users.card_validated = ? AND card_users.card_id = ? OR users.id = ?", true, true, id, user_id)
-  end
-
   def tag_names
     @tag_names || tags.map(&:name).join(' ')
   end

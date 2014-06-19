@@ -9,7 +9,7 @@ module ApplicationHelper
 	end
 
 	def admin_links
-		active = %w[admin/cards admin/card_types admin/pages admin/users admin/affiliations admin/tags admin/responsables admin/ownerships admin/actions admin/parents admin/access_tokens admin/themes admin/subjects admin/articles cards]
+		active = %w[admin/cards admin/card_types admin/pages admin/users admin/affiliations admin/tags admin/responsables admin/ownerships admin/actions admin/parents admin/access_tokens admin/themes admin/subjects admin/articles]
     @admin_links ||= Element.joins(:ownerships).where(ownerships: {user_id: current_user.parents.pluck(:parent_id) << current_user.id }, name: active ).pluck(:name).uniq
   end
 
