@@ -5,7 +5,7 @@ class CardsController < BaseController
 	after_action only: [:create, :update] { |c| c. track_activity @card }
 
 	def index
-		if params[:query].blank?
+		if params[:query].blank? && params[:card_type_ids].blank? && params[:canton_ids].blank? && params[:tag_ids].blank?
 			@cards = Card.order(:name).paginate(page: params[:page])
 			@cards_map = Card.all
 		else
