@@ -1,21 +1,24 @@
+<% content_for :id, "my_cards" %>
 <% unconfirmed = @user.unconfirmed_cards %>
 <% confirmed = @user.confirmed_cards %>
+<% confirmed_paginate = @user.confirmed_cards.paginate(page: params[:page], per_page: 10) %>
 
 <div class="row">
 	<div class="col split1">
 		<div class="block">
 			<div class="header">
 				<h2>Vos liens</h2>
-				<h5>Groupes, oeuvres ou réseaux auxquels vous appartenez</h5>
+				<h5>Groupes, oeuvres ou réseaux au sein desquels vous êtes responsable ou co-responsable</h5>
+				<%= will_paginate confirmed_paginate %>
 			</div>
 			<ul>
-				<% if confirmed.empty? %>
+				<% if confirmed_paginate.empty? %>
 					<li>
 						Vous n'avez pas d'affiliations
 					</li>
 					<% else %>
-						<% confirmed.each do |card_user| %>
-						<li><%= card_user.name %></li>
+						<% confirmed_paginate.each do |card_user| %>
+							<li><%=  card_user.name %> <%= render 'application/admin/edit_btn', path: edit_admin_card_path(card_user) %></li>
 						<% end %>
 				<% end %>
 			</ul>
