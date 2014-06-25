@@ -85,7 +85,8 @@
 				<div class="text">
 					<h3><%= link_to subject.name, document_path(subject) %></h3>
 					<div class="content">
-						<p><%= truncate subject.description, length: 120 %></p>
+						<p><%= truncate subject.description, length: 200 %></p>
+						<%= link_to "<i class='fi-eye'></i> lire".html_safe, document_path(subject), class: "more" %>
 					</div>
 				</div>
 				<div id="clear"></div>
