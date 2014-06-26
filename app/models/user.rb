@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
     user_type_id == UserType.find_by_name('group').id
   end
 
-  def gravatar(size = 100)
+  def gravatar_url(size = 100)
     default_url = URI.escape "identicon"
     if self.gravatar_email
       "http://gravatar.com/avatar/#{Digest::MD5.hexdigest(self.gravatar_email.downcase)}.png?d=#{default_url}&s=#{size}"

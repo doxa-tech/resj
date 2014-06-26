@@ -1,0 +1,22 @@
+<div class="top">
+	<h1>Editer son profil</h1>
+</div>
+
+<div class="form">
+	<%= form_for @user, url: user_update_path do |f| %>
+
+		<%= f.label :current_password %>
+		<%= f.password_field :current_password %>
+
+		<%= f.label :avatar %>
+		<%= f.file_field :avatar %>
+
+		<%= f.label :gravatar_email %>
+		<%= f.email_field :gravatar_email %>
+
+		<%= f.label :gravatar, "Utiliser gravatar ?" %>
+		<%= f.check_box :gravatar %>
+
+		<%= f.submit %>
+	<% end %>
+</div>

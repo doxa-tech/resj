@@ -18,6 +18,7 @@ Resj::Application.routes.draw do
     post 'user/card/request', to: "users#card_request"
     get 'user/confirmation', to: "users#confirmation"
     get 'user/my_cards', to: "users#my_cards"
+    get 'user/avatar', to: "users#avatar"
 
     patch 'orator/update', to: "orators#update"
 

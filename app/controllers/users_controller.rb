@@ -28,6 +28,11 @@ class UsersController < BaseController
 		render layout: "admin"
 	end
 
+	def avatar
+		@user = current_user
+		render layout: "admin"
+	end
+
 	def update
 		@user = current_user
 		if @user.update_with_password(user_params)
@@ -101,7 +106,7 @@ class UsersController < BaseController
 	private
 
 	def user_params
-		params.require(:user).permit(:firstname, :lastname, :email, :gravatar_email, :avatar, :password, :password_confirmation, :current_password)
+		params.require(:user).permit(:firstname, :lastname, :email, :gravatar_email, :gravatar, :avatar, :password, :password_confirmation, :current_password)
 	end
 
 	# notify card owner that a user wants to join
