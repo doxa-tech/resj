@@ -33,7 +33,7 @@ class DocumentsUploader < CarrierWave::Uploader::Base
   end
 
   def extension_white_list
-    %w(doc docx ppt pptx xls xlsx pdf odt odp ods)
+    %w[doc docx ppt pptx xls xlsx pdf odt odp ods].concat(Subject::VIDEO_EXT)
   end
 
   def self.fog_public
