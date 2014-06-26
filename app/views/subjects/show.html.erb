@@ -1,5 +1,5 @@
 <% content_for :id, 'subject-show' %>
-<% type = type(@subject) %>
+<% type = subject_type(@subject) %>
 
 <div class="top">
 	<h1><%= "Document / #{@subject.name}" %></h1>
@@ -16,6 +16,12 @@
 <div id="clear"></div>
 <% @subject.documents.each do |document| %>
 	<p class="name"><%= document.name %></p>
+	<% if document.extension[0..2].in?(Subject::VIDEO_EXT) %>
+		<video controls style="width:640px;height:360px;" poster="poster.png">
+		  <source src="<%= document.file.url %>" 
+		  				type="<%= video_mime(document.extension[0..2]) %>"/>
+		</video>
+	<% end %>
 	<div class="infos">
 		<div class="left">
 			<p>Titre</p>

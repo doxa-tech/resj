@@ -23,4 +23,7 @@ class Subject < ActiveRecord::Base
   def themes_ids
     themes.pluck(:id)
   end
+
+  VIDEO_EXT = %w[ mov mp4 avi ]
+
 end

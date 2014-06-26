@@ -75,7 +75,7 @@
 		</div>
 	</div>
 	<% @subjects.each_with_index do |subject, i| %>
-		<% type = type(subject) %>
+		<% type = subject_type(subject) %>
 		<div class="block split4 doc <%= "first-child" if i==0 %> <%= "last-child" if i==3 %>">
 			<div class="wrapper">
 				<div class="type">.<%= type %></div>

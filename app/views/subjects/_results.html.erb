@@ -1,6 +1,6 @@
 <ul>
 	<% @subjects.each do |subject| %>
-		<% type = type(subject) %>
+		<% type = subject_type(subject) %>
 		<li>
 			<h3><%= subject.name %></h3>
 			<div class="description">
