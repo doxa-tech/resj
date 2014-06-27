@@ -17,9 +17,9 @@ class Admin::SubjectsController < Admin::BaseController
 	def create 
 		@subject = current_user.subjects.new(subject_params)
 		if @subject.save
-			redirect_to admin_subjects_path, success: t('subject.admin.create.success')
+			render 'success'
 		else
-			render 'new'
+			render 'error'
 		end
 	end
 
@@ -28,9 +28,9 @@ class Admin::SubjectsController < Admin::BaseController
 
 	def update
 		if @subject.update_attributes(subject_params)
-			redirect_to admin_subjects_path, success: t('subject.admin.edit.success')
+			render 'success'
 		else
-			render 'edit'
+			render 'error'
 		end
 	end
 
