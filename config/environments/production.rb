@@ -78,6 +78,7 @@ Resj::Application.configure do
     jquery.easypiechart.min.js
     home.js
     subjects.js
+    jquery.form.js
   )
 
   # email stuff by nkcr
