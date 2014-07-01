@@ -15,12 +15,22 @@
 </div>
 <div id="clear"></div>
 <% @subject.documents.each do |document| %>
-	<p class="name"><%= document.name %></p>
-	<% if document.extension[0..2].in?(Subject::VIDEO_EXT) %>
-		<video controls style="width:640px;height:360px;" poster="poster.png">
-		  <source src="<%= document.file.url %>" 
-		  				type="<%= video_mime(document.extension[0..2]) %>"/>
-		</video>
+	<%
+		#
+			extension = document.extension[0..2]
+			is_video = extension.in?(Document::VIDEO_EXT)
+		#
+	%>
+	<p class="name">
+		<%= image_tag image_url "resources/documents/#{document_type(document)}.png" %><br><%= document.name %>
+	</p>
+	<% if is_video %>
+		<div class="video">
+			<video controls poster="poster.png">
+			  <source src="<%= document.file.url(:mp4) %>" type="video/mp4" />
+			  Your browser does not support the video tag.
+			</video>
+		</div>
 	<% end %>
 	<div class="infos">
 		<div class="left">
@@ -29,7 +39,9 @@
 			<p>Taille</p>
 		</div>
 		<div class="right">
-			<p><%= File.basename(document.file.path) %></p>
+			<p>
+				<%= is_video ? File.basename(document.file.url(:mp4)) : File.basename(document.file.url(:document)) %>
+			</p>
 			<p><%= l document.created_at, format: :long %></p>
 			<p><%= number_to_human_size document.size %></p>
 		</div>

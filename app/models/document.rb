@@ -8,6 +8,8 @@ class Document < ActiveRecord::Base
 
 	before_save :update_file_attributes
 
+  VIDEO_EXT = %w[ mov mp4 avi ]
+
   private
 
   def update_file_attributes
@@ -16,4 +18,9 @@ class Document < ActiveRecord::Base
       self.size = file.size
     end
   end
+
+  def unlink_original(file)
+    File.delete if version_name.blank?
+  end
+
 end

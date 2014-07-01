@@ -11,6 +11,13 @@
 		padding: 30px;
 		text-align: center;
 	}
+	.video {
+		text-align: center;
+		video {
+			width:640px;
+			height:360px;
+		}
+	}
 	.content {
 		img {
 			float: left;
@@ -22,6 +29,11 @@
 	}
 	.name {
 		text-align: center;
+		padding: 20px 0 10px 0;
+		font-weight: bold;
+		img {
+			width: 40px;
+		}
 	}
 	.infos {
 		margin: 2px auto;

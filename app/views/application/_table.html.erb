@@ -14,7 +14,7 @@
 	<tbody>
 		<% if presenter.elements.any? %>
 			<% presenter.elements.each do |element| %>
-				<tr class="<%= cycle('odd', 'even') %>" data-url="<%= presenter.url(element) %>">
+				<tr class="<%= cycle('odd', 'even') %>" data-url="<%= presenter.url(element) %>" ondblclick="window.location = window.location.pathname + '/' + <%= presenter.url(element) %> + '/edit' ">
 					<% presenter.attributes(element).each do |attribute| %>
 						<td><%= truncate((strip_tags attribute.to_s), length: 40) %></td>
 					<% end %>

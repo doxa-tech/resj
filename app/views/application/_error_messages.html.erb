@@ -6,7 +6,7 @@
 		</p>
 		<ul>
 			<% object.errors.full_messages.each do |msg| %>
-			 <li><%= msg %></li>
+			 <li><%= msg.encode("UTF-8") %></li>
 			<% end %>
 		</ul>
 	</div>
