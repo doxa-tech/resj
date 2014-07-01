@@ -24,6 +24,4 @@ class Subject < ActiveRecord::Base
     themes.pluck(:id)
   end
 
-  VIDEO_EXT = %w[ mov mp4 avi ]
-
 end
