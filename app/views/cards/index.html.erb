@@ -44,8 +44,8 @@
 			      <li>
 			        <% CardType.all.each do |card_type| %>
 			        	<div class="field">
-									<%= label_tag "card_type_#{card_type.id}", card_type.name, class: color_color_type(card_type) %>
 									<%= check_box_tag "card_type_ids[]", card_type.id, false, { id: "card_type_#{card_type.id}" } %>
+									<%= label_tag "card_type_#{card_type.id}", card_type.name, class: color_color_type(card_type) %>
 								</div>
 							<% end %>
 			      </li>
@@ -57,8 +57,8 @@
 			      <li>
 			        <% Tag.all.each do |tag| %>
 			        	<div class="field">
-									<%= label_tag "tag_#{tag.id}", tag.name %>
 									<%= check_box_tag "tag_ids[]", tag.id, false, { id: "tag_#{tag.id}" } %>
+									<%= label_tag "tag_#{tag.id}", tag.name %>
 								</div>
 							<% end %>
 			      </li>

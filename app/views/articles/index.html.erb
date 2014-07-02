@@ -8,7 +8,7 @@
 <div class="article">
 	<h2><%= article.title %></h2>
 	<%= content_tag :div, (image_tag article.image), class: "img" %>
-	<%= content_tag :div, (raw simple_format(article.content, {}, sanitize: false)), class: "content"  %>
+	<%= content_tag :div, (simple_format(article.content)), class: "content"  %>
 	<div class="end"><%= l article.created_at %></div>
 </div>
 <% end %>
