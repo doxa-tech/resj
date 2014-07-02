@@ -40,7 +40,7 @@
 		</div>
 		<div class="right">
 			<p>
-				<%= is_video ? File.basename(document.file_url(:mp4)) : File.basename(document.file_url(:document)) %>
+				<%= is_video ? truncate(File.basename(document.file_url(:mp4)), length: 50) : truncate(File.basename(document.file_url(:document)), length: 50) %>
 			</p>
 			<p><%= l document.created_at, format: :long %></p>
 			<p><%= number_to_human_size document.size %></p>

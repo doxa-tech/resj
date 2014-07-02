@@ -7,7 +7,7 @@ CKEDITOR.editorConfig = function(config)
 	config.htmlEncodeOutput = false;
 	config.entities = false;
 	config.protectedSource.push(/<i[^>]*><\/i>/g); // prevent i tag strip
-	config.protectedSource.push(/\r|\n|\t/g); // prevent return and tab strip
+	config.protectedSource.push(/\t/g); // prevent return and tab strip
 
 	// my plugin (nkcr)
 	config.extraPlugins = 'htmlbuttons';

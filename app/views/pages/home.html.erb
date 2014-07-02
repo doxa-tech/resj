@@ -3,24 +3,23 @@
 <% content_for :javascript do %>
 	<%= javascript_include_tag "jquery.easypiechart.min.js", "data-turbolinks-track" => true %>
 	<%= javascript_include_tag "home.js", "data-turbolinks-track" => true %>
-	<script type="text/javascript" src="//cdn.sublimevideo.net/js/7i5r6ntc.js"></script>
+	<%= javascript_include_tag "//cdn.sublimevideo.net/js/7i5r6ntc.js", "data-turbolinks-track" => true %>
 <% end %>
 
 <% content_for :content_banner do %>
 	<div class="content_banner">
 		<div class="marketing">
-			<h2>Inscrivez votre groupe sur réseau jeunesse</h2>
+			<h2>Inscrivez dès maintenant votre groupe, oeuvre ou réseau !</h2>
 			<div class="btn">
-				<%= link_to "Inscrire mon groupe, oeuvre ou réseau", new_card_path %></p>
+				<%= link_to "Inscrire", new_card_path %></p>
 			</div>
 		</div>
 		<div class="video">
-			<video id="a240e92d" class="sublime" poster="https://cdn.sublimevideo.net/vpa/ms_800.jpg" width="640" height="360" title="Midnight Sun" data-uid="a240e92d" data-autoresize="fill" preload="none">
-			  <source src="https://cdn.sublimevideo.net/vpa/ms_360p.mp4" />
-			  <source src="https://cdn.sublimevideo.net/vpa/ms_720p.mp4" data-quality="hd" />
-			  <source src="https://cdn.sublimevideo.net/vpa/ms_360p.webm" />
-			  <source src="https://cdn.sublimevideo.net/vpa/ms_720p.webm" data-quality="hd" />
+			<video id="Promo1" class="sublime" poster="http://storage.googleapis.com/reseaujeunesse-ch/my-assets/images/video-poster.png" width="640" height="360" title="Réseau Jeunesse promo" data-player-kit="2" data-uid="Promo1" data-autoresize="fill" preload="none">
+			  <source src="http://storage.googleapis.com/reseaujeunesse-ch/my-assets/videos/ReseauJeunesse.mp4" data-quality="hd" />
+			  <source src="http://storage.googleapis.com/reseaujeunesse-ch/my-assets/videos/ReseauJeunesse_360p.mp4" />
 			</video>
+			<a class="download" href="http://storage.googleapis.com/reseaujeunesse-ch/my-assets/videos/ReseauJeunesse.mp4.zip">Télécharger la vidéo</a>
 		</div>
 	</div>
 <% end %>
@@ -53,7 +52,7 @@
 				<h3><%= @article.title %></h3>
 				<div class="content">
 					<p>
-						<%= truncate(@article.content, length: 400, omission: " ... %s") % link_to('lire la suite', 'resources#articles') %>
+						<%= truncate(simple_format(@article.content), length: 500, omission: " ... %s", escape: false) % link_to('lire la suite', resources_path(anchor: 'articles')) %>
 					</p>
 				</div>
 			</div>

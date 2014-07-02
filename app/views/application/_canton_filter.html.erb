@@ -5,8 +5,8 @@
     <% Canton.all.each do |canton| %>
       <% if accepted_canton.include?(canton.abbreviation) %>
       	<div class="field">
-  				<%= label_tag "canton_#{canton.id}", canton.name %>
   				<%= check_box_tag "canton_ids[]", canton.id, false, { id: "canton_#{canton.id}" } %>
+          <%= label_tag "canton_#{canton.id}", canton.name %>
   			</div>
       <% end %>
 		<% end %>

@@ -1,5 +1,8 @@
 // ATTENTION easypiechart.js needs to be included !!
 $(function() {
+	//
+	// Pie chart stuff
+	//
 	var check = true;
 	if(isScrolledIntoView('.easy-chart')) {
 		initChart();
@@ -10,6 +13,23 @@ $(function() {
 	    initChart();
 		}
 	});
+	//
+	// Sublime video stuff
+	// Snippets to wirk with turbolinks
+	//
+	window.SublimeVideo = {};
+	$(window).bind('page:change', function() {
+	  return SublimeVideo.prepareVideoPlayers();
+	});
+	 
+	SublimeVideo.prepareVideoPlayers = function() {
+	  sublime.ready(function() {
+	    return $('.sublime').each(function(index, el) {
+	      return sublime.prepare(el);
+	    });
+	  });
+	  return sublime.load();
+	};
 });
 
 function initChart() {
