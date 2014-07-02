@@ -4,19 +4,28 @@
 
 <div class="form">
 	<%= form_for @user, url: user_update_path do |f| %>
-
-		<%= f.label :current_password %>
-		<%= f.password_field :current_password %>
-
-		<%= f.label :avatar %>
-		<%= f.file_field :avatar %>
-
-		<%= f.label :gravatar_email %>
-		<%= f.email_field :gravatar_email %>
-
-		<%= f.label :gravatar, "Utiliser gravatar ?" %>
-		<%= f.check_box :gravatar %>
-
+		<div class="col split1">
+			<div class="block">
+				<ul>
+					<li>
+						<%= f.label :current_password %>
+						<%= f.password_field :current_password %>
+					</li>
+					<li>
+						<%= f.label :avatar %>
+						<%= f.file_field :avatar %>
+					</li>
+					<li>
+						<%= f.label :gravatar_email %>
+						<%= f.email_field :gravatar_email %>
+					</li>
+					<li>
+						<%= f.label :gravatar, "Utiliser gravatar ?" %>
+						<%= f.check_box :gravatar %>
+					</li>
+				</ul>
+			</div>
+		</div>
 		<%= f.submit %>
 	<% end %>
 </div>

@@ -10,7 +10,7 @@
 <div class="content">
 	<%= image_tag image_url "resources/documents/#{type}.png" %>
 	<div class="txt">
-		<%= simple_format @subject.description %>
+		<%= simple_format @subject.description %> <span class="author">Créé par <%= @subject.user.full_name %> le <%= l @subject.created_at, format: :normal %></span>
 	</div>
 </div>
 <div id="clear"></div>
@@ -40,13 +40,17 @@
 		</div>
 		<div class="right">
 			<p>
-				<%= is_video ? File.basename(document.file.url(:mp4)) : File.basename(document.file.url(:document)) %>
+				<%= is_video ? File.basename(document.file_url(:mp4)) : File.basename(document.file_url(:document)) %>
 			</p>
 			<p><%= l document.created_at, format: :long %></p>
 			<p><%= number_to_human_size document.size %></p>
 		</div>
 		<div class="get">
-			<%= link_to 'Télécharger', download_document_path(document), target: "_blank" %>
+			<% if is_video %>
+				<%= link_to 'Télécharger', download_video_document_path(document), target: "_blank" %>
+			<% else %>
+				<%= link_to 'Télécharger', download_document_document_path(document), target: "_blank" %>
+			<% end %>
 		</div>
 	</div>
 <% end %>
