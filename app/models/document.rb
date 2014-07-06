@@ -8,7 +8,7 @@ class Document < ActiveRecord::Base
 
 	before_save :update_file_attributes
 
-  VIDEO_EXT = %w[ mov mp4 avi ]
+  VIDEO_EXT = %w[ mp4 ]
 
   private
 
@@ -17,10 +17,6 @@ class Document < ActiveRecord::Base
       self.extension = file.file.extension.downcase
       self.size = file.size
     end
-  end
-
-  def unlink_original(file)
-    File.delete if version_name.blank?
   end
 
 end

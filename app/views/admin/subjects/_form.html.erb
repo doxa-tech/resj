@@ -30,7 +30,7 @@
 			<div class="block">
 				<div class="header">
 					<h2>Documents</h2>
-					<h5>Formats acceptés: .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx, odt, ods, odp., .mov, .mp4, .avi <br>Pour chaque document, lui mettre un titre.</h5>
+					<h5>Formats acceptés: .pdf, .doc, .docx, .ppt, .pptx, .xls, .xlsx, odt, ods, odp., .mp4 <br>Pour chaque document, lui mettre un titre.</h5>
 				</div>
 				<ul class="association_fields">
 					<%= f.fields_for :documents, (@subject.documents.any? || @subject.documents.build) do |documents_fields| %>
@@ -52,9 +52,7 @@
 										application/vnd.oasis.opendocument.text,
 										application/vnd.oasis.opendocument.spreadsheet,
 										application/vnd.oasis.opendocument.presentation,
-										video/quicktime,
-										video/mp4,
-										video/x-msvideo'
+										video/mp4'
 								%>
 								<%= documents_fields.hidden_field :_destroy, identifier: "destroy" %>
 								<%= link_to_remove_fields "remove" %>

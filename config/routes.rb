@@ -30,8 +30,7 @@ Resj::Application.routes.draw do
       end
       resources :documents, only: [] do
         member do
-          get 'download_document'
-          get 'download_video'
+          get 'download'
         end
       end
     end
