@@ -78,7 +78,6 @@ gem "selectize-rails", '~> 0.9.0'
 # image & video uploader
 gem 'carrierwave', '~> 0.10.0'
 gem 'carrierwave-processing', '~> 1.0.0'
-gem 'streamio-ffmpeg' # video, do not need ffmpeg2theora any more
 gem "fog", "~> 1.20.0"
 
 # image manipulating
