@@ -6,10 +6,10 @@ class CardsController < BaseController
 
 	def index
 		if params[:query].blank? && params[:card_type_ids].blank? && params[:canton_ids].blank? && params[:tag_ids].blank?
-			@cards = Card.order(:name).paginate(page: params[:page])
-			@cards_map = Card.all
+			@cards = Card.with_card_type.order(:name).paginate(page: params[:page])
+			@cards_map = Card.with_card_type
 		else
-			@search = Card.search do 
+			@search = Card.search(include: :card_type) do 
 				fulltext params[:query]
 				with(:card_type_id, params[:card_type_ids]) if params[:card_type_ids]
 				with(:canton_ids, params[:canton_ids]) if params[:canton_ids]
