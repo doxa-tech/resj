@@ -3,6 +3,7 @@ class Card < ActiveRecord::Base
   attr_writer :tag_names
 
   scope :regional, -> { joins(:card_type).where(card_types: {name: "Réseau régional"}) }
+  scope :with_card_type, -> { includes(:card_type) }
 
   belongs_to :card_type
   belongs_to :user

@@ -2,7 +2,7 @@ class PagesController < BaseController
 
 	def home
 		@page = Page.find_by_name('home')
-		@cards = Card.all
+		@cards = Card.with_card_type
 		@article = Article.last
 		@card_count = Card.count
 		@orator_count = Orator.count
