@@ -21,12 +21,10 @@ for (var i = 0; i < addressPoints.length; i++) {
   var marker = L.marker(new L.LatLng(a[0], a[1]), options={
   	icon: L.icon({
       iconUrl: a[3],
-      iconRetinaUrl: a[3],
       iconSize: [25, 41],
       iconAnchor: [12, 41],
       popupAnchor: [0, -30],
       shadowUrl: '<%= asset_path "map/images/marker-shadow.png" %>',
-      shadowRetinaUrl: '<%= asset_path "map/images/marker-shadow.png" %>',
       shadowSize: [41, 41],
       shadowAnchor: [12, 41]
     }),
