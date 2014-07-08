@@ -63,6 +63,7 @@ var selectize = {
       persist: false,
       sortField: [{field: 'popularity', direction: 'desc'}],
       create: true,
+      plugins: ['remove_button'],
       render: {
         option: function(item, escape) {
           return '<div><span>' + escape(item.name) + '</span><span style="float: right;">' + escape(item.popularity || "None") + '</span></div>';
