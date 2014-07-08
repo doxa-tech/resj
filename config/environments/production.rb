@@ -64,8 +64,6 @@ Resj::Application.configure do
     multiselect.js 
     jquery.quicksearch.js 
     ajax_loader.js 
-    map/a_mapbox_v1.5.2.js 
-    map/b_leaflet.markercluster.js 
     map/c_map.js table.js 
     card_show_map.js 
     card_new_map.js 
