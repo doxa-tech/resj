@@ -1,7 +1,6 @@
 <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyBgFFWiaY1lm8ex24rqBlwLmYnVU_bwmuU&sensor=false" %>
 <%= javascript_include_tag "orators_index_map.js" %>
 <%= javascript_include_tag "orators_index.js" %>
-<%= javascript_include_tag "jquery.animate_colors.js" %>
 
 <% content_for :id, 'orators' %>
 <%= form_tag orators_path, method: :get, remote: true, id: "search-form" do %>

@@ -74,8 +74,6 @@ Resj::Application.configure do
     admin_header.js 
     orators_index.js 
     orators_index_map.js 
-    jquery.animate_colors.js
-    jquery.easypiechart.min.js
     home.js
     subjects.js
     jquery.form.js
