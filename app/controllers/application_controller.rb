@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale, :restrict_access
 
+  rescue_from ActionController::InvalidAuthenticityToken do |exception|
+    render 'invalid_authenticity_token', layout: 'application'
+  end
+
   def default_url_options(options={})
     locale = I18n.locale
     { locale: (locale == :fr ? nil : locale), access: params[:access] }
