@@ -84,6 +84,13 @@
 		border-radius: 3px;
 		max-width: 245px;
 	}
+	&.wrong {
+    border-color:#F00;
+    -webkit-animation: shake .2s linear 2;
+    -moz-animation: shake .2s linear 2;
+    -o-animation: shake .2s linear 2;
+    animation: shake .2s linear 2;
+	}
 	@include connexion;
 }
 #login-overlay {
@@ -101,4 +108,61 @@
 		top: 50%;
 		margin: -180px 0 0 100px;
 	}
+}
+
+@-webkit-keyframes shake {
+    from {
+        left:0;
+    }
+    25% {
+        left:-20px;
+    }
+    75% {
+        left:+20px;
+    }
+    to {
+        left:0;
+    }
+}
+@-moz-keyframes shake {
+    from {
+        left:0;
+    }
+    25% {
+        left:-20px;
+    }
+    75% {
+        left:+20px;
+    }
+    to {
+        left:0;
+    }
+}
+@-o-keyframes shake {
+    from {
+        left:0;
+    }
+    25% {
+        left:-20px;
+    }
+    75% {
+        left:+20px;
+    }
+    to {
+        left:0;
+    }
+}
+@keyframes shake {
+    from {
+        left:0;
+    }
+    25% {
+        left:-20px;
+    }
+    75% {
+        left:+20px;
+    }
+    to {
+        left:0;
+    }
 }
