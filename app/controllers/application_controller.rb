@@ -10,7 +10,10 @@ class ApplicationController < ActionController::Base
   before_action :set_locale, :restrict_access
 
   rescue_from ActionController::InvalidAuthenticityToken do |exception|
-    render 'invalid_authenticity_token', layout: 'application'
+    respond_to do |format|
+      format.html { render 'invalid_authenticity_token.html', layout: 'application' }
+      format.js { render 'invalid_authenticity_token.js' }
+    end
   end
 
   def default_url_options(options={})
