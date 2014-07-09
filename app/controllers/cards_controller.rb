@@ -38,13 +38,17 @@ class CardsController < BaseController
 
 	# Change wizard steps
 	def change
-		# fusion between session and form (POST) params
-		session[:card_params].deep_merge!(card_params)
-		@card = Card.new(session[:card_params])
-		if @card.steps.include?(step = params[:step].keys.first) && (@card.current_step == "final" || @card.valid?)
-			# update the step
-			@card.current_step = step
-			session[:card_params]["current_step"] = @card.current_step
+		if !session[:card_params].nil?
+			# fusion between session and form (POST) params
+			session[:card_params].deep_merge!(card_params)
+			@card = Card.new(session[:card_params])
+			if @card.steps.include?(step = params[:step].keys.first) && (@card.current_step == "final" || @card.valid?)
+				# update the step
+				@card.current_step = step
+				session[:card_params]["current_step"] = @card.current_step
+			end
+		else
+			render js: "location.reload();"
 		end
 	end
 
