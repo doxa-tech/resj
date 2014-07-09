@@ -88,6 +88,13 @@
 		min-height: 100%;
 	}
 
+		&:after, &:before {
+		display: table;
+		content: " ";
+	}
+
+	&:after {clear: both}
+
 }
 
 #admin_top_header {
