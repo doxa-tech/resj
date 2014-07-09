@@ -69,7 +69,6 @@ Resj::Application.configure do
     card_new_map.js 
     cards_index.js 
     cards_results.js 
-    admin_header.js 
     orators_index.js 
     orators_index_map.js 
     home.js
