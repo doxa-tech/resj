@@ -97,5 +97,32 @@
 	background : #272930;
 	border-top: 1px solid #32353e;
 	border-bottom: 1px solid #1a1c20;
+	position: relative;
+	z-index: 20; // for shadow of responsive menu
+
+	.slide {
+		display: none;
+		position: absolute;
+		top: -1px;
+		left: 0;
+		width: 30px;
+		height: 30px;
+		border-radius: 0 4px 4px 0;
+		background: #c9d4f6;
+		padding: 5px 0px 0px 7px;
+		cursor: pointer;
+		transition: background-color 0.3s ease;
+		&:hover {
+			background: #272930;
+			& span {
+				color: #c9d4f6;
+			}
+		}
+		span {
+			font-size: 25px;
+			color: #272930;
+			transition: color 0.3s ease;
+		}
+	}
 
 }

@@ -93,17 +93,14 @@
 	// Admin
 	#admin {
 		#admin_header {
-			width: 100%;
-			float: none;
-			ul {
-				li {
-					display: inline-block;
-					a {
-						span {
-							padding: 0 0 0 5px;
-						}
-					}
-				}
+			display: none;
+			position: absolute;
+			z-index: 10;
+			box-shadow: 0px 0px 60px #000;
+		}
+		#admin_top_header {
+			.slide {
+				display: block;
 			}
 		}
 		#admin_content {
