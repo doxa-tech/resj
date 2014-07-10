@@ -49,6 +49,28 @@ function autocomplete() {
   });
 }
 
+var form = {
+  progress: function() {
+    formP = $('#form-progress')
+    submit = formP.find('input[type="submit"]');
+    message = 'En cours... ';
+    formP.submit(function(){
+      submit.attr('value', message);
+    });
+    if(submit.attr('value') == message) {
+      $('body').attr("data-no-turbolink", "true");
+      $(window).bind('beforeunload', function(){
+        return "Voulez-vous vraiment quitter cette page alors qu'un transfert est en cours ?";
+      });
+    };
+  },
+  card: function() {
+    $('.final-step').find('.send').find('a').click(function() {
+      $(this).text('En cours...');
+    });
+  }
+};
+
 var selectize = {
   default: function() {
     $('.selectize').selectize();

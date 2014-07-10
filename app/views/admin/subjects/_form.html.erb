@@ -1,6 +1,6 @@
-<%= form_for [:admin, @subject], html: { id: "subject-upload" } do |f| %>
+<%= form_for [:admin, @subject], html: { id: "form-progress"} do |f| %>
 	
-	<div class="errors"><%= render 'error_messages', object: f.object %></div>
+	<div class="error"><%= render 'error_messages', object: f.object %></div>
 
 
 	<div class="row">
@@ -22,7 +22,6 @@
 						<%= f.label :theme_id %>
 						<%= f.collection_select :theme_ids, Theme.all, :id, :name, {include_blank: "Select themes"}, {class: "selectize-themes", multiple: true} %>
 					</li>
-					<li hidden class="progress">En cours de téléchargement... <%= image_tag 'layout/ajax-loader.gif' %></li>
 				</ul>
 			</div>
 		</div>
@@ -68,16 +67,9 @@
 	</div>
 
 	<%= f.submit %><div class="updated"></div>
+	<%= image_tag 'layout/ajax-loader.gif' %>
 
 <% end %>
 
 <%= javascript_include_tag 'jquery.form.js' %>
-<script> 
-  $(document).ready(function() {
-  	form = $('#subject-upload');
-  	form.submit(function(){
-  		$('.progress').show();
-  	});
-    form.ajaxForm(); 
-  }); 
-</script>
+<script>$(function(){$('#form-progress').ajaxForm();});</script>

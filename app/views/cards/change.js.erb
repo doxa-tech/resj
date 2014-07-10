@@ -10,4 +10,6 @@ $('.wizard').html('<%=j render "#{@card.current_step}_step" %>');
 		autocomplete();
 	<% when "extra" %>
 		selectize.tags();
+	<% when "final" %>
+		form.card();
 <% end %>
