@@ -1,11 +1,7 @@
-<% if @orators.any? %>
-
-<% end %>
-
 <div id="map-canvas"></div>
 
 <script type="text/javascript">
-  map_params = gmap.initialize();
+  map_params = gmap_orator.initialize();
 
   <% grouped = @orators.group_by{ |a| [a.location]} %>
   <% grouped.values.each do |group| %>

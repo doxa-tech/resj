@@ -63,12 +63,7 @@ Resj::Application.configure do
     mail.css 
     multiselect.js 
     jquery.quicksearch.js 
-    ajax_loader.js 
     map/c_map.js table.js 
-    card_show_map.js 
-    card_new_map.js 
-    cards_results.js 
-    orators_index_map.js 
     home.js
     jquery.form.js
   )

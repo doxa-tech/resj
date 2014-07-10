@@ -1,4 +1,4 @@
-var gmap = {
+var gmap_card_show = {
   initialize: function(lat, lng) {
     var latlng = new google.maps.LatLng(lat, lng);
     var mapOptions = {
