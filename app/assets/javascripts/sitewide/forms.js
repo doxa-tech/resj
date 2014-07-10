@@ -2,6 +2,8 @@ $(document).ready(function() {
 
   autocomplete();
 
+  hide_contact();
+
   selectize.default();
 
   selectize.location();

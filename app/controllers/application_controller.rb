@@ -36,25 +36,32 @@ class ApplicationController < ActionController::Base
   def connected?
     if !current_user
       store_location
-      redirect_to connexion_path, error: "Please log in"
+      redirect_to connexion_path, error: render_error('login')
     end
   end
 
   def authorize_create
     if !current_permission.allow_create?(params[:controller])
-      redirect_to root_path, error: "Not authorize"
+      redirect_to root_path, error: "Vous n'avez pas les droits pour créer cette ressource."
     end
   end
 
   def authorize_modify
     if !current_permission.allow_modify?(params[:controller], params[:action], current_resource)
-      redirect_to root_path, error: "Not authorize"
+      redirect_to root_path, error: "Vous n'avez pas les droits pour éditer cette ressource."
     end
   end
 
   def authorize_action
     if !current_permission.allow_action?(params[:controller], params[:action], current_resource)
-      redirect_to root_path, error: "Not authorize"
+      redirect_to root_path, error: "Vous n'avez pas les droits pour accéder à cette page."
+    end
+  end
+
+  def authorize_resource
+    if current_user.nil? || (!current_permission.allow_resource? && !current_permission.allow_read?('admin/subjects'))
+      store_location
+      redirect_to connexion_path, error: render_error('resources')
     end
   end
 
@@ -94,6 +101,10 @@ class ApplicationController < ActionController::Base
     if !current_user && !request.path.in?(%w[/resources/orators/new /resources/orators /coming_soon /searches/locations /searches/responsables /searches/tags /cards/new /cards /cards/change /user/confirmation ]) && params[:access] != "rubyforever"
       redirect_to coming_soon_path
     end
+  end
+
+  def render_error(error)
+    render_to_string("application/errors/#{error}", layout: false).html_safe
   end
 
 end

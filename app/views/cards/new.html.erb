@@ -1,7 +1,11 @@
 <% content_for :id, 'cards-form' %>
+<% content_for :javascript do %>
+	<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyBgFFWiaY1lm8ex24rqBlwLmYnVU_bwmuU&sensor=false", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "card_new_map.js", "data-turbolinks-track" => true %>
+<% end %>
 
 <div class="top">
-	<h1><%=t 'titles.create.card' %></h1>
+	<h1><%=t 'card.create.title' %></h1>
 </div>
 
 <p class="expired"></p>
@@ -9,8 +13,3 @@
 <div class="wizard">
 	<%= render "#{@card.current_step}_step" %>
 </div>
-
-<% content_for :javascript do %>
-<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyBgFFWiaY1lm8ex24rqBlwLmYnVU_bwmuU&sensor=false", "data-turbolinks-track" => true %>
-<%= javascript_include_tag "card_new_map.js", "data-turbolinks-track" => true %>
-<% end %>

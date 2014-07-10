@@ -8,6 +8,7 @@ $('.wizard').html('<%=j render "#{@card.current_step}_step" %>');
 		load_map_stuff();
 	<% when "team" %>
 		autocomplete();
+		hide_contact()
 	<% when "extra" %>
 		selectize.tags();
 	<% when "final" %>

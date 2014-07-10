@@ -27,6 +27,10 @@ function add_contact(link) {
   $(link).hide();
 }
 
+function hide_contact() {
+  $('.team').find(".contact").find(".add_contact").hide();
+}
+
 function autocomplete() {
 	$('.autocomplete').find('input').autocomplete({
     source: function(request, response) {
