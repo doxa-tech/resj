@@ -1,4 +1,4 @@
-var gmap = {
+var gmap_orator = {
   initialize: function() {
     var infowindow = new google.maps.InfoWindow();
     var latlng = new google.maps.LatLng(46.57, 6.8794);

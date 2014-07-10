@@ -1,6 +1,4 @@
-<%= javascript_include_tag 'cards_results' %>
 <%= will_paginate @cards, remote: true %>
-
 
 <div class="index">
   <% if @cards.any? %>
@@ -24,3 +22,18 @@
     <p>Votre recherche n'a donné aucun résultat.</p>
   <% end %>
 </div>
+
+<script>
+  /* Description */
+  $('#container.cards .index .description').hide();
+  $('#container.cards .show-description').click(function(){
+    var btn = $(this)
+    var el = btn.next().next();
+    if(el.css("display")=="none") {
+      btn.css("color", "rgba(39,40,41,1)");
+    } else {
+      btn.css("color", "rgba(39,40,41,.6)");
+    }
+    el.slideToggle();
+  });
+</script>

@@ -30,6 +30,16 @@ $(function() {
 	  });
 	  return sublime.load();
 	};
+	//
+	// Fix for map fullscreen and incompatibility with sublim video
+	//
+	var screen_change_events = "webkitfullscreenchange mozfullscreenchange fullscreenchange";
+	$(document).on(screen_change_events, function () {
+		if(!map.isFullscreen()) {
+			$('#map').removeClass('leaflet-fullscreen-on');
+		}
+	});
+	
 });
 
 function initChart() {
