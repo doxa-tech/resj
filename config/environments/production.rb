@@ -67,12 +67,9 @@ Resj::Application.configure do
     map/c_map.js table.js 
     card_show_map.js 
     card_new_map.js 
-    cards_index.js 
     cards_results.js 
-    orators_index.js 
     orators_index_map.js 
     home.js
-    subjects.js
     jquery.form.js
   )
 

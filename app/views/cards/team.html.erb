@@ -1,11 +1,11 @@
-<h2>Request a user</h2>
+<h2>Faire une demande à un utilisateur</h2>
 
 <%= form_tag user_request_card_path(@card) do %>
 	<%= select_tag :user_id, options_from_collection_for_select(User.users - @card.confirmed_users, :id, :full_name), class: "selectize" %>
 	<%= submit_tag %>
 <% end %>
 
-<h2>User resquest</h2>
+<h2>Demandes d'utilisateurs</h2>
 
 <% @card.unconfirmed_users.each do |card_user| %>
 	<%= card_user.user.full_name %>

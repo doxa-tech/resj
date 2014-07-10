@@ -1,7 +1,5 @@
 <% content_for :id, 'cards' %>
 
-<%= javascript_include_tag "cards_index.js" %>
-
 <%= form_tag reseau_path, method: :get, remote: true, id: "search-form" do %>
 	<div id="_search-top">
 		<div class="right">
