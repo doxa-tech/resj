@@ -84,6 +84,7 @@
 		border-radius: 3px;
 		max-width: 245px;
 	}
+	// Login animation
 	&.wrong {
     border-color:#F00;
     -webkit-animation: shake .2s linear 2;
@@ -110,6 +111,7 @@
 	}
 }
 
+// Login animation
 @-webkit-keyframes shake {
     from {
         left:0;
