@@ -1,7 +1,4 @@
 fr:
-  titles:
-    create: 
-      card: "Créer une nouvelle fiche"
   will_paginate:
     previous_label: "<i class='fi-arrow-left'></i> Précédent"
     next_label: "Suivant <i class='fi-arrow-right'></i>"
@@ -204,11 +201,11 @@ fr:
         newsletter: "Newsletter"
   card:
     create:
-      title: "Create a new card"
+      title: "Créer une nouvelle fiche"
       success: "Vous êtres entré dans le Réseau avec succès !"
     edit:
       title: "Edit a card"
-      success: "Card edited"
+      success: "Fiche éditée avec succès"
     admin:
       index: "Cards"
       validated_error: "could not be activated. The card has not been verified."
@@ -220,6 +217,13 @@ fr:
         success: "Card edited"
       destroy:
         success: "Card deleted"
+    user:
+      request:
+        success: "Demande envoyée"
+        error: "La demande n'a pas pu être envoyée"
+      confirmation: 
+        success: "Décision enregistrée"
+        error: "La demande n'a pas pu être acceptée"
   user:
     create:
       title: "Sign up"

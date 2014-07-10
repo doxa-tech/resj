@@ -9,6 +9,6 @@
 	<h2><%= article.title %></h2>
 	<%= content_tag :div, (image_tag article.image), class: "img" %>
 	<%= content_tag :div, (simple_format(article.content)), class: "content"  %>
-	<div class="end"><%= l article.created_at %></div>
+	<div class="end">Créé par <%= article.user.full_name %> le <%= l article.created_at %></div>
 </div>
 <% end %>
