@@ -17,9 +17,10 @@ class Admin::SubjectsController < Admin::BaseController
 	def create 
 		@subject = current_user.subjects.new(subject_params)
 		if @subject.save
-			render 'success'
+			flash[:success] = "Sujet créé"
+			render 'success', locals: { path: '/admin/subjects' }
 		else
-			render 'error'
+			render 'error', locals: { object: @subject }
 		end
 	end
 
@@ -28,9 +29,10 @@ class Admin::SubjectsController < Admin::BaseController
 
 	def update
 		if @subject.update_attributes(subject_params)
-			render 'success'
+			flash[:success] = "Sujet édité"
+			render 'success', locals: { path: '/admin/subjects' }
 		else
-			render 'error'
+			render 'error', locals: { object: @subject }
 		end
 	end
 

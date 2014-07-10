@@ -53,10 +53,10 @@
 			      <li>
 			        <h4>Tags</h4>  
 			      <li>
-			        <% Tag.all.each do |tag| %>
+			        <% Tag.order('popularity desc').last(10).each do |tag| %>
 			        	<div class="field">
 									<%= check_box_tag "tag_ids[]", tag.id, false, { id: "tag_#{tag.id}" } %>
-									<%= label_tag "tag_#{tag.id}", tag.name %>
+									<%= label_tag "tag_#{tag.id}", "#{tag.name} (#{tag.popularity})" %>
 								</div>
 							<% end %>
 			      </li>

@@ -1,2 +1,5 @@
-$('.progress').hide();
-$('.errors').html("<%=j render 'error_messages', object: @subject %>");
+formP = $('#form-progress');
+message = "Créer";
+formP.find('input[type="submit"]').attr('value', message);
+formP.find('.error').html("<%=j render 'error_messages', object: object %>");
+form.progress();

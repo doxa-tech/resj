@@ -29,4 +29,7 @@ $(document).ready(function() {
     plugins: ['remove_button'],
     dropdownParent: "body" // prevent overflow error in admin
   });
+
+  form.card();
+  form.progress();
 });
