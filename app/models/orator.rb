@@ -10,12 +10,10 @@ class Orator < ActiveRecord::Base
   validates :themes, presence: true
   
   searchable do
-    text :firstname do
-      user.firstname
-    end
-    #text :firstname
+    text :firstname
     text :lastname
     text :canton_name
+    text :theme_names
     integer :canton_ids, multiple: true
     integer :themes_ids, multiple: true
   end
@@ -42,6 +40,10 @@ class Orator < ActiveRecord::Base
 
   def themes_ids
     themes.pluck(:id)
+  end
+
+  def theme_names
+    themes.pluck(:name)
   end
 
 end
