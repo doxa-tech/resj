@@ -45,8 +45,10 @@
 
 <% end %>
 
-<script type="text/javascript">
-$(function() {
-	load_map_stuff();
-});
-</script>
+<%= content_for :javascript do %>
+	<script type="text/javascript">
+		$(function() {
+			load_map_stuff();
+		});
+	</script>
+<% end %>
