@@ -1,22 +1,22 @@
 // ATTENTION easypiechart.js needs to be included !!
 $(function() {
-	// //
-	// // Sublime video stuff
-	// // Snippets to work with turbolinks
-	// //
-	// window.SublimeVideo = {};
-	// $(window).bind('page:change', function() {
-	//   return SublimeVideo.prepareVideoPlayers();
-	// });
+	//
+	// Sublime video stuff
+	// Snippets to work with turbolinks
+	//
+	window.SublimeVideo = {};
+	$(window).bind('page:change', function() {
+	  return SublimeVideo.prepareVideoPlayers();
+	});
 	 
-	// SublimeVideo.prepareVideoPlayers = function() {
-	//   sublime.ready(function() {
-	//     return $('.sublime').each(function(index, el) {
-	//       return sublime.prepare(el);
-	//     });
-	//   });
-	//   return sublime.load();
-	// };
+	SublimeVideo.prepareVideoPlayers = function() {
+	  sublime.ready(function() {
+	    return $('.sublime').each(function(index, el) {
+	      return sublime.prepare(el);
+	    });
+	  });
+	  return sublime.load();
+	};
 	//
 	// Fix for map fullscreen and incompatibility with sublim video
 	//
