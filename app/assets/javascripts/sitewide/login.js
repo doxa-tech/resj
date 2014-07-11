@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(function() {
 	$("#login-overlay .close").click(function(){
 		$("#login-over").hide();
 		$("#login-overlay").hide();
