@@ -248,16 +248,16 @@ fr:
         success: "User deleted"
   session:
     create:
-      success: "Connected"
-      error: "Invalid email/password"
+      success: "Connecté avec succès"
+      error: "Mot de passe et/ou utilisateur incorrect"
     destroy:
-      success: "Signed out"
+      success: "Déconnecté avec succès"
   page:
     admin:
       index: "Pages"
       edit:
-        success: "Page edited"
-        title: "Edit a page"
+        success: "Page éditée"
+        title: "Editer une page"
   ownership:
     admin:
       index: "Ownership"
