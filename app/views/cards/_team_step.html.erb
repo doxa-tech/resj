@@ -23,15 +23,15 @@
 				<%= content_tag :div, class: "fields" + (" contact" if is_contact).to_s do %>
 					<div class="field">
 						<%= responsables_fields.label :firstname %>
-						<%= responsables_fields.text_field :firstname, data: {attr: "firstname"} %>
+						<%= responsables_fields.text_field :firstname, data: {attr: "firstname"}, placeholder: 'Prénom' %>
 					</div>
 					<div class="field">
 						<%= responsables_fields.label :lastname %>
-						<%= responsables_fields.text_field :lastname, data: {attr: "lastname"} %>
+						<%= responsables_fields.text_field :lastname, data: {attr: "lastname"}, placeholder: 'Nom' %>
 					</div>
 					<div class="field">
 						<%= responsables_fields.label :email %>
-						<%= responsables_fields.text_field :email %>
+						<%= responsables_fields.text_field :email, placeholder: 'email@mail.ch' %>
 					</div>
 					<div class="field">
 						<%= responsables_fields.hidden_field :_destroy, identifier: "destroy" %>

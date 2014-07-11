@@ -57,6 +57,7 @@ class Card < ActiveRecord::Base
   mount_uploader :banner, BannerUploader
 
   after_save :assign_tags
+  before_save :format_url
 
   def to_param
     "#{id}-#{name}".parameterize
@@ -161,4 +162,9 @@ class Card < ActiveRecord::Base
     end
     self.tags = current_tags
   end
+
+  def format_url
+    self.website = "http://#{self.website}" unless self.website[/^https?/]    
+  end
+
 end

@@ -6,7 +6,7 @@
 				<span class="num">11</span> Avez-vous un <span class="b">site web</span>? (optionnel)
 			</p>
 		</div>
-		<%= f.text_field :website %>
+		<%= f.text_field :website, placeholder: "http://mon-groupe.ch (optionnel)" %>
 	</div>
 
 	<div class="block">
@@ -15,7 +15,7 @@
 				<span class="num">12</span> Possédez-vous une <span class="b">affiliation</span> avec une église, un mouvement? (optionnel)
 			</p>
 		</div>
-		<%= f.text_area :affiliation %>
+		<%= f.text_area :affiliation, placeholder: 'Eglise évangélique de ... (optionnel)' %>
 	</div>
 
 	<div class="block">
