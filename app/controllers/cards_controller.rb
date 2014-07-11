@@ -63,7 +63,7 @@ class CardsController < BaseController
 			CardMailer.owner_created(@card, user_hash).deliver
 			session[:card_params] = nil
 			#redirect_to reseau_path, success: t('card.create.success')
-			flash[:success] = render_error('card_created')
+			flash[:success] = "Vous êtes entré dans le réseau avec succès !"
 			render 'success', locals: { path: "/reseau" }
 		else
 			render 'error'
