@@ -91,6 +91,10 @@ class ApplicationController < ActionController::Base
     CardResponsable.find_by_card_id_and_responsable_id(card.id, responsable.try(:id)).try(:destroy)
   end
 
+  def render_error(error)
+    render_to_string("application/errors/#{error}", layout: false).html_safe
+  end
+
   private
 
   def set_locale
@@ -101,10 +105,6 @@ class ApplicationController < ActionController::Base
     if !current_user && !request.path.in?(%w[/resources/orators/new /resources/orators /coming_soon /searches/locations /searches/responsables /searches/tags /cards/new /cards /cards/change /user/confirmation ]) && params[:access] != "rubyforever"
       redirect_to coming_soon_path
     end
-  end
-
-  def render_error(error)
-    render_to_string("application/errors/#{error}", layout: false).html_safe
   end
 
 end

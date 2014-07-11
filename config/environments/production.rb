@@ -61,11 +61,8 @@ Resj::Application.configure do
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
   config.assets.precompile += %w( 
     mail.css 
-    jquery.quicksearch.js 
     map/c_map.js 
     table.js 
-    home.js
-    jquery.form.js
   )
 
   # email stuff by nkcr

@@ -1,8 +1,9 @@
+loginOver = $('#login-over');
 $('#login-overlay').fadeIn(500);
-$('#login-over').html('<%=j render "new_ajax" %>').show();
+loginOver.html('<%=j render "new_ajax" %>').show();
 // It didn't work on login.js !?
-$("#login-over .submit").on("click", function () {
-    $("#login-over").addClass("wrong");
+loginOver.find(".submit").on("click", function () {
+    loginOver.addClass("wrong");
 });
 $("#login-over").on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function (e) {
     $(this).removeClass("wrong");

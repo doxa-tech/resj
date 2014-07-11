@@ -58,6 +58,7 @@ var form = {
     formP = $('#form-progress')
     submit = formP.find('input[type="submit"]');
     message = 'En cours... ';
+    formP.ajaxForm();
     formP.submit(function(){
       submit.attr('value', message);
     });
