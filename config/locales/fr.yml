@@ -202,7 +202,6 @@ fr:
   card:
     create:
       title: "Créer une nouvelle fiche"
-      success: "Vous êtres entré dans le Réseau avec succès !"
     edit:
       title: "Edit a card"
       success: "Fiche éditée avec succès"
@@ -378,7 +377,6 @@ fr:
     index: "Orators"
     create:
       title: "Create an orator's account"
-      success: "Compte d'orateur créé"
     edit:
       success: "Orator's account updated"
   subject:
