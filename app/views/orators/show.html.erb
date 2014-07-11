@@ -1,7 +1,4 @@
-<% content_for :javascript do %>
-	<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyBgFFWiaY1lm8ex24rqBlwLmYnVU_bwmuU&sensor=false", "data-turbolinks-track" => true %>
-	<%= javascript_include_tag "card_show_map.js", "data-turbolinks-track" => true %>
-<% end %>
+<% # javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyBgFFWiaY1lm8ex24rqBlwLmYnVU_bwmuU&sensor=false", "data-turbolinks-track" => true %>
 <% content_for :id, 'orator-show' %>
 
 <div class="top">
@@ -47,5 +44,5 @@
 
 
 <script type="text/javascript">
-	window.onload=gmap.initialize(<%= @orator.location.latitude %>, <%= @orator.location.longitude %>);
+	$(function(){gmap_card_show.initialize(<%= @orator.location.latitude %>, <%= @orator.location.longitude %>);});
 </script>
