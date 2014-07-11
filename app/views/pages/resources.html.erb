@@ -123,23 +123,3 @@
 
 
 </div>
-
-<script type="text/javascript">
-function goToByScroll(el){
-$('html,body').animate({
-  scrollTop: el.offset().top},
-  'slow');
-}
-$('#btn-articles').click(function(e){
-	e.preventDefault();
-	goToByScroll($('#articles'));  
-});
-$('#btn-docs').click(function(e){
-	e.preventDefault();
-	goToByScroll($('#docs'));  
-});
-$('#btn-orators').click(function(e){
-	e.preventDefault();
-	goToByScroll($('#orators'));  
-});
-</script>

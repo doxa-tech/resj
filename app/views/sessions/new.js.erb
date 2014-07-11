@@ -5,6 +5,3 @@ loginOver.html('<%=j render "new_ajax" %>').show();
 loginOver.find(".submit").on("click", function () {
     loginOver.addClass("wrong");
 });
-$("#login-over").on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function (e) {
-    $(this).removeClass("wrong");
-});

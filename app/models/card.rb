@@ -164,7 +164,9 @@ class Card < ActiveRecord::Base
   end
 
   def format_url
-    self.website = "http://#{self.website}" unless self.website[/^https?/]    
+    if(!self.website.blank?)
+      self.website = "http://#{self.website}" unless self.website[/^https?/]    
+    end
   end
 
 end
