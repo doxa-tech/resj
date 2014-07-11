@@ -16,7 +16,7 @@
               #{names}
             </div>
     ].html_safe %>";
-    gmap.addIcon('<%= group.first.location.latitude %>', '<%= group.first.location.longitude %>', map_params["map"], string, map_params["infowindow"]);
+    gmap_orator.addIcon('<%= group.first.location.latitude %>', '<%= group.first.location.longitude %>', map_params["map"], string, map_params["infowindow"]);
   <% end %>
 
 </script>
