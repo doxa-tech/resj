@@ -7,10 +7,10 @@ class PasswordResetsController < BaseController
 		@user = User.find_by_email(params[:email])
   	if @user
   		@user.send_password_reset
-  		redirect_to root_url, notice: "Reset instruction sent"
+  		redirect_to root_url, notice: "Un email contenant les instructions pour changer votre mot de passe vous a été envoyé."
   		track_activity @user
   	else
-  		redirect_to new_password_reset_path, error: "Email doesn't exist"
+  		redirect_to new_password_reset_path, error: "Aucun compte avec cet email n'a été trouvé."
   	end
 	end
 
@@ -21,10 +21,10 @@ class PasswordResetsController < BaseController
 	def update
 		@user = User.find_by_reset_token!(params[:id])
 		if @user.reset_sent_at < 2.hours.ago
-	    redirect_to new_password_reset_path, :error => "Password reset has expired."
+	    redirect_to new_password_reset_path, :error => "La demande pour un nouveau mot de passe a expiré."
 	  elsif @user.update_attributes(user_params)
 	  	track_activity @user
-	    redirect_to connexion_path, :success => "Password has been reset!"
+	    redirect_to connexion_path, :success => "Votre mot de passe a été changé avec succès. Vous pouvez dès à présent l'utiliser pour vous connecter!"
 	  else
 	    render 'edit'
 	  end

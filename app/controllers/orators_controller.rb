@@ -30,7 +30,7 @@ class OratorsController < BaseController
 			#sign_in(@user)
 			OratorMailer.orator_created(@user).deliver
 			Parent.create(user: @user, parent: User.find_by_firstname('g_orator'))
-			redirect_to root_path, success: t('orator.create.success')
+			redirect_to root_path, success: render_error('orator_created')
 		else
 			render 'new'
 		end

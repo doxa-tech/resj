@@ -15,7 +15,7 @@ class SessionsController < BaseController
 				format.js { render 'success' }
 			end
 		else
-			@message = "Wrong password or username"
+			@message = t('session.create.error')
 			respond_to do |format|
 				format.html { flash.now[:error] = t('session.create.error'); render 'new' }
 				format.js { render 'error' }
@@ -37,7 +37,7 @@ class SessionsController < BaseController
 	def confirmed?
 		@user = User.find_by_email(params[:session][:email].strip.downcase)
 		if @user && !@user.confirmed
-			@message = ("Your account is unconfirmed. Please see follow the link we sent you."+ view_context.link_to("Resend mail", resend_mail_user_path(@user), method: :post)).html_safe
+			@message = render_error("unconfirmed")
 			respond_to do |format|
 				format.html { redirect_to root_path, error: @message }
 				format.js { render 'error'}
