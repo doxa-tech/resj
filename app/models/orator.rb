@@ -10,8 +10,12 @@ class Orator < ActiveRecord::Base
   validates :themes, presence: true
   
   searchable do
-    text :firstname
+    text :firstname do
+      user.firstname
+    end
+    #text :firstname
     text :lastname
+    text :canton_name
     integer :canton_ids, multiple: true
     integer :themes_ids, multiple: true
   end
@@ -30,6 +34,10 @@ class Orator < ActiveRecord::Base
 
   def canton_ids
     location.canton.id  
+  end
+
+  def canton_name
+    location.canton.name
   end
 
   def themes_ids

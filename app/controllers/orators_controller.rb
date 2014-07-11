@@ -4,7 +4,7 @@ class OratorsController < BaseController
 	after_action only: [:create, :update] { |c| c. track_activity @user }
 
 	def index
-		@search = Orator.search do 
+		@search = Orator.order("lastname asc").search do 
 			fulltext params[:query]
 			paginate page: params[:page] if params[:page]
 			with(:themes_ids, params[:themes_ids]) if params[:themes_ids]
@@ -54,7 +54,7 @@ class OratorsController < BaseController
 	def authorize_token
 		session[:token] = params[:token] if params[:token]
 		if !current_permission.allow_token?(params[:controller], params[:action], session[:token])
-			redirect_to root_path, error: "Invalid token !"
+			redirect_to root_path, error: "Le token entré ne vous permet pas d'accéder à cette page."
 		end
 	end
 end
