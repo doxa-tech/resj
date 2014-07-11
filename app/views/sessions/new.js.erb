@@ -1,7 +1,2 @@
-loginOver = $('#login-over');
 $('#login-overlay').fadeIn(500);
-loginOver.html('<%=j render "new_ajax" %>').show();
-// It didn't work on login.js !?
-loginOver.find(".submit").on("click", function () {
-    loginOver.addClass("wrong");
-});
+$('#login-over').html('<%=j render "new_ajax" %>').show();
