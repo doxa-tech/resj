@@ -1,22 +1,10 @@
 <% content_for :id, 'home' %>
 
 <% content_for :javascript do %>
-	<script type="text/javascript">
-	//
-	// Pie chart stuff
-	//
-	var check = true;
-	if(home_stuff.isScrolledIntoView('.easy-chart')) {
-		home_stuff.initChart();
-	}
-	$(window).scroll(function(){
-		if(check && home_stuff.isScrolledIntoView('.easy-chart')) {
-			check = false;
-	    home_stuff.initChart();
-		}
-	});
-	</script>
 	<%= javascript_include_tag "//cdn.sublimevideo.net/js/7i5r6ntc.js", "data-turbolinks-track" => true %>
+	<script type="text/javascript">
+		$(function(){home_stuff.init();})
+	</script>
 <% end %>
 
 <% content_for :content_banner do %>

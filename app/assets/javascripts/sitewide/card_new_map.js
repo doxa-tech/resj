@@ -40,7 +40,9 @@ function load_map_stuff() {
   var address = document.getElementById('address');
   var btn = document.getElementById('geocode-addr');
   street.onchange = function(){
-    address.value = street.value + " " + $('.item').html().replace(/(.*?\s-\s)?/,"").replace(/\s-\s/g, ' ') + ", Switzerland";
+    if($('.item').length) {
+      address.value = street.value + " " + $('.item').html().replace(/(.*?\s-\s)?/,"").replace(/\s-\s/g, ' ') + ", Switzerland";
+    }
   }
   document.getElementById('card_location_id').onchange = function(){
     address.value = street.value + " " + $('.item').html().replace(/(.*?\s-\s)?/,"").replace(/\s-\s/g, ' ') + ", Switzerland";
