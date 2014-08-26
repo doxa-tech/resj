@@ -1,17 +1,18 @@
 var gmap_orator = {
+
   initialize: function() {
-    var infowindow = new google.maps.InfoWindow();
+    gmap_orator.infowindow = new google.maps.InfoWindow();
     var latlng = new google.maps.LatLng(46.57, 6.8794);
     var mapOptions = {
       center: latlng,
       zoom: 9,
       mapTypeId: google.maps.MapTypeId.PLAN
     };
-    var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-    geocoder = new google.maps.Geocoder();
+    gmap_orator.map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
     google.maps.event.addDomListener(window, 'load');
-    return {"map":map,"infowindow": infowindow};
+    draw_map();
   },
+
   addIcon: function(lat, lng, map, text, infowindow) {
     var myLatlng = new google.maps.LatLng(lat,lng);
     var marker = new google.maps.Marker({
@@ -29,4 +30,5 @@ var gmap_orator = {
         });
     });
   }
-};
+
+}

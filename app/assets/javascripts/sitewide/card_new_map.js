@@ -1,4 +1,4 @@
-function load_map_stuff() {
+function card_new_map() {
   var gmap = {
     initialize: function() {
       var latlng = new google.maps.LatLng(46.57, 6.8794);
@@ -40,12 +40,12 @@ function load_map_stuff() {
   var address = document.getElementById('address');
   var btn = document.getElementById('geocode-addr');
   street.onchange = function(){
-    if($('.item').length) {
-      address.value = street.value + " " + $('.item').html().replace(/(.*?\s-\s)?/,"").replace(/\s-\s/g, ' ') + ", Switzerland";
-    }
+    var item = $('.item');
+    if(item.length) address.value = street.value + " " + $('.item').html().replace(/(.*?\s-\s)?/,"").replace(/\s-\s/g, ' ') + ", Switzerland";
   }
   document.getElementById('card_location_id').onchange = function(){
-    address.value = street.value + " " + $('.item').html().replace(/(.*?\s-\s)?/,"").replace(/\s-\s/g, ' ') + ", Switzerland";
+    var item = $('.item');
+    if(item.length) address.value = street.value + " " + item.html().replace(/(.*?\s-\s)?/,"").replace(/\s-\s/g, ' ') + ", Switzerland";
   }
   btn.onclick = function(){
     gmap.codeAddress(address.value, map.map, map.marker);
