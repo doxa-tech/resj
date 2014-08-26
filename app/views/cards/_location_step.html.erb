@@ -46,9 +46,9 @@
 <% end %>
 
 <%= content_for :javascript do %>
-	<script type="text/javascript">
+	<script data-turbolinks-track="true" type="text/javascript">
 		$(function() {
-			load_map_stuff();
+			load_google_map.loadScript('card_new_map');
 		});
 	</script>
 <% end %>

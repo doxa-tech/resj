@@ -1,21 +1,50 @@
-window.google = window.google || {};
-google.maps = google.maps || {};
-(function() {
+var load_google_map = { 
+
+  already_loaded: false,
   
-  function getScript(src) {
-    document.write('<' + 'script src="' + src + '"' +
-                   ' type="text/javascript"><' + '/script>');
+  // Asynchronous loading of google map javascript API
+  // Params :
+  //   - second_callback (String)
+  //   method executed only after the API has fully loaded.
+  //   - second_callback_params (Array)
+  //   optional params for second_callback
+  //   - not_delayed (Boolean)
+  //   optional, if true the script doesn't wait for window.onload
+  // See https://developers.google.com/maps/documentation/javascript/tutorial
+  // See http://www.sitepoint.com/call-javascript-function-string-without-using-eval/
+  loadScript: function(second_callback, second_callback_params, not_delayed) {
+    function load() {
+      load_google_map.second_callback = second_callback; // Set 'second' callback
+      load_google_map.second_callback_params = second_callback_params; // Set 'second' callback
+      if(!load_google_map.already_loaded) {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&' +
+            'callback=load_google_map.callback';
+        document.body.appendChild(script);
+      } else {
+        load_google_map.callback();
+      }
+    }
+    if(not_delayed) {
+      load();
+    } else {
+      window.onload = function() {
+        load();
+      }
+    }
+  },
+
+  callback: function() {
+    load_google_map.already_loaded = true;
+    try {
+      var fn = eval(load_google_map.second_callback);
+      fn.apply(null, load_google_map.second_callback_params);
+    } catch (err) {
+      console.error('Possibly invalid callback parameter (method string) when calling load_google_map.loadScript (nkcr)');
+      console.error(err.message);
+    }
   }
-  
-  var modules = google.maps.modules = {};
-  google.maps.__gjsload__ = function(name, text) {
-    modules[name] = text;
-  };
-  
-  google.maps.Load = function(apiLoad) {
-    delete google.maps.Load;
-    apiLoad([0.009999999776482582,[[["https://mts0.googleapis.com/vt?lyrs=m@269000000\u0026src=api\u0026hl=fr-FR\u0026","https://mts1.googleapis.com/vt?lyrs=m@269000000\u0026src=api\u0026hl=fr-FR\u0026"],null,null,null,null,"m@269000000",["https://mts0.google.com/vt?lyrs=m@269000000\u0026src=api\u0026hl=fr-FR\u0026","https://mts1.google.com/vt?lyrs=m@269000000\u0026src=api\u0026hl=fr-FR\u0026"]],[["https://khms0.googleapis.com/kh?v=153\u0026hl=fr-FR\u0026","https://khms1.googleapis.com/kh?v=153\u0026hl=fr-FR\u0026"],null,null,null,1,"153",["https://khms0.google.com/kh?v=153\u0026hl=fr-FR\u0026","https://khms1.google.com/kh?v=153\u0026hl=fr-FR\u0026"]],[["https://mts0.googleapis.com/vt?lyrs=h@269000000\u0026src=api\u0026hl=fr-FR\u0026","https://mts1.googleapis.com/vt?lyrs=h@269000000\u0026src=api\u0026hl=fr-FR\u0026"],null,null,null,null,"h@269000000",["https://mts0.google.com/vt?lyrs=h@269000000\u0026src=api\u0026hl=fr-FR\u0026","https://mts1.google.com/vt?lyrs=h@269000000\u0026src=api\u0026hl=fr-FR\u0026"]],[["https://mts0.googleapis.com/vt?lyrs=t@132,r@269000000\u0026src=api\u0026hl=fr-FR\u0026","https://mts1.googleapis.com/vt?lyrs=t@132,r@269000000\u0026src=api\u0026hl=fr-FR\u0026"],null,null,null,null,"t@132,r@269000000",["https://mts0.google.com/vt?lyrs=t@132,r@269000000\u0026src=api\u0026hl=fr-FR\u0026","https://mts1.google.com/vt?lyrs=t@132,r@269000000\u0026src=api\u0026hl=fr-FR\u0026"]],null,null,[["https://cbks0.googleapis.com/cbk?","https://cbks1.googleapis.com/cbk?"]],[["https://khms0.googleapis.com/kh?v=84\u0026hl=fr-FR\u0026","https://khms1.googleapis.com/kh?v=84\u0026hl=fr-FR\u0026"],null,null,null,null,"84",["https://khms0.google.com/kh?v=84\u0026hl=fr-FR\u0026","https://khms1.google.com/kh?v=84\u0026hl=fr-FR\u0026"]],[["https://mts0.googleapis.com/mapslt?hl=fr-FR\u0026","https://mts1.googleapis.com/mapslt?hl=fr-FR\u0026"]],[["https://mts0.googleapis.com/mapslt/ft?hl=fr-FR\u0026","https://mts1.googleapis.com/mapslt/ft?hl=fr-FR\u0026"]],[["https://mts0.googleapis.com/vt?hl=fr-FR\u0026","https://mts1.googleapis.com/vt?hl=fr-FR\u0026"]],[["https://mts0.googleapis.com/mapslt/loom?hl=fr-FR\u0026","https://mts1.googleapis.com/mapslt/loom?hl=fr-FR\u0026"]],[["https://mts0.googleapis.com/mapslt?hl=fr-FR\u0026","https://mts1.googleapis.com/mapslt?hl=fr-FR\u0026"]],[["https://mts0.googleapis.com/mapslt/ft?hl=fr-FR\u0026","https://mts1.googleapis.com/mapslt/ft?hl=fr-FR\u0026"]],[["https://mts0.googleapis.com/mapslt/loom?hl=fr-FR\u0026","https://mts1.googleapis.com/mapslt/loom?hl=fr-FR\u0026"]]],["fr-FR","US",null,0,null,null,"https://maps.gstatic.com/mapfiles/","https://csi.gstatic.com","https://maps.googleapis.com","https://maps.googleapis.com"],["https://maps.gstatic.com/intl/fr_fr/mapfiles/api-3/17/7","3.17.7"],[987933565],1,null,null,null,null,null,"",null,null,1,"https://khms.googleapis.com/mz?v=153\u0026","AIzaSyBgFFWiaY1lm8ex24rqBlwLmYnVU_bwmuU","https://earthbuilder.googleapis.com","https://earthbuilder.googleapis.com",null,"https://mts.googleapis.com/vt/icon",[["https://mts0.googleapis.com/vt","https://mts1.googleapis.com/vt"],["https://mts0.googleapis.com/vt","https://mts1.googleapis.com/vt"],[null,[[0,"m",269000000]],[null,"fr-FR","US",null,18,null,null,null,null,null,null,[[47],[37,[["smartmaps"]]]]],0],[null,[[0,"m",269000000]],[null,"fr-FR","US",null,18,null,null,null,null,null,null,[[47],[37,[["smartmaps"]]]]],3],[null,[[0,"m",269000000]],[null,"fr-FR","US",null,18,null,null,null,null,null,null,[[50],[37,[["smartmaps"]]]]],0],[null,[[0,"m",269000000]],[null,"fr-FR","US",null,18,null,null,null,null,null,null,[[50],[37,[["smartmaps"]]]]],3],[null,[[4,"t",132],[0,"r",132000000]],[null,"fr-FR","US",null,18,null,null,null,null,null,null,[[5],[37,[["smartmaps"]]]]],0],[null,[[4,"t",132],[0,"r",132000000]],[null,"fr-FR","US",null,18,null,null,null,null,null,null,[[5],[37,[["smartmaps"]]]]],3],[null,null,[null,"fr-FR","US",null,18],0],[null,null,[null,"fr-FR","US",null,18],3],[null,null,[null,"fr-FR","US",null,18],6],[null,null,[null,"fr-FR","US",null,18],0],["https://mts0.google.com/vt","https://mts1.google.com/vt"],"/maps/vt"],2,500,["https://geo0.ggpht.com/cbk?cb_client=maps_sv.uv_api_demo","https://www.gstatic.com/landmark/tour","https://www.gstatic.com/landmark/config","/maps/preview/reveal?authuser=0","/maps/preview/log204","/gen204?tbm=map","https://static.panoramio.com.storage.googleapis.com/photos/"],["https://www.google.com/maps/api/js/widget","https://www.google.com/maps/api/js/slave_widget"]], loadScriptTime);
-  };
-  var loadScriptTime = (new Date).getTime();
-  getScript("https://maps.gstatic.com/intl/fr_fr/mapfiles/api-3/17/7/main.js");
-})();
+
+}
+

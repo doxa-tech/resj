@@ -47,3 +47,20 @@ markers.on('click', function(e) {
 map.scrollWheelZoom.disable();
 map.addControl(L.mapbox.shareControl())
 map.addLayer(markers);
+
+var MyControl = L.Control.extend({
+    options: {
+        position: 'topright'
+    },
+
+    onAdd: function (map) {
+        // create the control container with a particular class name
+        var container = L.DomUtil.create('div', 'my-custom-control');
+
+        // ... initialize other DOM elements, add listeners, etc.
+
+        return container;
+    }
+});
+
+map.addControl(new MyControl());

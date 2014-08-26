@@ -65,7 +65,13 @@
 	<%= affiliation.name %>
 <% end %>
 
-
-<script type="text/javascript">
-	$(function(){gmap_card_show.initialize(<%= @card.latitude %>, <%= @card.longitude %>);});
-</script>
+<%= content_for :javascript do %>
+	<script data-turbolinks-track="true" type="text/javascript">
+		$(function(){
+			load_google_map.loadScript(
+				'gmap_card_show.initialize', 
+				[<%= @card.latitude %>,<%= @card.longitude %>]
+			)
+		});
+	</script>
+<% end %>

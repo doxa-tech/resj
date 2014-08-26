@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   # add different types of flash messages
-  add_flash_types :error, :success, :notice
+  add_flash_types :error, :success, :notice, :infos
 
   before_action :set_locale, :restrict_access
 
@@ -59,9 +59,12 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize_resource
-    if current_user.nil? || (!current_permission.allow_resource? && !current_permission.allow_read?('admin/subjects'))
+    if current_user.nil?
       store_location
-      redirect_to connexion_path, error: render_error('resources')
+      redirect_to connexion_path, infos: render_error('resources_login')
+    elsif (!current_permission.allow_resource? && !current_permission.allow_read?('admin/subjects'))
+      store_location
+      redirect_to resources_path, infos: render_error('resources_unlinked_account')
     end
   end
 
