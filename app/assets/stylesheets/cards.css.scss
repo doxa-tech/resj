@@ -59,7 +59,7 @@
 					font-weight: 100;
 					font-size: 13px;
 					position: relative;
-					span {
+					span.show {
 						float: right;
 						background: #D83C3C;
 						padding: 0 15px 0 15px;
@@ -126,6 +126,11 @@
 					}
 				}
 			} // filter
+
+			.paginate-infos {
+				float: left;
+				font-size: 12px;
+			}
 
 			.index {
 				li.card {

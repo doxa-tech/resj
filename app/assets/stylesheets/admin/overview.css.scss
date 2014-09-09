@@ -1,0 +1,44 @@
+#admin_content.overview {
+	.map-panel {
+		position: absolute;
+		bottom: 72px;
+		right: 24px;
+		input {
+			height: 20px;
+			width: 50px;
+			border-radius: 2px;
+			&#address {
+				width: 188px;
+				border: 1px solid #76E;
+				padding: 0 4px;
+			}
+			&#geocode-addr{
+				background: #77E;
+				border: none;
+				color: #EEE;
+				cursor: pointer;
+			}
+		}
+	}
+	#map-canvas {
+		width: 100%;
+		height: 300px;
+		margin: auto;
+		box-shadow: 4px 4px 0px rgba(151,184,140,1);
+		border: 1px solid rgba(151,184,140,.5);
+		margin: 10px 0 0 0;
+	}	
+	#lat, #lng {
+		width: 200px;
+		border: none;
+	}
+	
+	.card-form {text-align: right}
+
+	input[type=submit] {
+		font-size: 11px;
+		height: 25px;
+		padding: 0 5px;
+		text-transform: capitalize;
+	}
+}

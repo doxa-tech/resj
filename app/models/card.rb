@@ -136,6 +136,26 @@ class Card < ActiveRecord::Base
     return {new_user?: new_user, password: password}
   end
 
+  # used for in-place editing in card overview
+  # params :
+  # - attribute (String), name of attribute updated
+  # - value, value of attribute updated
+  def updated_attribute_value(attribute, value)
+    case attribute
+    when 'location_id'
+      return Location.find(value).full_name
+    when 'card_type_id'
+      return CardType.find(value).name
+    when 'parent_ids'
+      return parents_list
+    end
+    return value
+  end
+
+  def parents_list
+    return self.parents.inject(''){|i, a| "#{i}, #{a.name}"}[1..-1]
+  end
+
   private
 
   def contact?
