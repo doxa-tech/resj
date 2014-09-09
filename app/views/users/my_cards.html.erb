@@ -18,7 +18,7 @@
 					</li>
 					<% else %>
 						<% confirmed_paginate.each do |card_user| %>
-							<li><%=  card_user.name %> <%= render 'application/admin/edit_btn', path: edit_admin_card_path(card_user) %></li>
+							<li><%=  card_user.name %> <%= render 'application/admin/edit_btn', path: overview_card_path(card_user) %></li>
 						<% end %>
 				<% end %>
 			</ul>

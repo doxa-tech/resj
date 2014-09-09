@@ -25,6 +25,8 @@ class CardsController < BaseController
 	end
 
 	def overview
+		@card = Card.find(params[:id])
+		render layout: 'admin'
 	end
 
 	def team
@@ -75,9 +77,18 @@ class CardsController < BaseController
 
 	def update
 		if @card.update_attributes(card_params)
-			redirect_to edit_card_path(@card), success: t('card.edit.success')
+			respond_to do |format|
+				format.html { redirect_to edit_card_path(@card), success: t('card.edit.success') }
+				format.js do 
+					@value = @card.updated_attribute_value(params[:card].keys[0], params[:card].values[0])
+					render 'overview_success'
+				end
+			end
 		else
-			render 'edit'
+			respond_to do |format|
+				format.html { render 'edit' }
+				format.js { render 'overview_error' }
+			end
 		end
 	end
 

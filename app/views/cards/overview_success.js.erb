@@ -1,0 +1,11 @@
+$('.messages').hide().html("<%=j render 'notice_messages', object: ['Enregistrement sauvegardé...'] %>").fadeIn(300).delay(2000).fadeOut('fast');
+var parent = $('#ip-cur');
+var current = parent.children('p');
+var form = parent.children('form');
+
+//current.text('<%=j raw params[:card].values[0] %>');
+current.text('<%=j raw @value %>');
+form.hide();
+current.show();
+
+parent.removeAttr('id');

@@ -69,4 +69,11 @@ module ApplicationHelper
 		return %w[FR VD VS NE GE JU BE]
 	end
 
+	def paginate_range(collection)
+		count = collection.count
+	  endnumber = collection.offset + collection.per_page > count ? count : collection.offset + collection.per_page
+		startnumber = collection.count > 0 ? collection.offset+1 : 0
+		"#{startnumber}-#{endnumber} de #{count}"  
+	end
+
 end
