@@ -88,8 +88,12 @@ gem 'newrelic_rpm', '~> 3.7.3.204'
 
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 
-# Test <3
-gem 'rspec-rails'
+group :development, :test do
+	gem 'rspec-rails'
+	gem 'cucumber-rails', require: false
+	gem 'database_cleaner'
+	gem 'selenium-webdriver'
+end
 
 # Jquery select plugin
 gem 'multi-select-rails'
