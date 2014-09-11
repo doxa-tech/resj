@@ -1,3 +1,5 @@
+# Given I'm logged with email "nkcr.je@gmail.com"
+
 Given(/^a card named "(.*?)" with owner "(.*?)"$/) do |name, email|
 	UserType.create!(name: 'group')
   @card = Card.create!(
@@ -16,8 +18,6 @@ Given(/^a card named "(.*?)" with owner "(.*?)"$/) do |name, email|
   @card.user = @current_user
   @card.save
 end
-
-# Given I'm logged with email "nkcr.je@gmail.com"
 
 When(/^I go to the overview page of the card "(.*?)"$/) do |arg1|
   visit "cards/#{Card.find_by_name(arg1).id}/overview?access=rubyforever"
