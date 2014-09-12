@@ -18,7 +18,7 @@
 					</li>
 					<% else %>
 						<% confirmed_paginate.each do |card_user| %>
-							<li><%=  card_user.name %> <%= render 'application/admin/edit_btn', path: edit_admin_card_path(card_user) %></li>
+							<li><%=  card_user.name %> <%= render 'application/admin/edit_btn', path: overview_card_path(card_user) %></li>
 						<% end %>
 				<% end %>
 			</ul>
@@ -31,7 +31,7 @@
 		<div class="block">
 			<div class="header">
 				<h2>Créer un lien</h2>
-				<h5>S'annoncer en tant que responsable d'un groupe, d'une oeuvres ou d'un réseaux</h5>
+				<h5>S'annoncer en tant que responsable d'un groupe, d'une oeuvres ou d'un réseaux. Le responsable devra valider votre lien avant que celui-ci devienne effectif.</h5>
 			</div>
 			<%= form_tag user_card_request_path do %>
 			<ul>

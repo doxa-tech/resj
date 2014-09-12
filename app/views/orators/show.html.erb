@@ -44,5 +44,5 @@
 
 
 <script type="text/javascript">
-	$(function(){gmap_card_show.initialize(<%= @orator.location.latitude %>, <%= @orator.location.longitude %>);});
+	$(function(){load_google_map.loadScript('gmap_card_show.initialize', [<%= @orator.location.latitude %>, <%= @orator.location.longitude %>])});
 </script>

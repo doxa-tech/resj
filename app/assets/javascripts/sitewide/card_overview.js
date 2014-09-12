@@ -1,12 +1,10 @@
-function card_new_map() {
+function card_overview(lat, lng) {
   var gmap = {
     initialize: function() {
-      var latlng = new google.maps.LatLng(46.57, 6.8794);
-      document.getElementById("lat").value =  latlng.lat();
-      document.getElementById("lng").value =  latlng.lng();
+      var latlng = new google.maps.LatLng(lat, lng);
       var mapOptions = {
         center: latlng,
-        zoom: 8,
+        zoom: 10,
         mapTypeId: google.maps.MapTypeId.HYBRID
       };
       var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
