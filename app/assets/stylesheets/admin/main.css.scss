@@ -10,6 +10,7 @@
 		display: block;
 		vertical-align: top;
 		overflow-x: auto;
+		position: relative; // for messages (in-place editing)
 
 		h1 {
 			font-family: "Raleway", Helvetica, sans-serif;
@@ -88,7 +89,7 @@
 					font-family: "Raleway", Helvetica, sans-serif;
 					font-size: 13px;
 					font-weight: 200;
-					line-height: 21px;
+					line-height: 25px;
 				}
 			}
 
@@ -108,6 +109,27 @@
 			} // .ul
 
 		} // .block
+
+		.in-place-editing {
+			.messages {
+				position: absolute;
+				left: 0; right: 0;
+			}
+			ul {
+				li {
+					position: relative;
+				}
+			}
+			input[type=submit] {
+				width: initial;
+			}
+			input:not([type=submit]) {
+				border-radius: 0px;
+			}
+			#ip-cur {
+				background: #F4F4F4;
+			}
+		}
 
 	} // .admin_content
 
@@ -201,6 +223,15 @@
 		padding: 6px 30px;
 		font-size: 13px;
 		background: #ff9a8c;
+		.title {
+			font-weight: 400;
+		}
+	}
+	#notice {
+		text-align: center;
+		padding: 6px 30px;
+		font-size: 13px;
+		background: #8ce8ff;
 		.title {
 			font-weight: 400;
 		}

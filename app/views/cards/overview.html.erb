@@ -1,0 +1,191 @@
+<% content_for :id, 'overview' %>
+
+<div class="row in-place-editing">
+	<div class="messages">
+	</div>
+	<div class="col split1">
+		<div class="block">
+			<div class="header">
+				<h2><%= @card.card_type.name %> : <%= @card.name %></h2>
+			</div>
+			<ul>
+
+				<li class="in-place">
+					<h5>Appelation</h5>
+					<span class="fi-pencil push-right"></span>
+					<p><%= @card.name %></p>
+					<%= form_for @card, remote: true do |f| %>
+						<%= f.text_field :name %>
+						<%= f.submit %>
+					<% end %>
+				</li>
+
+				<li class="in-place">
+					<h5>Type</h5>
+					<span class="fi-pencil push-right"></span>
+					<p><%= @card.card_type.name %></p>
+					<%= form_for @card, remote: true do |f| %>
+						<%= f.collection_select :card_type_id, CardType.all, :id, :name, {include_blank: "Category"}, {class: "selectize"} %>
+						<%= f.submit %>
+					<% end %>
+				</li>
+
+				<li class="in-place">
+					<h5>Description</h5>
+					<span class="fi-pencil push-right"></span>
+					<p><%= @card.description %></p>
+					<%= form_for @card, remote: true do |f| %>
+						<%= f.text_area :description %>
+						<%= f.submit %>
+					<% end %>
+				</li>
+
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="row in-place-editing">
+	<div class="messages">
+	</div>
+	<div class="row"><br><br></div>
+	<div class="col split1">
+		<div class="block">
+			<ul>
+
+				<li class="in-place">
+					<h5>Rue</h5>
+					<span class="fi-pencil push-right"></span>
+					<p><%= @card.street %></p>
+					<%= form_for @card, remote: true do |f| %>
+						<%= f.text_field :street %>
+						<%= f.submit %>
+					<% end %>
+				</li>
+
+				<li class="in-place">
+					<h5>Localité</h5>
+					<span class="fi-pencil push-right"></span>
+					<p><%= @card.location.full_name %></p>
+					<%= form_for @card, remote: true do |f| %>
+						<% location = f.object.location %>
+						<%= f.collection_select :location_id, (location.nil? ? [] : [location] ), :id, :full_name, {include_blank: "Select a city"}, {class: "selectize-location"} %>
+						<%= f.submit %>
+					<% end %>
+				</li>
+
+				<li  class="in-place">
+					<h5>Lieu de rencontre</h5>
+					<span class="fi-pencil push-right"></span>
+					<p><%= @card.place %></p>
+					<%= form_for @card, remote: true do |f| %>
+						<%= f.text_field :place %>
+						<%= f.submit %>
+					<% end %>
+				</li>
+
+				<li>
+					<h5>Localisation sur une carte</h5>
+					<div id="map-canvas"></div>
+					<div class="map-panel">
+						<input id="address" type="textbox" value="Switzerland">
+				    <input type="button" value="find" id="geocode-addr">
+					</div>	
+					<%= form_for @card, remote: true do |f| %>
+						<div class="card-form">
+							<%= f.text_field :latitude, id: "lat", readonly: :readonly %>
+							<%= f.text_field :longitude, id: "lng", readonly: :readonly %>
+							<%= f.submit %>
+						</div>
+					<% end %>
+				</li>
+			
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="row in-place-editing">
+	<div class="messages">
+	</div>
+	<div class="row"><br><br></div>
+	<div class="col split1">
+		<div class="block">
+			<ul>
+
+				<li class="in-place">
+					<h5>Email de contact public</h5>
+					<span class="fi-pencil push-right"></span>
+					<p><%= @card.email %></p>
+					<%= form_for @card, remote: true do |f| %>
+						<%= f.text_field :email %>
+						<%= f.submit %>
+					<% end %>
+				</li>
+
+				<li class="in-place">
+					<h5>Site web</h5>
+					<span class="fi-pencil push-right"></span>
+					<p><%= @card.website %></p>
+					<%= form_for @card, remote: true do |f| %>
+						<%= f.text_field :website %>
+						<%= f.submit %>
+					<% end %>
+				</li>
+
+				<li class="in-place">
+					<h5>Affiliation avec un réseau régional</h5>
+					<span class="fi-pencil push-right"></span>
+					<p><%= @card.parents_list %></p>
+					<%= form_for @card, remote: true do |f| %>
+						<%= f.collection_select :parent_ids, Card.regional, :id, :name, {include_blank: "Sélectionnez des réseaux"}, {class: "selectize-cards", multiple: true} %>
+						<%= f.submit %>
+					<% end %>
+				</li>				
+
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+<%= content_for :javascript do %>
+	<script data-turbolinks-track="true" type="text/javascript">
+		$(function() {
+			load_google_map.loadScript('card_overview', 
+				[<%= @card.latitude %>, <%= @card.longitude %>]);
+		});
+	</script>
+<% end %>	
+
+
+<script type="text/javascript">
+$('.in-place form').hide();
+var editing = false;
+$(document).on('click', '.in-place', function(){
+	if(!editing) {
+		var current = $(this).children('p');
+		var form = $(this).children('form');
+		var input = form.children(':nth-child(2)');
+		current.hide();
+		form.show();
+		input.focus();
+		$(this).attr('id', 'ip-cur');
+
+		$(document).bind('click',{'parent': $(this), 'current': current, 'form': form}, handler);
+
+		editing = true;
+	}
+});
+var handler = function(event) {
+	var parent = event.data.parent;
+	var current = event.data.current;
+	var form = event.data.form;
+	var target = $(event.target);
+	if (editing && !target.closest(".in-place form").length) {
+		form.hide();
+    current.show();
+    $(document).unbind('click', handler);
+    editing  = false;
+    parent.removeAttr('id', '');
+  }
+}
+</script>
