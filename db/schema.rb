@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140626153501) do
+ActiveRecord::Schema.define(version: 20140917151348) do
 
   create_table "access_tokens", force: true do |t|
     t.string   "token"
@@ -147,7 +147,6 @@ ActiveRecord::Schema.define(version: 20140626153501) do
     t.string   "password_digest"
     t.text     "description"
     t.text     "affiliation"
-    t.boolean  "validated",       default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "latitude"
@@ -156,7 +155,7 @@ ActiveRecord::Schema.define(version: 20140626153501) do
     t.string   "banner"
     t.integer  "location_id"
     t.integer  "user_id"
-    t.boolean  "visible"
+    t.integer  "status_id"
   end
 
   add_index "cards", ["card_type_id"], name: "index_cards_on_card_type_id"
@@ -310,6 +309,13 @@ ActiveRecord::Schema.define(version: 20140626153501) do
 
   add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at"
+
+  create_table "statuses", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "subject_themes", force: true do |t|
     t.integer  "subject_id"

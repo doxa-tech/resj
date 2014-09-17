@@ -199,6 +199,8 @@ fr:
         subjects: "Sujets (docs)"
         articles: "Articles"
         newsletter: "Newsletter"
+        statuses: "Statuts"
+        card_statuses: "Statuts des cartes"
   card:
     create:
       title: "Créer une nouvelle fiche"
@@ -390,6 +392,23 @@ fr:
         success: "Resource updated"
       destroy:
         success: "Resource deleted"
+  status:
+    admin:
+      index: "Statuts"
+      create:
+        title: "Créer un nouveau statut"
+        success: "Statut crée"
+      edit:
+        title: "Editer un statut"
+        success: "Statut édité"
+      destroy:
+        success: "Statut supprimé"
+  card_status:
+    admin:
+      index: "Statuts des cartes"
+      edit:
+        title: "Editer un statut"
+        success: "Statut édité"
   will_paginate:
     previous_label: "<i class='fi-arrow-left'></i> Previous"
     next_label: "Next <i class='fi-arrow-right'></i>"

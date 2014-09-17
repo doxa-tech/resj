@@ -12,7 +12,6 @@ class CardTable < BaseTable
 			element.password_digest,
 			element.description,
 			element.affiliation,
-			element.validated,
 			element.created_at,
 			element.updated_at,
 			element.latitude,
@@ -21,7 +20,7 @@ class CardTable < BaseTable
 			element.banner_url,
 			element.location.full_name,
 			element.user.full_name,
-			element.visible
+			element.status.name
 		]
 	end
 

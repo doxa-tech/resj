@@ -1,0 +1,15 @@
+<%= form_for [:admin, @card], url: admin_card_status_path(@card) do |f| %>
+
+	<%= render 'error_messages', object: f.object %>
+
+	<table>
+		<tr>
+			<td><%= f.label :status_id %></td>
+			<td><%= f.collection_select :status_id, Status.all, :id, :name %></td>
+		</tr>
+		<tr>
+			<td><%= f.submit %></td>
+		</tr>
+	</table>
+
+<% end %>
