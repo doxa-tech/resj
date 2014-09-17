@@ -76,12 +76,11 @@ Resj::Application.routes.draw do
       resources :themes, except: [:show]
       resources :articles, except: [:show]
       resources :newsletters, only: [:new, :create]
+      resources :statuses, except: [:show]
+      resources :card_statuses, only: [:index, :edit, :update]
 
       resources :cards do
         resources :verificator_comments, only: [:create, :update, :destroy]
-        member do
-          get 'verificate'
-        end
       end
 
     end

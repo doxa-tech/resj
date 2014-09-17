@@ -22,6 +22,7 @@ class Card < ActiveRecord::Base
   has_many :card_parents
   has_many :cards, through: :card_parents
   has_many :parents, through: :card_parents
+  belongs_to :status
 
   accepts_nested_attributes_for :responsables, :users, :allow_destroy => true, reject_if: proc { |a| a[:firstname].blank? && a[:lastname].blank? && a[:email].blank? }
   accepts_nested_attributes_for :affiliations, :allow_destroy => true, reject_if: proc { |a| a[:name].blank? }
@@ -86,10 +87,6 @@ class Card < ActiveRecord::Base
   # define the wizard's steps
   def steps
   	["general", "location", "team", "extra", "final"]
-  end
-
-  def verified?
-    card_verifications.count >= 3
   end
 
   # Methods called before card's associations are saved (bound to accepts_nested_attributes_for)

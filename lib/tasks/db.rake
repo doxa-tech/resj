@@ -114,4 +114,14 @@ namespace :db do
 		Ownership.create(element_id: element.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
 	end
 
+	desc "Status rights"
+	task status: :environment do
+		element = Element.create(name: 'admin/statuses')
+		element2 = Element.create(name: 'admin/card_statuses')
+		g_admin = User.find_by_firstname('g_admin')
+		type2 = OwnershipType.find_by_name('all_entries')
+		Ownership.create(element_id: element.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
+		Ownership.create(element_id: element2.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
+	end
+
 end
