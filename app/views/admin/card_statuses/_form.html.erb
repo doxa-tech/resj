@@ -1,15 +1,132 @@
 <%= form_for [:admin, @card], url: admin_card_status_path(@card) do |f| %>
-
 	<%= render 'error_messages', object: f.object %>
 
-	<table>
-		<tr>
-			<td><%= f.label :status_id %></td>
-			<td><%= f.collection_select :status_id, Status.all, :id, :name %></td>
-		</tr>
-		<tr>
-			<td><%= f.submit %></td>
-		</tr>
-	</table>
+	<div class="col split1">
+		<div class="block">
+			<div class="header">
+				<h2>Statut</h2>
+			</div>
+			<ul>
+				<li>
+					<h5>Status en cours</h5>
+					<p><%= @card.status.name %></p>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<%= f.label :status_id %>
+				</li>
+				<li>
+					<%= f.collection_select :status_id, Status.all, :id, :name %>
+				</li>
+			</ul>
+			<ul>
+				<li>Message additionnel</li>
+				<li><%= text_area_tag :message %></li>
+			</ul>
+			<ul>
+				<li><%= f.submit %></li>
+			</ul>
+		</div>
+	</div>
 
 <% end %>
+
+<div class="col split1">
+	<div class="block">
+		<div class="header">
+			<h2><%= @card.card_type.name %> : <%= @card.name %></h2>
+		</div>
+		<ul>
+
+			<li class="in-place">
+				<h5>Appelation</h5>
+				<p><%= @card.name %></p>
+			</li>
+
+			<li class="in-place">
+				<h5>Type</h5>
+				<p><%= @card.card_type.name %></p>
+			</li>
+
+			<li class="in-place">
+				<h5>Description</h5>
+				<p><%= @card.description %></p>
+			</li>
+
+		</ul>
+	</div>
+</div>
+<div class="row"><br><br></div>
+<div class="col split1">
+	<div class="block">
+		<ul>
+
+			<li class="in-place">
+				<h5>Rue</h5>
+				<p><%= @card.street %></p>
+			</li>
+
+			<li class="in-place">
+				<h5>Localité</h5>
+				<p><%= @card.location.full_name %></p>
+			</li>
+
+			<li  class="in-place">
+				<h5>Lieu de rencontre</h5>
+				<p><%= @card.place %></p>
+			</li>
+
+			<li>
+				<h5>Localisation sur une carte</h5>
+				<div id="map-canvas"></div>
+			</li>
+		
+		</ul>
+	</div>
+</div>
+<div class="row">
+<div class="row"><br><br></div>
+<div class="col split1">
+	<div class="block">
+		<ul>
+
+			<li class="in-place">
+				<h5>Email de contact public</h5>
+				<p><%= @card.email %></p>
+			</li>
+
+			<li class="in-place">
+				<h5>Site web</h5>
+				<p><%= @card.website %></p>
+			</li>
+
+			<li class="in-place">
+				<h5>Affiliation avec un réseau régional</h5>
+				<p><%= @card.parents_list %></p>
+			</li>				
+
+		</ul>
+	</div>
+</div>
+
+<style type="text/css">
+	#map-canvas {
+		width: 100%;
+		height: 300px;
+		margin: auto;
+		box-shadow: 4px 4px 0px rgba(151,184,140,1);
+		border: 1px solid rgba(151,184,140,.5);
+		margin: 10px 0 0 0;
+	}	
+</style>
+
+
+<%= content_for :javascript do %>
+	<script data-turbolinks-track="true" type="text/javascript">
+		$(function() {
+			load_google_map.loadScript('card_overview', 
+				[<%= @card.latitude %>, <%= @card.longitude %>]);
+		});
+	</script>
+<% end %>	

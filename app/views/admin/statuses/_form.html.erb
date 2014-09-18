@@ -1,19 +1,31 @@
 <%= form_for [:admin, @status] do |f| %>
-
 	<%= render 'error_messages', object: f.object %>
 
-	<table>
-		<tr>
-			<td><%= f.label :name %></td>
-			<td><%= f.text_field :name %></td>
-		</tr>
-		<tr>
-			<td><%= f.label :description %></td>
-			<td><%= f.text_field :description %></td>
-		</tr>
-		<tr>
-			<td><%= f.submit %></td>
-		</tr>
-	</table>
+	<div class="col split1">
+		<div class="block">
+			<div class="header">
+				<h2>Statut</h2>
+			</div>
+			<ul>
+				<li>
+					<%= f.label :name %>
+				</li>
+				<li>
+					<%= f.text_field :name %>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<%= f.label :description %>
+				</li>
+				<li>
+					<%= f.text_field :description %>
+				</li>
+			</ul>
+			<ul>
+				<li><%= f.submit %></li>
+			</ul>
+		</div>
+	</div>
 
 <% end %>

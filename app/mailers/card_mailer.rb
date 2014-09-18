@@ -75,6 +75,19 @@ class CardMailer < BaseMailer
   def unconfirmed_user(user, card)
   end
 
+  # your card has changed its status
+  def changed_status(card, status, old_status, infos)
+    mail  to:      card.user.email,
+          subject: "Mise à jour de votre #{card.card_type.name}",
+          body:
+    params({ STATUS: status.name,
+             OLD_STATUS: old_status.name, 
+             INFOS: infos,
+             NAME: card.user.firstname, 
+             TYPE: card.card_type.name })
+    template "card-#{status.name.parameterize}"
+  end
+
   private
 
   def s(string)

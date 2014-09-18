@@ -124,4 +124,14 @@ namespace :db do
 		Ownership.create(element_id: element2.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
 	end
 
+	desc "Status populate and set"
+	task status_init: :environment do
+		Status.destroy_all
+		a = Status.create(name: "En cours de validation")
+		Status.create(name: "En ligne")
+		Status.create(name: "Incomplet")
+		Status.create(name: "Action requise")
+		Card.all.each { |card| card.update_attribute(:status, a ) }
+	end
+
 end
