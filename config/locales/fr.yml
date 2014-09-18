@@ -408,7 +408,7 @@ fr:
       index: "Statuts des cartes"
       edit:
         title: "Editer un statut"
-        success: "Statut édité"
+        success: "Statut édité et mail envoyé"
   will_paginate:
     previous_label: "<i class='fi-arrow-left'></i> Previous"
     next_label: "Next <i class='fi-arrow-right'></i>"
