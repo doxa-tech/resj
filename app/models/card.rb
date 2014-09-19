@@ -47,8 +47,10 @@ class Card < ActiveRecord::Base
   end
 
   searchable do
-    text :name, boost: 5
-    text :description
+    text :name, boost: 10
+    text :description, boost: 5
+    text :canton_name
+    text :tag_names
     integer :card_type_id, multiple: true
     integer :canton_ids, multiple: true
     integer :tag_ids, multiple: true
@@ -70,6 +72,14 @@ class Card < ActiveRecord::Base
 
   def tag_ids
     tags.pluck(:id)
+  end
+
+  def tag_names
+    tags.pluck(:name)
+  end
+
+  def canton_name
+    location.canton.name
   end
 
   def unconfirmed_users

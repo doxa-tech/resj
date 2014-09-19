@@ -1,3 +1,5 @@
+/* Automatic page reload if user inactive */
+
 $(function() {
   var idleTimer;
   function resetTimer(){

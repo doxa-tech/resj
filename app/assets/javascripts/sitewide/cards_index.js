@@ -1,5 +1,6 @@
-$(document).ready(function() {
-  /* Filters */
+/* Filters for the search */
+
+$(function() {
   $('#filter ul').hide();
   $('#filter h3 span.show').click(function(){
     var btn = $(this);

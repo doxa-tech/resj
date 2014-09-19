@@ -40,6 +40,7 @@ class CardsController < BaseController
 
 	# Change wizard steps
 	def change
+		js false
 		if !session[:card_params].nil?
 			# fusion between session and form (POST) params
 			session[:card_params].deep_merge!(card_params)
@@ -55,6 +56,7 @@ class CardsController < BaseController
 	end
 
 	def create
+		js false
 		@card = Card.new(session[:card_params])
 		owner = @card.responsables.select{ |r| r.is_contact == "true"}.first
 		if @card.save
@@ -64,11 +66,10 @@ class CardsController < BaseController
 			# for owner
 			CardMailer.owner_created(@card, user_hash).deliver
 			session[:card_params] = nil
-			#redirect_to reseau_path, success: t('card.create.success')
 			flash[:success] = "Vous êtes entré dans le réseau avec succès !"
-			render 'success', locals: { path: "/reseau" }
+			render 'redirect', locals: { path: "/reseau" }
 		else
-			render 'error'
+			render 'form_error'
 		end
 	end
 
