@@ -1,3 +1,5 @@
+/* Ajax loader */
+
 $(function(){
 	var timer;
 	$(document).ajaxStart(function(){

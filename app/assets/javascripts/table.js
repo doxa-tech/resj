@@ -1,4 +1,6 @@
-$(document).ready(function() {
+/* Admin table */
+
+$(function() {
 	
 	var editLinkOn = $('.table_buttons').find('a[class="edit on"]'),
       deleteLinkOn = $('.table_buttons').find('a[class="delete on"]'),

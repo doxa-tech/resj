@@ -9,7 +9,7 @@ module HeaderHelper
   end
 
 	def card_group
-		[
+		@card_group ||= [
 			["Groupes",%w"
 				admin/cards
 				admin/card_types

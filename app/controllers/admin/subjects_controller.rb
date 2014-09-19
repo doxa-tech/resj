@@ -20,7 +20,7 @@ class Admin::SubjectsController < Admin::BaseController
 			flash[:success] = "Sujet créé"
 			render 'success', locals: { path: '/admin/subjects' }
 		else
-			render 'error', locals: { object: @subject }
+			render 'redirect', locals: { object: @subject }
 		end
 	end
 
@@ -32,7 +32,7 @@ class Admin::SubjectsController < Admin::BaseController
 			flash[:success] = "Sujet édité"
 			render 'success', locals: { path: '/admin/subjects' }
 		else
-			render 'error', locals: { object: @subject }
+			render 'redirect', locals: { object: @subject }
 		end
 	end
 

@@ -5,28 +5,30 @@ gem 'rails', '4.0.3'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.3.9', group: :development
-
 gem 'pg', '~> 0.17.1', group: :production
+
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
-
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '~> 2.0.0'
 
-# Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
-
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails', '~> 3.1.0'
 gem 'jquery-ui-rails', '~> 4.2.0'
+# add the jquery plugin selectize.js
+gem "selectize-rails", '~> 0.9.0'
+# CK Editor WYSIWYG
+gem 'ckeditor_rails', '~> 4.3.1'
+# Jquery select plugin
+gem 'multi-select-rails'
+# Paloma JS integration
+gem 'paloma'
+
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks', '~> 2.2.1'
-
 # Add compatibility between JS events and Turbolinks
 gem 'jquery-turbolinks', '~> 2.0.2'
 
@@ -38,8 +40,6 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-# memcached
-# gem 'dalli'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.1.0'
@@ -56,9 +56,6 @@ group :development do
 	gem "rails-erd"
 end
 
-# CK Editor WYSIWYG
-gem 'ckeditor_rails', '~> 4.3.1'
-
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
@@ -72,16 +69,14 @@ gem 'sunspot_solr', group: :development
 # config
 gem "figaro", '~> 0.7.0'
 
-# add the jquery plugin selectize.js
-gem "selectize-rails", '~> 0.9.0'
 
 # image & video uploader
 gem 'carrierwave', '~> 0.10.0'
 gem 'carrierwave-processing', '~> 1.0.0'
 gem "fog", "~> 1.20.0"
-
 # image manipulating
 gem "mini_magick", '~> 3.7.0'
+
 
 # new relic
 gem 'newrelic_rpm', '~> 3.7.3.204'
@@ -94,6 +89,3 @@ group :development, :test do
 	gem 'database_cleaner'
 	gem 'selenium-webdriver'
 end
-
-# Jquery select plugin
-gem 'multi-select-rails'
