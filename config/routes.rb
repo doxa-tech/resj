@@ -24,7 +24,7 @@ Resj::Application.routes.draw do
 
     # resources
     scope 'resources' do
-      resources :orators, except: [:destroy, :update, :edit]
+      resources :orators, except: [:destroy, :edit]
       resources :articles, only: [:index, :show]
       resources :documents, controller: 'subjects', only: [:index, :show] do
       end
@@ -43,15 +43,17 @@ Resj::Application.routes.draw do
     resources :sessions, only: [:create]
     resources :password_resets, except: [:index, :show, :destroy]
     
-    resources :cards, except: [:destroy] do
-      collection do
-        post 'change'
-      end
+    resources :cards, only: [:index, :show, :update] do
       member do
         get 'overview'
         get 'team'
         post 'user_request'
         post 'user_confirmation'
+      end
+    end
+    resources :card_wizards, only: [:new, :create] do
+      collection do
+        post 'change'
       end
     end
 

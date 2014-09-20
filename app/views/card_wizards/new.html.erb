@@ -1,0 +1,11 @@
+<% content_for :id, 'cards-form' %>
+
+<div class="top">
+	<h1><%=t 'card.create.title' %></h1>
+</div>
+
+<p class="expired"></p>
+
+<div class="wizard">
+	<%= render "#{@card.current_step}_step" %>
+</div>
