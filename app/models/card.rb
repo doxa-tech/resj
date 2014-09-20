@@ -51,6 +51,7 @@ class Card < ActiveRecord::Base
     text :description, boost: 5
     text :canton_name
     text :tag_names
+    text :status_name
     integer :card_type_id, multiple: true
     integer :canton_ids, multiple: true
     integer :tag_ids, multiple: true
@@ -80,6 +81,10 @@ class Card < ActiveRecord::Base
 
   def canton_name
     location.canton.name
+  end
+
+  def status_name
+    status.name
   end
 
   def unconfirmed_users

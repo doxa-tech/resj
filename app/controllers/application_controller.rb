@@ -60,6 +60,13 @@ class ApplicationController < ActionController::Base
     render_to_string("application/errors/#{error}", layout: false).html_safe
   end
 
+  def search(model, fields)
+    @search = model.search do 
+      fulltext params[:query], fields: fields
+      paginate page: params[:page] if params[:page]
+    end
+  end
+
   private
 
   def set_locale

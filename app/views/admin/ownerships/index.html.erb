@@ -1,5 +1,8 @@
 <h1><%= t('ownership.admin.index') %></h1>
 
+<p>Rechercher un element ou un utilisateur</p>
+<%= render 'application/admin/search_field' %>
+
 <div id="admin_table">
 	<%= present @table %>
 </div>
