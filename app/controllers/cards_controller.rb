@@ -40,7 +40,6 @@ class CardsController < BaseController
 
 	# Change wizard steps
 	def change
-		js false
 		if !session[:card_params].nil?
 			# fusion between session and form (POST) params
 			session[:card_params].deep_merge!(card_params)
@@ -56,8 +55,8 @@ class CardsController < BaseController
 	end
 
 	def create
-		js false
 		@card = Card.new(session[:card_params])
+		@card.status = Status.find_by_name("En cours de validation")
 		owner = @card.responsables.select{ |r| r.is_contact == "true"}.first
 		if @card.save
 			user_hash = @card.create_owner(owner)
