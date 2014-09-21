@@ -6,20 +6,26 @@ class User < ActiveRecord::Base
   scope :users, -> { joins(:user_type).where(user_types: {name: "user"}).readonly(false) }
 
   belongs_to :user_type
-  has_many :card_verifications, dependent: :destroy
-  has_many :cards, through: :card_verifications
-  has_many :ownerships
+  
+  # User belongs to other users -> .users
+  # User has many users -> .inverse_users
   has_many :parents, dependent: :destroy
   has_many :users, through: :parents
+  has_many :inverse_parents, :class_name => "Parent", :foreign_key => "parent_id"
+  has_many :inverse_users, :through => :inverse_parents, :source => :user
+
+  has_many :ownerships
   has_many :verificator_comments
   has_many :activities
+  has_many :ownerships
+
+  # User belongs to cards as responsables
   has_many :card_users, dependent: :destroy
   has_many :cards, through: :card_users
   has_one :orator, dependent: :destroy
+
+  # User owned a card
   has_many :cards
-  has_many :articles
-  has_many :connections
-  has_many :subjects
 
   mount_uploader :avatar, AvatarUploader
 

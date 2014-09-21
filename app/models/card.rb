@@ -6,23 +6,33 @@ class Card < ActiveRecord::Base
   scope :with_card_type, -> { includes(:card_type) }
 
   belongs_to :card_type
-  belongs_to :user
-  has_many :card_responsables, dependent: :destroy
-  has_many :responsables, through: :card_responsables
-  has_many :card_verifications, dependent: :destroy
-  has_many :users, through: :card_verifications
+  belongs_to :user #owner of the card
+  belongs_to :location
+  belongs_to :status
+
   has_many :card_affiliations, dependent: :destroy
   has_many :affiliations, through: :card_affiliations
+
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
+
   has_many :verificator_comments
+
+  # Card's responsables (Responsable)
+  has_many :card_responsables, dependent: :destroy
+  has_many :responsables, through: :card_responsables
+
+  # Card's signed up responsables (User)
   has_many :card_users
   has_many :users, through: :card_users
-  belongs_to :location
+
+  # Card belongs to local networks -> .parents
+  # Local network has many cards -> .inverse_parents 
   has_many :card_parents
-  has_many :cards, through: :card_parents
   has_many :parents, through: :card_parents
-  belongs_to :status
+  has_many :inverse_card_parents, :class_name => "CardParent", :foreign_key => "parent_id"
+  has_many :inverse_parents, :through => :inverse_card_parents, :source => :card
+
 
   accepts_nested_attributes_for :responsables, :users, :allow_destroy => true, reject_if: proc { |a| a[:firstname].blank? && a[:lastname].blank? && a[:email].blank? }
   accepts_nested_attributes_for :affiliations, :allow_destroy => true, reject_if: proc { |a| a[:name].blank? }
