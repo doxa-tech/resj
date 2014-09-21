@@ -21,17 +21,35 @@
 
 	.row {
 		width: 100%;
+		h3 {
+			font-size: 15px;
+			padding: 0 0 10px 0;
+		}
 		.left {
 			float: left;
 			width: 50%;
 			vertical-align: top;
 			padding: 20px;
+			.edit {
+				background: #D83C3C;
+				padding: 5px 10px;
+				color: #fff;
+				font-size: 12px;
+				&:hover {
+					background: #e54040;
+				}
+			}
 			.description {
 				@include info;
 			}
 			.location {
 				@include info;
-				.txt {overflow: hidden}
+				.txt {
+					overflow: hidden;
+					.place {
+						padding: 5px 0 0 0;
+					}
+				}
 			}
 			.contact {
 				@include info;
@@ -53,16 +71,28 @@
 	}
 
 	.team {
-		padding: 10px 0 20px 14px;
-		h3 {
-			font-size: 15px;
-			padding: 0 0 10px 0;
-		}
 		.resp {
 			padding: 0 0 7px 0;
 			.lastname {
 				padding: 0 7px;
 				color: #777;
+			}
+		}
+	}
+	.networks, .members {
+		ul {
+			li {
+				display: inline-block;
+				padding: 0 0 13px 0;
+				a {
+					background: #D83C3C;
+					padding: 5px 10px;
+					color: #fff;
+					font-size: 12px;
+					&:hover {
+						background: #e54040;
+					}
+				}
 			}
 		}
 	}

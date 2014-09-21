@@ -207,22 +207,8 @@
 			</div>
 		</div>
 
-		<% if (@card.validated_changed? || !@card.validated) && current_permission.allow_params?(params[:controller], "validated") %>
-			<div class="col split2">
-				<div class="block">
-					<div class="header">
-						<h2>Admin</h2>
-					</div>
-					<ul>
-						<li>
-							<%= f.label :validated %>
-							<%= f.check_box :validated, {}, true %>
-						</li>
-					</ul>
-				</div>
-			</div>
-		<% end %>
 		<div id="clear"></div>
+		
 		<div class="button">
 			<%= f.submit %>
 		</div>

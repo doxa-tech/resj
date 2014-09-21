@@ -7,4 +7,14 @@ $(function() {
 		$("#login-over").hide();
 		$('#login-overlay').hide();
 	});
+	var a = $('nav .profil ul');
+	a.hide();
+	$('nav .profil').hover(
+		function(){
+			a.show();
+		}, 
+		function(){
+			a.hide();
+		}
+	);
 });

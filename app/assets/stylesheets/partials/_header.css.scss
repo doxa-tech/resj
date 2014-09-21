@@ -17,11 +17,6 @@ header {
 		}
 	}
 
-	.space {
-		display: inline-block;
-		height: 0; width: 50px;
-	}
-
 	nav {
 		display: inline-block;
 		vertical-align: middle;
@@ -30,6 +25,9 @@ header {
 				li {
 					display: inline-block;
 					padding: 10px 0;
+					&.first {
+						padding: 0 0 0 50px;
+					}
 					a {
 						padding: 10px 8px;
 						font: 500 23px 'jura', tahoma;
@@ -43,6 +41,30 @@ header {
 						}
 					}
 					&.profil {
+						position: relative;
+						padding: 0;
+						height: 30px;
+						span {
+							display: inline-block;
+							padding: 0 8px 0 0;
+						}
+						ul {
+							padding: 10px 0 0 0;
+							li {
+								position: absolute;
+								right: 0;
+								padding: 0;
+								a {
+									font: 300 12px/17px 'Open Sans', tahoma;
+									padding: 0;
+									&:hover {
+										background: none;
+										color: initial;
+										font-weight: bold;
+									}
+								}
+							}
+						}
 						a {
 							font-size: 15px;
 							text-shadow: none;
