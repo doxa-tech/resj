@@ -1,6 +1,8 @@
-/* Filters for the search */
+var CardsController = Paloma.controller('Cards');
 
-$(function() {
+CardsController.prototype.index = function() {
+
+  /* Filters for the search */
   $('#filter ul').hide();
   $('#filter h3 span.show').click(function(){
     var btn = $(this);
@@ -10,5 +12,6 @@ $(function() {
     } else { 
       btn.text("voir"); 
     }
-  });
-});
+  }); 
+
+}
