@@ -1,5 +1,10 @@
 <% if current_user.nil? %>
 	<li class="profil"><%= link_to "Login", connexion_path, remote: true %></li>
 <% else %>
-	<li class="profil"><%= link_to current_user.full_name, profile_path unless current_user.nil? %></li>
+	<li class="profil">
+		<%= link_to "#{current_user.full_name} <span class='fi-torso'></span>".html_safe, profile_path %>
+		<ul>
+			<li><%= link_to "Déconnexion", signout_path, method: :delete %></li>
+		</ul>
+	</li>
 <% end %>

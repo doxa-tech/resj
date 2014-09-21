@@ -9,14 +9,18 @@
 		<%= img = image_tag(@card.avatar_url) if img.present? %>
 		<%= img = image_tag(@card.banner_url) if img.present? %>
 
-		<div class="description"><%= @card.description %></div>
+		<% if current_permission.allow_modify?('cards','edit',@card) %>
+			<%= link_to "Editer <span class='fi-pencil'></span>".html_safe, overview_card_path(@card), class: 'edit' %>
+		<% end %>
+
+		<div class="description"><%= simple_format @card.description %></div>
 
 		<div class="location">
 			<i class="fi-marker"></i>
 			<div class="txt">
 				<p><%= @card.street %></p>
 				<p><%= @card.location.npa %> <%= @card.location.official_name %></p>
-				<p><%= @card.place %></p>
+				<p class="place"><%= @card.place %></p>
 			</div>
 		</div>
 		<div class="contact">
@@ -35,30 +39,63 @@
 
 <div id="clear"></div>
 
-<div class="team">
-	<h3>Team</h3>
-	<% @card.confirmed_users.each do |user| %>
-		<div class="resp">
-			<p>
-				<%=	user.firstname %>
-				<%= content_tag :span, user.lastname, class: 'lastname' %>
-				<%= mask_email user.email %>
-			</p>
+<div class="row">
+	<div class="left">
+		<div class="team">
+			<h3>Team</h3>
+			<% @card.confirmed_users.each do |user| %>
+				<div class="resp">
+					<p>
+						<%=	user.firstname %>
+						<%= content_tag :span, user.lastname, class: 'lastname' %>
+						<%= mask_email user.email %>
+					</p>
+				</div>
+			<% end %>
+			<% @card.responsables.each do |responsable| %>
+				<div class="resp">
+					<p>
+						<%= responsable.firstname %>
+						<%= content_tag :span, responsable.lastname, class: 'lastname' %>
+						<%= mask_email responsable.email %>
+					</p>
+				</div>
+			<% end %>
 		</div>
-	<% end %>
-	<% @card.responsables.each do |responsable| %>
-		<div class="resp">
-			<p>
-				<%= responsable.firstname %>
-				<%= content_tag :span, responsable.lastname, class: 'lastname' %>
-				<%= mask_email responsable.email %>
-			</p>
+	</div>
+	<% if(parents = @card.parents).any? %>
+		<div class="right">
+			<div class="networks">
+				<h3><%= (parents.size > 1)? "Réseaux" : "Réseau" %></h3>
+				<ul>
+					<% parents.each do |network| %>
+						<li><%= link_to "#{network.name} <span class='fi-link'></span>".html_safe, card_path(network) %></li>
+					<% end %>
+				</ul>
+			</div>
+			<% @card.affiliations.each do |affiliation| %>
+				<%= affiliation.name %>
+			<% end %>
 		</div>
 	<% end %>
 </div>
 
-<% @card.affiliations.each do |affiliation| %>
-	<%= affiliation.name %>
+<div id="clear"></div>
+
+<% if @card.card_type.name == 'Réseau régional' %>
+	<div class="row">
+		<div class="left">
+			<div class="members">
+				<h3><%= (@card.cards.size>1)? "Membres" : "Membre" %> du réseau</h3>
+				<ul>
+					<% @card.cards.each do |member| %>
+						<li><%= link_to "#{member.name} <span class='fi-link'></span>".html_safe, card_path(member) %></li>
+					<% end %>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div id="clear"></div>
 <% end %>
 
 <%= content_for :javascript do %>
