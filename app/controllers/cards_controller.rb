@@ -5,6 +5,7 @@ class CardsController < BaseController
 	after_action only: [:update] { |c| c. track_activity @card }
 
 	def index
+		# show all Card at once on the map if no searches (instead of pagination)
 		if params[:query].blank? && params[:card_type_ids].blank? && params[:canton_ids].blank? && params[:tag_ids].blank?
 			@cards = Card.with_card_type.order(:name).paginate(page: params[:page])
 			@cards_map = Card.with_card_type
@@ -27,6 +28,8 @@ class CardsController < BaseController
 	def overview
 		@card = Card.find(params[:id])
 		render layout: 'admin'
+		js lat: @card.latitude
+		js lng: @card.longitude
 	end
 
 	def team
