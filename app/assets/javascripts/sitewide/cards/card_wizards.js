@@ -1,3 +1,11 @@
+var CardWizardsController = Paloma.controller('CardWizards');
+
+CardWizardsController.prototype.new = function() {
+
+  load_google_map.loadScript('card_new_map');
+
+}
+
 function card_new_map() {
   var gmap = {
     initialize: function() {
@@ -12,7 +20,8 @@ function card_new_map() {
       var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
       geocoder = new google.maps.Geocoder();
       marker = new google.maps.Marker({position: latlng,map: map});
-      google.maps.event.addListener(map, 'click', function(event) {
+      console.log('click');
+      google.maps.event.addListener(map, 'click', function(event) { console.log('click');
         marker.setPosition(event.latLng);
         var coord = event.latLng;
         document.getElementById("lat").value =  coord.lat();

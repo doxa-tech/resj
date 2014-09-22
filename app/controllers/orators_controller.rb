@@ -10,7 +10,8 @@ class OratorsController < BaseController
 			with(:themes_ids, params[:themes_ids]) if params[:themes_ids]
 			with(:canton_ids, params[:canton_ids]) if params[:canton_ids]
 		end
-  	@orators = @search.results
+  	@orators = @search.results 
+  	#js orators: Orator.to_map(@orators)
 	end
 
 	def show
