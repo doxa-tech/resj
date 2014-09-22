@@ -14,4 +14,10 @@ CardsController.prototype.index = function() {
     }
   }); 
 
+  // ajax for will_paginate
+  $("#container.cards .pagination a").on("click", function() {
+    $.getScript(this.href);
+    return false;
+  });
+
 }
