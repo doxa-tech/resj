@@ -36,9 +36,6 @@ var orators_index = {
     orators_index.map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
     google.maps.event.addDomListener(window, 'load');
 
-
-		console.log('calling jquery');
-
     $.ajax({
                  url: "orators", // Route to the Script Controller method
                 type: "GET",
