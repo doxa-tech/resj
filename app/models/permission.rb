@@ -66,7 +66,7 @@ class Permission
   end
 
   def allow_resource?
-  	return true if @user.confirmed_cards.select{ |c| c.visible == true}.any? || !@user.orator.nil?
+  	return true if @user.confirmed_cards.select{ |c| c.status.name == "Visible"}.any? || !@user.orator.nil?
   end
 
   def allow_params?(controller, name)

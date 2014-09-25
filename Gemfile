@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.3'
+gem 'rails', '4.1.5'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.3.9', group: :development
@@ -25,6 +25,8 @@ gem 'ckeditor_rails', '~> 4.3.1'
 gem 'multi-select-rails'
 # Paloma JS integration
 gem 'paloma'
+# Coffee script
+gem 'coffee-rails'
 
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
