@@ -1,7 +1,7 @@
 <div id="admin_header">
 	<div class="side-user">
 		<div class="avatar">
-			<a href="<%= profile_path %>"><%= image_tag image_url current_user.gravatar_url %></a>
+			<a href="<%= profile_path %>"><%= image_tag current_user.image %></a>
 		</div>
 		<div class="infos">
 			<%= link_to "#{current_user.firstname} #{current_user.lastname}", profile_path %>

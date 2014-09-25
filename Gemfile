@@ -67,7 +67,6 @@ gem 'will_paginate', '~> 3.0.5'
 
 # search
 gem 'sunspot_rails', '~> 2.1.0'
-gem 'sunspot_solr', group: :development
 
 # config
 gem "figaro", '~> 0.7.0'

@@ -52,4 +52,11 @@ namespace :deploy do
     end
   end
   before "deploy", "deploy:check_revision"
+
+  desc "Update SOLR config"
+  task :update_solr, roles: :app do
+    put File.read("config/solr/solrconfig.xml"), "/usr/share/solr/example/solr/collection1/conf/solrconfig.xml"
+    put File.read("config/solr/schema.xml"), "/usr/share/solr/example/solr/collection1/conf/schema.xml"
+  end
+
 end

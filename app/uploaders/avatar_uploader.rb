@@ -11,12 +11,12 @@ class AvatarUploader < CarrierWave::Uploader::Base
     storage :file
   end
 
-  process :resize_to_limit => [512, 512]
+  process :resize_to_limit => [1920, 1920]
   process :quality => 90
   process :right_orientation
 
   version :thumb do
-    process resize_to_limit: [128, 128]
+    process resize_to_limit: [180, 180]
     process :quality => 90
     process :right_orientation
   end
