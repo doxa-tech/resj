@@ -4,6 +4,7 @@ class Card < ActiveRecord::Base
 
   scope :regional, -> { joins(:card_type).where(card_types: {name: "Réseau régional"}) }
   scope :with_card_type, -> { includes(:card_type) }
+  scope :active, -> { joins(:status).where(statuses: { name: "En ligne"}) }
 
   belongs_to :card_type
   belongs_to :user

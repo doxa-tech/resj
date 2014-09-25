@@ -66,23 +66,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def gravatar?
-    if seflf.gravatar_email && Rails.env.production?
-      gravatar_check = "http://gravatar.com/avatar/#{Digest::MD5.hexdigest(selft.gravatar_email.downcase)}.png?d=404"
-      uri = URI.parse(gravatar_check)
-      http = Net::HTTP.new(uri.host, uri.port)
-      request = Net::HTTP::Get.new(uri.request_uri)
-      response = http.request(request)
-      if (response.code.to_i == 404)
-        return false
-      else
-        return true
-      end 
-    else
-      return false 
-    end
-  end
-
   def unconfirmed_cards
     card_users.where(user_validated: nil)
   end
@@ -98,6 +81,14 @@ class User < ActiveRecord::Base
     else
       errors.add(:current_password, "does not match") unless authenticated
       false
+    end
+  end
+
+  def image
+    if gravatar
+      gravatar_url
+    else
+      avatar_url
     end
   end
 
