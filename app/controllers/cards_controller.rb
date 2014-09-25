@@ -23,6 +23,8 @@ class CardsController < BaseController
 
 	def show
 		@card = Card.find(params[:id])
+		js lat: @card.location.latitude
+		js lng: @card.location.longitude
 	end
 
 	def overview

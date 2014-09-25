@@ -11,11 +11,16 @@ class OratorsController < BaseController
 			with(:canton_ids, params[:canton_ids]) if params[:canton_ids]
 		end
   	@orators = @search.results 
-  	#js orators: Orator.to_map(@orators)
+    # used to load
+    if request.xhr?
+      render 'index.js.erb'
+    end
 	end
 
 	def show
 		@orator = Orator.find(params[:id])
+		js lat: @orator.location.latitude
+		js lng: @orator.location.longitude
 	end
 
 	def new

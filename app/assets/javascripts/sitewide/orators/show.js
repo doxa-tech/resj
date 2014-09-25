@@ -1,4 +1,14 @@
-var gmap_card_show = {
+var OratorsController = Paloma.controller('Orators');
+
+OratorsController.prototype.show = function() {
+
+  // call the map
+  load_google_map.loadScript('orator_show.initialize', 
+        [this.params['lat'], this.params['lng']], true);
+
+}
+
+var orator_show = {
   initialize: function(lat, lng) {
     var latlng = new google.maps.LatLng(lat, lng);
     var mapOptions = {
