@@ -1,0 +1,45 @@
+var load_mapbox = {
+
+  markers: null,
+  map: null,
+
+  loadMap: function(second_callback, second_callback_params, not_delayed) {
+    if(load_mapbox.map != null)
+      load_mapbox.map.remove();
+    load_mapbox.second_callback = second_callback;
+    load_mapbox.second_callback_params = second_callback_params;
+    /*
+    *   Set view of Leaflet map based on screen size
+    */
+    if ($(window).width() < 626) {
+            var map = L.mapbox.map('map', 'nkcr.i04348d7', {fullscreenControl: true}).setView([46.6221, 7.1960], 8);
+    } else {
+            var map = L.mapbox.map('map', 'nkcr.i04348d7', {fullscreenControl: true}).setView([46.6221, 7.1960], 9);
+    }
+    /*
+    *   create markercluster
+    */
+    load_mapbox.markers = new L.MarkerClusterGroup({
+      maxClusterRadius: 30,
+    });
+    /*
+    *   Custom map
+    */
+    load_mapbox.markers.on('mouseover', function(e) {
+        e.layer.openPopup();
+    });
+    load_mapbox.markers.on('click', function(e) {
+        e.layer.openPopup();
+    });
+    map.scrollWheelZoom.disable();
+    map.addControl(L.mapbox.shareControl())
+    map.on('ready', load_mapbox.callback);
+    load_mapbox.map = map;    
+},
+
+  callback: function() {
+    var fn = eval(load_mapbox.second_callback);
+    fn.apply(null, load_mapbox.second_callback_params);
+  }
+
+}
