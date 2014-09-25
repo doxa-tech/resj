@@ -1,4 +1,4 @@
-Resj::Application.routes.draw do
+Rails.application.routes.draw do
 
   scope "(:locale)", locale: /en|fr/ do
 
@@ -89,3 +89,4 @@ Resj::Application.routes.draw do
     
   end
 end
+

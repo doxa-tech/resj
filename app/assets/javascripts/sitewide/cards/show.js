@@ -6,7 +6,7 @@ CardsController.prototype.show = function() {
   load_google_map.loadScript('card_show.initialize', 
         [this.params['lat'], this.params['lng']], true);
 
-}
+};
 
 var card_show = {
   initialize: function(lat, lng) {
