@@ -2,13 +2,6 @@ var CardsController = Paloma.controller('Cards');
 
 CardsController.prototype.index = function() {
 
-  /*****************************
-  * TODO : this section is loaded each time a pagination occurs
-  *        makes click events trigered many times at once (nkcr)
-  */
-  console.error('TODO : see comment');
-  /* ************************* */
-
   // Filters for the search
   $('#filter ul').hide();
   $('#filter h3 span.show').click(function(){

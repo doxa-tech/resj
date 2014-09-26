@@ -37,13 +37,8 @@ var load_google_map = {
 
   callback: function() {
     load_google_map.already_loaded = true;
-    // try {
-      var fn = eval(load_google_map.second_callback);
-      fn.apply(null, load_google_map.second_callback_params);
-    // } catch (err) {
-      // console.error('Possibly invalid callback parameter (method string) when calling load_google_map.loadScript (nkcr)');
-      // console.error(err.message);
-    // }
+    var fn = eval(load_google_map.second_callback);
+    fn.apply(null, load_google_map.second_callback_params);
   }
 
 }
