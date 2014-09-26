@@ -1,14 +1,14 @@
 module FormsHelper
 
 	def link_to_add_fields(name)
-    link_to_function(name, "add_fields(this)")
+   	"<button type='button' id='add_field'>#{name}</button>".html_safe
 	end
 
 	def link_to_remove_fields(name)
-		link_to_function(name, "remove_fields(this)")
+		"<button type='button' id='remove_field'>#{name}</button>".html_safe
 	end
 
 	def link_to_add_contact(name)
-		link_to_function(name, "add_contact(this)", class: "add_contact")
+		"<button type='button' class='add_contact'>#{name}</button>".html_safe
 	end
 end

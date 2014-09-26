@@ -1,3 +1,5 @@
+/* Select emails/groups for the newsletter */
+
 $(function() {
 	$('#email-select').multiSelect({
 		selectableOptgroup: true,

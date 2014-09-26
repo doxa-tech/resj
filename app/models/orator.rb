@@ -46,4 +46,30 @@ class Orator < ActiveRecord::Base
     themes.pluck(:name)
   end
 
+  def self.to_map(orators)
+    result = []
+    grouped = orators.group_by{ |a| [a.location]} 
+    grouped.values.each do |group|
+      names = ""
+      group.each do |orator|
+        names += %Q[
+                <p>
+                  #{orator.user.firstname} #{orator.user.lastname} 
+                  <span class="link_orator" data-id="#orator#{orator.id}">
+                    voir
+                  </span>
+                </p>]
+      end
+      txt = %Q[
+                <div class="infowindow">
+                  <p class="location">#{group.first.location.full_name}</p>
+                  <p class="info">#{group.size} orateur#{'s' if group.size > 1} dans cette région</p>
+                  #{names}
+                </div>
+              ].html_safe
+      result.push({lat: group.first.location.latitude, lng: group.first.location.longitude, txt: txt})
+    end
+    result
+  end
+
 end

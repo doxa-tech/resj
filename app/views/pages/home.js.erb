@@ -1,0 +1,28 @@
+// Reset the map
+load_mapbox.markers.clearLayers();
+load_mapbox.map.removeLayer(load_mapbox.markers);
+
+// Add the cards
+<% if @cards.any? %>
+  <% @cards.each do |card| %>
+  <% title = j map_point_title(card).html_safe %>
+  	var marker = L.marker(new L.LatLng(<%= card.latitude %>, <%= card.longitude %>), options={
+      icon: L.icon({
+        iconUrl: "<%= map_point_icon(card) %>",
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [0, -30],
+        shadowUrl: '<%= asset_path "map/images/marker-shadow.png" %>',
+        shadowSize: [41, 41],
+        shadowAnchor: [12, 41]
+      }),
+  		title: "<%= title %>",
+      riseOnHover: true,
+      id: <%= card.id %>,
+  	});
+  	load_mapbox.markers.addLayer(marker);
+  	marker.bindPopup("<%= title %>");
+  <% end %>
+  load_mapbox.map.addLayer(load_mapbox.markers);
+
+<% end %>

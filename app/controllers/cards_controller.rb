@@ -2,15 +2,16 @@ class CardsController < BaseController
 	before_action :current_resource, only: [:edit, :update, :overview, :team, :user_confirmation, :user_request]
 	before_action :authorize_modify, only: [:edit, :update, :overview, :team]
 	before_action :authorize_action, only: [:user_confirmation, :user_request]
-	after_action only: [:create, :update] { |c| c. track_activity @card }
+	after_action only: [:update] { |c| c. track_activity @card }
 
 	def index
+		# show all Card at once on the map if no searches (instead of pagination)
 		if params[:query].blank? && params[:card_type_ids].blank? && params[:canton_ids].blank? && params[:tag_ids].blank?
 			@cards = Card.active.with_card_type.order(:name).paginate(page: params[:page])
 			@cards_map = Card.active.with_card_type
 		else
 			@search = Card.active.search(include: :card_type) do 
-				fulltext params[:query]
+				fulltext params[:query], fields: [:name, :description, :canton_name, :tag_names]
 				with(:card_type_id, params[:card_type_ids]) if params[:card_type_ids]
 				with(:canton_ids, params[:canton_ids]) if params[:canton_ids]
 				with(:tag_ids, params[:tag_ids]) if params[:tag_ids]
@@ -18,61 +19,26 @@ class CardsController < BaseController
 			end
 	  	@cards = @cards_map = @search.results
 	  end
+	 	# used to load
+    if request.xhr?
+      render 'index.js.erb'
+    end
 	end
 
 	def show
 		@card = Card.find(params[:id])
+		js lat: @card.location.latitude
+		js lng: @card.location.longitude
 	end
 
 	def overview
 		@card = Card.find(params[:id])
 		render layout: 'admin'
+		js lat: @card.latitude
+		js lng: @card.longitude
 	end
 
 	def team
-	end
-
-	def new
-		session[:card_params] ||= {}
-		@card = Card.new(session[:card_params])
-		@card.current_step ||= @card.steps.first 
-	end
-
-	# Change wizard steps
-	def change
-		if !session[:card_params].nil?
-			# fusion between session and form (POST) params
-			session[:card_params].deep_merge!(card_params)
-			@card = Card.new(session[:card_params])
-			if @card.steps.include?(step = params[:step].keys.first) && (@card.current_step == "final" || @card.valid?)
-				# update the step
-				@card.current_step = step
-				session[:card_params]["current_step"] = @card.current_step
-			end
-		else
-			render js: "location.reload();"
-		end
-	end
-
-	def create
-		@card = Card.new(session[:card_params])
-		owner = @card.responsables.select{ |r| r.is_contact == "true"}.first
-		if @card.save
-			user_hash = @card.create_owner(owner)
-			# for validator
-			CardMailer.admin_created(validator,@card).deliver
-			# for owner
-			CardMailer.owner_created(@card, user_hash).deliver
-			session[:card_params] = nil
-			#redirect_to reseau_path, success: t('card.create.success')
-			flash[:success] = "Vous êtes entré dans le réseau avec succès !"
-			render 'success', locals: { path: "/reseau" }
-		else
-			render 'error'
-		end
-	end
-
-	def edit
 	end
 
 	def update
@@ -138,10 +104,6 @@ class CardsController < BaseController
 
   def current_resource
   	@card = Card.find(params[:id])
-  end
-
-  def validator
-  	@validator ||= User.joins(:ownerships, ownerships: [:actions]).where(actions: {name: "validated"}).first
   end
 
   # notify user that a card wants to be affiliated with user

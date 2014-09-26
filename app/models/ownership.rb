@@ -20,6 +20,19 @@ class Ownership < ActiveRecord::Base
     self.actions = new_actions
   end
 
+  searchable do
+    text :element_name
+    text :user_name    
+  end
+
+  def element_name
+    element.name
+  end
+
+  def user_name
+    user.full_name
+  end
+
   def full_name
     "#{id} - #{element.name} - R:#{right_read} - C:#{right_create}- U:#{right_update} - D:#{right_delete} - #{id_element} - #{actions.to_a}"
   end

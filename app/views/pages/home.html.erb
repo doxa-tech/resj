@@ -2,9 +2,6 @@
 
 <% content_for :javascript do %>
 	<%= javascript_include_tag "//cdn.sublimevideo.net/js/7i5r6ntc.js", "data-turbolinks-track" => true %>
-	<script type="text/javascript">
-		$(function(){home_stuff.init();})
-	</script>
 <% end %>
 
 <% content_for :content_banner do %>
@@ -12,7 +9,7 @@
 		<div class="marketing">
 			<h2>Inscrivez dès maintenant votre groupe, oeuvre ou réseau !</h2>
 			<div class="btn">
-				<%= link_to "Inscrire", new_card_path %></p>
+				<%= link_to "Inscrire", new_card_wizard_path %></p>
 			</div>
 		</div>
 		<div class="video">
@@ -98,12 +95,6 @@
 			<div class="clear"></div>
 		</div>
 	</div>
-
-	<script type="text/javascript">
-	  var addressPoints = <%= map_points(@cards) %>;
-	  var latCenter = 46.6221;
-	  var lngCenter = 7.1960;
-	</script>
 	<%= render 'map' %>
 	<div id="clear_map"></div>
 </div>

@@ -1,8 +1,8 @@
-Resj::Application.routes.draw do
+Rails.application.routes.draw do
 
   scope "(:locale)", locale: /en|fr/ do
 
-    %w[home resj contact resources coming_soon help privacy developer].each do |page|
+    %w(home resj contact resources coming_soon help privacy developer).each do |page|
       get page, to: "pages##{page}"
     end
 
@@ -11,16 +11,14 @@ Resj::Application.routes.draw do
     get 'connexion', to: 'sessions#new'
     delete 'signout', to: 'sessions#destroy'
 
-    get 'profile', to: "users#profile"
+    %w(edit confirmation my_cards avatar).each do |page|
+      get "user/#{page}", to: "users##{page}"
+    end
+    get '/profile', to: "users#profile"
     patch 'user/update', to: "users#update"
-    get 'user/edit', to: "users#edit"
+    patch 'orator/update', to: "orators#update"
     post 'user/card/confirmation', to: "users#card_confirmation"
     post 'user/card/request', to: "users#card_request"
-    get 'user/confirmation', to: "users#confirmation"
-    get 'user/my_cards', to: "users#my_cards"
-    get 'user/avatar', to: "users#avatar"
-
-    patch 'orator/update', to: "orators#update"
 
     # resources
     scope 'resources' do
@@ -43,15 +41,17 @@ Resj::Application.routes.draw do
     resources :sessions, only: [:create]
     resources :password_resets, except: [:index, :show, :destroy]
     
-    resources :cards, except: [:destroy] do
-      collection do
-        post 'change'
-      end
+    resources :cards, only: [:index, :show, :update] do
       member do
         get 'overview'
         get 'team'
         post 'user_request'
         post 'user_confirmation'
+      end
+    end
+    resources :card_wizards, only: [:new, :create], path: 'card' do
+      collection do
+        post 'change'
       end
     end
 
@@ -89,3 +89,4 @@ Resj::Application.routes.draw do
     
   end
 end
+

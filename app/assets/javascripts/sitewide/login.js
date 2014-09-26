@@ -1,3 +1,5 @@
+/* Ajax login */
+
 $(function() {
 	$("#login-overlay .close").click(function(){
 		$("#login-over").hide();

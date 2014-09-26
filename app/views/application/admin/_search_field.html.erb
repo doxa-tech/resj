@@ -1,0 +1,7 @@
+<%= form_tag nil, method: :get do %>
+
+	<%= search_field_tag :query, params[:query] %>
+
+	<%= submit_tag "Chercher" %>
+
+<% end %>
