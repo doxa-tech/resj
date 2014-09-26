@@ -11,6 +11,4 @@ $('.wizard').html('<%=j render "#{@card.current_step}_step" %>');
 		hide_contact()
 	<% when "extra" %>
 		selectize.tags();
-	<% when "final" %>
-		form.card();
 <% end %>

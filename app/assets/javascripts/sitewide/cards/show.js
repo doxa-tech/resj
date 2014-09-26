@@ -1,4 +1,14 @@
-var gmap_card_show = {
+var CardsController = Paloma.controller('Cards');
+
+CardsController.prototype.show = function() {
+
+  // call the map
+  load_google_map.loadScript('card_show.initialize', 
+        [this.params['lat'], this.params['lng']], true);
+
+};
+
+var card_show = {
   initialize: function(lat, lng) {
     var latlng = new google.maps.LatLng(lat, lng);
     var mapOptions = {

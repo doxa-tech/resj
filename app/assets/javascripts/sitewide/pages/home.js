@@ -1,5 +1,28 @@
+var PagesController = Paloma.controller('Pages');
+
+PagesController.prototype.home = function() {
+
+	page_home.init();
+
+	// Mapbox loading
+  load_mapbox.loadMap("cards_index.init");
+
+}
+
+
+
 // ATTENTION easypiechart.js needs to be included !!
-var home_stuff = {
+var page_home = {
+	mapbox: function() {
+    $.ajax({
+           url: "/", // Route to the Script Controller method
+          type: "GET",
+         error: function() {
+                  $('#map').html("<p class='err'>Erreur de chargement, rechargez la page.</p>");
+                  }
+    });
+	},
+
 	initChart: function() {
 	  $('.easy-chart').easyPieChart({
 	      animate: 1000,
@@ -54,13 +77,13 @@ var home_stuff = {
 			// Pie chart stuff
 			//
 			var check = true;
-			if(home_stuff.isScrolledIntoView('.easy-chart')) {
-				home_stuff.initChart();
+			if(page_home.isScrolledIntoView('.easy-chart')) {
+				page_home.initChart();
 			}
 			$(document).on('scroll', function(){
-				if(check && home_stuff.isScrolledIntoView('.easy-chart')) {
+				if(check && page_home.isScrolledIntoView('.easy-chart')) {
 					check = false;
-			    home_stuff.initChart();
+			    page_home.initChart();
 				}
 			});
 			

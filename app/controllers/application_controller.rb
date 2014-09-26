@@ -1,13 +1,14 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
-  include HeaderHelper
+  include PermissionFilter
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   # add different types of flash messages
   add_flash_types :error, :success, :notice, :infos
 
-  before_action :set_locale, :restrict_access
+  before_action :set_locale, :on_ajax, :restrict_access
 
   rescue_from ActionController::InvalidAuthenticityToken do |exception|
     respond_to do |format|
@@ -21,52 +22,13 @@ class ApplicationController < ActionController::Base
     { locale: (locale == :fr ? nil : locale), access: params[:access] }
   end
  
-  def current_permission
-		@current_permission ||= Permission.new(current_user)
-	end
-
-	helper_method :current_permission, :store_location
+	helper_method :store_location
 
   def track_activity(trackable, action = params[:action], controller = params[:controller])
     if !trackable.nil? && !trackable.changed?
   	 Activity.create! action: action, controller: controller, trackable: trackable, user: current_user unless trackable.changed?
     end
 	end
-
-  def connected?
-    if !current_user
-      store_location
-      redirect_to connexion_path, error: render_error('login')
-    end
-  end
-
-  def authorize_create
-    if !current_permission.allow_create?(params[:controller])
-      redirect_to root_path, error: "Vous n'avez pas les droits pour créer cette ressource."
-    end
-  end
-
-  def authorize_modify
-    if !current_permission.allow_modify?(params[:controller], params[:action], current_resource)
-      redirect_to root_path, error: "Vous n'avez pas les droits pour éditer cette ressource."
-    end
-  end
-
-  def authorize_action
-    if !current_permission.allow_action?(params[:controller], params[:action], current_resource)
-      redirect_to root_path, error: "Vous n'avez pas les droits pour accéder à cette page."
-    end
-  end
-
-  def authorize_resource
-    if current_user.nil?
-      store_location
-      redirect_to connexion_path, infos: render_error('resources_login')
-    elsif (!current_permission.allow_resource? && !current_permission.allow_read?('admin/subjects'))
-      store_location
-      redirect_to resources_path, infos: render_error('resources_unlinked_account')
-    end
-  end
 
   # Store the current url in session's variable
   # 
@@ -98,6 +60,13 @@ class ApplicationController < ActionController::Base
     render_to_string("application/errors/#{error}", layout: false).html_safe
   end
 
+  def search(model, fields)
+    @search = model.search do 
+      fulltext params[:query], fields: fields
+      paginate page: params[:page] if params[:page]
+    end
+  end
+
   private
 
   def set_locale
@@ -108,6 +77,10 @@ class ApplicationController < ActionController::Base
     if !current_user && !request.path.in?(%w[/resources/orators/new /resources/orators /coming_soon /searches/locations /searches/responsables /searches/tags /cards/new /cards /cards/change /user/confirmation ]) && params[:access] != "rubyforever"
       redirect_to coming_soon_path
     end
+  end
+
+  def on_ajax
+    js false if request.xhr?
   end
 
 end
