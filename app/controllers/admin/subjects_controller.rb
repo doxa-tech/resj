@@ -18,21 +18,22 @@ class Admin::SubjectsController < Admin::BaseController
 		@subject = current_user.subjects.new(subject_params)
 		if @subject.save
 			flash[:success] = "Sujet créé"
-			render 'success', locals: { path: '/admin/subjects' }
+			render 'redirect', locals: { path: '/admin/subjects' }
 		else
-			render 'redirect', locals: { object: @subject }
+			render 'form_error', locals: { object: @subject }
 		end
 	end
 
 	def edit
+		js 'Admin/Subjects#new'
 	end
 
 	def update
 		if @subject.update_attributes(subject_params)
 			flash[:success] = "Sujet édité"
-			render 'success', locals: { path: '/admin/subjects' }
+			render 'redirect', locals: { path: '/admin/subjects' }
 		else
-			render 'redirect', locals: { object: @subject }
+			render 'form_error', locals: { object: @subject }
 		end
 	end
 

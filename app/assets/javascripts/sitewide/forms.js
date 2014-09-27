@@ -18,7 +18,7 @@ $(function() {
 
   /* Add/remove form's fields */
 
-  $('.wizard').on('click', '#add_field', function() {
+  $('#container, #admin_content').on('click', '#add_field', function() {
     associationFields = $(this).parents('.association_fields');
     fields = associationFields.find('.fields');
     count = fields.length;
@@ -31,14 +31,14 @@ $(function() {
     autocomplete();
   });
 
-  $('.wizard').on('click', '#remove_field', function() {
+  $('#container, #admin_content').on('click', '#remove_field', function() {
     fields = $(this).parents(".fields");
     fields.find("input[identifier=destroy]").val("1");
     fields.find("input[identifier=is_contact]").val("false")
     fields.hide();
   });
 
-  $('.wizard').on('click', '.add_contact', function() {
+  $('#container, #admin_content').on('click', '.add_contact', function() {
     fields = $(this).parents(".fields");
     currentContact = $('.fields.contact')
     currentContact.find('input[identifier=is_contact]').val("false");
@@ -49,17 +49,7 @@ $(function() {
     $(this).hide();
   });
 
-  /* Card#new in ajax */
-
-  $('.wizard').on('click', '.send-a', function() {
-    $(this).text('En cours...');
-    $('body').attr("data-no-turbolink", "true");
-    $(window).bind('beforeunload', function(){
-      return "Voulez-vous vraiment quitter cette page alors qu'un transfert est en cours ?";
-    });
-  });
-
- /* Form's function needed to be recallable */
+  /* Form's function needed to be recallable */
 
   hide_contact()
 
