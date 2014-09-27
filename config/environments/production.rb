@@ -91,8 +91,8 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     :address   => "smtp.mandrillapp.com",
     :port      => 587,
-    :user_name => ENV["MAIL_USR"],
-    :password  => ENV["MAIL_PSWD"]
+    :user_name => Rails.application.secrets.mail_usr,
+    :password  => Rails.application.secrets.mail_pswd
   }
 
 end

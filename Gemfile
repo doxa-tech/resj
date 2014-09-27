@@ -65,9 +65,6 @@ gem 'will_paginate', '~> 3.0.5'
 # search
 gem 'sunspot_rails', '~> 2.1.0'
 
-# config
-gem "figaro", '~> 0.7.0'
-
 
 # image & video uploader
 gem 'carrierwave', '~> 0.10.0'

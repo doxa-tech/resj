@@ -1,7 +1,0 @@
-# Add application configuration variables here, as shown below.
-#
-MAILUSR: 	""
-MAILPSWD: ""
-GCLOUD_ID: ""
-GCLOUD_SECRET: ""
-GCLOUD_DIRECTORY: ""

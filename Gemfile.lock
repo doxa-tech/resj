@@ -82,9 +82,6 @@ GEM
     excon (0.39.6)
     execjs (2.2.1)
     ffi (1.9.5)
-    figaro (0.7.0)
-      bundler (~> 1.0)
-      rails (>= 3, < 5)
     fog (1.23.0)
       fog-brightbox
       fog-core (~> 1.23)
@@ -269,7 +266,6 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   cucumber-rails
   database_cleaner
-  figaro (~> 0.7.0)
   fog (~> 1.23.0)
   jbuilder (~> 2.1.2)
   jquery-rails (~> 3.1.0)
