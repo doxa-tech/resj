@@ -93,10 +93,10 @@ class User < ActiveRecord::Base
   end
 
   def image
-    if gravatar
+    if gravatar || avatar_url.nil?
       gravatar_url
     else
-      avatar_url
+      avatar.thumb.url
     end
   end
 
