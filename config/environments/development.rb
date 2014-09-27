@@ -26,8 +26,8 @@ Rails.application.configure do
     :address   => "smtp.mandrillapp.com",
     :port      => 587,
     :enable_starttls_auto => true,
-    :user_name => ENV["MAIL_USR"],
-    :password  => ENV["MAIL_PSWD"],
+    :user_name => Rails.application.secrets.mail_usr,
+    :password  => Rails.application.secrets.mail_pswd,
     :authentication => 'login'
   }
 
