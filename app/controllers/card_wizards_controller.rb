@@ -38,7 +38,7 @@ class CardWizardsController < ApplicationController
 			flash[:success] = "Vous êtes entré dans le réseau avec succès !"
 			render 'redirect', locals: { path: "/reseau" }
 		else
-			render 'form_error'
+			render 'error'
 		end
 	end
 

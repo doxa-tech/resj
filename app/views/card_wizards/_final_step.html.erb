@@ -12,7 +12,7 @@
 			<li><%= label_tag :name %> <p><%= @card.name %></p></li>
 			<li><%= label_tag :description %> <p><%= @card.description %></p></li>
 			<li><%= label_tag :category %> <p><%= @card.card_type.try(:name) %></p></li>
-			<li><%= label_tag "Réseau régional" %> <p><%= @card.cards.pluck(:name).join(",") or '-' %></p></li>
+			<li><%= label_tag "Réseau régional" %> <p><%= @card.parents.pluck(:name).join(",") or '-' %></p></li>
 		</ul>
 		
 		<%= f.submit "Lieu", :name => "step[location]" %>

@@ -17,7 +17,9 @@ class User < ActiveRecord::Base
   has_many :ownerships
   has_many :verificator_comments
   has_many :activities
-  has_many :ownerships
+  has_many :articles
+  has_many :connections
+  has_many :subjects
 
   # User belongs to cards as responsables
   has_many :card_users, dependent: :destroy
