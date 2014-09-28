@@ -9,6 +9,7 @@ $(function() {
 		$("#login-over").hide();
 		$('#login-overlay').hide();
 	});
+	// also called in session/new.js.erb
 	var a = $('nav .profil ul');
 	a.hide();
 	$('nav .profil').hover(
