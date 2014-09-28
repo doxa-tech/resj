@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     end
     get '/profile', to: "users#profile"
     patch 'user/update', to: "users#update"
+    patch 'user/avatar_update', to: "users#avatar_update"
     patch 'orator/update', to: "orators#update"
     post 'user/card/confirmation', to: "users#card_confirmation"
     post 'user/card/request', to: "users#card_request"

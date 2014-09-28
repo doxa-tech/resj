@@ -3,7 +3,10 @@
 </div>
 
 <div class="form">
-	<%= form_for @user, url: user_update_path do |f| %>
+	<%= form_for @user, url: user_avatar_update_path do |f| %>
+
+		<%= render 'error_messages', object: f.object %>
+
 		<div class="col split1">
 			<div class="block">
 				<ul>
@@ -20,8 +23,9 @@
 						<%= f.email_field :gravatar_email %>
 					</li>
 					<li>
+						Sélectionnez une image à uploader si vous voulez décocher l'option gravatar.
 						<%= f.label :gravatar, "Utiliser gravatar ?" %>
-						<%= f.check_box :gravatar %>
+						<%= f.check_box :gravatar, disabled: f.object.avatar_url.nil? %>
 					</li>
 				</ul>
 			</div>

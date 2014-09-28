@@ -49,6 +49,12 @@ $(function() {
     $(this).hide();
   });
 
+  /* User's avatar uploader */
+
+  $('#user_avatar').change(function(){
+    $('input[name="user[gravatar]"]').removeProp('disabled');
+  });
+
   /* Form's function needed to be recallable */
 
   hide_contact()

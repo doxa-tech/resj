@@ -1,9 +1,11 @@
 class UsersController < BaseController
-	before_action :connected?, only: [:profile, :edit, :update, :card_request, :card_confirmation, :my_cards]
+	before_action :connected?, only: [:profile, :edit, :update, :avatar, :avatar_update, :card_request, :card_confirmation, :my_cards]
 	after_action only: [:create, :update, :confirmation] { |c| c. track_activity @user }
+	layout 'admin'
 
 	def new
 		@user = User.new
+		render layout: 'application'
 	end
 
 	def create
@@ -14,23 +16,20 @@ class UsersController < BaseController
 			UserMailer.confirmation(@user).deliver
 			redirect_to root_path, success: t('user.create.success')
 		else
-			render 'new'
+			render 'new', layout: 'application'
 		end
 	end
 
 	def my_cards
 		@user = current_user
-		render layout: "admin"
 	end
 
 	def edit
 		@user = current_user
-		render layout: "admin"
 	end
 
 	def avatar
 		@user = current_user
-		render layout: "admin"
 	end
 
 	def update
@@ -40,6 +39,16 @@ class UsersController < BaseController
 			redirect_to user_edit_path, success: t('user.edit.success')
 		else
 			render 'edit'
+		end
+	end
+
+	def avatar_update
+		@user = current_user
+		if @user.update_with_password(avatar_params)
+			sign_in(@user)
+			redirect_to user_avatar_path, success: t('user.edit.success')
+		else
+			render 'avatar'
 		end
 	end
 
@@ -100,13 +109,16 @@ class UsersController < BaseController
 
 	# Main page of the user's profile
 	def profile
-		render layout: 'admin'
 	end
 
 	private
 
 	def user_params
-		params.require(:user).permit(:firstname, :lastname, :email, :gravatar_email, :gravatar, :avatar, :password, :password_confirmation, :current_password)
+		params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation, :current_password)
+	end
+
+	def avatar_params
+		params.require(:user).permit(:gravatar_email, :gravatar, :avatar, :current_password)
 	end
 
 	# notify card owner that a user wants to join
