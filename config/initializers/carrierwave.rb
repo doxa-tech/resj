@@ -1,14 +1,12 @@
-if Rails.env.production?
-	CarrierWave.configure do |config|
-	  config.fog_credentials = {
-	    :provider                         => 'Google',
-	    :google_storage_access_key_id     => Rails.application.secrets.gcloud_id,
-	    :google_storage_secret_access_key => Rails.application.secrets.gcloud_secret
-	  }
-	  config.fog_directory = Rails.application.secrets.gcloud_directory
+CarrierWave.configure do |config|
+  config.fog_credentials = {
+    :provider                         => 'Google',
+    :google_storage_access_key_id     => Rails.application.secrets.gcloud_id,
+    :google_storage_secret_access_key => Rails.application.secrets.gcloud_secret
+  }
+  config.fog_directory = Rails.application.secrets.gcloud_directory
 
-	  CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
+  CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
 
-	  config.fog_public = true # changed in documents
-	end
+  config.fog_public = true # changed in documents
 end
