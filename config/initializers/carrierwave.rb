@@ -1,7 +1,7 @@
 if Rails.env.development?
-	storage :file
+	config.storage :file
 else
-	storage :fog
+	config.storage :fog
 	CarrierWave.configure do |config|
 	  config.fog_credentials = {
 	    :provider                         => 'Google',
