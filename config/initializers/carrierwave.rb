@@ -1,8 +1,9 @@
-if Rails.env.development?
-	config.storage :file
-else
-	config.storage :fog
-	CarrierWave.configure do |config|
+CarrierWave.configure do |config|
+	if Rails.env.development?
+		config.storage :file
+	else
+		config.storage :fog
+		
 	  config.fog_credentials = {
 	    :provider                         => 'Google',
 	    :google_storage_access_key_id     => Rails.application.secrets.gcloud_id,
