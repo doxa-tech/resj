@@ -38,6 +38,7 @@ class User < ActiveRecord::Base
     user.validates :lastname, presence: true, length: { maximum: 15 }
     user.validates :email, :format => { :with => /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/ }, uniqueness: true
     user.validates :gravatar_email, :format => { :with => /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/ }, on: :update?
+    user.validate :avatar_presence
 
     user.after_validation :format
     user.before_save :create_remember_token
@@ -84,7 +85,9 @@ class User < ActiveRecord::Base
 
   def update_with_password(params)
     authenticated = authenticate(params[:current_password])
-    if authenticated && update_attributes(params)
+    assign_attributes(params)
+    if valid? && authenticated
+      save
       true
     else
       errors.add(:current_password, "does not match") unless authenticated
@@ -101,6 +104,12 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def avatar_presence
+    if avatar_url.nil? && gravatar == false
+      errors.add(:avatar, 'est vide. Merci de sélectionner une image à uploader avant de décocher l\'option "Utiliser gravatar ?" ou recocher l\'option.')
+    end
+  end
 
   # Remove spaces and capitales
   def format
