@@ -10,11 +10,12 @@ class CardsController < BaseController
 			@cards = Card.active.with_card_type.order(:name).paginate(page: params[:page])
 			@cards_map = Card.active.with_card_type
 		else
-			@search = Card.active.search(include: :card_type) do 
+			@search = Card.search(include: :card_type) do 
 				fulltext params[:query], fields: [:name, :description, :canton_name, :tag_names]
 				with(:card_type_id, params[:card_type_ids]) if params[:card_type_ids]
 				with(:canton_ids, params[:canton_ids]) if params[:canton_ids]
 				with(:tag_ids, params[:tag_ids]) if params[:tag_ids]
+				with(:status_name, "En ligne")
 				paginate page: params[:page] if params[:page]
 			end
 	  	@cards = @cards_map = @search.results

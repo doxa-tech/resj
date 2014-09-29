@@ -12,10 +12,12 @@ class Orator < ActiveRecord::Base
   searchable do
     text :firstname
     text :lastname
+    string :lastname
     text :canton_name
     text :theme_names
     integer :canton_ids, multiple: true
     integer :themes_ids, multiple: true
+    boolean :disabled
   end
 
   def to_param
