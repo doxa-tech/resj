@@ -10,6 +10,8 @@ class Article < ActiveRecord::Base
   validates :image, presence: true
   validates :themes, presence: true
 
+  ALLOWED_TAGS = %w(footer b strong i em a)
+
   def to_param
     "#{id}-#{title}".parameterize
   end

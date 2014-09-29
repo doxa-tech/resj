@@ -19,7 +19,7 @@ class CardsController < BaseController
 			end
 	  	@cards = @cards_map = @search.results
 	  end
-	 	# used to load
+	 	# used to load the map
     if request.xhr?
       render 'index.js.erb'
     end
