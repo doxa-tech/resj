@@ -63,6 +63,7 @@ class Card < ActiveRecord::Base
     text :canton_name
     text :tag_names
     text :status_name
+    string :status_name
     integer :card_type_id, multiple: true
     integer :canton_ids, multiple: true
     integer :tag_ids, multiple: true

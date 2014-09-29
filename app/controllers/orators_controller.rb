@@ -4,11 +4,13 @@ class OratorsController < BaseController
 	after_action only: [:create, :update] { |c| c. track_activity @user }
 
 	def index
-		@search = Orator.where(disabled: false).order("lastname asc").search do 
+		@search = Orator.search do 
 			fulltext params[:query]
 			paginate page: params[:page] if params[:page]
 			with(:themes_ids, params[:themes_ids]) if params[:themes_ids]
 			with(:canton_ids, params[:canton_ids]) if params[:canton_ids]
+			with(:disabled, false)
+			order_by(:lastname, :asc)
 		end
   	@orators = @search.results 
     # used to load
