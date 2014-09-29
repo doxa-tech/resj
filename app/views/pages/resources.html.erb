@@ -45,7 +45,7 @@
 		</div>
 	</div>
 	<div class="block full first-child last-child">
-		<div class="wrapper">
+		<article class="wrapper article">
 			<div class="type">Article <i class="fi-clipboard-notes"></i></div>
 			<% if @article.nil? %>
 				<p>Pas d'article</p>
@@ -57,12 +57,12 @@
 					<h3><%= @article.title %></h3>
 					<h5>Par <%= @article.user.full_name %>, le <%= l @article.created_at, format: :normal %></h5>
 					<div class="content">
-						<%= simple_format @article.content %>
+						<%= sanitize @article.content, tags: Article::ALLOWED_TAGS %>
 					</div>
 				</div>
 			<% end %>
 			<div id="clear"></div>
-		</div>
+		</article>
 	</div>
 	<div id="clear"></div>
 
