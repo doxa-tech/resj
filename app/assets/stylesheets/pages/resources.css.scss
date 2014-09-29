@@ -5,6 +5,7 @@
 	display: block;
 	width: 100%; min-height: 473px;
 	background: image-url('layout/banner2.jpg') fixed center 25px;
+	box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
 	.content_banner {
 		text-align: center;
 		padding: 80px 10px 10px 10px;
