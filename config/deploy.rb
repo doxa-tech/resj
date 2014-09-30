@@ -43,6 +43,11 @@ namespace :deploy do
   end
   after "deploy:finalize_update", "deploy:symlink_config"
 
+  task :reindex, roles: :app do
+    run("cd #{release_path} && bundle exec rake RAILS_ENV=#{rails_env} sunspot:reindex")
+  end
+  after "deploy:finalize_update", "deploy:reindex"
+
   desc "Make sure local git is in sync with remote."
   task :check_revision, roles: :web do
     unless `git rev-parse HEAD` == `git rev-parse origin/master`
