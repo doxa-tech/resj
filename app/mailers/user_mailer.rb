@@ -18,7 +18,7 @@ class UserMailer < ActionMailer::Base
     mail to:      user.email,
          subject: 'Réinitialisation de votre mot de passe sur Reseau Jeunesse',
          body:
-    params({ LINK: edit_password_reset_path(user) })
+    params({ LINK: edit_password_reset_url(user.password_reset_token) })
     template 'user_password_reset'  # template
   end
 
