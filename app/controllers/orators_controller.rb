@@ -1,6 +1,7 @@
 class OratorsController < BaseController
 	before_action :authorize_token, only: [:new, :create]
 	before_action :authorize_resource, only: [:index, :show]
+	before_action :disabled?, only: [:show]
 	after_action only: [:create, :update] { |c| c. track_activity @user }
 
 	def index
@@ -20,7 +21,6 @@ class OratorsController < BaseController
 	end
 
 	def show
-		@orator = Orator.find(params[:id])
 		js lat: @orator.location.latitude
 		js lng: @orator.location.longitude
 	end
@@ -53,6 +53,7 @@ class OratorsController < BaseController
 			render 'users/edit'
 		end
 	end
+
 	private
 
 	def orator_params
@@ -64,5 +65,10 @@ class OratorsController < BaseController
 		if !current_permission.allow_token?(params[:controller], params[:action], session[:token])
 			redirect_to root_path, error: "Le token entré ne vous permet pas d'accéder à cette page."
 		end
+	end
+
+	def disabled?
+		@orator = Orator.find(params[:id])
+		redirect_to orators_path, error: "Cette orateur n'est plus disponible pour le moment." if @orator.disabled
 	end
 end
