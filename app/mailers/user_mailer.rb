@@ -15,7 +15,11 @@ class UserMailer < ActionMailer::Base
   end
 
   def password_reset(user)
-  	mail to: user.email, subject: "Reset password"
+    mail to:      user.email,
+         subject: 'Réinitialisation de votre mot de passe sur Reseau Jeunesse',
+         body:
+    params({ LINK: edit_password_reset_path(user) })
+    template 'user_password_reset'  # template
   end
 
   # someone wants to affiliate you with a card

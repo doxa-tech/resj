@@ -99,12 +99,19 @@ class Card < ActiveRecord::Base
     status.name
   end
 
+  # Users requests to a card
   def unconfirmed_users
-    card_users.where(card_validated: nil, user_validated: true)
+    User.joins(:card_users).where(card_users: {user_validated: true, card_validated: nil, card_id: id}) 
   end
 
+  # Users affiliations
   def confirmed_users
     User.joins(:card_users).where(card_users: {user_validated: true, card_validated: true, card_id: id} ) << user
+  end
+
+  # Users request from a card and not answered
+  def pending_users
+    User.joins(:card_users).where(card_users: {user_validated: nil, card_validated: true, card_id: id}) 
   end
 
   def tag_names
