@@ -128,7 +128,7 @@
 			} // filter
 
 			.paginate-infos {
-				float: left;
+				float: right;
 				font-size: 12px;
 			}
 
@@ -195,6 +195,14 @@
 				li.letter {
 					background: #ff7777;
 					padding: 0 0 0 10px; margin: 10px 0 10px 0;
+				}
+				.nothing {
+					text-align: center;
+					padding: 40px 0 0 0;
+					.icon {
+						font-size: 50px;
+						padding: 0 0 20px 0;
+					}
 				}				
 			}
 		}
