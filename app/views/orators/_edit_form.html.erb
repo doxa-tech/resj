@@ -1,81 +1,48 @@
-<%= render 'users/new_form', f: f  %>
-<% num = 4 %>
+<%= render 'users/edit_form', f: f  %>
 <%= f.fields_for :orator do |orator_fields| %>
-	<div class="section">
-		<h3>Information spécifiques orateur</h3>
-		<div class="block">
-			<div class="label">
-				<p>
-					<span class="num"><%= num+=1 %></span> Dans quelle<span class="b">localité</span>habitez-vous?
-				</p>
-			</div>
-			<% location = orator_fields.object.location %>
-			<%= orator_fields.collection_select :location_id, (location.nil? ? [] : [location] ), :id, :full_name, {include_blank: "Tapez votre ville"}, {class: "selectize-location"} %>
-		</div>
 
-		<div class="block">
-			<div class="label">
-				<p>
-					<span class="num"><%= num+=1 %></span>Quelle est votre<span class="b">adresse</span>? Cette information est optionnel
-				</p>
-			</div>
-			<%= orator_fields.text_field :street, placeholder: 'addresse (optionnel)' %>
-		</div>	
-
-		<div class="block">
-			<div class="label">
-				<p>
-					<span class="num"><%= num+=1 %></span>Votre numéro de<span class="b">téléphone</span>. Cette information n'est pas obligatoire
-				</p>
-			</div>
-			<%= orator_fields.text_field :phone, placeholder: 'Téléphone (optionnel)' %>
-		</div>
-
-		<div class="block">
-			<div class="label">
-				<p>
-					<span class="num"><%= num+=1 %></span>Choisissez parmis la liste maximum 10<span class="b">thèmes</span>que vous seriez d'accord d'aborder
-				</p>
-			</div>
-			<%= orator_fields.collection_select :theme_ids, Theme.all, :id, :name, {include_blank: "Sélectionnez des thèmes"}, {class: "selectize-themes", multiple: true} %>
-		</div>
-
-		<div class="block">
-			<div class="label">
-				<p>
-					<span class="num"><%= num+=1 %></span>Quelles sont vos<span class="b">disponibilités</span>?
-				</p>
-			</div>
-			<%= orator_fields.collection_check_boxes :disponibility_ids, Disponibility.all, :id, :name do |b| %>
+<div class="col split1">
+	<div class="block">
+		<ul>
+			<li>
+				<% location = orator_fields.object.location %>
+				<%= f.label :location_id %>
+				<%= orator_fields.collection_select :location_id, (location.nil? ? [] : [location] ), :id, :full_name, {include_blank: "Tapez votre ville"}, {class: "selectize-location"} %>
+			</li>
+			<li>
+				<%= f.label :street %>
+				<%= orator_fields.text_field :street, placeholder: 'addresse (optionnel)' %>
+			</li>
+			<li>
+				<%= f.label :phone %>
+				<%= orator_fields.text_field :phone, placeholder: 'Téléphone (optionnel)' %>
+			</li>
+			<li>
+				<%= f.label :theme_ids %>
+				<%= orator_fields.collection_select :theme_ids, Theme.all, :id, :name, {include_blank: "Sélectionnez des thèmes"}, {class: "selectize-themes", multiple: true} %>
+			</li>
+			<li>
+				<%= f.label :disponibility_ids %>
+				<%= orator_fields.collection_check_boxes :disponibility_ids, Disponibility.all, :id, :name do |b| %>
 				<%= content_tag :div, "#{b.label} #{b.check_box}".html_safe, class: 'dispo' %>
-			<% end %>
-		</div>
-
-		<div class="block">
-			<div class="label">
-				<p>
-					<span class="num"><%= num+=1 %></span>Ou alors, avez-vous des<span class="b">disponibilités spéciales</span> (par exemple seulement les soirées d'été, ...). Cette information est optionnel
-				</p>
-			</div>
-			<%= orator_fields.text_field :disponibility, placeholder: 'Disponibilités spéciales' %>
-		</div>
-		<div class="block">
-			<div class="label">
-				<p>
-					<span class="num"><%= num+=1 %></span>Ici, vous pouvez ajouter des<span class="b">informations complémentaires</span>. Nous vous recommandons de mentionner le cardre dans lequel vous enseigner
-				</p>
-			</div>
-			<%= orator_fields.text_area :description, placeholder: 'Informations complémentaires' %>
-		</div>
-		<div class="block">
-			<div class="label">
-				<p>
-					<span class="num"><%= num+=1 %></span>Passer en mode <span class="b">vacacances</span>. Cocher pour disparaitre des listes momentanément.
-				</p>
-			</div>
-			<%= orator_fields.check_box :disabled %>
-		</div>			
+				<% end %>
+			</li>
+			<li>
+				<%= f.label :disponibility %>
+				<%= orator_fields.text_field :disponibility, placeholder: 'Disponibilités spéciales' %>
+			</li>
+			<li>
+				<%= f.label :description %>
+				<%= orator_fields.text_area :description, placeholder: 'Informations complémentaires' %>
+			</li>
+			<li>
+				<%= f.label :disabled %>
+				<%= orator_fields.check_box :disabled %>
+			</li>
+		</ul>
 	</div>
+</div>
+
 <% end %>
 
 <%= f.submit class: 'submit' %>

@@ -7,11 +7,9 @@ class PasswordResetsController < BaseController
 		@user = User.find_by_email(params[:email])
   	if @user
   		@user.send_password_reset
-  		redirect_to root_url, notice: "Un email contenant les instructions pour changer votre mot de passe vous a été envoyé."
   		track_activity @user
-  	else
-  		redirect_to new_password_reset_path, error: "Aucun compte avec cet email n'a été trouvé."
   	end
+		redirect_to root_url, notice: "Un email contenant les instructions pour changer votre mot de passe vous a été envoyé."
 	end
 
 	def edit

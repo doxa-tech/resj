@@ -1,4 +1,4 @@
-class UserMailer < ActionMailer::Base
+class UserMailer < BaseMailer
 
   def confirmation(user)
     mail to:      user.email,
@@ -18,7 +18,7 @@ class UserMailer < ActionMailer::Base
     mail to:      user.email,
          subject: 'Réinitialisation de votre mot de passe sur Réseau Jeunesse',
          body:
-    params({  LINK: edit_password_reset_path(user),
+    params({  LINK: edit_password_reset_url(id: user.reset_token),
               NAME: user.firstname, })
     template 'user-password-reset'  # template
   end
