@@ -22,6 +22,10 @@ class UsersController < BaseController
 
 	def my_cards
 		@user = current_user
+		@unconfirmed = @user.unconfirmed_cards
+		@pending = @user.pending_cards
+		@confirmed = @user.confirmed_cards
+		@confirmed_paginate = @user.confirmed_cards.paginate(page: params[:page], per_page: 10)
 	end
 
 	def edit
@@ -69,6 +73,7 @@ class UsersController < BaseController
 		redirect_to root_path, success: "We sent you a new email."
 	end
 
+	# User's request to a card
 	def card_request
 		card_user = CardUser.where(user_id: current_user.id, card_id: params[:card_id]).first
 		card = Card.find(params[:card_id])
@@ -90,8 +95,9 @@ class UsersController < BaseController
 		end
 	end
 
+	# Action on a card's request to an user
 	def card_confirmation
-		card_user = CardUser.find(params[:card_user_id])
+		card_user = CardUser.where(user_id: current_user.id, card_id: params[:card_id]).first
 		if card_user && card_user.user_id == current_user.id && params[:validated].in?(["false", "true"])
 			card_user.update_attribute(:user_validated, params[:validated])
 			replace_responsable(current_user, card_user.card)

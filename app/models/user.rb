@@ -75,12 +75,19 @@ class User < ActiveRecord::Base
     end
   end
 
+  # Cards requests to an user
   def unconfirmed_cards
-    card_users.where(user_validated: nil)
+    Card.joins(:card_users).where(:card_users => {user_id: id, user_validated: nil, card_validated: true})
   end
 
+  # Cards affiliations
   def confirmed_cards
-    Card.joins(:card_users).where("card_users.user_validated = ? AND card_users.card_validated = ? AND card_users.user_id = ?", true, true, id) + Card.where(user_id: id)
+    Card.joins(:card_users).where(:card_users => {user_id: id, user_validated: true, card_validated: true}) + Card.where(user_id: id)
+  end
+
+  # Cards request from an user and not answered
+  def pending_cards
+    Card.joins(:card_users).where(:card_users => {user_id: id, user_validated: true, card_validated: nil})
   end
 
   def update_with_password(params)

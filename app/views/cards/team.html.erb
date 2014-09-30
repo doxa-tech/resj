@@ -7,8 +7,8 @@
 
 <h2>Demandes d'utilisateurs</h2>
 
-<% @card.unconfirmed_users.each do |card_user| %>
-	<%= card_user.user.full_name %>
-	<%= link_to "Confirmer", user_confirmation_card_path(@card, card_user_id: card_user.id, validated: "true"), method: :post %>
-	<%= link_to "Refuser", user_confirmation_card_path(@card, card_user_id: card_user.id, validated: "false"), method: :post %>
+<% @unconfirmed.each do |user| %>
+	<%= user.full_name %>
+	<%= link_to "Confirmer", user_confirmation_card_path(@card, user_id: user.id, validated: "true"), method: :post %>
+	<%= link_to "Refuser", user_confirmation_card_path(@card, user_id: user.id, validated: "false"), method: :post %>
 <% end %>

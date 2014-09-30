@@ -1,7 +1,4 @@
 <% content_for :id, "my_cards" %>
-<% unconfirmed = @user.unconfirmed_cards %>
-<% confirmed = @user.confirmed_cards %>
-<% confirmed_paginate = @user.confirmed_cards.paginate(page: params[:page], per_page: 10) %>
 
 <div class="row">
 	<div class="col split1">
@@ -9,15 +6,15 @@
 			<div class="header">
 				<h2>Vos liens</h2>
 				<h5>Groupes, oeuvres ou réseaux au sein desquels vous êtes responsable ou co-responsable</h5>
-				<%= will_paginate confirmed_paginate %>
+				<%= will_paginate @confirmed_paginate %>
 			</div>
 			<ul>
-				<% if confirmed_paginate.empty? %>
+				<% if @confirmed_paginate.empty? %>
 					<li>
 						Vous n'avez pas d'affiliations
 					</li>
 					<% else %>
-						<% confirmed_paginate.each do |card_user| %>
+						<% @confirmed_paginate.each do |card_user| %>
 							<li><%=  card_user.name %> <%= render 'application/admin/edit_btn', path: overview_card_path(card_user) %></li>
 						<% end %>
 				<% end %>
@@ -36,7 +33,7 @@
 			<%= form_tag user_card_request_path do %>
 			<ul>
 				<li>
-					<%= select_tag :card_id, options_from_collection_for_select(Card.all - confirmed, :id, :name), class: "selectize" %>
+					<%= select_tag :card_id, options_from_collection_for_select(Card.all - @confirmed, :id, :name), class: "selectize" %>
 					<%= submit_tag %>
 				</li>
 			</ul>
@@ -49,22 +46,47 @@
 	<div class="col split1">
 		<div class="block">
 			<div class="header">
-				<h2>Invitations</h2>
-				<h5>Gérer les demandes pour s'annoncer comme responsabel d'un groupe, d'une oeuvre ou d'un réseau</h5>
+				<h2>En cours</h2>
+				<h5>Les demandes que vous avez faites et qui sont en attente d'une réponse.</h5>
 			</div>
-			<% if !unconfirmed.empty? %>
-				<% unconfirmed.each do |card_user| %>
+			<% if !@pending.empty? %>
+				<% @pending.each do |card| %>
 					<ul>
 						<li>
-							<%= card_user.card.name %>
-							<%= link_to "Confirmer", user_card_confirmation_path(card_user_id: card_user.id, validated: "true"), method: :post %>
-							<%= link_to "Refuser", user_card_confirmation_path(card_user_id: card_user.id, validated: "false"), method: :post %>
+							<%= card.name %>
+							Requête faite le: <%= card.cards_user.find_by_user_id(current_user.id).updated_at %>
 						</li>
 					</ul>
 				<% end %>
 			<% else %>
 				<ul>
 					<li> Pas de demandes en cours </li>
+				</ul>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<div clas="row">
+	<div class="col split1">
+		<div class="block">
+			<div class="header">
+				<h2>Invitations</h2>
+				<h5>Gérer les demandes pour rejoindre une carte comme responsable d'un groupe, d'une oeuvre ou d'un réseau</h5>
+			</div>
+			<% if !@unconfirmed.empty? %>
+				<% @unconfirmed.each do |card| %>
+					<ul>
+						<li>
+							<%= card.name %>
+							<%= link_to "Confirmer", user_card_confirmation_path(card_id: card.id, validated: "true"), method: :post %>
+							<%= link_to "Refuser", user_card_confirmation_path(card_id: card.id, validated: "false"), method: :post %>
+						</li>
+					</ul>
+				<% end %>
+			<% else %>
+				<ul>
+					<li> Aucune demande ne requiert votre action. </li>
 				</ul>
 			<% end %>
 		</div>

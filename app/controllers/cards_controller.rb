@@ -40,6 +40,10 @@ class CardsController < BaseController
 	end
 
 	def team
+		@unconfirmed = @card.unconfirmed_users
+		@pending = @card.pending_users
+		@confirmed = @card.confirmed_users
+		@confirmed_paginate = @card.confirmed_users.paginate(page: params[:page], per_page: 10)
 	end
 
 	def update
@@ -59,6 +63,7 @@ class CardsController < BaseController
 		end
 	end
 
+	# Card's request to a user
 	def user_request
 		card_user = CardUser.where(user_id: params[:user_id], card_id: @card.id).first
 		user = User.find(params[:user_id])
@@ -80,8 +85,9 @@ class CardsController < BaseController
 		end
 	end
 
+	# Action on a user's request to an card
 	def user_confirmation
-		card_user = CardUser.find(params[:card_user_id])
+		card_user = CardUser.where(user_id: params[:user_id], card_id: @card.id).first
 		if card_user && card_user.card_id == @card.id && params[:validated].in?(["false", "true"])
 			card_user.update_attribute(:card_validated, params[:validated])
 			replace_responsable(card_user.user, @card)
