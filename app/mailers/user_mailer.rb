@@ -16,21 +16,43 @@ class UserMailer < ActionMailer::Base
 
   def password_reset(user)
     mail to:      user.email,
-         subject: 'Réinitialisation de votre mot de passe sur Reseau Jeunesse',
+         subject: 'Réinitialisation de votre mot de passe sur Réseau Jeunesse',
          body:
-    params({ LINK: edit_password_reset_path(user) })
-    template 'user_password_reset'  # template
+    params({  LINK: edit_password_reset_path(user),
+              NAME: user.firstname, })
+    template 'user-password-reset'  # template
   end
 
   # someone wants to affiliate you with a card
   def request(card, user)
+    mail to:      user.email,
+         subject: "Demande d'affiliation sur Réseau Jeunesse",
+         body:
+    params({  NAME: user.firstname,
+              GNAME: card.name, 
+              TYPE: card.card_type.name })
+    template 'user-affiliation-request'  # template
   end
 
   # your request to join a card was accepted
   def confirmed_card(card, user)
+    mail to:      user.email,
+         subject: "Demande d'affiliation acceptée",
+         body:
+    params({  NAME: user.firstname,
+              GNAME: card.name, 
+              TYPE: card.card_type.name })
+    template 'user-affiliation-accepted'  # template
   end
 
   # your request to join a card wasn't accepted
   def unconfirmed_card(card, user)
+    mail to:      user.email,
+         subject: "Demande d'affiliation refusée",
+         body:
+    params({  NAME: user.firstname,
+              GNAME: card.name, 
+              TYPE: card.card_type.name })
+    template 'user-affiliation-refused'  # template
   end
 end
