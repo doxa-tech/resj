@@ -27,5 +27,8 @@ module Resj
     config.generators.stylesheets = false
     config.generators.javascripts = false
     config.generators.helper = false
+
+    # for exceptions (404, ...) (nkcr)
+    config.exceptions_app = self.routes
   end
 end
