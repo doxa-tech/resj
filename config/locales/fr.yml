@@ -183,71 +183,69 @@ fr:
       resources: "Ressources"
       resj: "RES-J"
       admin:
-        cards: "Cards"
+        cards: "Groupes"
         pages: "Pages"
-        users: "Users"
+        users: "Utilisateurs"
         affiliations: "Affiliations"
         tags: "Tags"
         responsables: "Responsables"
-        ownerships: "Ownerships"
+        ownerships: "Droits"
         actions: "Actions"
-        parents: "Inheritances"
+        parents: "Héritages"
         access_tokens: "Tokens"
-        card_types: "Card Types"
-        themes: "Themes"
-        resources: "Resources"
+        card_types: "Type de groupes"
+        themes: "Thèmes"
         subjects: "Sujets (docs)"
         articles: "Articles"
         newsletter: "Newsletter"
         statuses: "Statuts"
-        card_statuses: "Statuts des cartes"
+        card_statuses: "Statuts des groupes"
   card:
     create:
-      title: "Créer une nouvelle fiche"
+      title: "Enregistrer un nouveau groupe"
     edit:
-      title: "Edit a card"
-      success: "Fiche éditée avec succès"
+      title: "Editer un groupe"
+      success: "Groupe édité avec succès"
     admin:
-      index: "Cards"
-      validated_error: "could not be activated. The card has not been verified."
+      index: "Groupes"
       create:
-        title: "Create a new card"
-        success: "Card created"
+        title: "Enregister un nouveau groupe"
+        success: "Groupe enregistré"
       edit:
-        title: "Edit a card"
-        success: "Card edited"
+        title: "Editer un groupe"
+        success: "Groupe édité"
       destroy:
-        success: "Card deleted"
+        success: "Groupe supprimé"
     user:
       request:
-        success: "Demande envoyée"
-        error: "La demande n'a pas pu être envoyée"
+        success: "Votre requête a été envoyée à l'utilisateur !"
+        error: "La demande n'a pas pu être acceptée. Si vous avez besoin d'aide, consultez l'aide ou contactez le support."
       confirmation: 
-        success: "Décision enregistrée"
-        error: "La demande n'a pas pu être acceptée"
+        success: "Décision enregistrée !"
+        error: "La demande n'a pas pu être acceptée. Si vous avez besoin d'aide, consulter l'aide ou contacter le support."
   user:
     create:
-      title: "Sign up"
-      success: "Signed up"
+      title: "S'enregistrer"
+      success: "Votre compte a été créé !"
     edit:
-      title: "Update your account"
-      success: "Account updated"
+      title: "Mettre à jour son compte"
+      success: "Profil mis à jour"
     card:
       confirmation:
-        success: "You're now an official responsable"
-        error: "Error in the process"
+        success: "Décision enregistrée !"
+        error: "La demande n'a pas pu être acceptée. Si vous avez besoin d'aide, consulter l'aide ou contacter le support."
       request:
-        success: "Card request sent"
-        error: "Error in the process"
+        success: "Votre requête a été envoyée au groupe !"
+        error: "La demande n'a pas pu être acceptée. Si vous avez besoin d'aide, consulter l'aide ou contacter le support."
     admin:
       create:
-        title: "Create a new user"
-        success: "User created"
+        title: "Créer un nouvel utilisateur"
+        success: "Utilisateur créé"
       edit:
-        title: "Edit an user"
-        success: "User updated"
+        title: "Editer un utilisateur"
+        success: "Utilisateur édité"
       destroy:
-        success: "User deleted"
+        success: "Utilisateur supprimé"
   session:
     create:
       success: "Connecté avec succès"
@@ -262,136 +260,125 @@ fr:
         title: "Editer une page"
   ownership:
     admin:
-      index: "Ownership"
+      index: "Droits"
       create:
-        title: "Create a new ownership"
-        success: "Ownership created"
+        title: "Ajouté un nouveau droit"
+        success: "Droit ajouté"
       edit:
-        title: "Edit an ownership"
-        success: "Ownership updated"
+        title: "Editer un droit"
+        success: "Droit édité"
       destroy:
-        success: "Ownership deleted"
+        success: "Droit supprimé"
   action:
     admin:
       index: "Actions"
       create:
-        title: "Create a new action"
-        success: "Action created"
+        title: "Créer une nouvelle action"
+        success: "Action créée"
       edit:
-        title: "Edit an action"
-        success: "Action updated"
+        title: "Editer une action"
+        success: "Action éditée"
       destroy:
-        success: "Action deleted"
+        success: "Action supprimée"
   affiliation:
     admin:
       index: "Affiliations"
       create:
-        title: "Create a new affiliation"
-        success: "Affiliation created"
+        title: "Créer une nouvelle affiliation"
+        success: "Affiliation créée"
       edit:
-        title: "Edit an affiliation"
-        success: "Affiliation updated"
+        title: "Editer une affiliation"
+        success: "Affiliation éditée"
       destroy:
-        success: "Affiliation deleted"
+        success: "Affiliation supprimée"
   card_type:
     admin:
-      index: "Card types"
+      index: "Types de groupes"
       create:
-        title: "Create a new card type"
-        success: "Card type created"
+        title: "Créer un nouveau type"
+        success: "Type créé"
       edit:
-        title: "Edit an card type"
-        success: "Card type updated"
+        title: "Editer un type"
+        success: "Type édité"
       destroy:
-        success: "Card type deleted"
+        success: "Type supprimé"
   responsable:
     admin:
       index: "Responsables"
       create:
-        title: "Create a new responsable"
-        success: "Responsable created"
+        title: "Créer un nouveau responsable"
+        success: "Responsable créé"
       edit:
-        title: "Edit an responsable"
-        success: "Responsable updated"
+        title: "Editer un responsable"
+        success: "Responsable édité"
       destroy:
-        success: "Responsable deleted"
+        success: "Responsable supprimé"
   tag:
     admin:
       index: "Tags"
       create:
-        title: "Create a new tag"
-        success: "Tag created"
+        title: "Créer un nouveau tag"
+        success: "Tag créé"
       edit:
-        title: "Edit an tag"
-        success: "Tag updated"
+        title: "Editer un tag"
+        success: "Tag édité"
       destroy:
-        success: "Tag deleted"
+        success: "Tag supprimé"
   theme:
     admin:
-      index: "Themes"
+      index: "Thèmes"
       create:
-        title: "Create a new theme"
-        success: "Theme created"
+        title: "Créer un nouveau thème"
+        success: "Thème créé"
       edit:
-        title: "Edit an theme"
-        success: "Theme updated"
+        title: "Editer un thème"
+        success: "Thème édité"
       destroy:
-        success: "Theme deleted"
-  resource:
-    admin:
-      index: "Resources"
-      create:
-        title: "Create a new resource"
-        success: "Resource created"
-      edit:
-        title: "Edit an resource"
-        success: "Resource updated"
-      destroy:
-        success: "Resource deleted"
+        success: "Thème supprimé"
   verificator_comment:
     admin:
       create:
-        success: "Comment created"
+        success: "Commentaire créé"
       edit:
-        success: "Comment updated"
+        success: "Commentaire édité"
       destroy:
-        success: "Comment deleted"
+        success: "Commentaire supprimé"
   parent:
     admin:
-      index: "Inheritances"
+      index: "Héritages"
       create:
-        title: "Create a new inheritance"
-        success: "inheritance created"
+        title: "Créer un nouvel héritage"
+        success: "Héritage créé"
       edit:
-        title: "Edit an inheritance"
-        success: "Inheritance updated"
+        title: "Editer un héritage"
+        success: "Héritage édité"
       destroy:
-        success: "Inheritance deleted"
+        success: "Héritage supprimé"
   access_token:
     admin:
       index: "Tokens"
       create:
-        title: "Create a new access token"
-        success: "Token created"
+        title: "Créer in nouveau token"
+        success: "Token créé"
       destroy:
-        success: "Token deleted"
+        success: "Token supprimé"
   orator:
-    index: "Orators"
+    index: "Orateurs"
     create:
-      title: "Create an orator's account"
+      title: "Créer un compte d'orateur sur le réseau jeunesse"
     edit:
-      success: "Orator's account updated"
+      success: "Votre profil d'orateur a été mis à jour !"
   subject:
     admin:
       index: "Resources"
       create:
-        title: "Create a new resource"
-        success: "Resource created"
+        title: "Créer une nouvelle ressource"
+        success: "Ressource créée"
       edit:
-        title: "Edit an resource"
-        success: "Resource updated"
+        title: "Editer une ressource"
+        success: "Ressource éditée"
       destroy:
-        success: "Resource deleted"
+        success: "Ressource supprimée"
   status:
     admin:
       index: "Statuts"
@@ -405,14 +392,10 @@ fr:
         success: "Statut supprimé"
   card_status:
     admin:
-      index: "Statuts des cartes"
+      index: "Statuts des groupes"
       edit:
         title: "Editer un statut"
         success: "Statut édité et mail envoyé"
-  will_paginate:
-    previous_label: "<i class='fi-arrow-left'></i> Previous"
-    next_label: "Next <i class='fi-arrow-right'></i>"
-    page_gap: "&hellip;"
   helpers:
     select:
       prompt: "Veuillez sélectionner"
