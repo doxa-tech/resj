@@ -1,10 +1,10 @@
 /* Page load indicator for Turbolinks */
 
 function startSpinner() {
-  $("html").css("cursor", "progress");
+  $("body").addClass('wait');
 }
 function stopSpinner() {
-  $("html").css("cursor", "auto");
+  $("body").removeClass('wait');
 }
 $(document).on("page:fetch", startSpinner);
 $(document).on("page:receive", stopSpinner);

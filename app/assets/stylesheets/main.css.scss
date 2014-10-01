@@ -9,6 +9,10 @@ html, body
 	background: image-url('test.jpg');
 }
 
+body.wait, body.wait *{
+  cursor: wait !important;   
+}
+
 #wrapper {
 	min-height:100%;
 	position:relative;

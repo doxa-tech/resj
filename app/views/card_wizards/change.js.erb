@@ -1,3 +1,4 @@
+goToByScroll($('.head'));
 $('.wizard').html('<%=j render "#{@card.current_step}_step" %>');
 <% case @card.current_step %>
 	<% when "general" %>

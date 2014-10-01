@@ -113,6 +113,11 @@ class UsersController < BaseController
 		end
 	end
 
+	def card_remove
+		CardUser.find(params[:id]).destroy
+		redirect_to user_my_cards_path, success: 'Requête annulée'
+	end
+
 	# Main page of the user's profile
 	def profile
 	end

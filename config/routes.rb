@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     patch 'orator/update', to: "orators#update"
     post 'user/card/confirmation', to: "users#card_confirmation"
     post 'user/card/request', to: "users#card_request"
+    post '/user/card/remove', to: "users#card_remove"
 
     # resources
     scope 'resources' do
@@ -52,6 +53,7 @@ Rails.application.routes.draw do
         get 'team'
         post 'user_request'
         post 'user_confirmation'
+        post 'user_remove'
       end
     end
     resources :card_wizards, only: [:new, :create], path: 'card' do
