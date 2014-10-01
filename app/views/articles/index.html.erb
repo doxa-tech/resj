@@ -5,10 +5,10 @@
 <%= render "resource_goback" %>
 
 <% @articles.each do |article| %>
-<div class="article">
+<article class="article">
 	<h2><%= article.title %></h2>
 	<%= content_tag :div, (image_tag article.image), class: "img" %>
-	<%= content_tag :div, (simple_format(article.content)), class: "content"  %>
+	<%= content_tag :div, (sanitize(article.content, tags: Article::ALLOWED_TAGS)), class: "content"  %>
 	<div class="end">Créé par <%= article.user.full_name %> le <%= l article.created_at %></div>
-</div>
+</article>
 <% end %>

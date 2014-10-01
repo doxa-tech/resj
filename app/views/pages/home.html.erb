@@ -36,10 +36,10 @@
 		<article class="wrapper article">
 			<div class="type">Article <i class="fi-clipboard-notes"></i></div>
 			<div class="graphic">
-				<%= image_tag image_url @article.image %>
+				<%= image_tag image_url @article.image.mid %>
 			</div>
 			<div class="text">
-				<h3><%= @article.title %></h3>
+				<h3><%= link_to @article.title, articles_path %></h3>
 				<div class="content">
 					<p>
 						<%= truncate(sanitize(@article.content, tags: Article::ALLOWED_TAGS), length: 500, omission: " ... %s", escape: false) % link_to('lire la suite', resources_path(anchor: 'articles')) %>

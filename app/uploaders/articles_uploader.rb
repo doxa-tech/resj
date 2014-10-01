@@ -14,6 +14,12 @@ class ArticlesUploader < CarrierWave::Uploader::Base
   process :quality => 90
   process :right_orientation
 
+  version :mid do
+    process resize_to_limit: [600, 600]
+    process :quality => 90
+    process :right_orientation
+  end
+
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
