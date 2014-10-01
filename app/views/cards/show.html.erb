@@ -83,9 +83,9 @@
 	<div class="row">
 		<div class="left">
 			<div class="members">
-				<h3><%= (@card.cards.size>1)? "Membres" : "Membre" %> du réseau</h3>
+				<h3><%= (@card.inverse_parents.size>1)? "Membres" : "Membre" %> du réseau</h3>
 				<ul>
-					<% @card.cards.each do |member| %>
+					<% @card.inverse_parents.each do |member| %>
 						<li><%= link_to "#{member.name} <span class='fi-link'></span>".html_safe, card_path(member) %></li>
 					<% end %>
 				</ul>
