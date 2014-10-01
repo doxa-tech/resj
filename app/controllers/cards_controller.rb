@@ -103,6 +103,11 @@ class CardsController < BaseController
 		end
 	end
 
+	def user_remove
+		CardUser.find(params[:id]).destroy
+		redirect_to team_card_path(@card), success: "Requête annulée"
+	end
+
 	private
 
   def card_params
