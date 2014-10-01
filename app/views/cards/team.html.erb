@@ -1,14 +1,89 @@
-<h2>Faire une demande à un utilisateur</h2>
+<div class="back"><%= link_to "Retour sur l'édition", overview_card_path(@card) %></div>
 
-<%= form_tag user_request_card_path(@card) do %>
-	<%= select_tag :user_id, options_from_collection_for_select(User.users - @card.confirmed_users, :id, :full_name), class: "selectize" %>
-	<%= submit_tag %>
-<% end %>
 
-<h2>Demandes d'utilisateurs</h2>
+<div class="row">
+	<div class="col split1">
+		<div class="block">
+			<div class="header">
+				<h2>Faire une demande à un utilisateur</h2>
+				<h5>Reconnaître un utilisateur du site comme étant responsable ou co-responsable de votre <%= @card.card_type.name %></h5>
+			</div>
+			<ul>
+				<li>
+					<%= form_tag user_request_card_path(@card) do %>
+						<%= select_tag :user_id, options_from_collection_for_select(User.users - @card.confirmed_users, :id, :full_name), class: "selectize" %>
+						<%= submit_tag %>
+					<% end %>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
 
-<% @unconfirmed.each do |user| %>
-	<%= user.full_name %>
-	<%= link_to "Confirmer", user_confirmation_card_path(@card, user_id: user.id, validated: "true"), method: :post %>
-	<%= link_to "Refuser", user_confirmation_card_path(@card, user_id: user.id, validated: "false"), method: :post %>
+
+<div class="row">
+	<div class="col split1">
+		<div class="block">
+			<div class="header">
+				<h2>Demandes d'utilisateurs</h2>
+				<h5>Gérer les demande pour faire partie des responsables ou co-responsable de votre <%= @card.card_type.name %></h5>
+			</div>
+			<ul>
+				<li>
+					<% if @unconfirmed.size == 0 %>
+					Aucune demande ne requiert votre attention
+					<% end %>
+					<% @unconfirmed.each do |user| %>
+						<%= user.full_name %>
+						<%= link_to "Confirmer", user_confirmation_card_path(@card, user_id: user.id, validated: "true"), method: :post %>
+						<%= link_to "Refuser", user_confirmation_card_path(@card, user_id: user.id, validated: "false"), method: :post %>
+					<% end %>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<%= form_for @card do |f| %>
+	<div class="row">
+		<div class="col split1">
+			<div class="block">
+				<div class="header">
+					<h2>Les co-responsables de votre team</h2>
+					<h5>Ces enregistrements ne crées pas de comptes. Si un co-responsable veut avoir son compte sur le site et rejoindre votre groupe, il doit se créer un compte et s'affilier.</h5>
+				</div>
+				<ul class="team">
+					<li>
+						<div class="association_fields autocomplete" data-link="responsables">
+							<%= f.fields_for(:responsables, @card.responsables.any? || @card.responsables.build) do |responsables_fields| %>
+								<%= content_tag :div, class: "fields" do %>
+									<div class="field">
+										<%= responsables_fields.label :firstname %>
+										<%= responsables_fields.text_field :firstname, data: {attr: "firstname"} %>
+									</div>
+									<div class="field">
+										<%= responsables_fields.label :lastname %>
+										<%= responsables_fields.text_field :lastname, data: {attr: "lastname"} %>
+									</div>
+									<div class="field">
+										<%= responsables_fields.label :email %>
+										<%= responsables_fields.text_field :email %>
+									</div>
+									<div class="field">
+										<%= responsables_fields.hidden_field :_destroy, identifier: "destroy" %>
+										<%= link_to_remove_fields "remove" %>
+										<% if @card.new_record? %>
+											<%= responsables_fields.hidden_field :is_contact, identifier: "is_contact" %>
+											<%= link_to_add_contact "Mark as contact" %>
+										<% end %>
+									</div>
+								<% end %>
+							<% end %>
+							<%= link_to_add_fields("New responsable") %>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 <% end %>

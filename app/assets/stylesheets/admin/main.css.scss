@@ -39,6 +39,17 @@
 		a {
 		}
 
+		button {
+			padding: 4px 6px;
+			border: 0;
+			background: #77E;
+			color: #EEE;
+			cursor: pointer;
+			margin: 3px;
+			font-size: 10px;
+			border-radius: 2px;
+		}
+
 		.row {
 			box-sizing: border-box;
 			&:after, &:before {
