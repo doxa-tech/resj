@@ -93,10 +93,11 @@
 					font-size: 12px;
 				}
 				.graphic {
+					overflow: hidden;
 					float: left;
 					width: 30%;
 					img {
-						width: 100%;
+						max-height: 200px;
 					}
 				}
 				.text {

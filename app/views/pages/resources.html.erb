@@ -51,7 +51,7 @@
 				<p>Pas d'article</p>
 			<% else %>
 				<div class="graphic">
-					<%= image_tag image_url @article.image %>
+					<%= image_tag image_url @article.image.mid %>
 				</div>
 				<div class="text">
 					<h3><%= @article.title %></h3>
