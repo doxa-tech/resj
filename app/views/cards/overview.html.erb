@@ -1,5 +1,7 @@
 <% content_for :id, 'overview' %>
 
+<div class="back"><%= link_to "Retour sur vos cartes", user_my_cards_path %></div>
+
 <div class="row in-place-editing">
 	<div class="messages">
 	</div>
@@ -7,6 +9,7 @@
 		<div class="block">
 			<div class="header">
 				<h2><%= @card.card_type.name %> : <%= @card.name %></h2>
+				<p><span class="fi-torsos"></span> <%= link_to 'Gérer les utilisateurs et co-responsable', team_card_path(@card) %></p>
 			</div>
 			<ul>
 

@@ -1,5 +1,7 @@
 <% content_for :id, "my_cards" %>
 
+<div class="back"><%= link_to "Retour sur votre profil", profile_path %></div>
+
 <div class="row">
 	<div class="col split1">
 		<div class="block">
@@ -55,7 +57,7 @@
 						<li>
 							<% card_user = card.card_users.find_by_user_id(current_user.id) %>
 							<%= card.name %>
-							Requête faite le: <%= card_user.updated_at %>
+							<small>Requête faite le: <%= card_user.updated_at %></small>
 							<%= link_to "Annuler", user_card_remove_path(card_user: card_user.id) %>
 						</li>
 					</ul>

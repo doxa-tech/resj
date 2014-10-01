@@ -44,6 +44,7 @@ class CardsController < BaseController
 		@pending = @card.pending_users
 		@confirmed = @card.confirmed_users
 		@confirmed_paginate = @card.confirmed_users.paginate(page: params[:page], per_page: 10)
+		render layout: 'admin'
 	end
 
 	def update
