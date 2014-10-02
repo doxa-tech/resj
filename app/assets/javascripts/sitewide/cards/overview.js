@@ -2,14 +2,9 @@ var CardsController = Paloma.controller('Cards');
 
 CardsController.prototype.overview = function() {
 
-  // tells  paloma to execute when user hits back or forward button
-  $(document).on('page:restore', function(){
-    Paloma.executeHook();
-  });
-
   // call the map
   load_google_map.loadScript('card_overview', 
-        [this.params['lat'], this.params['lng']]);
+        [this.params['lat'], this.params['lng']], true);
 
   // make in-place editing
   $('.in-place form').hide();
