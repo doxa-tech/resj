@@ -226,7 +226,7 @@ fr:
   user:
     create:
       title: "S'enregistrer"
-      success: "Votre compte a été créé !"
+      success: "Votre compte a été créé ! Vous allez recevoir un email pour confirmer votre compte."
     edit:
       title: "Mettre à jour son compte"
       success: "Profil mis à jour"
