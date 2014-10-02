@@ -466,6 +466,7 @@ fr:
     themes: "Thèmes"
     disponibilities: "Disponibilités"
     disponibility: "Disponibilités spéciales"
+    disabled: "Mode vacance"
   activerecord:
     attributes:
       card:
