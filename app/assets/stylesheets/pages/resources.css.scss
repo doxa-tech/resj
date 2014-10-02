@@ -99,7 +99,7 @@
 				.text {
 					float: right;
 					width: 70%;
-					padding: 0 0 0 10px;
+					padding: 0 0 0 20px;
 					vertical-align: top;
 					line-height: 20px;
 					max-height: 600px;
@@ -172,6 +172,25 @@
 		.content {
 			img:hover {
 				
+			}
+		}
+	}
+
+	article .text {
+		position: relative;
+		padding: 0 0 20px 20px !important;
+		button {
+			display: none;
+			position: absolute;
+			bottom: 0;
+			border: none;
+			width: 100%;
+			padding: 10px;
+			color: #fff;
+			background: #B8B8B8;
+			cursor: pointer;
+			&:hover {
+				background: #747474;
 			}
 		}
 	}

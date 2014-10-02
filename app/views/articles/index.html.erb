@@ -5,10 +5,21 @@
 <%= render "resource_goback" %>
 
 <% @articles.each do |article| %>
-<article class="article">
-	<h2><%= article.title %></h2>
-	<%= content_tag :div, (image_tag article.image), class: "img" %>
-	<%= content_tag :div, (sanitize(article.content, tags: Article::ALLOWED_TAGS)), class: "content"  %>
-	<div class="end">Créé par <%= article.user.full_name %> le <%= l article.created_at %></div>
-</article>
+	<div class="block full first-child last-child">
+		<article class="wrapper article">
+			<div class="type">Article <i class="fi-clipboard-notes"></i></div>
+				<div class="graphic">
+					<%= image_tag image_url article.image.mid %>
+				</div>
+				<div class="text">
+					<h3><%= article.title %></h3>
+					<h5>Par <%= article.user.full_name %>, le <%= l article.created_at, format: :normal %></h5>
+					<div class="content">
+						<%= sanitize article.content, tags: Article::ALLOWED_TAGS %>
+					</div>
+					<button id="more-article">Lire la suite <span class="fi-arrow-down"></span></button>
+				</div>
+			<div id="clear"></div>
+		</article>
+	</div>
 <% end %>

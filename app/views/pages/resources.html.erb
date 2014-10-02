@@ -59,6 +59,7 @@
 					<div class="content">
 						<%= sanitize @article.content, tags: Article::ALLOWED_TAGS %>
 					</div>
+					<button id="more-article">Lire la suite <span class="fi-arrow-down"></span></button>
 				</div>
 			<% end %>
 			<div id="clear"></div>
