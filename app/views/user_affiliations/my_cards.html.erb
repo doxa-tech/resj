@@ -37,7 +37,7 @@
 			<ul>
 				<li>
 					<%= select_tag :card_id, options_from_collection_for_select(Card.all - @confirmed, :id, :name), class: "selectize" %>
-					<%= submit_tag %>
+					<%= submit_tag "Envoyer la requête" %>
 				</li>
 			</ul>
 			<% end %>

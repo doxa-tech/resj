@@ -34,7 +34,7 @@
 			<ul>
 				<li>
 					<%= select_tag :user_id, options_from_collection_for_select(User.users - @card.confirmed_users, :id, :full_name), class: "selectize" %>
-						<%= submit_tag %>
+						<%= submit_tag "Envoyer la requête" %>
 				</li>
 			</ul>
 			<% end %>
@@ -73,7 +73,7 @@
 		<div class="block">
 			<div class="header">
 				<h2>Requêtes</h2>
-				<h5>Gérer les demandes pour rejoindre votre carte comme responsable.</h5>
+				<h5>Gérer les demandes pour rejoindre votre groupe comme responsable.</h5>
 			</div>
 			<% if !@unconfirmed.empty? %>
 				<% @unconfirmed.each do |user| %>
@@ -100,7 +100,7 @@
 			<div class="block">
 				<div class="header">
 					<h2>Les co-responsables de votre team</h2>
-					<h5>Ces enregistrements ne crées pas de comptes. Si un co-responsable veut avoir son compte sur le site et rejoindre votre groupe, il doit se créer un compte et s'affilier.</h5>
+					<h5>Ces enregistrements ne créent pas de comptes. Si un co-responsable veut avoir son compte sur le site et rejoindre votre groupe, il doit se créer un compte et s'affilier.</h5>
 				</div>
 				<ul class="team">
 					<li>

@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   # add different types of flash messages
   add_flash_types :error, :success, :notice, :infos
 
-  before_action :set_locale, :on_ajax, :restrict_access
+  before_action :set_locale, :on_ajax
 
   rescue_from ActionController::InvalidAuthenticityToken do |exception|
     respond_to do |format|
@@ -71,12 +71,6 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
-  end
-
-  def restrict_access
-    if !current_user && !request.path.in?(%w[/resources/orators/new /resources/orators /coming_soon /searches/locations /searches/responsables /searches/tags /cards/new /cards /cards/change /user/confirmation ]) && params[:access] != "rubyforever"
-      redirect_to coming_soon_path
-    end
   end
 
   def on_ajax
