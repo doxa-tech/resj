@@ -410,7 +410,6 @@ fr:
       submit: "Enregistrer"
     label:
       session:
-        submit: "Caca"
         name: "Nom d'utilisateur"
         remember_me: "Se souvenir de moi"
         password: "Mot de passe"
@@ -459,13 +458,14 @@ fr:
     firstname: "Prénom"
     lastname: "Nom"
     password: "Mot de passe"
-    password_confirmation: "Confirmation"
+    password_confirmation: "Confirmation du mot de passe"
     location_id: "Localité"
     street: "Adresse"
     phone: "Téléphone"
     themes: "Thèmes"
     disponibilities: "Disponibilités"
     disponibility: "Disponibilités spéciales"
+    current_password: "Mot de passe actuel"
   activerecord:
     attributes:
       card:
