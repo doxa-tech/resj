@@ -15,16 +15,16 @@ Rails.application.routes.draw do
     get 'connexion', to: 'sessions#new'
     delete 'signout', to: 'sessions#destroy'
 
-    %w(edit confirmation my_cards avatar).each do |page|
+    %w(edit confirmation avatar).each do |page|
       get "user/#{page}", to: "users##{page}"
     end
     get '/profile', to: "users#profile"
     patch 'user/update', to: "users#update"
     patch 'user/avatar_update', to: "users#avatar_update"
     patch 'orator/update', to: "orators#update"
-    post 'user/card/confirmation', to: "users#card_confirmation"
-    post 'user/card/request', to: "users#card_request"
-    post '/user/card/remove', to: "users#card_remove"
+
+    get 'user/my_cards', to: 'user_affiliations#my_cards'
+    resources :user_affiliations, only: [:create, :update, :destroy]
 
     # resources
     scope 'resources' do
@@ -51,11 +51,12 @@ Rails.application.routes.draw do
       member do
         get 'overview'
         get 'team'
-        post 'user_request'
-        post 'user_confirmation'
-        post 'user_remove'
       end
+      resources :card_affiliations, only: [:create, :update, :destroy]
     end
+
+    
+
     resources :card_wizards, only: [:new, :create], path: 'card' do
       collection do
         post 'change'

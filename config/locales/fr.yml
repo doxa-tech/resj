@@ -219,7 +219,7 @@ fr:
     user:
       request:
         success: "Votre requête a été envoyée à l'utilisateur !"
-        error: "La demande n'a pas pu être acceptée. Si vous avez besoin d'aide, consultez l'aide ou contactez le support."
+        error: "La demande n'a pas pu être acceptée. Si un groupe vous a refusé, merci d'attendre une semaine pour refaire une demande. Si vous avez besoin d'aide, consultez l'aide ou contactez le support."
       confirmation: 
         success: "Décision enregistrée !"
         error: "La demande n'a pas pu être acceptée. Si vous avez besoin d'aide, consulter l'aide ou contacter le support."
@@ -236,7 +236,7 @@ fr:
         error: "La demande n'a pas pu être acceptée. Si vous avez besoin d'aide, consulter l'aide ou contacter le support."
       request:
         success: "Votre requête a été envoyée au groupe !"
-        error: "La demande n'a pas pu être acceptée. Si vous avez besoin d'aide, consulter l'aide ou contacter le support."
+        error: "La demande n'a pas pu être acceptée. Si un groupe vous a refusé, merci d'attendre une semaine pour refaire une demande. Si vous avez besoin d'aide, consultez l'aide ou contactez le support."
     admin:
       create:
         title: "Créer un nouvel utilisateur"

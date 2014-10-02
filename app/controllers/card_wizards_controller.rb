@@ -1,4 +1,4 @@
-class CardWizardsController < ApplicationController
+class CardWizardsController < BaseController
 	after_action only: [:create] { |c| c. track_activity @card }
 
 	def new
