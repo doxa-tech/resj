@@ -465,11 +465,7 @@ fr:
     themes: "Thèmes"
     disponibilities: "Disponibilités"
     disponibility: "Disponibilités spéciales"
-<<<<<<< HEAD
-    disabled: "Mode vacance"
-=======
     current_password: "Mot de passe actuel"
->>>>>>> FETCH_HEAD
   activerecord:
     attributes:
       card:
