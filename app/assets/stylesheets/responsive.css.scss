@@ -394,6 +394,21 @@
 		}
 	}
 
+	// Partial title-large
+	._title-large {
+		.wrapper {
+			padding: 0 0 10px 10px !important;
+		}
+		h2 {
+			padding: 0 0 10px 0 !important;
+			float: none !important;
+		}
+		span {
+			float: none !important;
+			padding: 0 0 10px 0 !important;
+		}
+	}
+
 	// Footer
 	footer {
 		.img {

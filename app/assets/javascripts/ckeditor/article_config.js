@@ -9,7 +9,7 @@ CKEDITOR.editorConfig = function(config)
 
 	// Toolbar configuration generated automatically by the editor based on config.toolbarGroups.
 	config.toolbar = [
-		{ items: [ 'Undo', 'Redo', 'RemoveFormat', 'Source'] },
+		{ items: [ 'Undo', 'Redo', 'RemoveFormat', 'PasteText', 'Source'] },
 		{ items: [ 'Bold', 'Italic', 'Link' ] },
 		{ items: [ 'header', 'quote', 'footer'] },
 	];

@@ -1,4 +1,7 @@
-$(function() {
+var PagesController = Paloma.controller('Pages');
+
+PagesController.prototype.resources = function() {
+
 	$('#btn-articles').click(function(e){
 		e.preventDefault();
 		goToByScroll($('#articles'));  
@@ -11,4 +14,5 @@ $(function() {
 		e.preventDefault();
 		goToByScroll($('#orators'));  
 	});
-});
+	
+};
