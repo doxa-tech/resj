@@ -76,11 +76,6 @@ namespace :db do
 		cards = Element.create(name: 'cards')
 		admin_articles = Element.create(name: 'admin/articles')
 
-		validated = Action.create(name: "validated")
-		verificate = Action.create(name: "verificate")
-		user_request = Action.create(name: "user_request")
-		user_confirmation = Action.create(name: "user_confirmation")
-
 		# ownerships for admin group :
 		Ownership.create(element_id: admin_pages.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
 		Ownership.create(element_id: admin_users.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
@@ -96,11 +91,8 @@ namespace :db do
 		Ownership.create(element_id: admin_access_tokens.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
 		Ownership.create(element_id: admin_subjects.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
 		Ownership.create(element_id: admin_themes.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
-		Ownership.create(element_id: cards.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true, actions: [user_request, user_confirmation])
+		Ownership.create(element_id: cards.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
 		Ownership.create(element_id: admin_articles.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
-
-		# ownership for the admin user
-		Ownership.create(element_id: admin_cards.id, user_id: admin.id, ownership_type_id: type2.id, actions: [validated])
 
 		# ownership for the tokens
 		Ownership.create(element_id: orators.id, user_id: g_token.id, right_create: true)
@@ -132,6 +124,19 @@ namespace :db do
 		Status.create(name: "Incomplet")
 		Status.create(name: "Action requise")
 		Card.all.each { |card| card.update_attribute(:status, a ) }
+	end
+
+	desc "Card & User requests rights update"
+	task affiliations_rights: :environment do
+		Action.where(name: ["user_request", "user_confirmation"]).destroy_all
+		e = Element.create(name: 'card_affiliations')
+		g_admin = User.find_by_firstname('g_admin')
+		all_entries = OwnershipType.find_by_name('all_entries')
+		on_entry = OwnershipType.find_by_name('on_entry')
+		Ownership.create(element_id: e.id, user_id: g_admin.id, ownership_type_id: all_entries.id, right_create: true, right_delete: true, right_update: true, right_read: true)
+		Card.all.each do |card|
+			Ownership.create(element_id: e.id, user_id: card.user_id, ownership_type_id: on_entry.id, id_element: card.id, right_create: true, right_delete: true, right_update: true, right_read: true)
+		end
 	end
 
 end

@@ -10,6 +10,10 @@ class Responsable < ActiveRecord::Base
 
 	after_validation :format
 
+	def full_name
+    "#{firstname} #{lastname}"
+  end
+
 	private
 
 	def format
