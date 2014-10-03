@@ -52,9 +52,9 @@ class UsersController < BaseController
 		if @user = User.find_by_remember_token(params[:token])
 			@user.update_attribute(:confirmed, true)
 			sign_in(@user)
-			redirect_to profile_path, success: "Account confirmed."
+			redirect_to profile_path, success: "Compte confirmé. Vous êtes maintenant connecté !"
 		else
-			redirect_to root_path, error: "Invalid token."
+			redirect_to root_path, error: "Lien invalide"
 		end
 	end
 
@@ -62,7 +62,7 @@ class UsersController < BaseController
 		@user = User.find(params[:id])
 		# re-sends confirmation email
 		UserMailer.confirmation(@user).deliver
-		redirect_to root_path, success: "We sent you a new email."
+		redirect_to root_path, success: "Un nouveau email a été envoyé à votre adresse."
 	end
 
 	# Main page of the user's profile
