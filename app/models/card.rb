@@ -34,6 +34,11 @@ class Card < ActiveRecord::Base
   has_many :inverse_card_parents, :class_name => "CardParent", :foreign_key => "parent_id"
   has_many :inverse_parents, :through => :inverse_card_parents, :source => :card
 
+  mount_uploader :avatar, AvatarUploader
+  mount_uploader :banner, BannerUploader
+
+  after_save :assign_tags
+  before_save :format_url
 
   accepts_nested_attributes_for :responsables, :users, :allow_destroy => true, reject_if: proc { |a| a[:firstname].blank? && a[:lastname].blank? && a[:email].blank? }
   accepts_nested_attributes_for :affiliations, :allow_destroy => true, reject_if: proc { |a| a[:name].blank? }
@@ -68,12 +73,6 @@ class Card < ActiveRecord::Base
     integer :canton_ids, multiple: true
     integer :tag_ids, multiple: true
   end
-
-  mount_uploader :avatar, AvatarUploader
-  mount_uploader :banner, BannerUploader
-
-  after_save :assign_tags
-  before_save :format_url
 
   def to_param
     "#{id}-#{name}".parameterize
@@ -163,7 +162,7 @@ class Card < ActiveRecord::Base
       self.user = card_user
     end
     Ownership.create(user_id: card_user.id, element_id: Element.find_by_name('cards').id, ownership_type_id: OwnershipType.find_by_name('on_entry').id, id_element: id, right_read: true, right_update: true, right_create: true)
-    Ownership.create(element_id: Element.find_by_name('cards').id, user_id: card_user.id, ownership_type_id: OwnershipType.find_by_name('on_entry').id, id_element: id, right_create: true, right_delete: true, right_update: true, right_read: true)
+    Ownership.create(element_id: Element.find_by_name('card_affiliations').id, user_id: card_user.id, ownership_type_id: OwnershipType.find_by_name('on_entry').id, id_element: id, right_create: true, right_delete: true, right_update: true, right_read: true)
     save
     return {new_user?: new_user, password: password}
   end

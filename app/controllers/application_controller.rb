@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
   include PermissionFilter
+  include Redirect
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -21,35 +22,12 @@ class ApplicationController < ActionController::Base
     locale = I18n.locale
     { locale: (locale == :fr ? nil : locale), access: params[:access] }
   end
- 
-	helper_method :store_location
 
   def track_activity(trackable, action = params[:action], controller = params[:controller])
     if !trackable.nil? && !trackable.changed?
   	 Activity.create! action: action, controller: controller, trackable: trackable, user: current_user unless trackable.changed?
     end
 	end
-
-  # Store the current url in session's variable
-  # 
-  # * *Args*    :
-  # 
-  # * *Returns* :
-  #
-  def store_location
-    session[:return_to] = request.fullpath
-  end
-
-  # Redirect the user to the stored url or the default one provided
-  # 
-  # * *Args*    :
-  #   - default path to redirect to
-  # * *Returns* :
-  #
-  def redirect_back_or(default, message = nil)
-    redirect_to(session[:return_to] || default, message)
-    session.delete(:return_to)
-  end
 
   def replace_responsable(user, card)
     responsable = Responsable.find_by_email(user.email)
