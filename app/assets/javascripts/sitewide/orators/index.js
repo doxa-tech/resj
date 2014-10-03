@@ -58,7 +58,7 @@ var orators_index = {
     google.maps.event.addListener(marker, 'click', function() {
       orators_index.infowindow.close();
       orators_index.infowindow.setContent(text);
-      orators_index.infowindow.open(map,marker);
+      orators_index.infowindow.open(orators_index.map,marker);
         $('.link_orator').click(function(){
           console.log($(this).data('id'));
           $($(this).data('id')).animate({backgroundColor: '#A1FFA1'}, 'slow');
