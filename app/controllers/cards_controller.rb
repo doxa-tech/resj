@@ -1,7 +1,7 @@
 class CardsController < BaseController
 	before_action :connected?, only: [:overview, :team, :update]
-	before_action :current_resource, only: [:update, :overview, :team]
-	before_action :authorize_modify, only: [:update, :overview, :team]
+	before_action :current_resource, only: [:update, :overview, :team, :team_update]
+	before_action :authorize_modify, only: [:update, :overview, :team, :team_update]
 	after_action only: [:update] { |c| c. track_activity @card }
 
 	layout 'admin', only: [:team, :update, :overview]
@@ -47,10 +47,19 @@ class CardsController < BaseController
 		@confirmed_paginate = @card.confirmed_users.paginate(page: params[:page], per_page: 10)
 	end
 
+	def team_update
+		if @card.update_attributes(team_params)
+			flash[:success] = "Responsables édités"
+			render 'redirect', locals: {path: team_card_path(@card) }
+		else
+			render 'form_error', locals: {object: @card }
+		end
+	end
+
 	def update
 		if @card.update_attributes(card_params)
 			respond_to do |format|
-				format.html { redirect_to team_card_path(@card), success: t('card.edit.success') }
+				format.html { redirect_to overview_card_path(@card), success: t('card.edit.success') }
 				format.js do 
 					@value = @card.updated_attribute_value(params[:card].keys[0], params[:card].values[0])
 					render 'overview_success'
@@ -58,7 +67,7 @@ class CardsController < BaseController
 			end
 		else
 			respond_to do |format|
-				format.html { render 'edit' }
+				format.html { render 'overview' }
 				format.js { render 'overview_error' }
 			end
 		end
@@ -67,7 +76,11 @@ class CardsController < BaseController
 	private
 
   def card_params
-  	params.require(:card).permit(:name, :description, :street, :location_id, :email, :place, :latitude, :longitude, :website, :password_digest, :card_type_id, :affiliation, :tag_names, :current_step, { parent_ids: [] }, responsables_attributes: [:id, :firstname, :lastname, :email, :_destroy, :is_contact])
+  	params.require(:card).permit(:name, :description, :street, :location_id, :email, :place, :latitude, :longitude, :website, :password_digest, :card_type_id, :affiliation, :tag_names, :current_step, { parent_ids: [] })
+  end
+
+  def team_params
+  	params.require(:card).permit(responsables_attributes: [:id, :firstname, :lastname, :email, :_destroy, :is_contact])
   end
 
   def current_resource

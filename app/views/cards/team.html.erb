@@ -94,13 +94,18 @@
 	</div>
 </div>
 
-<%= form_for @card do |f| %>
+<%= form_for @card, url: team_update_card_path(@card), remote: true do |f| %>
+
 	<div class="row">
 		<div class="col split1">
 			<div class="block">
 				<div class="header">
 					<h2>Les co-responsables de votre team</h2>
 					<h5>Ces enregistrements ne créent pas de comptes. Si un co-responsable veut avoir son compte sur le site et rejoindre votre groupe, il doit se créer un compte et s'affilier.</h5>
+				</div>
+
+				<div class="error">
+					<%= render 'error_messages', object: f.object %>
 				</div>
 				<ul class="team">
 					<li>

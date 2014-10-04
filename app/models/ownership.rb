@@ -14,7 +14,7 @@ class Ownership < ActiveRecord::Base
 
 	def autosave_associated_records_for_actions
     new_actions = []
-    actions.each do |action|
+    actions.reject{ |r| r._destroy == true}.each do |action|
       new_actions << Action.where(name: action.name).first_or_create
     end
     self.actions = new_actions
