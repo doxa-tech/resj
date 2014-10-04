@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   match '/422', to: 'errors#unprocessable', via: :all
   match '/500', to: 'errors#internal_server_error', via: :all
 
+  get '/cards/new', to: redirect('/card/new')
+
   scope "(:locale)", locale: /en|fr/ do
 
     %w(home resj contact resources coming_soon help privacy developer).each do |page|
@@ -51,6 +53,7 @@ Rails.application.routes.draw do
       member do
         get 'overview'
         get 'team'
+        patch 'team_update'
       end
       resources :card_affiliations, only: [:create, :update, :destroy]
     end

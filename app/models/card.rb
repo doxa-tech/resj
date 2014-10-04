@@ -130,7 +130,7 @@ class Card < ActiveRecord::Base
   # Find a responsable or create a new one 
   def autosave_associated_records_for_responsables
     new_responsables = []
-    responsables.reject{ |r| r.is_contact == "true" }.each do |responsable|
+    responsables.reject{ |r| r.is_contact == "true" || r._destroy == true}.each do |responsable|
       if user = User.find_by_email(responsable.email)
         if !CardUser.where(user_id: user.id, card_id: id).any?
           CardUser.create(user_id: user.id, card_id: id, card_validated: true)
@@ -144,7 +144,7 @@ class Card < ActiveRecord::Base
 
   def autosave_associated_records_for_affiliations
     new_affiliations = []
-    affiliations.each do |affiliation|
+    affiliations.reject{ |r| r._destroy == true}.each do |affiliation|
       new_affiliations << Affiliation.where(name: affiliation.name).first_or_create
     end
     self.affiliations = new_affiliations
