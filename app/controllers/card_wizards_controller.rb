@@ -19,7 +19,7 @@ class CardWizardsController < BaseController
 				@card.current_step = step
 				session[:card_params]["current_step"] = @card.current_step
 			end
-		else
+		else 
 			render js: "location.reload();"
 		end
 	end
