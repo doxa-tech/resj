@@ -49,7 +49,7 @@ Rails.application.routes.draw do
     resources :sessions, only: [:create]
     resources :password_resets, except: [:index, :show, :destroy]
     
-    resources :cards, only: [:index, :show, :update] do
+    resources :cards, only: [:show, :update] do
       member do
         get 'overview'
         get 'team'

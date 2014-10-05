@@ -44,7 +44,7 @@ namespace :deploy do
   after "deploy:finalize_update", "deploy:symlink_config"
 
   task :reindex, roles: :app do
-    run("cd #{release_path} && bundle exec rake RAILS_ENV=#{rails_env} sunspot:reindex")
+    run "cd #{release_path} && bundle exec rake RAILS_ENV=#{rails_env} sunspot:reindex"
   end
   after "deploy:finalize_update", "deploy:reindex"
 
@@ -62,6 +62,7 @@ namespace :deploy do
   task :update_solr, roles: :app do
     put File.read("config/solr/solrconfig.xml"), "/usr/share/solr/example/solr/collection1/conf/solrconfig.xml"
     put File.read("config/solr/schema.xml"), "/usr/share/solr/example/solr/collection1/conf/schema.xml"
+    run "sudo /etc/init.d/tomcat7 restart"
   end
 
 end
