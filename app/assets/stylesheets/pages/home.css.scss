@@ -40,12 +40,14 @@
 		.video {
 			text-align: center;
 			float: right;
-			width: 700px;
-			height: 400px;
-			padding: 58px 0 0 10px;
 			position: relative;
 			&:hover .download {
 				display: block;
+			}
+			#player {
+				width: 700px;
+				height: 400px;
+				padding: 58px 0 0 10px;
 			}
 			.download {
 				position: absolute;
