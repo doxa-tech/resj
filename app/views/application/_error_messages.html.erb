@@ -1,5 +1,4 @@
 <% if object.errors.any? %>
-	<div id="clear"></div>
 	<div id="error">
 		<p class="title">
 			Le formulaire contient <%= pluralize(object.errors.count, t('application.error')) %>
@@ -10,5 +9,4 @@
 			<% end %>
 		</ul>
 	</div>
-	<div id="clear"></div>
 <% end %>

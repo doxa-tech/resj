@@ -1,14 +1,9 @@
 <% if object.any? %>
-	<div id="clear"></div>
 	<div id="notice">
-<!-- 		<p class="title">
-			Notice
-		</p> -->
 		<ul>
 			<% object.each do |msg| %>
 			 <li><%= msg.encode("UTF-8") %></li>
 			<% end %>
 		</ul>
 	</div>
-	<div id="clear"></div>
 <% end %>
