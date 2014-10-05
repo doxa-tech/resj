@@ -45,7 +45,7 @@ var cards_index = {
 
   init: function() {
     $.ajax({
-           url: "cards", // Route to the Script Controller method
+           url: "reseau", // Route to the Script Controller method
           type: "GET",
          error: function() {
                   $('#map').html("<p class='err'>Erreur de chargement, rechargez la page.</p>");
