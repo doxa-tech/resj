@@ -234,6 +234,9 @@
 		padding: 6px 30px;
 		font-size: 13px;
 		background: #ff9a8c;
+		position: fixed;
+		top: 0; left: 0; right: 0;
+		z-index: 99999;
 		.title {
 			font-weight: 400;
 		}
@@ -243,6 +246,9 @@
 		padding: 6px 30px;
 		font-size: 13px;
 		background: #8ce8ff;
+		position: fixed;
+		top: 0; left: 0; right: 0;
+		z-index: 99999;
 		.title {
 			font-weight: 400;
 		}
