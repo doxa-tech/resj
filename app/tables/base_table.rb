@@ -35,7 +35,8 @@ class BaseTable
 		  title = model.human_attribute_name(column)
 		  css_class = column == sort_column ? "current #{sort_direction}" : nil
 		  direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
-		  h.link_to title, h.request.path + "?sort=#{column}&direction=#{direction}&query=#{h.params[:query]}&page=#{h.params[:page]}&utf8=#{h.params[:utf8]}", {remote: true, class: css_class}
+		  page = h.params[:page] || 1
+		  h.link_to title, h.request.path + "?sort=#{column}&direction=#{direction}&query=#{h.params[:query]}&page=#{page}&utf8=#{h.params[:utf8]}", {remote: true, class: css_class}
 	 	else
 	 		model.human_attribute_name(column)
 	 	end

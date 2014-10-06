@@ -45,7 +45,7 @@ class CardMailer < BaseMailer
   # someone wants to join your card
   # params:   - card, the card concerned
   #           - the user that made the request
-  def request(card, user)
+  def request(user, card)
       mail  to:      card.user.email,
             subject: "Quelqu'un veut s'affilier",
             body:
@@ -60,7 +60,7 @@ class CardMailer < BaseMailer
   # user you invited accepted to join
   # params:   - card, the card concerned
   #           - the user that made the request
-  def confirmed_user(card, user)
+  def confirmed_user(user, card)
         mail  to:      card.user.email,
               subject: "Affiliation acceptée",
               body:
