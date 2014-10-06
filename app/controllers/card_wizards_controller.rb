@@ -31,7 +31,7 @@ class CardWizardsController < BaseController
 		if @card.save
 			user_hash = @card.create_owner(owner)
 			# for validator
-			CardMailer.admin_created(validator,@card).deliver
+			CardMailer.admin_created(validator_emails, @card).deliver
 			# for owner
 			CardMailer.owner_created(@card, user_hash).deliver
 			session[:card_params] = nil
@@ -44,8 +44,8 @@ class CardWizardsController < BaseController
 
 	private
 
-	def validator
-  	@validator ||= User.joins(:ownerships, ownerships: [:actions]).where(actions: {name: "validated"}).first
+	def validator_emails
+  	@validator_emails ||= User.joins(:ownerships, ownerships: [:element]).where(elements: {name: 'admin/card_statuses'}, ownerships: {right_update: true}).pluck(:email)
   end
 
   def card_params

@@ -1,5 +1,7 @@
 class Card < ActiveRecord::Base
   include Wizard
+  include CardValidation
+  include CardSearch
   attr_writer :tag_names
 
   scope :regional, -> { joins(:card_type).where(card_types: {name: "Réseau régional"}) }
@@ -38,64 +40,13 @@ class Card < ActiveRecord::Base
   mount_uploader :banner, BannerUploader
 
   after_save :assign_tags
-  before_save :format_url
 
   accepts_nested_attributes_for :responsables, :users, :allow_destroy => true, reject_if: proc { |a| a[:firstname].blank? && a[:lastname].blank? && a[:email].blank? }
   accepts_nested_attributes_for :affiliations, :allow_destroy => true, reject_if: proc { |a| a[:name].blank? }
   accepts_nested_attributes_for :users, :allow_destroy => true
 
-  with_options if: Proc.new { |c| c.current_step?("general")} do |card|
-    card.validates :name, presence: true, length: { maximum: 30 }, uniqueness: true
-    card.validates :description, presence: true, length: { maximum: 800 }
-    card.validates :card_type_id, presence: true
-  end
-  with_options if: Proc.new { |c| c.current_step?("location")} do |card|
-    card.validates :street, presence: true
-    card.validates :location_id, presence: true
-    card.validates :place, length: { maximum: 60 }
-    card.validates :latitude, presence: true
-    card.validates :longitude, presence: true
-  end
-  with_options if: Proc.new { |c| c.current_step?("team")} do |card|
-    card.validate :responsables?
-    card.validate :contact?
-    card.validates :email, :format => { :with => /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/ }, :allow_blank => true
-  end
-
-  searchable do
-    text :name, boost: 10
-    text :description, boost: 5
-    text :canton_name
-    text :tag_names
-    text :status_name
-    string :status_name
-    integer :card_type_id, multiple: true
-    integer :canton_ids, multiple: true
-    integer :tag_ids, multiple: true
-  end
-
   def to_param
     "#{id}-#{name}".parameterize
-  end
-
-  def canton_ids
-    location.canton.id
-  end
-
-  def tag_ids
-    tags.pluck(:id)
-  end
-
-  def tag_names
-    tags.pluck(:name)
-  end
-
-  def canton_name
-    location.canton.name
-  end
-
-  def status_name
-    status.name
   end
 
   # Users requests to a card
@@ -132,13 +83,12 @@ class Card < ActiveRecord::Base
     new_responsables = []
     responsables.reject{ |r| r.is_contact == "true" || r._destroy == true}.each do |responsable|
       if user = User.find_by_email(responsable.email)
-        if !CardUser.where(user_id: user.id, card_id: id).any?
-          CardUser.create(user_id: user.id, card_id: id, card_validated: true)
-        end
+        CardUser.create(user_id: user.id, card_id: id, card_validated: true) if !CardUser.where(user_id: user.id, card_id: id).any?
       else
         new_responsables << Responsable.where(firstname: responsable.firstname, lastname: responsable.lastname, email: responsable.email).first_or_create
       end
     end
+    CardMailer.team_welcome(self, new_responsables.collect(&:email)).deliver if new_record?
     self.responsables = new_responsables
   end
 
@@ -187,19 +137,38 @@ class Card < ActiveRecord::Base
     return self.parents.inject(''){|i, a| "#{i}, #{a.name}"}[1..-1]
   end
 
+  def replace_responsable(user)
+    responsable = Responsable.find_by_email(user.email)
+    CardResponsable.find_by_card_id_and_responsable_id(self.id, responsable.id).destroy if responsable
+  end
+
+  def send_request(user)
+    card_user = CardUser.where(user_id: user.id, card_id: self.id).first
+    if card_user
+      if card_user.user_validated == false && card_user.updated_at < 1.weeks.ago
+        card_user.update_attribute(:user_validated, nil)
+      elsif card_user.card_validated == false
+        card_user.update_attribute(:card_validated, true)
+      end
+    elsif !self.in?(user.confirmed_cards)
+      @new_card_user = CardUser.create(user_id: user.id, card_id: self.id, card_validated: true)
+    end
+  end
+
+  def answer_request(user, params)
+    @card_user = CardUser.where(user_id: user.id, card_id: self.id).first
+    if @card_user && @card_user.card_id == self.id && params[:validated].in?(["false", "true"])
+      if params[:validated] == "true"
+        UserMailer.confirmed_card(self, user).deliver
+      else
+        UserMailer.unconfirmed_card(self, user).deliver
+      end
+      self.replace_responsable(user)
+      @card_user.update_attribute(:card_validated, params[:validated])
+    end
+  end
+
   private
-
-  def contact?
-    if new_record? && responsables.any? && !responsables.select{ |r| r.is_contact == "true" }.any?
-      errors.add(:responsables, "n'a pas de propriétaire (Marquer comme propriétaire)" )
-    end
-  end
-
-  def responsables?
-    if new_record? && !responsables.any?
-      errors.add(:responsables, "ne contient aucun responsable (min. 1)")
-    end
-  end
 
   def assign_tags
     current_tags = []
@@ -212,12 +181,6 @@ class Card < ActiveRecord::Base
       end
     end
     self.tags = current_tags
-  end
-
-  def format_url
-    if(!self.website.blank?)
-      self.website = "http://#{self.website}" unless self.website[/^https?/]    
-    end
   end
 
 end

@@ -25,24 +25,12 @@ class ApplicationController < ActionController::Base
 
   def track_activity(trackable, action = params[:action], controller = params[:controller])
     if !trackable.nil? && !trackable.changed?
-  	 Activity.create! action: action, controller: controller, trackable: trackable, user: current_user unless trackable.changed?
+  	 Activity.create! action: action, controller: controller, trackable: trackable, user: current_user
     end
 	end
 
-  def replace_responsable(user, card)
-    responsable = Responsable.find_by_email(user.email)
-    CardResponsable.find_by_card_id_and_responsable_id(card.id, responsable.try(:id)).try(:destroy)
-  end
-
   def render_error(error)
     render_to_string("application/errors/#{error}", layout: false).html_safe
-  end
-
-  def search(model, fields)
-    @search = model.search do 
-      fulltext params[:query], fields: fields
-      paginate page: params[:page] if params[:page]
-    end
   end
 
   private

@@ -16,9 +16,8 @@ class CardMailer < BaseMailer
   end
 
   # a new card has been created, let's validate!
-  def admin_created(validator, card)
-  	@validator = validator
-    mail to:      @validator.email,
+  def admin_created(emails, card)
+    mail to:      emails,
          subject: 'Validation d\'une carte',
          body:
     params({ TYPE: card.card_type.name,
