@@ -15,7 +15,10 @@
 					</li>
 					<% else %>
 						<% @confirmed_paginate.each do |user| %>
-							<li><%=  user.full_name %></li>
+							<li>
+								<%=  user.full_name %>
+								<%= link_to "Retirer", card_card_affiliation_path(@card, user), method: :delete, data: {confirm: "Etes-vous sûr de vouloir enlever cet utilisateur ?" }, class: "edit-btn" if user != @card.user %>
+							</li>
 						<% end %>
 				<% end %>
 			</ul>
