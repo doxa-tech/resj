@@ -27,36 +27,16 @@ class CardMailer < BaseMailer
     template "card-created-admin"  # template
   end
 
-  # card has been validated (so you can verified)
-  def admin_validated(checkers, card)
-  	@checkers = checkers
-    mail to:      @checkers.pluck(:email),
-         subject: 'Vérification d\'une carte',
-         body:
-    params({ TYPE: card.card_type.name,
-             GNAME: card.name,
-             LINK: edit_admin_card_url(card, locale: I18n.locale) })
-    template "card-validated-admin"  # template
-  end
-
-  # card has been verified (so it is published)
-  def admin_verified(card_admins, card)
-  	@card_admins = card_admins
-    mail to:      @card_admins.pluck(:email),
-         subject: 'Nouvelle care',
-         body:
-    params({ TYPE: card.card_type.name,
-             GNAME: card.name,
-             LINK: card_url(card, locale: I18n.locale) })
-    template "card-verified-admin"  # template
-  end
-
-  # hey owner, your card is now online
-  def owner_verified(owner)
-  end
-
   # hey guys, you are now part of a new group!
-  def team_verified(users, responsables)
+  def team_welcome(card, emails)
+      mail  to:      emails,
+            subject: "Bienvenue dans l'aventure !",
+            body:
+      params({ UFIRSTNAME: card.user.firstname,
+               ULASTNAME: card.user.lastname, 
+               GNAME: card.name, 
+               GTYPE: card.card_type.name })
+      template "card-team-welcome"
   end
 
   #
@@ -64,15 +44,48 @@ class CardMailer < BaseMailer
   #
 
   # someone wants to join your card
-  def request(user, card)
+  # params:   - card, the card concerned
+  #           - the user that made the request
+  def request(card, user)
+      mail  to:      card.user.email,
+            subject: "Quelqu'un veut s'affilier",
+            body:
+      params({ UFIRSTNAME: card.user.firstname,
+               FIRSTNAME: user.firstname,
+               LASTNAME: user.lastname,
+               GNAME: card.name, 
+               GTYPE: card.card_type.name })
+      template "card-join-request"
   end
 
   # user you invited accepted to join
-  def confirmed_user(user, card)
+  # params:   - card, the card concerned
+  #           - the user that made the request
+  def confirmed_user(card, user)
+        mail  to:      card.user.email,
+              subject: "Affiliation acceptée",
+              body:
+        params({ UFIRSTNAME: card.user.firstname,
+               FIRSTNAME: user.firstname,
+               LASTNAME: user.lastname,
+               GNAME: card.name, 
+               GTYPE: card.card_type.name })
+        template "card-request-accepted"
   end
 
   # user you invited didn't aceppt to join
+  # params:   - card, the card concerned
+  #           - the user that made the request
   def unconfirmed_user(user, card)
+          mail  to:      card.user.email,
+                subject: "Affiliation refusée",
+                body:
+        params({ UFIRSTNAME: card.user.firstname,
+               FIRSTNAME: user.firstname,
+               LASTNAME: user.lastname,
+               GNAME: card.name, 
+               GTYPE: card.card_type.name })
+        template "card-request-rejected"
   end
 
   # your card has changed its status
