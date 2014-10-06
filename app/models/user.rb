@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  include UserValidation
 	attr_accessor :current_password
 
 	has_secure_password({ validations: false })
@@ -11,10 +12,10 @@ class User < ActiveRecord::Base
   # User has many users -> .inverse_users
   has_many :parents, dependent: :destroy
   has_many :users, through: :parents
-  has_many :inverse_parents, :class_name => "Parent", :foreign_key => "parent_id"
+  has_many :inverse_parents, :class_name => "Parent", :foreign_key => "parent_id", dependent: :destroy
   has_many :inverse_users, :through => :inverse_parents, :source => :user
 
-  has_many :ownerships
+  has_many :ownerships, dependent: :destroy
   has_many :verificator_comments
   has_many :activities
   has_many :articles
@@ -33,19 +34,6 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :orator
 
-  with_options unless: :is_group? do |user|
-    user.validates :firstname, presence: true, length: { maximum: 15 }
-    user.validates :lastname, presence: true, length: { maximum: 15 }
-    user.validates :email, :format => { :with => /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/ }, uniqueness: true
-    user.validates :gravatar_email, :format => { :with => /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/ }, on: :update?
-    user.validate :avatar_presence
-
-    user.after_validation :format
-    user.before_save :create_remember_token
-    user.before_create :assign_gravatar
-  end
-  validates :password, presence: true, length: { minimum: 5 }, confirmation: true, :unless => lambda { |v| v.validate_password? || v.is_group? }
-
   def send_password_reset
     self.reset_token =  SecureRandom.urlsafe_base64
     self.reset_sent_at = Time.zone.now
@@ -58,20 +46,20 @@ class User < ActiveRecord::Base
     "#{firstname} #{lastname}"
   end
 
-  def validate_password?
-    password.blank? && password_confirmation.blank? && !self.new_record?
-  end
-
-  def is_group?
-    user_type_id == UserType.find_by_name('group').id
-  end
-
   def gravatar_url(size = 100)
     default_url = URI.escape "identicon"
     if self.gravatar_email
       "http://gravatar.com/avatar/#{Digest::MD5.hexdigest(self.gravatar_email.downcase)}.png?d=#{default_url}&s=#{size}"
     else
       "http://gravatar.com/avatar/#{Digest::MD5.hexdigest('no')}.png?d=#{default_url}&s=#{size}"
+    end
+  end
+
+  def image
+    if gravatar || avatar_url.nil?
+      gravatar_url
+    else
+      avatar.thumb.url
     end
   end
 
@@ -97,42 +85,35 @@ class User < ActiveRecord::Base
       save
       true
     else
-      errors.add(:current_password, "does not match") unless authenticated
+      errors.add(:current_password, "ne correspond pas") unless authenticated
       false
     end
   end
 
-  def image
-    if gravatar || avatar_url.nil?
-      gravatar_url
-    else
-      avatar.thumb.url
+  def send_request(card)
+    card_user = CardUser.where(user_id: self.id, card_id: card.id).first
+    if card_user
+      if card_user.card_validated == false && card_user.updated_at < 1.weeks.ago
+        card_user.update_attribute(:card_validated, nil)
+      elsif card_user.user_validated == false
+        card_user.update_attribute(:user_validated, true)
+      end
+    elsif !self.in?(card.confirmed_users)
+      @new_card_user = CardUser.create(user_id: self.id, card_id: card.id, user_validated: true)
     end
   end
 
-  private
-
-  def avatar_presence
-    if avatar_url.nil? && gravatar == false
-      errors.add(:avatar, 'est vide. Merci de sélectionner une image à uploader avant de décocher l\'option "Utiliser gravatar ?" ou recocher l\'option.')
+  def answer_request(card, params)
+    @card_user = CardUser.where(user_id: self.id, card_id: card.id).first
+    if @card_user && @card_user.user_id == self.id && params[:validated].in?(["false", "true"])
+      if params[:validated] == "true"
+        CardMailer.confirmed_user(self, card).deliver
+      else
+        CardMailer.unconfirmed_user(self, card).deliver
+      end
+      card.replace_responsable(self)
+      @card_user.update_attribute(:user_validated, params[:validated])
     end
   end
 
-  # Remove spaces and capitales
-  def format
-    self.firstname.strip!
-    self.lastname.strip!
-    self.email.strip
-    self.firstname.capitalize!
-    self.lastname.capitalize!
-    self.email.downcase!
-  end
-
-  def create_remember_token
-    self.remember_token = SecureRandom.urlsafe_base64
-  end
-
-  def assign_gravatar
-    self.gravatar_email = self.email
-  end
 end

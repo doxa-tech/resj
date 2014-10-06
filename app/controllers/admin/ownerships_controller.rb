@@ -3,7 +3,7 @@ class Admin::OwnershipsController < Admin::BaseController
 	after_action only: [:create, :update, :destroy] { |c| c. track_activity @ownership }
 
 	def index
-		@table = OwnershipTable.new(view_context, search(Ownership, [:element_name, :user_name]).results)
+		@table = OwnershipTable.new(view_context)
 		respond_to do |format|
 			format.html
 			format.js { render 'sort' }
