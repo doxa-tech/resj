@@ -17,8 +17,14 @@
 					</li>
 					<% else %>
 						<% @confirmed_paginate.each do |card| %>
-							<li><%=  card.name %> <%= render 'application/admin/edit_btn', path: overview_card_path(card) \
-								if current_permission.allow_modify?('cards', 'edit', card) %></li>
+							<li>
+								<%= card.name %> 
+								<% if current_permission.allow_modify?('cards', 'edit', card) %>
+									<%= render 'application/admin/edit_btn', path: overview_card_path(card) %>
+								<% else %>
+									<%= link_to "Quitter", user_affiliation_path(card), method: :delete, data: {confirm: "Etes-vous sûr de vouloir quitter ce groupe ?" }, class: "edit-btn" %>
+								<% end %>
+							</li>
 						<% end %>
 				<% end %>
 			</ul>
