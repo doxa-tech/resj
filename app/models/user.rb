@@ -103,16 +103,11 @@ class User < ActiveRecord::Base
     end
   end
 
-  def answer_request(card, params)
+  def answer_request(card, answer)
     @card_user = CardUser.where(user_id: self.id, card_id: card.id).first
-    if @card_user && @card_user.user_id == self.id && params[:validated].in?(["false", "true"])
-      if params[:validated] == "true"
-        CardMailer.confirmed_user(self, card).deliver
-      else
-        CardMailer.unconfirmed_user(self, card).deliver
-      end
+    if @card_user && answer.in?(["false", "true"])
       card.replace_responsable(self)
-      @card_user.update_attribute(:user_validated, params[:validated])
+      @card_user.update_attribute(:user_validated, answer)
     end
   end
 

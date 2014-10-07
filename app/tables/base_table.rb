@@ -11,7 +11,7 @@ class BaseTable
 	end
 
 	def elements
-		if h.params[:query] != ""
+		if model.respond_to?(:search)
 			@search = model.search do 
       	fulltext h.params[:query]
       	paginate page: h.params[:page] if h.params[:page]

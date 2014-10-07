@@ -26,20 +26,21 @@ class Card < ActiveRecord::Base
   has_many :responsables, through: :card_responsables
 
   # Card's signed up responsables (User)
-  has_many :card_users
+  has_many :card_users, dependent: :destroy
   has_many :users, through: :card_users
 
   # Card belongs to local networks -> .parents
   # Local network has many cards -> .inverse_parents 
-  has_many :card_parents
+  has_many :card_parents, dependent: :destroy
   has_many :parents, through: :card_parents
-  has_many :inverse_card_parents, :class_name => "CardParent", :foreign_key => "parent_id"
+  has_many :inverse_card_parents, :class_name => "CardParent", :foreign_key => "parent_id", dependent: :destroy
   has_many :inverse_parents, :through => :inverse_card_parents, :source => :card
 
   mount_uploader :avatar, AvatarUploader
   mount_uploader :banner, BannerUploader
 
   after_save :assign_tags
+  after_destroy :destroy_ownerships
 
   accepts_nested_attributes_for :responsables, :users, :allow_destroy => true, reject_if: proc { |a| a[:firstname].blank? && a[:lastname].blank? && a[:email].blank? }
   accepts_nested_attributes_for :affiliations, :allow_destroy => true, reject_if: proc { |a| a[:name].blank? }
@@ -155,16 +156,11 @@ class Card < ActiveRecord::Base
     end
   end
 
-  def answer_request(user, params)
+  def answer_request(user, answer)
     @card_user = CardUser.where(user_id: user.id, card_id: self.id).first
-    if @card_user && @card_user.card_id == self.id && params[:validated].in?(["false", "true"])
-      if params[:validated] == "true"
-        UserMailer.confirmed_card(self, user).deliver
-      else
-        UserMailer.unconfirmed_card(self, user).deliver
-      end
+    if @card_user && answer.in?(["false", "true"])
       self.replace_responsable(user)
-      @card_user.update_attribute(:card_validated, params[:validated])
+      @card_user.update_attribute(:card_validated, answer)
     end
   end
 
@@ -181,6 +177,10 @@ class Card < ActiveRecord::Base
       end
     end
     self.tags = current_tags
+  end
+
+  def destroy_ownerships
+    Ownership.joins(:element).where(elements: {name: ['cards', 'admin/cards', 'card_affiliations']}, id_element: id).destroy_all
   end
 
 end
