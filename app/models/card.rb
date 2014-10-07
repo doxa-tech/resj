@@ -139,7 +139,7 @@ class Card < ActiveRecord::Base
 
   def replace_responsable(user)
     responsable = Responsable.find_by_email(user.email)
-    CardResponsable.find_by_card_id_and_responsable_id(self.id, responsable.id).destroy if responsable
+    CardResponsable.find_by_card_id_and_responsable_id(self.id, responsable.id).try(:destroy) if responsable
   end
 
   def send_request(user)
