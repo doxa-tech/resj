@@ -17,6 +17,25 @@
 	  position: absolute;
 	  bottom: 0; left: 0; 
 
+	  .social {
+	  	font-size: 30px;
+	  	text-align: center;
+	  	padding: 0 0 20px 0;
+	  	a { color: #fff; text-shadow: 0 0 10px #000; }
+	  	span {
+	  		padding: 20px 10px;
+	  	}
+	  	.fi-social-facebook:hover {
+	  		color: #3B5999;
+	  	}
+	  	.fi-social-twitter:hover {
+	  		color: #55ACCE;
+	  	}
+	  	.fi-social-instagram:hover {
+	  		color: #517fa4;
+	  	}		  	
+	  }
+
 		.block {
 			display: inline-block;
 			vertical-align: top;
@@ -30,7 +49,7 @@
 			}
 			&.a {
 				width: 380px;
-				padding: 44px 0 0 0;
+				padding: 24px 0 0 0;
 			}
 			&.b {
 				width: 200px;
