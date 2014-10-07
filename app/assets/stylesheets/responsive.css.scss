@@ -410,13 +410,14 @@
 
 	// Footer
 	footer {
+		height: 290px !important;
 		.img {
-			padding: 0;
+			padding: 0 !important;
 		}
 		.a, .b {
 			padding: 5px 0 0 0 !important;
 			width: 100% !important;
-			text-align: center;
+			text-align: center !important;
 		}
 	}
 
