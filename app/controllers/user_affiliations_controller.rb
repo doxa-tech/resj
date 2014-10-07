@@ -25,7 +25,12 @@ class UserAffiliationsController < BaseController
 	# Action on a card's request to an user
 	def update
 		card = Card.find_by_id(params[:id])
-		if card && current_user.answer_request(card, params)
+		if card && current_user.answer_request(card, params[:validated])
+			if params[:validated] == "true"
+        CardMailer.confirmed_user(current_user, card).deliver
+      else
+        CardMailer.unconfirmed_user(current_user, card).deliver
+      end
 			track_activity @card_user
 			redirect_to user_my_cards_path, success: t('user.card.confirmation.success')
 		else

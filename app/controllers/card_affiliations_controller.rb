@@ -2,7 +2,7 @@ class CardAffiliationsController < BaseController
 	before_action :connected?
 	before_filter :current_resource, only: [:create, :update, :destroy]
 	before_action :authorize_create, only: [:create]
-	before_action :authorize_modify, only: [:update, :destroy, :team]
+	before_action :authorize_modify, only: [:update, :destroy]
 
 	# Card's request to a user
 	def create
@@ -19,7 +19,12 @@ class CardAffiliationsController < BaseController
 	# Action on a user's request to an card
 	def update
 		user = User.find_by_id(params[:id])
-		if user && @card.answer_request(user, params)
+		if user && @card.answer_request(user, params[:validated])
+			if params[:validated] == "true"
+        UserMailer.confirmed_card(@card, user).deliver
+      else
+        UserMailer.unconfirmed_card(@card, user).deliver
+      end
 			track_activity @card_user
 			redirect_to team_card_path(@card), success: t('card.user.confirmation.success')
 		else
