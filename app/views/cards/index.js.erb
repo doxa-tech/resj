@@ -19,39 +19,38 @@ load_mapbox.markers.clearLayers();
 load_mapbox.map.removeLayer(load_mapbox.markers);
 
 // Add the cards
-<% if @cards_map.any? %>
-  <% @cards_map.each do |card| %>
-  <% title = j map_point_title(card).html_safe %>
-  	var marker = L.marker(new L.LatLng(<%= card.latitude %>, <%= card.longitude %>), options={
-      icon: L.icon({
-        iconUrl: "<%= map_point_icon(card) %>",
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [0, -30],
-        shadowUrl: '<%= asset_path "map/images/marker-shadow.png" %>',
-        shadowSize: [41, 41],
-        shadowAnchor: [12, 41]
-      }),
-  		title: "<%= title %>",
-      riseOnHover: true,
-      id: <%= card.id %>,
-  	});
-  	load_mapbox.markers.addLayer(marker);
-  	marker.bindPopup("<%= title %>");
-  <% end %>
-  load_mapbox.map.addLayer(load_mapbox.markers);
-
-  // Show marker when click
-  $('.show-on-map').click(function(){
-    var link = $(this);
-    document.getElementById('map').scrollIntoView();
-    load_mapbox.markers.eachLayer(function(layer){
-      if(layer.options.id == parseInt(link.data("id"))) {
-        load_mapbox.markers.zoomToShowLayer(layer, function() {
-          layer.openPopup();
-        });
-      }
-    });
-  });
-
+<% @cards_map.each do |card| %>
+<% title = j map_point_title(card).html_safe %>
+	var marker = L.marker(new L.LatLng(<%= card.latitude %>, <%= card.longitude %>), options={
+    icon: L.icon({
+      iconUrl: "<%= map_point_icon(card) %>",
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [0, -30],
+      shadowUrl: '<%= asset_path "map/images/marker-shadow.png" %>',
+      shadowSize: [41, 41],
+      shadowAnchor: [12, 41]
+    }),
+		title: "<%= title %>",
+    riseOnHover: true,
+    id: <%= card.id %>,
+	});
+	load_mapbox.markers.addLayer(marker);
+	marker.bindPopup("<%= title %>");
 <% end %>
+// Add icons, position the map
+load_mapbox.map.addLayer(load_mapbox.markers);
+load_mapbox.map.fitBounds(load_mapbox.markers.getBounds());
+
+// Show marker when click
+$('.show-on-map').click(function(){
+  var link = $(this);
+  document.getElementById('map').scrollIntoView();
+  load_mapbox.markers.eachLayer(function(layer){
+    if(layer.options.id == parseInt(link.data("id"))) {
+      load_mapbox.markers.zoomToShowLayer(layer, function() {
+        layer.openPopup();
+      });
+    }
+  });
+});
