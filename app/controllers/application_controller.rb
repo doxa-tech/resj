@@ -13,8 +13,8 @@ class ApplicationController < ActionController::Base
 
   rescue_from ActionController::InvalidAuthenticityToken do |exception|
     respond_to do |format|
-      format.html { render 'invalid_authenticity_token.html', layout: 'application' }
-      format.js { render 'invalid_authenticity_token.js' }
+      format.html { render 'application/rescue/invalid_authenticity_token.html', layout: 'application' }
+      format.js { render 'application/rescue/invalid_authenticity_token.js' }
     end
   end
 

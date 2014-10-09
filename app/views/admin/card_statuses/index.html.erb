@@ -1,8 +1,5 @@
 <h1><%= t('card_status.admin.index') %></h1>
 
-<p>Rechercher un statut</p>
-<%= render 'application/admin/search_field' %>
-
 <div id="admin_table">
 	<div class="table_buttons">
 		<% if current_permission.allow_modify?(params[:controller], "update") %>

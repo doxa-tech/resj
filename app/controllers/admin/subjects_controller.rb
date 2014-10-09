@@ -49,6 +49,6 @@ class Admin::SubjectsController < Admin::BaseController
 	end
 
 	def current_resource
-		@subject = Subject.find(params[:id])
+		@subject = Subject.find_by_id(params[:id])
 	end
 end

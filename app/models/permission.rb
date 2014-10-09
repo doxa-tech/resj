@@ -31,13 +31,16 @@ class Permission
 	end
 
 	def elements(controller, model)
-		ownerships_on_entry = Ownership.where("user_id IN (?) AND element_id = ? AND ownership_type_id = ? AND right_read = ?", @ids, element_id(controller), @on_entry_id, true).pluck('id_element')
-		if Ownership.where("user_id IN (?) AND element_id = ? AND ownership_type_id = ? AND right_read = ?", @ids, element_id(controller), @all_entries_id, true).any?
-    	@elements ||= model.all
-    elsif Ownership.where("user_id IN (?) AND element_id = ? AND ownership_type_id = ? AND right_read = ?", @ids, element_id(controller), @on_ownership_id, true).any?
-			@elements ||= model.where('user_id = ? or id IN (?)', user.id, ownerships_on_entry)
-		elsif ownerships_on_entry.any?
-			@elements ||= model.where('id IN (?)', ownerships_on_entry)
+		token = AccessToken.find_by_token(token)
+		ownership_type_ids = token.try(:ownership).try(:ownership_type_id) || Ownership.where("user_id IN (?) AND element_id = ? AND right_read = ?", @ids, element_id(controller), true).pluck(:ownership_type_id)
+		if ownership_type_ids.any?
+			if ownership_type_ids.include? @all_entries_id
+				@elements ||= model.all
+			elsif ownership_type_ids.include? @on_ownership_id
+				@elements ||= model.where('user_id = ? or id IN (?)', user.id, ownership.pluck(:id_element))
+			elsif ownership_type_ids.include? @on_entry_id
+				@elements ||= model.where('id IN (?)', ownership.pluck(:id_element))
+			end
 		else
 			@elements ||= model.none
 		end
@@ -57,8 +60,8 @@ class Permission
   end
 
   def allow_token?(controller, action, token, current_resource = nil)
-  	@token = AccessToken.find_by_token(token)
-  	if !@token.nil? && @token.exp_at > Time.now && @token.is_valid && @token.ownership.element.name == controller && (@token.ownership[right[action]] == true || @token.ownership.actions.pluck(:name).include?(action))
+  	token = AccessToken.find_by_token(token)
+  	if !token.nil? && token.exp_at > Time.now && token.is_valid && token.ownership.element.name == controller && (token.ownership[right[action]] == true || token.ownership.actions.pluck(:name).include?(action))
   		return true if @token.ownership.ownership_type_id == @all_entries_id
   		return true if @token.ownership.ownership_type_id == @on_ownership_id && current_resource.try(:user_id) == @user.try(:id)
   		return true if @token.ownership.ownership_type_id == @on_entry_id && @token.ownership.id_element == current_resource.try(:id)

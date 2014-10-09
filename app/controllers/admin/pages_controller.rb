@@ -28,6 +28,6 @@ class Admin::PagesController < Admin::BaseController
   end
 
   def current_resource
-  	@page = Page.find(params[:id])
+  	@page = Page.find_by_id(params[:id])
   end
 end

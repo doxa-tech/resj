@@ -46,6 +46,6 @@ class Admin::TagsController < Admin::BaseController
 	end
 
 	def current_resource
-		@tag = Tag.find(params[:id])
+		@tag = Tag.find_by_id(params[:id])
 	end
 end

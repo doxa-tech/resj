@@ -23,4 +23,15 @@ class OwnershipTable < BaseTable
 	def model
 		Ownership
 	end
+
+	module Search
+
+	 	def self.associations
+	 		[:element, :user]
+	 	end
+
+	 	def self.fields
+	 		{"elements" => ["name"], "users" => ["firstname", "lastname"]}
+	 	end
+	end
 end

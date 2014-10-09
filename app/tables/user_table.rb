@@ -26,4 +26,14 @@ class UserTable < BaseTable
 	def model
 		User
 	end
+
+	module Search
+
+	 	def self.associations
+	 	end
+
+	 	def self.fields
+	 		{"users" => ["firstname", "lastname", "email"]}
+	 	end
+	end
 end

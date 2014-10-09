@@ -9,36 +9,43 @@ module PermissionFilter
 		@current_permission ||= Permission.new(current_user)
 	end
 
-	def connected?
-    if !current_user
+	def connected_or_token?
+    session[:token] = params[:token] if params[:token]
+    if current_permission.allow_token?(params[:controller], params[:action], session[:token], current_resource) || current_user
+      current_user ||= User.new(firstname: "Guest")
+    else
       store_location
       redirect_to connexion_path, error: render_error('login')
     end
   end
 
   def authorize_create
-    if !current_permission.allow_create?(params[:controller])
+    if !current_permission.allow_create?(params[:controller]) \
+    && !current_permission.allow_token?(params[:controller], params[:action], session[:token], current_resource)
       redirect_to root_path, error: "Vous n'avez pas les droits pour créer cette ressource."
     end
   end
 
   def authorize_modify
-    if !current_permission.allow_modify?(params[:controller], params[:action], current_resource)
+    if !current_permission.allow_modify?(params[:controller], params[:action], current_resource) \
+    && !current_permission.allow_token?(params[:controller], params[:action], session[:token], current_resource)
       redirect_to root_path, error: "Vous n'avez pas les droits pour éditer cette ressource."
     end
   end
 
   def authorize_action
-    if !current_permission.allow_action?(params[:controller], params[:action], current_resource)
+    if !current_permission.allow_action?(params[:controller], params[:action], current_resource) \
+    && !current_permission.allow_token?(params[:controller], params[:action], session[:token], current_resource)
       redirect_to root_path, error: "Vous n'avez pas les droits pour accéder à cette page."
     end
   end
 
   def authorize_resource
-    if current_user.nil?
+    if current_user
       store_location
       redirect_to connexion_path, infos: render_error('resources_login')
-    elsif (!current_permission.allow_resource? && !current_permission.allow_read?('admin/subjects'))
+    elsif !current_permission.allow_resource? && !current_permission.allow_read?('resources') \
+    && !current_permission.allow_token?('resources', 'show', session[:token])
       store_location
       redirect_to resources_path, infos: render_error('resources_unlinked_account')
     end

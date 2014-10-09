@@ -31,4 +31,15 @@ class CardTable < BaseTable
 	def model
 		Card
 	end
+
+	module Search
+
+	 	def self.associations
+	 		[:user, :card_type]
+	 	end
+
+	 	def self.fields
+	 		{"cards" => ["name"], "users" => ["firstname", "lastname"], "card_types" => ["name"] }
+	 	end
+	end
 end

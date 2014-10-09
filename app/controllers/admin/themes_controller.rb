@@ -46,6 +46,6 @@ class Admin::ThemesController < Admin::BaseController
 	end
 
 	def current_resource
-		@theme = Theme.find(params[:id])
+		@theme = Theme.find_by_id(params[:id])
 	end
 end

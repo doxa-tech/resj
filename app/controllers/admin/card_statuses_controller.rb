@@ -3,7 +3,7 @@ class Admin::CardStatusesController < Admin::BaseController
 	after_action only: [:update] { |c| c. track_activity @card }
 
 	def index
-		@table = CardTable.new(view_context, nil, buttons: false)
+		@table = CardTable.new(view_context, nil, buttons: false, search: true)
 		respond_to do |format|
 			format.html
 			format.js { render 'sort' }
@@ -34,6 +34,6 @@ class Admin::CardStatusesController < Admin::BaseController
 	private
 
 	def current_resource
-		@card = Card.find(params[:id])
+		@card = Card.find_by_id(params[:id])
 	end
 end

@@ -3,7 +3,7 @@ class Admin::UsersController < Admin::BaseController
 	after_action only: [:create, :update, :destroy] { |c| c. track_activity @user }
 
 	def index
-		@table = UserTable.new(view_context)
+		@table = UserTable.new(view_context, nil, search: true)
 		respond_to do |format|
 			format.html
 			format.js { render 'sort' }
@@ -47,6 +47,6 @@ class Admin::UsersController < Admin::BaseController
 	end
 
 	def current_resource
-		@user = User.find(params[:id])
+		@user = User.find_by_id(params[:id])
 	end
 end

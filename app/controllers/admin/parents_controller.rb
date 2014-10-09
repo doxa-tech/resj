@@ -46,6 +46,6 @@ class Admin::ParentsController < Admin::BaseController
   end
 
   def current_resource
-  	@parent = Parent.find(params[:id])
+  	@parent = Parent.find_by_id(params[:id])
   end
 end
