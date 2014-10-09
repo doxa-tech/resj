@@ -53,6 +53,11 @@
 			}
 			.contact {
 				@include info;
+				.aobfuscate { 
+					unicode-bidi: bidi-override; 
+					direction: rtl; 
+					text-align: left;
+				}
 			}
 			.website {
 				@include info;
