@@ -7,18 +7,14 @@ class BaseTable
 	end
 
 	def collection
-		(@collection || h.current_permission.elements(h.params[:controller], model)).order(sort_column + " " + sort_direction).paginate(page: h.params[:page], per_page: 30)
+		(@collection || h.current_permission.elements(h.params[:controller], model)).paginate(page: h.params[:page], per_page: 30)
 	end
 
 	def elements
-		if model.respond_to?(:search)
-			@search = model.search do 
-      	fulltext h.params[:query]
-      	paginate page: h.params[:page] if h.params[:page]
-      end
-      @search.results
+		if options[:search]
+			collection.joins(associations).where(query_fields, query: "%#{h.params[:query]}%", id: h.params[:query]).order(sort_column + " " + sort_direction)
 		else
-			collection
+			collection.order(sort_column + " " + sort_direction)
 		end
 	end
 
@@ -50,6 +46,19 @@ class BaseTable
 
 	def h
 		@template
+	end
+
+	def query_fields
+		self.class::Search.fields.map do |key, values|
+			values.map do |value|
+				values.map{ |v| "#{key}.#{v} LIKE :query OR"}.join(" ")
+			end
+		end.join(" ") + " #{model.table_name}.id = :id"
+
+	end
+
+	def associations
+		self.class::Search.associations
 	end
 
 end

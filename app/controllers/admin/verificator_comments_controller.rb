@@ -32,6 +32,6 @@ class Admin::VerificatorCommentsController < Admin::BaseController
 	end
 
 	def current_resource
-		@verificator_comment = VerificatorComment.find(params[:id])
+		@verificator_comment = VerificatorComment.find_by_id(params[:id])
 	end
 end

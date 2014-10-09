@@ -3,7 +3,7 @@ class Admin::OwnershipsController < Admin::BaseController
 	after_action only: [:create, :update, :destroy] { |c| c. track_activity @ownership }
 
 	def index
-		@table = OwnershipTable.new(view_context)
+		@table = OwnershipTable.new(view_context, nil, search: true)
 		respond_to do |format|
 			format.html
 			format.js { render 'sort' }
@@ -46,6 +46,6 @@ class Admin::OwnershipsController < Admin::BaseController
 	end
 
 	def current_resource
-		@ownership = Ownership.find(params[:id])
+		@ownership = Ownership.find_by_id(params[:id])
 	end
 end

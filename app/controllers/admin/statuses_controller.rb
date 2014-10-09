@@ -46,7 +46,7 @@ class Admin::StatusesController < Admin::BaseController
 	end
 
 	def current_resource
-		@status = Status.find(params[:id])
+		@status = Status.find_by_id(params[:id])
 	end
 
 end

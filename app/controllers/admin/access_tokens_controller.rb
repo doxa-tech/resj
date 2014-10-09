@@ -30,6 +30,6 @@ class Admin::AccessTokensController < Admin::BaseController
 	end
 
 	def current_resource
-		@access_token = AccessToken.find(params[:id])
+		@access_token = AccessToken.find_by_id(params[:id])
 	end
 end

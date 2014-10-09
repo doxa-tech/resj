@@ -46,7 +46,7 @@ class Admin::AffiliationsController < Admin::BaseController
 	end
 
 	def current_resource
-		@affiliation = Affiliation.find(params[:id])
+		@affiliation = Affiliation.find_by_id(params[:id])
 	end
 
 end

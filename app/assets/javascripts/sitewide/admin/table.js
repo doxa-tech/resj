@@ -2,17 +2,18 @@
 
 $(function() {
 	
-	var editLinkOn = $('.table_buttons').find('a[class="edit on"]'),
-      deleteLinkOn = $('.table_buttons').find('a[class="delete on"]'),
-      editLinkOff = $('.table_buttons').find('a[class="edit off"]'),
-      deleteLinkOff = $('.table_buttons').find('a[class="delete off"]'),
-      newRelationOn = $('.table_buttons').find('a[class="new_relation on"]'),
-      newRelationOff = $('.table_buttons').find('a[class="new_relation off"]'),
-      newOwnershipOn = $('.table_buttons').find('a[class="new_ownership on"]'),
-      newOwnershipOff = $('.table_buttons').find('a[class="new_ownership off"]');
+  var tableButtons = $('.table_buttons'),
+      editLinkOn = tableButtons.find('a[class="edit on"]'),
+      deleteLinkOn = tableButtons.find('a[class="delete on"]'),
+      editLinkOff = tableButtons.find('a[class="edit off"]'),
+      deleteLinkOff = tableButtons.find('a[class="delete off"]'),
+      newRelationOn = tableButtons.find('a[class="new_relation on"]'),
+      newRelationOff = tableButtons.find('a[class="new_relation off"]'),
+      newOwnershipOn = tableButtons.find('a[class="new_ownership on"]'),
+      newOwnershipOff = tableButtons.find('a[class="new_ownership off"]');
 
   // add ajax to the pagination
-	$(".pagination").on("click", "a", function() {
+	$("#admin_table").find(".pagination").on("click", "a", function() {
     $.getScript(this.href);
     return false;
   });
@@ -34,4 +35,10 @@ $(function() {
       }
     } 
 	});
+
+  // Double click
+  $('#admin_table tbody').on("dblclick", "tr", function(e) {
+    window.location = window.location.pathname + '/' + $(this).data('url') + '/edit'
+  });
+
 });

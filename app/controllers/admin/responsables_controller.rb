@@ -46,7 +46,7 @@ class Admin::ResponsablesController < Admin::BaseController
 	end
 
 	def current_resource
-		@responsable = Responsable.find(params[:id])
+		@responsable = Responsable.find_by_id(params[:id])
 	end
 
 end

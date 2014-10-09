@@ -1,5 +1,5 @@
 class CardsController < BaseController
-	before_action :connected?, only: [:overview, :team, :update]
+	before_action :connected_or_token?, only: [:overview, :team, :update]
 	before_action :current_resource, only: [:update, :overview, :team, :team_update]
 	before_action :authorize_modify, only: [:update, :overview, :team, :team_update]
 	after_action only: [:update] { |c| c. track_activity @card }

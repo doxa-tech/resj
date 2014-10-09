@@ -46,7 +46,7 @@ class Admin::ActionsController < Admin::BaseController
 	end
 
 	def current_resource
-		@action = Action.find(params[:id])
+		@action = Action.find_by_id(params[:id])
 	end
 
 end

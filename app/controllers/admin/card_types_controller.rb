@@ -48,7 +48,7 @@ class Admin::CardTypesController < Admin::BaseController
 	end
 
 	def current_resource
-		@card_type = CardType.find(params[:id])
+		@card_type = CardType.find_by_id(params[:id])
 	end
 
 end
