@@ -7,7 +7,7 @@ class BaseTable
 	end
 
 	def collection
-		(@collection || h.current_permission.elements(h.params[:controller], model)).paginate(page: h.params[:page], per_page: 30)
+		(@collection || h.current_permission.elements(h.params[:controller], model, h.session[:token])).paginate(page: h.params[:page], per_page: 30)
 	end
 
 	def elements

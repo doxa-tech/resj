@@ -12,7 +12,7 @@ module PermissionFilter
 	def connected_or_token?
     session[:token] = params[:token] if params[:token]
     if current_permission.allow_token?(params[:controller], params[:action], session[:token], current_resource) || current_user
-      current_user ||= User.new(firstname: "Guest")
+      @current_user ||= User.new(firstname: "Guest")
     else
       store_location
       redirect_to connexion_path, error: render_error('login')
@@ -41,13 +41,14 @@ module PermissionFilter
   end
 
   def authorize_resource
-    if current_user
-      store_location
-      redirect_to connexion_path, infos: render_error('resources_login')
-    elsif !current_permission.allow_resource? && !current_permission.allow_read?('resources') \
-    && !current_permission.allow_token?('resources', 'show', session[:token])
-      store_location
-      redirect_to resources_path, infos: render_error('resources_unlinked_account')
+    if !current_permission.allow_token?('resources', 'index', session[:token])
+      if !current_user
+        store_location
+        redirect_to connexion_path, infos: render_error('resources_login')
+      elsif !current_permission.allow_resource? && !current_permission.allow_read?('resources')
+        store_location
+        redirect_to resources_path, infos: render_error('resources_unlinked_account')
+      end
     end
   end
 
