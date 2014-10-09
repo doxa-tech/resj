@@ -30,9 +30,9 @@ class Permission
 		return true if Ownership.where("user_id IN (?) AND element_id = ? AND right_read = ?", @ids, element_id(controller), true).any?
 	end
 
-	def elements(controller, model)
+	def elements(controller, model, token)
 		token = AccessToken.find_by_token(token)
-		ownership_type_ids = token.try(:ownership).try(:ownership_type_id) || Ownership.where("user_id IN (?) AND element_id = ? AND right_read = ?", @ids, element_id(controller), true).pluck(:ownership_type_id)
+		ownership_type_ids = [token.try(:ownership).try(:ownership_type_id)] || Ownership.where("user_id IN (?) AND element_id = ? AND right_read = ?", @ids, element_id(controller), true).pluck(:ownership_type_id)
 		if ownership_type_ids.any?
 			if ownership_type_ids.include? @all_entries_id
 				@elements ||= model.all
@@ -62,9 +62,9 @@ class Permission
   def allow_token?(controller, action, token, current_resource = nil)
   	token = AccessToken.find_by_token(token)
   	if !token.nil? && token.exp_at > Time.now && token.is_valid && token.ownership.element.name == controller && (token.ownership[right[action]] == true || token.ownership.actions.pluck(:name).include?(action))
-  		return true if @token.ownership.ownership_type_id == @all_entries_id
-  		return true if @token.ownership.ownership_type_id == @on_ownership_id && current_resource.try(:user_id) == @user.try(:id)
-  		return true if @token.ownership.ownership_type_id == @on_entry_id && @token.ownership.id_element == current_resource.try(:id)
+  		return true if token.ownership.ownership_type_id == @all_entries_id
+  		return true if token.ownership.ownership_type_id == @on_ownership_id && current_resource.try(:user_id) == @user.try(:id)
+  		return true if token.ownership.ownership_type_id == @on_entry_id && @token.ownership.id_element == current_resource.try(:id)
   	end
   end
 
@@ -92,6 +92,6 @@ class Permission
   end
 
 	def right
-		{"new" => "right_create", "create" => "right_create", "show" => "right_read", "edit" => "right_update", "update" => "right_update", "destroy" => "right_delete"}
+		{"index" => "right_read", "new" => "right_create", "create" => "right_create", "show" => "right_read", "edit" => "right_update", "update" => "right_update", "destroy" => "right_delete"}
 	end
 end
