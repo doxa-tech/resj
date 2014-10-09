@@ -37,6 +37,11 @@ load_mapbox.map.removeLayer(load_mapbox.markers);
 	});
 	load_mapbox.markers.addLayer(marker);
 	marker.bindPopup("<%= title %>");
+  if(<%= card.network? %> == 1) {
+    marker.on('click', function(){
+      console.log("network");
+    });
+  }
 <% end %>
 // Add icons, position the map
 load_mapbox.map.addLayer(load_mapbox.markers);
