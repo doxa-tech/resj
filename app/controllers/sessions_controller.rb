@@ -35,7 +35,7 @@ class SessionsController < BaseController
 	end
 
 	def confirmed?
-		@user = User.find_by_email(params[:session][:email].strip.downcase)
+		@user = User.users.find_by_email(params[:session][:email].strip.downcase)
 		if @user && !@user.confirmed
 			@message = render_error("unconfirmed")
 			respond_to do |format|

@@ -49,7 +49,7 @@ class UsersController < BaseController
 	end
 
 	def confirmation
-		if @user = User.find_by_remember_token(params[:token])
+		if @user = User.users.find_by_remember_token(params[:token])
 			@user.update_attribute(:confirmed, true)
 			sign_in(@user)
 			redirect_to profile_path, success: "Compte confirmé. Vous êtes maintenant connecté !"

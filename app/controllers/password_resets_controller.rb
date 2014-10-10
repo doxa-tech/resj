@@ -4,7 +4,7 @@ class PasswordResetsController < BaseController
 	end
 
 	def create
-		@user = User.find_by_email(params[:email])
+		@user = User.users.find_by_email(params[:email])
   	if @user
   		@user.send_password_reset
   		track_activity @user
@@ -13,11 +13,11 @@ class PasswordResetsController < BaseController
 	end
 
 	def edit
-		@user = User.find_by_reset_token(params[:id])
+		@user = User.users.find_by_reset_token(params[:id])
 	end
 
 	def update
-		@user = User.find_by_reset_token!(params[:id])
+		@user = User.users.find_by_reset_token!(params[:id])
 		if @user.reset_sent_at < 2.hours.ago
 	    redirect_to new_password_reset_path, :error => "La demande pour un nouveau mot de passe a expiré."
 	  elsif @user.update_attributes(user_params)
