@@ -40,7 +40,6 @@ load_mapbox.map.removeLayer(load_mapbox.markers);
 	marker.bindPopup("<%= title %>");
   // Network links, selft invoking to keep marker variable "local"
   (function(marker){
-    console.log("sdf");
     if(<%= card.network? %> == 1) {
       var polyline_options = {
         color: '#000',
