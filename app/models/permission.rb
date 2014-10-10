@@ -65,7 +65,7 @@ class Permission
   	if !token.nil? && token.exp_at > Time.now && token.is_valid && token.ownership.element.name == controller && (token.ownership[right[action]] == true || token.ownership.actions.pluck(:name).include?(action))
   		return true if token.ownership.ownership_type_id == @all_entries_id
   		return true if token.ownership.ownership_type_id == @on_ownership_id && current_resource.try(:user_id) == @user.try(:id)
-  		return true if token.ownership.ownership_type_id == @on_entry_id && @token.ownership.id_element == current_resource.try(:id)
+  		return true if token.ownership.ownership_type_id == @on_entry_id && token.ownership.id_element == current_resource.try(:id)
   	end
   end
 

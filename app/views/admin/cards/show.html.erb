@@ -1,38 +1,103 @@
-<%= image_tag(@card.avatar_url) %>
-<%= image_tag(@card.banner_url) %>
+<div class="col split1">
+	<div class="block">
+		<div class="header">
+			<h2><%= @card.card_type.name %> : <%= @card.name %></h2>
+		</div>
+		<ul>
 
-<%= @card.name %>
+			<li>
+				<h5>Status en cours</h5>
+				<p><%= @card.status.name %></p>
+			</li>
 
-<%= @card.description %>
+			<li class="in-place">
+				<h5>Appelation</h5>
+				<p><%= @card.name %></p>
+			</li>
 
-<%= @card.card_type.try(:name) %>
+			<li class="in-place">
+				<h5>Type</h5>
+				<p><%= @card.card_type.name %></p>
+			</li>
 
-<%= @card.street %>
+			<li class="in-place">
+				<h5>Description</h5>
+				<p><%= @card.description %></p>
+			</li>
 
-<%= @card.city %>
+		</ul>
+	</div>
+</div>
+<div class="row"><br><br></div>
+<div class="col split1">
+	<div class="block">
+		<ul>
 
-<%= @card.npa %>
+			<li class="in-place">
+				<h5>Rue</h5>
+				<p><%= @card.street %></p>
+			</li>
 
-<%= @card.latitude %>
+			<li class="in-place">
+				<h5>Localité</h5>
+				<p><%= @card.location.full_name %></p>
+			</li>
 
-<%= @card.longitude %>
+			<li  class="in-place">
+				<h5>Lieu de rencontre</h5>
+				<p><%= @card.place %></p>
+			</li>
 
-<%= @card.place %>
+			<li>
+				<h5>Localisation sur une carte</h5>
+				<div id="map-canvas"></div>
+			</li>
+		
+		</ul>
+	</div>
+</div>
+<div class="row">
+<div class="row"><br><br></div>
+<div class="col split1">
+	<div class="block">
+		<ul>
 
-<%= @card.email %>
+			<li class="in-place">
+				<h5>Email de contact public</h5>
+				<p><%= @card.email %></p>
+			</li>
 
-<% @card.responsables.each do |responsable| %>
-	<%= responsable.firstname %>
-	<%= responsable.lastname %>
-	<%= responsable.email %>
-<% end %>
+			<li class="in-place">
+				<h5>Site web</h5>
+				<p><%= @card.website %></p>
+			</li>
 
-<% @card.affiliations.each do |affiliation| %>
-	<%= affiliation.name %>
-<% end %>
+			<li class="in-place">
+				<h5>Affiliation avec un réseau régional</h5>
+				<p><%= @card.parents_list %></p>
+			</li>				
 
-<%= @card.website %>
+		</ul>
+	</div>
+</div>
 
-<% @card.tags.each do |tag| %>
-	<%= tag.name %>
-<% end %>
+<style type="text/css">
+	#map-canvas {
+		width: 100%;
+		height: 300px;
+		margin: auto;
+		box-shadow: 4px 4px 0px rgba(151,184,140,1);
+		border: 1px solid rgba(151,184,140,.5);
+		margin: 10px 0 0 0;
+	}	
+</style>
+
+
+<%= content_for :javascript do %>
+	<script data-turbolinks-track="true" type="text/javascript">
+		$(function() {
+			load_google_map.loadScript('card_overview', 
+				[<%= @card.latitude %>, <%= @card.longitude %>]);
+		});
+	</script>
+<% end %>	
