@@ -87,6 +87,20 @@ input[type="submit"] {
 input[type="file"] {
 	padding: 10px;
 }
+button {
+	padding: 4px 6px;
+	border: 0;
+	background: #77E;
+	color: #EEE;
+	cursor: pointer;
+	margin: 3px;
+	font-size: 10px;
+	border-radius: 2px;
+	-webkit-font-smoothing: antialiased;
+	&:focus {
+	  outline: none;
+	}
+}
 
 .selectize-control.single .selectize-input, .selectize-control.single .selectize-input input, .selectize-input > input {height:inherit}	/* correct a proble with empty or default item */
 
