@@ -32,7 +32,8 @@ class Permission
 
 	def elements(controller, model, token)
 		token = AccessToken.find_by_token(token)
-		ownership_type_ids = [token.try(:ownership).try(:ownership_type_id)] || Ownership.where("user_id IN (?) AND element_id = ? AND right_read = ?", @ids, element_id(controller), true).pluck(:ownership_type_id)
+		token_ownership_type_id = token.ownership.ownership_type_id if !token.nil? && token.exp_at > Time.now && token.is_valid
+		ownership_type_ids = Ownership.where("user_id IN (?) AND element_id = ? AND right_read = ?", @ids, element_id(controller), true).pluck(:ownership_type_id) << token_ownership_type_id
 		if ownership_type_ids.any?
 			if ownership_type_ids.include? @all_entries_id
 				@elements ||= model.all
