@@ -14,7 +14,6 @@
 //= require jquery.turbolinks
 //= require jquery-ui/autocomplete
 //= require jquery_ujs
-//= require ckeditor-jquery
 //= require selectize
 //= require multi-select
 //= require paloma
