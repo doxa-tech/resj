@@ -29,17 +29,17 @@ var load_mapbox = {
         e.layer.openPopup();
     });
     load_mapbox.markers.on('click', function(e) {
-        e.layer.openPopup();
+      e.layer.openPopup();
     });
     map.scrollWheelZoom.disable();
     map.addControl(L.mapbox.shareControl())
     map.on('ready', load_mapbox.callback);
     load_mapbox.map = map;    
-},
+  },
 
   callback: function() {
     var fn = eval(load_mapbox.second_callback);
     fn.apply(null, load_mapbox.second_callback_params);
-  }
+  },
 
 }

@@ -20,7 +20,7 @@ load_mapbox.map.removeLayer(load_mapbox.markers);
 
 // Add the cards
 <% @cards_map.each do |card| %>
-<% title = j map_point_title(card).html_safe %>
+<% title = j render('cards/map_popup', card: card) %>
 	var marker = L.marker(new L.LatLng(<%= card.latitude %>, <%= card.longitude %>), options={
     icon: L.icon({
       iconUrl: "<%= map_point_icon(card) %>",
@@ -31,17 +31,34 @@ load_mapbox.map.removeLayer(load_mapbox.markers);
       shadowSize: [41, 41],
       shadowAnchor: [12, 41]
     }),
-		title: "<%= title %>",
+		title: "Qui est là?",
     riseOnHover: true,
     id: <%= card.id %>,
+    open_network: true,
 	});
 	load_mapbox.markers.addLayer(marker);
 	marker.bindPopup("<%= title %>");
-  if(<%= card.network? %> == 1) {
-    marker.on('click', function(){
-      console.log("network");
-    });
-  }
+  // Network links, selft invoking to keep marker variable "local"
+  (function(marker){
+    console.log("sdf");
+    if(<%= card.network? %> == 1) {
+      var polyline_options = {
+        color: '#000',
+        weight: 3,
+      };
+      $("#map").on('click', "#net-toggle-<%= card.id %>", function(){
+        if(marker.options.open_network) {
+          marker.options.open_network = false;
+          marker.options.polylines = L.polyline(<%= card.network_members_coords %>, polyline_options).addTo(load_mapbox.map);
+          $(this).find(".a").html("Masquer");
+        } else {
+          marker.options.open_network = true;
+          load_mapbox.map.removeLayer(marker.options.polylines);
+          $(this).find(".a").html("Afficher");
+        }
+      });
+    }
+  })(marker);
 <% end %>
 // Add icons, position the map
 load_mapbox.map.addLayer(load_mapbox.markers);
