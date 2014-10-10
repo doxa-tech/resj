@@ -32,7 +32,7 @@ function card_new_map() {
       var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
       geocoder = new google.maps.Geocoder();
       marker = new google.maps.Marker({position: latlng,map: map});
-      google.maps.event.addListener(map, 'click', function(event) { console.log('click');
+      google.maps.event.addListener(map, 'click', function(event) {
         marker.setPosition(event.latLng);
         var coord = event.latLng;
         document.getElementById("lat").value =  coord.lat();

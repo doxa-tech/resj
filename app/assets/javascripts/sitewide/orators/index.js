@@ -60,7 +60,6 @@ var orators_index = {
       orators_index.infowindow.setContent(text);
       orators_index.infowindow.open(orators_index.map,marker);
         $('.link_orator').click(function(){
-          console.log($(this).data('id'));
           $($(this).data('id')).animate({backgroundColor: '#A1FFA1'}, 'slow');
         });
     });
