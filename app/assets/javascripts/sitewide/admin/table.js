@@ -38,7 +38,9 @@ $(function() {
 
   // Double click
   $('#admin_table tbody').on("dblclick", "tr", function(e) {
-    window.location = window.location.pathname + '/' + $(this).data('url') + '/edit'
+    if( $('#admin_table').find('.edit').length ) {
+      window.location = window.location.pathname + '/' + $(this).data('url') + '/edit'
+    }
   });
 
 });
