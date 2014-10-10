@@ -52,4 +52,8 @@ module PermissionFilter
     end
   end
 
+  def current_resource
+    nil
+  end
+
 end
