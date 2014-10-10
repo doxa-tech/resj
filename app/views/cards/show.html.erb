@@ -25,7 +25,7 @@
 		</div>
 		<div class="contact">
 			<i class="fi-mail"></i>
-			<p class="aobfuscate"><%= @card.email.present? ? @card.email.reverse} : ' - ' %></p>
+			<p class="aobfuscate"><%= @card.email.present? ? @card.email.reverse : ' - ' %></p>
 		</div>
 		<div class="website">
 			<i class="fi-web"></i>
@@ -79,7 +79,7 @@
 
 <div id="clear"></div>
 
-<% if @card.card_type.name == 'Réseau régional' %>
+<% if @card.network? %>
 	<div class="row">
 		<div class="left">
 			<div class="members">
