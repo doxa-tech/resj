@@ -83,7 +83,7 @@ class Card < ActiveRecord::Base
   def autosave_associated_records_for_responsables
     new_responsables = []
     responsables.reject{ |r| r.is_contact == "true" || r._destroy == true}.each do |responsable|
-      if user = User.find_by_email(responsable.email)
+      if user = User.users.find_by_email(responsable.email)
         CardUser.create(user_id: user.id, card_id: id, card_validated: true) if !CardUser.where(user_id: user.id, card_id: id).any?
       else
         new_responsables << Responsable.where(firstname: responsable.firstname, lastname: responsable.lastname, email: responsable.email).first_or_create

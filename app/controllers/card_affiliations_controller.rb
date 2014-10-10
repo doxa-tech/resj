@@ -6,7 +6,7 @@ class CardAffiliationsController < BaseController
 
 	# Card's request to a user
 	def create
-		user = User.find_by_id(params[:user_id])
+		user = User.users.find_by_id(params[:user_id])
 		if user && @card.send_request(user)
 			UserMailer.request(@card, user).deliver
 			track_activity @new_card_user
@@ -18,7 +18,7 @@ class CardAffiliationsController < BaseController
 
 	# Action on a user's request to an card
 	def update
-		user = User.find_by_id(params[:id])
+		user = User.users.find_by_id(params[:id])
 		if user && @card.answer_request(user, params[:validated])
 			if params[:validated] == "true"
         UserMailer.confirmed_card(@card, user).deliver
