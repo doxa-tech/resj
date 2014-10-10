@@ -9,8 +9,8 @@ class CardsController < BaseController
 	def index
 		# show all Card at once on the map if no searches (instead of pagination)
 		if params[:query].blank? && params[:card_type_ids].blank? && params[:canton_ids].blank? && params[:tag_ids].blank?
-			@cards = Card.active.with_card_type.order(:name).paginate(page: params[:page])
 			@cards_map = Card.active.with_card_type
+			@cards = @cards_map.order(:name).paginate(page: params[:page])
 		else
 			@search = Card.search(include: :card_type) do 
 				fulltext params[:query], fields: [:name, :description, :canton_name, :s_tag_names]
