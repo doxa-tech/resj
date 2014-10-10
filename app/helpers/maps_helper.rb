@@ -1,9 +1,5 @@
 module MapsHelper
 
-	def map_point_title(card)
-		"#{content_tag :p, card.card_type.name, class:'type'} #{card.name} #{link_to 'voir fiche', card_path(card)}"
-	end
-
 	def map_point_icon(card)
 		asset_path("map/images/marker-icon-#{map_marker_color(card)}.png")
 	end

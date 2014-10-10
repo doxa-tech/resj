@@ -164,6 +164,24 @@ class Card < ActiveRecord::Base
     end
   end
 
+  # Used by mapbox to identify network markers
+  def network?
+    if self.card_type.name == "Réseau régional"
+      return 1
+    else
+      return 0
+    end
+  end
+
+  def network_members_coords
+    coords = []
+    inverse_parents.each do |parent|
+      coords.push [latitude, longitude]
+      coords.push [parent.latitude, parent.longitude]
+    end 
+    return coords
+  end
+
   private
 
   def assign_tags

@@ -1,28 +1,58 @@
-// Reset the map
-load_mapbox.markers.clearLayers();
-load_mapbox.map.removeLayer(load_mapbox.markers);
+// // Reset the map
+// load_mapbox.markers.clearLayers();
+// load_mapbox.map.removeLayer(load_mapbox.markers);
 
-// Add the cards
-<% if @cards.any? %>
-  <% @cards.each do |card| %>
-  <% title = j map_point_title(card).html_safe %>
-  	var marker = L.marker(new L.LatLng(<%= card.latitude %>, <%= card.longitude %>), options={
-      icon: L.icon({
-        iconUrl: "<%= map_point_icon(card) %>",
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [0, -30],
-        shadowUrl: '<%= asset_path "map/images/marker-shadow.png" %>',
-        shadowSize: [41, 41],
-        shadowAnchor: [12, 41]
-      }),
-  		title: "<%= title %>",
-      riseOnHover: true,
-      id: <%= card.id %>,
-  	});
-  	load_mapbox.markers.addLayer(marker);
-  	marker.bindPopup("<%= title %>");
-  <% end %>
-  load_mapbox.map.addLayer(load_mapbox.markers);
+// // Add the cards
+// <% if @cards.any? %>
+//   <% @cards.each do |card| %>
+//     <% title = j render('cards/map_popup', card: card) %>
+//   	var marker = L.marker(new L.LatLng(<%= card.latitude %>, <%= card.longitude %>), options={
+//       icon: L.icon({
+//         iconUrl: "<%= map_point_icon(card) %>",
+//         iconSize: [25, 41],
+//         iconAnchor: [12, 41],
+//         popupAnchor: [0, -30],
+//         shadowUrl: '<%= asset_path "map/images/marker-shadow.png" %>',
+//         shadowSize: [41, 41],
+//         shadowAnchor: [12, 41]
+//       }),
+//   		title: "<%= title %>",
+//       riseOnHover: true,
+//       id: <%= card.id %>,
+//       open_network: true,
+//       polylines: null,
+//   	});
+//   	marker.bindPopup("<%= title %>");
+//     // Network links
+//     assign_links(marker);
+//     function assign_links(marker) {
+//       if(<%= card.network? %> == 1) {
+//         var polyline_options = {
+//           color: '#000',
+//           weight: 3,
+//         };
+//         $("#map").on('click', "#net-toggle-<%= card.id %>", function(){
+//           var id = $(this).data("id");
+//           console.log("sdf");
+//           load_mapbox.markers.eachLayer(function(layer){
+//             if(layer.options.id == parseInt(id) {
+//               var marker = layer;
+//             }
+//           });
+//           if(marker.options.open_network) {
+//             marker.options.open_network = false;
+//             marker.options.polylines = L.polyline(<%= card.network_members_coords %>, polyline_options).addTo(load_mapbox.map);
+//             $(this).find(".a").html("Masquer");
+//           } else {
+//             marker.options.open_network = true;
+//             load_mapbox.map.removeLayer(marker.options.polylines);
+//             $(this).find(".a").html("Afficher");
+//           }
+//         });
+//       }
+//     }
+//     load_mapbox.markers.addLayer(marker);
+//   <% end %>
+//   load_mapbox.map.addLayer(load_mapbox.markers);
 
-<% end %>
+// <% end %>
