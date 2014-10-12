@@ -14,11 +14,8 @@ CardsController.prototype.index = function() {
     }
   }); 
 
-
-  // Description
-  // Also loaded in ajax
-  $('#container.cards .index .description').hide();
-  $('#container.cards .show-description').click(function(){
+  /* Description */
+  $('#results').on('click', '.show-description', function(){
     var btn = $(this)
     var el = btn.next().next();
     if(el.css("display")=="none") {
@@ -38,19 +35,32 @@ CardsController.prototype.index = function() {
   // Mapbox loading
   load_mapbox.loadMap("cards_index.init");
 
+  // Show marker when click
+  $('#results').on('click', '.show-on-map', function(){
+    var link = $(this);
+    document.getElementById('map').scrollIntoView();
+    load_mapbox.markers.eachLayer(function(layer){
+      if(layer.options.id == parseInt(link.data("id"))) {
+        load_mapbox.markers.zoomToShowLayer(layer, function() {
+          layer.openPopup();
+        });
+      }
+    });
+  });
+
 
 }
 
 var cards_index = {
 
+
+
   init: function() {
-    $.ajax({
-           url: "reseau", // Route to the Script Controller method
-          type: "GET",
-         error: function() {
-                  $('#map').html("<p class='err'>Erreur de chargement, rechargez la page.</p>");
-                  }
+
+    $.getJSON( "reseau.json", function( data ) {
+      load_mapbox.process_map(data);
     });
+
   },
 
 }

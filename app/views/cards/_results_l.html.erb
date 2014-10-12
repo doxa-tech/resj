@@ -1,14 +1,14 @@
 <div>
-  <p class="paginate-infos"><%= paginate_range @cards %></p>
-  <%= will_paginate @cards %>
+  <p class="paginate-infos"><%= paginate_range @cards_paginate %></p>
+  <%= will_paginate @cards_paginate %>
 </div>
 
 <div class="index">
-  <% if @cards.any? %>
+  <% if @cards_paginate.any? %>
     <ul>
-  		<% current = @cards.first.name[0].downcase %>
+  		<% current = @cards_paginate.first.name[0].downcase %>
   		<li class="letter"><%= current %></li>
-  		<% @cards.each do |card| %>
+  		<% @cards_paginate.each do |card| %>
   			<% if card.name[0].downcase != current %>
   				<% current = card.name[0].downcase %>
   				<li class="letter"><%= current %></li>
@@ -16,7 +16,7 @@
   			<li class="card">
           <%= content_tag :span, card.card_type.name, class: 'type' %> <%= link_to card.name, card_path(card) %>
           <i class="fi-arrow-down show-description"></i>
-          <i class="fi-marker show-on-map <%= map_marker_color(card) %>" data-id="<%= card.id %>"></i>
+          <i class="fi-marker show-on-map <%= card.map_marker_color %>" data-id="<%= card.id %>"></i>
           <p class="description"><i class="fi-megaphone"></i><%= card.description %></p>
         </li>
   		<% end %>
