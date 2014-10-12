@@ -20,7 +20,7 @@ class CardsController < BaseController
 		respond_to do |format|
 			format.html
 			format.js
-			format.json { render json: @cards } 
+			format.json
 		end
 
 	end

@@ -1,3 +1,3 @@
 $('#results .left-content').html('<%= j render "results_l" %>');
 
-load_mapbox.process_map(JSON.parse('<%= raw @cards.to_json.gsub("'", %q(\\\')) %>'));
+load_mapbox.process_map(JSON.parse('<%= j raw render template: "cards/index.json" %>'));
