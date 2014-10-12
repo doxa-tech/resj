@@ -206,14 +206,6 @@ class Card < ActiveRecord::Base
     return color
   end
 
-  def as_json(options={})
-    super(
-      only: [:id, :name, :latitude, :longitude],
-      include: {card_type: {only: [:name]}},
-      methods: [:network?, :map_point_icon, :network_members_coords]
-    ).tap { |hash| hash["is_network"] = hash.delete "network?" }
-  end
-
   ##################
   #   end Mapbox   #
   ##################  
