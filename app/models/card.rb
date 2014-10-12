@@ -164,6 +164,10 @@ class Card < ActiveRecord::Base
     end
   end
 
+  ##################
+  #     Mapbox     #
+  ##################
+
   # Used by mapbox to identify network markers
   def network?
     if self.card_type.name == "Réseau régional"
@@ -181,6 +185,38 @@ class Card < ActiveRecord::Base
     end 
     return coords
   end
+
+  def map_point_icon
+    ActionController::Base.helpers.asset_path("map/images/marker-icon-#{map_marker_color}.png")
+  end
+
+  def map_marker_color
+    case card_type.name
+    when "Groupe de jeunes"
+      color = "red"
+    when "Groupe de jeunes adultes"
+      color = "green"
+    when "Groupe d'action"
+      color = "orange"
+    when "Oeuvre jeunesse"
+      color = "blue"
+    when "Réseau régional"
+      color = "violet"
+    end
+    return color
+  end
+
+  def as_json(options={})
+    super(
+      only: [:id, :name, :latitude, :longitude],
+      include: {card_type: {only: [:name]}},
+      methods: [:network?, :map_point_icon, :network_members_coords]
+    ).tap { |hash| hash["is_network"] = hash.delete "network?" }
+  end
+
+  ##################
+  #   end Mapbox   #
+  ##################  
 
   private
 

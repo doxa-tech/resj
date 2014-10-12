@@ -42,4 +42,75 @@ var load_mapbox = {
     fn.apply(null, load_mapbox.second_callback_params);
   },
 
+
+  process_map: function(collection) {
+
+    console.log(collection);
+
+    // Reset the map
+    load_mapbox.markers.clearLayers();
+    load_mapbox.map.removeLayer(load_mapbox.markers);
+
+    // Add the cards
+    for (var key in collection) {
+      var card = collection[key];
+
+      var title = load_mapbox.map_popup(card);
+      var marker = L.marker(new L.LatLng( card.latitude, card.longitude ), options={
+        icon: L.icon({
+          iconUrl: card.map_point_icon,
+          iconSize: [25, 41],
+          iconAnchor: [12, 41],
+          popupAnchor: [0, -30],
+          shadowUrl: '<%= asset_path "map/images/marker-shadow.png" %>',
+          shadowSize: [41, 41],
+          shadowAnchor: [12, 41]
+        }),
+        title: "Qui est là?",
+        riseOnHover: true,
+        id: card.id,
+        open_network: true,
+      });
+      load_mapbox.markers.addLayer(marker);
+      marker.bindPopup(title);
+      // Network links, selft invoking to keep marker variable "local"
+      (function(marker){
+        if(card.is_network == 1) {
+          var polyline_options = {
+            color: '#000',
+            weight: 3,
+          };
+          $("#map").on('click', "#net-toggle-" + card.id, function(){
+            if(marker.options.open_network) {
+              marker.options.open_network = false;
+              marker.options.polylines = L.polyline(card.network_members_coords, polyline_options).addTo(load_mapbox.map);
+              $(this).find(".a").html("Masquer");
+            } else {
+              marker.options.open_network = true;
+              load_mapbox.map.removeLayer(marker.options.polylines);
+              $(this).find(".a").html("Afficher");
+            }
+          });
+        }
+      })(marker);
+
+    }
+    // Add icons, position the map
+    load_mapbox.map.addLayer(load_mapbox.markers);
+    load_mapbox.map.fitBounds(load_mapbox.markers.getBounds());
+
+  },
+
+  map_popup: function(card) {
+    var a =
+    '<p class="type">' + card.card_type.name + '</p>' +
+    card.name +
+    ' <a href="cards/' + card.id + '-' + card.name + '">voir fiche</a>';
+    if(card.is_network == 1) {
+      a += '<p id="net-toggle-' + card.id + '"><button><span class="a">Afficher/Masquer</span> son réseau</button></p>';
+    }
+    return a;
+  },
+
+
 }

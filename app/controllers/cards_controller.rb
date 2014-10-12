@@ -7,25 +7,22 @@ class CardsController < BaseController
 	layout 'admin', only: [:team, :update, :overview]
 
 	def index
-		# show all Card at once on the map if no searches (instead of pagination)
-		if params[:query].blank? && params[:card_type_ids].blank? && params[:canton_ids].blank? && params[:tag_ids].blank?
-			@cards_map = Card.active.with_card_type
-			@cards = @cards_map.order(:name).paginate(page: params[:page])
-		else
-			@search = Card.search(include: :card_type) do 
-				fulltext params[:query], fields: [:name, :description, :canton_name, :s_tag_names]
-				with(:card_type_id, params[:card_type_ids]) if params[:card_type_ids]
-				with(:canton_ids, params[:canton_ids]) if params[:canton_ids]
-				with(:tag_ids, params[:tag_ids]) if params[:tag_ids]
-				with(:status_name, "En ligne")
-				paginate page: params[:page] if params[:page]
-			end
-	  	@cards = @cards_map = @search.results
-	  end
-	 	# used to load the map
-    if request.xhr?
-      render 'index.js.erb'
-    end
+		@search = Card.search(include: :card_type) do 
+			fulltext params[:query], fields: [:name, :description, :canton_name, :s_tag_names]
+			with(:card_type_id, params[:card_type_ids]) if params[:card_type_ids]
+			with(:canton_ids, params[:canton_ids]) if params[:canton_ids]
+			with(:tag_ids, params[:tag_ids]) if params[:tag_ids]
+			with(:status_name, "En ligne")
+		end
+		@cards = @search.results		
+		@cards_paginate = @cards.paginate(page: params[:page])
+
+		respond_to do |format|
+			format.html
+			format.js
+			format.json { render json: @cards } 
+		end
+
 	end
 
 	def show
