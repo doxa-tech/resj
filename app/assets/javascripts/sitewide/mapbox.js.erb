@@ -1,7 +1,8 @@
 var load_mapbox = {
 
-  markers: null,
+  already_loaded: false,
   map: null,
+  markers: null,
 
   loadMap: function(second_callback, second_callback_params, not_delayed) {
     if(load_mapbox.map != null)
@@ -11,30 +12,16 @@ var load_mapbox = {
     /*
     *   Set view of Leaflet map based on screen size
     */
+    L.mapbox.accessToken = 'pk.eyJ1IjoibmtjciIsImEiOiI4UnhLZEx3In0.bakfmpx2lREiNbHn0lWq9Q';
     if ($(window).width() < 626) {
             var map = L.mapbox.map('map', 'nkcr.i04348d7', {fullscreenControl: true}).setView([46.6221, 7.1960], 8);
     } else {
             var map = L.mapbox.map('map', 'nkcr.i04348d7', {fullscreenControl: true}).setView([46.6221, 7.1960], 9);
     }
-    /*
-    *   create markercluster
-    */
-    load_mapbox.markers = new L.MarkerClusterGroup({
-      maxClusterRadius: 30,
-    });
-    /*
-    *   Custom map
-    */
-    load_mapbox.markers.on('mouseover', function(e) {
-        e.layer.openPopup();
-    });
-    load_mapbox.markers.on('click', function(e) {
-      e.layer.openPopup();
-    });
     map.scrollWheelZoom.disable();
     map.addControl(L.mapbox.shareControl())
     map.on('ready', load_mapbox.callback);
-    load_mapbox.map = map;    
+    load_mapbox.map = map;  
   },
 
   callback: function() {
@@ -44,9 +31,8 @@ var load_mapbox = {
 
 
   process_map: function(collection) {
-    // Reset the map
-    load_mapbox.markers.clearLayers();
-    load_mapbox.map.removeLayer(load_mapbox.markers);
+
+    markers = load_mapbox.create_marker_cluster();
 
     // Add the cards
     for (var key in collection) {
@@ -68,34 +54,60 @@ var load_mapbox = {
         id: card.id,
         open_network: true,
       });
-      load_mapbox.markers.addLayer(marker);
+      markers.addLayer(marker);
       marker.bindPopup(title);
-      // Network links, selft invoking to keep marker variable "local"
-      (function(marker){
-        if(card.is_network == 1) {
-          var polyline_options = {
-            color: '#000',
-            weight: 3,
-          };
-          $("#map").on('click', "#net-toggle-" + card.id, function(){
-            if(marker.options.open_network) {
-              marker.options.open_network = false;
-              marker.options.polylines = L.polyline(card.network_members_coords, polyline_options).addTo(load_mapbox.map);
-              $(this).find(".a").html("Masquer");
-            } else {
-              marker.options.open_network = true;
-              load_mapbox.map.removeLayer(marker.options.polylines);
-              $(this).find(".a").html("Afficher");
-            }
-          });
-        }
-      })(marker);
+      if(!load_mapbox.already_loaded) {
+        // Network links, selft invoking to keep marker and card variable "local"
+        (function(marker,card){
+          if(card.is_network == 1) {
+            var polyline_options = {
+              color: '#000',
+              weight: 3,
+            };
+            $("#map").on('click', "#net-toggle-" + card.id, function(){
+              if(marker.options.open_network) {
+                marker.options.open_network = false;
+                marker.options.polylines = L.polyline(card.network_members_coords, polyline_options).addTo(load_mapbox.map);
+                $(this).find(".a").html("Masquer");
+              } else {
+                marker.options.open_network = true;
+                load_mapbox.map.removeLayer(marker.options.polylines);
+                $(this).find(".a").html("Afficher");
+              }
+            });
+          }
+        })(marker,card);
+      }
 
     }
     // Add icons, position the map
-    load_mapbox.map.addLayer(load_mapbox.markers);
-    load_mapbox.map.fitBounds(load_mapbox.markers.getBounds());
+    load_mapbox.map.fitBounds(markers.getBounds());
+    load_mapbox.map.addLayer(markers);  
 
+    load_mapbox.already_loaded = true;
+  },
+
+  create_marker_cluster: function() {
+    if(load_mapbox.markers != null) {
+      load_mapbox.markers.clearLayers();
+    }
+    /*
+    *   create markercluster
+    */
+    markers = new L.MarkerClusterGroup({
+      maxClusterRadius: 30,
+    });
+    load_mapbox.markers = markers;
+    /*
+    *   Custom map
+    */
+    markers.on('mouseover', function(e) {
+        e.layer.openPopup();
+    });
+    markers.on('click', function(e) {
+      e.layer.openPopup();
+    });
+    return markers;
   },
 
   map_popup: function(card) {
@@ -104,7 +116,7 @@ var load_mapbox = {
     card.name +
     ' <a href="cards/' + card.id + '-' + card.name + '">voir fiche</a>';
     if(card.is_network == 1) {
-      a += '<p id="net-toggle-' + card.id + '"><button><span class="a">Afficher/Masquer</span> son réseau</button></p>';
+      a += '<p id="net-toggle-' + card.id + '"><button type="button"><span class="a">Afficher/Masquer</span> son réseau</button></p>';
     }
     return a;
   },

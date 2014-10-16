@@ -53,8 +53,6 @@ CardsController.prototype.index = function() {
 
 var cards_index = {
 
-
-
   init: function() {
 
     $.getJSON( "reseau.json", function( data ) {
