@@ -4,5 +4,5 @@
 <%= card['name'] %>
 <%= link_to 'voir fiche', 'cards/#{card['id']} %>
 <% if card.network? == 1 %>
-	<p id="net-toggle-<%= card.id %>" data-id="<%= card.id %>"><button><span class="a">Afficher/Masquer</span> son réseau</button></p>
+	<p id="net-toggle-<%= card.id %>" data-id="<%= card.id %>"><button type="button"><span class="a">Afficher/Masquer</span> son réseau</button></p>
 <% end %>
