@@ -8,7 +8,7 @@ class CardsController < BaseController
 
 	def index
 		@search = Card.search(include: :card_type) do 
-			fulltext params[:query], fields: [:name, :description, :canton_name, :s_tag_names]
+			fulltext params[:query] if params[:query]
 			with(:card_type_id, params[:card_type_ids]) if params[:card_type_ids]
 			with(:canton_ids, params[:canton_ids]) if params[:canton_ids]
 			with(:tag_ids, params[:tag_ids]) if params[:tag_ids]
