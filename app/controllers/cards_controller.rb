@@ -13,10 +13,10 @@ class CardsController < BaseController
 			with(:canton_ids, params[:canton_ids]) if params[:canton_ids]
 			with(:tag_ids, params[:tag_ids]) if params[:tag_ids]
 			with(:status_name, "En ligne")
-			paginate page: params[:page], per_page: Card.count
+			paginate per_page: Card.count
 		end
 		@cards = @search.results		
-		@cards_paginate = @cards.paginate(page: params[:page])
+		@cards_paginate = @cards.paginate(page: params[:page], per_page: 10)
 
 		respond_to do |format|
 			format.html

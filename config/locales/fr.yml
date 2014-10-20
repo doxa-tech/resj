@@ -423,6 +423,7 @@ fr:
       accepted: "doit être accepté(e)"
       empty: "doit être rempli(e)"
       blank: "doit être rempli(e)"
+      extension_white_list_error: "contient un fichier dont l'extension n'est pas pris en charge. Merci d'en sélectionner un autre."
       too_long:
         one: "est trop long (pas plus d'un caractère)"
         other: "est trop long (pas plus de %{count} caractères)"
