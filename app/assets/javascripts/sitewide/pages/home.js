@@ -9,7 +9,8 @@ PagesController.prototype.home = function() {
   var script = document.createElement('script');
   script.type = 'text/javascript';
   script.src = "https://www.youtube.com/iframe_api";
-  document.body.appendChild(script);
+  script.setAttribute('data-turbolinks-track', true)
+  document.getElementsByTagName('head')[0].appendChild(script);
 
 		//
 	// Fix for map fullscreen and incompatibility with sublim video
@@ -25,37 +26,30 @@ PagesController.prototype.home = function() {
 	if(page_home.isScrolledIntoView('.easy-chart')) {
 		page_home.initChart();
 	}
-	$(document).on('scroll', function(){
-		if(check && page_home.isScrolledIntoView('.easy-chart')) {
-			check = false;
-	    page_home.initChart();
-		}
-	});
+	if($("#container.home").length) {
+		$(document).on('scroll', function(){
+			if(check && page_home.isScrolledIntoView('.easy-chart')) {
+				check = false;
+		    page_home.initChart();
+			}
+		});
+	}
 
 }
 
-  var player;
-  function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
-      height: '390',
-      width: '640',
-      videoId: 'ppQ23qycHC0',
-      playerVars: {"modestbranding": 1, "wmode": "opaque", "showinfo": 0, "autohide": 1, "controls": 1}
-    });
-  }
+var player;
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('player', {
+    height: '390',
+    width: '640',
+    videoId: 'ppQ23qycHC0',
+    playerVars: {"modestbranding": 1, "wmode": "opaque", "showinfo": 0, "autohide": 1, "controls": 1}
+  });
+}
 
 
 // ATTENTION easypiechart.js needs to be included !!
 var page_home = {
-	mapbox: function() {
-    $.ajax({
-           url: "/", // Route to the Script Controller method
-          type: "GET",
-         error: function() {
-                  $('#map').html("<p class='err'>Erreur de chargement, rechargez la page.</p>");
-                }
-    });
-	},
 
 	initChart: function() {
 	  $('.easy-chart').easyPieChart({

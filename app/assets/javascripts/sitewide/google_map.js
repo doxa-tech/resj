@@ -21,7 +21,8 @@ var load_google_map = {
         script.type = 'text/javascript';
         script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&' +
             'callback=load_google_map.callback';
-        document.body.appendChild(script);
+        script.setAttribute('data-turbolinks-track', true)
+        document.getElementsByTagName('head')[0].appendChild(script);
       } else {
         load_google_map.callback();
       }
