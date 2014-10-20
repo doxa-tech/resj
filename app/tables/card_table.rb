@@ -39,7 +39,7 @@ class CardTable < BaseTable
 	 	end
 
 	 	def self.fields
-	 		{"cards" => ["name"], "users" => ["firstname", "lastname"], "card_types" => ["name"] }
+	 		{"cards" => ["name"], "users" => ["firstname", "lastname"], "card_types" => ["name"], "status" => {"name"} }
 	 	end
 	end
 end
