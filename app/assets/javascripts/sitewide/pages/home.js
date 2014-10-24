@@ -6,13 +6,8 @@ PagesController.prototype.home = function() {
   load_mapbox.loadMap("cards_index.init");
 
   // This code loads the IFrame Player API code asynchronously.
-  var script = document.createElement('script');
-  script.type = 'text/javascript';
-  script.src = "https://www.youtube.com/iframe_api";
-  script.setAttribute('data-turbolinks-track', true)
-  document.getElementsByTagName('head')[0].appendChild(script);
-
-		//
+  appendScript("https://www.youtube.com/iframe_api");
+	//
 	// Fix for map fullscreen and incompatibility with sublim video
 	//
 	var screen_change_events = "webkitfullscreenchange mozfullscreenchange fullscreenchange";
