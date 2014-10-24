@@ -31,58 +31,60 @@ var load_mapbox = {
 
 
   process_map: function(collection) {
+    if(collection.length > 0) {
 
-    markers = load_mapbox.create_marker_cluster();
+      markers = load_mapbox.create_marker_cluster();
 
-    // Add the cards
-    for (var key in collection) {
-      var card = collection[key];
+      // Add the cards
+      for (var key in collection) {
+        var card = collection[key];
 
-      var title = load_mapbox.map_popup(card);
-      var marker = L.marker(new L.LatLng( card.latitude, card.longitude ), options={
-        icon: L.icon({
-          iconUrl: card.map_point_icon,
-          iconSize: [25, 41],
-          iconAnchor: [12, 41],
-          popupAnchor: [0, -30],
-          shadowUrl: '<%= asset_path "map/images/marker-shadow.png" %>',
-          shadowSize: [41, 41],
-          shadowAnchor: [12, 41]
-        }),
-        title: "Qui est là?",
-        riseOnHover: true,
-        id: card.id,
-        open_network: true,
-      });
-      markers.addLayer(marker);
-      marker.bindPopup(title);
-      if(!load_mapbox.already_loaded) {
-        // Network links, selft invoking to keep marker and card variable "local"
-        (function(marker,card){
-          if(card.is_network == 1) {
-            var polyline_options = {
-              color: '#000',
-              weight: 3,
-            };
-            $("#map").on('click', "#net-toggle-" + card.id, function(){
-              if(marker.options.open_network) {
-                marker.options.open_network = false;
-                marker.options.polylines = L.polyline(card.network_members_coords, polyline_options).addTo(load_mapbox.map);
-                $(this).find(".a").html("Masquer");
-              } else {
-                marker.options.open_network = true;
-                load_mapbox.map.removeLayer(marker.options.polylines);
-                $(this).find(".a").html("Afficher");
-              }
-            });
-          }
-        })(marker,card);
+        var title = load_mapbox.map_popup(card);
+        var marker = L.marker(new L.LatLng( card.latitude, card.longitude ), options={
+          icon: L.icon({
+            iconUrl: card.map_point_icon,
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [0, -30],
+            shadowUrl: '<%= asset_path "map/images/marker-shadow.png" %>',
+            shadowSize: [41, 41],
+            shadowAnchor: [12, 41]
+          }),
+          title: "Qui est là?",
+          riseOnHover: true,
+          id: card.id,
+          open_network: true,
+        });
+        markers.addLayer(marker);
+        marker.bindPopup(title);
+        if(!load_mapbox.already_loaded) {
+          // Network links, selft invoking to keep marker and card variable "local"
+          (function(marker,card){
+            if(card.is_network == 1) {
+              var polyline_options = {
+                color: '#000',
+                weight: 3,
+              };
+              $("#map").on('click', "#net-toggle-" + card.id, function(){
+                if(marker.options.open_network) {
+                  marker.options.open_network = false;
+                  marker.options.polylines = L.polyline(card.network_members_coords, polyline_options).addTo(load_mapbox.map);
+                  $(this).find(".a").html("Masquer");
+                } else {
+                  marker.options.open_network = true;
+                  load_mapbox.map.removeLayer(marker.options.polylines);
+                  $(this).find(".a").html("Afficher");
+                }
+              });
+            }
+          })(marker,card);
+        }
+
       }
-
-    }
-    // Add icons, position the map
-    load_mapbox.map.fitBounds(markers.getBounds());
-    load_mapbox.map.addLayer(markers);  
+      // Add icons, position the map
+      load_mapbox.map.fitBounds(markers.getBounds());
+      load_mapbox.map.addLayer(markers);
+    }  
 
     load_mapbox.already_loaded = true;
   },
