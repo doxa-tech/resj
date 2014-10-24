@@ -18,7 +18,7 @@ $(function() {
     return false;
   });
   // line clickable
-  $('#admin_table tbody').on("click", "tr", function(e) {
+  $('#admin_table').on("click", "tbody tr", function(e) {
     var id = $(this).data('url') ;
     if (typeof id !== 'undefined') {
     	if ( $(this).hasClass('row_selected') ) {
@@ -37,7 +37,7 @@ $(function() {
 	});
 
   // Double click
-  $('#admin_table tbody').on("dblclick", "tr", function(e) {
+  $('#admin_table').on("dblclick", "tbody tr", function(e) {
     if( $('#admin_table').find('.edit').length ) {
       window.location = window.location.pathname + '/' + $(this).data('url') + '/edit'
     }

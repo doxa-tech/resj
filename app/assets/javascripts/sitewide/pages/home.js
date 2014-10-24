@@ -26,14 +26,13 @@ PagesController.prototype.home = function() {
 	if(page_home.isScrolledIntoView('.easy-chart')) {
 		page_home.initChart();
 	}
-	if($("#container.home").length) {
-		$(document).on('scroll', function(){
+		$(window).on('scroll', function(){
 			if(check && page_home.isScrolledIntoView('.easy-chart')) {
 				check = false;
 		    page_home.initChart();
 			}
 		});
-	}
+	
 
 }
 
