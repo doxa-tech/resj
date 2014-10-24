@@ -35,11 +35,11 @@ class CardTable < BaseTable
 	module Search
 
 	 	def self.associations
-	 		[:user, :card_type]
+	 		[:user, :card_type, :status]
 	 	end
 
 	 	def self.fields
-	 		{"cards" => ["name"], "users" => ["firstname", "lastname"], "card_types" => ["name"], "status" => {"name"} }
+	 		{"cards" => ["name"], "users" => ["firstname", "lastname"], "card_types" => ["name"], "statuses" => ["name"] }
 	 	end
 	end
 end
