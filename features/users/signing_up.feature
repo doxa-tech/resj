@@ -5,24 +5,24 @@ Feature: Signing up
 	I want to create a account
 
 	Scenario: Successful form submission
-		Given a visitor
+		Given I am a visitor
 		When I visit "/inscription"
 		And I complete and submit the form correctly
 		Then I should see a flash with "Votre compte a été créé ! Vous allez recevoir un email pour confirmer votre compte."
 
 	Scenario: Invalid form submission
-		Given a visitor
+		Given I am a visitor
 		When I visit "/inscription"
 		And I do not complete the form and I submit it
-		Then I should see form's errors
+		Then I should see signing up form's errors
 
 	Scenario: Confirm account after valid form submission
-		Given a unconfirmed user
+		Given I am an unconfirmed user
 		When I click the confirmation link
 		Then I should see a flash with "Compte confirmé. Vous êtes maintenant connecté !"
 
 	@javascript
 	Scenario: Can not sign in when did not confirm the account
-		Given a unconfirmed user
-		When I sign in
-		Then I should see a notice
+		Given I am an unconfirmed user
+		When I sign in with "foo@bar.com" and "12341"
+		Then I should see "Renvoyer l'email"

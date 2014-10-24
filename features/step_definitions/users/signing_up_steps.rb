@@ -1,5 +1,5 @@
-Given /^a unconfirmed user$/ do
-	@user = FactoryGirl.create(:user)
+Given /^I am an unconfirmed user$/ do
+	@user = FactoryGirl.create(:unconfirmed_user)
 end
 
 When /^I complete and submit the form correctly$/ do 
@@ -19,15 +19,11 @@ When /^I click the confirmation link$/ do
 	visit user_confirmation_url(token: @user.remember_token)
 end 
 
-Then(/^I should see form's errors$/) do
+Then(/^I should see signing up form's errors$/) do
 	section = page.find('#error')
 	expect(section).to have_content "Prénom"
 	expect(section).to have_content "Nom"
 	expect(section).to have_content "Email"
 	expect(section).to have_content "Mot de passe"
 	expect(section).to have_content "Confirmation du mot de passe"
-end
-
-Then /^I should see a notice$/ do 
-	pending
 end

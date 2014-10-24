@@ -34,4 +34,3 @@ Then /^I should see "(.*?)" on the overview page of "(.*?)"$/ do |arg1, arg2|
   wait_for_ajax
   expect(page.body).to match(/Waykup/)
 end
-
