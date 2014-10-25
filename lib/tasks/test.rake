@@ -81,6 +81,20 @@ namespace :test do
 
 		# ownership for the tokens
 		Ownership.create(element_id: orators.id, user_id: g_token.id, right_create: true)
+
+		CardType.create(name: "Groupe de jeunes")
+		CardType.create(name: "Groupe de jeunes adultes")
+		CardType.create(name: "Groupe d'action")
+		CardType.create(name: "Oeuvre jeunesse")
+		CardType.create(name: "Réseau régional")
+		
+		canton = Canton.create(name: "Fribourg", abbreviation: "FR")
+		Location.create(npa: 1630, post_name: "Bulle", official_name: "Bulle", latitude: 46, longitude: 7, canton: canton)
+
+		Status.create(name: "En cours de validation")
+		Status.create(name: "En ligne")
+		Status.create(name: "Incomplet")
+		Status.create(name: "Action requise")
 	end
 
 end

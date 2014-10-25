@@ -69,4 +69,6 @@ end
 
 Capybara.javascript_driver = :chrome
 
+Capybara.default_wait_time = 4
+
 World(FactoryGirl::Syntax::Methods)

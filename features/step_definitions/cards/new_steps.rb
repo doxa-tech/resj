@@ -1,0 +1,16 @@
+When /^I complete all the steps and submit the card new form$/ do
+	fill_in "card_name", with: "Waykup"
+	fill_in "card_description", with: "Un groupe de jeunes"
+	fill_in_selectized "card_card_type_id", with: "Groupe de jeunes"
+	click_button "Prochaine étape"
+	fill_in "card_street", with: "Route du verdel 8"
+	fill_in_selectized "card_location_id", with: "Bulle"
+	click_button "Prochaine étape"
+	fill_in "card_responsables_attributes_0_firstname", with: "John"
+	fill_in "card_responsables_attributes_0_lastname", with: "Smith"
+	fill_in "card_responsables_attributes_0_email", with: "foo@bar.com"
+	click_button "Marquer comme propriétaire"
+	click_button "Prochaine étape"
+	click_button "Prochaine étape"
+	click_link "Envoyer"
+end
