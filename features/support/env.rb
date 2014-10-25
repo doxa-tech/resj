@@ -69,3 +69,4 @@ end
 
 Capybara.javascript_driver = :chrome
 
+World(FactoryGirl::Syntax::Methods)

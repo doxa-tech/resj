@@ -10,17 +10,6 @@ namespace :test do
 		Page.create(name: 'contact', content: 'content')
 		Page.create(name: 'developer', content: 'content')
 
-		CardType.create(name: "Groupe de jeunes")
-		CardType.create(name: "Groupe de jeunes adultes")
-		CardType.create(name: "Groupe d'action")
-		CardType.create(name: "Oeuvre jeunesse")
-		CardType.create(name: "Réseau régional")
-
-		Status.create(name: "En cours de validation")
-		Status.create(name: "En ligne")
-		Status.create(name: "Incomplet")
-		Status.create(name: "Action requise")
-
 		UserType.create(name: 'user')
 		UserType.create(name: 'group')
 
@@ -64,6 +53,7 @@ namespace :test do
 		admin_newsletter = Element.create(name: 'admin/newsletters')
 		admin_statuses = Element.create(name: 'admin/statuses')
 		admin_card_statuses = Element.create(name: 'admin/card_statuses')
+		card_affiliations = Element.create(name: 'card_affiliations')
 
 		# ownerships for admin group :
 		Ownership.create(element_id: admin_pages.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)
@@ -91,9 +81,6 @@ namespace :test do
 
 		# ownership for the tokens
 		Ownership.create(element_id: orators.id, user_id: g_token.id, right_create: true)
-
-		Location.create!(npa: 1630, official_name: 'Bulle', post_name: 'Bulle', latitude: 1, longitude: 2, canton: Canton.create!(name: 'Fribourg', abbreviation: 'FR'))
-
 	end
 
 end

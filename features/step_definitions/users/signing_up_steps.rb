@@ -1,5 +1,8 @@
+Given /^I am a visitor$/ do
+end
+
 Given /^I am an unconfirmed user$/ do
-	@user = FactoryGirl.create(:unconfirmed_user)
+	@user = create(:unconfirmed_user)
 end
 
 When /^I complete and submit the form correctly$/ do 

@@ -32,7 +32,7 @@ module CardValidation
   end
 
   def responsables?
-    if new_record? && !responsables.any?
+    if new_record? && !responsables.any? && user.nil?
       errors.add(:responsables, "ne contient aucun responsable (min. 1)")
     end
   end

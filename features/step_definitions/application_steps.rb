@@ -1,10 +1,3 @@
-Given /^I am logged with email "(.*?)"$/ do |email|
-	pending
-end
-
-Given /^I am a visitor$/ do
-end
-
 When /^I visit "(.*?)"$/ do |path|
 	visit path
 end
