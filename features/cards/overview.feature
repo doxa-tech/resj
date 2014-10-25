@@ -1,19 +1,20 @@
-Feature: Update a card via overview
+Feature: Update a card
 
-	So that I can edit my card
-	As a card owner
-	I want to update my card in overview page
+	So that I can change card's information
+	As a card's owner
+	I want to update my card in the overview page
 
-	@wip
-	Scenario: Go to the overview page
-		Given a card named "way" with owner "nkcr.je@gmail.com"
-		And I am logged with email "nkcr.je@gmail.com"
-		When I go to the overview page of the card "way"
-		Then I should access the overview page of the card "way"
+	Scenario: Access the overview page
+		Given I own a card
+		And I am signed in
+		When I go to the overview page of my card
+		Then I should access the page
 
-	@javascript @wip
-	Scenario: Update name
-		Given a card named "way" with owner "nkcr.je@gmail.com"
-		And I am logged with email "nkcr.je@gmail.com"
-		When I change the card named "way" to "waykup"
-		Then I should see "waykup" on the overview page of "way"
+	@javascript
+	Scenario: Update the card's name
+		Given I own a card
+		And I am signed in
+		When I go to the overview page of my card
+		And I change the card from "Waykup" to "Way"
+		Then I should see "Way" in the input field
+		And I should see "Enregistrement sauvegardé..."
