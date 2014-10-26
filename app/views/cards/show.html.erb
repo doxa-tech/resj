@@ -4,17 +4,61 @@
 	<h1><%= @card.card_type.name %>: <%= @card.name %></h1>
 </div>
 
+<div class="row header">
+	<div class="left graphics">
+		<% if @card.banner_url.present? %>
+			<%= image_tag @card.banner.url, class: 'banner' %>
+		<% else %>
+			<%= image_tag 'card/default-banner.jpg', class: 'banner' %>
+		<% end %>
+		<% if @card.avatar_url.present? %>
+			<%= image_tag @card.avatar.thumb.url, class: 'logo' %>
+		<% else %>
+			<%= image_tag 'card/default-logo.jpg', class: 'logo' %>
+		<% end %>
+		<% if current_permission.allow_modify?('cards','edit',@card) %>
+			<div class="edit-banner">
+				<button class="edit-banner" type="button">Editer <span class='fi-pencil'></span></button>
+				<div class="tools">
+					<ul>
+						<% if @card.banner_url.present? %><li><button type="button"><span class="fi-x"></span> Supprimer l'image</li></button><% end %>
+						<li><button type="button"><span class="fi-pencil"></span> Changer l'image</li></button>
+						<li><button type="button"><span class="fi-info"></span> Aide sur le format</li></button>
+					</ul>
+				</div>
+			</div>
+			<div class="edit-logo">
+				<button class="edit-logo" type="button">Editer <span class='fi-pencil'></span></button>
+				<div class="tools">
+					<ul>
+						<% if @card.banner_url.present? %><li><button type="button"><span class="fi-x"></span> Supprimer l'image</li></button><% end %>
+						<li><button type="button"><span class="fi-pencil"></span> Changer l'image</li></button>
+						<li><button type="button"><span class="fi-info"></span> Aide sur le format</li></button>
+					</ul>
+				</div>			
+			</div>
+		<% end %>	
+	</div>
+	<div class="right map-wrapper">
+		<div id="map-canvas"></div>
+	</div>
+</div>
+
+<div id="clear"></div>
+
+<div class="row title">
+	<h2><%= @card.name %></h2>
+</div>
+
 <div class="row">
 	<div class="left">
-		<%= img = image_tag(@card.avatar_url) if img.present? %>
-		<%= img = image_tag(@card.banner_url) if img.present? %>
-
 		<% if current_permission.allow_modify?('cards','edit',@card) %>
 			<%= link_to "Editer <span class='fi-pencil'></span>".html_safe, overview_card_path(@card), class: 'edit' %>
 		<% end %>
 
 		<div class="description"><%= simple_format @card.description %></div>
-
+	</div>
+	<div class="right">
 		<div class="location">
 			<i class="fi-marker"></i>
 			<div class="txt">
@@ -32,13 +76,9 @@
 			<p><%= link_to(@card.website, @card.website, target: "_blank") or ' - ' %></p>
 		</div>
 	</div>
-	<div class="right">
-		<div id="map-canvas"></div>
-	</div>
 </div>
 
 <div id="clear"></div>
-
 <div class="row">
 	<div class="left">
 		<div class="team">
@@ -76,8 +116,6 @@
 		</div>
 	<% end %>
 </div>
-
-<div id="clear"></div>
 
 <% if @card.network? %>
 	<div class="row">
