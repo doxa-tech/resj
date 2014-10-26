@@ -47,20 +47,25 @@ class BannerUploader < CarrierWave::Uploader::Base
 
   def bad_ratio?(picture=nil)
     w, h = ::MiniMagick::Image.open(file.file)[:dimensions]
-    (w.to_f / h.to_f) < 2.1333
+    ((w.to_f / h.to_f) < 2.1333) || ((w.to_f / h.to_f) > 5.7142)
   end
 
   def crop_ratio
     w, h = ::MiniMagick::Image.open(file.file)[:dimensions]
     manipulate! do |img|
-      img.crop("#{w}x#{w.to_f/16*7.5}+#{0}+#{0}")
+      if (w.to_f / h.to_f) < 2.1333
+        img.crop("#{w}x#{w.to_f/16*7.5}+#{0}+#{0}")
+      else
+        img.crop("#{h.to_f/2.8*16}x#{h}+#{0}+#{0}")
+      end
       img
     end
   end
 
   # NOTE about ratio and site
-  # ratio must not exceed 16 / 7.5
+  # ratio must not exceed 16 / 7.5 and not bellow 16 / 2.8
   # size must not exceed 2500px wide (so 1200px height)
   # size must be at least 1000px wide
+  # recomended size is 1920 x 900
 
 end
