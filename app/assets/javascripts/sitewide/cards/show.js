@@ -26,9 +26,27 @@ CardsController.prototype.show = function() {
       $('.edit-logo .edit-logo').css('display', 'none');
     }
   });
+
+  var show_map = true;
+  $('#show-map').click(function(){
+    if(show_map) {
+      $('.map-canvas-wrapper').show();
+      google.maps.event.trigger(card_show.map, 'resize');
+      card_show.center();
+      show_map = false;
+    } else {
+      $('.map-canvas-wrapper').hide();
+      show_map = true;
+    }
+  });
+
 };
 
 var card_show = {
+
+  map: null,
+  marker: null,
+
   initialize: function(lat, lng) {
     var latlng = new google.maps.LatLng(lat, lng);
     var mapOptions = {
@@ -36,8 +54,12 @@ var card_show = {
       zoom: 15,
       mapTypeId: google.maps.MapTypeId.PLAN
     };
-    var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-    geocoder = new google.maps.Geocoder();
-    marker = new google.maps.Marker({position: latlng,map: map});
+    card_show.map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+    card_show.marker = new google.maps.Marker({position: latlng,map: card_show.map});
+  },
+
+  center: function() {
+    card_show.map.setCenter(card_show.marker.getPosition());
   }
+
 };
