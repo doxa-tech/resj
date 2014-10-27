@@ -1,7 +1,3 @@
-Given /^I am a confirmed user and not signed in$/ do
-	@user = create(:user)
-end
-
 When /^I sign in with "(.*?)" and "(.*?)" in the pop-up$/ do |email, password|
 	visit '/'
 	click_link 'Login'

@@ -4,7 +4,7 @@ Feature: Signing up
 	As a visitor
 	I want to create a account
 
-	Scenario: Successful form submission
+	Scenario: Valid form submission
 		Given I am a visitor
 		When I visit "/inscription"
 		And I complete and submit the signing up form correctly
@@ -13,7 +13,7 @@ Feature: Signing up
 	Scenario: Invalid form submission
 		Given I am a visitor
 		When I visit "/inscription"
-		And I do not complete the form and I submit it
+		And I do not complete the form and submit it
 		Then I should see errors for the fields "Prénom, Nom, Email, Mot de passe, Confirmation du mot de passe"
 
 	Scenario: Confirm account after valid form submission
