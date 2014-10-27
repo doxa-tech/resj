@@ -95,6 +95,8 @@ namespace :test do
 		Status.create(name: "En ligne")
 		Status.create(name: "Incomplet")
 		Status.create(name: "Action requise")
+
+		Theme.create(name: "L'argent")
 	end
 
 end

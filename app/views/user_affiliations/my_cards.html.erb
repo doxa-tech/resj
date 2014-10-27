@@ -2,7 +2,7 @@
 
 <div class="back"><%= link_to "Retour sur votre profil", profile_path %></div>
 
-<div class="row">
+<div class="row confirmed">
 	<div class="col split1">
 		<div class="block">
 			<div class="header">
@@ -32,7 +32,7 @@
 	</div>
 </div>
 
-<div clas="row">
+<div class="row">
 	<div class="col split1">
 		<div class="block">
 			<div class="header">
@@ -42,7 +42,7 @@
 			<%= form_tag user_affiliations_path do %>
 			<ul>
 				<li>
-					<%= select_tag :card_id, options_from_collection_for_select(Card.all - @confirmed, :id, :name), class: "selectize" %>
+					<%= select_tag :card_id, options_from_collection_for_select(Card.all - @confirmed - @pending, :id, :name), class: "selectize" %>
 					<%= submit_tag "Envoyer la requête" %>
 				</li>
 			</ul>
@@ -51,7 +51,7 @@
 	</div>
 </div>
 
-<div clas="row">
+<div class="row pending">
 	<div class="col split1">
 		<div class="block">
 			<div class="header">
@@ -77,7 +77,7 @@
 	</div>
 </div>
 
-<div clas="row">
+<div class="row">
 	<div class="col split1">
 		<div class="block">
 			<div class="header">
