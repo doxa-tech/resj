@@ -9,7 +9,6 @@ class Admin::AccessTokensController < Admin::BaseController
 	def create
 		@access_token = AccessToken.new(access_token_params)
 		@access_token.is_valid = true
-		@access_token.token = SecureRandom.urlsafe_base64
 		if @access_token.save
 			redirect_to admin_access_tokens_path, success: t('access_token.admin.create.success')
 		else

@@ -1,2 +1,4 @@
-$('.final-step').find('send-a').text('Envoyer');
+$('.final-step').find('.send-a').text('Envoyer');
+$(window).unbind('beforeunload');
 $('.error').html("<%=j render 'error_messages', object: @card %>");
+goToByScroll($('.top'));
