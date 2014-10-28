@@ -53,7 +53,7 @@ namespace :test do
 		admin_newsletter = Element.create(name: 'admin/newsletters')
 		admin_statuses = Element.create(name: 'admin/statuses')
 		admin_card_statuses = Element.create(name: 'admin/card_statuses')
-		card_affiliations = Element.create(name: 'card_affiliations')
+		card_affiliations = Element.create(name: 'cards/affiliations')
 
 		# ownerships for admin group :
 		Ownership.create(element_id: admin_pages.id, user_id: g_admin.id, ownership_type_id: type2.id, right_read: true, right_create: true, right_update: true, right_delete: true)

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   match '/422', to: 'errors#unprocessable', via: :all
   match '/500', to: 'errors#internal_server_error', via: :all
 
-  get '/cards/new', to: redirect('/card/new')
+  get '/cards/new', to: redirect('/cards/wizards/new')
 
   scope "(:locale)", locale: /en|fr/ do
 
@@ -55,14 +55,26 @@ Rails.application.routes.draw do
         get 'team'
         patch 'team_update'
       end
-      resources :card_affiliations, only: [:create, :update, :destroy]
+
+      scope module: :cards do
+        resources :affiliations, only: [:create, :update, :destroy]
+        resources :images, only: [] do
+          collection do
+            get 'banner'
+            get 'avatar'
+            post 'upload_banner'
+            post 'upload_avatar'
+          end
+        end
+      end
     end
 
     
-
-    resources :card_wizards, only: [:new, :create], path: 'card' do
-      collection do
-        post 'change'
+    namespace :cards do
+      resources :wizards, only: [:new, :create] do
+        collection do
+          post 'change'
+        end
       end
     end
 

@@ -17,7 +17,7 @@
 						<% @confirmed_paginate.each do |user| %>
 							<li>
 								<%=  user.full_name %>
-								<%= link_to "Retirer", card_card_affiliation_path(@card, user), method: :delete, data: {confirm: "Etes-vous sûr de vouloir enlever cet utilisateur ?" }, class: "edit-btn" if user != @card.user %>
+								<%= link_to "Retirer", card_affiliation_path(@card, user), method: :delete, data: {confirm: "Etes-vous sûr de vouloir enlever cet utilisateur ?" }, class: "edit-btn" if user != @card.user %>
 							</li>
 						<% end %>
 				<% end %>
@@ -33,7 +33,7 @@
 				<h2>Demander à un utilisateur de rejoindre votre groupe</h2>
 				<h5>Reconnaître un utilisateur du site comme étant responsable ou co-responsable de votre <%= @card.card_type.name %> en l'invitant à rejoindre le groupe.</h5>
 			</div>
-			<%= form_tag card_card_affiliations_path(@card) do %>
+			<%= form_tag card_affiliations_path(@card) do %>
 			<ul>
 				<li>
 					<%= select_tag :user_id, options_from_collection_for_select(User.users - @confirmed - @pending, :id, :full_name), class: "selectize" %>
@@ -58,7 +58,7 @@
 						<li>
 							<%= user.full_name %>
 							<small>Requête faite le: <%= l(user.card_users.find_by_card_id(@card.id).updated_at, format: :text) %></small>
-							<%= link_to "Annuler", card_card_affiliation_path(@card, user), method: :delete, data: {confirm: "Etes-vous sûr de vouloir annuler cette requête ?" } %>
+							<%= link_to "Annuler", card_affiliation_path(@card, user), method: :delete, data: {confirm: "Etes-vous sûr de vouloir annuler cette requête ?" } %>
 						</li>
 					</ul>
 				<% end %>
@@ -83,8 +83,8 @@
 					<ul>
 						<li>
 							<%= user.full_name %>
-							<%= link_to "Confirmer", card_card_affiliation_path(@card, user.id, validated: "true"), method: :patch %>
-							<%= link_to "Refuser", card_card_affiliation_path(@card, user.id, validated: "false"), method: :patch %>
+							<%= link_to "Confirmer", card_affiliation_path(@card, user.id, validated: "true"), method: :patch %>
+							<%= link_to "Refuser", card_affiliation_path(@card, user.id, validated: "false"), method: :patch %>
 						</li>
 					</ul>
 				<% end %>

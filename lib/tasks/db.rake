@@ -139,4 +139,9 @@ namespace :db do
 		end
 	end
 
+	desc "Update element name for card affiliations"
+	task affiliation_element: :environment do
+		Element.find_by_name('card_affiliations').update_attribute(:name, 'cards/affiliations')
+	end
+
 end
