@@ -16,13 +16,13 @@
 		<% else %>
 			<%= image_tag 'card/default-logo.jpg', class: 'logo' %>
 		<% end %>
-		<% if current_permission.allow_modify?('cards','edit',@card) %>
+		<% if current_permission.allow_modify?('cards','edit', @card) %>
 			<div class="edit-banner">
 				<button class="edit-banner" type="button">Editer <span class='fi-pencil'></span></button>
 				<div class="tools">
 					<ul>
 						<% if @card.banner_url.present? %><li><button type="button"><span class="fi-x"></span> Supprimer l'image</li></button><% end %>
-						<li><button type="button"><span class="fi-pencil"></span> Changer l'image</li></button>
+						<li><span class="fi-pencil"></span><%= link_to "Changer l'image", banner_card_images_path(@card), remote: true, class: "edit-banner" %></li>
 						<li><button type="button"><span class="fi-info"></span> Aide sur le format</li></button>
 					</ul>
 				</div>
