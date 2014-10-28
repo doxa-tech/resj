@@ -40,9 +40,9 @@ class CardsController < BaseController
 
 	def team
 		@unconfirmed = @card.unconfirmed_users
-		@pending = @card.pending_users
+		@pending = @card.pending_users.joins(:card_users)
 		@confirmed = @card.confirmed_users
-		@confirmed_paginate = @card.confirmed_users.paginate(page: params[:page], per_page: 10)
+		@confirmed_paginate = @confirmed.paginate(page: params[:page], per_page: 10)
 	end
 
 	def team_update

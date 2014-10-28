@@ -5,9 +5,9 @@ class UserAffiliationsController < BaseController
 	def my_cards
 		@user = current_user
 		@unconfirmed = @user.unconfirmed_cards
-		@pending = @user.pending_cards
+		@pending = @user.pending_cards.joins(:card_users)
 		@confirmed = @user.confirmed_cards
-		@confirmed_paginate = @user.confirmed_cards.paginate(page: params[:page], per_page: 10)
+		@confirmed_paginate = @confirmed.paginate(page: params[:page], per_page: 10)
 	end
 
 	# User's request to a card

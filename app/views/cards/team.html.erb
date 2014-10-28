@@ -1,6 +1,6 @@
 <div class="back"><%= link_to "Retour sur l'édition", overview_card_path(@card) %></div>
 
-<div class="row">
+<div class="row confirmed">
 	<div class="col split1">
 		<div class="block">
 			<div class="header">
@@ -26,7 +26,7 @@
 	</div>
 </div>
 
-<div clas="row">
+<div class="row">
 	<div class="col split1">
 		<div class="block">
 			<div class="header">
@@ -36,7 +36,7 @@
 			<%= form_tag card_card_affiliations_path(@card) do %>
 			<ul>
 				<li>
-					<%= select_tag :user_id, options_from_collection_for_select(User.users - @card.confirmed_users, :id, :full_name), class: "selectize" %>
+					<%= select_tag :user_id, options_from_collection_for_select(User.users - @confirmed - @pending, :id, :full_name), class: "selectize" %>
 						<%= submit_tag "Envoyer la requête" %>
 				</li>
 			</ul>
@@ -45,7 +45,7 @@
 	</div>
 </div>
 
-<div clas="row">
+<div class="row pending">
 	<div class="col split1">
 		<div class="block">
 			<div class="header">
@@ -71,7 +71,7 @@
 	</div>
 </div>
 
-<div clas="row">
+<div class="row">
 	<div class="col split1">
 		<div class="block">
 			<div class="header">
