@@ -11,8 +11,6 @@ module CardValidation
 	    card.validates :street, presence: true
 	    card.validates :location_id, presence: true
 	    card.validates :place, length: { maximum: 60 }
-	    card.validates :latitude, presence: true
-	    card.validates :longitude, presence: true
 	  end
 	  with_options if: Proc.new { |c| c.current_step?("team")} do |card|
 	    card.validate :responsables?
@@ -32,7 +30,7 @@ module CardValidation
   end
 
   def responsables?
-    if new_record? && !responsables.any?
+    if new_record? && !responsables.any? && user.nil?
       errors.add(:responsables, "ne contient aucun responsable (min. 1)")
     end
   end

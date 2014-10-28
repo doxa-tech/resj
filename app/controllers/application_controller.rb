@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
 
   def default_url_options(options={})
     locale = I18n.locale
-    { locale: (locale == :fr ? nil : locale), access: params[:access] }
+    { locale: (locale == :fr ? nil : locale) }
   end
 
   def track_activity(trackable, action = params[:action], controller = params[:controller])
