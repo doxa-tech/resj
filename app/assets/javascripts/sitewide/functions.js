@@ -17,3 +17,13 @@ function appendScript(filepath) {
 	  script.src = filepath;
 	  document.getElementsByTagName('head')[0].appendChild(script);
 }
+
+/* Upload form with ajax */
+
+function customAjaxForm(locator) {
+	formP = $(locator);
+  formP.find('input[type="submit"]').on('click', function() {
+  	$(this).attr('value', "En cours...");
+  });
+  formP.ajaxForm(); 
+}

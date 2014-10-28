@@ -28,7 +28,7 @@ FactoryGirl.define do
 
     after(:create) do |card|
       card.user.ownerships.create(element_id: Element.find_by_name('cards').id, ownership_type_id: OwnershipType.find_by_name('on_entry').id, id_element: card.id, right_read: true, right_update: true, right_create: true)
-      card.user.ownerships.create(element_id: Element.find_by_name('card_affiliations').id, ownership_type_id: OwnershipType.find_by_name('on_entry').id, id_element: card.id, right_create: true, right_delete: true, right_update: true, right_read: true)
+      card.user.ownerships.create(element_id: Element.find_by_name('cards/affiliations').id, ownership_type_id: OwnershipType.find_by_name('on_entry').id, id_element: card.id, right_create: true, right_delete: true, right_update: true, right_read: true)
     end
 
     factory :active_card do

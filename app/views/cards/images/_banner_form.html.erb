@@ -1,0 +1,5 @@
+<%= form_for @card, url: upload_avatar_card_images_path(@card)  do |f| %>
+	<%= f.label :banner %>
+	<%= f.file_field :banner %>
+	<%= f.submit %>
+<% end %>

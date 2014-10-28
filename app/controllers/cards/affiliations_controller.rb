@@ -1,4 +1,4 @@
-class CardAffiliationsController < BaseController
+class Cards::AffiliationsController < BaseController
 	before_action :connected_or_token?
 	before_filter :current_resource, only: [:create, :update, :destroy]
 	before_action :authorize_create, only: [:create]
