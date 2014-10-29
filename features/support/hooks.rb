@@ -1,6 +1,7 @@
 # Do something before each scenario.
 Before do
 	self.puts "Executing rake tasks... See hooks.rb"
+	execute_rake('seed.rake', 'seed:all')
 	execute_rake('test.rake', 'test:init')
 end
 
