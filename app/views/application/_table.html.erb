@@ -9,8 +9,8 @@
 		</tr>
 	</thead>
 	<tbody>
-		<% if presenter.elements.any? %>
-			<% presenter.elements.each do |element| %>
+		<% if presenter.records.any? %>
+			<% presenter.records.each do |element| %>
 				<tr class="<%= cycle('odd', 'even') %>" data-url="<%= presenter.url(element) %>">
 					<% presenter.attributes(element).each do |attribute| %>
 						<td><%= truncate((strip_tags attribute.to_s), length: 40) %></td>
@@ -22,4 +22,4 @@
 		<% end %>
 	</tbody>
 </table>
-<%= will_paginate presenter.elements %>
+<%= will_paginate presenter.records %>
