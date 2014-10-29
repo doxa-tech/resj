@@ -3,7 +3,7 @@ FactoryGirl.define do
   factory :user do
     firstname "John"
     lastname  "Smith"
-    email "foo@bar.com"
+    email { "#{firstname.downcase}@#{lastname.downcase}.com" }
     password "12341"
     password_confirmation "12341"
     user_type { UserType.find_by_name("user") }
@@ -43,7 +43,7 @@ FactoryGirl.define do
 
   factory :ownership do
     transient do
-      element_name 'cards'
+      element_name 'admin/articles'
       user_name 'John Smith'
       group_name nil
       type_name 'all_entries'
@@ -68,6 +68,14 @@ FactoryGirl.define do
     factory :recent_affiliation do
       updated_at 1.day.ago
     end
+  end
+
+  factory :article do
+    title "Les ours polaires"
+    content "Chaque année, plus de 1000 ourse blancs meurt"
+    association :user, firstname: "Patrick", lastname: "Dujardin"
+    image File.open("#{Rails.root}/public/test/articles/image_example.jpg")
+    themes { [Theme.first] }
   end
 
 end

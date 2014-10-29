@@ -25,7 +25,7 @@ When /^I complete the third step and submit it$/ do
 	fill_in "card_email", with: "waykup@googlegroups.com"
 	fill_in "card_responsables_attributes_0_firstname", with: "John"
 	fill_in "card_responsables_attributes_0_lastname", with: "Smith"
-	fill_in "card_responsables_attributes_0_email", with: "foo@bar.com"
+	fill_in "card_responsables_attributes_0_email", with: "john@smith.com"
 	click_button "Marquer comme propriétaire"
 	click_button "Ajouter un responsable"
 	fill_in "card_responsables_attributes_1_firstname", with: "Keran"

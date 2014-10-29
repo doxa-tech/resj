@@ -24,5 +24,5 @@ Feature: Signing up
 	@javascript
 	Scenario: Can not sign in when did not confirm the account
 		Given I am an unconfirmed user
-		When I sign in with "foo@bar.com" and "12341"
+		When I sign in with "john@smith.com" and "12341"
 		Then I should see "Renvoyer l'email"

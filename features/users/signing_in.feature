@@ -9,7 +9,7 @@ Feature: Signing in
 
 	@javascript
 	Scenario: Valid signing in via the pop-up
-		When I sign in with "foo@bar.com" and "12341" in the pop-up
+		When I sign in with "john@smith.com" and "12341" in the pop-up
 		Then I should see "John Smith"
 
 	@javascript
@@ -18,7 +18,7 @@ Feature: Signing in
 		Then I should see "Mot de passe et/ou utilisateur incorrect"
 
 	Scenario: Valid signing in via the page
-		When I sign in with "foo@bar.com" and "12341"
+		When I sign in with "john@smith.com" and "12341"
 		Then I should see a flash with "Connecté avec succès"
 
 	Scenario: Invalid signing in via the page

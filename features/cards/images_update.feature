@@ -15,3 +15,6 @@ Feature: Card images update
 		And I click the button "Changer l'image"
 		And I complete the upload form and submit it
 		Then I should see the updated banner
+
+	@javascript @wip
+	Scenario: Invalid form submission cause ...
