@@ -62,8 +62,8 @@ Rails.application.routes.draw do
           collection do
             get 'banner'
             get 'avatar'
-            post 'upload_banner'
-            post 'upload_avatar'
+            patch 'upload_banner'
+            patch 'upload_avatar'
           end
         end
       end
