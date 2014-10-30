@@ -14,6 +14,12 @@ FactoryGirl.define do
     end
   end
 
+  factory :orator do
+    location { Location.find_by_official_name("Bulle") }
+    themes { [Theme.first] }
+    user
+  end
+
   factory :card do
     name "Waykup"
     description "Un super groupe de jeunes"
@@ -57,6 +63,7 @@ FactoryGirl.define do
     right_create false
     right_update false
     right_delete false
+    actions { [create(:action)] }
   end
 
   factory :affiliation, class: CardUser do
@@ -71,11 +78,15 @@ FactoryGirl.define do
   end
 
   factory :article do
-    title "Les ours polaires"
+    sequence(:title) { |n| "#{n} ours meurt chaque année"}
     content "Chaque année, plus de 1000 ourse blancs meurt"
-    association :user, firstname: "Patrick", lastname: "Dujardin"
+    user { User.find_by_firstname_and_lastname('Patrick', 'Dujardin') || create(:user, firstname: 'Patrick', lastname: 'Dujardin') }
     image File.open("#{Rails.root}/public/test/articles/image_example.jpg")
     themes { [Theme.first] }
+  end
+
+  factory :action do 
+    name 'share'
   end
 
 end

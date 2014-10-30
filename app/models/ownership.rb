@@ -1,4 +1,6 @@
 class Ownership < ActiveRecord::Base
+  scope :permission, -> { includes(:ownership_type).joins(:element) }
+
 	belongs_to :element
 	belongs_to :user
 	belongs_to :ownership_type
