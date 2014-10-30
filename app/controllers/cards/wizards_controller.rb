@@ -35,7 +35,7 @@ class Cards::WizardsController < BaseController
 			# for owner
 			CardMailer.owner_created(@card, user_hash).deliver
 			session[:card_params] = nil
-			flash[:success] = "Vous êtes entré dans le réseau avec succès !"
+			flash[:success] = "Vous êtes entré dans le réseau avec succès ! Votre groupe n'apparaît pas directement sur la carte car elle doit d'abord être validée."
 			render 'redirect', locals: { path: "/reseau" }
 		else
 			render 'error'
