@@ -6,6 +6,7 @@ CardsController.prototype.show = function() {
   load_google_map.loadScript('card_show.initialize', 
         [this.params['lat'], this.params['lng']], true);
 
+  // edit popup of images
   $('.edit-banner').click(function(){
     $('.edit-banner .edit-banner').css('display', 'block');
     $('.edit-banner .tools').show();
@@ -27,6 +28,7 @@ CardsController.prototype.show = function() {
     }
   });
 
+  // responsive google map
   var show_map = true;
   $('#show-map').click(function(){
     if(show_map) {
@@ -39,6 +41,13 @@ CardsController.prototype.show = function() {
       show_map = true;
     }
   });
+
+  var input = document.getElementById('card_banner');
+  input.onchange = function() {
+    document.getElementById("banner-form").submit();
+  };
+
+  $('#edit_card_35').ajaxForm();
 
 };
 

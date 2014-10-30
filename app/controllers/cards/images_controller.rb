@@ -1,4 +1,5 @@
 class Cards::ImagesController < BaseController
+	before_filter :current_resource
 
 	def banner
 	end

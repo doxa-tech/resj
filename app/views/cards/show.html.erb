@@ -22,7 +22,12 @@
 				<div class="tools">
 					<ul>
 						<% if @card.banner_url.present? %><li><button type="button"><span class="fi-x"></span> Supprimer l'image</li></button><% end %>
-						<li><span class="fi-pencil"></span><%= link_to "Changer l'image", banner_card_images_path(@card), remote: true, class: "edit-banner" %></li>
+						<li>
+							<span class="fi-pencil"></span>
+							<%= form_for @card, url: upload_avatar_card_images_path(@card), id: 'banner-form'  do |f| %>
+								<%= f.file_field :banner %>
+							<% end %>
+						</li>
 						<li><button type="button"><span class="fi-info"></span> Aide sur le format</li></button>
 					</ul>
 				</div>
