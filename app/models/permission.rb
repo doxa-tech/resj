@@ -2,7 +2,7 @@ class Permission
 
 	def initialize(user)
 		@user = user
-		@ids ||= user.parents.pluck(:parent_id) << user.id if user
+		@ids = user.parents.pluck(:parent_id) << user.id if user
 	end
 
 	def allow_modify?(controller, action, current_resource = nil)

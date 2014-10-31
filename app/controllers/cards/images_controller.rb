@@ -17,7 +17,7 @@ class Cards::ImagesController < BaseController
 	end
 
 	def upload_avatar
-		@card.banner = params[:card][:avatar]
+		@card.avatar = params[:card][:avatar]
 		if @card.save
 			render 'success'
 		else
