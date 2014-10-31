@@ -44,12 +44,14 @@ CardsController.prototype.show = function() {
 
   var input = document.getElementById('card_banner');
   input.onchange = function() {
-    document.getElementById("banner-form").submit();
+    $('#card-image-form').ajaxSubmit();
   };
 
-  $('#edit_card_35').ajaxForm();
+  $('#card_banner, #card_avatar').change(function() {
+    $(this).closest('form').ajaxSubmit();
+  });
 
-};
+}
 
 var card_show = {
 

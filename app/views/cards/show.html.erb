@@ -24,9 +24,11 @@
 						<% if @card.banner_url.present? %><li><button type="button"><span class="fi-x"></span> Supprimer l'image</li></button><% end %>
 						<li>
 							<span class="fi-pencil"></span>
-							<%= form_for @card, url: upload_avatar_card_images_path(@card), id: 'banner-form'  do |f| %>
-								<%= f.file_field :banner %>
-							<% end %>
+							<div class="banner-uploader">
+								<%= form_for @card, url: upload_banner_card_images_path(@card), html: {id: 'banner-form'} do |f| %>
+									<%= f.file_field :banner %>
+								<% end %>
+							</div>
 						</li>
 						<li><button type="button"><span class="fi-info"></span> Aide sur le format</li></button>
 					</ul>
@@ -37,7 +39,14 @@
 				<div class="tools">
 					<ul>
 						<% if @card.banner_url.present? %><li><button type="button"><span class="fi-x"></span> Supprimer l'image</li></button><% end %>
-						<li><button type="button"><span class="fi-pencil"></span> Changer l'image</li></button>
+						<li>
+							<span class="fi-pencil"></span>
+							<div class="avatar-uploader">
+								<%= form_for @card, url: upload_avatar_card_images_path(@card), html: {id: 'avatar-form'} do |f| %>
+									<%= f.file_field :avatar %>
+								<% end %>
+							</div>
+						</li>
 						<li><button type="button"><span class="fi-info"></span> Aide sur le format</li></button>
 					</ul>
 				</div>			
