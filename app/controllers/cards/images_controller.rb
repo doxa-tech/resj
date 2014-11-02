@@ -10,7 +10,7 @@ class Cards::ImagesController < BaseController
 	def upload_banner
 		@card.banner = params[:card][:banner]
 		if @card.save
-			render 'success'
+			render 'banner_success'
 		else
 			render 'error'
 		end
@@ -19,7 +19,25 @@ class Cards::ImagesController < BaseController
 	def upload_avatar
 		@card.avatar = params[:card][:avatar]
 		if @card.save
-			render 'success'
+			render 'avatar_success'
+		else
+			render 'error'
+		end
+	end
+
+	def remove_banner
+		@card.remove_banner!
+		if @card.save
+			render 'banner_success'
+		else
+			render 'error'
+		end
+	end
+
+	def remove_avatar
+		@card.remove_avatar!
+		if @card.save
+			render 'avatar_success'
 		else
 			render 'error'
 		end

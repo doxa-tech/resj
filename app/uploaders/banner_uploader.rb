@@ -11,11 +11,12 @@ class BannerUploader < CarrierWave::Uploader::Base
     storage :file
   end
 
-  version :original, :if => :bad_ratio?
-
+  version :show do
+    process :check_ratio
+  end
+  
   process :check_size
-  process :check_ratio
-  process :resize_to_limit => [2500, 1200]
+  process :resize_to_limit => [2500, 2500]
   process :quality => 90
   process :right_orientation
 
@@ -29,8 +30,8 @@ class BannerUploader < CarrierWave::Uploader::Base
 
   def check_size
     w, h = ::MiniMagick::Image.open(file.file)[:dimensions]
-    if(w < 1000 || h < 180)
-      raise CarrierWave::ProcessingError.new("Votre image est trop petite. Une largeur d'au moins 1000px et une hauteur d'au moins 180px est nécessaire.")
+    if(w < 850 || h < 180)
+      raise CarrierWave::ProcessingError.new("Votre image est trop petite. Une largeur d'au moins 850px et une hauteur d'au moins 180px est nécessaire.")
     end
   end
 
@@ -64,8 +65,8 @@ class BannerUploader < CarrierWave::Uploader::Base
 
   # NOTE about ratio and site
   # ratio must not exceed 16 / 7.5 and not bellow 16 / 2.8
-  # size must not exceed 2500px wide (so 1200px height)
-  # size must be at least 1000px wide
+  # size must not exceed 2500px
+  # size must be at least 850px wide and 180px height (but less than 1000px could result in blank space)
   # recomended size is 1920 x 900
 
 end
