@@ -7,17 +7,11 @@ CardsController.prototype.show = function() {
         [this.params['lat'], this.params['lng']], true);
 
   // edit popup of images
-  $('.edit-banner').click(function(){
+  $('.graphics').click('.edit-banner', function(){
     $('.edit-banner .edit-banner').css('display', 'block');
     $('.edit-banner .tools').show();
   });
-  $('body').click(function(e) {
-    if ($(e.target).closest('.edit-banner').length === 0) {
-      $('.edit-banner .tools').hide();
-      $('.edit-banner .edit-banner').css('display', 'none');
-    }
-  });
-  $('.edit-logo').click(function(){
+  $('.graphics').click('.edit-logo', function(){
     $('.edit-logo .edit-logo').css('display', 'block');
     $('.edit-logo .tools').show();
   });
@@ -25,6 +19,10 @@ CardsController.prototype.show = function() {
     if ($(e.target).closest('.edit-logo').length === 0) {
       $('.edit-logo .tools').hide();
       $('.edit-logo .edit-logo').css('display', 'none');
+    }
+    if ($(e.target).closest('.edit-banner').length === 0) {
+      $('.edit-banner .tools').hide();
+      $('.edit-banner .edit-banner').css('display', 'none');
     }
   });
 
@@ -42,12 +40,7 @@ CardsController.prototype.show = function() {
     }
   });
 
-  var input = document.getElementById('card_banner');
-  input.onchange = function() {
-    $('#card-image-form').ajaxSubmit();
-  };
-
-  $('#card_banner, #card_avatar').change(function() {
+  $('.graphics').on('change', '#card_banner, #card_avatar, #card_remove_banner, #card_remove_avatar', function() {
     $(this).closest('form').ajaxSubmit();
   });
 

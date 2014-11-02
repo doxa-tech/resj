@@ -36,7 +36,7 @@ class Card < ActiveRecord::Base
   has_many :inverse_card_parents, :class_name => "CardParent", :foreign_key => "parent_id", dependent: :destroy
   has_many :inverse_parents, :through => :inverse_card_parents, :source => :card
 
-  mount_uploader :avatar, AvatarUploader
+  mount_uploader :avatar, LogoUploader
   mount_uploader :banner, BannerUploader
 
   after_save :assign_tags

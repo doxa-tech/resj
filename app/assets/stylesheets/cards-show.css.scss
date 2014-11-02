@@ -21,6 +21,15 @@
 
 	.row {
 		width: 100%;
+		#error {
+			background: #ff9a8c;
+			padding: 5px;
+			.title {
+				text-align: center;
+				font-weight: 400;
+				padding: 3px;
+			}
+		}
 		h3 {
 			font-size: 15px;
 			padding: 0 0 10px 0;
@@ -72,10 +81,10 @@
 
 	/* ==================== Images ==================== */
 	.graphics {
+		position: relative;
 		&:hover button {
 			display: block !important;
 		}
-		position: relative;
 		img.banner {
 			max-width: 100%;
 		}
@@ -104,13 +113,28 @@
 				ul {
 					padding: 3px 0;
 					li {
-						padding: 2px;
+						padding: 7px 10px;
 						&:hover {
 							background: rgb(255, 198, 94);
 						}
-						button {
+						button, a, label {
 							background: none;
 							color: #000;
+							font-size: 10px;
+							font-family: 'Lucida Grande';
+							width: initial;
+							min-width: initial;
+							padding: 0; margin: 0;
+							cursor: pointer;
+						}
+						// Hide file chooser
+						form {
+							position: relative;
+							input[type="file"] {
+								visibility: hidden;
+								position: absolute;
+								z-index: -1;
+							}
 						}
 					}
 				}

@@ -64,6 +64,8 @@ Rails.application.routes.draw do
             get 'avatar'
             patch 'upload_banner'
             patch 'upload_avatar'
+            delete 'remove_banner'
+            delete 'remove_avatar'
           end
         end
       end
