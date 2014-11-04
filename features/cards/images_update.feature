@@ -8,7 +8,7 @@ Feature: Card images update
 		Given I own a card
 		And I am signed in as the card owner
 
-	@javascript @wip
+	@javascript @nkcr
 	Scenario: Successful update of the banner
 		Given I visit the card show path
 		When I click on "Editer" on the banner
@@ -16,5 +16,5 @@ Feature: Card images update
 		And I complete the upload form and submit it
 		Then I should see the updated banner
 
-	@javascript @wip
+	@javascript @nkcr
 	Scenario: Invalid form submission cause ...

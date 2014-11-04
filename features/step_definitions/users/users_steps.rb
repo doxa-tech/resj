@@ -15,3 +15,7 @@ end
 Given /^(?:I am|there is) a confirmed user$/ do
 	@user = create(:user)
 end
+
+When /^I sign out$/ do
+	find_link('Déconnexion', match: :first).click
+end
