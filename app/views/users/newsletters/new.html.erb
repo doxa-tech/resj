@@ -1,0 +1,7 @@
+<%= form_for @user, url: users_newsletters_path, method: :post do |f| %>
+
+	<%= f.collection_check_boxes(:newsletter_ids, Newsletter.all, :id, :name) %>
+
+	<%= f.submit %>
+
+<% end %>

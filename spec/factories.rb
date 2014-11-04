@@ -1,4 +1,11 @@
-FactoryGirl.define do
+FactoryGirl.define do  factory :user_newsletter do
+    user nil
+newsletter nil
+  end
+  factory :newsletter do
+    name "MyString"
+  end
+
 
   factory :user do
     firstname "John"
