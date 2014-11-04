@@ -22,7 +22,7 @@
 								<% if current_permission.allow_modify?('cards', 'edit', card) %>
 									<%= render 'application/admin/edit_btn', path: overview_card_path(card) %>
 								<% else %>
-									<%= link_to "Quitter", user_affiliation_path(card), method: :delete, data: {confirm: "Etes-vous sûr de vouloir quitter ce groupe ?" }, class: "edit-btn" %>
+									<%= link_to "Quitter", users_affiliation_path(card), method: :delete, data: {confirm: "Etes-vous sûr de vouloir quitter ce groupe ?" }, class: "edit-btn" %>
 								<% end %>
 							</li>
 						<% end %>
@@ -39,7 +39,7 @@
 				<h2>Créer un lien</h2>
 				<h5>S'annoncer en tant que responsable d'un groupe, d'une oeuvres ou d'un réseaux. Le responsable devra valider votre lien avant que celui-ci devienne effectif.</h5>
 			</div>
-			<%= form_tag user_affiliations_path do %>
+			<%= form_tag users_affiliations_path do %>
 			<ul>
 				<li>
 					<%= select_tag :card_id, options_from_collection_for_select(Card.all - @confirmed - @pending, :id, :name), class: "selectize" %>
@@ -64,7 +64,7 @@
 						<li>
 							<%= card.name %>
 							<small>Requête faite le: <%= l(card.card_users.find_by_user_id(current_user.id).updated_at, format: :text) %></small>
-							<%= link_to "Annuler", user_affiliation_path(card), method: :delete, data: {confirm: "Etes-vous sûr de vouloir annuler cette requête ?" } %>
+							<%= link_to "Annuler", users_affiliation_path(card), method: :delete, data: {confirm: "Etes-vous sûr de vouloir annuler cette requête ?" } %>
 						</li>
 					</ul>
 				<% end %>
@@ -89,8 +89,8 @@
 					<ul>
 						<li>
 							<%= card.name %>
-							<%= link_to "Confirmer", user_affiliation_path(card.id, validated: "true"), method: :patch %>
-							<%= link_to "Refuser", user_affiliation_path(card.id, validated: "false"), method: :patch %>
+							<%= link_to "Confirmer", users_affiliation_path(card.id, validated: "true"), method: :patch %>
+							<%= link_to "Refuser", users_affiliation_path(card.id, validated: "false"), method: :patch %>
 						</li>
 					</ul>
 				<% end %>

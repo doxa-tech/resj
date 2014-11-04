@@ -21,12 +21,16 @@ Rails.application.routes.draw do
       get "user/#{page}", to: "users##{page}"
     end
     get '/profile', to: "users#profile"
+    get 'user/my_cards', to: 'users/affiliations#my_cards'
+    get '/user/newsletters', to: 'users/newsletters#new'
     patch 'user/update', to: "users#update"
     patch 'user/avatar_update', to: "users#avatar_update"
     patch 'orator/update', to: "orators#update"
 
-    get 'user/my_cards', to: 'user_affiliations#my_cards'
-    resources :user_affiliations, only: [:create, :update, :destroy]
+    namespace :users do
+      resources :newsletters, only: [:create]
+      resources :affiliations, only: [:create, :update, :destroy]
+    end
 
     # resources
     scope 'resources' do

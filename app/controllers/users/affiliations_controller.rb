@@ -1,4 +1,4 @@
-class UserAffiliationsController < BaseController
+class Users::AffiliationsController < BaseController
 	before_filter :connected_or_token?
 	layout 'admin'
 
