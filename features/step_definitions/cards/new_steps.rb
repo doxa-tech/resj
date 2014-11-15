@@ -1,7 +1,5 @@
 When /^I complete the first step and submit it$/ do
-	fill_in "card_name", with: "Waykup"
-	fill_in "card_description", with: "Un groupe de jeunes"
-	fill_in_selectized "card_card_type_id", with: "Groupe de jeunes"
+	step "I complete the first step"
 	click_button "Prochaine étape"
 	wait_for_ajax
 end

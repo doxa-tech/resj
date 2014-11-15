@@ -1,11 +1,4 @@
-FactoryGirl.define do  factory :user_newsletter do
-    user nil
-newsletter nil
-  end
-  factory :newsletter do
-    name "MyString"
-  end
-
+FactoryGirl.define do 
 
   factory :user do
     firstname "John"
@@ -15,9 +8,16 @@ newsletter nil
     password_confirmation "12341"
     user_type { UserType.find_by_name("user") }
     confirmed true
+    newsletters { Newsletter.all }
 
     factory :unconfirmed_user do
       confirmed false
+    end
+
+    factory :user_list do
+      sequence(:firstname) { Faker::Name.first_name }
+      sequence(:lastname) { Faker::Name.last_name }
+      sequence(:email) { Faker::Internet.email }
     end
   end
 

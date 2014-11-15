@@ -5,6 +5,11 @@ Given /^I am an unconfirmed user$/ do
 	@user = create(:unconfirmed_user)
 end
 
+Given /^I signed up$/ do
+	visit '/inscription'
+	step "I complete and submit the signing up form correctly"
+end
+
 When /^I complete and submit the signing up form correctly$/ do 
 	fill_in 'user_email', with: 'foo@bar.com'
 	fill_in 'user_firstname', with: 'Foo'
