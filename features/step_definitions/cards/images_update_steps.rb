@@ -11,10 +11,10 @@ When /^I complete the upload form and submit it$/ do
 	attach_file 'card_banner', File.join(Rails.root, '/public/test/cards/banner.jpg'), visible: false
 end
 
-Then /^I should see the image "(.+)"$/ do |image|
-	expect(page).to have_xpath("//img[contains(@src, \"#{image}\")]")
-end
-
 When(/^I complete the upload form with wrong extension and submit it$/) do
   attach_file 'card_banner', File.join(Rails.root, '/public/test/cards/banner.abc'), visible: false
+end
+
+Then /^I should see the image "(.+)"$/ do |image|
+	expect(page).to have_xpath("//img[contains(@src, \"#{image}\")]")
 end
