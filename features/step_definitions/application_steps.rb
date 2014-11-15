@@ -10,6 +10,10 @@ When /^I click the button "(.*?)"$/ do |content|
 	click_button content
 end
 
+When /^I click the label "(.*?)"$/ do |content|
+	find("label[for='#{content}']").click
+end
+
 When /^I click the link "(.*?)"$/ do |content|
 	click_link content
 end

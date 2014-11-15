@@ -12,7 +12,7 @@ Feature: Card images update
 	Scenario: Successful update of the banner
 		Given I visit the card show path
 		When I click on "Editer" on the banner
-		And I click the button "Changer l'image"
+		And I click the label "card_banner"
 		And I complete the upload form and submit it
 		Then I should see the updated banner
 

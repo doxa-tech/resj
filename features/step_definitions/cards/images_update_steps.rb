@@ -8,8 +8,7 @@ When /^I click on "Editer" on the banner$/ do
 end
 
 When /^I complete the upload form and submit it$/ do
-	attach_file 'card_banner', '/test/cards/banner.jpg'
-	click_button 'Mettre à jour'
+	attach_file 'card_banner', 'public/test/cards/banner.jpg'
 end
 
 Then /^I should see the updated banner$/ do
