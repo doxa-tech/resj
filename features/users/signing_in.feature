@@ -9,18 +9,25 @@ Feature: Signing in
 
 	@javascript
 	Scenario: Valid signing in via the pop-up
-		When I sign in with "john@smith.com" and "12341" in the pop-up
+		When I visit "/"
+		And I click the link "Login"
+		And I submit the signing in form with "john@smith.com" and "12341"
+		#And I sign in with "john@smith.com" and "12341" in the pop-up
 		Then I should see "John Smith"
 
 	@javascript
 	Scenario: Invalid signing in via the pop-up
-		When I sign in with "" and "" in the pop-up
+		When I visit "/"
+		And I click the link "Login"
+		And I submit the signing in form with "" and ""
 		Then I should see "Mot de passe et/ou utilisateur incorrect"
 
 	Scenario: Valid signing in via the page
-		When I sign in with "john@smith.com" and "12341"
+		When I visit "/connexion"
+		And I submit the signing in form with "john@smith.com" and "12341"
 		Then I should see a flash with "Connecté avec succès"
 
 	Scenario: Invalid signing in via the page
-		When I sign in with "" and ""
+		When I visit "/connexion"
+		And I submit the signing in form with "" and ""
 		Then I should see "Mot de passe et/ou utilisateur incorrect"

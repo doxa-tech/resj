@@ -85,4 +85,6 @@ group :development, :test do
 	gem 'database_cleaner'
 	gem 'selenium-webdriver'
 	gem 'factory_girl_rails'
+	gem 'email_spec'
+	gem 'faker'
 end

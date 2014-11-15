@@ -1,3 +1,9 @@
+<div class="back"><%= link_to "Retour sur votre profil", profile_path %></div>
+
+<div class="top">
+	<h1>Changer ses préférences de newsletters</h1>
+</div>
+
 <%= form_for @user, url: users_newsletters_path, method: :post do |f| %>
 
 	<%= f.collection_check_boxes(:newsletter_ids, Newsletter.all, :id, :name) %>
