@@ -22,13 +22,13 @@ Rails.application.routes.draw do
     end
     get '/profile', to: "users#profile"
     get 'user/my_cards', to: 'users/affiliations#my_cards'
-    get '/user/newsletters', to: 'users/newsletters#new'
+    get '/user/notifications', to: 'users/newsletters#new'
     patch 'user/update', to: "users#update"
     patch 'user/avatar_update', to: "users#avatar_update"
     patch 'orator/update', to: "orators#update"
 
     namespace :users do
-      resources :newsletters, only: [:create]
+      resources :notifications, only: [:create]
       resources :affiliations, only: [:create, :update, :destroy]
     end
 

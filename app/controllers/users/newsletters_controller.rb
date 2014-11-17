@@ -10,7 +10,7 @@ class Users::NewslettersController < BaseController
 		@user = current_user
 		@user.update_attributes(user_params)
 		sign_in @user
-		redirect_to user_newsletters_path, success: "Vos préférences d'envoi des newsletters ont été mises à jour"
+		redirect_to user_notifications_path, success: "Vos préférences d'envoi des newsletters ont été mises à jour"
 	end
 
 	private
