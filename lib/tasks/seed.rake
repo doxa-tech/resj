@@ -90,4 +90,16 @@ namespace :seed do
 		Parent.find_or_create_by(user: superuser, parent: User.find_by_firstname('g_base'))
 	end
 
+	desc "Create mail notifications options"
+	task notifications: :environment do
+		Newsletter.destroy_all
+		Newsletter.create([
+			{name: 'Événements/agenda pour la jeunesse en suisse romande'},
+			{name: 'Annonces importantes (quelques une par année)'},
+			{name: "Notifications personnelles (demandes d'affiliations, ...)"},
+			{name: 'Nouveautés et activités sur le site'},
+			{name: 'Réseau régional (notification des réseaux régionnaux que vous avez rejoint'},
+		])
+	end
+
 end
