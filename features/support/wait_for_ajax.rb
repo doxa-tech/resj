@@ -10,6 +10,5 @@ module WaitForAjax
   end
 end
 
-
 # nkcr
 World(WaitForAjax)
