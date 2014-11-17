@@ -21,6 +21,12 @@ class LogoUploader < CarrierWave::Uploader::Base
     process :right_orientation
   end
 
+  version :S do
+    process resize_to_limit: [nil, 100]
+    process :quality => 90
+    process :right_orientation
+  end
+
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
@@ -37,3 +43,7 @@ class LogoUploader < CarrierWave::Uploader::Base
   end
 
 end
+
+# about versions
+# 2 sizes : original, S
+# S : max-height al 100px
