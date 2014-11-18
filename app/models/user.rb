@@ -30,6 +30,10 @@ class User < ActiveRecord::Base
   # User owned a card
   has_many :cards
 
+  # Newsletter
+  has_many :user_newsletters
+  has_many :newsletters, through: :user_newsletters
+
   mount_uploader :avatar, AvatarUploader
 
   accepts_nested_attributes_for :orator

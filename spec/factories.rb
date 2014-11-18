@@ -1,17 +1,30 @@
-FactoryGirl.define do
+FactoryGirl.define do 
 
   factory :user do
     firstname "John"
     lastname  "Smith"
-    email "foo@bar.com"
+    email { "#{firstname.downcase}@#{lastname.downcase}.com" }
     password "12341"
     password_confirmation "12341"
     user_type { UserType.find_by_name("user") }
     confirmed true
+    newsletters { Newsletter.all }
 
     factory :unconfirmed_user do
       confirmed false
     end
+
+    factory :user_list do
+      sequence(:firstname) { Faker::Name.first_name }
+      sequence(:lastname) { Faker::Name.last_name }
+      sequence(:email) { Faker::Internet.email }
+    end
+  end
+
+  factory :orator do
+    location { Location.find_by_official_name("Bulle") }
+    themes { [Theme.first] }
+    user
   end
 
   factory :card do
@@ -28,7 +41,7 @@ FactoryGirl.define do
 
     after(:create) do |card|
       card.user.ownerships.create(element_id: Element.find_by_name('cards').id, ownership_type_id: OwnershipType.find_by_name('on_entry').id, id_element: card.id, right_read: true, right_update: true, right_create: true)
-      card.user.ownerships.create(element_id: Element.find_by_name('card_affiliations').id, ownership_type_id: OwnershipType.find_by_name('on_entry').id, id_element: card.id, right_create: true, right_delete: true, right_update: true, right_read: true)
+      card.user.ownerships.create(element_id: Element.find_by_name('cards/affiliations').id, ownership_type_id: OwnershipType.find_by_name('on_entry').id, id_element: card.id, right_create: true, right_delete: true, right_update: true, right_read: true)
     end
 
     factory :active_card do
@@ -43,7 +56,7 @@ FactoryGirl.define do
 
   factory :ownership do
     transient do
-      element_name 'cards'
+      element_name 'admin/articles'
       user_name 'John Smith'
       group_name nil
       type_name 'all_entries'
@@ -57,6 +70,7 @@ FactoryGirl.define do
     right_create false
     right_update false
     right_delete false
+    actions { [create(:action)] }
   end
 
   factory :affiliation, class: CardUser do
@@ -68,6 +82,18 @@ FactoryGirl.define do
     factory :recent_affiliation do
       updated_at 1.day.ago
     end
+  end
+
+  factory :article do
+    sequence(:title) { |n| "#{n} ours meurt chaque année"}
+    content "Chaque année, plus de 1000 ourse blancs meurt"
+    user { User.find_by_firstname_and_lastname('Patrick', 'Dujardin') || create(:user, firstname: 'Patrick', lastname: 'Dujardin') }
+    image File.open("#{Rails.root}/public/test/articles/image_example.jpg")
+    themes { [Theme.first] }
+  end
+
+  factory :action do 
+    name 'share'
   end
 
 end

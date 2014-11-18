@@ -66,6 +66,37 @@
 		}
 	}
 
+	// Card show
+	#container.cards-show {
+		.row {
+			&.header {
+				height: initial;
+				.left {
+					width: 100%;
+					padding-bottom: 5px;
+				}
+				.right {
+					padding: 0px 20px;
+					width: 100%;
+				}
+			}
+		}
+		.graphics {
+			img.logo {
+				max-height: 180px;
+			}
+		}
+		.map-wrapper {
+			.map-canvas-wrapper {
+				display: none;
+				#map-canvas {
+					top: 23px !important;
+					left: 20px !important;
+				}
+			}
+		}
+	}
+
 	// Orator index
 	#container.orators {
 		.rows {
@@ -167,6 +198,17 @@
 					width: 100%;
 					padding: 0;
 				}
+			}
+		}
+	}
+
+	// Card show
+
+	#container.cards-show {
+		.graphics {
+			img.logo {
+				right: 25px !important;
+				bottom: 12px !important;
 			}
 		}
 	}
@@ -337,6 +379,11 @@
 		.row {
 			.left, .right {width: 100%}
 		}
+		.graphics {
+			img.logo {
+				max-height: 100px;
+			}
+		}		
 	}
 
 	// Orator index
