@@ -100,6 +100,15 @@ namespace :seed do
 			{name: 'Nouveautés et activités sur le site'},
 			{name: 'Réseau régional (notification des réseaux régionnaux que vous avez rejoint'},
 		])
+		User.all.each do |user|
+			next if user.user_type.name != 'user'
+			Newsletter.all.each do |newsletter|
+				a = UserNewsletter.new
+				a.user = user
+				a.newsletter = newsletter
+				a.save
+			end
+		end
 	end
 
 end
