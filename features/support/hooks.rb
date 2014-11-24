@@ -8,3 +8,7 @@ end
 Around do |scenario, block|
   DatabaseCleaner.cleaning(&block)
 end
+
+After('@reset') do 
+	Capybara.current_session.driver.quit
+end
