@@ -1,0 +1,32 @@
+<% content_for :id, 'notifications' %>
+
+<div class="back"><%= link_to "Retour sur votre profil", profile_path %></div>
+
+<div class="col split1">
+	<div class="block">
+		<div class="header">
+			<h2>Vos paramètres de notifications</h2>
+		</div>
+		<%= form_for @user, url: users_newsletters_path, method: :post do |f| %>
+		<ul>
+			<li>
+				<div class="deco">
+					<span class="fi-arrow-down"></span>
+					<p>
+						Cochez ou décochez ce que vous voulez recevoir
+					</p>
+				</div>
+				<%= f.collection_check_boxes(:newsletter_ids, Newsletter.all, :id, :name) do |b| %>
+					<div class="option">
+						<%= b.check_box %>
+						<%= b.label %>
+					</div>
+				<% end %>
+			</li>
+			<li>
+				<%= f.submit %>
+			</li>
+		</ul>
+		<% end %>
+	</div>
+</div>

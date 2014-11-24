@@ -1,0 +1,47 @@
+<div class="final-step">
+	<div class="text">
+		<p> <i class="foundicong-star"></i> Vous avez maintenant terminé l'enregistrement. Vous pouvez contrôller les informations et revenir sur l'une des étapes pour faire des modifications.<br>Sélectionnez les titres pour acéder à l'étape. </p>
+	</div>
+	<%= form_for @card, url: change_cards_wizards_path, remote: true do |f| %>
+		<div class="error">
+			<%= render 'error_messages', object: f.object %>
+		</div>
+		<%= f.hidden_field :current_step, value: @card.current_step %>
+		<%= f.submit "Général", :name => "step[general]" %>
+		<ul>
+			<li><%= label_tag :name %> <p><%= @card.name %></p></li>
+			<li><%= label_tag :description %> <p><%= @card.description %></p></li>
+			<li><%= label_tag :category %> <p><%= @card.card_type.try(:name) %></p></li>
+			<li><%= label_tag "Réseau régional" %> <p><%= @card.parents.pluck(:name).join(",") or '-' %></p></li>
+		</ul>
+		
+		<%= f.submit "Lieu", :name => "step[location]" %>
+		<ul>
+			<li><%= label_tag :rue %> <p><%= @card.street %></p></li>
+			<li><%= label_tag :ville %> <p><%= @card.location.try(:full_name) %></p></li>
+			<li><%= label_tag :lieu %> <p><%= @card.place %></p></li>
+		</ul>
+
+		<%= f.submit "Equipe", :name => "step[team]" %>
+		<ul>
+			<li><%= label_tag :email_contact %> <p><%= @card.email %></p></li>
+			<% @card.responsables.each do |a| %>
+				<li>
+					<%= label_tag (a == @card.responsables.select{|r|r.is_contact=="true"}.first)? "Responsable de contact" : "Responsable" %> <p><%= "#{a.firstname} #{a.lastname} - #{a.email}" %></p>
+				</li>
+			<% end %>
+		</ul>
+
+		<%= f.submit "Extra", :name => "step[extra]" %>
+		<ul>
+			<li><%= label_tag :site_web %> <p><%= @card.website or " - " %></p></li>
+			<li><%= label_tag :affiliation %> <p><%= @card.affiliation %></p></li>
+			<li><%= label_tag :tags %> <p><%= @card.try(:tag_names) %></p></li>
+		</ul>		
+
+	<% end %>
+
+	<div class="send">
+		<%= link_to "Envoyer", cards_wizards_path, method: :post, class: 'send-a', remote: true %>
+	</div>
+</div>
