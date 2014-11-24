@@ -1,4 +1,4 @@
-<% if @card.banner.M.url.present? %>
+<% if @card.banner.XL.url.present? %>
 	<div id="banner-container"><%= image_tag @card.banner.XL.url, class: 'banner' %></div>
 <% else %>
 	<div id="banner-container"><%= image_tag 'card/default-banner.jpg', class: 'banner' %></div>

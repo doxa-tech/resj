@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     patch 'orator/update', to: "orators#update"
 
     namespace :users do
-      resources :notifications, only: [:create]
+      resources :newsletters, only: [:create]
       resources :affiliations, only: [:create, :update, :destroy]
     end
 
