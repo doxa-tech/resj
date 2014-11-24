@@ -6,6 +6,7 @@
 
 require 'cucumber/rails'
 require 'rake' # nkcr
+require 'email_spec/cucumber'
 
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any
@@ -35,7 +36,7 @@ begin
   require 'database_cleaner'
   require 'database_cleaner/cucumber'
 
-  DatabaseCleaner.strategy = :truncation
+  DatabaseCleaner.strategy = :truncation, { except: %w[ownership_types, elements, user_types, statuses, card_types] }
 rescue NameError
   raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
 end

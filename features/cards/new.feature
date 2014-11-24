@@ -9,7 +9,7 @@ Feature: Create a new card
 
 	@javascript
 	Scenario: Valid form submission
-		When I visit "/cards/new"
+		When I visit "/cards/wizards/new"
 		And I complete the first step and submit it
 		And I complete the second step and submit it
 		And I complete the third step and submit it
@@ -19,20 +19,20 @@ Feature: Create a new card
 
 	@javascript
 	Scenario: Invalid first step submission
-		When I visit "/cards/new"
+		When I visit "/cards/wizards/new"
 		And I click the button "Prochaine étape"
 		Then I should see errors for the fields "Nom, Description, Catégorie"
 
 	@javascript
 	Scenario: Invalid second step submission
-		When I visit "/cards/new"
+		When I visit "/cards/wizards/new"
 		And I complete the first step and submit it
 		And I click the button "Prochaine étape"
 		Then I should see errors for the fields "Rue, Localité"
 
 	@javascript
 	Scenario: Invalid third step submission
-		When I visit "/cards/new"
+		When I visit "/cards/wizards/new"
 		And I complete the first step and submit it
 		And I complete the second step and submit it
 		And I click the button "Prochaine étape"
@@ -40,7 +40,7 @@ Feature: Create a new card
 
 	@javascript
 	Scenario: Invalid fourth step submission
-		When I visit "/cards/new"
+		When I visit "/cards/wizards/new"
 		And I complete the first step and submit it
 		And I complete the second step and submit it
 		And I complete the third step and submit it
@@ -49,7 +49,7 @@ Feature: Create a new card
 
 	@javascript
 	Scenario: Invalid form submission
-		When I visit "/cards/new"
+		When I visit "/cards/wizards/new"
 		And I complete the first step
 		And I click the button "aller à la fin"
 		And I submit the card new form
@@ -57,7 +57,7 @@ Feature: Create a new card
 
 	@javascript
 	Scenario: See a summary in the final step
-		When I visit "/cards/new"
+		When I visit "/cards/wizards/new"
 		And I complete the first step and submit it
 		And I complete the second step and submit it
 		And I complete the third step and submit it
@@ -66,7 +66,7 @@ Feature: Create a new card
 
 	@javascript
 	Scenario: Edit a field after beeing in the final step
-		When I visit "/cards/new"
+		When I visit "/cards/wizards/new"
 		And I complete the first step and submit it
 		And I complete the second step and submit it
 		And I complete the third step and submit it

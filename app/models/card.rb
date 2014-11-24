@@ -36,7 +36,7 @@ class Card < ActiveRecord::Base
   has_many :inverse_card_parents, :class_name => "CardParent", :foreign_key => "parent_id", dependent: :destroy
   has_many :inverse_parents, :through => :inverse_card_parents, :source => :card
 
-  mount_uploader :avatar, AvatarUploader
+  mount_uploader :avatar, LogoUploader
   mount_uploader :banner, BannerUploader
 
   after_save :assign_tags
@@ -113,7 +113,7 @@ class Card < ActiveRecord::Base
       self.user = card_user
     end
     Ownership.create(user_id: card_user.id, element_id: Element.find_by_name('cards').id, ownership_type_id: OwnershipType.find_by_name('on_entry').id, id_element: id, right_read: true, right_update: true, right_create: true)
-    Ownership.create(element_id: Element.find_by_name('card_affiliations').id, user_id: card_user.id, ownership_type_id: OwnershipType.find_by_name('on_entry').id, id_element: id, right_create: true, right_delete: true, right_update: true, right_read: true)
+    Ownership.create(element_id: Element.find_by_name('cards/affiliations').id, user_id: card_user.id, ownership_type_id: OwnershipType.find_by_name('on_entry').id, id_element: id, right_create: true, right_delete: true, right_update: true, right_read: true)
     save
     return {new_user?: new_user, password: password}
   end
@@ -226,7 +226,7 @@ class Card < ActiveRecord::Base
   end
 
   def destroy_ownerships
-    Ownership.joins(:element).where(elements: {name: ['cards', 'admin/cards', 'card_affiliations']}, id_element: id).destroy_all
+    Ownership.joins(:element).where(elements: {name: ['cards', 'admin/cards', 'cards/affiliations']}, id_element: id).destroy_all
   end
 
 end
