@@ -1,8 +1,6 @@
-<% if @card.avatar_url.present? %>
-	<div id="logo-container"><%= image_tag @card.avatar.thumb.url, class: 'logo' %></div>
-<% else %>
-	<%= image_tag 'card/default-logo.jpg', class: 'logo' %>
-<% end %>
+
+<div id="logo-container"></div>
+
 
 <% if current_permission.allow_modify?('cards','edit', @card) %>
 	<div class="edit-logo">

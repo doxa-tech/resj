@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   scope "(:locale)", locale: /en|fr/ do
 
-    %w(home resj contact resources coming_soon help privacy developer).each do |page|
+    %w(home resj contact resources coming_soon soutien privacy developer).each do |page|
       get page, to: "pages##{page}"
     end
 
@@ -30,6 +30,10 @@ Rails.application.routes.draw do
     namespace :users do
       resources :newsletters, only: [:create]
       resources :affiliations, only: [:create, :update, :destroy]
+    end
+
+    namespace :help do
+      get 'help', to: "pages#soutien"
     end
 
     # resources

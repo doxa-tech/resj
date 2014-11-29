@@ -23,7 +23,7 @@ class PagesController < BaseController
 		@subjects = Subject.order("updated_at DESC").first(4)
 	end
 
-	def help
+	def soutien
 		@page = Page.find_by_name('help')
 	end
 

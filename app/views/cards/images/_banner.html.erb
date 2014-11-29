@@ -1,8 +1,6 @@
-<% if @card.banner.XL.url.present? %>
-	<div id="banner-container"><%= image_tag @card.banner.XL.url, class: 'banner' %></div>
-<% else %>
-	<div id="banner-container"><%= image_tag 'card/default-banner.jpg', class: 'banner' %></div>
-<% end %>
+
+
+<div id="banner-container"></div>
 
 <% if current_permission.allow_modify?('cards','edit', @card) %>
 	<div class="edit-banner">

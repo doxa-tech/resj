@@ -210,6 +210,28 @@ class Card < ActiveRecord::Base
   #   end Mapbox   #
   ##################  
 
+  ##################
+  #     Images     #
+  ##################
+
+  # returns banner type based on width (w)
+  def banner_type(w)
+    return self.banner.s if(w <= 768) 
+    return self.banner.m if(w <= 992) 
+    return self.banner.l if(w <= 1200) 
+    return self.banner.l if(w <= 1920) 
+    return self.banner.full    
+  end
+
+  def logo_type(w)
+    return self.avatar.s if(w <= 768)
+    return self.avatar.thumb
+  end  
+
+  ##################
+  #   end images   #
+  ##################
+
   private
 
   def assign_tags

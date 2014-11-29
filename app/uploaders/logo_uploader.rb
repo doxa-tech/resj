@@ -21,7 +21,7 @@ class LogoUploader < CarrierWave::Uploader::Base
     process :right_orientation
   end
 
-  version :S do
+  version :s do
     process resize_to_limit: [nil, 100]
     process :quality => 90
     process :right_orientation
@@ -46,4 +46,4 @@ end
 
 # about versions
 # 2 sizes : original, S
-# S : max-height al 100px
+# s : max-height al 100px
