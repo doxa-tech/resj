@@ -30,6 +30,7 @@ class CardsController < BaseController
 		@card = Card.find(params[:id])
 		js lat: @card.latitude
 		js lng: @card.longitude
+		render 'cards/images/loadimage' if request.xhr?
 	end
 
 	def overview

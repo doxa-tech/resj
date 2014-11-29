@@ -11,21 +11,26 @@ class BannerUploader < CarrierWave::Uploader::Base
     storage :file
   end
 
-  version :XL do
+  version :full do
     process :check_ratio
   end
 
-  version :L do
+  version :xl do
+    process :check_ratio
+    process :resize_to_limit => [1920, nil] 
+  end
+
+  version :l do
     process :check_ratio
     process :resize_to_limit => [1200, nil] 
   end
 
-  version :M do
+  version :m do
     process :check_ratio
     process :resize_to_limit => [992, nil] 
   end
 
-  version :S do
+  version :s do
     process :check_ratio
     process :resize_to_limit => [768, nil] 
   end
@@ -85,9 +90,10 @@ class BannerUploader < CarrierWave::Uploader::Base
   # recomended size is 1920 x 900
 
   # Note about versions
-  # 3 sizes : XL, L, M, S
-  # XL : original size, expected more than 1200px
-  # L : max-didth at 1200px
+  # 3 sizes : full, XL, L, M, S
+  # full : untuched size
+  # XL : max-width at 1920px
+  # L : max-width at 1200px
   # M : max-width at 992px
   # S : max-width at 768px
 
