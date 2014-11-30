@@ -8,8 +8,16 @@ Rails.application.routes.draw do
 
   scope "(:locale)", locale: /en|fr/ do
 
+<<<<<<< HEAD
     %w(home resj contact resources coming_soon soutien privacy developer).each do |page|
+=======
+    %w(home resj contact resources privacy developer).each do |page|
+>>>>>>> card-show-v2
       get page, to: "pages##{page}"
+    end
+
+    namespace :help do
+      resources :categories, path: "", only: [:index, :show]
     end
 
     get 'reseau', to: 'cards#index'

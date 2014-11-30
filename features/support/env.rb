@@ -36,7 +36,7 @@ begin
   require 'database_cleaner'
   require 'database_cleaner/cucumber'
 
-  DatabaseCleaner.strategy = :truncation, { except: %w[ownership_types, elements, user_types, statuses, card_types] }
+  DatabaseCleaner.strategy = :truncation, { except: %w[ownership_types, elements, user_types, statuses, card_types, help_categories] }
 rescue NameError
   raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
 end
