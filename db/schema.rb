@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140928203114) do
+ActiveRecord::Schema.define(version: 20141130165538) do
 
   create_table "access_tokens", force: true do |t|
     t.string   "token"
@@ -182,6 +182,13 @@ ActiveRecord::Schema.define(version: 20140928203114) do
     t.datetime "updated_at"
   end
 
+  create_table "help_categories", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "locations", force: true do |t|
     t.integer  "npa"
     t.string   "official_name"
@@ -196,6 +203,12 @@ ActiveRecord::Schema.define(version: 20140928203114) do
   add_index "locations", ["canton_id"], name: "index_locations_on_canton_id"
   add_index "locations", ["official_name"], name: "index_locations_on_official_name"
   add_index "locations", ["post_name"], name: "index_locations_on_post_name"
+
+  create_table "newsletters", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "orator_disponibilities", force: true do |t|
     t.integer  "orator_id"
@@ -350,6 +363,16 @@ ActiveRecord::Schema.define(version: 20140928203114) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "user_newsletters", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "newsletter_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_newsletters", ["newsletter_id"], name: "index_user_newsletters_on_newsletter_id"
+  add_index "user_newsletters", ["user_id"], name: "index_user_newsletters_on_user_id"
 
   create_table "user_types", force: true do |t|
     t.string   "name"
