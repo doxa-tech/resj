@@ -1,4 +1,4 @@
-FactoryGirl.define do 
+FactoryGirl.define do
 
   factory :user do
     firstname "John"
@@ -96,4 +96,9 @@ FactoryGirl.define do
     name 'share'
   end
 
+  factory :help_page do
+    name "Changer la bannière"
+    content "Rendez-vous sur la page de votre groupe..."
+    category { HelpCategory.find_by_name('Images des groupes') }
+  end
 end

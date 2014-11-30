@@ -1,6 +1,10 @@
-class Help::CategoriesController < ApplicationController
+class Help::CategoriesController < BaseController
 
   def index
-    @categories = Help::Category.all
+    @categories = HelpCategory.all
+  end
+
+  def show
+    @category = HelpCategory.find(params[:id])
   end
 end

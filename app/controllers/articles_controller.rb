@@ -1,4 +1,4 @@
-class ArticlesController < ApplicationController
+class ArticlesController < BaseController
 
 	def index
 		@articles = Article.includes(:user).order("created_at DESC")

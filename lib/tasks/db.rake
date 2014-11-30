@@ -10,4 +10,11 @@ namespace :db do
 		Element.find_by_name('card_affiliations').update_attribute(:name, 'cards/affiliations')
 	end
 
+  desc "Assign default newsletters"
+  task assign_newsletters: :environment do
+    User.users.each do |user|
+      user.newsletters = Newsletter.all
+    end
+  end
+
 end

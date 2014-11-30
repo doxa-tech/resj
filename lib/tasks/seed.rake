@@ -1,7 +1,7 @@
 namespace :seed do 
 
 	desc "Setup the environment"
-  task :all => [:pages, :card_types, :statuses, :ownerships, :superuser, :help_categories]
+  task :all => [:pages, :card_types, :statuses, :ownerships, :superuser, :help_categories, :notifications]
 
 	desc "Create the pages"
 	task pages: :environment do
@@ -90,31 +90,19 @@ namespace :seed do
 		Parent.find_or_create_by(user: superuser, parent: User.find_by_firstname('g_base'))
 	end
 
-<<<<<<< HEAD
 	desc "Create mail notifications options"
 	task notifications: :environment do
-		Newsletter.destroy_all
-		Newsletter.create([
-			{name: 'Événements/agenda pour la jeunesse en suisse romande'},
-			{name: 'Annonces importantes (quelques une par année)'},
-			{name: "Notifications personnelles (demandes d'affiliations, ...)"},
-			{name: 'Nouveautés et activités sur le site'},
-			{name: 'Réseau régional (notification des réseaux régionnaux que vous avez rejoint'},
-		])
-		User.all.each do |user|
-			next if user.user_type.name != 'user'
-			Newsletter.all.each do |newsletter|
-				a = UserNewsletter.new
-				a.user = user
-				a.newsletter = newsletter
-				a.save
-			end
+		["Événements/agenda pour la jeunesse en suisse romande", "Annonces importantes (quelques une par année)", 
+			"Notifications personnelles (demandes d'affiliations, ...)", "Nouveautés et activités sur le site",
+			"Réseau régional (notification des réseaux régionnaux que vous avez rejoint"
+		].each do |name|
+			Newsletter.find_or_create_by(name: name)
 		end
-=======
+	end
+
 	desc "Create help's categories"
 	task help_categories: :environment do
-		Help::Category.find_or_create_by(name: "Images des groupes")
->>>>>>> card-show-v2
+		HelpCategory.find_or_create_by(name: "Images des groupes", description: "")
 	end
 
 end

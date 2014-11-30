@@ -1,4 +1,4 @@
-class ErrorsController < ApplicationController
+class ErrorsController < BaseController
   def file_not_found
   end
 

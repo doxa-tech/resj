@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20141104194610) do
-=======
-ActiveRecord::Schema.define(version: 20141130165538) do
->>>>>>> card-show-v2
+ActiveRecord::Schema.define(version: 20141130183925) do
 
   create_table "access_tokens", force: true do |t|
     t.string   "token"
@@ -189,6 +185,14 @@ ActiveRecord::Schema.define(version: 20141130165538) do
   create_table "help_categories", force: true do |t|
     t.string   "name"
     t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "help_pages", force: true do |t|
+    t.string   "name"
+    t.text     "content"
+    t.integer  "help_category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

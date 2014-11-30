@@ -1,0 +1,5 @@
+<% @category.pages.each do |page| %>
+
+  <%= link_to page.name, help_category_page_path(@category, page) %>
+
+<% end %>
