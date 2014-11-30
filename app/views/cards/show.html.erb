@@ -1,11 +1,12 @@
 <% content_for :id, 'cards-show' %>
 
-<div class="top">
-	<h1><%= @card.card_type.name %>: <%= @card.name %></h1>
-</div>
 
 <div class="row header">
 	<div id="errors"></div>
+	<div class="title">
+		<p><%= @card.card_type.name %></p>
+		<h1><%= @card.name %></h1>
+	</div>
 	<div class="left graphics">
 
 		<div id="ajax-banner-part"><%= render 'cards/images/banner' %></div>
@@ -22,12 +23,8 @@
 
 <div id="clear"></div>
 
-<div class="row title">
-	<h2><%= @card.name %></h2>
-</div>
-
 <div class="row">
-	<div class="left">
+	<div class="left desc">
 		<% if current_permission.allow_modify?('cards','edit',@card) %>
 			<%= link_to "Editer <span class='fi-pencil'></span>".html_safe, overview_card_path(@card), class: 'edit' %>
 		<% end %>

@@ -215,17 +215,23 @@ class Card < ActiveRecord::Base
   ##################
 
   # returns banner type based on width (w)
-  def banner_type(w)
-    return self.banner.s if(w <= 768) 
-    return self.banner.m if(w <= 992) 
-    return self.banner.l if(w <= 1200) 
-    return self.banner.l if(w <= 1920) 
-    return self.banner.full    
+  def banner_type_url(w)
+    return self.banner.s.url || banner_default('s') if(w <= 768) 
+    return self.banner.m.url || banner_default('m') if(w <= 992) 
+    return self.banner.l.url || banner_default('l') if(w <= 1200) 
+    return self.banner.xl.url || banner_default('xl') if(w <= 1920) 
+    return self.banner.full.url || banner_default('full')    
+  end
+  def banner_default(s)
+    "card/banner/#{s}_default-banner.jpg"
   end
 
   def logo_type(w)
-    return self.avatar.s if(w <= 768)
-    return self.avatar.thumb
+    return self.avatar.s.url || logo_default('s')  if(w <= 768)
+    return self.avatar.thumb || logo_default('thumb')
+  end
+  def logo_default(s)
+    "card/logo/#{s}_default-logo.jpg"
   end  
 
   ##################

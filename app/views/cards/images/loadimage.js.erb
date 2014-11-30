@@ -1,12 +1,5 @@
 <% w = params[:w].to_i %>
-<% if @card.banner.present? %>
-	document.getElementById('banner-container').innerHTML = "<%= j image_tag @card.banner_type(w).url, class: 'banner' %>";
-<% else %>
-	document.getElementById('banner-container').innerHTML = "<%= j image_tag 'card/default-banner.jpg', class: 'banner' %>";
-<% end %>
 
-<% if @card.avatar.present? %>
-	document.getElementById('logo-container').innerHTML = "<%= j image_tag @card.logo_type(w).url, class: 'logo' %>";
-<% else %>
-	document.getElementById('logo-container').innerHTML = "<%= j image_tag 'card/default-logo.jpg', class: 'logo' %>";
-<% end %>
+document.getElementById('banner-container').innerHTML = "<%= j image_tag @card.banner_type_url(w), class: 'banner' %>";
+
+document.getElementById('logo-container').innerHTML = "<%= j image_tag @card.logo_type(w), class: 'logo' %>";
