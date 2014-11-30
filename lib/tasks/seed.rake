@@ -1,7 +1,7 @@
 namespace :seed do 
 
 	desc "Setup the environment"
-  task :all => [:pages, :card_types, :statuses, :ownerships, :superuser]
+  task :all => [:pages, :card_types, :statuses, :ownerships, :superuser, :help_categories]
 
 	desc "Create the pages"
 	task pages: :environment do
@@ -90,6 +90,7 @@ namespace :seed do
 		Parent.find_or_create_by(user: superuser, parent: User.find_by_firstname('g_base'))
 	end
 
+<<<<<<< HEAD
 	desc "Create mail notifications options"
 	task notifications: :environment do
 		Newsletter.destroy_all
@@ -109,6 +110,11 @@ namespace :seed do
 				a.save
 			end
 		end
+=======
+	desc "Create help's categories"
+	task help_categories: :environment do
+		Help::Category.find_or_create_by(name: "Images des groupes")
+>>>>>>> card-show-v2
 	end
 
 end
