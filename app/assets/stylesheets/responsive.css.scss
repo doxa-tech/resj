@@ -378,11 +378,19 @@
 	#container.cards-show {
 		.row {
 			.left, .right {width: 100%}
+			.title {
+				left: 0 !important; right: 0 !important;
+			}
 		}
 		.graphics {
 			img.logo {
 				max-height: 100px;
 			}
+			img.banner {
+				max-width: initial !important;
+				max-height: 200px;
+			}
+			padding: 0px !important;
 		}		
 	}
 
