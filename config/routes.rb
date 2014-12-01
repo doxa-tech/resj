@@ -38,10 +38,6 @@ Rails.application.routes.draw do
       resources :affiliations, only: [:create, :update, :destroy]
     end
 
-    namespace :help do
-      get 'help', to: "pages#soutien"
-    end
-
     # resources
     scope 'resources' do
       resources :orators, except: [:destroy, :update, :edit]

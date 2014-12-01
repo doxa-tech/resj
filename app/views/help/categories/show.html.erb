@@ -1,5 +1,31 @@
-<% @category.pages.each do |page| %>
+<% content_for :id, 'help-show' %>
 
-  <%= link_to page.name, help_category_page_path(@category, page) %>
+<div class="top">
+	<h1>Ressources d'aide</h1>
+</div>
 
-<% end %>
+<div class="container-wrapper">
+	<div class="header">
+		<ul>
+			<% @category.pages.each do |page| %>
+			  <li><%= link_to page.name, "##{CGI.escape page.name}" %></li>
+			<% end %>
+			<li><%= link_to '<span class="fi-arrow-left"></span> revenir en arrière'.html_safe, help_categories_path %></li>
+		</ul>
+	</div>
+	<div class="content">
+		<div class="intro">
+			<h2><%= @category.name %></h2>
+			<p><%= @category.description %></p>
+		</div>
+		<div>
+				<% @category.pages.each do |page| %>
+					<div class="page">
+					  <h3 id="<%= CGI.escape page.name %>"><%= link_to page.name, "##{CGI.escape page.name}" %></h3>
+					  <%= page.content.html_safe %>
+					</div>
+				<% end %>		
+		</div>
+	</div>
+</div>
+<div id="clear"></div>
