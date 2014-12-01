@@ -14,9 +14,9 @@ var load_mapbox = {
     */
     L.mapbox.accessToken = 'pk.eyJ1IjoibmtjciIsImEiOiI4UnhLZEx3In0.bakfmpx2lREiNbHn0lWq9Q';
     if ($(window).width() < 626) {
-            var map = L.mapbox.map('map', 'nkcr.i04348d7', {fullscreenControl: true}).setView([46.6221, 7.1960], 8);
+            var map = L.mapbox.map('map', 'nkcr.i04348d7', {fullscreenControl: true, minZoom: 9}).setView([46.6221, 7.1960], 8);
     } else {
-            var map = L.mapbox.map('map', 'nkcr.i04348d7', {fullscreenControl: true}).setView([46.6221, 7.1960], 9);
+            var map = L.mapbox.map('map', 'nkcr.i04348d7', {fullscreenControl: true, minZoom: 9}).setView([46.6221, 7.1960], 9);
     }
     map.scrollWheelZoom.disable();
     map.addControl(L.mapbox.shareControl())
