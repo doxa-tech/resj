@@ -113,6 +113,7 @@ Rails.application.routes.draw do
       resources :newsletters, only: [:new, :create]
       resources :statuses, except: [:show]
       resources :card_statuses, only: [:index, :edit, :update]
+      resources :help_pages, except: [:show]
 
       resources :cards do
         resources :verificator_comments, only: [:create, :update, :destroy]

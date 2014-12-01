@@ -200,6 +200,7 @@ fr:
         newsletter: "Newsletter"
         statuses: "Statuts"
         card_statuses: "Statuts des groupes"
+        help_pages: "Pages d'aide"
   card:
     create:
       title: "Enregistrer un nouveau groupe"
@@ -396,6 +397,17 @@ fr:
       edit:
         title: "Editer un statut"
         success: "Statut édité et mail envoyé"
+  help_page:
+    admin:
+      index: "Pages d'aide"
+      create:
+        title: "Créer une nouvelle page"
+        success: "Page créée"
+      edit:
+        title: "Editer une page"
+        success: "Page éditée"
+      destroy:
+        success: "Page supprimée"
   helpers:
     select:
       prompt: "Veuillez sélectionner"
