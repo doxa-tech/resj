@@ -28,6 +28,8 @@ class CardsController < BaseController
 
 	def show
 		@card = Card.find(params[:id])
+		category = HelpCategory.find_by_name("Profil / gestion d'une oeuvre")
+		@help_url = "#{help_category_path(category)}##{CGI.escape 'Le bon format pour ma bannière et mon logo'}"
 		js lat: @card.latitude
 		js lng: @card.longitude
 		render 'cards/images/loadimage' if request.xhr?
