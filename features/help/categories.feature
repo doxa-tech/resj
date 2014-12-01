@@ -12,7 +12,6 @@ Feature: Categories
     When I visit "/help"
     Then I should see links to the categories
 
-  @wip
   Scenario: Click on a category
     Given I am a visitor
     When I visit "/help"

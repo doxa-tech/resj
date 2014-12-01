@@ -8,8 +8,8 @@ Then /^I should see links to the categories$/ do
 end
 
 Then /^I should see to help pages$/ do
-  expect(page).to content(@page_1.name)
-  expect(page).to content(@page_1.content)
-  expect(page).to content(@page_2.name)
-  expect(page).to content(@page_2.content)
+  expect(page).to have_content(@page_1.name)
+  expect(page).to have_content(@page_1.content)
+  expect(page).to have_content(@page_2.name)
+  expect(page).to have_content(@page_2.content)
 end

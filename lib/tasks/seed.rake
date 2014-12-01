@@ -67,6 +67,7 @@ namespace :seed do
 			cards/affiliations 
 			admin/statuses 
 			admin/card_statuses
+			admin/help_pages
 			].each do |name|
 			Element.find_or_create_by(name: name)
 		end
