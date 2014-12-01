@@ -1,3 +1,22 @@
-<% @categories.each do |category| %>
-  <%= link_to category.name, help_category_path(category) %>
-<% end %>
+<% content_for :id, 'help-index' %>
+
+<div class="top">
+	<h1>Ressources d'aide</h1>
+</div>
+
+<div class="container-wrapper">
+	<div class="header">
+		<ul>
+			<% @categories.each do |category| %>
+			  <li><%= link_to category.name, help_category_path(category) %></li>
+			<% end %>
+		</ul>
+	</div>
+	<div class="content">
+		<div class="intro">
+			<h2>Bienvenue dans la section d'aide</h2>
+			<p><%= image_tag image_url 'help/lifebuoy.png' %></p>
+		</div>
+	</div>
+</div>
+<div id="clear"></div>

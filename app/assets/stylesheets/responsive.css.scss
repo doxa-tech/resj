@@ -425,6 +425,12 @@
 		}
 	}
 
+	// Help
+
+	#container.help-show .content, #container.help-index .content {
+		width: 100%;
+	}
+
 	// Partial search-top
 	#_search-top {
 		.left {

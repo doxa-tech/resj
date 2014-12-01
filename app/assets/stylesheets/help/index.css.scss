@@ -1,0 +1,19 @@
+@import 'partials/partial_top';
+@import 'main';
+
+#container.help-index  {
+	@include help;
+	.top {
+		@include top;
+		h1 {
+			@include h1;
+		}
+	}
+
+	.intro {
+		max-width: 750px;
+		margin: auto;
+		text-align: center;
+	}
+
+}

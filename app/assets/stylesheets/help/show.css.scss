@@ -1,0 +1,48 @@
+@import 'partials/partial_top';
+@import 'main';
+
+#container.help-show  {
+	@include help;
+	.top {
+		@include top;
+		h1 {
+			@include h1;
+		}
+	}
+
+	.intro {
+		margin: auto;
+		padding: 0 0 20px 0;
+		line-height: 30px;
+		color: #444;
+	}
+
+	h3 {
+		padding: 10px 0;
+		margin: 0 0 15px 0;
+		a {
+			color: #444;
+			font-size: 24px;
+		}
+	}
+
+	.page {
+		padding: 0 0 40px 0;
+		color: #444;
+		font-size: 14px;
+		line-height: 25px;
+		p {
+			padding: 5px 0;
+		}
+		figure {
+			text-align: center;
+			line-height: 15px;
+			padding: 10px;
+			figcaption {
+				font-size: 12px;
+				font-weight: 500;
+			}
+		}
+	}
+
+}
