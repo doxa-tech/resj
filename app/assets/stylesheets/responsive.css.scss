@@ -380,15 +380,18 @@
 			.left, .right {width: 100%}
 			.title {
 				left: 0 !important; right: 0 !important;
+				top: 10px !important;
 			}
+		}
+		#banner-container {
+			max-height: 300px;
 		}
 		.graphics {
 			img.logo {
 				max-height: 100px;
 			}
 			img.banner {
-				max-width: initial !important;
-				max-height: 200px;
+				
 			}
 			padding: 0px !important;
 		}		

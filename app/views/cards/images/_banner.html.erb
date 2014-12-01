@@ -13,7 +13,7 @@
 						<%= f.file_field :banner %>
 					<% end %>
 				</li>
-				<% if @card.banner_url.present? %>
+				<% if @card.banner.present? %>
 				<li>
 					<%= link_to remove_banner_card_images_path(@card), method: :delete, remote: true, data: {confirm: "Supprimer l'image ?"} do %>
 						<span class='fi-x'></span> Supprimer l'image

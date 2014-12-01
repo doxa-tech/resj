@@ -3,11 +3,12 @@
 
 <div class="row header">
 	<div id="errors"></div>
-	<div class="title">
-		<p><%= @card.card_type.name %></p>
-		<h1><%= @card.name %></h1>
-	</div>
+
 	<div class="left graphics">
+		<div class="main-title">
+			<p><%= @card.card_type.name %></p>
+			<h1><%= @card.name %></h1>
+		</div>
 
 		<div id="ajax-banner-part"><%= render 'cards/images/banner' %></div>
 		<div id="ajax-avatar-part"><%= render 'cards/images/avatar' %></div>

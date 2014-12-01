@@ -228,7 +228,7 @@ class Card < ActiveRecord::Base
 
   def logo_type(w)
     return self.avatar.s.url || logo_default('s')  if(w <= 768)
-    return self.avatar.thumb || logo_default('thumb')
+    return self.avatar.thumb.url || logo_default('thumb')
   end
   def logo_default(s)
     "card/logo/#{s}_default-logo.jpg"
