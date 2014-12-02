@@ -4,6 +4,7 @@ module CardSearch
 	included do
     searchable do
       text :name, boost: 10
+      string :name
       text :description, boost: 5
       text :canton_name
       text :s_tag_names
