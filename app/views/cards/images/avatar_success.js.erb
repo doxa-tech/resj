@@ -1,6 +1,8 @@
 document.getElementById('ajax-avatar-part').innerHTML = " <%= j render 'cards/images/avatar' %> ";
 // fire loading image
+// fire loading image
 $.ajax({
+  url: document.URL,
   data: {
     w: window.innerWidth
   }
