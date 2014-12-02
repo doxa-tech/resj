@@ -12,7 +12,6 @@ Feature: Signing in
 		When I visit "/"
 		And I click the link "Login"
 		And I submit the signing in form with "john@smith.com" and "12341"
-		#And I sign in with "john@smith.com" and "12341" in the pop-up
 		Then I should see "John Smith"
 
 	@javascript

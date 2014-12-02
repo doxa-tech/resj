@@ -99,6 +99,6 @@ FactoryGirl.define do
   factory :help_page do
     name "Changer la bannière"
     content "Rendez-vous sur la page de votre groupe..."
-    category { HelpCategory.find_by_name('Images des groupes') }
+    category { HelpCategory.find_by_name("Profil / gestion d'une oeuvre") }
   end
 end

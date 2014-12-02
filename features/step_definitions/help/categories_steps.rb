@@ -4,7 +4,7 @@ Given /^there are many help pages$/ do
 end
 
 Then /^I should see links to the categories$/ do
-  expect(page).to have_link('Images des groupes')
+  expect(page).to have_link("Profil / gestion d'une oeuvre")
 end
 
 Then /^I should see to help pages$/ do
