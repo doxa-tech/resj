@@ -46,9 +46,11 @@ CardsController.prototype.show = function() {
 
   // fire loading image
   $.ajax({
+    url: document.URL,
     data: {
       w: window.innerWidth
-    }
+    },
+    dataType: 'script'
   });
 
 }
