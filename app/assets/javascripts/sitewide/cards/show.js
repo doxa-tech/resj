@@ -49,8 +49,7 @@ CardsController.prototype.show = function() {
     url: document.URL,
     data: {
       w: window.innerWidth
-    },
-    dataType: 'script'
+    }
   });
 
 }
