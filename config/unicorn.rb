@@ -20,9 +20,14 @@ before_fork do |server, worker|
     ActiveRecord::Base.connection.disconnect!
   end
 
-  if defined?(Resque)
-    Resque.redis.quit
-    Rails.logger.info('Disconnected from Redis')
+  # Quit the old unicorn process
+  old_pid = "#{server.config[:pid]}.oldbin"
+  if File.exists?(old_pid) && server.pid != old_pid
+    begin
+      Process.kill("QUIT", File.read(old_pid).to_i)
+    rescue Errno::ENOENT, Errno::ESRCH
+      # someone else did our job for us
+    end
   end
 end
 
@@ -30,10 +35,5 @@ after_fork do |server, worker|
   # Start up the database connection again in the worker
   if defined?(ActiveRecord::Base)
     ActiveRecord::Base.establish_connection
-  end
-
-  if defined?(Resque)
-    Resque.redis = ENV['REDIS_URI']
-    Rails.logger.info('Connected to Redis')
   end
 end
