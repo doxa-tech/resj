@@ -14,6 +14,7 @@ class CardsController < BaseController
 			with(:tag_ids, params[:tag_ids]) if params[:tag_ids]
 			with(:status_name, "En ligne")
 			paginate per_page: Card.count
+			group :name
 		end
 		@cards = @search.results		
 		@cards_paginate = @cards.paginate(page: params[:page], per_page: 10)
