@@ -20,3 +20,12 @@ When /^I complete the orator form and submit it$/ do
 	fill_in 'user_orator_attributes_description', with: 'Je suis un bon orateur'
 	click_button "S'inscrire"
 end
+
+When /^I fill the email field with my email and submit it$/ do
+	fill_in "email", with: @user.email
+	click_button "Chercher"
+end
+
+Then /^I should see my information in the fields$/ do
+	pending
+end
