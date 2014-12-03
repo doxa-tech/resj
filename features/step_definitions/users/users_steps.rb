@@ -16,6 +16,10 @@ Given /^(?:I am|there is) a confirmed user$/ do
 	@user = create(:user)
 end
 
+Given /^I am a orator$/ do
+	@user = create(:orator).user
+end
+
 When /^I sign out$/ do
 	find_link('Déconnexion', match: :first).click
 end

@@ -17,7 +17,9 @@
 </div>
 
 <div class="form">
-	<%= form_for @user, url: orators_path do |f| %>
-		<%= render 'new_form', f: f %>
+	<% if @user.new_record? %>
+		<%= render 'new_form' %>
+	<% else %>
+		<%= render 'edit_form' %>
 	<% end %>
 </div>
