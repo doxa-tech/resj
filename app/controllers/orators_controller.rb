@@ -2,6 +2,7 @@ class OratorsController < BaseController
 	before_action :authorize_token, only: [:new, :create]
 	before_action :authorize_resource, only: [:index, :show]
 	before_action :disabled?, only: [:show]
+	before_action :orator?, only: [:new, :create]
 	after_action only: [:create, :update] { |c| c. track_activity @user }
 
 	def index
@@ -26,7 +27,7 @@ class OratorsController < BaseController
 	end
 
 	def new
-		@user = User.new
+		@user = current_user || User.new
 		@user.build_orator
 	end
 
@@ -70,5 +71,11 @@ class OratorsController < BaseController
 	def disabled?
 		@orator = Orator.find(params[:id])
 		redirect_to orators_path, error: "Cette orateur n'est plus disponible pour le moment." if @orator.disabled
+	end
+
+	def orator?
+		if current_user && !current_user.orator.nil?
+			redirect_to root_path, error: "Vous êtes déjà un orateur."
+		end
 	end
 end

@@ -2,17 +2,7 @@
 <% num = 0 %>
 <div class="section">
 	<h3>Informations générales</h3>
-	<% if !@user.new_record? %>
-		<div class="block">
-			<div class="label">
-				<p>
-					<span class="num"><%= num+=1 %></span> Mot de passe actuel<span class="b"></span>
-				</p>
-			</div>
-			<%= f.password_field :current_password %>
-		</div>
-	<% end %>
-
+	
 	<div class="block">
 		<div class="label">
 			<p>

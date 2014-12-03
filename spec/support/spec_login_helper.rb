@@ -12,3 +12,7 @@ module SpecLoginHelper
     @current_user = user
   end
 end
+
+RSpec.configure do |config|
+  config.include SpecLoginHelper
+end

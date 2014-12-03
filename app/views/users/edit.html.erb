@@ -13,8 +13,6 @@
 		<%= f.submit %>
 		<% end %>
 	<% else %>
-		<%= form_for @user, url: orator_update_path do |f| %>
-			<%= render 'orators/edit_form', f: f %>
-		<% end %>
+		<%= render 'orators/edit_form' %>
 	<% end %>
 </div>

@@ -6,18 +6,20 @@ $(function() {
   selectize.tags();
   selectize.location();
   selectize.cards();
-
-  $('.selectize-themes').selectize({
-    maxItems: 10,
-    plugins: ['remove_button'],
-    dropdownParent: "body" // prevent overflow error in admin
-  });
+  selectize.themes();
 
  });
 
 var selectize = {
   default: function() {
     $('.selectize').selectize();
+  },
+  themes: function() {
+    $('.selectize-themes').selectize({
+      maxItems: 10,
+      plugins: ['remove_button'],
+      dropdownParent: "body" // prevent overflow error in admin
+    });
   },
   tags: function() {
     $('.selectize-tags').selectize({
