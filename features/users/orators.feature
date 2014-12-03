@@ -21,3 +21,10 @@ Feature: Orators
 	Scenario: Can not access the page without the token
 		When I visit "/resources/orators/new"
 		Then I should see a flash with "Le token entré ne vous permet pas d'accéder à cette page"
+
+	@wip
+	Scenario: Is already an user
+		Given I am a confirmed user
+		When I visit the orator page with the right token
+		And I fill the email field with my email and submit it
+		Then I should see my information in the fields
