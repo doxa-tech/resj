@@ -104,6 +104,7 @@ namespace :seed do
 	desc "Create help's categories"
 	task help_categories: :environment do
 		HelpCategory.find_or_create_by(name: "Profil / gestion d'une oeuvre", description: "Tout ce qu'il faut savoir pour éditer ses infos...")
+		HelpCategory.find_or_create_by(name: "Je suis enregistré comme orateur ou veux le devenir", description: "Pour savoir comment devenir un orateur et comment gérer son compte orateur.")
 	end
 
 end

@@ -109,6 +109,10 @@
 					border-top: 1px solid #e8e8e8;
 					padding: 10px 20px;
 					transition: background 0.25s ease-in-out;
+					small { // tooltip
+						display: inline-block;
+						padding: 0 0 10px 0;
+					}
 					&:hover {
 						background:#F4F4F4;
 					}
