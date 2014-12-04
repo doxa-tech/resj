@@ -1,52 +1,59 @@
-<%= form_for @user, url: orator_update_path do |f| %>
+<div id="admin">
+	<div id="admin_content">
 
-	<%= render 'users/edit_form', f: f  %>
-	<%= f.fields_for :orator do |orator_fields| %>
+		<%= form_for @user, url: orator_update_path do |f| %>
 
-	<div class="col split1">
-		<div class="block">
-			<ul>
-				<li>
-					<% location = orator_fields.object.location %>
-					<%= f.label :location_id %>
-					<%= orator_fields.collection_select :location_id, (location.nil? ? [] : [location] ), :id, :full_name, {include_blank: "Tapez votre ville"}, {class: "selectize-location"} %>
-				</li>
-				<li>
-					<%= f.label :street %>
-					<%= orator_fields.text_field :street, placeholder: 'addresse (optionnel)' %>
-				</li>
-				<li>
-					<%= f.label :phone %>
-					<%= orator_fields.text_field :phone, placeholder: 'Téléphone (optionnel)' %>
-				</li>
-				<li>
-					<%= f.label :theme_ids %>
-					<%= orator_fields.collection_select :theme_ids, Theme.all, :id, :name, {include_blank: "Sélectionnez des thèmes"}, {class: "selectize-themes", multiple: true} %>
-				</li>
-				<li>
-					<%= f.label :disponibility_ids %>
-					<%= orator_fields.collection_check_boxes :disponibility_ids, Disponibility.all, :id, :name do |b| %>
-					<%= content_tag :div, "#{b.label} #{b.check_box}".html_safe, class: 'dispo' %>
-					<% end %>
-				</li>
-				<li>
-					<%= f.label :disponibility %>
-					<%= orator_fields.text_field :disponibility, placeholder: 'Disponibilités spéciales' %>
-				</li>
-				<li>
-					<%= f.label :description %>
-					<%= orator_fields.text_area :description, placeholder: 'Informations complémentaires' %>
-				</li>
-				<li>
-					<%= f.label :disabled %>
-					<%= orator_fields.check_box :disabled %>
-				</li>
-			</ul>
-		</div>
+			<%= render 'users/edit_form', f: f  %>
+			<%= f.fields_for :orator do |orator_fields| %>
+
+			<div class="col split1">
+				<div class="block">
+					<ul>
+						<li>
+							<% location = orator_fields.object.location %>
+							<%= f.label :location_id %>
+							<%= orator_fields.collection_select :location_id, (location.nil? ? [] : [location] ), :id, :full_name, {include_blank: "Tapez votre ville"}, {class: "selectize-location"} %>
+						</li>
+						<li>
+							<%= f.label :street %>
+							<%= orator_fields.text_field :street, placeholder: 'addresse (optionnel)' %>
+						</li>
+						<li>
+							<%= f.label :phone %>
+							<%= orator_fields.text_field :phone, placeholder: 'Téléphone (optionnel)' %>
+						</li>
+						<li>
+							<%= f.label :theme_ids %>
+							<%= orator_fields.collection_select :theme_ids, Theme.all, :id, :name, {include_blank: "Sélectionnez des thèmes"}, {class: "selectize-themes", multiple: true} %>
+						</li>
+						<li>
+							<%= f.label :disponibility_ids %>
+							<%= orator_fields.collection_check_boxes :disponibility_ids, Disponibility.all, :id, :name do |b| %>
+							<%= content_tag :div, "#{b.label} #{b.check_box}".html_safe, class: 'dispo' %>
+							<% end %>
+						</li>
+						<li>
+							<%= f.label :disponibility %>
+							<%= orator_fields.text_field :disponibility, placeholder: 'Disponibilités spéciales' %>
+						</li>
+						<li>
+							<%= f.label :description %>
+							<%= orator_fields.text_area :description, placeholder: 'Informations complémentaires' %>
+						</li>
+						<li>
+							<small>ce champ sert à vous mettre 'hors ligne'. Si il est coché, vous n'apparaîtrez plus dans la liste des orateurs.</small>
+							<%= f.label :disabled %>
+							<%= orator_fields.check_box :disabled %>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<% end %>
+
+			<%= f.submit class: 'submit' %>
+
+		<% end %>
+
 	</div>
-
-	<% end %>
-
-	<%= f.submit class: 'submit' %>
-
-<% end %>
+</div>
