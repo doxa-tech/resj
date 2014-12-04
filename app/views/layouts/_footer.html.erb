@@ -4,7 +4,10 @@
 		<a href="https://twitter.com/ReseauJeunesse" target="_blank"><span class="fi-social-twitter"></span></a>
 		<a href="http://instagram.com/reseaujeunesse" target="_blank"><span class="fi-social-instagram"></span></a>
 	</p>
-	<div class="img"><%= image_tag image_url "layout/logo-footer.png" %></div>
+	<div class="img">
+		<%= image_tag image_url "layout/logo-footer.png" %><br><br>
+		<a href="http://www.evangelique.ch/" target="_blank"><%= image_tag image_url "layout/RES.png" %></a>
+	</div>
 	<div class="block a">
 		<p>
 			RES-J <br>Réseau Evangélique Suisse (RES) - Jeunesse
@@ -26,6 +29,6 @@
 	<div class="end">
 		<%= link_to 'Mentions légales', privacy_path %> 
 		<%= link_to 'Développeur', developer_path %> 
-		<a href="http://www.evangelique.ch/" target="_blank">Evangélique</a>
+		<%= link_to 'Aide', help_categories_path %>
 	</div>
 </footer>

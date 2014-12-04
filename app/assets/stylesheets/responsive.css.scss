@@ -474,7 +474,7 @@
 
 	// Footer
 	footer {
-		height: 290px !important;
+		height: 350px !important;
 		.img {
 			padding: 0 !important;
 		}
@@ -483,6 +483,11 @@
 			width: 100% !important;
 			text-align: center !important;
 		}
+	}
+
+	// Layout (because of footer)
+	#wrapper {
+		padding-bottom: 350px !important;
 	}
 
 }
