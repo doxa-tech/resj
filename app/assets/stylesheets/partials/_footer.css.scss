@@ -74,4 +74,23 @@
 			}
 		}
 	}
+
+	.rails {
+		height: 31px;
+		width: 60px;
+		background-image: image-url("layout/ruby-on-rails.png");
+		position: absolute;
+		right: 0;
+		bottom: 37px;
+		opacity: 0.1;
+		a {
+			display: block;
+			height: 100%;
+			width: 100%;
+		}
+		&:hover {
+			opacity: 1;
+			height: 36px;
+		}
+	}
 }
