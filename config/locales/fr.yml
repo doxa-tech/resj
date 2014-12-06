@@ -423,7 +423,7 @@ fr:
     label:
       session:
         name: "Nom d'utilisateur"
-        remember_me: "Se souvenir de moi"
+        remember_me: "Me garder connecté"
         password: "Mot de passe"
   errors: &errors
     format: 'Le champs "%{attribute}" %{message}'
