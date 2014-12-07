@@ -11,6 +11,7 @@ module UserValidation
 
 	    user.before_save :create_remember_token, :format
 	    user.before_create :assign_gravatar
+      user.after_create :assign_newsletters
 	  end
 	  validates :password, presence: true, length: { minimum: 5 }, confirmation: true, :unless => lambda { |v| v.validate_password? || v.is_group? }
 	end
@@ -44,5 +45,9 @@ module UserValidation
 
   def assign_gravatar
     self.gravatar_email = self.email
+  end
+
+  def assign_newsletters
+    self.newsletters = Newsletter.all
   end
 end

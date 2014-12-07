@@ -15,5 +15,5 @@ Feature: Categories
   Scenario: Click on a category
     Given I am a visitor
     When I visit "/help"
-    And I click the link "Images des groupes"
+    And I click the link "Profil / gestion d'une oeuvre"
     Then I should see to help pages

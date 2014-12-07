@@ -476,9 +476,11 @@ fr:
     street: "Adresse"
     phone: "Téléphone"
     themes: "Thèmes"
-    disponibilities: "Disponibilités"
+    disponibility_ids: "Disponibilités"
     disponibility: "Disponibilités spéciales"
     current_password: "Mot de passe actuel"
+    theme_ids: "Thèmes"
+    disabled: "Désactivé"
   activerecord:
     attributes:
       card:

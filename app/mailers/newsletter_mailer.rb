@@ -2,7 +2,7 @@ class NewsletterMailer < BaseMailer
 
   # sends welcome
   def news(content, subject, emails, mandrill, options)
-  	emails = User.joins(:newsletters).where(email: emails, newsletters: {id: options}).pluck(:email)
+  	emails = User.joins(:newsletters).where(email: emails, newsletters: {id: options}).uniq.pluck(:email)
   	if mandrill
 	    mail to:      emails,
 	    		 from: "\"Team Réseau Jeunesse\" <info@resj.ch>",

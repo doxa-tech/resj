@@ -8,7 +8,6 @@ FactoryGirl.define do
     password_confirmation "12341"
     user_type { UserType.find_by_name("user") }
     confirmed true
-    newsletters { Newsletter.all }
 
     factory :unconfirmed_user do
       confirmed false
@@ -51,7 +50,7 @@ FactoryGirl.define do
 
   factory :access_token do
     is_valid true
-    exp_at 1.month.from_now
+    exp_at { 1.month.from_now }
   end
 
   factory :ownership do
@@ -80,7 +79,7 @@ FactoryGirl.define do
     user_validated true
 
     factory :recent_affiliation do
-      updated_at 1.day.ago
+      updated_at { 1.day.ago }
     end
   end
 
@@ -88,7 +87,7 @@ FactoryGirl.define do
     sequence(:title) { |n| "#{n} ours meurt chaque année"}
     content "Chaque année, plus de 1000 ourse blancs meurt"
     user { User.find_by_firstname_and_lastname('Patrick', 'Dujardin') || create(:user, firstname: 'Patrick', lastname: 'Dujardin') }
-    image File.open("#{Rails.root}/public/test/articles/image_example.jpg")
+    image { File.open("#{Rails.root}/public/test/articles/image_example.jpg") }
     themes { [Theme.first] }
   end
 

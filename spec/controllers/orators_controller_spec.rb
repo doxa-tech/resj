@@ -4,7 +4,7 @@ RSpec.describe OratorsController, :type => :controller do
 
   describe "GET #new" do
 
-    before(:all) do
+    before(:each) do
       @token = build(:access_token) do |token|
         token.ownership = create(:ownership, element_name: 'orators', group_name: 'g_token', right_create: true)
         token.save

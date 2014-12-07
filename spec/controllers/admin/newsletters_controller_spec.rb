@@ -16,8 +16,8 @@ RSpec.describe Admin::NewslettersController, :type => :controller do
 				content: "Lorem ipsum",
 				mandrill: false
 			}
-			expect(NewsletterMailer).to receive(:news).with(params[:content], params[:subject], params[:emails], params[:mandrill], params[:options])
-			post :create, params
+			expect(NewsletterMailer).to receive(:news).with(params[:content], params[:subject], params[:emails], params[:mandrill], params[:options]).and_call_original
+			post :create, **params
 		end
 
 	end
