@@ -2,9 +2,10 @@ require 'rails_helper'
 
 RSpec.describe NewsletterMailer do
 
-  before(:all) do
+  before(:each) do
     @valid_user = create(:user)
-    @invalid_user = create(:user, email: "invalid@user.com", newsletters: Newsletter.none)
+    @invalid_user = create(:user, email: "invalid@user.com")
+    @invalid_user.newsletters = Newsletter.none
     @email = NewsletterMailer.news("lorem ipsum", "Nouvelles fonctionalitées", [@invalid_user.email, @valid_user.email], false, Newsletter.all)
   end
 
