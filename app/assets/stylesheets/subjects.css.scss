@@ -67,9 +67,10 @@
 	.results {
 		ul {
 			li {
-				padding: 20px 0;
-				margin: 3px 0 0 0;
+				padding: 10px;
 				box-shadow: 1px 1px 1px #EEE;
+				display: inline-block;
+				width: 33.333%;
 				h3 {
 					font: 300 22px 'jura', tahoma
 				}
@@ -103,31 +104,27 @@
 				}
 				.infos {
 					text-align: center;
-					width: 300px;
-					height: 37px;
-					margin: auto;
+					width: 100%;
 					.txt {
 						background: #EEE;
 						color: #827c7c;
-						font-size: 13px;
-						padding: 10px;
+						font-size: 11px;
+						padding: 3px;
 						float: left;
-						width: 200px;
-						height: 100%;
+						width: 70%;
 						border-radius: 3px 0 0 3px;
 					}
 					.link {
 						float: right;
-						width: 100px;
-						height: 100%;
+						width: 30%;
 						a {
-							font-size: 13px;
+							font-size: 11px;
 							display: block;
 							height: 100%;
 							overflow: visible;
 							position: relative;
 							border: 0;
-							padding: 10px 0;
+							padding: 3px 0;
 							cursor: pointer;
 							color: white;
 							text-transform: uppercase;
@@ -146,11 +143,11 @@
 							&:before {
 								content: '';
 						    position: absolute;
-						    border-width: 8px 8px 8px 0;
+						    border-width: 11px 8px 11px 0;
 						    border-style: solid solid solid none;
 						    border-color: transparent #d83c3c transparent;
-						    top: 11px;
-						    left: -6px;
+						    top: 0px;
+						    left: -8px;
 							}
 							&:hover:before {
 								border-right-color: #e54040;

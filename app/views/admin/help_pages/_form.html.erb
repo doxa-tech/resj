@@ -1,23 +1,29 @@
 <%= form_for [:admin, @page] do |f| %>
-
   <%= render 'error_messages', object: f.object %>
 
-  <table>
-    <tr>
-      <td><%= f.label :name %></td>
-      <td><%= f.text_field :name %></td>
-    </tr>
-    <tr>
-      <td><%= f.label :content %></td>
-      <td><%= f.text_area :content %></td>
-    </tr>
-    <tr>
-      <td><%= f.label :help_category_id %></td>
-      <td><%= f.collection_select :help_category_id, HelpCategory.all, :id, :name %></td>
-    </tr>
-    <tr>
-      <td><%= f.submit %></td>
-    </tr>
-  </table>
+  <div class="col split1">
+    <div class="block">
+      <div class="header">
+        <h2>Statut</h2>
+      </div>
+      <ul>
+        <li>
+          <%= f.label :name %>
+          <%= f.text_field :name %>
+        </li>
+        <li>
+          <%= f.label :content %>
+          <%= f.text_area :content %>
+        </li>
+        <li>
+          <%= f.label :help_category_id %>
+          <%= f.collection_select :help_category_id, HelpCategory.all, :id, :name %>
+        </li>
+        <li>
+          <%= f.submit %>
+        </li>
+      </ul>
+    </div>
+  </div>
 
 <% end %>

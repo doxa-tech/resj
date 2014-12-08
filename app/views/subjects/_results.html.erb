@@ -1,7 +1,7 @@
-<ul>
+<ul><%= "<!--".html_safe %>
 	<% @subjects.each do |subject| %>
 		<% type = subject_type(subject) %>
-		<li>
+		<%= "-->".html_safe %><li>
 			<h3><%= subject.name %></h3>
 			<div class="description">
 				<%= image_tag image_url "resources/documents/#{type}.png" %>
@@ -20,6 +20,7 @@
 					<div class="link"><%= link_to "Voir le sujet", document_path(subject) %></div>
 			</div>
 			<div id="clear"></div>
-		</li>
+		</li><%= "<!--".html_safe %>
 	<% end %>
+	<%= "-->".html_safe %>
 </ul>
