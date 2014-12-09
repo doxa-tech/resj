@@ -88,3 +88,7 @@ group :development, :test do
 	gem 'email_spec'
 	gem 'faker'
 end
+
+
+
+gem 'coveralls', require: false
