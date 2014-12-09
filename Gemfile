@@ -49,18 +49,18 @@ gem 'unicorn', '~> 4.8.2'
 gem 'unicorn-worker-killer'
 
 # Use Capistrano for deployment
+gem 'capistrano', '~> 3.3.0'
+
+# rails specific capistrano funcitons
+gem 'capistrano-rails', '~> 1.1.0'
+
+# integrate bundler with capistrano
+gem 'capistrano-bundler'
+
+# if you are using RBENV
+gem 'capistrano-rvm'
 
 group :development do
-	gem 'capistrano', '~> 3.3.0'
-
-	# rails specific capistrano funcitons
-	gem 'capistrano-rails', '~> 1.1.0'
-
-	# integrate bundler with capistrano
-	gem 'capistrano-bundler'
-
-	# if you are using RBENV
-	gem 'capistrano-rvm'
 	gem 'railroady'
 	gem "rails-erd"
 end
