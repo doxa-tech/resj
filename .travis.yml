@@ -1,5 +1,7 @@
 language: ruby
 rvm:
   - 2.1.0
-script: 'true'
 install: gem install rails
+cache: bundler
+script:
+  - bundle exec cucumber
