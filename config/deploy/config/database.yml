@@ -26,3 +26,12 @@ production:
   host: localhost
   username: resj
   password: 
+
+staging:
+  adapter: postgresql
+  encoding: unicode
+  database: resj_staging
+  pool: 5
+  host: localhost
+  username: resj
+  password: 

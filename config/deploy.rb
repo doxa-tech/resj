@@ -29,20 +29,31 @@ set :deploy_to, "/home/#{fetch(:deploy_user)}/apps/#{fetch(:application)}"
 
 set :server_files, [
   {
-  name: 'nginx.conf',
-  path: "/etc/nginx/sites-enabled/#{fetch(:application)}",
-  executable: false
+    name: 'nginx.conf.erb',
+    path: "/etc/nginx/sites-enabled/#{fetch(:application)}",
   },
   {
-  name: 'unicorn_init.sh',
-  path: "/etc/init.d/unicorn_#{fetch(:application)}",
-  executable: true
+    name: 'unicorn_init.sh.erb',
+    path: "/etc/init.d/unicorn_#{fetch(:application)}",
+    executable: true
+  },
+  {
+    name: 'schema.xml',
+    path: '/usr/share/solr/example/solr/collection1/conf/schema.xml',
+    owner: 'tomcat7'
+  },
+  {
+    name: 'solrconfig.xml',
+    path: '/usr/share/solr/example/solr/collection1/conf/solrconfig.xml',
+    owner: 'tomcat7'
   }
 ]
 
 # Default value for :linked_files is []
 # set :linked_files, fetch(:linked_files, []).push('config/database.yml')
 set :linked_files, %w{config/database.yml config/secrets.yml config/sunspot.yml}
+
+set :config_files, %w{config/unicorn.rb}
 
 # Default value for linked_dirs is []
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
@@ -61,9 +72,7 @@ namespace :deploy do
   # cleanup
   after :finishing, 'deploy:cleanup'
 
-  # remove the default nginx configuration as it will tend
-  # to conflict with our configs.
-  after 'deploy:updating', 'deploy:setup_config'
+  before 'deploy:started', 'deploy:setup_config'
 
   # reload nginx to it will pick up any modified vhosts from
   # setup_config
@@ -72,4 +81,6 @@ namespace :deploy do
   # As of Capistrano 3.1, the `deploy:restart` task is not called
   # automatically.
   after 'deploy:publishing', 'deploy:restart'
+
+  after 'deploy:publishing', 'deploy:solr'
 end
