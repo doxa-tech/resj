@@ -6,7 +6,6 @@ set :deploy_user, 'resj'
 
 set :scm, "git"
 set :repo_url, 'git@github.com:khcr/resj.git'
-set :branch, "master"
 
 set :rbenv_type, :user
 set :rbenv_ruby, '2.0.0-p353'
@@ -14,7 +13,7 @@ set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rben
 set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 
 # Default branch is :master
-# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
+ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/home/#{fetch(:deploy_user)}/apps/#{fetch(:application)}"
