@@ -60,7 +60,7 @@ group :development do
 	gem 'capistrano-bundler'
 
 	# if you are using RBENV
-	gem 'capistrano-rbenv', "~> 2.0" 
+	gem 'capistrano-rvm'
 	gem 'railroady'
 	gem "rails-erd"
 end
