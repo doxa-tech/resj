@@ -3,6 +3,4 @@ rvm:
   - 2.1.0
 install: gem install rails
 cache: bundler
-before_script: curl -sSL https://raw.githubusercontent.com/moliware/travis-solr/master/travis-solr.sh | SOLR_VERSION=4.6.1 bash
-script:
-  - bundle exec cucumber
+script: rake travis:all
