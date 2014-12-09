@@ -1,1 +1,2 @@
+{<img src="https://travis-ci.org/JS-Tech/resj.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/JS-Tech/resj]
 {<img src="https://coveralls.io/repos/JS-Tech/resj/badge.png" alt="Coverage Status" />}[https://coveralls.io/r/JS-Tech/resj]
