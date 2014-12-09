@@ -7,17 +7,21 @@ namespace :deploy do
       execute :mkdir, "-p #{shared_path}/config"
       execute :mkdir, "-p #{shared_path}/server"
 
-      fetch(:linked_files).each do |file|
+      (fetch(:linked_files) + fetch(:config_files)).each do |file|
         unless test("[ -f #{shared_path}/#{file} ]")
           upload! "config/deploy/#{file}", "#{shared_path}/#{file}"
         end
       end
 
       fetch(:server_files).each do |file|
-        file_path = "#{shared_path}/server/#{file[:name]}"
-        upload! "config/deploy/server/#{file[:name]}", file_path
-        execute :chmod, "+x #{file_path}" if file[:executable]
-        sudo :ln, "-nfs #{file_path} #{file[:path]}"
+        raw_filename = file[:name].gsub(/.erb/, '')
+        file_path = "#{shared_path}/server/#{raw_filename}"
+        eval_file = StringIO.new(ERB.new(File.read("config/deploy/server/#{file[:name]}")).result(binding)) # render .erb files
+        sudo "rm #{file_path}" # avoid conflits and permission's problems
+        upload! eval_file, file_path # upload to the remote server
+        execute :chmod, "+x #{file_path}" if file[:executable] # make executable if needed
+        sudo :chown, "#{file[:owner]} #{file_path}" if file[:owner] # change owner if needed
+        sudo :ln, "-nfs #{file_path} #{file[:path]}" # symlinks
       end
     end
   end
