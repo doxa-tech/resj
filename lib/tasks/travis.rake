@@ -4,6 +4,7 @@ namespace :travis do
 	task travis: :environment do
 		`bin/rake db:migrate RAILS_ENV=test`
 		`rake sunspot:solr:start RAILS_ENV=test`
+		`rake sunspot:solr:run RAILS_ENV=test`
 		`rake sunspot:solr:reindex RAILS_ENV=test`
 	  ["rspec spec", "rake cucumber"].each do |cmd|
 	    puts "Starting to run #{cmd}..."
