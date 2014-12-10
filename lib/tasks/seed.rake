@@ -6,7 +6,7 @@ namespace :seed do
 	desc "Create the pages"
 	task pages: :environment do
 		%w[home resj resources privacy help contact developer].each do |page|
-			Page.create(name: name, content: "") unless Page.find_by_name(page)
+			Page.create(name: page, content: "") unless Page.find_by_name(page)
 		end
 	end
 
