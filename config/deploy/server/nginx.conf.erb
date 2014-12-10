@@ -21,12 +21,13 @@ server {
     proxy_pass http://unicorn;
   }
 
-  error_page 500 502 503 @503 504 /500.html;
+  error_page 500 502 504 /500.html;
   client_max_body_size 4G;
   keepalive_timeout 10;
 
+  error_page 503 @503;
   # Return a 503 error if the maintenance page exists.
-  if (-f <%= fetch(:deploy_to) %>/shared/public/system/maintenance.html) {
+  if (-f /home/resj/apps/resj/shared/public/system/maintenance.html) {
     return 503;
   }
 
@@ -37,7 +38,7 @@ server {
     }
 
     # Set root to the shared directory.
-    root <%= fetch(:deploy_to) %>/shared/public;
+    root /home/resj/apps/resj/shared/public;
     rewrite ^(.*)$ /system/maintenance.html break;
   }
 }
