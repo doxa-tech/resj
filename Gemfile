@@ -89,6 +89,10 @@ group :development, :test do
 	gem 'faker'
 end
 
+group :test do
+	gem 'sunspot_solr'
+end
+
 
 
 gem 'coveralls', require: false
