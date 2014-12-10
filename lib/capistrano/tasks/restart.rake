@@ -3,7 +3,7 @@ namespace :deploy do
   %w(start stop restart).each do |command|
     task command do
       on roles(:app), in: :sequence, wait: 5 do
-        execute "/etc/init.d/unicorn_#{fetch(:application)} #{command}"
+        sudo "/etc/init.d/unicorn_#{fetch(:application)} #{command}"
       end
     end
   end
