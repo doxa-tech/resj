@@ -5,7 +5,7 @@ Feature: Card images update
 	I want to update the images
 	
 
-	@javascript @reset @nkcr
+	@selenium @reset @nkcr
 	Scenario: Successful update of the banner
 		Given I own a card
 		And I am signed in as the card owner
@@ -15,7 +15,7 @@ Feature: Card images update
 		And I complete the banner upload form and submit it
 		Then I should see the image "banner.jpg"
 
-	@javascript @reset @nkcr
+	@selenium @reset @nkcr
 	Scenario: Invalid form submission for banner
 		Given I own a card
 		And I am signed in as the card owner
@@ -25,7 +25,7 @@ Feature: Card images update
 		And I complete the banner upload form with wrong extension and submit it
 		Then I should see errors
 
-	@javascript @reset @nkcr
+	@selenium @reset @nkcr
 	Scenario: Successful update of the logo
 		Given I own a card
 		And I am signed in as the card owner
@@ -35,7 +35,7 @@ Feature: Card images update
 		And I complete the logo upload form and submit it
 		Then I should see the image "banner.jpg"
 
-	@javascript @reset @nkcr
+	@selenium @reset @nkcr
 	Scenario: Invalid form submission for logo
 		Given I own a card
 		And I am signed in as the card owner
