@@ -1,10 +1,15 @@
 # Server installations
 Install RVM and the latest ruby version
+
 Install Nginx, Postgres
+
 Install Imagemagick
+
 Install Solr/Tomcat
 # Sever permissions
 Grant deployer user to write the config files and to execute the init scripts
+    
+    # sudo visudo
     resj ALL=(ALL) NOPASSWD: /etc/init.d/tomcat7
     resj ALL=(ALL) NOPASSWD: /etc/init.d/nginx
     resj ALL=(ALL) NOPASSWD: /etc/init.d/unicorn_resj
