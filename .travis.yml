@@ -4,4 +4,4 @@ rvm:
 install: 
   - bundle install
 cache: bundler
-script: rake travis:all
+script: rake travis:travis
