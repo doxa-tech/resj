@@ -7,7 +7,7 @@ namespace :deploy do
       execute :mkdir, "-p #{shared_path}/config"
       execute :mkdir, "-p #{shared_path}/server"
 
-      (fetch(:linked_files) + fetch(:config_files)).each do |file|
+      fetch(:linked_files).each do |file|
         unless test("[ -f #{shared_path}/#{file} ]")
           upload! "config/deploy/#{file}", "#{shared_path}/#{file}"
         end
