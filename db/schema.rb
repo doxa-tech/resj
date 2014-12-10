@@ -127,6 +127,16 @@ ActiveRecord::Schema.define(version: 20141130183925) do
   add_index "card_users", ["card_id"], name: "index_card_users_on_card_id"
   add_index "card_users", ["user_id"], name: "index_card_users_on_user_id"
 
+  create_table "card_verifications", force: true do |t|
+    t.integer  "card_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "card_verifications", ["card_id"], name: "index_card_verifications_on_card_id"
+  add_index "card_verifications", ["user_id"], name: "index_card_verifications_on_user_id"
+
   create_table "cards", force: true do |t|
     t.integer  "card_type_id"
     t.string   "name"
