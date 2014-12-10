@@ -1,7 +1,5 @@
 CarrierWave.configure do |config|
-	if Rails.env.development?
-		config.storage :file
-	else
+	if Rails.env.production?
 		config.storage :fog
 		
 	  config.fog_credentials = {
@@ -14,5 +12,7 @@ CarrierWave.configure do |config|
 	  CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
 
 	  config.fog_public = true # changed in documents
+	else
+		config.storage :file
 	end
 end
