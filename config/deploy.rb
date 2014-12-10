@@ -35,12 +35,12 @@ set :server_files, [
   {
     name: 'schema.xml',
     path: '/usr/share/solr/example/solr/collection1/conf/schema.xml',
-    owner: 'tomcat7'
+    permission: "a+r"
   },
   {
     name: 'solrconfig.xml',
     path: '/usr/share/solr/example/solr/collection1/conf/solrconfig.xml',
-    owner: 'tomcat7'
+    permission: "a+r"
   }
 ]
 
@@ -72,10 +72,12 @@ namespace :deploy do
   # reload nginx to it will pick up any modified vhosts from
   # setup_config
   after 'deploy:setup_config', 'nginx:reload'
+  after 'deploy:setup_config', 'solr:restart'
 
   # As of Capistrano 3.1, the `deploy:restart` task is not called
   # automatically.
   after 'deploy:publishing', 'deploy:restart'
 
-  after 'deploy:publishing', 'deploy:solr'
+  after 'deploy:publishing', 'solr:reindex'
+  after 'solr:reindex', 'solr:restart'
 end
