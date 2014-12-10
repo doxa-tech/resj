@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Custom maintenance</title>
+    <title>Maintenance</title>
     <style type="text/css">
     body {
         width: 400px;
@@ -16,9 +16,6 @@
 <body>
     <h1>Maintenance</h1>
 
-    <p>The system is down for <%= reason ? reason : "maintenance" %><br>
-           as of <%= Time.now.strftime("%F %H:%M %Z") %>.</p>
-
-    <p>It'll be back <%= deadline ? deadline : "shortly" %>.</p>
+    <p>On est de retour <%= ENV['UNTIL'] ? "dans #{ENV['UNTIL']}" : "bientôt" %>.</p>
 </body>
 </html>
