@@ -59,6 +59,8 @@ set :bundle_binstubs, nil
 # Default value for keep_releases is 5
 set :keep_releases, 5
 
+set :maintenance_template_path, "config/deploy/templates/maintenance.html.erb"
+
 
 namespace :deploy do
   # make sure we're deploying what we think we're deploying
