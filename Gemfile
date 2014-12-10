@@ -50,6 +50,7 @@ gem 'unicorn-worker-killer'
 
 # Use Capistrano for deployment
 gem 'capistrano', '~> 3.3.0'
+gem 'capistrano-maintenance', github: "capistrano/maintenance", require: false 
 
 # rails specific capistrano funcitons
 gem 'capistrano-rails', '~> 1.1.0'

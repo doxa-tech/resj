@@ -5,7 +5,7 @@ upstream unicorn {
 server {
   server_name localhost;
   listen 80;
-  root <%= fetch(:deploy_to) %>/current/public;
+  root <%= fetch(:deploy_to) %>/current/public %>;
 
   location ^~ /assets/ {
     gzip_static on;
@@ -21,7 +21,24 @@ server {
     proxy_pass http://unicorn;
   }
 
-  error_page 500 502 503 504 /500.html;
+  error_page 500 502 503 @503 504 /500.html;
   client_max_body_size 4G;
   keepalive_timeout 10;
+
+  # Return a 503 error if the maintenance page exists.
+  <%= fetch(:deploy_to) %>
+  if (-f <%= fetch(:deploy_to) %>/shared/public/system/maintenance.html) {
+    return 503;
+  }
+
+  location @503 {
+    # Serve static assets if found.
+    if (-f $request_filename) {
+      break;
+    }
+
+    # Set root to the shared directory.
+    root <%= fetch(:deploy_to) %>/shared/public;
+    rewrite ^(.*)$ /system/maintenance.html break;
+  }
 }
