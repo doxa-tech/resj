@@ -9,7 +9,3 @@ before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
 script: rake travis:travis
-addons:
-  sauce_connect:
-    username: "nkcr"
-    access_key: "f39f405a-bea9-4c73-b541-ed279daf8a7e"
