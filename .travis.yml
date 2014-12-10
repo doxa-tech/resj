@@ -2,7 +2,6 @@ language: ruby
 rvm:
   - 2.1.0
 install: 
-  - gem install rails
   - bundle install
 cache: bundler
 script: rake travis:all
