@@ -5,13 +5,9 @@ namespace :seed do
 
 	desc "Create the pages"
 	task pages: :environment do
-		Page.find_or_create_by(name: 'home')
-		Page.find_or_create_by(name: 'resj')
-		Page.find_or_create_by(name: 'resources')
-		Page.find_or_create_by(name: 'privacy')
-		Page.find_or_create_by(name: 'help')
-		Page.find_or_create_by(name: 'contact')
-		Page.find_or_create_by(name: 'developer')
+		%w[home resj resources privacy help contact developer].each do |page|
+			Page.create(name: name, content: "") unless Page.find_by_name(page)
+		end
 	end
 
 	desc "Create the card's types"
