@@ -6,8 +6,7 @@ namespace :travis do
 		`rake sunspot:solr:start RAILS_ENV=test`
 		`rake sunspot:solr:run RAILS_ENV=test`
 		`rake sunspot:solr:reindex RAILS_ENV=test`
-		`sunspot-solr start`
-		`rake jasmine:ci`
+		`gem install jasmine`
 	  ["rspec spec", "rake jasmine:ci", "rake cucumber"].each do |cmd|
 	    puts "Starting to run #{cmd}..."
 	    system("export DISPLAY=:99.0 && bundle exec #{cmd}")

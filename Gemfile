@@ -91,6 +91,7 @@ end
 
 group :test do
 	gem 'sunspot_solr'
+	gem 'jasmine'
 end
 
 
