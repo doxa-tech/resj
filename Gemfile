@@ -91,12 +91,6 @@ end
 
 group :test do
 	gem 'sunspot_solr'
-	gem "chromedriver-helper"
-	gem 'sauce', '~> 3.1.1'
-	gem 'sauce-connect'
-	gem 'parallel_tests'
-	gem 'sauce-cucumber'
-	gem 'capybara'
 end
 
 
