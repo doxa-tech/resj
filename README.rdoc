@@ -1,0 +1,3 @@
+{<img src="https://travis-ci.org/JS-Tech/resj.travis.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/JS-Tech/resj.travis]
+{<img src="https://coveralls.io/repos/JS-Tech/resj.travis/badge.png" alt="Coverage Status" />}[https://coveralls.io/r/JS-Tech/resj.travis]
+{<img src="https://codeclimate.com/github/JS-Tech/resj/badges/gpa.svg" />}[https://codeclimate.com/github/JS-Tech/resj]

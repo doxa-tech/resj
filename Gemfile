@@ -88,3 +88,11 @@ group :development, :test do
 	gem 'email_spec'
 	gem 'faker'
 end
+
+group :test do
+	gem 'sunspot_solr'
+end
+
+
+
+gem 'coveralls', require: false
