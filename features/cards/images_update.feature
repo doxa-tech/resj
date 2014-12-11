@@ -5,7 +5,7 @@ Feature: Card images update
 	I want to update the images
 	
 
-	@javascript @reset @nkcr
+	@javascript @reset @nkcr @now
 	Scenario: Successful update of the banner
 		Given I own a card
 		And I am signed in as the card owner
