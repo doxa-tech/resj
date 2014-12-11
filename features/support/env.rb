@@ -63,11 +63,12 @@ Cucumber::Rails::Database.javascript_strategy = :truncation
 
 #
 #
-#
-# Capybara.register_driver :chrome do |app|
-#   Capybara::Selenium::Driver.new(app, :browser => :chrome)
-# end
 
-Capybara.default_wait_time = 3
+Capybara.register_driver :chrome do |app|
+  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+end
+
+Capybara.javascript_driver = :chrome
+
 
 World(FactoryGirl::Syntax::Methods)
