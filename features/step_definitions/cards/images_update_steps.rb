@@ -9,13 +9,13 @@ When /^I click on "Editer" on the banner$/ do
 end
 
 When /^I complete the banner upload form and submit it$/ do
-	attach_file 'card_banner', File.join(Rails.root, '/public/test/cards/banner.jpg'), visible: false
-	wait_for_ajax
+	page.execute_script("$('#card_banner').css('visibility', 'visible');")
+	attach_file 'card_banner', File.join(Rails.root, '/public/test/cards/banner.jpg')
 end
 
 When(/^I complete the banner upload form with wrong extension and submit it$/) do
+	page.execute_script("$('#card_banner').css('visibility', 'visible');")
   attach_file 'card_banner', File.join(Rails.root, '/public/test/cards/banner.abc'), visible: false
-  wait_for_ajax
 end
 
 # Logo
@@ -26,13 +26,13 @@ When /^I click on "Editer" on the logo$/ do
 end
 
 When /^I complete the logo upload form and submit it$/ do
+	page.execute_script("$('#card_avatar').css('visibility', 'visible');")
 	attach_file 'card_avatar', File.join(Rails.root, '/public/test/cards/logo.jpg'), visible: false
-	wait_for_ajax
 end
 
 When(/^I complete the logo upload form with wrong extension and submit it$/) do
+	page.execute_script("$('#card_avatar').css('visibility', 'visible');")
   attach_file 'card_avatar', File.join(Rails.root, '/public/test/cards/logo.abc'), visible: false
-  wait_for_ajax
 end
 
 
