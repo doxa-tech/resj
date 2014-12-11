@@ -91,7 +91,6 @@ end
 
 group :test do
 	gem 'sunspot_solr'
-	gem "chromedriver-helper"
 end
 
 
