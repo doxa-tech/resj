@@ -27,7 +27,7 @@ server {
 
   error_page 503 @503;
   # Return a 503 error if the maintenance page exists.
-  if (-f /home/resj/apps/resj/shared/public/system/maintenance.html) {
+  if (-f <%= fetch(:deploy_to) %>/shared/public/system/maintenance.html) {
     return 503;
   }
 
@@ -38,7 +38,7 @@ server {
     }
 
     # Set root to the shared directory.
-    root /home/resj/apps/resj/shared/public;
+    root <%= fetch(:deploy_to) %>/shared/public;
     rewrite ^(.*)$ /system/maintenance.html break;
   }
 }

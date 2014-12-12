@@ -18,4 +18,5 @@ Grant deployer user to write the config files and to execute the init scripts
     resj ALL=(ALL) NOPASSWD: /bin/ln -* /* /usr/share/solr/example/solr/collection1/conf/*
 
 # First deployment
-run `cap stage deploy:setup_config` and then edit the files with the secrets
+first run `cap stage deploy:setup_config` and then edit the files with the secrets
+then run `cap stage deploy`
