@@ -40,7 +40,19 @@ Little sugar (make your terminal red under Mac) :
 
 Use and configure that [upload script](https://github.com/nkcr/Google-Cloud-Storage-Upload). Combine the script with aes encryption. For both provide a key file.
 
-## Cron jobs
+### Install aescrypt for backup encryption
+
+TODO
+
+### Restore
+
+    sudo -u postgres psql
+    # if there is alread a database
+    > drop database resj_staging; # if needed, /etc/init.d/unicorne_resj stop
+    > create database resj_staging;
+    > resj_staging < infile
+
+## Cron jobs (backup and daily rake task)
 
     #
     # Backup pgsql to google cloud
