@@ -7,6 +7,10 @@
     # visudo
     resj ALL=(ALL:ALL) ALL
 
+## Local and Date
+
+    sudo dpkg-reconfigure tzdata
+
 ## SSH
 
 Copy public key to server
@@ -21,6 +25,16 @@ In */etc/ssh/sshd_config* change the following fields
     UsePAM no                   # deny PAM auth
 
 After that restart ssh deamon with *reload ssh*
+
+Little sugar (make your terminal red under Mac) :
+
+    function tabc() {
+    NAME=$1; if [ -z "$NAME" ]; then NAME="Pro"; fi
+    osascript -e "tell application \"Terminal\" to set current settings of front window to settings set \"$NAME\""
+    }
+    EDITOR='subl -w'
+    alias sshresj="tabc SSH-Theme; ssh resj@146.185.183.84 -p 77; tabc"
+    alias ssheebulle="tabc SSH-Theme; ssh eebulle@146.185.163.64 -p 77; tabc"
 
 ## Backup
 
