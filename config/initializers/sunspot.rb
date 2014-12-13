@@ -1,1 +1,1 @@
-Sunspot.config.solr.url = "http://tomcat:my_little_poney@localhost:8983/solr"
+Sunspot.config.solr.url = "http://tomcat:my_little_poney@localhost:8080/solr"
