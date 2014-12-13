@@ -32,14 +32,22 @@ Remove default
 
 Install
 
-    apt-get install postgresql
+    apt-get install postgresql libpq-dev
 
 Setup
 
     sudo -u postgres psql
-    create role resj with createdb login password 'password'
+    create role resj with createdb login password 'password';
+    create database resj_production owner resj;
 
-  
+## Git
+
+    apt-get install git
+
+## Node.js
+
+    apt-get install nodejs
+
 ## Solr/Tomcat
 
 Install
@@ -115,11 +123,10 @@ Modify `roles="manager-gui,admin-gui,solr-gui"` in tomcat-users.xml
     gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
     \curl -sSL https://get.rvm.io | bash -s stable --ruby
 
-    
+## Imagemagick
 
-Install Imagemagick
+    apt-get install imagemagick
 
-Install Solr/Tomcat
 # Sever permissions
 Grant deployer user to write the config files and to execute the init scripts
     
