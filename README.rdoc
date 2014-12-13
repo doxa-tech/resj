@@ -1,3 +1,4 @@
 {<img src="https://travis-ci.org/JS-Tech/resj.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/JS-Tech/resj]
 {<img src="https://coveralls.io/repos/JS-Tech/resj/badge.png?branch=master" alt="Coverage Status" />}[https://coveralls.io/r/JS-Tech/resj?branch=master]
 {<img src="https://codeclimate.com/github/JS-Tech/resj/badges/gpa.svg" />}[https://codeclimate.com/github/JS-Tech/resj]
+{<img src="http://inch-ci.org/github/JS-Tech/resj.svg?branch=master" alt="Inline docs" />}[http://inch-ci.org/github/JS-Tech/resj]
