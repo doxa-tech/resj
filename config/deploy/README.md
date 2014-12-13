@@ -7,6 +7,39 @@
     # visudo
     resj ALL=(ALL:ALL) ALL
 
+## SSH
+
+Copy public key to server
+
+    cat ~/.ssh/id_rsa.pub | ssh user@123.45.56.78 "mkdir -p ~/.ssh && cat >>  ~/.ssh/authorized_keys"
+    
+In */etc/ssh/sshd_config* change the following fields 
+
+    Port 44             # change port connection
+    PermitRootLogin no  # deny root login
+    PasswordAuthentication no   # deny regular auth
+    UsePAM no                   # deny PAM auth
+
+After that restart ssh deamon with *reload ssh*
+
+## Backup
+
+Use and configure that [upload script](https://github.com/nkcr/Google-Cloud-Storage-Upload). Combine the script with aes encryption. For both provide a key file.
+
+## Cron jobs
+
+    #
+    # Backup pgsql to google cloud
+    #
+    7 20 * * * resj python /home/resj/backup/script/upload_command.py "pg_dump resj_production | aescrypt -e -k /home/resj/backup/storage.key - " gs://backup-reseaujeunesse-ch/pgsql/$(date +\%Y-\%m-\%d-\%H\%M).sql.aes
+    7  2 * * * resj python /home/resj/backup/script/upload_command.py "pg_dump resj_production | aescrypt -e -k /home/resj/backup/storage.key - " gs://backup-reseaujeunesse-ch/pgsql/$(date +\%Y-\%m-\%d-\%H\%M).sql.aes
+    7  8 * * * resj python /home/resj/backup/script/upload_command.py "pg_dump resj_production | aescrypt -e -k /home/resj/backup/storage.key - " gs://backup-reseaujeunesse-ch/pgsql/$(date +\%Y-\%m-\%d-\%H\%M).sql.aes
+    7 14 *  * * resj python /home/resj/backup/script/upload_command.py "pg_dump resj_production | aescrypt -e -k /home/resj/backup/storage.key - " gs://backup-reseaujeunesse-ch/pgsql/$(date +\%Y-\%m-\%d-\%H\%M).sql.aes
+    #
+    # Daily rake task
+    #
+    7 3     * * *  resj     cd /home/resj/apps/resj/current && bundle exec rake sessions:cleanup RAILS_ENV=production
+
 ## Swap
 
     dd if=/dev/zero of=/swapfile bs=1024 count=256k
