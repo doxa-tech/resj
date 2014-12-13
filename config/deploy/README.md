@@ -3,6 +3,7 @@
 ## User
 
     adduser resj
+
     # visudo
     resj ALL=(ALL:ALL) ALL
 
@@ -11,8 +12,10 @@
     dd if=/dev/zero of=/swapfile bs=1024 count=256k
     mkswap /swapfile
     swapon /swapfile
-    vim /etc/fstab
+
+    # /etc/fstab
     /swapfile       none    swap    sw      0       0 
+
     echo 10 | sudo tee /proc/sys/vm/swappiness
     echo vm.swappiness = 10 | sudo tee -a /etc/sysctl.conf
     chown root:root /swapfile 
@@ -20,25 +23,25 @@
 
 ## Nginx
 
-Install
+### Install
 
     apt-get install nginx
 
-Remove default
+### Remove default
 
     rm /etc/nginx/sites-enabled/default
 
 ## Postgresql
 
-Install
+### Install
 
     apt-get install postgresql libpq-dev
 
-Setup
+### Setup
 
     sudo -u postgres psql
-    create role resj with createdb login password 'password';
-    create database resj_production owner resj;
+    > create role resj with createdb login password 'password';
+    > create database resj_production owner resj;
 
 ## Git
 
@@ -50,18 +53,19 @@ Setup
 
 ## Solr/Tomcat
 
-Install
+### Install
   
     apt-get install default-jdk
     apt-get install ant
     apt-get install tomcat7 tomcat7-admin
 
+    # download and move Solr in the right directory
     curl http://mirror.switch.ch/mirror/apache/dist/lucene/solr/4.10.2/solr-4.10.2.tgz | tar xz
     mv solr-4.10.2/ /usr/share/solr/
 
-Config
+### Config
 
-    vim /etc/tomcat7/tomcat-users.xml
+    # /etc/tomcat7/tomcat-users.xml
     <role rolename="manager-gui"/>
     <role rolename="admin-gui"/>
     <user username="tomcat" password="my_little_poney" roles="admin-gui,manager-gui"/>
@@ -73,11 +77,12 @@ Config
     cp /usr/share/solr/example/resources/log4j.properties /usr/share/tomcat7/lib
     vim /usr/share/tomcat7/lib/log4j.properties
 
-Modify `solr.log=/var/log/solr` in log4j.properties
+Set `solr.log=` with `/var/log/solr` # /usr/share/tomcat7/lib/log4j.properties
 
     mkdir /var/log/solr
     chown tomcat7 /var/log/solr
-    vim /etc/logrotate.d/solr
+
+    # /etc/logrotate.d/solr
     /var/log/solr/solr.log {
       copytruncate
       daily
@@ -87,14 +92,19 @@ Modify `solr.log=/var/log/solr` in log4j.properties
       create 640 tomcat7
     }
 
-
     cp /usr/share/solr/example/webapps/solr.war /usr/share/solr/example/solr/solr.war
+
     # Solr config for Tomcat
-    vim /etc/tomcat7/Catalina/localhost/solr.xml
+    # /etc/tomcat7/Catalina/localhost/solr.xml
+    <Context docBase="/usr/share/solr/example/solr/solr.war" debug="0" crossContext="true">
+        <Environment name="solr/home" type="java.lang.String" value="/usr/share/solr/example/solr" override="true" />
+    </Context>
+
     # Permissions
     chown -R tomcat7 /usr/share/solr/
 
-    vim /var/lib/tomcat7/webapps/solr/WEB-INF/web.xml
+    # Enable authentification for the solr app
+    # /var/lib/tomcat7/webapps/solr/WEB-INF/web.xml
     <security-constraint>
       <web-resource-collection>
         <web-resource-name>Solr GUI Authentication</web-resource-name>
@@ -115,22 +125,23 @@ Modify `solr.log=/var/log/solr` in log4j.properties
       <auth-method>BASIC</auth-method>
     </login-config>
 
-Modify `roles="manager-gui,admin-gui,solr-gui"` in tomcat-users.xml
-    
-
-## RVM and Ruby (deployer user)
-
-    gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
-    \curl -sSL https://get.rvm.io | bash -s stable --ruby
+Add `solr-gui` in your user's roles # /etc/tomcat7/tomcat-users.xml
 
 ## Imagemagick
 
     apt-get install imagemagick
 
+## RVM and Ruby
+
+run the commands logged as the deployer user
+
+    gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
+    \curl -sSL https://get.rvm.io | bash -s stable --ruby
+
 # Sever permissions
 Grant deployer user to write the config files and to execute the init scripts
     
-    # sudo visudo
+    # visudo
     resj ALL=(ALL) NOPASSWD: /etc/init.d/tomcat7
     resj ALL=(ALL) NOPASSWD: /etc/init.d/nginx
     resj ALL=(ALL) NOPASSWD: /etc/init.d/unicorn_resj
@@ -139,5 +150,6 @@ Grant deployer user to write the config files and to execute the init scripts
     resj ALL=(ALL) NOPASSWD: /bin/ln -* /* /usr/share/solr/example/solr/collection1/conf/*
 
 # First deployment
+
 first run `cap stage deploy:setup_config` and then edit the files with the secrets
 then run `cap stage deploy`
