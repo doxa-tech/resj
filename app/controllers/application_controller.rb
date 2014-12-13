@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
   # add different types of flash messages
   add_flash_types :error, :success, :notice, :infos
 
+  http_basic_authenticate_with name: "js-tech", password: Rails.application.secrets.basic_pswd if Rails.env.staging?
+
   before_action :set_locale, :on_ajax
 
   rescue_from ActionController::InvalidAuthenticityToken do |exception|

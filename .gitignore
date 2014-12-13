@@ -20,10 +20,6 @@ config/database.yml
 # Ignore application configuration
 config/secrets.yml
 
-solr/
-
-config/sunspot.yml
-
 public/uploads
 uploads
 *.log
