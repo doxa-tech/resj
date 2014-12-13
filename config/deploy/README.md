@@ -15,8 +15,8 @@ Copy public key to server
     
 In */etc/ssh/sshd_config* change the following fields 
 
-    Port 44             # change port connection
-    PermitRootLogin no  # deny root login
+    Port 44                     # change port connection
+    PermitRootLogin no          # deny root login
     PasswordAuthentication no   # deny regular auth
     UsePAM no                   # deny PAM auth
 
