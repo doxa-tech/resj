@@ -1,68 +1,85 @@
-require "bundler/capistrano"
- 
-server "146.185.183.84:77", :web, :app, :db, primary: true
- 
-set :application, "resj"
-set :user, "resj"
-set :deploy_to, "/home/#{user}/apps/#{application}"
-set :deploy_via, :remote_cache
-set :use_sudo, false
- 
+# config valid only for current version of Capistrano
+lock '3.3.3'
+
+set :application, 'resj'
+set :deploy_user, 'resj'
+
 set :scm, "git"
-set :repository, "git@github.com:khcr/resj.git"
-set :branch, "master"
- 
-default_run_options[:pty] = true
-ssh_options[:forward_agent] = true
- 
-after "deploy", "deploy:cleanup" # keep only the last 5 releases
- 
+set :repo_url, 'git@github.com:khcr/resj.git'
+
+# Default branch is :master
+ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
+
+# Default deploy_to directory is /var/www/my_app_name
+set :deploy_to, "/home/#{fetch(:deploy_user)}/apps/#{fetch(:application)}"
+
+# Default value for :format is :pretty
+# set :format, :pretty
+
+# Default value for :log_level is :debug
+# set :log_level, :debug
+
+# Default value for :pty is false
+# set :pty, false
+
+set :server_files, [
+  {
+    name: 'nginx.conf.erb',
+    path: "/etc/nginx/sites-enabled/#{fetch(:application)}",
+  },
+  {
+    name: 'unicorn_init.sh.erb',
+    path: "/etc/init.d/unicorn_#{fetch(:application)}",
+    executable: true
+  },
+  {
+    name: 'schema.xml',
+    path: '/usr/share/solr/example/solr/collection1/conf/schema.xml',
+    permission: "a+r"
+  },
+  {
+    name: 'solrconfig.xml',
+    path: '/usr/share/solr/example/solr/collection1/conf/solrconfig.xml',
+    permission: "a+r"
+  }
+]
+
+# Default value for :linked_files is []
+# set :linked_files, fetch(:linked_files, []).push('config/database.yml')
+set :linked_files, %w{config/database.yml config/secrets.yml config/sunspot.yml config/unicorn.rb}
+
+# Default value for linked_dirs is []
+set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+
+set :bundle_binstubs, nil
+
+# Default value for default_env is {}
+# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+
+# Default value for keep_releases is 5
+set :keep_releases, 5
+
+set :maintenance_template_path, "config/deploy/templates/maintenance.html.erb"
+
+
 namespace :deploy do
-  %w[start stop restart].each do |command|
-    desc "#{command} unicorn server"
-    task command, roles: :app, except: {no_release: true} do
-      run "/etc/init.d/unicorn_#{application} #{command}"
-    end
-  end
+  # make sure we're deploying what we think we're deploying
+  before :deploy, "deploy:check_revision"
 
-  task :setup_config, roles: :app do
-    sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
-    sudo "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
-    run "mkdir -p #{shared_path}/config"
-    put File.read("config/database.example.yml"), "#{shared_path}/config/database.yml"
-    put File.read("config/sunspot.example.yml"), "#{shared_path}/config/sunspot.yml"
-    put File.read("config/secrets.example.yml"), "#{shared_path}/config/secrets.yml"
-    puts "Now edit the config files in #{shared_path}."
-  end
-  after "deploy:setup", "deploy:setup_config"
+  # cleanup
+  after :finishing, 'deploy:cleanup'
 
-  task :symlink_config, roles: :app do
-    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-    run "ln -nfs #{shared_path}/config/sunspot.yml #{release_path}/config/sunspot.yml"
-    run "ln -nfs #{shared_path}/config/secrets.yml #{release_path}/config/secrets.yml"
-  end
-  after "deploy:finalize_update", "deploy:symlink_config"
+  before 'deploy:started', 'deploy:setup_config'
 
-  task :reindex, roles: :app do
-    run "cd #{release_path} && bundle exec rake RAILS_ENV=#{rails_env} sunspot:reindex"
-  end
-  after "deploy:finalize_update", "deploy:reindex"
+  # reload nginx to it will pick up any modified vhosts from
+  # setup_config
+  after 'deploy:setup_config', 'nginx:reload'
+  after 'deploy:setup_config', 'solr:restart'
 
-  desc "Make sure local git is in sync with remote."
-  task :check_revision, roles: :web do
-    unless `git rev-parse HEAD` == `git rev-parse origin/master`
-      puts "WARNING: HEAD is not the same as origin/master"
-      puts "Run `git push` to sync changes."
-      exit
-    end
-  end
-  before "deploy", "deploy:check_revision"
+  # As of Capistrano 3.1, the `deploy:restart` task is not called
+  # automatically.
+  after 'deploy:publishing', 'deploy:restart'
 
-  desc "Update SOLR config"
-  task :update_solr, roles: :app do
-    put File.read("config/solr/solrconfig.xml"), "/usr/share/solr/example/solr/collection1/conf/solrconfig.xml"
-    put File.read("config/solr/schema.xml"), "/usr/share/solr/example/solr/collection1/conf/schema.xml"
-    run "sudo /etc/init.d/tomcat7 restart"
-  end
-
+  after 'deploy:publishing', 'solr:reindex'
+  after 'solr:reindex', 'solr:restart'
 end

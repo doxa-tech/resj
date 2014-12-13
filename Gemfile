@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.6'
+gem 'rails', '4.1.8'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', group: :development
@@ -49,9 +49,19 @@ gem 'unicorn', '~> 4.8.2'
 gem 'unicorn-worker-killer'
 
 # Use Capistrano for deployment
+gem 'capistrano', '~> 3.3.0'
+gem 'capistrano-maintenance', github: "capistrano/maintenance", require: false 
+
+# rails specific capistrano funcitons
+gem 'capistrano-rails', '~> 1.1.0'
+
+# integrate bundler with capistrano
+gem 'capistrano-bundler'
+
+# if you are using RBENV
+gem 'capistrano-rvm'
 
 group :development do
-	gem 'capistrano', '~> 2.15'
 	gem 'railroady'
 	gem "rails-erd"
 end
