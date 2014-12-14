@@ -9,7 +9,13 @@
 
 ## Local and Date
 
+To set the date
+
     sudo dpkg-reconfigure tzdata
+    
+If locales are not set and you got message *perl: warning: Setting locale failed.*
+
+    sudo locale-gen fr_CH.UTF-8 # you can see your local with *locale*
 
 ## SSH
 
@@ -46,11 +52,17 @@ TODO
 
 ### Restore
 
+Hints : to copy with scp : "$ scp -r -P 44 user@12.34.56.78:folder ~/Desktop"
+
     sudo -u postgres psql
     # if there is alread a database
     > drop database resj_staging; # if needed, /etc/init.d/unicorne_resj stop
-    > create database resj_staging;
-    > resj_staging < infile
+    > create database resj_staging owner resj;
+    > \q
+    
+    sudo -u postgres psql resj_staging < backup.txt
+    sudo /etc/init.d/unicorne_resj restart
+    
 
 ## Cron jobs (backup and daily rake task)
 
