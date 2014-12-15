@@ -38,8 +38,10 @@
 			text-align: center;
 			line-height: 15px;
 			padding: 10px;
-			margin-bottom: 2px;
-			background: rgb(234, 234, 234);
+			&.list {
+				margin-bottom: 2px;
+				background: rgb(234, 234, 234);
+			}
 			img {
 				max-width: 100%;
 			}
