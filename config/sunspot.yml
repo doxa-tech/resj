@@ -7,6 +7,5 @@ development:
 test:
   solr:
     hostname: localhost
-    port: 8080
-    path: /solr
+    port: 8981
     log_level: WARNING
