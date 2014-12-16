@@ -11,7 +11,7 @@ class BaseTable
 	end
 
 	def records
-		if options[:search]
+		if options[:search].present?
 			collection.joins(search_associations).where(query_fields, query: "%#{h.params[:query]}%", id: h.params[:query].to_i).order(sort_column + " " + sort_direction)
 		else
 			collection.includes(belongs_to_associations).order(sort_column + " " + sort_direction)

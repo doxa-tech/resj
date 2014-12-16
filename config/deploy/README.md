@@ -96,7 +96,7 @@ Set `solr.log=` with `/var/log/solr` # /usr/share/tomcat7/lib/log4j.properties
 
     # Solr config for Tomcat
     # /etc/tomcat7/Catalina/localhost/solr.xml
-    <Context docBase="/usr/share/solr/example/solr/solr.war" debug="0" crossContext="true">
+    <Context docBase="/usr/share/solr/example/solr/solr.war" crossContext="true">
         <Environment name="solr/home" type="java.lang.String" value="/usr/share/solr/example/solr" override="true" />
     </Context>
 
@@ -125,7 +125,7 @@ Set `solr.log=` with `/var/log/solr` # /usr/share/tomcat7/lib/log4j.properties
       <auth-method>BASIC</auth-method>
     </login-config>
 
-Add `solr-gui` in your user's roles # /etc/tomcat7/tomcat-users.xml
+Add `<role rolename="solr-gui"/>` and `solr-gui` in your user's roles # /etc/tomcat7/tomcat-users.xml
 
 ## Imagemagick
 
@@ -151,5 +151,6 @@ Grant deployer user to write the config files and to execute the init scripts
 
 # First deployment
 
-first run `cap stage deploy:setup_config` and then edit the files with the secrets
-then run `cap stage deploy`
+First run `cap stage deploy:setup_config` and then edit the files with the secrets
+
+Finally run `cap stage deploy`
