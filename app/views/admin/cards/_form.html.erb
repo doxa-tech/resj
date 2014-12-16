@@ -151,6 +151,12 @@
 						<%= f.text_field :tag_names, class: "selectize-tags" %>
 					</li>
 				</ul>
+				<ul>
+					<li>
+						<%= f.label :status_id %>
+						<%= f.collection_select :status_id, Status.all, :id, :name, {}, { class: "selectize" } %>
+					</li>
+				</ul>
 				<div class="header">
 					<h3>Affiliations</h3>
 				</div>

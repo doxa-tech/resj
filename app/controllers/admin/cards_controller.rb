@@ -47,7 +47,7 @@ class Admin::CardsController < Admin::BaseController
 	private
 
   def card_params
-  	params.require(:card).permit(:name, :description, :street, :location_id, :email, :place, :latitude, :longitude, :website, :password_digest, :card_type_id, :current_step, :tag_names, :avatar, :banner, :remove_banner, :remove_avatar, { parent_ids: [] }, responsables_attributes: [:id, :firstname, :lastname, :email, :_destroy, :is_contact], affiliations_attributes: [:id, :name, :_destroy])
+  	params.require(:card).permit(:name, :description, :street, :location_id, :status_id, :email, :place, :latitude, :longitude, :website, :password_digest, :card_type_id, :current_step, :tag_names, :avatar, :banner, :remove_banner, :remove_avatar, { parent_ids: [] }, responsables_attributes: [:id, :firstname, :lastname, :email, :_destroy, :is_contact], affiliations_attributes: [:id, :name, :_destroy])
   end
 
   def current_resource
