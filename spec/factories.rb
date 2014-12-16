@@ -33,7 +33,7 @@ FactoryGirl.define do
     latitude 46
     longitude 7
     website "waykup.ch"
-    user { User.find_or_create_by(firstname: "Bill", lastname: "Gates", email: "bill@gates.com") }
+    user { if @user = User.find_by_email("bill@gates.com") then @user else create(:user, firstname: "Bill", lastname: "Gates") end }
     location { Location.find_by_official_name("Bulle") }
     status { Status.find_by_name("En cours de validation") }
     card_type { CardType.find_by_name("Groupe de jeunes") }
