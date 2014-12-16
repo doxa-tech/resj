@@ -9,3 +9,7 @@ before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
 script: rake travis:travis
+notifications:
+  email:
+    - nkcr.je@gmail.com
+    - kocher.ke@gmail.com

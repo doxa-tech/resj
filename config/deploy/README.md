@@ -7,6 +7,77 @@
     # visudo
     resj ALL=(ALL:ALL) ALL
 
+## Local and Date
+
+To set the date
+
+    sudo dpkg-reconfigure tzdata
+    
+If locales are not set and you got message *perl: warning: Setting locale failed.*
+
+    sudo locale-gen fr_CH.UTF-8 # you can see your local with *locale*
+
+## SSH
+
+Copy public key to server
+
+    cat ~/.ssh/id_rsa.pub | ssh user@123.45.56.78 "mkdir -p ~/.ssh && cat >>  ~/.ssh/authorized_keys"
+    
+In */etc/ssh/sshd_config* change the following fields 
+
+    Port 44                     # change port connection
+    PermitRootLogin no          # deny root login
+    PasswordAuthentication no   # deny regular auth
+    UsePAM no                   # deny PAM auth
+
+After that restart ssh deamon with *reload ssh*
+
+Little sugar (make your terminal red under Mac) :
+
+    function tabc() {
+    NAME=$1; if [ -z "$NAME" ]; then NAME="Pro"; fi
+    osascript -e "tell application \"Terminal\" to set current settings of front window to settings set \"$NAME\""
+    }
+    EDITOR='subl -w'
+    alias sshresj="tabc SSH-Theme; ssh resj@146.185.183.84 -p 77; tabc"
+    alias ssheebulle="tabc SSH-Theme; ssh eebulle@146.185.163.64 -p 77; tabc"
+
+## Backup
+
+Use and configure that [upload script](https://github.com/nkcr/Google-Cloud-Storage-Upload). Combine the script with aes encryption. For both provide a key file.
+
+### Install aescrypt for backup encryption
+
+TODO
+
+### Restore
+
+Hints : to copy with scp : "$ scp -r -P 44 user@12.34.56.78:folder ~/Desktop"
+
+    sudo -u postgres psql
+    # if there is alread a database
+    > drop database resj_staging; # if needed, /etc/init.d/unicorne_resj stop
+    > create database resj_staging owner resj;
+    > \q
+    
+    sudo -u postgres psql resj_staging < backup.txt
+    sudo /etc/init.d/unicorne_resj restart
+    
+
+## Cron jobs (backup and daily rake task)
+
+    #
+    # Backup pgsql to google cloud
+    #
+    7 20 * * * resj python /home/resj/backup/script/upload_command.py "pg_dump resj_production | aescrypt -e -k /home/resj/backup/storage.key - " gs://backup-reseaujeunesse-ch/pgsql/$(date +\%Y-\%m-\%d-\%H\%M).sql.aes
+    7  2 * * * resj python /home/resj/backup/script/upload_command.py "pg_dump resj_production | aescrypt -e -k /home/resj/backup/storage.key - " gs://backup-reseaujeunesse-ch/pgsql/$(date +\%Y-\%m-\%d-\%H\%M).sql.aes
+    7  8 * * * resj python /home/resj/backup/script/upload_command.py "pg_dump resj_production | aescrypt -e -k /home/resj/backup/storage.key - " gs://backup-reseaujeunesse-ch/pgsql/$(date +\%Y-\%m-\%d-\%H\%M).sql.aes
+    7 14 *  * * resj python /home/resj/backup/script/upload_command.py "pg_dump resj_production | aescrypt -e -k /home/resj/backup/storage.key - " gs://backup-reseaujeunesse-ch/pgsql/$(date +\%Y-\%m-\%d-\%H\%M).sql.aes
+    #
+    # Daily rake task
+    #
+    7 3     * * *  resj     cd /home/resj/apps/resj/current && bundle exec rake sessions:cleanup RAILS_ENV=production
+
 ## Swap
 
     dd if=/dev/zero of=/swapfile bs=1024 count=256k
