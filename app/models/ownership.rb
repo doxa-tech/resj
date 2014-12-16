@@ -1,4 +1,5 @@
 class Ownership < ActiveRecord::Base
+  include AutosaveAssociatedRecords
   scope :permission, -> { includes(:ownership_type).joins(:element) }
 
 	belongs_to :element
@@ -15,11 +16,7 @@ class Ownership < ActiveRecord::Base
   validates :ownership_type_id, presence: true
 
 	def autosave_associated_records_for_actions
-    new_actions = []
-    actions.reject{ |r| r._destroy == true}.each do |action|
-      new_actions << Action.where(name: action.name).first_or_create
-    end
-    self.actions = new_actions
+    self.actions = find_or_create_related(Action, actions)
   end
 
   searchable do

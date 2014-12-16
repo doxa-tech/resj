@@ -33,7 +33,7 @@ FactoryGirl.define do
     latitude 46
     longitude 7
     website "waykup.ch"
-    association :user, firstname: "Bill", lastname: "Gates", email: "bill@gates.com"
+    user { User.find_or_create_by(firstname: "Bill", lastname: "Gates", email: "bill@gates.com") }
     location { Location.find_by_official_name("Bulle") }
     status { Status.find_by_name("En cours de validation") }
     card_type { CardType.find_by_name("Groupe de jeunes") }
@@ -99,5 +99,9 @@ FactoryGirl.define do
     name "Changer la bannière"
     content "Rendez-vous sur la page de votre groupe..."
     category { HelpCategory.find_by_name("Profil / gestion d'une oeuvre") }
+  end
+
+  factory :card_affiliation, class: Affiliation do
+    name 'Eglise de Bulle'
   end
 end

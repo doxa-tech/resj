@@ -1,4 +1,5 @@
 class Card < ActiveRecord::Base
+  include AutosaveAssociatedRecords
   include Wizard
   include CardValidation
   include CardSearch
@@ -94,11 +95,7 @@ class Card < ActiveRecord::Base
   end
 
   def autosave_associated_records_for_affiliations
-    new_affiliations = []
-    affiliations.reject{ |r| r._destroy == true}.each do |affiliation|
-      new_affiliations << Affiliation.where(name: affiliation.name).first_or_create
-    end
-    self.affiliations = new_affiliations
+    self.affiliations = find_or_create_related(Affiliation, affiliations)
   end
 
   def create_owner(owner)
