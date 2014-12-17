@@ -32,6 +32,17 @@
 		width: 200px;
 		border: none;
 	}
+
+	#status {
+		.block {
+			background: rgb(232, 232, 255);
+			padding: 10px;
+			font-size: 13px;
+			.status-name {
+				font-weight: bold;
+			}
+		}
+	}
 	
 	.card-form {text-align: right}
 

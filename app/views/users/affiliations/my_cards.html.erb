@@ -18,7 +18,7 @@
 					<% else %>
 						<% @confirmed_paginate.each do |card| %>
 							<li>
-								<%= card.name %> 
+								<span class="fi-<%= (card.status.name == 'En ligne') ? 'check' : 'x' %>" title="Indique le status. Pour en savoir plus éditez."></span> <%= card.name %>
 								<% if current_permission.allow_modify?('cards', 'edit', card) %>
 									<%= render 'application/admin/edit_btn', path: overview_card_path(card) %>
 								<% else %>

@@ -11,6 +11,16 @@
 				<h2><%= @card.card_type.name %> : <%= @card.name %></h2>
 				<p><span class="fi-torsos"></span> <%= link_to 'Gérer les utilisateurs et co-responsable', team_card_path(@card) %></p>
 			</div>
+		</div>
+	</div>
+	<div class="col split1" id="status">
+		<div class="block">
+			<p>Status : <span class="status-name"><%= @card.status.name %></span></p>
+			<p>Le status indique si votre groupe est en ligne, en cours de validation, incomplet ou nécessite une action.</p>
+		</div>
+	</div>
+	<div class="col split1">
+		<div class="block">
 			<ul>
 
 				<li class="in-place">
