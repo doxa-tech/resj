@@ -18,7 +18,7 @@ class SessionsController < BaseController
 			@message = t('session.create.error')
 			respond_to do |format|
 				format.html do 
-					flash.now[:error] = t('session.create.error')
+					flash.now[:error] = @message 
 					render 'new'
 				end
 				format.js { render 'error' }

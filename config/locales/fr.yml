@@ -201,6 +201,11 @@ fr:
         statuses: "Statuts"
         card_statuses: "Statuts des groupes"
         help_pages: "Pages d'aide"
+  article:
+    create:
+      success: "Article créé"
+    edit:
+      success: "Article mis à jour"
   card:
     create:
       title: "Enregistrer un nouveau groupe"
@@ -481,6 +486,7 @@ fr:
     current_password: "Mot de passe actuel"
     theme_ids: "Thèmes"
     disabled: "Désactivé"
+    published_at: "A publier le"
   activerecord:
     attributes:
       card:

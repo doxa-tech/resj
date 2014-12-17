@@ -9,7 +9,8 @@ class ArticleTable < BaseTable
 			element.image_url,
 			element.likes,
 			element.created_at,
-			element.updated_at
+			element.updated_at,
+			element.published_at
 		]
 	end
 

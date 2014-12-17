@@ -3,6 +3,8 @@ class Article < ActiveRecord::Base
   has_many :article_themes
   has_many :themes, through: :article_themes
 
+  scope :published, -> { where("published_at < ?", Time.now).includes(:user) }
+
   mount_uploader :image, ArticlesUploader
 
   validates :title, presence: true, length: { maximum: 60 }

@@ -33,7 +33,7 @@ FactoryGirl.define do
     latitude 46
     longitude 7
     website "waykup.ch"
-    user { if @user = User.find_by_email("bill@gates.com") then @user else create(:user, firstname: "Bill", lastname: "Gates") end }
+    user { User.find_by_email("bill@gates.com") || create(:user, firstname: "Bill", lastname: "Gates") }
     location { Location.find_by_official_name("Bulle") }
     status { Status.find_by_name("En cours de validation") }
     card_type { CardType.find_by_name("Groupe de jeunes") }
@@ -89,6 +89,12 @@ FactoryGirl.define do
     user { User.find_by_firstname_and_lastname('Patrick', 'Dujardin') || create(:user, firstname: 'Patrick', lastname: 'Dujardin') }
     image { File.open("#{Rails.root}/public/test/articles/image_example.jpg") }
     themes { [Theme.first] }
+    published_at { 1.day.ago }
+
+    factory :unpublished_article do
+      published_at { 1.day.from_now }
+    end
+
   end
 
   factory :action do 

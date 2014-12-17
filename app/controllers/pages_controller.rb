@@ -2,7 +2,7 @@ class PagesController < BaseController
 
 	def home
 		@page = Page.find_by_name('home')
-		@article = Article.last(10).sample
+		@article = Article.published.last(10).sample
 		@card_count = Card.count
 		@orator_count = Orator.count
 		@doc_count = Document.count
@@ -19,7 +19,7 @@ class PagesController < BaseController
 
 	def resources
 		@page = Page.find_by_name('resources')
-		@article = Article.last
+		@article = Article.published.last
 		@subjects = Subject.order("updated_at DESC").first(4)
 	end
 
