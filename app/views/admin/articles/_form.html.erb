@@ -5,20 +5,49 @@
 
 	<%= render 'error_messages', object: f.object %>
 
-	<%= f.label :title %>
-	<%= f.text_field :title %>
-
-	<%= f.label :content %>
-	<%= f.text_area :content, class: "ckeditor-article" %>
-
-	<%= f.label :published_at %>
-	<%= f.datetime_select :published_at %>
-
-	<%= f.label :theme_ids %>
-	<%= f.collection_select :theme_ids, Theme.all, :id, :name, {include_blank: "Sélectionnez des thèmes"}, {class: "selectize-themes", multiple: true} %>
-
-	<%= f.label :image %>
-	<%= f.file_field :image %>
+	<div class="col split1">
+		<div class="block">
+			<div class="header">
+				<h2>Informations Générales</h2>
+			</div>
+			<ul>
+				<li>
+					<%= f.label :title %>
+					<%= f.text_field :title %>
+				</li>
+				<li>
+					<%= f.label :content %>
+					<%= f.text_area :content %>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col split2">
+			<div class="block">
+				<ul>
+					<li>
+						<%= f.label :published_at %>
+						<%= f.datetime_select :published_at %>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col split2">
+			<div class="block">
+				<ul>
+					<li>
+						<%= f.label :theme_ids %>
+						<%= f.collection_select :theme_ids, Theme.all, :id, :name, {include_blank: "Sélectionnez des thèmes"}, {class: "selectize-themes", multiple: true} %>
+					</li>
+					<li>
+						<%= f.label :image %>
+						<%= f.file_field :image %>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 
 	<%= f.submit %>
 
