@@ -1,16 +1,16 @@
-namespace :solr do
+namespace :tire do
   desc "Create and update the config files"
   task :reindex do
     on roles(:app) do
       within current_path do
-        execute :bundle, :exec, :rake, "RAILS_ENV=#{fetch(:rails_env)} sunspot:reindex"
+        execute :bundle, :exec, :rake, "RAILS_ENV=#{fetch(:rails_env)} environment tire:import:all FORCE=true"
       end
     end
   end
 
   task :restart do
     on roles(:app) do
-      sudo "/etc/init.d/tomcat7 restart"
+      sudo "/etc/init.d/elasticsearch restart"
     end
   end
 end

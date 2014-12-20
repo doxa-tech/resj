@@ -73,8 +73,7 @@ end
 gem 'will_paginate', '~> 3.0.5'
 
 # search
-gem 'sunspot_rails', '~> 2.1.0'
-
+gem 'tire'
 
 # image & video uploader
 gem 'carrierwave', '~> 0.10.0'
@@ -98,11 +97,5 @@ group :development, :test do
 	gem 'email_spec'
 	gem 'faker'
 end
-
-group :test do
-	gem 'sunspot_solr'
-end
-
-
 
 gem 'coveralls', require: false

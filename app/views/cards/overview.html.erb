@@ -69,7 +69,7 @@
 					<p><%= @card.location.full_name %></p>
 					<%= form_for @card, remote: true do |f| %>
 						<% location = f.object.location %>
-						<%= f.collection_select :location_id, (location.nil? ? [] : [location] ), :id, :full_name, {include_blank: "Select a city"}, {class: "selectize-location"} %>
+						<%= f.collection_select :location_id, (location.nil? ? [] : [location] ), :id, :full_name, {include_blank: "Sélectionnez une ville"}, {class: "selectize-location"} %>
 						<%= f.submit %>
 					<% end %>
 				</li>
