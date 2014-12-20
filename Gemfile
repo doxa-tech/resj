@@ -15,8 +15,6 @@ gem 'jquery-rails', '~> 3.1.0'
 gem 'jquery-ui-rails', '~> 5.0.0'
 # add the jquery plugin selectize.js
 gem "selectize-rails", '~> 0.11.0'
-# CK Editor WYSIWYG
-gem 'ckeditor_rails', '~> 4.4.3'
 # Jquery select plugin
 gem 'multi-select-rails'
 # Paloma JS integration
