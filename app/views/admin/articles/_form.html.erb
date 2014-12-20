@@ -17,14 +17,17 @@
 				<li>
 
 					<%= f.label :content %>
-					<small><pre>
+					<small>
+						Exemple :
+						<pre>
 <%= "<header>Titre</header>" %>
 <%= "<p>" %>
 <%= "  Text de l'article <strong>en gras</strong> <em>en italique</em>.<br>" %>
 <%= "  Retours à la ligne" %>
 <%= "</p>" %>
 <%= "<q>Text en exergue</q>" %>
-<%= "<footer><p>Bas de l'article, copyright / signature</p></footer>" %></pre> 
+<%= "<footer><p>Bas de l'article, copyright/signature</p></footer>" %>
+						</pre> 
 					</small>
 					<%= f.text_area :content %>
 				</li>
