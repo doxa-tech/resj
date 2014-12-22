@@ -5,10 +5,11 @@ install:
   - bundle install
 cache: bundler
 before_script: 
-  - curl -sSL https://raw.githubusercontent.com/moliware/travis-solr/master/travis-solr.sh | SOLR_VERSION=4.6.1 bash
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
 script: rake travis:travis
+services:
+  - elasticsearch
 notifications:
   email:
     - nkcr.je@gmail.com
