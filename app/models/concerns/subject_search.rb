@@ -29,7 +29,7 @@ module SubjectSearch
   module ClassMethods
 
     def search(params)
-      search = Subject.tire.search(load: true) do |s|
+      search = Subject.tire.search(load: true, per_page: Subject.count) do |s|
         s.query do |q|
           q.filtered do |f|
             unless params[:query].blank?
@@ -41,7 +41,7 @@ module SubjectSearch
           end
         end
       end
-      @subjects = search.results.paginate(page: params[:page])
+      @subjects = search.results
     end
 
   end

@@ -32,7 +32,7 @@ module CardSearch
   module ClassMethods
 
     def search(params)
-      search = Card.tire.search(load: true) do |s|
+      search = Card.tire.search(load: true, per_page: Card.count) do |s|
         s.query do |q|
           q.filtered do |f|
             unless params[:query].blank?
@@ -43,7 +43,7 @@ module CardSearch
             f.filter :terms, canton_id: params[:canton_ids] unless params[:canton_ids].blank?
             f.filter :terms, card_type_id: params[:card_type_ids] unless params[:card_type_ids].blank?
             f.filter :terms, tag_ids: params[:tag_ids] unless params[:tag_ids].blank?
-            f.filter :term, status_name: "En ligne"
+            #f.filter :term, status_name: "En ligne"
           end
         end
       end

@@ -32,7 +32,7 @@ module OratorSearch
   module ClassMethods
 
     def search(params)
-      search = Orator.tire.search(load: true) do |s|
+      search = Orator.tire.search(load: true, per_page: Orator.count) do |s|
         s.query do |q|
           q.filtered do |f|
             unless params[:query].blank?
@@ -47,7 +47,7 @@ module OratorSearch
         end
         s.sort { by :lastname, 'asc' }
       end
-      @orators = search.results.paginate(page: params[:page])
+      @orators = search.results
     end
 
   end
