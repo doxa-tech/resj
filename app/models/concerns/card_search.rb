@@ -11,7 +11,6 @@ module CardSearch
     settings settings do
       mapping do
         indexes :name, analyzer: "partial_french"
-        indexes :sorted_name, index: :not_analyzed, as: "name"
         indexes :canton_id, index: :not_analyzed, type: "integer", as: "location.canton.id"
         indexes :canton_name, as: "location.canton.name"
         indexes :card_type_id, index: :not_analyzed, type: "integer", as: "card_type.id"
@@ -46,9 +45,6 @@ module CardSearch
             f.filter :terms, tag_ids: params[:tag_ids] unless params[:tag_ids].blank?
             f.filter :term, status_name: "En ligne"
           end
-        end
-        s.sort do |sort|
-          sort.by :sorted_name, { order: :asc, ignore_unmapped: true }
         end
       end
       @cards = search.results
