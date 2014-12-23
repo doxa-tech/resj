@@ -133,6 +133,11 @@ Visit the website to get the last instructions http://www.elasticsearch.org/guid
     apt-get update && sudo apt-get install elasticsearch
     sudo update-rc.d elasticsearch defaults 95 10
 
+### Config
+
+Set the `ES_HEAP_SIZE` variable in the service init script
+Set `bootstrap.mlockall` in elasticsearch.yml
+
 ## Imagemagick
 
     apt-get install imagemagick
