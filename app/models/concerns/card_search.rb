@@ -47,7 +47,7 @@ module CardSearch
           end
         end
         s.sort do |sort|
-          sort.by :name, { order: 'asc', ignore_unmapped: true }
+          sort.by :name, { order: :asc, ignore_unmapped: true }
         end
       end
       @cards = search.results
