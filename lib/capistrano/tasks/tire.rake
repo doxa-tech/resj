@@ -3,7 +3,11 @@ namespace :tire do
   task :reindex do
     on roles(:app) do
       within current_path do
-        execute :bundle, :exec, :rake, "RAILS_ENV=#{fetch(:rails_env)} environment tire:import:all FORCE=true"
+        begin
+          execute :bundle, :exec, :rake, "RAILS_ENV=#{fetch(:rails_env)} environment tire:import:all FORCE=true"
+        rescue
+          puts "Failed to import"
+        end
       end
     end
   end
