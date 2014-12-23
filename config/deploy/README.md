@@ -122,81 +122,21 @@ Hints : to copy with scp : "$ scp -r -P 44 user@12.34.56.78:folder ~/Desktop"
 
     apt-get install nodejs
 
-## Solr/Tomcat
+## Elasticsearch
+
+Visit the website to get the last instructions http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/setup-repositories.html
 
 ### Install
   
-    apt-get install default-jdk
-    apt-get install ant
-    apt-get install tomcat7 tomcat7-admin
-
-    # download and move Solr in the right directory
-    curl http://mirror.switch.ch/mirror/apache/dist/lucene/solr/4.10.2/solr-4.10.2.tgz | tar xz
-    mv solr-4.10.2/ /usr/share/solr/
+    wget -qO - https://packages.elasticsearch.org/GPG-KEY-elasticsearch | sudo apt-key add -
+    add-apt-repository "deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main"
+    apt-get update && sudo apt-get install elasticsearch
+    sudo update-rc.d elasticsearch defaults 95 10
 
 ### Config
 
-    # /etc/tomcat7/tomcat-users.xml
-    <role rolename="manager-gui"/>
-    <role rolename="admin-gui"/>
-    <user username="tomcat" password="my_little_poney" roles="admin-gui,manager-gui"/>
-
-    # Java libraries
-    cp /usr/share/solr/example/lib/ext/* /usr/share/tomcat7/lib/
-
-    # Logs
-    cp /usr/share/solr/example/resources/log4j.properties /usr/share/tomcat7/lib
-    vim /usr/share/tomcat7/lib/log4j.properties
-
-Set `solr.log=` with `/var/log/solr` # /usr/share/tomcat7/lib/log4j.properties
-
-    mkdir /var/log/solr
-    chown tomcat7 /var/log/solr
-
-    # /etc/logrotate.d/solr
-    /var/log/solr/solr.log {
-      copytruncate
-      daily
-      rotate 5
-      compress
-      missingok
-      create 640 tomcat7
-    }
-
-    cp /usr/share/solr/example/webapps/solr.war /usr/share/solr/example/solr/solr.war
-
-    # Solr config for Tomcat
-    # /etc/tomcat7/Catalina/localhost/solr.xml
-    <Context docBase="/usr/share/solr/example/solr/solr.war" crossContext="true">
-        <Environment name="solr/home" type="java.lang.String" value="/usr/share/solr/example/solr" override="true" />
-    </Context>
-
-    # Permissions
-    chown -R tomcat7 /usr/share/solr/
-
-    # Enable authentification for the solr app
-    # /var/lib/tomcat7/webapps/solr/WEB-INF/web.xml
-    <security-constraint>
-      <web-resource-collection>
-        <web-resource-name>Solr GUI Authentication</web-resource-name>
-        <url-pattern>/*</url-pattern>
-        <http-method>GET</http-method>
-        <http-method>POST</http-method>
-      </web-resource-collection>
-      <auth-constraint>
-        <role-name>solr-gui</role-name>
-      </auth-constraint>
-
-      <user-data-constraint>
-        <transport-guarantee>NONE</transport-guarantee>
-      </user-data-constraint>
-    </security-constraint>
-
-    <login-config>
-      <auth-method>BASIC</auth-method>
-    </login-config>
-
-Add `<role rolename="solr-gui"/>` and `solr-gui` in your user's roles # /etc/tomcat7/tomcat-users.xml
+Set the `ES_HEAP_SIZE` variable in the service init script
+Set `bootstrap.mlockall` in elasticsearch.yml
 
 ## Imagemagick
 
@@ -213,15 +153,16 @@ run the commands logged as the deployer user
 Grant deployer user to write the config files and to execute the init scripts
     
     # visudo
-    resj ALL=(ALL) NOPASSWD: /etc/init.d/tomcat7
+    resj ALL=(ALL) NOPASSWD: /etc/init.d/elasticsearch
     resj ALL=(ALL) NOPASSWD: /etc/init.d/nginx
     resj ALL=(ALL) NOPASSWD: /etc/init.d/unicorn_resj
     resj ALL=(ALL) NOPASSWD: /bin/ln -* /* /etc/init.d/unicorn_resj
     resj ALL=(ALL) NOPASSWD: /bin/ln -* /* /etc/nginx/sites-enabled/*
-    resj ALL=(ALL) NOPASSWD: /bin/ln -* /* /usr/share/solr/example/solr/collection1/conf/*
 
 # First deployment
 
 First run `cap stage deploy:setup_config` and then edit the files with the secrets
 
 Finally run `cap stage deploy`
+
+To run unicorn on startup run `sudo update-rc.d unicorn_resj defaults`

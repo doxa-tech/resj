@@ -7,7 +7,7 @@ class Card < ActiveRecord::Base
 
   scope :regional, -> { joins(:card_type).where(card_types: {name: "Réseau régional"}) }
   scope :with_card_type, -> { includes(:card_type) }
-  scope :active, -> { joins(:status).where(statuses: { name: "En ligne"}) }
+  scope :active, -> { joins(:status).where(statuses: { name: "En ligne" }) }
 
   belongs_to :card_type
   belongs_to :user #owner of the card
@@ -18,7 +18,7 @@ class Card < ActiveRecord::Base
   has_many :affiliations, through: :card_affiliations
 
   has_many :taggings, dependent: :destroy
-  has_many :tags, through: :taggings
+  has_many :tags, through: :taggings, after_remove: :update_index
 
   has_many :verificator_comments
 

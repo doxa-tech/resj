@@ -19,11 +19,6 @@ class Ownership < ActiveRecord::Base
     self.actions = find_or_create_related(Action, actions)
   end
 
-  searchable do
-    text :element_name
-    text :user_name    
-  end
-
   def element_name
     element.name
   end

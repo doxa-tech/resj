@@ -50,7 +50,7 @@
 					<li>
 						<%= f.label :location_id %>
 						<% location = f.object.location %>
-						<%= f.collection_select :location_id, (location.nil? ? [] : [location] ), :id, :full_name, {include_blank: "Select a city"}, {class: "selectize-location"} %>
+						<%= f.collection_select :location_id, (location.nil? ? [] : [location] ), :id, :full_name, {include_blank: "Sélectionnez une ville"}, {class: "selectize-location"} %>
 					</li>
 				</ul>
 				<ul>

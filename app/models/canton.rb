@@ -1,13 +1,8 @@
 class Canton < ActiveRecord::Base
+  include TireAssociations
+
 	has_many :locations
 
-	after_save :reindex
-  after_destroy :reindex
-
-  private
-
-  def reindex
-  	Orator.reindex
-  	Card.reindex
-  end
+  after_save { |m| m.saving_reindex(Card) }
+  after_destroy { |m| m.destroying_reindex(Card) }
 end
