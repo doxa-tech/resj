@@ -46,7 +46,9 @@ module CardSearch
             f.filter :term, status_name: "En ligne"
           end
         end
-        s.sort { |s| s.by :name, 'asc' }
+        s.sort do |sort|
+          sort.by :name, { order: 'asc', ignore_unmapped: true }
+        end
       end
       @cards = search.results
     end
