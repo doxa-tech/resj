@@ -10,7 +10,7 @@ module CardSearch
     settings = self.default_settings
     settings settings do
       mapping do
-        indexes :name, analyzer: "partial_french", boost: 10, fields: { raw: { type: "string", analyzer: "standard" } }
+        indexes :name, analyzer: "partial_french", boost: 10, fields: { raw: { type: "string", index: :not_analyzed } }
         indexes :canton_id, index: :not_analyzed, type: "integer", as: "location.canton.id"
         indexes :canton_name, as: "location.canton.name"
         indexes :card_type_id, index: :not_analyzed, type: "integer", as: "card_type.id"

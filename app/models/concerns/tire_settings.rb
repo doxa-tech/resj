@@ -15,7 +15,7 @@ module TireSettings
             },
             ngram_filter: {
               type:     "NGram",
-              min_gram: 2,
+              min_gram: 3,
               max_gram: 20
             },
             french_elision: {
