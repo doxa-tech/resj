@@ -12,7 +12,7 @@ namespace :tire do
     end
   end
 
-  task :restart, on_error: :continue do
+  task :restart do
     on roles(:app) do
       sudo "/etc/init.d/elasticsearch restart"
     end
