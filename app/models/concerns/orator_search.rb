@@ -10,8 +10,8 @@ module OratorSearch
     settings = self.default_settings
     settings settings do
       mapping do
-        indexes :firstname, analyzer: "partial_french", as: "user.firstname"
-        indexes :lastname, analyzer: "partial_french", as: "user.lastname"
+        indexes :firstname, analyzer: "partial_french", as: "user.firstname", boost: 10
+        indexes :lastname, analyzer: "partial_french", as: "user.lastname", boost: 10
         indexes :canton_name, as: "location.canton.name"
         indexes :canton_id, index: :not_analyzed, type: "integer", as: "location.canton.id"
         indexes :theme_ids, index: :not_analyzed, type: "integer", as: "theme_ids"

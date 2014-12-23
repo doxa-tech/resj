@@ -10,7 +10,7 @@ module SubjectSearch
     settings = self.default_settings
     settings settings do
       mapping do
-        indexes :name, analyzer: "partial_french", boost: 2
+        indexes :name, analyzer: "partial_french", boost: 10
         indexes :description
         indexes :theme_ids, index: :not_analyzed, type: "integer", as: "theme_ids"
         indexes :theme_names, as: "theme_names"

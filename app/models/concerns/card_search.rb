@@ -46,6 +46,7 @@ module CardSearch
             f.filter :term, status_name: "En ligne"
           end
         end
+        s.sort { |t| t.by :name, "asc" }
       end
       @cards = search.results
     end
