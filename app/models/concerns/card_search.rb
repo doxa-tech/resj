@@ -43,9 +43,10 @@ module CardSearch
             f.filter :terms, canton_id: params[:canton_ids] unless params[:canton_ids].blank?
             f.filter :terms, card_type_id: params[:card_type_ids] unless params[:card_type_ids].blank?
             f.filter :terms, tag_ids: params[:tag_ids] unless params[:tag_ids].blank?
-            #f.filter :term, status_name: "En ligne"
+            f.filter :term, status_name: "En ligne"
           end
         end
+        s.sort { |s| s.by :name, 'asc' }
       end
       @cards = search.results
     end
