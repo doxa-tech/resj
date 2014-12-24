@@ -34,7 +34,7 @@
 				<h3><%= link_to @article.title, articles_path %></h3>
 				<div class="content">
 					<p>
-						<%= truncate(sanitize(@article.content, tags: Article::ALLOWED_TAGS), length: 500, omission: " ... %s", escape: false) % link_to('lire la suite', resources_path(anchor: 'articles')) %>
+						<%= truncate(sanitize(@article.content, tags: Article::ALLOWED_TAGS), length: 500, omission: " ... %s", escape: false) % link_to('lire la suite', article_path(@article)) %>
 					</p>
 				</div>
 			</div>
