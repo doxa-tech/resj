@@ -46,7 +46,7 @@ class Orator < ActiveRecord::Base
               ].html_safe
       result.push({lat: group.first.location.latitude, lng: group.first.location.longitude, txt: txt})
     end
-    result
+    return result
   end
 
 end
