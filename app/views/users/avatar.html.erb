@@ -1,3 +1,5 @@
+<% content_for :id, 'user-edit-avatar' %>
+
 <div class="back"><%= link_to "Retour sur votre profil", profile_path %></div>
 
 <div class="top">
@@ -13,10 +15,12 @@
 			<div class="block">
 				<ul>
 					<li>
+						<small>Veuillez rentrer votre mot de passe actuel.</small>
 						<%= f.label :current_password %>
 						<%= f.password_field :current_password %>
 					</li>
-					<li>
+					<li class="img">
+						<p><%= image_tag @user.image %></p>
 						<%= f.label :avatar %>
 						<%= f.file_field :avatar %>
 					</li>
