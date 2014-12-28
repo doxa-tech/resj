@@ -21,6 +21,13 @@
 			</div>
 			<div id="clear"></div>
 		</li><%= "<!--".html_safe %>
+	<% end.presence || begin %>
+		<%= "-->".html_safe %>
+	  <div class="nothing">
+	    <p class="icon"><span class="fi-list-bullet"></span></p>
+	    <p>Votre recherche n'a donné aucun résultat.</p>
+	  </div>
+	  <%= "<!--".html_safe %>
 	<% end %>
 	<%= "-->".html_safe %>
 </ul>

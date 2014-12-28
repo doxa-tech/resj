@@ -161,5 +161,13 @@
 				}
 			}
 		}
-		} // .result
+		.nothing {
+			text-align: center;
+			padding: 40px 0 0 0;
+			.icon {
+				font-size: 50px;
+				padding: 0 0 20px 0;
+			}
+		}	
+	} // .result
 }
