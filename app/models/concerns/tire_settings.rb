@@ -11,7 +11,7 @@ module TireSettings
             edge_ngram_filter: {
               type:     "edgeNGram",
               min_gram: 1,
-              max_gram: 20
+              max_gram: 2
             },
             ngram_filter: {
               type:     "NGram",

@@ -19,7 +19,7 @@ namespace :db do
 
   desc "Add a published date to the previous articles"
   task publish_articles: :environment do
-    Article.each do |article|
+    Article.all.each do |article|
       article.update_attribute(:published_at, Time.now)
     end
   end
