@@ -31,7 +31,7 @@
 				<%= image_tag image_url @article.image.mid %>
 			</div>
 			<div class="text">
-				<h3><%= link_to @article.title, articles_path %></h3>
+				<h3><%= link_to @article.title, article_path(@article) %></h3>
 				<div class="content">
 					<p>
 						<%= truncate(sanitize(@article.content, tags: Article::ALLOWED_TAGS), length: 500, omission: " ... %s", escape: false) % link_to('lire la suite', article_path(@article)) %>
