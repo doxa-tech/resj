@@ -34,6 +34,11 @@ module TireSettings
             }
           },
           analyzer: {
+            case_insensitive_sort: {
+              type: "custom",
+              tokenizer: "keyword",
+              filter:  ["lowercase"]
+            },
             partial_french: {
               type: "custom",
               tokenizer:  "standard",
