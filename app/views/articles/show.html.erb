@@ -10,7 +10,7 @@
 			</div>
 			<div class="text">
 				<h3><%= @article.title %></h3>
-				<h5>Par <%= @article.user.full_name %>, le <%= l @article.created_at, format: :normal %></h5>
+				<h5>le <%= l @article.created_at, format: :normal %></h5>
 				<div class="content">
 					<%= sanitize @article.content, tags: Article::ALLOWED_TAGS %>
 				</div>
