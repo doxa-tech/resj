@@ -19,19 +19,15 @@
 					<%= f.label :content %>
 					<small>
 						Exemple :
-						<pre>
-<%= "<header>Titre</header>" %>
-<%= "<p>" %>
-<%= "  Text de l'article <strong>en gras</strong> <em>en italique</em>.<br>" %>
-<%= "  Retours à la ligne" %>
-<%= "</p>" %>
-<%= "<q>Text en exergue</q>" %>
-<%= "<footer><p>Bas de l'article, copyright/signature</p></footer>" %></pre> 
+						<%= render 'example' %>
 					</small>
-					<%= f.text_area :content %>
+					<%= f.text_area :content, id: 'article-area' %>
 				</li>
 			</ul>
 		</div>
+		<button class="article-btn-pre" type="button">Montrer la prévisualisation</button>
+		<article class="article" id="article-pre">
+		</article>
 	</div>
 	<div class="row">
 		<div class="col split2">
