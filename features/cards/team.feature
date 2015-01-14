@@ -23,7 +23,7 @@ Feature: Team managing
     Then I should see a flash with "Les privilèges des membres ont été mis à jour"
     And I should see the member privilege box checked
 
-  Scenario: Add a member privilege as a card owner
+  Scenario: remove a member privilege as a card owner
     Given I own a card
     And I am signed in as the card owner
     And the card has a member
