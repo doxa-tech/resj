@@ -5,7 +5,7 @@
 		<ul>
 			<li>
 				<%= f.label :current_password %>
-				<%= f.password_field :current_password %>
+				<%= f.password_field :current_password, placeholder: "Obligatoire" %>
 			</li>
 			<li>
 				<%= f.label :email %>
@@ -21,11 +21,11 @@
 			</li>
 			<li>
 				<%= f.label :password %>
-				<%= f.password_field :password %>				
+				<%= f.password_field :password, placeholder: "Laissez vide pour ne pas modifier" %>				
 			</li>
 			<li>
 				<%= f.label :password_confirmation %>
-				<%= f.password_field :password_confirmation %>
+				<%= f.password_field :password_confirmation, placeholder: "Laissez vide pour ne pas modifier" %>
 			</li>
 		</ul>
 	</div>

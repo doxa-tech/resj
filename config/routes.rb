@@ -67,7 +67,11 @@ Rails.application.routes.draw do
       end
 
       scope module: :cards do
-        resources :affiliations, only: [:create, :update, :destroy]
+        resources :affiliations, only: [:create, :update, :destroy] do
+          collection do
+            post 'ownerships'
+          end
+        end
         resources :images, only: [] do
           collection do
             get 'banner'

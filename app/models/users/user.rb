@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   include UserValidation
-	attr_accessor :current_password
+	attr_accessor :current_password, :card
 
 	has_secure_password({ validations: false })
 
@@ -112,6 +112,40 @@ class User < ActiveRecord::Base
     if @card_user && answer.in?(["false", "true"])
       card.replace_responsable(self)
       @card_user.update_attribute(:user_validated, answer)
+    end
+  end
+
+  def team_edit
+    permission = Permission.new(self)
+    @team_edit = permission.allow_modify?('cards/affiliations', 'edit', card)
+  end
+
+  def card_edit
+    permission = Permission.new(self)
+    @card_edit = permission.allow_modify?('cards', 'edit', card)
+  end
+
+  def team_edit=(bool)
+    ownerships = Ownership.joins(:element).where(user: self, elements: {name: "cards/affiliations"}, id_element: card, right_update: true)
+    if bool && !ownerships.any?
+      ownerships.first_or_create! do |o|
+        o.element = Element.find_by_name("cards/affiliations")
+        o.ownership_type = OwnershipType.find_by_name("on_entry")
+      end
+    elsif !bool
+      ownerships.destroy_all
+    end
+  end
+
+  def card_edit=(bool)
+    ownerships = Ownership.joins(:element).where(user: self, elements: {name: "cards"}, id_element: card, right_update: true)
+    if bool && !ownerships.any?
+      ownerships.first_or_create! do |o|
+        o.element = Element.find_by_name("cards")
+        o.ownership_type = OwnershipType.find_by_name("on_entry")
+      end
+    elsif !bool
+      ownerships.destroy_all
     end
   end
 

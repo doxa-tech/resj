@@ -16,4 +16,5 @@
 # end
 ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'responsable', 'responsables'
+  inflect.irregular 'réseau', 'réseaux'
 end

@@ -1,6 +1,6 @@
 class Cards::AffiliationsController < BaseController
 	before_action :connected_or_token?
-	before_filter :current_resource, only: [:create, :update, :destroy]
+	before_filter :current_resource, only: [:create, :update, :destroy, :ownerships]
 	before_action :authorize_create, only: [:create]
 	before_action :authorize_modify, only: [:update, :destroy]
 
@@ -37,9 +37,20 @@ class Cards::AffiliationsController < BaseController
 		redirect_to team_card_path(@card), success: "Utilisateur supprimé"
 	end
 
+	def ownerships
+		@card_permission = CardPermission.new(card: @card)
+		@card_permission.assign_attributes(params[:card_permission])
+		sign_in current_user
+		redirect_to team_card_path(@card), success: "Les privilèges des membres ont été mis à jour"
+	end
+
 	private
 
 	def current_resource
-  	@card = Card.find(params[:card_id])
+  	@card ||= Card.find(params[:card_id])
+  end
+
+  def team_params
+  	params.require(:card).permit(users_attributes: [:id, :card_edit, :team_edit, :card])
   end
 end

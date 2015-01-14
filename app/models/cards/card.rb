@@ -45,7 +45,6 @@ class Card < ActiveRecord::Base
 
   accepts_nested_attributes_for :responsables, :users, :allow_destroy => true, reject_if: proc { |a| a[:firstname].blank? && a[:lastname].blank? && a[:email].blank? }
   accepts_nested_attributes_for :affiliations, :allow_destroy => true, reject_if: proc { |a| a[:name].blank? }
-  accepts_nested_attributes_for :users, :allow_destroy => true
 
   def to_param
     "#{id}-#{name}".parameterize
@@ -53,7 +52,7 @@ class Card < ActiveRecord::Base
 
   # Users requests to a card
   def unconfirmed_users
-    User.joins(:card_users).where(card_users: {user_validated: true, card_validated: nil, card_id: id}) 
+    User.joins(:card_users).where(card_users: {user_validated: true, card_validated: nil, card_id: id})
   end
 
   # Users affiliations

@@ -80,7 +80,7 @@
 	<% if(parents = @card.parents).any? %>
 		<div class="right">
 			<div class="networks">
-				<h3><%= (parents.size > 1)? "Réseaux" : "Réseau" %></h3>
+				<h3><%= "Réseau".pluralize(parents.size) %></h3>
 				<ul>
 					<% parents.each do |network| %>
 						<li><%= link_to "#{network.name} <span class='fi-link'></span>".html_safe, card_path(network) %></li>
@@ -95,7 +95,7 @@
 	<div class="row">
 		<div class="left">
 			<div class="members">
-				<h3><%= (@card.inverse_parents.size>1)? "Membres" : "Membre" %> du réseau</h3>
+				<h3><%= "Membre".pluralize(@card.inverse_parents.size) %> du réseau</h3>
 				<ul>
 					<% @card.inverse_parents.each do |member| %>
 						<li><%= link_to "#{member.name} <span class='fi-link'></span>".html_safe, card_path(member) %></li>

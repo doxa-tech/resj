@@ -6,20 +6,32 @@
 			<div class="header">
 				<h2>Les utilisateurs dans le groupe</h2>
 				<h5>Tous les utilisateurs qui ont rejoint le groupe.</h5>
-				<%= will_paginate @confirmed_paginate %>
 			</div>
 			<ul>
-				<% if @confirmed_paginate.empty? %>
+				<% if @confirmed.empty? %>
 					<li>
 						Aucun utilisateurs
 					</li>
-					<% else %>
-						<% @confirmed_paginate.each do |user| %>
-							<li>
-								<%=  user.full_name %>
-								<%= link_to "Retirer", card_affiliation_path(@card, user), method: :delete, data: {confirm: "Etes-vous sûr de vouloir enlever cet utilisateur ?" }, class: "edit-btn" if user != @card.user %>
-							</li>
+				<% else %>
+					<%= form_for @card_permission, url: ownerships_card_affiliations_path(@card), method: :post, html: { id: "privilege-form" } do |f| %>
+
+						<%= f.fields_for :members do |member_fields| %>
+
+							<%= member_fields.object.full_name %>
+
+							<% unless member_fields.object == @card.user %>
+
+								<%= link_to "Retirer", card_affiliation_path(@card, member_fields.object), method: :delete, data: {confirm: "Etes-vous sûr de vouloir enlever cet utilisateur ?" }, class: "edit-btn" %>
+
+								<%= member_fields.check_box :card_edit, class: "card-edit" %>
+								<%= member_fields.check_box :team_edit, class: "team-edit" %>
+
+							<% end %>
+
 						<% end %>
+						<%= f.submit "Enregistrer" %>
+
+					<% end %>
 				<% end %>
 			</ul>
 		</div>

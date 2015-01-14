@@ -37,7 +37,7 @@ class CardsController < BaseController
 		@unconfirmed = @card.unconfirmed_users
 		@pending = @card.pending_users.joins(:card_users)
 		@confirmed = @card.confirmed_users
-		@confirmed_paginate = @confirmed.paginate(page: params[:page], per_page: 10)
+		@card_permission = CardPermission.new(card: @card)
 	end
 
 	def team_update
@@ -77,7 +77,7 @@ class CardsController < BaseController
   end
 
   def current_resource
-  	@card = Card.find(params[:id])
+  	@card ||= Card.find(params[:id])
   end
 
 end

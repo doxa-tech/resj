@@ -9,8 +9,7 @@
 		</div>
 	</div>
 
-	<% a = card_group_flattened %>
-	<% card_left = admin_links.reject{ |l| l.in? a } %>
+	<% card_left = admin_links.reject{ |l| l.in? card_group_flattened } %>
 	<ul>
 		<% card_group.each do |group| %>
 			<% if admin_links.select{ |l| l.in? group.last}.any? %>
@@ -28,7 +27,7 @@
 		<% end %>
 		<% card_left.each do |link| %>
 			<li>
-				<%= link_to_active t('layout.header.admin.' + link.split('/').last), "/" + link %>
+				<%= link_to_active t('layout.header.admin.' + link.split('/').last), "/#{link}" %>
 			</li>
 		<% end %>
 		<li>
