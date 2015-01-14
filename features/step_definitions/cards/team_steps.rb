@@ -7,7 +7,7 @@ Given /^the member is authorized to edit the card$/ do
 end
 
 When /^I visit the team page of my card$/ do
-  visit team_card_path(@card, locale: :fr)
+  visit card_team_path(@card, locale: :fr)
 end
 
 When /^I check a member privilege box$/ do

@@ -39,3 +39,5 @@ Feature: Card affiliations
 		And I click the link "Refuser"
 		Then I should see a flash with "Décision enregistrée"
 		And I should not see "Waykup" in the confirmed list
+
+	Scenario: Quit a card

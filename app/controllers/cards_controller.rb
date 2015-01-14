@@ -1,10 +1,11 @@
 class CardsController < BaseController
-	before_action :connected_or_token?, only: [:overview, :team, :update]
-	before_action :current_resource, only: [:update, :overview, :team, :team_update]
-	before_action :authorize_modify, only: [:update, :overview, :team, :team_update]
+	before_action :connected_or_token?, only: [:overview, :update]
+	before_action :current_resource, only: [:update, :overview]
+	before_action :authorize_modify, only: [:update]
+	before_action :authorize_or_redirect, only: [:overview]
 	after_action only: [:update] { |c| c. track_activity @card }
 
-	layout 'admin', only: [:team, :update, :overview]
+	layout 'admin', only: [:update, :overview]
 
 	def index
 		@cards = Card.search(params)
@@ -33,22 +34,6 @@ class CardsController < BaseController
 		js lng: @card.longitude
 	end
 
-	def team
-		@unconfirmed = @card.unconfirmed_users
-		@pending = @card.pending_users.joins(:card_users)
-		@confirmed = @card.confirmed_users
-		@card_permission = CardPermission.new(card: @card)
-	end
-
-	def team_update
-		if @card.update_attributes(team_params)
-			flash[:success] = "Responsables édités"
-			render 'redirect', locals: {path: team_card_path(@card) }
-		else
-			render 'form_error', locals: {object: @card }
-		end
-	end
-
 	def update
 		if @card.update_attributes(card_params)
 			respond_to do |format|
@@ -72,12 +57,15 @@ class CardsController < BaseController
   	params.require(:card).permit(:name, :description, :street, :location_id, :email, :place, :latitude, :longitude, :website, :password_digest, :card_type_id, :affiliation, :tag_names, :current_step, { parent_ids: [] })
   end
 
-  def team_params
-  	params.require(:card).permit(responsables_attributes: [:id, :firstname, :lastname, :email, :_destroy, :is_contact])
-  end
-
   def current_resource
   	@card ||= Card.find(params[:id])
+  end
+
+  def authorize_or_redirect
+  	if !current_permission.allow_modify?(params[:controller], params[:action], current_resource) \
+    && !current_permission.allow_token?(params[:controller], params[:action], session[:token], current_resource)
+      redirect_to card_team_path(@card)
+    end
   end
 
 end

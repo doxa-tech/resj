@@ -18,14 +18,15 @@
 					<% else %>
 						<% @confirmed_paginate.each do |card| %>
 							<li>
-								<% if current_permission.allow_modify?('cards', 'edit', card) %>
-									<%= link_to "<span class='fi-#{(card.status.name == 'En ligne') ? 'check' : 'alert'}' title='Indique le status. Pour en savoir plus éditez.'></span>".html_safe, overview_card_path(card, anchor: 'status') %>
-									<%= card.name %>
+								<%= card.name %>
+								<% if current_permission.allow_modify?('cards', 'edit', card) || current_permission.allow_modify?('cards/affiliations', 'edit', card) %>
+									<%= link_to overview_card_path(card, anchor: 'status') do %>
+										<%= "<span class='fi-#{(card.status.name == 'En ligne') ? 'check' : 'alert'}' title='Indique le status. Pour en savoir plus éditez.'></span>".html_safe %>
+									<% end %>
 									<%= render 'application/admin/edit_btn', path: overview_card_path(card) %>
-								<% else %>
-									<%= card.name %>
-									<%= link_to "Quitter", users_affiliation_path(card), method: :delete, data: {confirm: "Etes-vous sûr de vouloir quitter ce groupe ?" }, class: "edit-btn" %>
 								<% end %>
+								<%  %>
+								<%= link_to "Quitter", users_affiliation_path(card), method: :delete, data: {confirm: "Etes-vous sûr de vouloir quitter ce groupe ?" }, class: "edit-btn" if card.user_id != current_user.id %>
 							</li>
 						<% end %>
 				<% end %>

@@ -65,6 +65,7 @@ FactoryGirl.define do
     
     ownership_type { OwnershipType.find_by_name(type_name) }
 
+    id_element nil
     right_read false
     right_create false
     right_update false

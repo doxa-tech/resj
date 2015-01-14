@@ -10,12 +10,12 @@ class CardPermission
   end
 
   def members
-    card.confirmed_users.each{ |u| u.card = card }
+    @member ||= card.confirmed_users.each{ |u| u.card = card }
   end
 
   def members_attributes=(attributes)
     attributes.values.each do |attribute|
-      user = User.find_by_id(attribute["id"])
+      user = User.find_by_id(attribute[:id])
       if user && user.id != card.user_id
         user.card = self.card
         user.card_edit = attribute[:card_edit].to_bool

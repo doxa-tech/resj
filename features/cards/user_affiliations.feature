@@ -39,3 +39,6 @@ Feature: User affiliations
 		When I click the link "Refuser"
 		Then I should see a flash with "Décision enregistrée"
 		And I should not see "John Smith" in the confirmed list
+
+	Scenario: Delete a user
+	

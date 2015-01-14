@@ -126,7 +126,8 @@ class User < ActiveRecord::Base
   end
 
   def team_edit=(bool)
-    ownerships = Ownership.joins(:element).where(user: self, elements: {name: "cards/affiliations"}, id_element: card, right_update: true)
+    ownerships = Ownership.joins(:element).where(user: self, elements: {name: "cards/affiliations"}, id_element: card, \
+      right_create: true, right_delete: true, right_update: true, right_read: true)
     if bool && !ownerships.any?
       ownerships.first_or_create! do |o|
         o.element = Element.find_by_name("cards/affiliations")
@@ -138,7 +139,8 @@ class User < ActiveRecord::Base
   end
 
   def card_edit=(bool)
-    ownerships = Ownership.joins(:element).where(user: self, elements: {name: "cards"}, id_element: card, right_update: true)
+    ownerships = Ownership.joins(:element).where(user: self, elements: {name: "cards"}, id_element: card, \
+      right_read: true, right_update: true, right_create: true)
     if bool && !ownerships.any?
       ownerships.first_or_create! do |o|
         o.element = Element.find_by_name("cards")

@@ -62,11 +62,13 @@ Rails.application.routes.draw do
     resources :cards, only: [:show, :update] do
       member do
         get 'overview'
-        get 'team'
-        patch 'team_update'
       end
 
       scope module: :cards do
+
+        get "team", to: "affiliations#team"
+        patch "team_update", to: "affiliations#team_update"
+
         resources :affiliations, only: [:create, :update, :destroy] do
           collection do
             post 'ownerships'

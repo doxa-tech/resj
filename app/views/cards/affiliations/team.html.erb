@@ -8,7 +8,7 @@
 				<h5>Tous les utilisateurs qui ont rejoint le groupe.</h5>
 			</div>
 			<ul>
-				<% if @confirmed.empty? %>
+				<% if @card_permission.members.empty? %>
 					<li>
 						Aucun utilisateurs
 					</li>
@@ -48,7 +48,7 @@
 			<%= form_tag card_affiliations_path(@card) do %>
 			<ul>
 				<li>
-					<%= select_tag :user_id, options_from_collection_for_select(User.users - @confirmed - @pending, :id, :full_name), class: "selectize" %>
+					<%= select_tag :user_id, options_from_collection_for_select(User.users - @card_permission.members - @pending, :id, :full_name), class: "selectize" %>
 						<%= submit_tag "Envoyer la requête" %>
 				</li>
 			</ul>
@@ -109,7 +109,7 @@
 	</div>
 </div>
 
-<%= form_for @card, url: team_update_card_path(@card), remote: true do |f| %>
+<%= form_for @card, url: card_team_update_path(@card), remote: true do |f| %>
 
 	<div class="row">
 		<div class="col split1">

@@ -1,5 +1,5 @@
 Given /^I go to the team page of my card$/ do
-	visit team_card_path(@card, locale: :fr)
+	visit card_team_path(@card, locale: :fr)
 end
 
 Given /^a user sent a request to my card$/ do
