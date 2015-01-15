@@ -50,8 +50,8 @@ class Cards::AffiliationsController < BaseController
 	end
 
 	def destroy
-		CardUser.where(user_id: params[:id], card_id: @card.id).first.destroy
-		redirect_to card_team_path(@card), success: "Utilisateur supprimé"
+		CardUser.where(user_id: params[:id], card_id: @card.id).destroy_all
+		redirect_to card_team_path(@card), success: "Utilisateur retiré"
 	end
 
 	def ownerships

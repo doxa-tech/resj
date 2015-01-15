@@ -40,7 +40,7 @@ class Users::AffiliationsController < BaseController
 
 	# Cancel a request
 	def destroy
-		CardUser.where(user_id: current_user.id, card_id: params[:id]).first.destroy
-		redirect_to user_my_cards_path, success: 'Groupe supprimé'
+		CardUser.where(user_id: current_user.id, card_id: params[:id]).destroy_all
+		redirect_to user_my_cards_path, success: 'Groupe quitté'
 	end
 end
