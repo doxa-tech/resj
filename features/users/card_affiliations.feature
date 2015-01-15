@@ -41,3 +41,8 @@ Feature: Card affiliations
 		And I should not see "Waykup" in the confirmed list
 
 	Scenario: Quit a card
+		Given I am member of a card
+		When I visit "/user/my_cards"
+		And I click the link "Quitter"
+		Then I should see a flash with "Groupe quitté"
+		And I should not see "Waykup" in the confirmed list

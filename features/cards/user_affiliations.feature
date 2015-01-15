@@ -41,4 +41,9 @@ Feature: User affiliations
 		And I should not see "John Smith" in the confirmed list
 
 	Scenario: Delete a user
+		Given the card has a member
+		And I go to the team page of my card
+		When I click the link "Retirer"
+		Then I should see a flash with "Utilisateur retiré"
+		And I should not see "John Smith" in the confirmed list
 	
