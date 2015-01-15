@@ -126,29 +126,14 @@ class User < ActiveRecord::Base
   end
 
   def team_edit=(bool)
-    ownerships = Ownership.joins(:element).where(user: self, elements: {name: "cards/affiliations"}, id_element: card, \
-      right_create: true, right_delete: true, right_update: true, right_read: true)
-    if bool && !ownerships.any?
-      ownerships.first_or_create! do |o|
-        o.element = Element.find_by_name("cards/affiliations")
-        o.ownership_type = OwnershipType.find_by_name("on_entry")
-      end
-    elsif !bool
-      ownerships.destroy_all
-    end
+    Ownership.create_or_destroy_by(bool, right_read: true, right_create: true, right_update: true, right_delete: true, 
+      element: "cards/affiliations", type: "on_entry", id_element: card.id, user: self)
   end
 
   def card_edit=(bool)
-    ownerships = Ownership.joins(:element).where(user: self, elements: {name: "cards"}, id_element: card, \
-      right_read: true, right_update: true, right_create: true)
-    if bool && !ownerships.any?
-      ownerships.first_or_create! do |o|
-        o.element = Element.find_by_name("cards")
-        o.ownership_type = OwnershipType.find_by_name("on_entry")
-      end
-    elsif !bool
-      ownerships.destroy_all
-    end
+    Ownership.create_or_destroy_by(bool, right_read: true, right_create: true, right_update: true, 
+      element: "cards", type: "on_entry", id_element: card.id, user: self)
   end
 
+  
 end

@@ -30,4 +30,22 @@ class Ownership < ActiveRecord::Base
   def full_name
     "#{id} - #{element.name} - R:#{right_read} - C:#{right_create}- U:#{right_update} - D:#{right_delete} - #{id_element} - #{actions.to_a}"
   end
+
+  def self.create_or_destroy_by(boolean, **attributes)
+    ownerships = Ownership.search(attributes)
+    if boolean && !ownerships.any?
+      ownerships.first_or_create! do |o|
+        o.element = Element.find_by_name(attributes[:element])
+        o.ownership_type = OwnershipType.find_by_name(attributes[:type])
+      end
+    elsif !boolean
+      ownerships.destroy_all
+    end
+  end
+
+  def self.search(**attributes)
+    attributes.except!(:element, :type)
+    self.joins(:element, :ownership_type).where(elements: { name: attributes[:element] }, ownership_types: { name: attributes[:type] }, **attributes)
+  end
+
 end

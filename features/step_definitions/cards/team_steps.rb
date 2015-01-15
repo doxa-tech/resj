@@ -2,6 +2,10 @@ Given /^the card has a member$/ do
   create(:affiliation)
 end
 
+Given /^I am member of a card$/ do
+  step "the card has a member"
+end
+
 Given /^the member is authorized to edit the card$/ do
   create(:ownership, element_name: "cards", type_name: "on_entry", id_element: @card.id, right_update: true, right_create: true, right_read: true)
 end
@@ -18,7 +22,7 @@ end
 
 When /^I uncheck a member privilege box$/ do
   within "#privilege-form" do
-    find(".card-edit").set(false)
+    find(".team-edit").set(false)
   end
 end
 
@@ -41,7 +45,7 @@ end
 
 Then /^I should see the member privilege box unchecked$/ do
   within "#privilege-form" do
-    expect(find(".card-edit")).to_not be_checked
+    expect(find(".team-edit")).to_not be_checked
   end
 end
 
