@@ -81,16 +81,15 @@ class Card < ActiveRecord::Base
   # Methods called before card's associations are saved (bound to accepts_nested_attributes_for)
   # Find a responsable or create a new one 
   def autosave_associated_records_for_responsables
-    new_responsables = []
-    responsables.reject{ |r| r.is_contact == "true" || r._destroy == true}.each do |responsable|
+    self.responsables = responsables.reject{ |r| r.is_contact == "true" || r._destroy == true}.map do |responsable|
       if user = User.users.find_by_email(responsable.email)
-        CardUser.create(user_id: user.id, card_id: id, card_validated: true) if !CardUser.where(user_id: user.id, card_id: id).any?
+        CardUser.where(user_id: user.id, card_id: id).first_or_create(card_validated: true)
+        next
       else
-        new_responsables << Responsable.where(firstname: responsable.firstname, lastname: responsable.lastname, email: responsable.email).first_or_create
+        Responsable.find_or_create_by(firstname: responsable.firstname, lastname: responsable.lastname, email: responsable.email)
       end
-    end
-    CardMailer.team_welcome(self, new_responsables.collect(&:email)).deliver if new_record?
-    self.responsables = new_responsables
+    end.compact
+    CardMailer.team_welcome(self).deliver if new_record?
   end
 
   def autosave_associated_records_for_affiliations

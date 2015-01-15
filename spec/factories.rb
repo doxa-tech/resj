@@ -74,7 +74,7 @@ FactoryGirl.define do
   end
 
   factory :affiliation, class: CardUser do
-    user { User.find_by_firstname_and_lastname("John", "Smith") || create(:user) }
+    user { User.find_by_email("john@smith.com") || create(:user) }
     card { Card.find_by_name("Waykup") || create(:card) }
     card_validated true
     user_validated true
@@ -87,7 +87,7 @@ FactoryGirl.define do
   factory :article do
     sequence(:title) { |n| "#{n} ours meurt chaque année"}
     content "Chaque année, plus de 1000 ourse blancs meurt"
-    user { User.find_by_firstname_and_lastname('Patrick', 'Dujardin') || create(:user, firstname: 'Patrick', lastname: 'Dujardin') }
+    user { User.find_by_email('patrick@dujardin.com') || create(:user, firstname: 'Patrick', lastname: 'Dujardin') }
     image { File.open("#{Rails.root}/public/test/articles/image_example.jpg") }
     themes { [Theme.first] }
     published_at { 1.day.ago }
@@ -110,5 +110,11 @@ FactoryGirl.define do
 
   factory :card_affiliation, class: Affiliation do
     name 'Eglise de Bulle'
+  end
+
+  factory :responsable do
+    firstname "John"
+    lastname "Smith"
+    email { "#{firstname.downcase}@#{lastname.downcase}.com" }
   end
 end

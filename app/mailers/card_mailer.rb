@@ -27,8 +27,8 @@ class CardMailer < BaseMailer
   end
 
   # hey guys, you are now part of a new group!
-  def team_welcome(card, emails)
-      mail  to:      emails,
+  def team_welcome(card)
+      mail  to:      card.responsable.pluck(:email),
             subject: "Bienvenue dans l'aventure !",
             body:
       params({ UFIRSTNAME: card.user.firstname,

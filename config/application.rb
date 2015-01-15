@@ -31,6 +31,6 @@ module Resj
     # for exceptions (404, ...) (nkcr)
     config.exceptions_app = self.routes
 
-    config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**/}')]
+    config.paths.add "app/models", eager_load: true, glob: "*"
   end
 end

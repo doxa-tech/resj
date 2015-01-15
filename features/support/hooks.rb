@@ -7,6 +7,8 @@ Before do
   self.puts "Executing rake tasks... See hooks.rb"
   execute_rake('seed.rake', 'seed:all')
   execute_rake('test.rake', 'test:init')
+
+  create_index
 end
 
 Around do |scenario, block|
@@ -15,4 +17,10 @@ end
 
 After('@reset') do 
   Capybara.current_session.driver.quit
-end 
+end
+
+After do
+
+  delete_index
+
+end
