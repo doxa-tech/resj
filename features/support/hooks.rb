@@ -18,9 +18,3 @@ end
 After('@reset') do 
   Capybara.current_session.driver.quit
 end
-
-After do
-
-  delete_index
-
-end
