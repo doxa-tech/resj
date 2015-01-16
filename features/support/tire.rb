@@ -1,12 +1,16 @@
-module Tire
+module ModelTire
   def self.models
     [Card, Orator, Subject]
   end
 
-  def create_index
-    Tire.models.each do |model|
-      Tire.import_model(model, force: true)
+  def self.create_index
+    puts "======================"
+    puts "[Tire] Start indexing"
+    ModelTire.models.each do |model|
+      ModelTire.import_model(model, force: true)
     end
+    puts "[Tire] Finish indexing"
+    puts "======================"
   end
 
   def self.import_model(klass, force: false)
@@ -20,4 +24,4 @@ module Tire
   end
 end
 
-World(Tire)
+ModelTire.create_index

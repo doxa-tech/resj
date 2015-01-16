@@ -1,5 +1,9 @@
 require 'rake'
 require 'email_spec'
+require 'coveralls'
+
+puts "Coveralls.wear!... See hooks.rb"
+Coveralls.wear!
 
 RSpec.configure do |config|
 
