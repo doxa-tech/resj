@@ -69,11 +69,11 @@ Cucumber::Rails::Database.javascript_strategy = :truncation
 #
 # I'm commenting this because Travis, and more xvfb, does not for the moment
 # support anything but firefox.
-Capybara.register_driver :chrome do |app|
-  Capybara::Selenium::Driver.new(app, :browser => :chrome)
-end
+# Capybara.register_driver :chrome do |app|
+#   Capybara::Selenium::Driver.new(app, :browser => :chrome)
+# end
 #
-Capybara.javascript_driver = :chrome
+# Capybara.javascript_driver = :chrome
 
 
 World(FactoryGirl::Syntax::Methods)
