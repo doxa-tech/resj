@@ -44,8 +44,15 @@ class Ownership < ActiveRecord::Base
   end
 
   def self.search(**attributes)
-    attributes.except!(:element, :type)
-    self.joins(:element, :ownership_type).where(elements: { name: attributes[:element] }, ownership_types: { name: attributes[:type] }, **attributes)
+    conditions = attributes.except(:element, :type)
+    self.joins(:element, :ownership_type).where(elements: { name: attributes[:element] }, ownership_types: { name: attributes[:type] }, **conditions)
+  end
+
+  def self.add(**attributes)
+    attributes[:element] = Element.find_by_name(attributes[:element])
+    attributes[:ownership_type] = OwnershipType.find_by_name(attributes[:type])
+    attributes.except!(:type)
+    self.create(**attributes)
   end
 
 end

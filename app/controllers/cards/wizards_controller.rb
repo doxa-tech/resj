@@ -29,11 +29,9 @@ class Cards::WizardsController < BaseController
 		@card.status = Status.find_by_name("En cours de validation")
 		owner = @card.responsables.select{ |r| r.is_contact == "true"}.first
 		if @card.save
-			user_hash = @card.create_owner(owner)
+			@card.owner = owner
 			# for validator
 			CardMailer.admin_created(validator_emails, @card).deliver
-			# for owner
-			CardMailer.owner_created(@card, user_hash).deliver
 			session.delete(:card_params)
 			flash[:success] = "Vous êtes entré dans le réseau avec succès ! Votre groupe n'apparaît pas directement sur la carte car elle doit d'abord être validée."
 			render 'redirect', locals: { path: "/reseau" }

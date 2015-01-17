@@ -4,14 +4,14 @@ class CardMailer < BaseMailer
   #
 
   # your card was created successfully
-  def owner_created(card, user_hash)
-    template = (user_hash[:new_user?]) ? "card-created-owner-new" : "card-created-owner-exist"
+  def owner_created(card, new_user, password)
+    template = new_user ? "card-created-owner-new" : "card-created-owner-exist"
     mail to:      card.user.email,
          subject: 'Nouveau groupe sur le réseau jeunesse',
          body:
     params({ TYPE: card.card_type.name, NAME: card.user.firstname,
              GNAME: card.name,
-             PASSWD: user_hash[:password] })
+             PASSWD: password })
     template template  # template
   end
 

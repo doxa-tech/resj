@@ -81,7 +81,12 @@ class Card < ActiveRecord::Base
   # Methods called before card's associations are saved (bound to accepts_nested_attributes_for)
   # Find a responsable or create a new one 
   def autosave_associated_records_for_responsables
-    self.responsables = responsables.reject{ |r| r.is_contact == "true" || r._destroy == true}.map do |responsable|
+    self.responsables = find_or_create_responsables
+    CardMailer.team_welcome(self).deliver if new_record?
+  end
+
+  def find_or_create_responsables
+    responsables.reject{ |r| r.is_contact == "true" || r._destroy == true}.map do |responsable|
       if user = User.users.find_by_email(responsable.email)
         CardUser.where(user_id: user.id, card_id: id).first_or_create(card_validated: true)
         next
@@ -89,28 +94,29 @@ class Card < ActiveRecord::Base
         Responsable.find_or_create_by(firstname: responsable.firstname, lastname: responsable.lastname, email: responsable.email)
       end
     end.compact
-    CardMailer.team_welcome(self).deliver if new_record?
   end
 
   def autosave_associated_records_for_affiliations
     self.affiliations = find_or_create_related(Affiliation, affiliations)
   end
 
-  def create_owner(owner)
-    password = ""; new_user = false
-    if card_user = User.find_by_email(owner.email)
-      self.user = card_user
-    else
+  def owner=(owner)
+    card_user, new_user, password = find_or_create_owner(owner)
+    self.update_attribute(:user, card_user)
+    Ownership.add(user: card_user, element: "cards", type: "on_entry", id_element: id, right_read: true, right_update: true, right_create: true)
+    Ownership.add(user: card_user, element: "cards/affiliations", type: "on_entry", id_element: id,
+      right_create: true, right_delete: true, right_update: true, right_read: true)
+    CardMailer.owner_created(self, new_user, password).deliver
+  end
+
+  def find_or_create_owner(owner)
+    card_user = User.find_by_email(owner.email)
+    new_user = if card_user.nil?
       password = SecureRandom.hex(8)
       card_user = User.create(firstname: owner.firstname, lastname: owner.lastname, email: owner.email, password: password, password_confirmation: password, user_type: UserType.find_by_name('user'))
       UserMailer.confirmation(card_user).deliver
-      new_user = true
-      self.user = card_user
     end
-    Ownership.create(user_id: card_user.id, element_id: Element.find_by_name('cards').id, ownership_type_id: OwnershipType.find_by_name('on_entry').id, id_element: id, right_read: true, right_update: true, right_create: true)
-    Ownership.create(element_id: Element.find_by_name('cards/affiliations').id, user_id: card_user.id, ownership_type_id: OwnershipType.find_by_name('on_entry').id, id_element: id, right_create: true, right_delete: true, right_update: true, right_read: true)
-    save
-    return {new_user?: new_user, password: password}
+    return card_user, new_user.present?, password || nil
   end
 
   # used for in-place editing in card overview
@@ -225,6 +231,7 @@ class Card < ActiveRecord::Base
     return self.avatar.s.url || logo_default('s')  if(w <= 768)
     return self.avatar.thumb.url || logo_default('thumb')
   end
+
   def logo_default(s)
     "card/logo/#{s}_default-logo.jpg"
   end  
@@ -236,16 +243,14 @@ class Card < ActiveRecord::Base
   private
 
   def assign_tags
-    current_tags = []
-    tag_names.split(' ').each do |tag|
+    self.tags = tag_names.split(' ').map do |tag|
       if new_tag = Tag.find_by_name(tag)
         new_tag.update_attribute(:popularity, new_tag.popularity + 1)
-        current_tags << new_tag
+        new_tag
       else
-        current_tags << Tag.create(name: tag)
+        Tag.create(name: tag)
       end
     end
-    self.tags = current_tags
   end
 
   def destroy_ownerships

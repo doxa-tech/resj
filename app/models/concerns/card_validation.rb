@@ -13,8 +13,8 @@ module CardValidation
 	    card.validates :place, length: { maximum: 60 }
 	  end
 	  with_options if: Proc.new { |c| c.current_step?("team")} do |card|
-	    card.validate :responsables?
-	    card.validate :contact?
+	    card.validate :responsables?, on: :create
+	    card.validate :contact?, on: :create
 	    card.validates :email, :format => { :with => /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/ }, :allow_blank => true
 	  end
 
@@ -24,13 +24,13 @@ module CardValidation
 	private
 
 	def contact?
-    if new_record? && responsables.any? && !responsables.select{ |r| r.is_contact == "true" }.any?
+    if responsables.any? && !responsables.select{ |r| r.is_contact == "true" }.any? && user.nil?
       errors.add(:responsables, "n'a pas de propriétaire (Marquer comme propriétaire)" )
     end
   end
 
   def responsables?
-    if new_record? && !responsables.any? && user.nil?
+    if !responsables.any? && user.nil?
       errors.add(:responsables, "ne contient aucun responsable (min. 1)")
     end
   end
