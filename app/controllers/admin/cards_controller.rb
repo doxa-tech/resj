@@ -21,7 +21,7 @@ class Admin::CardsController < Admin::BaseController
 		@card = Card.new(card_params)
 		owner = @card.responsables.select{ |r| r.is_contact == "true"}.first
 		if @card.save
-			@card.create_owner(owner)
+			@card.owner = owner
 			redirect_to admin_cards_path, success: t('card.admin.create.success')
 		else
 			render 'new'
