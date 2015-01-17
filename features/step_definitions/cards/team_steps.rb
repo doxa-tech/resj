@@ -7,6 +7,11 @@ Given /^I am member of a card$/ do
 end
 
 Given /^the member is authorized to edit the card$/ do
+  create(:ownership, element_name: "cards", type_name: "on_entry", id_element: @card.id, 
+    right_update: true, right_create: true, right_read: true)
+end
+
+Given /^the member is authorized to edit the card ownerships$/ do
   create(:ownership, element_name: "cards/affiliations", type_name: "on_entry", id_element: @card.id, 
     right_update: true, right_create: true, right_read: true, right_delete: true)
 end

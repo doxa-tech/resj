@@ -27,7 +27,7 @@ Feature: Team managing
     Given I own a card
     And I am signed in as the card owner
     And the card has a member
-    And the member is authorized to edit the card
+    And the member is authorized to edit the card ownerships
     When I visit the team page of my card
     And I uncheck a member privilege box
     And I send the team form
