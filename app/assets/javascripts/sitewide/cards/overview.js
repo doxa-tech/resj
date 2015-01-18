@@ -1,4 +1,4 @@
-/* global Paloma load_google_map google alert */
+/* global Paloma:true load_google_map:true google:true alert:true */
 var CardsController = Paloma.controller('Cards');
 
 CardsController.prototype.overview = function() {

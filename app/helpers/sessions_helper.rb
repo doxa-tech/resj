@@ -38,7 +38,7 @@ module SessionsHelper
 	# Check if there is a user signed in.
 	# 
 	# * *Returns*	:
-	# 	- true or false
+	# 	- boolean
 	def signed_in?
 		!current_user.nil?
 	end
