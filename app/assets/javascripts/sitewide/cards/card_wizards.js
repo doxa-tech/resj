@@ -1,3 +1,4 @@
+/* global Paloma:true, load_google_map:true, google:true, alert:true */
 var CardWizardsController = Paloma.controller('CardWizards');
 
 CardWizardsController.prototype.new = function() {

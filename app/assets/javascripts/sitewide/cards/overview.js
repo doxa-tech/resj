@@ -1,4 +1,4 @@
-/* global Paloma:true, load_google_map:true, google:true, alert:true */
+/* global Paloma:true, load_google_map:true, google:true, alert:true */ 
 var CardsController = Paloma.controller('Cards');
 
 CardsController.prototype.overview = function() {
@@ -100,5 +100,5 @@ function card_overview(lat, lng) {
       address.value = street.value + " " + item.html().replace(/(.*?\s-\s)?/,"").replace(/\s-\s/g, ' ') + ", Switzerland";
     }    
   }
-  
+
 }
