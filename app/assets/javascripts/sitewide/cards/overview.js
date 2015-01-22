@@ -1,5 +1,4 @@
 /* global Paloma:true load_google_map:true google:true alert:true */
-/* global Paloma:true load_google_map:true google:true alert:true */
 var CardsController = Paloma.controller('Cards');
 
 CardsController.prototype.overview = function() {
@@ -86,19 +85,15 @@ function card_overview(lat, lng) {
   var street = document.getElementById('card_street');
   var address = document.getElementById('address');
   var btn = document.getElementById('geocode-addr');
-  street.onchange = function(){
-    var item = $('.item');
-    if(item.length) {
-      address.value = street.value + " " + $('.item').html().replace(/(.*?\s-\s)?/,"").replace(/\s-\s/g, ' ') + ", Switzerland";
-    }
-  };
-  document.getElementById('card_location_id').onchange = function(){
-    var item = $('.item');
-    if(item.length) {
-      address.value = street.value + " " + item.html().replace(/(.*?\s-\s)?/,"").replace(/\s-\s/g, ' ') + ", Switzerland";
-    }
-  };
+  var item = $('.item');
+  street.onchange = function(){update_addr();};
+  document.getElementById('card_location_id').onchange = function(){update_addr();};
   btn.onclick = function(){
     gmap.codeAddress(address.value);
   };
+  function update_addr() {
+    if(item.length) {
+      address.value = street.value + " " + item.html().replace(/(.*?\s-\s)?/,"").replace(/\s-\s/g, ' ') + ", Switzerland";
+    }    
+  }
 }
