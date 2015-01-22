@@ -82,7 +82,7 @@ function card_overview(lat, lng) {
     }
   };
 
-
+  gmap.initialize();
 
   var street = document.getElementById('card_street');
   var address = document.getElementById('address');
@@ -100,5 +100,5 @@ function card_overview(lat, lng) {
       address.value = street.value + " " + item.html().replace(/(.*?\s-\s)?/,"").replace(/\s-\s/g, ' ') + ", Switzerland";
     }    
   }
-
+  
 }
