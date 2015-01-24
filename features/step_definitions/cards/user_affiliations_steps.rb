@@ -8,6 +8,10 @@ end
 
 Given /^I recently made an user refused request$/ do
 	create(:recent_affiliation, user_validated: false)
+end
+
+Given /^I refused an user$/ do
+  create(:affiliation, card_validated: false)
 end 
 
 When /^I select the user and send the request$/ do

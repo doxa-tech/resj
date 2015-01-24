@@ -94,27 +94,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def send_request(card)
-    card_user = CardUser.where(user_id: self.id, card_id: card.id).first
-    if card_user
-      if card_user.card_validated == false && card_user.updated_at < 1.weeks.ago
-        card_user.update_attribute(:card_validated, nil)
-      elsif card_user.user_validated == false
-        card_user.update_attribute(:user_validated, true)
-      end
-    elsif !self.in?(card.confirmed_users)
-      @new_card_user = CardUser.create(user_id: self.id, card_id: card.id, user_validated: true)
-    end
-  end
-
-  def answer_request(card, answer)
-    @card_user = CardUser.where(user_id: self.id, card_id: card.id).first
-    if @card_user && answer.in?(["false", "true"])
-      card.replace_responsable(self)
-      @card_user.update_attribute(:user_validated, answer)
-    end
-  end
-
   def team_edit
     permission = Permission.new(self)
     @team_edit = permission.allow_modify?('cards/affiliations', 'edit', card)

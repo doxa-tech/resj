@@ -81,19 +81,23 @@ class Card < ActiveRecord::Base
   # Methods called before card's associations are saved (bound to accepts_nested_attributes_for)
   # Find a responsable or create a new one 
   def autosave_associated_records_for_responsables
-    self.responsables = find_or_create_responsables
+    self.responsables = filter_responsables
     CardMailer.team_welcome(self).deliver if new_record?
   end
 
-  def find_or_create_responsables
+  def filter_responsables
     responsables.reject{ |r| r.is_contact == "true" || r._destroy == true}.map do |responsable|
-      if user = User.users.find_by_email(responsable.email)
-        CardUser.where(user_id: user.id, card_id: id).first_or_create(card_validated: true)
-        next
-      else
-        Responsable.find_or_create_by(firstname: responsable.firstname, lastname: responsable.lastname, email: responsable.email)
-      end
+      find_or_create_responsables
     end.compact
+  end
+
+  def find_or_create_responsables
+    if user = User.users.find_by_email(responsable.email)
+      CardUser.where(user_id: user.id, card_id: id).first_or_create(card_validated: true)
+      next
+    else
+      Responsable.find_or_create_by(firstname: responsable.firstname, lastname: responsable.lastname, email: responsable.email)
+    end
   end
 
   def autosave_associated_records_for_affiliations
@@ -137,32 +141,6 @@ class Card < ActiveRecord::Base
 
   def parents_list
     return self.parents.inject(''){|i, a| "#{i}, #{a.name}"}[1..-1]
-  end
-
-  def replace_responsable(user)
-    responsable = Responsable.find_by_email(user.email)
-    CardResponsable.find_by_card_id_and_responsable_id(self.id, responsable.id).try(:destroy) if responsable
-  end
-
-  def send_request(user)
-    card_user = CardUser.where(user_id: user.id, card_id: self.id).first
-    if card_user
-      if card_user.user_validated == false && card_user.updated_at < 1.weeks.ago
-        card_user.update_attribute(:user_validated, nil)
-      elsif card_user.card_validated == false
-        card_user.update_attribute(:card_validated, true)
-      end
-    elsif !self.in?(user.confirmed_cards)
-      @new_card_user = CardUser.create(user_id: user.id, card_id: self.id, card_validated: true)
-    end
-  end
-
-  def answer_request(user, answer)
-    @card_user = CardUser.where(user_id: user.id, card_id: self.id).first
-    if @card_user && answer.in?(["false", "true"])
-      self.replace_responsable(user)
-      @card_user.update_attribute(:card_validated, answer)
-    end
   end
 
   ##################

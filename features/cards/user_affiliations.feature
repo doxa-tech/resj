@@ -25,6 +25,14 @@ Feature: User affiliations
 		And I should not see "John Smith" in the pending list
 
 	@javascript
+	Scenario: Make request to an user I refused
+		Given I refused an user
+		And I go to the team page of my card
+		When I select the user and send the request
+		Then I should see a flash with "Votre requête a été envoyée à l'utilisateur"
+		And I should see "John Smith" in the confirmed list
+
+	@javascript
 	Scenario: Accept an user request
 		Given a user sent a request to my card
 		And I go to the team page of my card

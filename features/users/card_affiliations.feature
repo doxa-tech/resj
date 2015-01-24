@@ -25,6 +25,14 @@ Feature: Card affiliations
 		And I should not see "Waykup" in the pending list
 
 	@javascript
+	Scenario: Make request to a card that I refused
+		Given I refused a card
+		When I visit "/user/my_cards"
+		And I select the card and send the request
+		Then I should see a flash with "Votre requête a été envoyée au groupe !"
+		And I should see "Waykup" in the confirmed list
+
+	@javascript
 	Scenario: Accept a card request
 		Given a card sent me a request
 		When I visit "/user/my_cards"
