@@ -97,7 +97,8 @@ function card_overview(lat, lng) {
 
   function update_addr() {
     if(item.length) {
-      address.value = street.value + " " + item.html().replace(/(.*?\s-\s)?/,"").replace(/\s-\s/g, ' ') + ", Switzerland";
+      address.value = street.value + " " + item.html()
+                      .replace(/(.*?\s-\s)?/,"").replace(/\s-\s/g, ' ') + ", Switzerland";
     }    
   }
 
