@@ -2,51 +2,49 @@ class SearchesController < BaseController
 
 	def responsables
 		if params[:attr].in? %[firstname lastname email]
-			responsables = Responsable.where("#{params[:attr]} like ?", "%#{params[:term]}%" ).pluck(params[:attr])
-			users = User.joins(:user_type).where("#{params[:attr]} like ? AND user_types.name != ?", "%#{params[:term]}%", "group" ).pluck(params[:attr])
-			render json: (responsables + users).uniq
+			records = fetch_responsables_and_users(params)
+			render json: records
 		else
 			render nothing: true
 		end
 	end
 
 	def affiliations
-		if params[:attr].in? %[name]
-			render json: Affiliation.where("#{params[:attr]} like ?", "%#{params[:term]}%" ).pluck(params[:attr])
-		else
-			render nothing: true
-		end
+		search(Affiliation, params)
 	end
 
 	def tags
-		render json: Tag.where("name like ?", "%#{params[:query]}%" )
+		render json: Tag.where("name ilike ?", "%#{params[:query]}%" )
 	end
 
 	def actions
+		search(Action, params)
+	end
+
+	def locations
+		locations = Location.includes(:canton).where("post_name ilike ? OR official_name ilike ?", "%#{params[:query]}%", "%#{params[:query]}%").map do |location|
+			{
+				"name" => "#{location.official_name} - #{location.post_name} - #{location.npa} - #{location.canton.name}",
+				"id" => location.id
+			}
+		end
+		render json: locations
+	end
+
+	private
+
+	def search(model, params)
 		if params[:attr].in? %[name]
-			render json: Action.where("#{params[:attr]} like ?", "%#{params[:term]}%" ).pluck(params[:attr])
+			render json: model.where("#{params[:attr]} ilike ?", "%#{params[:term]}%" ).pluck(params[:attr])
 		else
 			render nothing: true
 		end
 	end
 
-	def locations
-		if Rails.env.production?
-			data = Location.includes(:canton).where("post_name ilike ? OR official_name ilike ?", "%#{params[:query]}%", "%#{params[:query]}%").map do |location|
-				{
-					"name" => "#{location.official_name} - #{location.post_name} - #{location.npa} - #{location.canton.name}",
-					"id" => location.id
-				}
-			end
-		else
-			data = Location.includes(:canton).where("post_name like ? OR official_name like ?", "%#{params[:query]}%", "%#{params[:query]}%").map do |location|
-				{
-					"name" => "#{location.official_name} - #{location.post_name} - #{location.npa} - #{location.canton.name}",
-					"id" => location.id
-				}
-			end
-		end
-		render json: data
+	def fetch_responsables_and_users(params)
+		responsables = Responsable.where("#{params[:attr]} ilike ?", "%#{params[:term]}%" ).pluck(params[:attr])
+		users = User.joins(:user_type).where("#{params[:attr]} ilike ? AND user_types.name != ?", "%#{params[:term]}%", "group" ).pluck(params[:attr])
+		return responsables.concat(users).uniq
 	end
 
 end

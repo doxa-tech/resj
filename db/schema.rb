@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20141217160957) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "access_tokens", force: true do |t|
     t.string   "token"
     t.boolean  "is_valid"
@@ -22,8 +25,8 @@ ActiveRecord::Schema.define(version: 20141217160957) do
     t.date     "exp_at"
   end
 
-  add_index "access_tokens", ["ownership_id"], name: "index_access_tokens_on_ownership_id"
-  add_index "access_tokens", ["token"], name: "index_access_tokens_on_token"
+  add_index "access_tokens", ["ownership_id"], name: "index_access_tokens_on_ownership_id", using: :btree
+  add_index "access_tokens", ["token"], name: "index_access_tokens_on_token", using: :btree
 
   create_table "actions", force: true do |t|
     t.string   "name"
@@ -41,8 +44,8 @@ ActiveRecord::Schema.define(version: 20141217160957) do
     t.string   "controller"
   end
 
-  add_index "activities", ["trackable_id"], name: "index_activities_on_trackable_id"
-  add_index "activities", ["user_id"], name: "index_activities_on_user_id"
+  add_index "activities", ["trackable_id"], name: "index_activities_on_trackable_id", using: :btree
+  add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
 
   create_table "affiliations", force: true do |t|
     t.string   "name"
@@ -57,8 +60,8 @@ ActiveRecord::Schema.define(version: 20141217160957) do
     t.datetime "updated_at"
   end
 
-  add_index "article_themes", ["article_id"], name: "index_article_themes_on_article_id"
-  add_index "article_themes", ["theme_id"], name: "index_article_themes_on_theme_id"
+  add_index "article_themes", ["article_id"], name: "index_article_themes_on_article_id", using: :btree
+  add_index "article_themes", ["theme_id"], name: "index_article_themes_on_theme_id", using: :btree
 
   create_table "articles", force: true do |t|
     t.string   "title"
@@ -71,7 +74,7 @@ ActiveRecord::Schema.define(version: 20141217160957) do
     t.datetime "published_at"
   end
 
-  add_index "articles", ["user_id"], name: "index_articles_on_user_id"
+  add_index "articles", ["user_id"], name: "index_articles_on_user_id", using: :btree
 
   create_table "cantons", force: true do |t|
     t.string   "name"
@@ -87,8 +90,8 @@ ActiveRecord::Schema.define(version: 20141217160957) do
     t.datetime "updated_at"
   end
 
-  add_index "card_affiliations", ["affiliation_id"], name: "index_card_affiliations_on_affiliation_id"
-  add_index "card_affiliations", ["card_id"], name: "index_card_affiliations_on_card_id"
+  add_index "card_affiliations", ["affiliation_id"], name: "index_card_affiliations_on_affiliation_id", using: :btree
+  add_index "card_affiliations", ["card_id"], name: "index_card_affiliations_on_card_id", using: :btree
 
   create_table "card_parents", force: true do |t|
     t.integer  "card_id"
@@ -97,8 +100,8 @@ ActiveRecord::Schema.define(version: 20141217160957) do
     t.datetime "updated_at"
   end
 
-  add_index "card_parents", ["card_id"], name: "index_card_parents_on_card_id"
-  add_index "card_parents", ["parent_id"], name: "index_card_parents_on_parent_id"
+  add_index "card_parents", ["card_id"], name: "index_card_parents_on_card_id", using: :btree
+  add_index "card_parents", ["parent_id"], name: "index_card_parents_on_parent_id", using: :btree
 
   create_table "card_responsables", force: true do |t|
     t.integer  "card_id"
@@ -107,8 +110,8 @@ ActiveRecord::Schema.define(version: 20141217160957) do
     t.datetime "updated_at"
   end
 
-  add_index "card_responsables", ["card_id"], name: "index_card_responsables_on_card_id"
-  add_index "card_responsables", ["responsable_id"], name: "index_card_responsables_on_responsable_id"
+  add_index "card_responsables", ["card_id"], name: "index_card_responsables_on_card_id", using: :btree
+  add_index "card_responsables", ["responsable_id"], name: "index_card_responsables_on_responsable_id", using: :btree
 
   create_table "card_types", force: true do |t|
     t.string   "name"
@@ -125,8 +128,8 @@ ActiveRecord::Schema.define(version: 20141217160957) do
     t.datetime "updated_at"
   end
 
-  add_index "card_users", ["card_id"], name: "index_card_users_on_card_id"
-  add_index "card_users", ["user_id"], name: "index_card_users_on_user_id"
+  add_index "card_users", ["card_id"], name: "index_card_users_on_card_id", using: :btree
+  add_index "card_users", ["user_id"], name: "index_card_users_on_user_id", using: :btree
 
   create_table "cards", force: true do |t|
     t.integer  "card_type_id"
@@ -149,8 +152,8 @@ ActiveRecord::Schema.define(version: 20141217160957) do
     t.integer  "status_id"
   end
 
-  add_index "cards", ["card_type_id"], name: "index_cards_on_card_type_id"
-  add_index "cards", ["location_id"], name: "index_cards_on_location_id"
+  add_index "cards", ["card_type_id"], name: "index_cards_on_card_type_id", using: :btree
+  add_index "cards", ["location_id"], name: "index_cards_on_location_id", using: :btree
 
   create_table "connections", force: true do |t|
     t.string   "ip"
@@ -159,7 +162,7 @@ ActiveRecord::Schema.define(version: 20141217160957) do
     t.datetime "updated_at"
   end
 
-  add_index "connections", ["user_id"], name: "index_connections_on_user_id"
+  add_index "connections", ["user_id"], name: "index_connections_on_user_id", using: :btree
 
   create_table "disponibilities", force: true do |t|
     t.string   "name"
@@ -209,9 +212,9 @@ ActiveRecord::Schema.define(version: 20141217160957) do
     t.float    "longitude"
   end
 
-  add_index "locations", ["canton_id"], name: "index_locations_on_canton_id"
-  add_index "locations", ["official_name"], name: "index_locations_on_official_name"
-  add_index "locations", ["post_name"], name: "index_locations_on_post_name"
+  add_index "locations", ["canton_id"], name: "index_locations_on_canton_id", using: :btree
+  add_index "locations", ["official_name"], name: "index_locations_on_official_name", using: :btree
+  add_index "locations", ["post_name"], name: "index_locations_on_post_name", using: :btree
 
   create_table "newsletters", force: true do |t|
     t.string   "name"
@@ -226,8 +229,8 @@ ActiveRecord::Schema.define(version: 20141217160957) do
     t.datetime "updated_at"
   end
 
-  add_index "orator_disponibilities", ["disponibility_id"], name: "index_orator_disponibilities_on_disponibility_id"
-  add_index "orator_disponibilities", ["orator_id"], name: "index_orator_disponibilities_on_orator_id"
+  add_index "orator_disponibilities", ["disponibility_id"], name: "index_orator_disponibilities_on_disponibility_id", using: :btree
+  add_index "orator_disponibilities", ["orator_id"], name: "index_orator_disponibilities_on_orator_id", using: :btree
 
   create_table "orator_themes", force: true do |t|
     t.integer  "orator_id"
@@ -236,8 +239,8 @@ ActiveRecord::Schema.define(version: 20141217160957) do
     t.datetime "updated_at"
   end
 
-  add_index "orator_themes", ["orator_id"], name: "index_orator_themes_on_orator_id"
-  add_index "orator_themes", ["theme_id"], name: "index_orator_themes_on_theme_id"
+  add_index "orator_themes", ["orator_id"], name: "index_orator_themes_on_orator_id", using: :btree
+  add_index "orator_themes", ["theme_id"], name: "index_orator_themes_on_theme_id", using: :btree
 
   create_table "orators", force: true do |t|
     t.integer  "user_id"
@@ -251,8 +254,8 @@ ActiveRecord::Schema.define(version: 20141217160957) do
     t.boolean  "disabled",      default: false
   end
 
-  add_index "orators", ["location_id"], name: "index_orators_on_location_id"
-  add_index "orators", ["user_id"], name: "index_orators_on_user_id"
+  add_index "orators", ["location_id"], name: "index_orators_on_location_id", using: :btree
+  add_index "orators", ["user_id"], name: "index_orators_on_user_id", using: :btree
 
   create_table "ownership_actions", force: true do |t|
     t.integer  "action_id"
@@ -261,8 +264,8 @@ ActiveRecord::Schema.define(version: 20141217160957) do
     t.datetime "updated_at"
   end
 
-  add_index "ownership_actions", ["action_id"], name: "index_ownership_actions_on_action_id"
-  add_index "ownership_actions", ["ownership_id"], name: "index_ownership_actions_on_ownership_id"
+  add_index "ownership_actions", ["action_id"], name: "index_ownership_actions_on_action_id", using: :btree
+  add_index "ownership_actions", ["ownership_id"], name: "index_ownership_actions_on_ownership_id", using: :btree
 
   create_table "ownership_types", force: true do |t|
     t.string   "name"
@@ -283,9 +286,9 @@ ActiveRecord::Schema.define(version: 20141217160957) do
     t.datetime "updated_at"
   end
 
-  add_index "ownerships", ["element_id"], name: "index_ownerships_on_element_id"
-  add_index "ownerships", ["ownership_type_id"], name: "index_ownerships_on_ownership_type_id"
-  add_index "ownerships", ["user_id"], name: "index_ownerships_on_user_id"
+  add_index "ownerships", ["element_id"], name: "index_ownerships_on_element_id", using: :btree
+  add_index "ownerships", ["ownership_type_id"], name: "index_ownerships_on_ownership_type_id", using: :btree
+  add_index "ownerships", ["user_id"], name: "index_ownerships_on_user_id", using: :btree
 
   create_table "pages", force: true do |t|
     t.string   "name"
@@ -301,8 +304,8 @@ ActiveRecord::Schema.define(version: 20141217160957) do
     t.datetime "updated_at"
   end
 
-  add_index "parents", ["parent_id"], name: "index_parents_on_parent_id"
-  add_index "parents", ["user_id"], name: "index_parents_on_user_id"
+  add_index "parents", ["parent_id"], name: "index_parents_on_parent_id", using: :btree
+  add_index "parents", ["user_id"], name: "index_parents_on_user_id", using: :btree
 
   create_table "responsables", force: true do |t|
     t.string   "firstname"
@@ -319,8 +322,8 @@ ActiveRecord::Schema.define(version: 20141217160957) do
     t.datetime "updated_at"
   end
 
-  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true
-  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at"
+  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
+  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
 
   create_table "statuses", force: true do |t|
     t.string   "name"
@@ -336,8 +339,8 @@ ActiveRecord::Schema.define(version: 20141217160957) do
     t.datetime "updated_at"
   end
 
-  add_index "subject_themes", ["subject_id"], name: "index_subject_themes_on_subject_id"
-  add_index "subject_themes", ["theme_id"], name: "index_subject_themes_on_theme_id"
+  add_index "subject_themes", ["subject_id"], name: "index_subject_themes_on_subject_id", using: :btree
+  add_index "subject_themes", ["theme_id"], name: "index_subject_themes_on_theme_id", using: :btree
 
   create_table "subjects", force: true do |t|
     t.string   "name"
@@ -354,8 +357,8 @@ ActiveRecord::Schema.define(version: 20141217160957) do
     t.datetime "updated_at"
   end
 
-  add_index "taggings", ["card_id"], name: "index_taggings_on_card_id"
-  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id"
+  add_index "taggings", ["card_id"], name: "index_taggings_on_card_id", using: :btree
+  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
 
   create_table "tags", force: true do |t|
     t.string   "name"
@@ -364,7 +367,7 @@ ActiveRecord::Schema.define(version: 20141217160957) do
     t.datetime "updated_at"
   end
 
-  add_index "tags", ["name"], name: "index_tags_on_name"
+  add_index "tags", ["name"], name: "index_tags_on_name", using: :btree
 
   create_table "themes", force: true do |t|
     t.string   "name"
@@ -380,8 +383,8 @@ ActiveRecord::Schema.define(version: 20141217160957) do
     t.datetime "updated_at"
   end
 
-  add_index "user_newsletters", ["newsletter_id"], name: "index_user_newsletters_on_newsletter_id"
-  add_index "user_newsletters", ["user_id"], name: "index_user_newsletters_on_user_id"
+  add_index "user_newsletters", ["newsletter_id"], name: "index_user_newsletters_on_newsletter_id", using: :btree
+  add_index "user_newsletters", ["user_id"], name: "index_user_newsletters_on_user_id", using: :btree
 
   create_table "user_types", force: true do |t|
     t.string   "name"
@@ -407,8 +410,8 @@ ActiveRecord::Schema.define(version: 20141217160957) do
     t.boolean  "gravatar",        default: true
   end
 
-  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
-  add_index "users", ["user_type_id"], name: "index_users_on_user_type_id"
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
+  add_index "users", ["user_type_id"], name: "index_users_on_user_type_id", using: :btree
 
   create_table "verificator_comments", force: true do |t|
     t.text     "content"
@@ -418,7 +421,7 @@ ActiveRecord::Schema.define(version: 20141217160957) do
     t.datetime "updated_at"
   end
 
-  add_index "verificator_comments", ["card_id"], name: "index_verificator_comments_on_card_id"
-  add_index "verificator_comments", ["user_id"], name: "index_verificator_comments_on_user_id"
+  add_index "verificator_comments", ["card_id"], name: "index_verificator_comments_on_card_id", using: :btree
+  add_index "verificator_comments", ["user_id"], name: "index_verificator_comments_on_user_id", using: :btree
 
 end
