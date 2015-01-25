@@ -16,7 +16,6 @@
 /log
 /tmp
 
-config/database.yml
 # Ignore application configuration
 config/secrets.yml
 
@@ -24,4 +23,4 @@ public/uploads
 uploads
 *.log
 
-config/sunspot.yml
+config/database.yml

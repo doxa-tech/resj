@@ -13,7 +13,7 @@ test: &test
   database: resj_test
   pool: 5
   host: localhost
-  username: khcr
+  username: postgres
   password: 
 
 production:
@@ -33,3 +33,6 @@ staging:
   host: localhost
   username: resj
   password: 
+
+cucumber:
+  <<: *test

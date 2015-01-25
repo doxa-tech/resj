@@ -10,12 +10,19 @@ module PermissionFilter
 	end
 
 	def connected_or_token?
-    session[:token] = params[:token] if params[:token]
+    
     if current_permission.allow_token?(params[:controller], params[:action], session[:token], current_resource) || current_user
       @current_user ||= User.new(firstname: "Guest")
     else
       store_location
       redirect_to connexion_path, error: render_error('login')
+    end
+    session[:token] = params[:token]
+    if !current_user && !current_permission.allow_token?(params[:controller], params[:action], session[:token], current_resource)
+      store_location
+      redirect_to connexion_path, error: render_error('login')
+    else
+      @current_user ||= User.new(firstname: "Guest")
     end
   end
 
