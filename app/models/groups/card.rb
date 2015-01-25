@@ -94,7 +94,7 @@ class Card < ActiveRecord::Base
   def find_or_create_responsables
     if user = User.users.find_by_email(responsable.email)
       CardUser.where(user_id: user.id, card_id: id).first_or_create(card_validated: true)
-      next
+      nil
     else
       Responsable.find_or_create_by(firstname: responsable.firstname, lastname: responsable.lastname, email: responsable.email)
     end
