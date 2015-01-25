@@ -87,11 +87,11 @@ class Card < ActiveRecord::Base
 
   def filter_responsables
     responsables.reject{ |r| r.is_contact == "true" || r._destroy == true}.map do |responsable|
-      find_or_create_responsables
+      find_or_create_responsable(responsable)
     end.compact
   end
 
-  def find_or_create_responsables
+  def find_or_create_responsable(responsable)
     if user = User.users.find_by_email(responsable.email)
       CardUser.where(user_id: user.id, card_id: id).first_or_create(card_validated: true)
       nil
