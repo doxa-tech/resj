@@ -88,7 +88,7 @@ FactoryGirl.define do
     sequence(:title) { |n| "#{n} ours meurt chaque année"}
     content "Chaque année, plus de 1000 ourse blancs meurt"
     user { User.find_by_email('patrick@dujardin.com') || create(:user, firstname: 'Patrick', lastname: 'Dujardin') }
-    image { File.open("#{Rails.root}/public/test/articles/image_example.jpg") }
+    image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'public', 'test', 'articles', 'image_example.jpg')) }
     themes { [Theme.first] }
     published_at { 1.day.ago }
 
@@ -116,5 +116,17 @@ FactoryGirl.define do
     firstname "John"
     lastname "Smith"
     email { "#{firstname.downcase}@#{lastname.downcase}.com" }
+  end
+
+  factory :card_type do
+    name "Totally new type"
+  end
+
+  factory :theme do
+    name "Totally new theme"
+  end
+
+  factory :tag do
+    name "Camp"
   end
 end
