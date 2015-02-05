@@ -16,7 +16,6 @@
 /log
 /tmp
 
-config/database.yml
 # Ignore application configuration
 config/secrets.yml
 
@@ -24,6 +23,9 @@ public/uploads
 uploads
 *.log
 
+<<<<<<< HEAD
 config/sunspot.yml
 
+=======
+>>>>>>> FETCH_HEAD
 config/database.yml

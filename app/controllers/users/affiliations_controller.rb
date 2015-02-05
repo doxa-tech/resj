@@ -13,9 +13,10 @@ class Users::AffiliationsController < BaseController
 	# User's request to a card
 	def create
 		card = Card.find_by_id(params[:card_id])
-		if card && current_user.send_request(card)
-			CardMailer.request(current_user, card)
-			track_activity @new_card_user
+    success, card_user = Request.new(:user, user: current_user, card: card).process
+    if card && success
+    	CardMailer.request(current_user, card)
+			track_activity card_user
 			redirect_to user_my_cards_path, success: t('user.card.request.success')
 		else
 			redirect_to user_my_cards_path, error: t('user.card.request.error')
@@ -25,13 +26,14 @@ class Users::AffiliationsController < BaseController
 	# Action on a card's request to an user
 	def update
 		card = Card.find_by_id(params[:id])
-		if card && current_user.answer_request(card, params[:validated])
+		success, card_user = Request.new(:user, user: current_user, card: card).answer(params[:validated])
+		if card && success
 			if params[:validated] == "true"
         CardMailer.confirmed_user(current_user, card).deliver
       else
         CardMailer.unconfirmed_user(current_user, card).deliver
       end
-			track_activity @card_user
+			track_activity card_user
 			redirect_to user_my_cards_path, success: t('user.card.confirmation.success')
 		else
 			redirect_to user_my_cards_path, error: t('user.card.confirmation.error')

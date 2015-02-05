@@ -3,6 +3,10 @@ When /^I select the card and send the request$/ do
 	click_button "Envoyer la requête"
 end
 
+Given /^I refused a card$/ do
+  create(:affiliation, user_validated: false)
+end
+
 Given /^I recently made a card refused request$/ do
 	create(:recent_affiliation, card_validated: false)
 end 
