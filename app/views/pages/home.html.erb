@@ -51,7 +51,7 @@
 					<div class="charts">
 						<div class="chart">
 							<%= link_to "", reseau_path, class: "link" %>
-							<div class="easy-chart" data-value="<%= @card_count %>" data-percent="<%= @card_count %>" ><span></span></div>
+							<div class="easy-chart" data-value="<%= @card_count %>" data-percent="<%= [@card_count*100/150,1].max %>" ><span></span></div>
 							<div class="label">Groupes, oeuvres ou réseaux</div>
 						</div>
 						<div class="chart">
@@ -66,7 +66,7 @@
 						</div>
 						<div class="chart">
 							<%= link_to "", profile_path, class: "link" %>
-							<div class="easy-chart" data-value="<%= @user_count %>" data-percent="<%= @user_count %>" ><span></span></div>
+							<div class="easy-chart" data-value="<%= @user_count %>" data-percent="<%= [@user_count*100/250,1].max %>" ><span></span></div>
 							<div class="label">Utilisateurs</div>
 						</div>
 					</div>
