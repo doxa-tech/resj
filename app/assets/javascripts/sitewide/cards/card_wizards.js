@@ -19,35 +19,37 @@ CardWizardsController.prototype.new = function() {
 
 }
 
+// is called by google map callback
+/*jshint unused:false */
 function card_new_map() {
   var gmap = {
+    map: null,
+    geocoder: null,
+    marker: null,
     initialize: function() {
       var latlng = new google.maps.LatLng(46.57, 6.8794);
-      document.getElementById("lat").value =  latlng.lat();
-      document.getElementById("lng").value =  latlng.lng();
       var mapOptions = {
         center: latlng,
         zoom: 8,
         mapTypeId: google.maps.MapTypeId.HYBRID
       };
-      var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-      geocoder = new google.maps.Geocoder();
-      marker = new google.maps.Marker({position: latlng,map: map});
-      google.maps.event.addListener(map, 'click', function(event) {
-        marker.setPosition(event.latLng);
+      gmap.map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+      gmap.geocoder = new google.maps.Geocoder();
+      gmap.marker = new google.maps.Marker({position: latlng,map: gmap.map});
+      google.maps.event.addListener(gmap.map, 'click', function(event) {
+        gmap.marker.setPosition(event.latLng);
         var coord = event.latLng;
         document.getElementById("lat").value =  coord.lat();
         document.getElementById("lng").value =  coord.lng();
       });
       google.maps.event.addDomListener(window, 'load');
-      return {map: map, marker: marker};
     },
     codeAddress: function(addr, map, marker) {
-      geocoder.geocode( { 'address': addr}, function(results, status) {
+      gmap.geocoder.geocode( { 'address': addr}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
           var coord = results[0].geometry.location;
-          map.setCenter(coord);
-          marker.setPosition(coord);
+          gmap.map.setCenter(coord);
+          gmap.marker.setPosition(coord);
           document.getElementById("lat").value =  coord.lat();
           document.getElementById("lng").value =  coord.lng();
         } else {
@@ -56,19 +58,23 @@ function card_new_map() {
       });
     }
   };
-  map = gmap.initialize();
+
+  gmap.initialize();
+
   var street = document.getElementById('card_street');
   var address = document.getElementById('address');
   var btn = document.getElementById('geocode-addr');
+  var item = $('.item');
+
   street.onchange = function(){
-    var item = $('.item');
+    item = $('.item');
     if(item.length) address.value = street.value + " " + $('.item').html().replace(/(.*?\s-\s)?/,"").replace(/\s-\s/g, ' ') + ", Switzerland";
   }
   document.getElementById('card_location_id').onchange = function(){
-    var item = $('.item');
+    item = $('.item');
     if(item.length) address.value = street.value + " " + item.html().replace(/(.*?\s-\s)?/,"").replace(/\s-\s/g, ' ') + ", Switzerland";
   }
   btn.onclick = function(){
-    gmap.codeAddress(address.value, map.map, map.marker);
+    gmap.codeAddress(address.value, gmap.map, gmap.marker);
   };
 }

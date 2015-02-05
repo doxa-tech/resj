@@ -25,3 +25,5 @@ uploads
 *.log
 
 config/sunspot.yml
+
+config/database.yml

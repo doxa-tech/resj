@@ -11,6 +11,8 @@ module CardValidation
 	    card.validates :street, presence: true
 	    card.validates :location_id, presence: true
 	    card.validates :place, length: { maximum: 60 }
+	    card.validates :latitude, presence: { message: "Veuillez spécifier votre emplacement sur la carte" }
+	    card.validates :longitude, presence: { message: "Veuillez spécifier votre emplacement sur la carte" }
 	  end
 	  with_options if: Proc.new { |c| c.current_step?("team")} do |card|
 	    card.validate :responsables?, on: :create
