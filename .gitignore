@@ -23,9 +23,5 @@ public/uploads
 uploads
 *.log
 
-<<<<<<< HEAD
 config/sunspot.yml
-
-=======
->>>>>>> FETCH_HEAD
 config/database.yml

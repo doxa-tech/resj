@@ -16,7 +16,7 @@ PagesController.prototype.resources = function() {
 	});
 
 	var show = true;
-	if ($('article .text')[0].scrollHeight >  $('article .text').innerHeight()) {
+	if ($('article .text').length && $('article .text')[0].scrollHeight >  $('article .text').innerHeight()) {
 		$("#more-article").show();
 		$("#more-article").click(function(){
 			if(show) {

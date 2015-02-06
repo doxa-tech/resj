@@ -1,5 +1,4 @@
 <% content_for :id, 'subject-show' %>
-<% type = subject_type(@subject) %>
 
 <div class="top">
 	<h1><%= "Document / #{@subject.name}" %></h1>
@@ -8,7 +7,7 @@
 
 <h3><%= @subject.name %></h3>
 <div class="content">
-	<%= image_tag image_url "resources/documents/#{type}.png" %>
+	<%= image_tag image_url "resources/documents/#{subject_type(@subject)}.png" %>
 	<div class="txt">
 		<%= simple_format @subject.description %> <span class="author">Créé par <%= @subject.user.full_name %> le <%= l @subject.created_at, format: :normal %></span>
 	</div>
