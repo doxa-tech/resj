@@ -62,7 +62,6 @@
 					<p>
 						<%=	user.firstname %>
 						<%= content_tag :span, user.lastname, class: 'lastname' %>
-						<%= mask_email user.email %>
 					</p>
 				</div>
 			<% end %>
@@ -71,7 +70,6 @@
 					<p>
 						<%= responsable.firstname %>
 						<%= content_tag :span, responsable.lastname, class: 'lastname' %>
-						<%= mask_email responsable.email %>
 					</p>
 				</div>
 			<% end %>
