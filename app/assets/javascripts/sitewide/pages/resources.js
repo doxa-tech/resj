@@ -16,15 +16,16 @@ PagesController.prototype.resources = function() {
 	});
 
 	var show = true;
-	if ($('article .text').length && $('article .text')[0].scrollHeight >  $('article .text').innerHeight()) {
+	var articles = $('article .text');
+	if (articles.length && articles[0].scrollHeight >  articles.innerHeight()) {
 		$("#more-article").show();
 		$("#more-article").click(function(){
 			if(show) {
-				$("article .text").animate({"max-height": "100%"}, 500);
+				articles.animate({"max-height": "100%"}, 500);
 				$("article .text button").html('Fermer <span class="fi-arrow-up">');
 				show = false;
 			} else {
-				$("article .text").animate({"max-height": "600px"}, 500);
+				articles.animate({"max-height": "600px"}, 500);
 				$("article .text button").html('Lire la suite <span class="fi-arrow-down">');
 				show = true;
 			}
