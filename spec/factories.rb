@@ -131,7 +131,7 @@ FactoryGirl.define do
   end
 
   factory :parent do
-    user { User.find_by_email('john@smith.com') || create(:user, firstname: 'John', lastname: 'Smith') }
+    user { create(:user, firstname: "Paul", lastname: "Silias") }
     parent { User.find_by_firstname('g_admin') }
   end
 end

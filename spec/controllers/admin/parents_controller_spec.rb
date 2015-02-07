@@ -9,6 +9,10 @@ RSpec.describe Admin::ParentsController, :type => :controller do
       @attribute ||= :user_id
     end
 
+    def value
+      @value ||= 100
+    end
+
   end
 
 end

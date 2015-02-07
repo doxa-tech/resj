@@ -55,14 +55,14 @@ shared_examples_for "an admin controller" do |object|
       end
 
       describe "PATCH #update" do
-        let!(:response) { patch :update, id: record.id, hash_name(object) => {attribute => "New string"} }
+        let!(:response) { patch :update, id: record.id, hash_name(object) => {attribute => value} }
 
         it "should redirect to the list" do
           expect(response).to redirect_to controller_path(object)
         end
 
         it "should update the object" do
-          expect(assigns(var_name(object))[attribute]).to eq "New string"
+          expect(assigns(var_name(object))[attribute]).to eq value
         end
 
       end
@@ -98,6 +98,7 @@ shared_examples_for "an admin controller" do |object|
       #end
 
       it "should display all the collection" do
+        record = create(factory(object))
         expect(assigns(:table).collection).to eq []
       end
     end
@@ -135,14 +136,14 @@ shared_examples_for "an admin controller" do |object|
       end
 
       describe "PATCH #update" do
-        let!(:response) { patch :update, id: record.id, hash_name(object) => {attribute => "New string"} }
+        let!(:response) { patch :update, id: record.id, hash_name(object) => {attribute => value} }
 
         it "should not allow the user" do
           expect(response).to redirect_to anything #profile_path
         end
 
         it "should not update the object" do
-          expect(assigns(var_name(object))[attribute]).to_not eq "New string"
+          expect(assigns(var_name(object))[attribute]).to_not eq value
         end
 
       end
@@ -205,14 +206,14 @@ shared_examples_for "an admin controller" do |object|
       end
 
       describe "POST #update" do
-        let!(:response) { patch :update, id: record.id, hash_name(object) => {attribute => "New string"} }
+        let!(:response) { patch :update, id: record.id, hash_name(object) => {attribute => value} }
 
         it "should redirect to the login" do
           expect(response).to redirect_to connexion_path
         end
 
         it "should not update the object" do
-          expect(assigns(var_name(object))[attribute]).to_not eq "New string"
+          expect(assigns(var_name(object))[attribute]).to_not eq value
         end
       end
 
@@ -258,6 +259,10 @@ shared_examples_for "an admin controller" do |object|
 
   def var_name(object)
     @var_name ||= object
+  end
+
+  def value
+    @value ||= "New string"
   end
 
 end
