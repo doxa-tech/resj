@@ -129,4 +129,9 @@ FactoryGirl.define do
   factory :tag do
     name "Camp"
   end
+
+  factory :parent do
+    user { User.find_by_email('john@smith.com') || create(:user, firstname: 'John', lastname: 'Smith') }
+    parent { User.find_by_firstname('g_admin') }
+  end
 end

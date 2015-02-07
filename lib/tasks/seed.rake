@@ -64,6 +64,7 @@ namespace :seed do
 			admin/statuses 
 			admin/card_statuses
 			admin/help_pages
+			resources
 			].each do |name|
 			Element.find_or_create_by(name: name)
 		end
@@ -79,6 +80,10 @@ namespace :seed do
 		user = UserType.find_by_name('user')
 		if (superuser = User.find_by_email('kocher.ke@gmail.com')).nil?
 			superuser = User.create(email: 'kocher.ke@gmail.com', firstname: 'Keran', lastname: "Kocher", password: '12341', password_confirmation: '12341', confirmed: true, user_type: user)
+		end
+
+		if !User.joins(:ownerships, ownerships: [:element]).where(elements: {name: 'admin/card_statuses'}, ownerships: {right_update: true})
+			user.ownerships.create(element: Element.find_by_name('card_statuses'), ownership_type: OwnershipType.find_by_name("all_entries"), right_update: true)
 		end
 
 		# Add admin to groups
