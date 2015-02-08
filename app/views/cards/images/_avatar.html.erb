@@ -1,5 +1,6 @@
-
-<div id="logo-container"></div>
+<%= content_tag :div, id: "logo-container", data: logo_src(@card) do %>
+	<img class="logo">
+<% end %>	
 
 
 <% if current_permission.allow_modify?('cards','edit', @card) %>

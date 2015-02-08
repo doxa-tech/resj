@@ -7,7 +7,7 @@ class Article < ActiveRecord::Base
 
   mount_uploader :image, ArticlesUploader
 
-  validates :title, presence: true, length: { maximum: 60 }
+  validates :title, presence: true, length: { maximum: 90 }
   validates :content, presence: true
   validates :image, presence: true
   validates :themes, presence: true

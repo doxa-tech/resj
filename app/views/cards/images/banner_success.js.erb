@@ -1,8 +1,3 @@
 document.getElementById('ajax-banner-part').innerHTML = " <%= j render 'cards/images/banner' %> ";
-// fire loading image
-$.ajax({
-  url: document.URL,
-  data: {
-    w: window.innerWidth
-  }
-});
+
+card_show.load_banner();

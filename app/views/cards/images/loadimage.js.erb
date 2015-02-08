@@ -1,3 +1,0 @@
-<% w = params[:w].to_i %>
-document.getElementById('banner-container').innerHTML = "<%= j image_tag @card.banner_type_url(w), class: 'banner' %>";
-document.getElementById('logo-container').innerHTML = "<%= j image_tag @card.logo_type(w), class: 'logo' %>";

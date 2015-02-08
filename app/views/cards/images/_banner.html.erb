@@ -1,6 +1,6 @@
-
-
-<div id="banner-container"></div>
+<%= content_tag :div, id: "banner-container", data: banner_src(@card) do %>
+	<img class="banner">
+<% end %>	
 
 <% if current_permission.allow_modify?('cards','edit', @card) %>
 	<div class="edit-banner">

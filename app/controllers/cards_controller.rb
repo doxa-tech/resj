@@ -25,7 +25,6 @@ class CardsController < BaseController
 		@help_url = "#{help_category_path(category)}##{CGI.escape 'Le bon format pour ma bannière et mon logo'}"
 		js lat: @card.latitude
 		js lng: @card.longitude
-		render 'cards/images/loadimage' if request.xhr?
 	end
 
 	def overview

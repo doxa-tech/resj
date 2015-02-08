@@ -44,13 +44,8 @@ CardsController.prototype.show = function() {
     $(this).closest('form').ajaxSubmit();
   });
 
-  // fire loading image
-  $.ajax({
-    url: document.URL,
-    data: {
-      w: window.innerWidth
-    }
-  });
+  card_show.load_banner();
+  card_show.load_avatar();
 
 }
 
@@ -72,6 +67,42 @@ var card_show = {
 
   center: function() {
     card_show.map.setCenter(card_show.marker.getPosition());
-  }
+  },
+
+  load_banner: function() {
+
+    var banner = $('#banner-container');
+    banner.find('img').prop('src', banner.data('src') + '/' + banner_format(window.innerWidth) + '_' + banner.data('filename'));
+    
+    function banner_format(w) {
+      if(w <= 768) {
+        return 's';
+      } else if(w <= 992) {
+        return 'm';
+      } else if(w <= 1200) {
+        return 'l';
+      } else if(w <= 1920) {
+        return 'xl';
+      } else {
+        return 'full';
+      }
+    }
+
+  },
+
+  load_avatar: function() {
+
+    var logo = $('#logo-container');
+    logo.find('img').prop('src', logo.data('src') + '/' + logo_format(window.innerWidth) + '_' + logo.data('filename'));
+
+    function logo_format(w) {
+      if(w <= 768) {
+        return 's';
+      } else {
+        return 'thumb';
+      }
+    }
+
+  },
 
 };

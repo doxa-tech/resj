@@ -6,6 +6,8 @@
 		font-family: "Courier new";
 		background: rgb(255, 240, 219);
 		padding: 10px 20px;
+		max-height: 400px;
+		overflow: scroll;
 	}
 	article.article {
 		padding: 20px;
