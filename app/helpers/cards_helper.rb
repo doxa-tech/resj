@@ -3,7 +3,7 @@ module CardsHelper
 		if card.banner_url
 			{ src: File.dirname(card.banner_url), filename: card.banner.file.filename }
 		else
-			{ src: "/assets/card/banner", filename: File.basename(asset_path "card/banner/default-banner.jpg") }
+			{ src: "/card/banner", filename: File.basename("default-banner.jpg") }
 		end
 	end
 
@@ -11,7 +11,7 @@ module CardsHelper
 		if card.avatar_url
 			{ src: File.dirname(card.avatar_url), filename: card.avatar.file.filename }
 		else
-			{ src: "/assets/card/logo", filename: File.basename(asset_path "card/logo/default-logo.jpg") }
+			{ src: "/card/logo", filename: File.basename("default-logo.jpg") }
 		end
 	end
 
