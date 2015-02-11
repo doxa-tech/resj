@@ -75,7 +75,7 @@ FactoryGirl.define do
 
   factory :affiliation, class: CardUser do
     user { User.find_by_email("john@smith.com") || create(:user) }
-    card { Card.find_by_name("Waykup") || create(:card) }
+    card { Card.find_by_name("Waykup") || create(:active_card) }
     card_validated true
     user_validated true
 

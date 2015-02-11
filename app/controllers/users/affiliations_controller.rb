@@ -1,5 +1,5 @@
 class Users::AffiliationsController < BaseController
-	before_filter :connected_or_token?
+	before_action :connected?
 	layout 'admin'
 
 	def my_cards

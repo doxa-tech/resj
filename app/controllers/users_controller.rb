@@ -78,11 +78,4 @@ class UsersController < BaseController
 	def avatar_params
 		params.require(:user).permit(:gravatar_email, :gravatar, :avatar, :current_password)
 	end
-
-	def connected?
-		if !current_user
-      store_location
-      redirect_to connexion_path, error: render_error('login')
-    end
-	end
 end

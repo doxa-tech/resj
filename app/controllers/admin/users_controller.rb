@@ -49,4 +49,5 @@ class Admin::UsersController < Admin::BaseController
 	def current_resource
 		@user = User.find_by_id(params[:id])
 	end
+
 end

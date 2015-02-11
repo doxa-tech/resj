@@ -93,13 +93,9 @@ shared_examples_for "an admin controller" do |object|
     describe "GET #index" do
       let!(:response) { get :index }
 
-      #it "should redirect" do
-      #  expect(response).to redirect_to profile_path
-      #end
-
-      it "should display all the collection" do
+      it "should redirect" do
         record = create(factory(object))
-        expect(assigns(:table).collection).to eq []
+        expect(response).to redirect_to connexion_path
       end
     end
 

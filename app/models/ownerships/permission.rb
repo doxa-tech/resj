@@ -11,33 +11,37 @@ class Permission
 		allow?(@modify_ownerships, current_resource)
 	end
 
-	def allow_create?(controller)
+	def allow_create?(controller, action, current_resource = nil)
 		@create_ownerships ||= Ownership.joins(:element).where(user_id: @ids, right_create: true, elements: {name: controller})
     @create_ownerships.any?
 	end
 
-	def allow_read?(controller)
+	def allow_read?(controller, action, current_resource = nil)
 		@read_ownerships ||= Ownership.joins(:element).where(user_id: @ids, right_read: true, elements: {name: controller})
     @read_ownerships.any?
 	end
 
 	def records(controller, model, token=nil)
-		@records_ownerships ||= Ownership.permission.where(user_id: @ids, right_read: true, elements: {name: controller})
-		token = AccessToken.find_by_token(token)
-		@records_ownerships << token.ownership if !token.nil? && token.exp_at > Time.now && token.is_valid
-		id_elements = @records_ownerships.pluck(:id_element)
-		if @records_ownerships.any?
-			if @records_ownerships.any? { |o| o.ownership_type.name == "all_entries" }
-				@records ||= model.all
-			elsif @records_ownerships.any? { |o| o.ownership_type.name == "on_ownership" }
-				@records ||= model.where('user_id = ? or id IN (?)', @user.id, id_elements)
-			elsif @records_ownerships.any? { |o| o.ownership_type.name == "on_entry" }
-				@records ||= model.where('id IN (?)', id_elements)
-			end
+		ownerships, ids = index_ownerships(controller, token)
+		@records ||= if ownerships.any? { |o| o.ownership_type.name == "all_entries" }
+			model.all
+		elsif ownerships.any? { |o| o.ownership_type.name == "on_ownership" }
+			model.where('user_id = ? or id IN (?)', @user.id, id_elements)
+		elsif ownerships.any? { |o| o.ownership_type.name == "on_entry" }
+			model.where('id IN (?)', ids)
 		else
-			@records ||= model.none
+			model.none
 		end
 	end
+
+  def index_ownerships(controller, token=nil)
+    @index_ownerships ||= Ownership.permission.where(user_id: @ids, right_read: true, elements: {name: controller})
+    if @index_token.nil? && @index_token = AccessToken.find_by_token(token) && @index_token.exp_at > Time.now && @index_token.is_valid
+      @index_ownerships << @index_token.ownership
+    end
+    @index_ids ||= @index_ownerships.pluck(:id_element)
+    return @index_ownerships, @index_ids
+  end
 
   def allow_action?(controller, action, current_resource = nil)
   	@action_ownerships ||= Ownership.permission.joins(:actions).where(user_id: @ids, elements: {name: controller}, actions: {name: action})
@@ -52,7 +56,7 @@ class Permission
   end
 
   def allow_resource?
-  	@user.confirmed_cards.select{ |c| c.status.name == "En ligne"}.any? || !@user.orator.nil?
+  	@user.confirmed_cards.select{ |c| c.status.name == "En ligne"}.any? || !@user.orator.nil? if @user
   end
 
   def allow_params?(controller, name)

@@ -1,5 +1,4 @@
 class CardsController < BaseController
-	before_action :connected_or_token?, only: [:overview, :update]
 	before_action :current_resource, only: [:update, :overview]
 	before_action :authorize_modify, only: [:update]
 	before_action :authorize_or_redirect, only: [:overview]
@@ -61,8 +60,8 @@ class CardsController < BaseController
   end
 
   def authorize_or_redirect
-  	if !current_permission.allow_modify?(params[:controller], params[:action], current_resource) \
-    && !current_permission.allow_token?(params[:controller], params[:action], session[:token], current_resource)
+    access = PermissionAccess.new(self, params[:controller], params[:action], current_resource)
+  	if !access.authorized?(:modify)
       redirect_to card_team_path(@card)
     end
   end

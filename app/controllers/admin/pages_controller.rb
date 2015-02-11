@@ -30,4 +30,5 @@ class Admin::PagesController < Admin::BaseController
   def current_resource
   	@page = Page.find_by_id(params[:id])
   end
+
 end

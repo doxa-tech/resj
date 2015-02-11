@@ -48,4 +48,5 @@ class Admin::OwnershipsController < Admin::BaseController
 	def current_resource
 		@ownership = Ownership.find_by_id(params[:id])
 	end
+
 end

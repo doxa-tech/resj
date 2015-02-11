@@ -1,5 +1,6 @@
 class Cards::ImagesController < BaseController
-	before_filter :current_resource
+	before_action :current_resource
+	before_action :authorize_modify
 
 	def banner
 	end
@@ -48,5 +49,9 @@ class Cards::ImagesController < BaseController
 	def current_resource
 		@card = Card.find(params[:card_id])
 	end	
+
+	def authorize_modify
+    PermissionAccess.new(self, 'cards', params[:action], current_resource).authorize(:modify)
+  end
 
 end

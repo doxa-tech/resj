@@ -1,5 +1,5 @@
 class SessionsController < BaseController
-	before_action :connected?, only: [:new]
+	before_action :connected?
 	before_action :confirmed?, only: [:create]
 
 	def new
