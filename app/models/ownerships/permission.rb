@@ -11,12 +11,12 @@ class Permission
 		allow?(@modify_ownerships, current_resource)
 	end
 
-	def allow_create?(controller, action, current_resource = nil)
+	def allow_create?(controller, *args)
 		@create_ownerships ||= Ownership.joins(:element).where(user_id: @ids, right_create: true, elements: {name: controller})
     @create_ownerships.any?
 	end
 
-	def allow_read?(controller, action, current_resource = nil)
+	def allow_read?(controller, *args)
 		@read_ownerships ||= Ownership.joins(:element).where(user_id: @ids, right_read: true, elements: {name: controller})
     @read_ownerships.any?
 	end

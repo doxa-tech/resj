@@ -79,12 +79,12 @@ RSpec.describe Permission, :type => :model do
 		it "should return true" do
 			ownership = create(:ownership, user: create(:user), right_create: true)
 			permission = Permission.new(ownership.user)
-			expect(permission.allow_create? 'admin/articles', nil).to be true
+			expect(permission.allow_create? 'admin/articles').to be true
 		end
 
 		it "should return false" do
 			permission = Permission.new(create(:user))
-			expect(permission.allow_create? 'admin/articles', nil).to be false
+			expect(permission.allow_create? 'admin/articles').to be false
 		end
 
 	end
@@ -94,12 +94,12 @@ RSpec.describe Permission, :type => :model do
 		it "should return true" do
 			ownership = create(:ownership, user: create(:user), right_read: true)
 			permission = Permission.new(ownership.user)
-			expect(permission.allow_read? 'admin/articles', nil).to be true
+			expect(permission.allow_read? 'admin/articles').to be true
 		end
 
 		it "should return false" do
 			permission = Permission.new(create(:user))
-			expect(permission.allow_read? 'admin/articles', nil).to be false
+			expect(permission.allow_read? 'admin/articles').to be false
 		end
 
 	end
