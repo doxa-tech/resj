@@ -1,24 +1,13 @@
 module SessionsHelper
 
-	# Sign in a user with a cookie (remove on browser close)
+	# Sign in a user with a cookie
 	# 
 	# * *Args*		:
 	# 	- a user to sign in
 	# * *Returns*	:
 	#
-	def sign_in(user)
-		cookies[:remember_token] = user.remember_token
-		self.current_user = user
-	end
-
-	# Sign in a user with a cookie (remove after 2 months)
-	# 
-	# * *Args*		:
-	# 	- a user to sign in
-	# * *Returns*	:
-	#
-	def sign_in_permanent(user)
-		cookies[:remember_token] = { value: user.remember_token, expires: Time.now + 2592000 }
+	def sign_in(user, permanent: false)
+		cookies[:remember_token] = { value: user.remember_token, expires: (Time.now + 2592000 if permanent) }
 		self.current_user = user
 	end
 

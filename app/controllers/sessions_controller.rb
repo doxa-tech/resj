@@ -1,5 +1,5 @@
 class SessionsController < BaseController
-	before_action :connected?
+	before_action :connected?, only: [:new, :create]
 	before_action :confirmed?, only: [:create]
 
 	def new
@@ -8,20 +8,19 @@ class SessionsController < BaseController
 
 	def create
 		if @user && @user.authenticate(params[:session][:password])
-			params[:session][:remember_me] == '1' ? sign_in_permanent(@user) : sign_in(@user)
+			sign_in(@user, permanent: params[:session][:remember_me].to_bool)
 			Connection.create(user: @user, ip: request.remote_ip)
 			respond_to do |format|
 				format.html { redirect_back_or(profile_path, success: t('session.create.success')) }
 				format.js { render 'success' }
 			end
 		else
-			@message = t('session.create.error')
 			respond_to do |format|
 				format.html do 
-					flash.now[:error] = @message 
+					flash.now[:error] = t('session.create.error') 
 					render 'new'
 				end
-				format.js { render 'error' }
+				format.js { render 'error', locals: { message: t('session.create.error') } }
 			end
 		end
 	end
@@ -40,10 +39,9 @@ class SessionsController < BaseController
 	def confirmed?
 		@user = User.users.find_by_email(params[:session][:email].strip.downcase)
 		if @user && !@user.confirmed
-			@message = render_error("unconfirmed")
 			respond_to do |format|
-				format.html { redirect_to root_path, error: @message }
-				format.js { render 'error'}
+				format.html { redirect_to root_path, error: render_error("unconfirmed") }
+				format.js { render 'error', locals: { message: render_error("unconfirmed") } }
 			end
 		end
 	end
