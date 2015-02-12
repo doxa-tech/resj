@@ -5,6 +5,7 @@ class PermissionAccess < SimpleDelegator
     @token = stored_token
     @controller = controller
     @action = action
+    @current_resource = current_resource
     @current_user ||= User.new(firstname: "Guest")
     store_location
   end

@@ -26,7 +26,7 @@ class Permission
 		@records ||= if ownerships.any? { |o| o.ownership_type.name == "all_entries" }
 			model.all
 		elsif ownerships.any? { |o| o.ownership_type.name == "on_ownership" }
-			model.where('user_id = ? or id IN (?)', @user.id, id_elements)
+			model.where('user_id = ? or id IN (?)', @user.id, ids)
 		elsif ownerships.any? { |o| o.ownership_type.name == "on_entry" }
 			model.where('id IN (?)', ids)
 		else
@@ -36,7 +36,7 @@ class Permission
 
   def index_ownerships(controller, token=nil)
     @index_ownerships ||= Ownership.permission.where(user_id: @ids, right_read: true, elements: {name: controller})
-    if @index_token.nil? && @index_token = AccessToken.find_by_token(token) && @index_token.exp_at > Time.now && @index_token.is_valid
+    if !(@index_token ||= AccessToken.find_by_token token).nil? && @index_token.is_valid?
       @index_ownerships << @index_token.ownership
     end
     @index_ids ||= @index_ownerships.pluck(:id_element)
@@ -52,7 +52,7 @@ class Permission
   	token = AccessToken.find_by_token(token)
   	right_to = right[action] || "right_update"
   	@token_ownerships ||= Ownership.permission.where("ownerships.id = ? AND elements.name = ? AND #{right_to} = ?", token.try(:ownership_id), controller, true)
-  	!token.nil? && token.exp_at > Time.now && token.is_valid && allow?(@token_ownerships, current_resource)
+  	!token.nil? && token.is_valid? && allow?(@token_ownerships, current_resource)
   end
 
   def allow_resource?
