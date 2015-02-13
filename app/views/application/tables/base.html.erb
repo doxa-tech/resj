@@ -1,9 +1,9 @@
-<%= render 'application/admin/search_field' if presenter.options[:search] %>
-<%= render 'table_buttons' unless presenter.options[:buttons] == false %>
+<%= render 'application/tables/search_field' if presenter.options[:search] == true %>
+<%= render 'application/tables/buttons' unless presenter.options[:buttons] == false %>
 <table>
 	<thead>
 		<tr>
-			<% presenter.model.column_names.each do |column| %>
+			<% presenter.column_names.each do |column| %>
 			<th><%= presenter.sortable(column) %></th>
 			<% end %>
 		</tr>
@@ -18,7 +18,7 @@
 				</tr>
 			<% end %>
 		<% else %>
-			<tr><td style="text-align: center;" colspan="<%= presenter.model.column_names.count %>">Il n'y a aucun élément à afficher.</td></tr>
+			<tr><td class="none" colspan="<%= presenter.column_names.count %>">Il n'y a aucun élément à afficher.</td></tr>
 		<% end %>
 	</tbody>
 </table>

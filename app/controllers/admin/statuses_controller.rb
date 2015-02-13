@@ -3,11 +3,8 @@ class Admin::StatusesController < Admin::BaseController
 	after_action only: [:create, :update, :destroy] { |c| c. track_activity @status }
 
 	def index
-		@table = Table.new(view_context, Status)
-		respond_to do |format|
-			format.html
-			format.js { render 'sort' }
-		end
+		@table = Table.new(self, Status)
+		@table.respond
 	end
 
 	def new

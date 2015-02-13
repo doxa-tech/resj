@@ -10,10 +10,6 @@ class PageTable < BaseTable
 		]
 	end
 
-	def url(element)
-		element.id
-	end
-
 	def model
 		Page
 	end

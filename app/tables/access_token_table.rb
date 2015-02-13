@@ -12,10 +12,6 @@ class	AccessTokenTable < BaseTable
 		]
 	end
 
-	def url(element)
-		element.id
-	end
-
 	def model
 		AccessToken
 	end

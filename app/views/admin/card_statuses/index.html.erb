@@ -3,9 +3,8 @@
 <div id="admin_table">
 	<div class="table_buttons">
 		<% if current_permission.allow_modify?(params[:controller], "update") %>
-			<a class="edit off">Editer</a>
-			<a class="edit on" href="#">Editer</a>
+			<a class="edit" href="#">Editer</a>
 		<% end %>
 	</div>
-	<%= present @table %>
+	<%= @table.present %>
 </div>

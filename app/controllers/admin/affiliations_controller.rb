@@ -3,11 +3,8 @@ class Admin::AffiliationsController < Admin::BaseController
 	after_action only: [:create, :update, :destroy] { |c| c. track_activity @affiliation }
 
 	def index
-		@table = Table.new(view_context, Affiliation)
-		respond_to do |format|
-			format.html
-			format.js { render 'sort' }
-		end
+		@table = Table.new(self, Affiliation)
+		@table.respond
 	end
 
 	def new 

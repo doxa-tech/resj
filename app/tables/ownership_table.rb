@@ -16,10 +16,6 @@ class OwnershipTable < BaseTable
 		]
 	end
 
-	def url(element)
-		element.id
-	end
-
 	def model
 		Ownership
 	end

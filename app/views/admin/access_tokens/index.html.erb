@@ -12,12 +12,11 @@
 	<% end %>
 <% end %>
 
-<div class="table_buttons">
-	<% if current_permission.allow_modify?(params[:controller], "destroy") %>
-		<a class="delete off">Supprimer</a>
-		<a class="delete on" href="#" data-method="delete" rel="nofollow" data-confirm="Etes-vous sûr de vouloir supprimer cette entrée ?">Supprimer</a>
-	<% end %>	
-</div>
 <div id="admin_table">
-	<%= present @table %>
+	<div class="table_buttons">
+		<% if current_permission.allow_modify?(params[:controller], "destroy") %>
+			<a class="delete" href="#" data-method="delete" rel="nofollow" data-confirm="Etes-vous sûr de vouloir supprimer cette entrée ?">Supprimer</a>
+		<% end %>	
+	</div>
+	<%= @table.present %>
 </div>

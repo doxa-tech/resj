@@ -10,10 +10,6 @@ class ParentTable < BaseTable
 		]
 	end
 
-	def url(element)
-		element.id
-	end
-
 	def model
 		Parent
 	end

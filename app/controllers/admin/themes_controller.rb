@@ -3,11 +3,8 @@ class Admin::ThemesController < Admin::BaseController
 	after_action only: [:create, :update, :destroy] { |c| c. track_activity @theme }
 
 	def index
-		@table = Table.new(view_context, Theme)
-		respond_to do |format|
-			format.html
-			format.js { render 'sort' }
-		end
+		@table = Table.new(self, Theme)
+		@table.respond
 	end
 
 	def new 

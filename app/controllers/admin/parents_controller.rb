@@ -3,11 +3,8 @@ class Admin::ParentsController < Admin::BaseController
 	after_action only: [:create, :update, :destroy] { |c| c. track_activity @parent }
 
 	def index
-		@table = ParentTable.new(view_context)
-		respond_to do |format|
-			format.html
-			format.js { render 'sort' }
-		end
+		@table = ParentTable.new(self)
+		@table.respond
 	end
 
 	def new

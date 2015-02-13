@@ -3,11 +3,8 @@ class Admin::ActionsController < Admin::BaseController
 	after_action only: [:create, :update, :destroy] { |c| c. track_activity @action }
 
 	def index
-		@table = Table.new(view_context, Action)
-		respond_to do |format|
-			format.html
-			format.js { render 'sort' }
-		end
+		@table = Table.new(self, Action)
+		@table.respond
 	end
 
 	def new

@@ -3,11 +3,8 @@ class Admin::TagsController < Admin::BaseController
 	after_action only: [:create, :update, :destroy] { |c| c. track_activity @tag }
 
 	def index
-		@table = Table.new(view_context, Tag)
-		respond_to do |format|
-			format.html
-			format.js { render 'sort' }
-		end
+		@table = Table.new(self, Tag)
+		@table.respond
 	end
 
 	def new 

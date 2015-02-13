@@ -24,10 +24,6 @@ class CardTable < BaseTable
 		]
 	end
 
-	def url(element)
-		element.id
-	end
-
 	def model
 		Card
 	end

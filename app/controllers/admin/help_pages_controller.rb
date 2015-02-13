@@ -3,11 +3,8 @@ class Admin::HelpPagesController < Admin::BaseController
   after_action only: [:create, :update, :destroy] { |c| c. track_activity @page }
 
   def index
-    @table = Table.new(view_context, HelpPage)
-    respond_to do |format|
-      format.html
-      format.js { render 'sort' }
-    end
+    @table = Table.new(self, HelpPage)
+    @table.respond
   end
 
   def new

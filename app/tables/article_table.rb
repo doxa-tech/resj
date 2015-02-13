@@ -14,10 +14,6 @@ class ArticleTable < BaseTable
 		]
 	end
 
-	def url(element)
-		element.id
-	end
-
 	def model
 		Article
 	end

@@ -151,68 +151,6 @@
 
 	/*  General design */
 
-	#admin_table {
-		width: 100%;
-		overflow: auto;
-
-		.table_buttons {
-			padding: 20px;
-			position: absolute;
-			// text-align: right;
-			// a {
-			// 	background: #F0F8FF;
-			// 	padding: 6px 10px;
-			// 	color: #000;
-			// }
-		}
-
-		table {
-			border-collapse: collapse;
-			width: 100%;
-			max-width: 100%;
-			line-height: 21px;
-			margin: 57px 0 0 0;
-			thead {
-				tr {
-					th {
-						vertical-align: bottom;
-						border-bottom: 1px solid #DADADA;
-						padding: 10px 8px 5px 8px;
-						font-size: 13px;
-						text-align: left;
-						background: #3d3d3e;
-						color: #c0c0c0;
-						font-weight: 400;
-						&:not(:first-child) {
-						}
-						&:not(:last-child) {
-						}
-						a {
-							color:#c0c0c0;
-							font-weight: bold;
-						}
-					}
-				}
-			}
-			tbody {
-				td {
-					font-size: 12px;
-					padding: 7px 8px;
-					&:not(:first-child) {
-						border-left: 1px solid #DADADA;
-					}
-				}
-			}
-			tr.even {
-				background: #f8f8f8;
-			}
-			tr.row_selected {
-				background: #F0BEBE;
-			}
-		}
-
-	} // admin table
-
 	.button {
 		text-align: center;
 		input {

@@ -4,11 +4,8 @@ class Admin::ArticlesController < Admin::BaseController
 	js 'Admin/Articles#new', except: [:destroy, :index]
 
 	def index
-		@table = ArticleTable.new(view_context)
-		respond_to do |format|
-			format.html
-			format.js { render 'sort' }
-		end
+		@table = ArticleTable.new(self)
+		@table.respond
 	end
 
 	def new 

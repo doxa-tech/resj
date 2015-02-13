@@ -19,10 +19,6 @@ class UserTable < BaseTable
 		]
 	end
 
-	def url(element)
-		element.id
-	end
-
 	def model
 		User
 	end

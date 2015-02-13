@@ -3,7 +3,8 @@ class Admin::AccessTokensController < Admin::BaseController
 	after_action only: [:create, :destroy] { |c| c. track_activity @access_token }
 
 	def index
-		@table = AccessTokenTable.new(view_context, nil, { buttons: false } ) 
+		@table = AccessTokenTable.new(self, nil, buttons: false)
+		@table.respond
 	end
 
 	def create

@@ -3,11 +3,8 @@ class Admin::CardsController < Admin::BaseController
 	after_action only: [:create, :update, :destroy] { |c| c. track_activity @card }
 
 	def index
-		@table = CardTable.new(view_context, nil, search: true)
-		respond_to do |format|
-			format.html
-			format.js { render 'sort' }
-		end
+		@table = CardTable.new(self, nil, search: true)
+		@table.respond
 	end
 
 	def new

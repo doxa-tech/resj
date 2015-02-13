@@ -3,11 +3,8 @@ class Admin::UsersController < Admin::BaseController
 	after_action only: [:create, :update, :destroy] { |c| c. track_activity @user }
 
 	def index
-		@table = UserTable.new(view_context, nil, search: true)
-		respond_to do |format|
-			format.html
-			format.js { render 'sort' }
-		end
+		@table = UserTable.new(self, nil, search: true)
+		@table.respond
 	end
 
 	def new

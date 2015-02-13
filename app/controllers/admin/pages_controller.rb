@@ -3,11 +3,8 @@ class Admin::PagesController < Admin::BaseController
 	after_action only: [:update] { |c| c. track_activity @page }
 
 	def index
-		@table = PageTable.new(view_context, nil, buttons: false)
-		respond_to do |format|
-			format.html
-			format.js { render 'sort' }
-		end
+		@table = PageTable.new(self, nil, buttons: false)
+		@table.respond
 	end
 
 	def edit
