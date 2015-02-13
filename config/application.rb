@@ -32,5 +32,6 @@ module Resj
     config.exceptions_app = self.routes
 
     config.paths.add "app/models", eager_load: true, glob: "*"
+    config.paths.add "app/tables", eager_load: true, glob: "*"
   end
 end

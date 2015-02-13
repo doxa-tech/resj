@@ -1,21 +1,9 @@
 class UserTable < BaseTable
 
-	def attributes(element)
+	def attributes
 		[
-			element.id,
-			element.email,
-			element.gravatar_email,
-			element.password_digest,
-			element.remember_token,
-			element.user_type.name,
-			element.uid,
-			element.created_at,
-			element.updated_at,
-			element.reset_token,
-			element.reset_sent_at,
-			element.firstname,
-			element.lastname,
-			element.confirmed
+			:id, :email, :gravatar_email, :password_digest, :remember_token, {user_type: :name}, 
+			:uid, :created_at, :updated_at, :reset_token, :reset_sent_at, :firstname, :lastname, :confirmed
 		]
 	end
 

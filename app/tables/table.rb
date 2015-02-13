@@ -5,13 +5,13 @@ class Table < BaseTable
 		@model = model
 	end
 
-	def attributes(element)
+	def values(element)
 		element.attributes.map do |attr_name, attr_value|
 			if attr_value.is_a?(Date) || attr_value.is_a?(Time) || attr_value.is_a?(DateTime)
 				l(attr_value, format: :short)
 			else
 				attr_value
-			end
+			end.to_s
 		end
 	end
 

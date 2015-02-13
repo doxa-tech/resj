@@ -1,13 +1,7 @@
 class ParentTable < BaseTable
 
-	def attributes(element)
-		[
-			element.id,
-			element.user.full_name,
-			element.parent.full_name,
-			element.created_at,
-			element.updated_at
-		]
+	def attributes
+		[:id, {user: :full_name}, {parent: :full_name}, :created_at, :updated_at]
 	end
 
 	def model

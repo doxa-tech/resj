@@ -1,13 +1,7 @@
 class PageTable < BaseTable
 
-	def attributes(element)
-		[
-			element.id,
-			element.name,
-			element.content,
-			element.created_at,
-			element.updated_at
-		]
+	def attributes
+		[:id, :name, :content, :created_at, :updated_at]
 	end
 
 	def model

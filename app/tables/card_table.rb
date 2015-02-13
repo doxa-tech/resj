@@ -1,26 +1,10 @@
 class CardTable < BaseTable
 
-	def attributes(element)
+	def attributes
 		[
-			element.id,
-			element.card_type.name,
-			element.name,
-			element.email,
-			element.street,
-			element.place,
-			element.website,
-			element.password_digest,
-			element.description,
-			element.affiliation,
-			element.created_at,
-			element.updated_at,
-			element.latitude,
-			element.longitude,
-			element.avatar_url,
-			element.banner_url,
-			element.location.full_name,
-			element.user.full_name,
-			element.status.name
+			:id, {card_type: :name}, :name, :email, :street, :place, :website, :password_digest, 
+			:description, :affiliation, :created_at, :updated_at, :latitude, :longitude, :avatar_url, 
+			:banner_url, {location: :full_name}, {user: :full_name}, {status: :name}
 		]
 	end
 

@@ -1,15 +1,7 @@
 class	AccessTokenTable < BaseTable
 
-	def attributes(element)
-		[
-			element.id,
-			element.token,
-			element.is_valid,
-			element.ownership.full_name,
-			element.created_at,
-			element.updated_at,
-			element.exp_at
-		]
+	def attributes
+		[:id, :token, :is_valid, {ownership: :full_name}, :created_at, :updated_at, :exp_at]
 	end
 
 	def model

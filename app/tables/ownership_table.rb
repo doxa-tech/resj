@@ -1,18 +1,9 @@
 class OwnershipTable < BaseTable
 
-	def attributes(element)
+	def attributes
 		[
-			element.id,
-			element.element.name,
-			element.user.full_name,
-			element.ownership_type.name,
-			element.right_create,
-			element.right_read,
-			element.right_update,
-			element.right_delete,
-			element.id_element,
-			element.created_at,
-			element.updated_at
+			:id, {element: :name}, {user: :full_name}, {ownership_type: :name}, :right_create, 
+			:right_read, :right_update, :right_delete, :id_element, :created_at, :updated_at
 		]
 	end
 
