@@ -1,7 +1,6 @@
 When /^I complete the first step and submit it$/ do
 	step "I complete the first step"
 	click_button "Prochaine étape"
-	wait_for_ajax
 end
 
 When /^I complete the first step$/ do
@@ -16,7 +15,6 @@ When /^I complete the second step and submit it$/ do
 	fill_in "card_place", with: "A l'église"
 	click_button "geocode-addr"
 	click_button "Prochaine étape"
-	wait_for_ajax
 end
 
 When /^I complete the third step and submit it$/ do
@@ -30,7 +28,6 @@ When /^I complete the third step and submit it$/ do
 	fill_in "card_responsables_attributes_1_lastname", with: "Kocher"
 	fill_in "card_responsables_attributes_1_email", with: "kocher.ke@resj.ch"
 	click_button "Prochaine étape"
-	wait_for_ajax
 end
 
 When /^I complete the fourth step and submit it$/ do
@@ -38,7 +35,6 @@ When /^I complete the fourth step and submit it$/ do
 	fill_in "card_affiliation", with: "EEbulle"
 	fill_in_selectized "card_tag_names", with: "camp "
 	click_button "Prochaine étape"
-	wait_for_ajax
 end
 
 When /^I submit the card new form$/ do
@@ -53,7 +49,6 @@ When /^I go back to the first step, edit the name and go to the final step$/ do
 	click_button "Général"
 	fill_in "card_name", with: "Way"
 	click_button "aller à la fin"
-	wait_for_ajax
 end
 
 Then /^I should see a summary of my card$/ do

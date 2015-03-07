@@ -24,9 +24,14 @@ module Resj
     config.i18n.default_locale = :fr
 
     # Disable generators
-    config.generators.stylesheets = false
-    config.generators.javascripts = false
-    config.generators.helper = false
+    config.generators do |g|
+      g.orm             :active_record
+      g.template_engine :erb
+      g.test_framework  :rspec, fixture: false
+      g.stylesheets     false
+      g.javascripts     false
+      g.helper          false
+    end
 
     # for exceptions (404, ...) (nkcr)
     config.exceptions_app = self.routes

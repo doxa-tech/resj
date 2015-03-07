@@ -15,12 +15,17 @@ module ModelTire
 
   def self.import_model(klass, force: false)
     index = klass.tire.index
-    Tire::Tasks::Import.add_pagination_to_klass(klass)
+    begin
+      Tire::Tasks::Import.add_pagination_to_klass(klass)
 
-    Tire::Tasks::Import.delete_index(index) if force
-    Tire::Tasks::Import.create_index(index, klass)
+      Tire::Tasks::Import.delete_index(index) if force
+      Tire::Tasks::Import.create_index(index, klass)
 
-    Tire::Tasks::Import.import_model(index, klass, {})
+      Tire::Tasks::Import.import_model(index, klass, {})
+    rescue Errno::ECONNREFUSED
+      puts "Elastic search server not found"
+      Process.exit(0)
+    end
   end
 end
 
