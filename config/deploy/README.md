@@ -54,14 +54,16 @@ TODO
 
 Hints : to copy with scp : "$ scp -r -P 44 user@12.34.56.78:folder ~/Desktop"
 
+    sudo /etc/init.d/unicorn_resj stop
+    
     sudo -u postgres psql
     # if there is alread a database
-    > drop database resj_staging; # if needed, /etc/init.d/unicorne_resj stop
-    > create database resj_staging owner resj;
+    > drop database resj_production;
+    > create database resj_production owner resj;
     > \q
     
-    sudo -u postgres psql resj_staging < backup.txt
-    sudo /etc/init.d/unicorne_resj restart
+    sudo -u postgres psql resj_production < backup.txt
+    sudo /etc/init.d/unicorn_resj restart
     
 
 ## Cron jobs (backup and daily rake task)
