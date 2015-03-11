@@ -4,6 +4,8 @@ role :app, %w{resj@146.185.183.84}
 role :web, %w{resj@146.185.183.84}
 role :db,  %w{resj@146.185.183.84}
 
+ask(:password, nil, echo: false)
+
 # Define server(s)
 server '146.185.183.84', user: 'resj', roles: %w{web app db}, primary: true
 
@@ -13,5 +15,6 @@ server '146.185.183.84', user: 'resj', roles: %w{web app db}, primary: true
 set :ssh_options, {
     forward_agent: true,
     user: 'resj',
-    port: 77
+    #port: 77,
+    password: fetch(:password)
 }

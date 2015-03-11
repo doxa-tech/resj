@@ -128,15 +128,20 @@ Visit the website to get the last instructions http://www.elasticsearch.org/guid
 
 ### Install
   
-    wget -qO - https://packages.elasticsearch.org/GPG-KEY-elasticsearch | sudo apt-key add -
+    wget -qO - https://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add -
     add-apt-repository "deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main"
-    apt-get update && sudo apt-get install elasticsearch
-    sudo update-rc.d elasticsearch defaults 95 10
+    apt-get update && apt-get install elasticsearch
+    update-rc.d elasticsearch defaults 95 10
+
+### Java
+    
+    apt-get install default-jre
 
 ### Config
 
-Set the `ES_HEAP_SIZE` variable in the service init script
-Set `bootstrap.mlockall` in elasticsearch.yml
+Set the `ES_HEAP_SIZE` variable in the service init script with half of the memory available (e.g.: 512m)
+
+Set `bootstrap.mlockall` in `/etc/elasticsearch/elasticsearch.yml`
 
 ## Imagemagick
 
@@ -146,8 +151,12 @@ Set `bootstrap.mlockall` in elasticsearch.yml
 
 run the commands logged as the deployer user
 
+    # RVM & Ruby
     gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
     \curl -sSL https://get.rvm.io | bash -s stable --ruby
+
+    # Bundler
+    gem install bundler --no-ri --no-rdoc
 
 # Sever permissions
 Grant deployer user to write the config files and to execute the init scripts
