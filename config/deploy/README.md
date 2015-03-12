@@ -48,7 +48,10 @@ Use and configure that [upload script](https://github.com/nkcr/Google-Cloud-Stor
 
 ### Install aescrypt for backup encryption
 
-TODO
+Dowload sources from [AES website](https://www.aescrypt.com/download/) and do
+
+    make
+    sudo make install
 
 ### Restore
 
