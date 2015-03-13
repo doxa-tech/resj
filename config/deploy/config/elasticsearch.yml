@@ -1,0 +1,11 @@
+production:
+  host: 
+  port:
+
+development:
+  host: localhost
+  port: 9200
+
+test:
+  host: localhost
+  port: 9200

@@ -61,6 +61,10 @@ gem 'capistrano-rvm'
 group :development do
 	gem 'railroady'
 	gem "rails-erd"
+	gem 'quiet_assets'
+	gem "bullet"
+	gem 'meta_request'
+	gem 'active_record_query_trace'
 end
 
 # Use debugger

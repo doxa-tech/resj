@@ -1,3 +1,5 @@
+CONFIG = YAML.load_file("#{Rails.root}/config/elasticsearch.yml")[Rails.env]
+
 Tire.configure do
-  url "http://localhost:9900"
+  url "http://#{CONFIG['host']}:#{CONFIG['port']}"
 end

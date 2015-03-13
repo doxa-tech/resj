@@ -25,3 +25,4 @@ uploads
 
 config/sunspot.yml
 config/database.yml
+config/elasticsearch.yml

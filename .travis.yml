@@ -9,6 +9,7 @@ before_script:
   - sh -e /etc/init.d/xvfb start
   - psql -c 'create database resj_test;' -U postgres
   - cp config/deploy/config/database.yml config/database.yml
+  - cp config/deploy/config/elasticsearch.yml config/elasticsearch.yml
 script: rake travis:travis
 services:
   - elasticsearch
