@@ -1,45 +1,37 @@
+// Namespace for mapbox processing
 var load_mapbox = {
 
-  already_loaded: false,
-  map: null,
-  markers: null,
+  already_loaded: false,  // shows if the map is already loaded
+  map: null,              // mapbox object representing the map
+  markers: null,          // marker cluster
 
-  loadMap: function(second_callback, second_callback_params, not_delayed) {
-    if(load_mapbox.map != null)
-      load_mapbox.map.remove();
-    load_mapbox.second_callback = second_callback;
-    load_mapbox.second_callback_params = second_callback_params;
-    /*
-    *   Set view of Leaflet map based on screen size
-    */
+  // displays the map
+  loadMap: function(callback) {
+    if(this.map != null) this.map.remove();
     L.mapbox.accessToken = 'pk.eyJ1IjoibmtjciIsImEiOiI4UnhLZEx3In0.bakfmpx2lREiNbHn0lWq9Q';
+    var zoom = 0;
     if ($(window).width() < 626) {
-            var map = L.mapbox.map('map', 'nkcr.i04348d7', {fullscreenControl: true, minZoom: 9}).setView([46.6221, 7.1960], 8);
+            zoom = 8;
     } else {
-            var map = L.mapbox.map('map', 'nkcr.i04348d7', {fullscreenControl: true, minZoom: 9}).setView([46.6221, 7.1960], 9);
+            zoom = 9;
     }
+    var map = L.mapbox.map('map', 'nkcr.i04348d7', {fullscreenControl: true, minZoom: 9}).setView([46.6221, 7.1960], zoom);
     map.scrollWheelZoom.disable();
     map.addControl(L.mapbox.shareControl())
-    map.on('ready', load_mapbox.callback);
-    load_mapbox.map = map;  
+    map.on('ready', callback);
+    this.map = map;  
   },
-
-  callback: function() {
-    var fn = eval(load_mapbox.second_callback);
-    fn.apply(null, load_mapbox.second_callback_params);
-  },
-
 
   process_map: function(collection) {
     if(collection.length > 0) {
 
-      markers = load_mapbox.create_marker_cluster();
+      markers = this.create_marker_cluster();
 
       // Add the cards
       for (var key in collection) {
         var card = collection[key];
 
-        var title = load_mapbox.map_popup(card);
+        var title = this.map_popup(card);
         var marker = L.marker(new L.LatLng( card.latitude, card.longitude ), options={
           icon: L.icon({
             iconUrl: card.map_point_icon,
@@ -57,7 +49,7 @@ var load_mapbox = {
         });
         markers.addLayer(marker);
         marker.bindPopup(title);
-        if(!load_mapbox.already_loaded) {
+        if(!this.already_loaded) {
           // Network links, selft invoking to keep marker and card variable "local"
           (function(marker,card){
             if(card.is_network == 1) {
@@ -68,11 +60,11 @@ var load_mapbox = {
               $("#map").on('click', "#net-toggle-" + card.id, function(){
                 if(marker.options.open_network) {
                   marker.options.open_network = false;
-                  marker.options.polylines = L.polyline(card.network_members_coords, polyline_options).addTo(load_mapbox.map);
+                  marker.options.polylines = L.polyline(card.network_members_coords, polyline_options).addTo(this.map);
                   $(this).find(".a").html("Masquer");
                 } else {
                   marker.options.open_network = true;
-                  load_mapbox.map.removeLayer(marker.options.polylines);
+                  this.map.removeLayer(marker.options.polylines);
                   $(this).find(".a").html("Afficher");
                 }
               });
@@ -82,16 +74,16 @@ var load_mapbox = {
 
       }
       // Add icons, position the map
-      load_mapbox.map.fitBounds(markers.getBounds());
-      load_mapbox.map.addLayer(markers);
+      this.map.fitBounds(markers.getBounds());
+      this.map.addLayer(markers);
     }  
 
-    load_mapbox.already_loaded = true;
+    this.already_loaded = true;
   },
 
   create_marker_cluster: function() {
-    if(load_mapbox.markers != null) {
-      load_mapbox.markers.clearLayers();
+    if(this.markers != null) {
+      this.markers.clearLayers();
     }
     /*
     *   create markercluster
@@ -99,7 +91,7 @@ var load_mapbox = {
     markers = new L.MarkerClusterGroup({
       maxClusterRadius: 30,
     });
-    load_mapbox.markers = markers;
+    this.markers = markers;
     /*
     *   Custom map
     */

@@ -3,7 +3,7 @@ var PagesController = Paloma.controller('Pages');
 PagesController.prototype.home = function() {
 
 	// Mapbox loading
-  load_mapbox.loadMap("cards_index.init");
+  load_mapbox.loadMap(cards_index.init);
 
   // This code loads the IFrame Player API code asynchronously.
   appendScript("https://www.youtube.com/iframe_api");
@@ -21,12 +21,12 @@ PagesController.prototype.home = function() {
 	if(page_home.isScrolledIntoView('.easy-chart')) {
 		page_home.initChart();
 	}
-		$(window).on('scroll', function(){
-			if(check && page_home.isScrolledIntoView('.easy-chart')) {
-				check = false;
-		    page_home.initChart();
-			}
-		});
+	$(window).on('scroll', function(){
+		if(check && page_home.isScrolledIntoView('.easy-chart')) {
+			check = false;
+	    page_home.initChart();
+		}
+	});
 	
 
 }
