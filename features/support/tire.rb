@@ -29,4 +29,4 @@ module ModelTire
   end
 end
 
-ModelTire.create_index
+#ModelTire.create_index

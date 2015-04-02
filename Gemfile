@@ -97,6 +97,7 @@ group :development, :test do
 	gem 'factory_girl_rails'
 	gem 'email_spec'
 	gem 'faker'
+	gem 'timecop'
 end
 
 gem 'coveralls', require: false

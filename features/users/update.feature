@@ -25,5 +25,4 @@ Feature: Update my account
 		When I visit "/user/edit"
 		And I change my password
 		And I sign out
-		And I sign in with "john@smith.com" and "poney"
-		Then I should see a flash with "Connecté avec succès"
+		Then I should be able to login with my new password

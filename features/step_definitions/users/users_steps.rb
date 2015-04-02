@@ -30,3 +30,8 @@ When /^I sign in with "(.*?)" and "(.*?)"$/ do |email, password|
 	fill_in 'session_password', with: password
 	click_button "Connexion"
 end
+
+Then /^I should be able to login with my new password$/ do
+	step 'I sign in with "john@smith.com" and "poney"'
+	step 'I should see a flash with "Connecté avec succès"'
+end

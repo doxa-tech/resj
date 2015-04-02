@@ -5,7 +5,7 @@ set :application, 'resj'
 set :deploy_user, 'resj'
 
 set :scm, "git"
-set :repo_url, 'git@github.com:khcr/resj.git'
+set :repo_url, 'git@github.com:JS-Tech/resj.git'
 
 # Default branch is :master
 ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
