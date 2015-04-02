@@ -29,4 +29,6 @@ module ModelTire
   end
 end
 
-#ModelTire.create_index
+Before('@tire') do 
+  ModelTire.create_index
+end

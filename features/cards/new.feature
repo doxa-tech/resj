@@ -7,7 +7,7 @@ Feature: Create a new card
 	Background:
 		Given I am a visitor
 
-	@javascript
+	@javascript @tire
 	Scenario: Valid form submission
 		When I visit "/cards/wizards/new"
 		And I complete the first step and submit it
