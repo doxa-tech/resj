@@ -3,7 +3,7 @@ class Article < ActiveRecord::Base
   has_many :article_themes
   has_many :themes, through: :article_themes
 
-  scope :published, -> { where("published_at < ?", Time.now).includes(:user) }
+  scope :published, -> { where("published_at < ?", Time.now) }
 
   mount_uploader :image, ArticlesUploader
 
