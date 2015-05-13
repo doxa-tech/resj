@@ -4,14 +4,14 @@
   <title>Réseau Jeunesse, pour la jeunesse évangélique de Suisse romande</title>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-  
+
   <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
   <%= csrf_meta_tags %>
   <%= render 'favicon' %>
   <%= yield :javascript %>
 </head>
 <body>
-	
+
 	<%= render 'layouts/flash' %>
 
 	<div id="wrapper">
@@ -24,7 +24,7 @@
 		<div id="header">
 			<%= render 'layouts/header' %>
 		</div>
-		
+
 		<%= render 'layouts/banner' %>
 
 		<div id="container"  <%= "class=#{yield(:id)}" if yield(:id).presence %>>
@@ -37,6 +37,6 @@
 	</div>
 
 	<%= render 'ajax_loader' %>
-	
+
 </body>
 </html>
