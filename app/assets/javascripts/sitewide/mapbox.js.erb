@@ -19,7 +19,7 @@ var load_mapbox = {
     map.scrollWheelZoom.disable();
     map.addControl(L.mapbox.shareControl())
     map.on('ready', callback);
-    this.map = map;  
+    this.map = map;
   },
 
   process_map: function(collection) {
@@ -76,7 +76,7 @@ var load_mapbox = {
       // Add icons, position the map
       this.map.fitBounds(markers.getBounds());
       this.map.addLayer(markers);
-    }  
+    }
 
     this.already_loaded = true;
   },
