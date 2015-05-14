@@ -82,7 +82,7 @@ class Card < ActiveRecord::Base
   # Find a responsable or create a new one 
   def autosave_associated_records_for_responsables
     self.responsables = filter_responsables
-    CardMailer.team_welcome(self).deliver if new_record?
+    CardMailer.team_welcome(self).deliver_later if new_record?
   end
 
   def filter_responsables
@@ -110,7 +110,7 @@ class Card < ActiveRecord::Base
     Ownership.add(user: card_user, element: "cards", type: "on_entry", id_element: id, right_read: true, right_update: true, right_create: true)
     Ownership.add(user: card_user, element: "cards/affiliations", type: "on_entry", id_element: id,
       right_create: true, right_delete: true, right_update: true, right_read: true)
-    CardMailer.owner_created(self, new_user, password).deliver
+    CardMailer.owner_created(self, new_user, password).deliver_later
   end
 
   def find_or_create_owner(owner)
@@ -118,7 +118,7 @@ class Card < ActiveRecord::Base
     new_user = if card_user.nil?
       password = SecureRandom.hex(8)
       card_user = User.create(firstname: owner.firstname, lastname: owner.lastname, email: owner.email, password: password, password_confirmation: password, user_type: UserType.find_by_name('user'))
-      UserMailer.confirmation(card_user).deliver
+      UserMailer.confirmation(card_user).deliver_later
     end
     return card_user, new_user.present?, password || nil
   end

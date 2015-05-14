@@ -1,0 +1,3 @@
+<% if current_permission.allow_modify?(params[:controller], "update") %>
+  <a class="edit" href="#">Editer</a>
+<% end %>

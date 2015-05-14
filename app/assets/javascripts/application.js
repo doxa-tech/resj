@@ -18,5 +18,6 @@
 //= require multi-select
 //= require paloma
 //= require turbolinks
+//= require snaptable
 //= require_tree ./sitewide
 //= require_tree ../../../vendor/assets/javascripts/sitewide

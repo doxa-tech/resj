@@ -20,7 +20,7 @@ class Admin::CardStatusesController < Admin::BaseController
 			render 'edit'
 		else # if status is changed
 			if @card.save
-				CardMailer.changed_status(@card, status, old_status, params[:message]).deliver
+				CardMailer.changed_status(@card, status, old_status, params[:message]).deliver_later
 				redirect_to admin_card_statuses_path, success: t('card_status.admin.edit.success')
 			else
 				render 'edit'

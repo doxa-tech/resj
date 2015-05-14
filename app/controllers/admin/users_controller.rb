@@ -37,6 +37,16 @@ class Admin::UsersController < Admin::BaseController
 		redirect_to admin_users_path, success: t('user.admin.destroy.success')
 	end
 
+	def invitation
+		@users = User.users.includes(:orator).where( orators: { user_id: nil })
+	end
+
+	def invite
+		emails = params[:emails].split(",").collect(&:strip)
+		UserMailer.invite(emails: params[:users] + emails).deliver_later
+		redirect_to invitation_admin_users_path, success: "Invitations envoyées"
+	end
+
 	private
 
 	def user_params

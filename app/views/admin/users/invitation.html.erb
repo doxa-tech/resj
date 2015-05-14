@@ -1,0 +1,11 @@
+<%= form_tag invite_admin_users_path do %>
+  
+  <%= label_tag :emails %>
+  <%= text_area_tag :emails %>
+
+  <%= label_tag :users, "Utilisateurs" %>
+  <%= select_tag :users, options_from_collection_for_select(@users, "email", "full_name"), multiple: true, id: "email-select" %>
+
+  <%= submit_tag "Envoyer" %>
+
+<% end %>

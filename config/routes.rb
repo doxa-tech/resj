@@ -104,7 +104,12 @@ Rails.application.routes.draw do
     namespace :admin do
 
       resources :pages, only: [:index, :edit, :update]
-      resources :users, except: [:show]
+      resources :users, except: [:show] do
+        collection do
+          get "invitation"
+          post "invite"
+        end
+      end
       resources :ownerships, except: [:show]
       resources :actions, except: [:show]
       resources :affiliations, except: [:show]
@@ -131,4 +136,3 @@ Rails.application.routes.draw do
     
   end
 end
-

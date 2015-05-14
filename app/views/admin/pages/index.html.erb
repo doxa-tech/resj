@@ -1,10 +1,3 @@
 <h1><%= t('page.admin.index') %></h1>
 
-<div id="admin_table">
-	<div class="table_buttons">
-		<% if current_permission.allow_modify?(params[:controller], "update") %>
-			<a class="edit" href="#">Editer</a>
-		<% end %>
-	</div>
-	<%= @table.present %>
-</div>
+<%= @table.present(buttons: "buttons") %>

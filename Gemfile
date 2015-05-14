@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.8'
+gem 'rails', '4.2.1'
 
 # Use postgres as the database for Active Record
 gem 'pg', '~> 0.17.1'
@@ -60,11 +60,13 @@ gem 'capistrano-rvm'
 
 group :development do
 	gem 'railroady'
-	gem "rails-erd"
+	gem 'rails-erd'
 	gem 'quiet_assets'
-	gem "bullet"
+	gem 'bullet'
 	gem 'meta_request'
 	gem 'active_record_query_trace'
+	gem 'web-console'
+	gem 'spring'
 end
 
 # Use debugger
@@ -101,3 +103,5 @@ group :development, :test do
 end
 
 gem 'coveralls', require: false
+
+gem 'snaptable'

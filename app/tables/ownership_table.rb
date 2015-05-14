@@ -18,7 +18,7 @@ class OwnershipTable < BaseTable
 	 	end
 
 	 	def self.fields
-	 		{"elements" => ["name"], "users" => ["firstname", "lastname"]}
+	 		{ elements: [:name], users: [:firstname, :lastname]}
 	 	end
 	end
 end

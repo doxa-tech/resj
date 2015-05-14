@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
     self.reset_sent_at = Time.zone.now
     save!
     # sends reset link
-    UserMailer.password_reset(self).deliver
+    UserMailer.password_reset(self).deliver_later
   end
 
   def full_name

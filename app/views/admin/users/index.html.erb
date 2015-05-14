@@ -1,5 +1,5 @@
 <h1><%= t('user.admin.index') %></h1>
 
-<div id="admin_table">
-	<%= @table.present %>
-</div>
+<%= link_to "Inviter des orateurs", invitation_admin_users_path %>
+
+<%= @table.present %>

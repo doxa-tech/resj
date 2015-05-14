@@ -29,9 +29,9 @@ class Users::AffiliationsController < BaseController
 		success, card_user = Request.new(:user, user: current_user, card: card).answer(params[:validated])
 		if card && success
 			if params[:validated] == "true"
-        CardMailer.confirmed_user(current_user, card).deliver
+        CardMailer.confirmed_user(current_user, card).deliver_later
       else
-        CardMailer.unconfirmed_user(current_user, card).deliver
+        CardMailer.unconfirmed_user(current_user, card).deliver_later
       end
 			track_activity card_user
 			redirect_to user_my_cards_path, success: t('user.card.confirmation.success')

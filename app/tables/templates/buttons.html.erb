@@ -1,9 +1,0 @@
-<div class="table_buttons">
-	<%= link_to "Ajouter", request.path + "/new", class: "add" if current_permission.allow_create?(params[:controller]) %>
-	<% if current_permission.allow_modify?(params[:controller], "update") %>
-		<a class="edit" href="#">Editer</a>
-	<% end %>
-	<% if current_permission.allow_modify?(params[:controller], "destroy") %>
-		<a class="delete" href="#" data-method="delete" rel="nofollow" data-confirm="Etes-vous sûr de vouloir supprimer cette entrée ?">Supprimer</a>
-	<% end %>	
-</div>

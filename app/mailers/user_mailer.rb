@@ -55,4 +55,12 @@ class UserMailer < BaseMailer
               TYPE: card.card_type.name })
     template 'user-affiliation-refused'  # template
   end
+
+  def invite(emails)
+    mail to:      emails,
+         subject: "TODO",
+         body:
+    params({})
+    template 'TODO'  # template
+  end
 end
