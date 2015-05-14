@@ -1,7 +1,7 @@
 <div class="back"><%= link_to "Retour sur l'édition", overview_card_path(@card) %></div>
 
 <div class="row confirmed">
-	<div class="col split1">
+	<div class="col split2">
 		<div class="block">
 			<div class="header">
 				<h2>Les utilisateurs dans le groupe</h2>
@@ -14,32 +14,23 @@
 					</li>
 				<% else %>
 					<%= form_for @card_permission, url: ownerships_card_affiliations_path(@card), method: :post, html: { id: "privilege-form" } do |f| %>
-
 						<%= f.fields_for :members do |member_fields| %>
-
-							<%= member_fields.object.full_name %>
-
+							<li><%= member_fields.object.full_name %>
 							<% unless member_fields.object == @card.user %>
-
 								<%= link_to "Retirer", card_affiliation_path(@card, member_fields.object), method: :delete, data: {confirm: "Etes-vous sûr de vouloir enlever cet utilisateur ?" }, class: "edit-btn" %>
-
 								<%= member_fields.check_box :card_edit, class: "card-edit" %>
 								<%= member_fields.check_box :team_edit, class: "team-edit" %>
-
-							<% end %>
-
+							<% end %></li>
 						<% end %>
-						<%= f.submit "Enregistrer" %>
-
+						<% if @card_permission.members.size > 1 %>
+							<li><%= f.submit "Enregistrer" %></li>
+						<% end %>
 					<% end %>
 				<% end %>
 			</ul>
 		</div>
 	</div>
-</div>
-
-<div class="row">
-	<div class="col split1">
+	<div class="col split2">
 		<div class="block">
 			<div class="header">
 				<h2>Demander à un utilisateur de rejoindre votre groupe</h2>
@@ -49,7 +40,9 @@
 			<ul>
 				<li>
 					<%= select_tag :user_id, options_from_collection_for_select(User.users - @card_permission.members - @pending, :id, :full_name), class: "selectize" %>
-						<%= submit_tag "Envoyer la requête" %>
+				</li>
+				<li>
+					<%= submit_tag "Envoyer la requête" %>
 				</li>
 			</ul>
 			<% end %>
@@ -58,7 +51,7 @@
 </div>
 
 <div class="row pending">
-	<div class="col split1">
+	<div class="col split2">
 		<div class="block">
 			<div class="header">
 				<h2>En cours</h2>
@@ -81,10 +74,7 @@
 			<% end %>
 		</div>
 	</div>
-</div>
-
-<div class="row">
-	<div class="col split1">
+	<div class="col split2">
 		<div class="block">
 			<div class="header">
 				<h2>Requêtes</h2>
@@ -112,7 +102,7 @@
 <%= form_for @card, url: card_team_update_path(@card), remote: true do |f| %>
 
 	<div class="row">
-		<div class="col split1">
+		<div class="col split2">
 			<div class="block">
 				<div class="header">
 					<h2>Les co-responsables de votre team</h2>
@@ -148,8 +138,10 @@
 							<%= link_to_add_fields("Ajouter") %>
 						</div>
 					</li>
+					<li>
+						<%= f.submit %>
+					</li>
 				</ul>
-				<%= f.submit %>
 			</div>
 		</div>
 	</div>

@@ -100,7 +100,7 @@
 					<div class="map-panel">
 						<input id="address" type="textbox" value="Switzerland">
 				    <input type="button" value="find" id="geocode-addr">
-					</div>	
+					</div>
 					<%= form_for @card, remote: true do |f| %>
 						<div class="card-form">
 							<%= f.text_field :latitude, id: "lat", readonly: :readonly %>
@@ -109,7 +109,7 @@
 						</div>
 					<% end %>
 				</li>
-			
+
 			</ul>
 		</div>
 	</div>
@@ -148,7 +148,7 @@
 						<%= f.collection_select :parent_ids, Card.regional, :id, :name, {include_blank: "Sélectionnez des réseaux"}, {class: "selectize-cards", multiple: true} %>
 						<%= f.submit %>
 					<% end %>
-				</li>				
+				</li>
 
 			</ul>
 		</div>
