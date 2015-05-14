@@ -1,5 +1,11 @@
-<%= form_tag password_resets_path, :method => :post do %>
-  <%= label_tag :email %>
-  <%= text_field_tag :email %>
-	<%= submit_tag "Réinitialiser le mot de passe" %>
-<% end %>
+<% content_for :id, "password-reset" %>
+
+<div>
+  <p>
+    Mot de passe oublié ? Rentrez simplement votre email et vous recevrez un message pour obtenir un nouveau mot de passe.
+  </p>
+  <%= form_tag password_resets_path, :method => :post do %>
+    <%= text_field_tag :email %>
+  	<%= submit_tag "Réinitialiser le mot de passe" %>
+  <% end %>
+</div>
