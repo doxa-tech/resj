@@ -34,12 +34,17 @@ class Ownership < ActiveRecord::Base
   def self.create_or_destroy_by(boolean, **attributes)
     ownerships = Ownership.search(attributes)
     if boolean && !ownerships.any?
-      ownerships.first_or_create! do |o|
-        o.element = Element.find_by_name(attributes[:element])
-        o.ownership_type = OwnershipType.find_by_name(attributes[:type])
-      end
+      Ownership.add(attributes)
     elsif !boolean
       ownerships.destroy_all
+    end
+  end
+
+  def self.find_or_add_by(**attributes)
+    if (ownerships = Ownership.search(attributes)).any?
+      ownerships.first
+    else
+      Ownership.add(attributes)
     end
   end
 

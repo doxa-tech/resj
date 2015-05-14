@@ -1,5 +1,5 @@
 class OratorsController < BaseController
-	before_action :authorize_token, only: [:new, :create]
+	before_action :authorize_create, only: [:new, :create]
 	before_action :authorize_resource, only: [:index, :show]
 	before_action :disabled?, only: [:show]
 	before_action :orator?, only: [:new, :create]
@@ -51,13 +51,6 @@ class OratorsController < BaseController
 
 	def orator_params
 		params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation, :current_password, orator_attributes: [:id, :street, :location_id, :phone, :disponibility, :description, :disabled, { :theme_ids =>[] } , { :disponibility_ids => [] } ])
-	end
-
-	def authorize_token
-		session[:token] = params[:token] if params[:token]
-		if !current_permission.allow_token?(params[:controller], params[:action], session[:token])
-			redirect_to root_path, error: "Le token entré ne vous permet pas d'accéder à cette page."
-		end
 	end
 
 	def disabled?

@@ -16,7 +16,7 @@ class PermissionAccess < SimpleDelegator
   end
 
   def authorize(action)
-    redirect_to connexion_path unless authorized?(action)
+    redirect_to connexion_path, error: "Vous ne pouvez pas accéder à cette page" unless authorized?(action)
   end
 
   def authorize_resource

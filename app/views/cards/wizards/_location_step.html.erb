@@ -15,8 +15,7 @@
 				<span class="num">6</span> Dans quelle<span class="b">localité</span>êtes-vous?
 			</p>
 		</div>
-		<% location = f.object.location %>
-		<%= f.collection_select :location_id, (location.nil? ? [] : [location] ), :id, :full_name, {include_blank: "Tapez une ville"}, {class: "selectize-location"} %>
+		<%= f.collection_select :location_id, [f.object.location].compact, :id, :full_name, {include_blank: "Tapez une ville"}, {class: "selectize-location"} %>
 	</div>
 	
 	<div class="block">

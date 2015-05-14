@@ -42,8 +42,11 @@ class Admin::UsersController < Admin::BaseController
 	end
 
 	def invite
-		emails = params[:emails].split(",").collect(&:strip)
-		UserMailer.invite(params[:users] + emails, current_user.full_name).deliver_later
+		emails = params[:emails].split(",").collect(&:strip).push(*params[:users])
+		if emails.any?
+			token = generate_orator_token
+			UserMailer.invite(emails, current_user.full_name, new_orator_path(token: token.token)).deliver_later
+		end
 		redirect_to invitation_admin_users_path, success: "Invitations envoyées"
 	end
 
@@ -55,6 +58,12 @@ class Admin::UsersController < Admin::BaseController
 
 	def current_resource
 		@user = User.find_by_id(params[:id])
+	end
+
+	def generate_orator_token
+		g_token = User.find_by_firstname("g_token")
+		ownership = Ownership.find_or_add_by(element: "orators", type: "all_entries", user: g_token, right_create: true)
+		AccessToken.create!(ownership: ownership, exp_at: 1.months.since(Time.now), is_valid: true)
 	end
 
 end

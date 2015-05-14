@@ -28,8 +28,8 @@ module PermissionFilter
     PermissionAccess.new(self, params[:controller], params[:action], current_resource).authorize(:modify)
   end
 
-  def authorize_action
-    PermissionAccess.new(self, params[:controller], params[:action], current_resource).authorize(:action)
+  def authorize_action(action = params[:action])
+    PermissionAccess.new(self, params[:controller], action, current_resource).authorize(:action)
   end
 
   def authorize_resource
