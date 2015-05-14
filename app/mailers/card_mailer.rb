@@ -32,8 +32,8 @@ class CardMailer < BaseMailer
             subject: "Bienvenue dans l'aventure !",
             body:
       params({ UFIRSTNAME: card.user.firstname,
-               ULASTNAME: card.user.lastname, 
-               GNAME: card.name, 
+               ULASTNAME: card.user.lastname,
+               GNAME: card.name,
                GTYPE: card.card_type.name })
       template "card-team-welcome"
   end
@@ -52,7 +52,7 @@ class CardMailer < BaseMailer
       params({ UFIRSTNAME: card.user.firstname,
                FIRSTNAME: user.firstname,
                LASTNAME: user.lastname,
-               GNAME: card.name, 
+               GNAME: card.name,
                GTYPE: card.card_type.name })
       template "card-join-request"
   end
@@ -67,7 +67,7 @@ class CardMailer < BaseMailer
         params({ UFIRSTNAME: card.user.firstname,
                FIRSTNAME: user.firstname,
                LASTNAME: user.lastname,
-               GNAME: card.name, 
+               GNAME: card.name,
                GTYPE: card.card_type.name })
         template "card-request-accepted"
   end
@@ -82,7 +82,7 @@ class CardMailer < BaseMailer
         params({ UFIRSTNAME: card.user.firstname,
                FIRSTNAME: user.firstname,
                LASTNAME: user.lastname,
-               GNAME: card.name, 
+               GNAME: card.name,
                GTYPE: card.card_type.name })
         template "card-request-rejected"
   end
@@ -93,9 +93,9 @@ class CardMailer < BaseMailer
           subject: "Mise à jour de votre #{card.card_type.name}",
           body:
     params({ STATUS: status.name,
-             OLD_STATUS: old_status.name, 
+             OLD_STATUS: old_status.name,
              INFOS: infos,
-             NAME: card.user.firstname, 
+             NAME: card.user.firstname,
              TYPE: card.card_type.name })
     template "card-#{status.name.parameterize}"
   end

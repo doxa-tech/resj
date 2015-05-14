@@ -10,12 +10,12 @@ CardsController.prototype.index = function() {
   $("#filter h3 span.show").click(function(){
     var btn = $(this);
     $("#filter ul").slideToggle();
-    if (btn.text()=="voir") { 
+    if (btn.text()=="voir") {
       btn.text("fermer");
-    } else { 
-      btn.text("voir"); 
+    } else {
+      btn.text("voir");
     }
-  }); 
+  });
 
   /* Description */
   $("#results").on("click", ".show-description", function(){

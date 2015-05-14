@@ -43,7 +43,7 @@ class Admin::UsersController < Admin::BaseController
 
 	def invite
 		emails = params[:emails].split(",").collect(&:strip)
-		UserMailer.invite(emails: params[:users] + emails).deliver_later
+		UserMailer.invite(params[:users] + emails, current_user.full_name).deliver_later
 		redirect_to invitation_admin_users_path, success: "Invitations envoyées"
 	end
 

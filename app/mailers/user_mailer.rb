@@ -2,16 +2,11 @@ class UserMailer < BaseMailer
 
   def confirmation(user)
     mail to:      user.email,
-         from:    "\"Noémien de ResJ\" <noemien@resj.ch>",
          subject: 'Confirmation de votre email',
          body:
-    headers['X-MC-MergeVars'] = {
-                                  NAME: user.firstname,
-                                  URL: user_confirmation_url(token: user.remember_token)
-                                }.to_json # variables
-    headers['X-MC-Template'] = "user-confirmation"  # template
-    headers['X-MC-AutoText'] = 1 # generate text version
-    headers['X-MC-InlineCSS'] = "true" # inline css
+    params({  NAME: user.firstname,
+              URL: user_confirmation_url(token: user.remember_token) })
+    template 'user-confirmation'
   end
 
   def password_reset(user)
@@ -19,8 +14,8 @@ class UserMailer < BaseMailer
          subject: 'Réinitialisation de votre mot de passe sur Réseau Jeunesse',
          body:
     params({  LINK: edit_password_reset_url(id: user.reset_token),
-              NAME: user.firstname, })
-    template 'user-password-reset'  # template
+              NAME: user.firstname })
+    template 'user-password-reset'
   end
 
   # someone wants to affiliate you with a card
@@ -29,9 +24,9 @@ class UserMailer < BaseMailer
          subject: "Demande d'affiliation sur Réseau Jeunesse",
          body:
     params({  NAME: user.firstname,
-              GNAME: card.name, 
+              GNAME: card.name,
               TYPE: card.card_type.name })
-    template 'user-affiliation-request'  # template
+    template 'user-affiliation-request'
   end
 
   # your request to join a card was accepted
@@ -40,9 +35,9 @@ class UserMailer < BaseMailer
          subject: "Demande d'affiliation acceptée",
          body:
     params({  NAME: user.firstname,
-              GNAME: card.name, 
+              GNAME: card.name,
               TYPE: card.card_type.name })
-    template 'user-affiliation-accepted'  # template
+    template 'user-affiliation-accepted'
   end
 
   # your request to join a card wasn't accepted
@@ -51,16 +46,18 @@ class UserMailer < BaseMailer
          subject: "Demande d'affiliation refusée",
          body:
     params({  NAME: user.firstname,
-              GNAME: card.name, 
+              GNAME: card.name,
               TYPE: card.card_type.name })
-    template 'user-affiliation-refused'  # template
+    template 'user-affiliation-refused'
   end
 
-  def invite(emails)
+  def invite(emails, full_name, link)
     mail to:      emails,
-         subject: "TODO",
+         from: "\"Team Réseau Jeunesse\" <info@resj.ch>",
+         subject: "#{full_name} vous invite à rejoindre le réseau jeunesse",
          body:
-    params({})
-    template 'TODO'  # template
+    params({  FULLNAME: full_name,
+              LINK: link })
+    template 'orator-invitation'
   end
 end
