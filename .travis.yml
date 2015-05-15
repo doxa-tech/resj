@@ -1,18 +1,15 @@
 language: ruby
 rvm:
   - 2.1.5
-before_install:
-  - sh -c 'if [ -n "$QMAKE" ]; then sudo apt-add-repository -y ppa:ubuntu-sdk-team/ppa && sudo apt-get update && sudo apt-get install libqt5webkit5-dev qtdeclarative5-dev; fi'
 install: 
   - bundle install
-cache: bundler
 before_script: 
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - psql -c 'create database resj_test;' -U postgres
   - cp config/deploy/config/database.yml config/database.yml
   - cp config/deploy/config/elasticsearch.yml config/elasticsearch.yml
-script: xvfb-run rake travis:travis
+script: rake travis:travis
 services:
   - elasticsearch
 notifications:
