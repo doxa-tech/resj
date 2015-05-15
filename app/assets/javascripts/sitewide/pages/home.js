@@ -27,7 +27,7 @@ PagesController.prototype.home = function() {
 	    page_home.initChart();
 		}
 	});
-	
+
 
 }
 

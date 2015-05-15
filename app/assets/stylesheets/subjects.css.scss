@@ -1,11 +1,11 @@
 @import 'partials/search_top';
 
 #container.subjects {
-	
+
 	//
 	// Top search partial
 	//
-	@include search-top; 
+	@include search-top;
 
 	#filter {
 		background: #272829;
@@ -28,7 +28,7 @@
 				cursor: pointer;
 				&:hover {
 					background: #e54040;
-				}						
+				}
 			}
 		}
 		ul {
@@ -43,7 +43,7 @@
 				h4 {
 					text-align: center;
 					font-weight: 600;
-					font-size: 12px;							
+					font-size: 12px;
 				}
 				.field {
 					display: inline-block;
@@ -70,7 +70,7 @@
 				padding: 10px;
 				box-shadow: 1px 1px 1px #EEE;
 				display: inline-block;
-				width: 33.333%;
+				width: 33%;
 				h3 {
 					font: 300 22px 'jura', tahoma
 				}
@@ -131,14 +131,14 @@
 							background: #D83C3C;
 							border-radius: 0 3px 3px 0;
 							text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
-					
+
 							&:hover {
 								background: #e54040;
 							}
 							&:active,
 							&:focus {
 								background: #c42f2f;
-				 			  outline: 0; 
+				 			  outline: 0;
 							}
 							&:before {
 								content: '';
@@ -168,6 +168,6 @@
 				font-size: 50px;
 				padding: 0 0 20px 0;
 			}
-		}	
+		}
 	} // .result
 }
