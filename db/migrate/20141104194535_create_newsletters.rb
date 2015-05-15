@@ -3,7 +3,7 @@ class CreateNewsletters < ActiveRecord::Migration
     create_table :newsletters do |t|
       t.string :name
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

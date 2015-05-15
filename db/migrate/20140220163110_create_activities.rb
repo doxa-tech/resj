@@ -6,7 +6,7 @@ class CreateActivities < ActiveRecord::Migration
       t.belongs_to :trackable, index: true
       t.string :trackable_type
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

@@ -7,7 +7,7 @@ class CreateOrators < ActiveRecord::Migration
       t.string :phone
       t.string :disponibility
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

@@ -4,7 +4,7 @@ class CreatePages < ActiveRecord::Migration
       t.string :name
       t.text :content
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

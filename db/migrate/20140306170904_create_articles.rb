@@ -7,7 +7,7 @@ class CreateArticles < ActiveRecord::Migration
       t.string :image
       t.integer :likes
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

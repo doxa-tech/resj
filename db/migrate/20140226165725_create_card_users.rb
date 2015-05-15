@@ -6,7 +6,7 @@ class CreateCardUsers < ActiveRecord::Migration
       t.boolean :user_validated
       t.boolean :card_validated
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

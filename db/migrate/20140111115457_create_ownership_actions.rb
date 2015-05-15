@@ -4,7 +4,7 @@ class CreateOwnershipActions < ActiveRecord::Migration
     	t.belongs_to :action, index: true
     	t.belongs_to :ownership, index: true
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

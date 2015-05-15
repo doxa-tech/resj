@@ -3,7 +3,7 @@ class CreateCardTypes < ActiveRecord::Migration
     create_table :card_types do |t|
       t.string :name
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

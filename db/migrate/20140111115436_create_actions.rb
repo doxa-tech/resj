@@ -3,7 +3,7 @@ class CreateActions < ActiveRecord::Migration
     create_table :actions do |t|
     	t.string :name
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

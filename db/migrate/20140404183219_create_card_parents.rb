@@ -4,7 +4,7 @@ class CreateCardParents < ActiveRecord::Migration
       t.belongs_to :card, index: true
       t.belongs_to :parent, index: true
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

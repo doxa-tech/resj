@@ -4,7 +4,7 @@ class CreateSubjectThemes < ActiveRecord::Migration
       t.belongs_to :subject, index: true
       t.belongs_to :theme, index: true
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

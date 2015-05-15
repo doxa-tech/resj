@@ -5,7 +5,7 @@ class CreateResponsables < ActiveRecord::Migration
       t.string :lastname
       t.string :email
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

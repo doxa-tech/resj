@@ -4,7 +4,7 @@ class CreateArticleThemes < ActiveRecord::Migration
       t.belongs_to :article, index: true
       t.belongs_to :theme, index: true
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

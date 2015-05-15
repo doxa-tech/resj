@@ -6,7 +6,7 @@ class CreateLocations < ActiveRecord::Migration
       t.string :post_name
       t.belongs_to :canton, index: true
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

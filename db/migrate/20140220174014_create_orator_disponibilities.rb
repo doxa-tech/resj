@@ -4,7 +4,7 @@ class CreateOratorDisponibilities < ActiveRecord::Migration
       t.belongs_to :orator, index: true
       t.belongs_to :disponibility, index: true
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

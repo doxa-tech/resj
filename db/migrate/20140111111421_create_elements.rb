@@ -3,7 +3,7 @@ class CreateElements < ActiveRecord::Migration
     create_table :elements do |t|
       t.string :name
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

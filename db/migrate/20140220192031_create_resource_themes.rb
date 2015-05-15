@@ -4,7 +4,7 @@ class CreateResourceThemes < ActiveRecord::Migration
       t.belongs_to :resource, index: true
       t.belongs_to :theme, index: true
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

@@ -9,7 +9,7 @@ class CreateUsers < ActiveRecord::Migration
       t.belongs_to :user_type, index: true
       t.string :uid
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

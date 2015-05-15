@@ -15,7 +15,7 @@ class CreateCards < ActiveRecord::Migration
       t.text :affiliations
       t.boolean :validated, default: false
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

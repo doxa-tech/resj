@@ -5,7 +5,7 @@ class CreateHelpPages < ActiveRecord::Migration
       t.text :content
       t.belongs_to :help_category
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

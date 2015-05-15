@@ -10,7 +10,7 @@ class CreateOwnerships < ActiveRecord::Migration
       t.boolean :right_delete
       t.integer :id_element
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

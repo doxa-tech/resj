@@ -5,7 +5,7 @@ class CreateAccessTokens < ActiveRecord::Migration
       t.boolean :valid
       t.belongs_to :ownership, index: true
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

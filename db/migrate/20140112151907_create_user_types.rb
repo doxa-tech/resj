@@ -3,7 +3,7 @@ class CreateUserTypes < ActiveRecord::Migration
     create_table :user_types do |t|
       t.string :name
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

@@ -4,7 +4,7 @@ class CreateHelpCategories < ActiveRecord::Migration
       t.string :name
       t.text :description
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

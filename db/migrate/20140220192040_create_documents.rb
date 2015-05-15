@@ -4,7 +4,7 @@ class CreateDocuments < ActiveRecord::Migration
       t.string :name
       t.string :file
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end
