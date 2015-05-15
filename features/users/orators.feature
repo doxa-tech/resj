@@ -1,3 +1,4 @@
+@ownerships
 Feature: Orators
 
 	So I can appear as an orator
@@ -7,7 +8,7 @@ Feature: Orators
 	Background:
 		Given I am a visitor
 
-	@javascript
+	@javascript @theme @location
 	Scenario: Valid form submission as a visitor
 		When I visit the orator page with the right token
 		And I complete the orator form and submit it
@@ -20,7 +21,7 @@ Feature: Orators
 
 	Scenario: Can not access the page without the token
 		When I visit "/resources/orators/new"
-		Then I should see a flash with "Le token entré ne vous permet pas d'accéder à cette page"
+		Then I should see a flash with "Vous ne pouvez pas accéder à cette page"
 
 	Scenario: Can not access the page if I am an orator
 		Given I am a orator
@@ -34,7 +35,7 @@ Feature: Orators
 		When I visit the orator page with the right token
 		Then I should see my information in the fields
 
-	@javascript
+	@javascript @theme @location
 	Scenario: Valid form submission as an user
 		Given I am a confirmed user
 		And I am signed in

@@ -10,7 +10,7 @@ class Cards::AffiliationsController < BaseController
 		user = User.users.find_by_id(params[:user_id])
     success, card_user = Request.new(:card, user: user, card: @card).process
     if user && success
-    	UserMailer.request(@card, user).deliver_later
+    	UserMailer.request(@card, user).deliver_now
 			track_activity card_user
 			redirect_to card_team_path(@card), success: t('card.user.request.success')
 		else
@@ -24,9 +24,9 @@ class Cards::AffiliationsController < BaseController
 		success, card_user = Request.new(:card, user: user, card: @card).answer(params[:validated])
 		if user && success
 			if params[:validated] == "true"
-        UserMailer.confirmed_card(@card, user).deliver_later
+        UserMailer.confirmed_card(@card, user).deliver_now
       else
-        UserMailer.unconfirmed_card(@card, user).deliver_later
+        UserMailer.unconfirmed_card(@card, user).deliver_now
       end
 			track_activity card_user
 			redirect_to card_team_path(@card), success: t('card.user.confirmation.success')

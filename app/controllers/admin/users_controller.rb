@@ -1,5 +1,6 @@
 class Admin::UsersController < Admin::BaseController
 	before_action :current_resource, only: [:edit, :update, :destroy]
+	before_action :authorize_invitation, only: [:invite, :invitation]
 	after_action only: [:create, :update, :destroy] { |c| c. track_activity @user }
 
 	def index
@@ -45,7 +46,7 @@ class Admin::UsersController < Admin::BaseController
 		emails = params[:emails].split(",").collect(&:strip).push(*params[:users])
 		if emails.any?
 			token = generate_orator_token
-			UserMailer.invite(emails, current_user.full_name, new_orator_path(token: token.token)).deliver_later
+			UserMailer.invite(emails, current_user.full_name, new_orator_path(token: token.token)).deliver_now
 		end
 		redirect_to invitation_admin_users_path, success: "Invitations envoyées"
 	end
@@ -64,6 +65,10 @@ class Admin::UsersController < Admin::BaseController
 		g_token = User.find_by_firstname("g_token")
 		ownership = Ownership.find_or_add_by(element: "orators", type: "all_entries", user: g_token, right_create: true)
 		AccessToken.create!(ownership: ownership, exp_at: 1.months.since(Time.now), is_valid: true)
+	end
+
+	def authorize_invitation
+		PermissionAccess.new(self, params[:controller], "invite", nil).authorize(:action)
 	end
 
 end

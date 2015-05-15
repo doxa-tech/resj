@@ -95,11 +95,13 @@ group :development, :test do
 	gem 'rspec-rails'
 	gem 'cucumber-rails', require: false
 	gem 'database_cleaner'
+	gem 'capybara-webkit'
 	gem 'selenium-webdriver'
 	gem 'factory_girl_rails'
 	gem 'email_spec'
 	gem 'faker'
 	gem 'timecop'
+	gem 'fakeweb'
 end
 
 gem 'coveralls', require: false

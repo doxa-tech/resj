@@ -1,3 +1,4 @@
+@javascript @location @card_types
 Feature: Create a new card
 
 	So that I register my group on the website
@@ -7,7 +8,7 @@ Feature: Create a new card
 	Background:
 		Given I am a visitor
 
-	@javascript @tire
+	@validator @ownerships @statuses
 	Scenario: Valid form submission
 		When I visit "/cards/wizards/new"
 		And I complete the first step and submit it
@@ -17,37 +18,32 @@ Feature: Create a new card
 		And I submit the card new form
 		Then I should see a flash with "Vous êtes entré dans le réseau avec succès !"
 
-	@javascript
 	Scenario: Invalid first step submission
 		When I visit "/cards/wizards/new"
-		And I click the button "Prochaine étape"
+		And I click to go to the location step
 		Then I should see errors for the fields "Nom, Description, Catégorie"
 
-	@javascript
 	Scenario: Invalid second step submission
 		When I visit "/cards/wizards/new"
 		And I complete the first step and submit it
-		And I click the button "Prochaine étape"
+		And I click to go to the team step
 		Then I should see errors for the fields "Rue, Localité"
 
-	@javascript
 	Scenario: Invalid third step submission
 		When I visit "/cards/wizards/new"
 		And I complete the first step and submit it
 		And I complete the second step and submit it
-		And I click the button "Prochaine étape"
+		And I click to go to the extra step
 		Then I should see errors for the fields "Responsables"
 
-	@javascript
 	Scenario: Invalid fourth step submission
 		When I visit "/cards/wizards/new"
 		And I complete the first step and submit it
 		And I complete the second step and submit it
 		And I complete the third step and submit it
-		And I click the button "Prochaine étape"
+		And I click to go to the final step
 		Then I should see the final step
 
-	@javascript
 	Scenario: Invalid form submission
 		When I visit "/cards/wizards/new"
 		And I complete the first step
@@ -55,7 +51,6 @@ Feature: Create a new card
 		And I submit the card new form
 		Then I should see errors for the fields "Rue, Localité, Responsables"
 
-	@javascript
 	Scenario: See a summary in the final step
 		When I visit "/cards/wizards/new"
 		And I complete the first step and submit it
@@ -64,7 +59,6 @@ Feature: Create a new card
 		And I complete the fourth step and submit it
 		Then I should see a summary of my card
 
-	@javascript
 	Scenario: Edit a field after beeing in the final step
 		When I visit "/cards/wizards/new"
 		And I complete the first step and submit it

@@ -13,7 +13,7 @@ class UsersController < BaseController
 		@user.user_type = UserType.find_by_name('user')
 		if @user.save
 			# sends validation link
-			UserMailer.confirmation(@user).deliver_later
+			UserMailer.confirmation(@user).deliver_now
 			redirect_to root_path, success: t('user.create.success')
 		else
 			render 'new', layout: 'application'
@@ -61,7 +61,7 @@ class UsersController < BaseController
 	def resend_mail
 		@user = User.find(params[:id])
 		# re-sends confirmation email
-		UserMailer.confirmation(@user).deliver_later
+		UserMailer.confirmation(@user).deliver_now
 		redirect_to root_path, success: "Un nouveau email a été envoyé à votre adresse."
 	end
 

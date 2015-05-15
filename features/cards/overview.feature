@@ -1,3 +1,4 @@
+@location
 Feature: Update a card
 
 	So that I can change card's information

@@ -1,5 +1,6 @@
 Feature: Newsletter
-
+	
+	@newsletter
 	Scenario: Successfull update of the newsletter's options
 		Given I am a confirmed user
 		And I am signed in

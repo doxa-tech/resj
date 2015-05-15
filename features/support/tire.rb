@@ -1,4 +1,4 @@
-module ModelTire
+module TireIndexing
   def self.models
     [Card, Orator, Subject]
   end
@@ -6,8 +6,8 @@ module ModelTire
   def self.create_index
     puts "======================"
     puts "[Tire] Start indexing"
-    ModelTire.models.each do |model|
-      ModelTire.import_model(model, force: true)
+    TireIndexing.models.each do |model|
+      TireIndexing.import_model(model, force: true)
     end
     puts "[Tire] Finish indexing"
     puts "======================"
@@ -30,5 +30,28 @@ module ModelTire
 end
 
 Before('@tire') do 
-  ModelTire.create_index
+  TireIndexing.create_index
+end
+
+Before('~@tire') do
+  FakeWeb.register_uri :any, %r(#{Tire::Configuration.url}), body: '{}' 
+end
+
+After('~@tire') do
+  FakeWeb.clean_registry
+end
+
+Before('~@tire') do
+  module TireMock
+    def self.included(base)
+      base.instance_eval do
+        def search(params)
+          []
+        end
+      end
+    end
+  end
+  [Card, Orator, Subject].each do |model|
+    model.send(:include, TireMock)
+  end
 end

@@ -108,7 +108,7 @@ RSpec.describe Permission, :type => :model do
 
 		context "all entries" do
 
-			let(:ownership) { create(:ownership, user: create(:user), actions: [create(:action, name: 'share')]) }
+			let(:ownership) { create(:ownership, user: create(:user), action: 'share') }
 			let(:permission) { Permission.new(ownership.user) }
 
 			it "should return true with the correct action" do
@@ -123,7 +123,7 @@ RSpec.describe Permission, :type => :model do
 
 		context "on ownership" do
 
-			let(:ownership) { create(:ownership, user: create(:user), type_name: 'on_ownership', actions: [create(:action, name: 'share')]) }
+			let(:ownership) { create(:ownership, user: create(:user), type_name: 'on_ownership', action: 'share') }
 			let(:permission) { Permission.new(ownership.user) }
 			let(:my_article) { create(:article, user: ownership.user) }
 
@@ -143,7 +143,7 @@ RSpec.describe Permission, :type => :model do
 
 		context "on entry" do
 
-			let(:ownership) { create(:ownership, user: create(:user), type_name: 'on_entry', id_element: article.id, actions: [create(:action, name: 'share')]) }
+			let(:ownership) { create(:ownership, user: create(:user), type_name: 'on_entry', id_element: article.id, action: 'share') }
 			let(:permission) { Permission.new(ownership.user) }
 
 			it "should return true if the ids are the same" do
@@ -265,7 +265,7 @@ RSpec.describe Permission, :type => :model do
 	end
 
 	describe '#allow_params?' do
-		let(:ownership) { create(:ownership, user: create(:user), actions: [create(:action, name: "protected")]) }
+		let(:ownership) { create(:ownership, user: create(:user), action: "protected") }
 		let(:permission) { Permission.new(ownership.user) }
 
 		it "should return true" do
@@ -281,7 +281,7 @@ RSpec.describe Permission, :type => :model do
 		context "all entries" do
 			let(:ownership) { create(:ownership, user: create(:user), right_read: true) }
 			let(:permission) { Permission.new(ownership.user) }
-			let(:articles) { create_list(:article, 5) }
+			let!(:articles) { create_list(:article, 5) }
 
 			it "should return all articles" do
 				expect(permission.records "admin/articles", Article).to eq(articles << article)
@@ -292,7 +292,7 @@ RSpec.describe Permission, :type => :model do
 		context "on ownership" do
 			let(:ownership) { create(:ownership, user: create(:user), type_name: "on_ownership", right_read: true) }
 			let(:permission) { Permission.new(ownership.user) }
-			let(:my_articles) { create_list(:article, 5, user: ownership.user) }
+			let!(:my_articles) { create_list(:article, 5, user: ownership.user) }
 
 			it "should return his articles" do
 				expect(permission.records "admin/articles", Article).to eq(my_articles)
@@ -303,7 +303,7 @@ RSpec.describe Permission, :type => :model do
 		context "on entry" do
 			let(:ownership) { create(:ownership, user: create(:user), type_name: "on_entry", right_read: true, id_element: article.id) }
 			let(:permission) { Permission.new(ownership.user) }
-			let(:articles) { create_list(:article, 5) }
+			let!(:articles) { create_list(:article, 5) }
 
 			it "should return only the corresponding article" do
 				expect(permission.records "admin/articles", Article).to eq([article])
@@ -315,7 +315,7 @@ RSpec.describe Permission, :type => :model do
 			let(:ownership) { create(:ownership, user: create(:user), right_read: true) }
 			let(:permission) { Permission.new(ownership.user) }
 			let(:token) { create(:access_token, ownership: ownership) }
-			let(:articles) { create_list(:article, 5) }
+			let!(:articles) { create_list(:article, 5) }
 
 			it "should return all articles" do
 				expect(permission.records "admin/articles", Article, token.token).to eq(articles << article)

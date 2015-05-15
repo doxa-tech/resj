@@ -5,7 +5,7 @@ namespace :seed do
 
 	desc "Create the pages"
 	task pages: :environment do
-		%w[home resj resources privacy help contact developer].each do |page|
+		%w[resj privacy help developer].each do |page|
 			Page.create(name: page, content: "content") if Page.find_by_name(page).nil?
 		end
 	end
@@ -72,6 +72,9 @@ namespace :seed do
 		Element.all.each do |element| 
 			Ownership.find_or_create_by(element: element, user: g_admin, ownership_type: all_entries, right_read: true, right_create: true, right_update: true, right_delete: true)
 		end
+
+		invite = Action.find_or_create_by(name: "invite")
+		Ownership.joins(:element).find_by(elements: { name: 'admin/users' }, user: g_admin, ownership_type: all_entries).update_attribute(:actions, [invite])
 	end
 
 	desc "Create a superuser"

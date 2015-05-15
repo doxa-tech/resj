@@ -2,7 +2,6 @@ Given /^I visit the card show path$/ do
   visit card_path(@card, locale: :fr)
 end
 
-
 When /^I click on "Editer" on the banner$/ do
   find('.banner').hover
   find('button[class="edit-banner"]').click
@@ -34,8 +33,6 @@ When(/^I complete the logo upload form with wrong extension and submit it$/) do
   page.execute_script("$('#card_avatar').css('visibility', 'visible');")
   attach_file 'card_avatar', File.join(Rails.root, '/public/test/cards/logo.abc'), visible: false
 end
-
-
 
 Then /^I should see the image "(.+)"$/ do |image|
   expect(page).to have_xpath("//img[contains(@src, \"#{image}\")]")

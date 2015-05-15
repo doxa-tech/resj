@@ -5,12 +5,11 @@
 # files.
 
 require 'cucumber/rails'
-require 'rake' # nkcr
 require 'email_spec/cucumber'
+require 'fakeweb'
 
 require 'coveralls'
 
-puts "Coveralls.wear!... See hooks.rb"
 Coveralls.wear!
 
 # Capybara defaults to CSS3 selectors rather than XPath.
@@ -41,7 +40,7 @@ begin
   require 'database_cleaner'
   require 'database_cleaner/cucumber'
 
-  DatabaseCleaner.strategy = :truncation, { except: %w[ownership_types elements user_types statuses card_types help_categories newsletters] }
+  DatabaseCleaner.strategy = :truncation
 rescue NameError
   raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
 end
@@ -73,7 +72,24 @@ Cucumber::Rails::Database.javascript_strategy = :truncation
 #   Capybara::Selenium::Driver.new(app, :browser => :chrome)
 # end
 #
-# Capybara.javascript_driver = :chrome
+Capybara.javascript_driver = :webkit
 
+Before('@selenium') do
+  Capybara.javascript_driver = :selenium
+end
+
+After('@selenium') do
+  Capybara.javascript_driver = :webkit
+end
+
+Capybara.default_wait_time = 4
 
 World(FactoryGirl::Syntax::Methods)
+
+After('@reset') do 
+  Capybara.current_session.driver.quit
+end
+
+Before('@javascript', '~@selenium') do
+  page.driver.block_unknown_urls
+end

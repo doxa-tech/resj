@@ -29,7 +29,7 @@ class OratorsController < BaseController
 		@user.confirmed = true
 		if @user.save
 			sign_in(@user)
-			OratorMailer.orator_created(@user).deliver_later
+			OratorMailer.orator_created(@user).deliver_now
 			Parent.create(user: @user, parent: User.find_by_firstname('g_orator'))
 			redirect_to root_path, success: render_error('orator_created')
 		else

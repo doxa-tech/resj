@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
     self.reset_sent_at = Time.zone.now
     save!
     # sends reset link
-    UserMailer.password_reset(self).deliver_later
+    UserMailer.password_reset(self).deliver_now
   end
 
   def full_name
@@ -74,7 +74,9 @@ class User < ActiveRecord::Base
 
   # Cards affiliations
   def confirmed_cards
-    Card.joins(:card_users).where(:card_users => {user_id: id, user_validated: true, card_validated: true}) + Card.where(user_id: id)
+    Card.joins("LEFT JOIN card_users ON card_users.card_id = cards.id").where(
+      "card_users.user_id = ? AND card_users.user_validated = ? AND card_users.card_validated = ? OR cards.user_id = ?", id, true, true, id
+      )
   end
 
   # Cards request from an user and not answered

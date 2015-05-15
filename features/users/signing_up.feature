@@ -1,3 +1,4 @@
+@user_types
 Feature: Signing up
 
 	So I can have a profile

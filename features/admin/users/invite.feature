@@ -4,7 +4,7 @@ Feature: Invite an orator to subscribe
   As an authorized user
   I want to invite an user or an email
 
-  @wip @javascript
+  @javascript @ownerships
   Scenario: I invite a email and a user
     Given I am authorized to invite orators
     And I am signed in

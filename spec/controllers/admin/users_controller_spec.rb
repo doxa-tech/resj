@@ -8,7 +8,7 @@ RSpec.describe Admin::UsersController, :type => :controller do
     before(:each) do
       @user = create(:user)
       create(:ownership, element_name: "admin/users", type_name: "all_entries", 
-        right_read: true, right_create: true, right_delete: true, right_update: true)
+        right_read: true, right_create: true, right_delete: true, right_update: true, action: "invite")
       sign_in @user
       post :invite, emails: "kocher.ke@gmail.com", users: ["nkcr.je@gmail.com"] 
     end

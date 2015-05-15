@@ -31,7 +31,7 @@ class Cards::WizardsController < BaseController
 		if @card.save
 			@card.owner = owner
 			# for validator
-			CardMailer.admin_created(validator_emails, @card).deliver_later
+			CardMailer.admin_created(validator_emails, @card).deliver_now
 			session.delete(:card_params)
 			flash[:success] = "Vous êtes entré dans le réseau avec succès ! Votre groupe n'apparaît pas directement sur la carte car elle doit d'abord être validée."
 			render 'redirect', locals: { path: "/reseau" }

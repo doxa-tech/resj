@@ -6,7 +6,7 @@ class Users::AffiliationsController < BaseController
 		@user = current_user
 		@unconfirmed = @user.unconfirmed_cards
 		@pending = @user.pending_cards.joins(:card_users)
-		@confirmed = @user.confirmed_cards
+		@confirmed = @user.confirmed_cards.includes(:status)
 		@confirmed_paginate = @confirmed.paginate(page: params[:page], per_page: 10)
 	end
 
@@ -29,9 +29,9 @@ class Users::AffiliationsController < BaseController
 		success, card_user = Request.new(:user, user: current_user, card: card).answer(params[:validated])
 		if card && success
 			if params[:validated] == "true"
-        CardMailer.confirmed_user(current_user, card).deliver_later
+        CardMailer.confirmed_user(current_user, card).deliver_now
       else
-        CardMailer.unconfirmed_user(current_user, card).deliver_later
+        CardMailer.unconfirmed_user(current_user, card).deliver_now
       end
 			track_activity card_user
 			redirect_to user_my_cards_path, success: t('user.card.confirmation.success')

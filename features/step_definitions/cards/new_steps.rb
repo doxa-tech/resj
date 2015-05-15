@@ -13,7 +13,8 @@ When /^I complete the second step and submit it$/ do
 	fill_in "card_street", with: "Route du verdel 8"
 	fill_in_selectized "card_location_id", with: "Bulle"
 	fill_in "card_place", with: "A l'église"
-	click_button "geocode-addr"
+	find('input#lat', visible: false).set(46)
+	find('input#lng', visible: false).set(7)
 	click_button "Prochaine étape"
 end
 
@@ -41,14 +42,18 @@ When /^I submit the card new form$/ do
 	click_link "Envoyer"
 end
 
-Then /^I should see the final step$/ do
-	expect(page).to have_link "Envoyer"
-end
-
 When /^I go back to the first step, edit the name and go to the final step$/ do
 	click_button "Général"
 	fill_in "card_name", with: "Way"
 	click_button "aller à la fin"
+end
+
+When /^I click to go to the (.*?) step$/ do |step|
+	find(:xpath, "//input[@name='step[#{step}]' and @value='Prochaine étape']").click
+end
+
+Then /^I should see the final step$/ do
+	expect(page).to have_link "Envoyer"
 end
 
 Then /^I should see a summary of my card$/ do
