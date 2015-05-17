@@ -1,7 +1,7 @@
-var load_google_map = { 
+var load_google_map = {
 
   already_loaded: false,
-  
+
   // Asynchronous loading of google map javascript API
   // Params :
   //   - second_callback (String)
@@ -43,4 +43,3 @@ var load_google_map = {
   }
 
 }
-

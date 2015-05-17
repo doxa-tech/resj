@@ -7,12 +7,12 @@ OratorsController.prototype.index = function() {
   $('#filter h3 span.show').click(function(){
     var btn = $(this);
     $('#filter ul').slideToggle();
-    if (btn.text()=="voir") { 
+    if (btn.text()=="voir") {
       btn.text("fermer");
-    } else { 
-      btn.text("voir"); 
+    } else {
+      btn.text("voir");
     }
-  }); 
+  });
 
 	load_google_map.loadScript('orators_index.hello', null, true);
 

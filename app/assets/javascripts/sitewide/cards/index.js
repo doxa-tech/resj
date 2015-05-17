@@ -36,7 +36,7 @@ CardsController.prototype.index = function() {
   });
 
   // Mapbox loading
-  load_mapbox.loadMap("cards_index.init");
+  load_mapbox.loadMap(cards_index.init);
 
   // Show marker when click
   $("#results").on("click", ".show-on-map", function(){
