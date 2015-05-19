@@ -1,4 +1,4 @@
-namespace :seed do 
+namespace :seed do
 
 	desc "Setup the environment"
   task :all => [:pages, :card_types, :statuses, :ownerships, :superuser, :help_categories, :notifications]
@@ -17,6 +17,7 @@ namespace :seed do
 		CardType.find_or_create_by(name: "Groupe d'action")
 		CardType.find_or_create_by(name: "Oeuvre jeunesse")
 		CardType.find_or_create_by(name: "Réseau régional")
+		CardType.find_or_create_by(name: "Formation")
 	end
 
 	desc "Create the statuses"
@@ -26,7 +27,7 @@ namespace :seed do
 		Status.find_or_create_by(name: "Incomplet")
 		Status.find_or_create_by(name: "Action requise")
 	end
-	
+
 	desc "Create the ownerships basics"
 	task ownerships: :environment do
 
@@ -42,26 +43,26 @@ namespace :seed do
 		User.find_or_create_by(firstname: 'g_base', user_type: group)
 		User.find_or_create_by(firstname: 'g_token', user_type: group)
 
-		%w[admin/pages 
-			admin/users 
-			admin/cards 
-			admin/ownerships 
-			admin/actions 
-			admin/affiliations 
-			admin/tags 
+		%w[admin/pages
+			admin/users
+			admin/cards
+			admin/ownerships
+			admin/actions
+			admin/affiliations
+			admin/tags
 			admin/newsletters
-			admin/responsables 
-			admin/card_types 
-			admin/verificator_comments 
-			admin/parents 
+			admin/responsables
+			admin/card_types
+			admin/verificator_comments
+			admin/parents
 			admin/access_tokens
-			orators 
-			admin/subjects 
-			admin/themes 
-			cards 
-			admin/articles 
-			cards/affiliations 
-			admin/statuses 
+			orators
+			admin/subjects
+			admin/themes
+			cards
+			admin/articles
+			cards/affiliations
+			admin/statuses
 			admin/card_statuses
 			admin/help_pages
 			resources
@@ -69,7 +70,7 @@ namespace :seed do
 			Element.find_or_create_by(name: name)
 		end
 
-		Element.all.each do |element| 
+		Element.all.each do |element|
 			Ownership.find_or_create_by(element: element, user: g_admin, ownership_type: all_entries, right_read: true, right_create: true, right_update: true, right_delete: true)
 		end
 
@@ -97,7 +98,7 @@ namespace :seed do
 
 	desc "Create mail notifications options"
 	task notifications: :environment do
-		["Événements/agenda pour la jeunesse en suisse romande", "Annonces importantes (quelques une par année)", 
+		["Événements/agenda pour la jeunesse en suisse romande", "Annonces importantes (quelques une par année)",
 			"Notifications personnelles (demandes d'affiliations, ...)", "Nouveautés et activités sur le site",
 			"Réseau régional (notification des réseaux régionnaux que vous avez rejoint"
 		].each do |name|
