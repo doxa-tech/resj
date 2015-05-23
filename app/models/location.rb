@@ -1,5 +1,8 @@
 class Location < ActiveRecord::Base
   belongs_to :canton
+  has_many :cards
+
+  after_update { self.cards.each(&:touch) }
 
   def full_name
   	"#{official_name} - #{post_name} - #{npa} - #{canton.name}"

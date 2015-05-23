@@ -1,54 +1,78 @@
+require 'abuilder'
+
 module CardSearch
 	extend ActiveSupport::Concern
-  include TireSettings
 
 	included do
-    include TireMethods
-    include Tire::Model::Search
-    include Tire::Model::Callbacks
+    include Elasticsearch::Model
+    include EsCallbacks
+    extend EsSettings
 
-    settings = self.default_settings
-    settings settings do
+    after_touch { __elasticsearch__.index_document }
+    after_commit lambda { index_with_belongs_to(:status, :location) }, on: :update
+
+    settings index: default_settings do
       mapping do
-        indexes :name, analyzer: "partial_french", boost: 10, fields: { lowercase: { type: "string", analyzer: "case_insensitive_sort" } }
-        indexes :canton_id, index: :not_analyzed, type: "integer", as: "location.canton.id"
-        indexes :canton_name, as: "location.canton.name"
-        indexes :card_type_id, index: :not_analyzed, type: "integer", as: "card_type.id"
-        indexes :tag_ids, index: :not_analyzed, type: "integer", as: "tag_ids"
-        indexes :tag_names, as: "tags_names"
-        indexes :status_name, index: :not_analyzed, as: "status.name"
+        indexes :name, type: :multi_field, fields: { 
+          name: { type: :string, analyzer: :partial_french, boost: 10}, 
+          lowercase: { type: :string, analyzer: :case_insensitive_sort } 
+        }
+        indexes :card_type_id, type: :integer
+        indexes :tags do
+          indexes :id, type: :integer
+          indexes :name, type: :string
+        end
+        indexes :location do
+          indexes :canton do
+            indexes :id, type: :integer
+            indexes :name, type: :string
+          end
+        end
+        indexes :status do
+          indexes :name, type: :string, index: :not_analyzed
+        end
       end
     end
-	end
 
-  def tag_ids
-    tags.pluck(:id)
-  end
+    def as_indexed_json(options={})
+      as_json(only: [:name, :card_type_id], include: { 
+        location: { only: [], include: { canton: { only: [:id, :name] } } },
+        status: { only: [:name] },
+        tags: { only: [:name, :id] }
+      })
+    end
 
-  def tags_names
-    tags.pluck(:name)
   end
 
   module ClassMethods
 
     def search(params)
-      search = Card.tire.search(load: true, per_page: Card.count) do |s|
-        s.query do |q|
-          q.filtered do |f|
+      query = Jbuilder.encode do |j|
+        j.query do
+          j.filtered do
             unless params[:query].blank?
-              f.query do |q|
-                q.match [:name, :canton_name, :tag_names], params[:query]
+              j.query do
+                j.multi_match do
+                  j.fields ["name", "location.canton.name", "tags.name"]
+                  j.query params[:query]
+                end
               end
             end
-            f.filter :terms, canton_id: params[:canton_ids] unless params[:canton_ids].blank?
-            f.filter :terms, card_type_id: params[:card_type_ids] unless params[:card_type_ids].blank?
-            f.filter :terms, tag_ids: params[:tag_ids] unless params[:tag_ids].blank?
-            f.filter :term, status_name: "En ligne"
+            j.filter do
+              j.bool do
+                j.must(ABuilder.build do
+                  add({ terms: { "location.canton.id" => params[:canton_ids] }}) unless params[:canton_ids].blank?
+                  add({ terms: { "card_type_id" => params[:card_type_ids] }}) unless params[:card_type_ids].blank?
+                  add({ terms: { "tags.id" => params[:tag_ids] }}) unless params[:tag_ids].blank?
+                  add({ term: { "status.name" => "En ligne" }})
+                end)
+              end
+            end
           end
         end
-        s.sort { |t| t.by "name.lowercase", "asc" } if params[:query].blank?
+        j.sort [{ "name.lowercase" => { order: "asc" }}] if params[:query].blank?
       end
-      @cards = search.results
+      @cards = Card.__elasticsearch__.search(query).records
     end
   end
 

@@ -69,6 +69,6 @@ namespace :deploy do
   # automatically.
   after 'deploy:publishing', 'deploy:restart'
 
-  after 'deploy:finished', 'tire:reindex'
+  after 'deploy:finished', 'elasticsearch:reindex'
   
 end

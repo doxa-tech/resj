@@ -1,53 +1,78 @@
+require 'abuilder'
+
 module OratorSearch
   extend ActiveSupport::Concern
-  include TireSettings
 
   included do
-    include TireMethods
-    include Tire::Model::Search
-    include Tire::Model::Callbacks
+    include Elasticsearch::Model
+    include EsCallbacks
+    extend EsSettings
 
-    settings = self.default_settings
-    settings settings do
+    after_touch { __elasticsearch__.index_document }
+    after_commit lambda { index_with_belongs_to(:user, :location) }, on: :update
+
+    settings index: default_settings do
       mapping do
-        indexes :firstname, analyzer: "partial_french", as: "user.firstname", boost: 10
-        indexes :lastname, analyzer: "partial_french", as: "user.lastname", boost: 10
-        indexes :canton_name, as: "location.canton.name"
-        indexes :canton_id, index: :not_analyzed, type: "integer", as: "location.canton.id"
-        indexes :theme_ids, index: :not_analyzed, type: "integer", as: "theme_ids"
-        indexes :theme_names, as: "theme_names"
-        indexes :disabled, type: "boolean"
+        indexes :user do
+          indexes :firstname, analyzer: :partial_french, boost: 10, type: :string
+          indexes :lastname, type: :multi_field, fields: { 
+            lastname: { type: :string, analyzer: :partial_french, boost: 10}, 
+            lowercase: { type: :string, analyzer: :case_insensitive_sort } 
+          }
+        end
+        indexes :location do
+          indexes :canton do
+            indexes :id, type: :integer
+            indexes :name, type: :string
+          end
+        end
+        indexes :themes do
+          indexes :id, type: :integer
+          indexes :name, type: :string
+        end
+        indexes :disabled, type: :boolean
       end
     end
+
+    def as_indexed_json(options={})
+      as_json(only: [:disabled], include: { 
+        user: { only: [:firstname, :lastname] },
+        location: { only: [], include: { canton: { only: [:id, :name] } } },
+        themes: { only: [ :name, :id ] }
+      })
+    end
+
   end
 
-  def theme_ids
-    themes.pluck(:id)
-  end
-
-  def theme_names
-    themes.pluck(:name)
-  end
 
   module ClassMethods
 
     def search(params)
-      search = Orator.tire.search(load: true, per_page: Orator.count) do |s|
-        s.query do |q|
-          q.filtered do |f|
+      query = Jbuilder.encode do |j|
+        j.query do
+          j.filtered do
             unless params[:query].blank?
-              f.query do |q|
-                q.match [:firstname, :lastname, :canton_name, :theme_names], params[:query]
+              j.query do
+                j.multi_match do
+                  j.fields ["user.firstname", "user.lastname", "location.canton.name", "themes.name"]
+                  j.query params[:query]
+                end
               end
             end
-            f.filter :term, disabled: false
-            f.filter :terms, canton_id: params[:canton_ids] unless params[:canton_ids].blank?
-            f.filter :terms, theme_ids: params[:themes_ids] unless params[:themes_ids].blank?
+            j.filter do
+              j.bool do
+                j.must(ABuilder.build do
+                  add({ terms: { "location.canton.id" => params[:canton_ids] }}) unless params[:canton_ids].blank?
+                  add({ terms: { "themes.id" => params[:themes_ids] }}) unless params[:themes_ids].blank?
+                  add({ term: { "disabled" => false }})
+                end)
+              end
+            end
           end
         end
-        s.sort { by :lastname, 'asc' }
+        j.sort [{ "user.lastname" => { order: "asc" }}]
       end
-      @orators = search.results
+      @orators = Orator.__elasticsearch__.search(query).records
     end
 
   end

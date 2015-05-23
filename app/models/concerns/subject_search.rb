@@ -1,47 +1,58 @@
+require 'abuilder'
+
 module SubjectSearch
   extend ActiveSupport::Concern
-  include TireSettings
 
   included do
-    include TireMethods
-    include Tire::Model::Search
-    include Tire::Model::Callbacks
+    include Elasticsearch::Model
+    include Elasticsearch::Model::Callbacks
+    extend EsSettings
 
-    settings = self.default_settings
-    settings settings do
+    after_touch { __elasticsearch__.index_document }
+
+    settings index: default_settings do
       mapping do
-        indexes :name, analyzer: "partial_french", boost: 10
-        indexes :description
-        indexes :theme_ids, index: :not_analyzed, type: "integer", as: "theme_ids"
-        indexes :theme_names, as: "theme_names"
+        indexes :name, analyzer: :partial_french, boost: 10, type: :string
+        indexes :description, type: :string
+        indexes :themes do
+          indexes :id, type: :integer
+          indexes :name, type: :string
+        end
       end
     end
-  end
 
-  def theme_ids
-    themes.pluck(:id)
-  end
-
-  def theme_names
-    themes.pluck(:name)
+    def as_indexed_json(options={})
+      as_json(only: [:name, :description], include: { 
+        themes: { only: [ :name, :id ] }
+      })
+    end
   end
 
   module ClassMethods
 
     def search(params)
-      search = Subject.tire.search(load: true, per_page: Subject.count) do |s|
-        s.query do |q|
-          q.filtered do |f|
+      query = Jbuilder.encode do |j|
+        j.query do
+          j.filtered do
             unless params[:query].blank?
-              f.query do |q|
-                q.match [:name, :description, :theme_names], params[:query]
+              j.query do
+                j.multi_match do
+                  j.fields ["name", "description", "themes.name"]
+                  j.query params[:query]
+                end
               end
             end
-            f.filter :terms, theme_ids: params[:themes_ids] unless params[:themes_ids].blank?
+            j.filter do
+              j.bool do
+                j.must(ABuilder.build do
+                  add({ terms: { "themes.id" => params[:themes_ids] }}) unless params[:themes_ids].blank?
+                end)
+              end
+            end
           end
         end
       end
-      @subjects = search.results
+      @orators = Subject.__elasticsearch__.search(query).records
     end
 
   end

@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   scope :users, -> { joins(:user_type).where(user_types: {name: "user"}).readonly(false) }
 
+  after_update { self.orator.touch }
+
   belongs_to :user_type
   
   # User belongs to other users -> .users
