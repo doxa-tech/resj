@@ -12,7 +12,7 @@ class Card < ActiveRecord::Base
   belongs_to :card_type
   belongs_to :user #owner of the card
   belongs_to :location
-  belongs_to :status, touch: true
+  belongs_to :status
 
   has_many :card_affiliations, dependent: :destroy
   has_many :affiliations, through: :card_affiliations

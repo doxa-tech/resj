@@ -8,7 +8,7 @@ module SubjectSearch
     include Elasticsearch::Model::Callbacks
     extend EsSettings
 
-    after_touch() { __elasticsearch__.index_document }
+    after_touch { __elasticsearch__.index_document }
 
     settings index: default_settings do
       mapping do
@@ -52,7 +52,7 @@ module SubjectSearch
           end
         end
       end
-      @orators = Card.__elasticsearch__.search(query)
+      @orators = Subject.__elasticsearch__.search(query).records
     end
 
   end

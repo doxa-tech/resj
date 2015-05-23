@@ -5,14 +5,20 @@ module OratorSearch
 
   included do
     include Elasticsearch::Model
-    include Elasticsearch::Model::Callbacks
+    include EsCallbacks
     extend EsSettings
+
+    after_touch { __elasticsearch__.index_document }
+    after_commit lambda { index_with_belongs_to(:user, :location) }, on: :update
 
     settings index: default_settings do
       mapping do
         indexes :user do
           indexes :firstname, analyzer: :partial_french, boost: 10, type: :string
-          indexes :lastname, analyzer: :partial_french, boost: 10, type: :string
+          indexes :lastname, type: :multi_field, fields: { 
+            lastname: { type: :string, analyzer: :partial_french, boost: 10}, 
+            lowercase: { type: :string, analyzer: :case_insensitive_sort } 
+          }
         end
         indexes :location do
           indexes :canton do
@@ -30,7 +36,7 @@ module OratorSearch
 
     def as_indexed_json(options={})
       as_json(only: [:disabled], include: { 
-        user: { only: [:fistname, :lastname] },
+        user: { only: [:firstname, :lastname] },
         location: { only: [], include: { canton: { only: [:id, :name] } } },
         themes: { only: [ :name, :id ] }
       })
@@ -66,7 +72,7 @@ module OratorSearch
         end
         j.sort [{ "user.lastname" => { order: "asc" }}]
       end
-      @orators = Card.__elasticsearch__.search(query)
+      @orators = Orator.__elasticsearch__.search(query).records
     end
 
   end

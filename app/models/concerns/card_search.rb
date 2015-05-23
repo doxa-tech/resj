@@ -5,10 +5,11 @@ module CardSearch
 
 	included do
     include Elasticsearch::Model
-    include Elasticsearch::Model::Callbacks
+    include EsCallbacks
     extend EsSettings
 
-    after_touch() { __elasticsearch__.index_document }
+    after_touch { __elasticsearch__.index_document }
+    after_commit lambda { index_with_belongs_to(:status, :location) }, on: :update
 
     settings index: default_settings do
       mapping do
@@ -34,9 +35,9 @@ module CardSearch
     end
 
     def as_indexed_json(options={})
-      as_json(only: [:name, :card_type_id, :status_id], include: { 
+      as_json(only: [:name, :card_type_id], include: { 
         location: { only: [], include: { canton: { only: [:id, :name] } } },
-        status: { only: :name },
+        status: { only: [:name] },
         tags: { only: [:name, :id] }
       })
     end
@@ -71,7 +72,7 @@ module CardSearch
         end
         j.sort [{ "name.lowercase" => { order: "asc" }}] if params[:query].blank?
       end
-      @cards = Card.__elasticsearch__.search(query)
+      @cards = Card.__elasticsearch__.search(query).records
     end
   end
 
