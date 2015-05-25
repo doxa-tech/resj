@@ -39,4 +39,8 @@ class PermissionAccess < SimpleDelegator
     return cookies[:token]
   end
 
+  def cookies
+    request.cookie_jar
+  end
+
 end
