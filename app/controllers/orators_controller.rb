@@ -59,8 +59,6 @@ class OratorsController < BaseController
 	end
 
 	def orator?
-		if current_user && !current_user.orator.nil?
-			redirect_to root_path, error: "Vous êtes déjà un orateur."
-		end
+		redirect_to root_path, error: "Vous êtes déjà un orateur." if current_user && !current_user.orator.nil?
 	end
 end

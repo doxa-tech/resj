@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   scope :users, -> { joins(:user_type).where(user_types: {name: "user"}).readonly(false) }
 
-  after_update { self.orator.touch }
+  after_update { self.orator.touch unless orator.nil? || orator.new_record? }
 
   belongs_to :user_type
   

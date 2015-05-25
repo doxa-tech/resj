@@ -8,7 +8,7 @@ module EsMock
     end
 
     def search(*args)
-      return {}
+      return []
     end
 
   end

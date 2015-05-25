@@ -40,7 +40,7 @@ class PermissionAccess < SimpleDelegator
   end
 
   def cookies
-    request.cookies
+    request.cookie_jar
   end
 
 end
