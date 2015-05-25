@@ -4,33 +4,33 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.1'
 
 # Use postgres as the database for Active Record
-gem 'pg', '~> 0.17.1'
+gem 'pg', '~> 0.18.2'
 
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '~> 2.5.3'
+gem 'uglifier', '~> 2.7.1'
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails', '~> 3.1.0'
+gem 'jquery-rails', '~> 4.0.1'
 gem 'jquery-ui-rails', '~> 5.0.0'
 # add the jquery plugin selectize.js
-gem "selectize-rails", '~> 0.11.0'
+gem 'selectize-rails'
 # Jquery select plugin
 gem 'multi-select-rails'
 # Paloma JS integration
-gem 'paloma'
+gem 'paloma', '~> 4.2.0'
 # Coffee script
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.1.0'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails', '~> 5.0.3'
 
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+gem 'turbolinks', '~> 2.5.3'
 # Add compatibility between JS events and Turbolinks
 gem 'jquery-turbolinks', '~> 2.1.0'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.1.2'
+gem 'jbuilder', '~> 2.2.16'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -42,15 +42,15 @@ end
 gem 'bcrypt', '~> 3.1.7'
 
 # Use unicorn as the app server
-gem 'unicorn', '~> 4.8.2'
+gem 'unicorn'
 gem 'unicorn-worker-killer'
 
 # Use Capistrano for deployment
-gem 'capistrano', '~> 3.3.0'
-gem 'capistrano-maintenance', github: "capistrano/maintenance", require: false 
+gem 'capistrano', '~> 3.4.0'
+gem 'capistrano-maintenance', github: 'capistrano/maintenance', require: false 
 
 # rails specific capistrano funcitons
-gem 'capistrano-rails', '~> 1.1.0'
+gem 'capistrano-rails'
 
 # integrate bundler with capistrano
 gem 'capistrano-bundler'
@@ -81,14 +81,13 @@ gem 'elasticsearch-rails'
 
 # image & video uploader
 gem 'carrierwave', '~> 0.10.0'
-gem 'carrierwave-processing', '~> 1.0.0'
-gem "fog", "~> 1.23.0"
+gem 'carrierwave-processing'
+gem 'fog', '~> 1.30.0'
 # image manipulating
-gem "mini_magick", '~> 3.8.1'
-
+gem 'mini_magick', '~> 4.2.1'
 
 # new relic
-gem 'newrelic_rpm', '~> 3.7.3.204'
+gem 'newrelic_rpm'
 
 gem 'activerecord-session_store'
 
