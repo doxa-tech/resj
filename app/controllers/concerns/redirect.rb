@@ -12,7 +12,7 @@ module Redirect
   # * *Returns* :
   #
   def store_location
-    session[:return_to] = request.fullpath
+    cookies[:return_to] = request.fullpath
   end
 
   # Redirect the user to the stored url or the default one provided
@@ -22,8 +22,8 @@ module Redirect
   # * *Returns* :
   #
   def redirect_back_or(default, message = nil)
-    redirect_to(session[:return_to] || default, message)
-    session.delete(:return_to)
+    redirect_to(cookies[:return_to] || default, message)
+    cookies.delete(:return_to)
   end
 
 end

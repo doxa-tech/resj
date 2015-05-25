@@ -35,8 +35,8 @@ class PermissionAccess < SimpleDelegator
   end
 
   def stored_token
-    session[:token] = params[:token] if params[:token]
-    return session[:token]
+    cookies[:token] = params[:token] if cookies[:token]
+    return cookies[:token]
   end
 
 end
