@@ -7,7 +7,7 @@ class CardsController < BaseController
 	layout 'admin', only: [:update, :overview]
 
 	def index
-		@cards = Card.search(params)
+		@cards = Card.search(params).order(:name)
 		@cards_paginate = @cards.paginate(page: params[:page], per_page: 10)
 
 		respond_to do |format|

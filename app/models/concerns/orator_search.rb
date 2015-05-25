@@ -71,7 +71,7 @@ module OratorSearch
             end
           end
         end
-        j.sort [{ "user.lastname" => { order: "asc" }}]
+        j.sort [{ "user.lastname.lowercase" => { order: "asc" }}]
       end
       @orators = Orator.__elasticsearch__.search(query).records
     end
