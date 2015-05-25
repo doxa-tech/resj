@@ -48,6 +48,7 @@ module CardSearch
 
     def search(params)
       query = Jbuilder.encode do |j|
+        j.size 1000
         j.query do
           j.filtered do
             unless params[:query].blank?
