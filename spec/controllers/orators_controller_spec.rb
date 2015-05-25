@@ -11,6 +11,17 @@ RSpec.describe OratorsController, :type => :controller do
       end
     end
 
+    context "when visitor" do
+
+      it "should store the token" do
+        get :new, token: @token.token 
+        expect(response.status).to eq 200
+        get :new
+        expect(response.status).to eq 200
+      end 
+
+    end
+
     context "when orator" do
       before(:each) do
         sign_in create(:orator).user
@@ -25,6 +36,7 @@ RSpec.describe OratorsController, :type => :controller do
         get :new, token: @token.token 
         expect(flash[:error]).to eq "Vous êtes déjà un orateur."
       end
+
     end
 
     context "when user" do
