@@ -60,7 +60,7 @@ module CardSearch
             end
             j.filter do
               j.bool do
-                j.must(ABuilder.build do
+                j.must(Abuilder.build do
                   add({ terms: { "location.canton.id" => params[:canton_ids] }}) unless params[:canton_ids].blank?
                   add({ terms: { "card_type_id" => params[:card_type_ids] }}) unless params[:card_type_ids].blank?
                   add({ terms: { "tags.id" => params[:tag_ids] }}) unless params[:tag_ids].blank?

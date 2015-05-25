@@ -102,7 +102,6 @@ group :development, :test do
 	gem 'email_spec'
 	gem 'faker'
 	gem 'timecop'
-	gem 'fakeweb'
 end
 
 gem 'coveralls', require: false

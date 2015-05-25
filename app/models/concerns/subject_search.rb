@@ -44,7 +44,7 @@ module SubjectSearch
             end
             j.filter do
               j.bool do
-                j.must(ABuilder.build do
+                j.must(Abuilder.build do
                   add({ terms: { "themes.id" => params[:themes_ids] }}) unless params[:themes_ids].blank?
                 end)
               end

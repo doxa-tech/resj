@@ -6,7 +6,6 @@
 
 require 'cucumber/rails'
 require 'email_spec/cucumber'
-require 'fakeweb'
 
 require 'coveralls'
 

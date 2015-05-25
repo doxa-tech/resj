@@ -1,4 +1,4 @@
-class ABuilder
+class Abuilder
 
   def initialize(&b)
     @array = []
