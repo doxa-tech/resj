@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Permission, :type => :model do
-	let(:article) { create(:article) }
+	let!(:article) { create(:article) }
 
 	describe '#allow_modify?' do
 
@@ -284,7 +284,7 @@ RSpec.describe Permission, :type => :model do
 			let!(:articles) { create_list(:article, 5) }
 
 			it "should return all articles" do
-				expect(permission.records "admin/articles", Article).to eq(articles << article)
+				expect(permission.records "admin/articles", Article).to match_array (articles << article)
 			end
 
 		end
@@ -318,7 +318,7 @@ RSpec.describe Permission, :type => :model do
 			let!(:articles) { create_list(:article, 5) }
 
 			it "should return all articles" do
-				expect(permission.records "admin/articles", Article, token.token).to eq(articles << article)
+				expect(permission.records "admin/articles", Article, token.token).to  match_array (articles << article)
 			end
 		end
 	end
