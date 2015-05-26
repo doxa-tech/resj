@@ -295,7 +295,7 @@ RSpec.describe Permission, :type => :model do
 			let!(:my_articles) { create_list(:article, 5, user: ownership.user) }
 
 			it "should return his articles" do
-				expect(permission.records "admin/articles", Article).to eq(my_articles)
+				expect(permission.records "admin/articles", Article).to match_array my_articles
 			end
 
 		end
