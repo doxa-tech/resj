@@ -6,8 +6,5 @@ function startSpinner() {
 function stopSpinner() {
   $("body").removeClass('wait');
 }
-function mapbox_not_loaded() {
-	load_mapbox.already_loaded = false;
-}
 $(document).on("page:fetch", startSpinner);
 $(document).on("page:receive", stopSpinner);

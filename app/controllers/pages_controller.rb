@@ -1,6 +1,7 @@
 class PagesController < BaseController
 
 	def home
+		fjs true
 		@page = Page.find_by_name('home')
 		@article = Article.published.last(10).sample
 		@card_count = Card.active.count

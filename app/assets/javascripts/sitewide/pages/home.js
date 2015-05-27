@@ -1,35 +1,35 @@
-var PagesController = Paloma.controller('Pages');
+app.controller('pages#home', ['$scope', '$http', function($scope, $http) {
 
-PagesController.prototype.home = function() {
+  $http.get('reseau.json').success(function(cards) {
 
-	// Mapbox loading
-  load_mapbox.loadMap(cards_index.init);
+    load_mapbox.loadMap(cards);
+
+  });
 
   // This code loads the IFrame Player API code asynchronously.
   appendScript("https://www.youtube.com/iframe_api");
-	//
-	// Fix for map fullscreen and incompatibility with sublim video
-	//
-	var screen_change_events = "webkitfullscreenchange mozfullscreenchange fullscreenchange";
-	$(document).on(screen_change_events, function () {
-		$('#map').removeClass('leaflet-fullscreen-on');
-	});
-	//
-	// Pie chart stuff
-	//
-	var check = true;
-	if(page_home.isScrolledIntoView('.easy-chart')) {
-		page_home.initChart();
-	}
-	$(window).on('scroll', function(){
-		if(check && page_home.isScrolledIntoView('.easy-chart')) {
-			check = false;
-	    page_home.initChart();
-		}
-	});
+  //
+  // Fix for map fullscreen and incompatibility with sublim video
+  //
+  var screen_change_events = "webkitfullscreenchange mozfullscreenchange fullscreenchange";
+  $(document).on(screen_change_events, function () {
+    $('#map').removeClass('leaflet-fullscreen-on');
+  });
+  //
+  // Pie chart stuff
+  //
+  var check = true;
+  if(page_home.isScrolledIntoView('.easy-chart')) {
+    page_home.initChart();
+  }
+  $(window).on('scroll', function(){
+    if(check && page_home.isScrolledIntoView('.easy-chart')) {
+      check = false;
+      page_home.initChart();
+    }
+  });
 
-
-}
+}]);
 
 var player;
 function onYouTubeIframeAPIReady() {
