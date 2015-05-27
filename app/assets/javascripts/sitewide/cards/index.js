@@ -13,7 +13,7 @@ var cards_index = {
 
 };
 
-app.controller('cards#index', ['$scope', '$http', function($scope, $http) {
+app.controller('cards#index', ['$scope', '$http', 'Paginator', function($scope, $http, Paginator) {
 
   $scope.search = {};
 
@@ -25,26 +25,25 @@ app.controller('cards#index', ['$scope', '$http', function($scope, $http) {
       'tag_ids[]': $scope.search.tags
     }}).success(function(cards) {
       $scope.cards = cards;
-      $scope.letter = { current: cards[0].name[0].toLowerCase() };
+      $scope.letter = { current: null };
+      $scope.paginator = Paginator.new(2, cards.length);
     });
   };
 
   $scope.search();
 
-  // Filters for the search
-  $("#filter ul").hide();
-  $("#filter h3 span.show").click(function(){
-    var btn = $(this);
-    $("#filter ul").slideToggle();
-    if (btn.text()=="voir") {
-      btn.text("fermer");
+  $scope.filter = "voir";
+
+  $scope.toggleFilter = function() {
+    if($scope.filter === 'fermer') {
+      $scope.filter = 'voir'
     } else {
-      btn.text("voir");
+      $scope.filter = "fermer"
     }
-  });
+  };
 
   /* Description */
-  $("#results").on("click", ".show-description", function(){
+  $("#results").on("click", ".show-description", function() {
     var btn = $(this);
     var el = btn.next().next();
     if(el.css("display")=="none") {
@@ -53,12 +52,6 @@ app.controller('cards#index', ['$scope', '$http', function($scope, $http) {
       btn.css("color", "rgba(39,40,41,.6)");
     }
     el.slideToggle();
-  });
-
-  // Ajax for will_paginate
-  $("#results").on("click", ".pagination a", function() {
-    $.getScript(this.href);
-    return false;
   });
 
   // Mapbox loading
@@ -77,17 +70,4 @@ app.controller('cards#index', ['$scope', '$http', function($scope, $http) {
     });
   });
 
-}]).directive('displayLetter', function() {
-  return {
-    restrict: 'E',
-    transclude: true,
-    template: '<li class="letter" ng-transclude></li>',
-    link: function(scope, element, attrs) {
-      if(attrs.new !== scope.letter.current) {
-        scope.letter.current = attrs.new;
-      } else {
-        element.remove();
-      }
-    }
-  };
-});
+}]);

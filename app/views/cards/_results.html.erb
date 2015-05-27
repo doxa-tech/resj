@@ -1,13 +1,14 @@
 <div>
-  <p class="paginate-infos"><%#= paginate_range @cards_paginate %></p>
-  <%#= will_paginate @cards_paginate %>
+  <p class="paginate-infos">
+    {{ paginator.startFrom }}-{{ paginator.startFrom + paginator.pageSize}} sur {{ cards.length }}
+  </p>
+  <paginate-buttons><paginate-buttons>
 </div>
 
 <div class="index" ng-cloak>
   <div ng-show="cards">
     <ul>
-  		<li class="letter">{{ letter.current }}</li>
-  		<div ng-repeat="card in cards">
+  		<div ng-repeat="card in cards | startFrom:paginator.startFrom | limitTo: paginator.pageSize">
         <display-letter new="{{ card.name[0].toLowerCase() }}">{{ card.name[0].toLowerCase() }}</display-letter>
   			<li class="card">
           <span class="type">{{ card.card_type.name }}</span>
