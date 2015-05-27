@@ -36,6 +36,11 @@ class ApplicationController < ActionController::Base
     render_to_string("application/errors/#{error}", layout: false).html_safe
   end
 
+  def fjs(enabled, **args)
+    @js = enabled
+    @js_params = args
+  end
+
   private
 
   def set_locale

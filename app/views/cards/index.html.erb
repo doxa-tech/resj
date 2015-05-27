@@ -1,6 +1,6 @@
 <% content_for :id, 'cards' %>
 
-<%= form_tag reseau_path, method: :get, remote: true, id: "search-form" do %>
+<form>
 	<div id="_search-top">
 		<div class="right">
 		 	<ul class="nav">
@@ -22,9 +22,9 @@
 		<div class="left">	
 		  <div class="search">
 		  	<div class="form">
-					<%= search_field_tag :query, params[:query], placeholder: "Tapez 'Fribourg', 'camps', 'Flambeau'" %>
+					<input ng-model="search.query" ng-model-options="{debounce: 500}" ng-change="search()"
+						placeholder="Tapez 'Fribourg', 'camps', 'Flambeau'" %>
 					<button type="button">Tapez</button>
-					<%= submit_tag "", :name => nil, type: :hidden %>
 				</div>
 		  </div>	
 		</div>		
@@ -32,39 +32,14 @@
 
 	<div class="rows" id="results">
 		<div class="left">
-				<%= content_tag :div, id: "filter" do %>
-			  	<h3>Filtres <span class="show">voir</span></h3>
-			    <ul>
-			      <li>
-			        <h4>Types</h4>  
-			      <li>
-			        <% CardType.all.each do |card_type| %>
-			        	<div class="field">
-									<%= check_box_tag "card_type_ids[]", card_type.id, false, { id: "card_type_#{card_type.id}" } %>
-									<%= label_tag "card_type_#{card_type.id}", card_type.name, class: color_color_type(card_type) %>
-								</div>
-							<% end %>
-			      </li>
-			    </ul>
-			    <%= render 'canton_filter' %>
-			    <ul>
-			      <li>
-			        <h4>Tags</h4>  
-			      <li>
-			        <% Tag.order('popularity desc').last(10).each do |tag| %>
-			        	<div class="field">
-									<%= check_box_tag "tag_ids[]", tag.id, false, { id: "tag_#{tag.id}" } %>
-									<%= label_tag "tag_#{tag.id}", "#{tag.name} (#{tag.popularity})" %>
-								</div>
-							<% end %>
-			      </li>
-			    </ul>
-			  <% end %>	
-			<div class="left-content"><%= render 'results_l' %></div>
+			<%= render 'filters' %>	
+			<div class="left-content">
+				<%= render 'results' %>
+			</div>
 		</div>
 		<div class="right">
-			<%= render 'results_r' %>
+			<div id='map'></div>
 		</div>
 		<div class="clear"></div>
 	</div>
-<% end %>
+</form>

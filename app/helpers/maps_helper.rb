@@ -1,19 +1,18 @@
 module MapsHelper
 
-	def color_color_type(type)
-		case type.name
+	def type_color(name)
+		case name
 		when "Groupe de jeunes"
-			color = "red"
+			"red"
 		when "Groupe de jeunes adultes"
-			color = "green"
+			"green"
 		when "Groupe d'action"
-			color = "orange"
+			"orange"
 		when "Oeuvre jeunesse"
-			color = "blue"
+			"blue"
 		when "Réseau régional"
-			color = "violet"
+			"violet"
 		end
-		return color
 	end
 
 end

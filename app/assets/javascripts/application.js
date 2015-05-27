@@ -14,10 +14,12 @@
 //= require jquery.turbolinks
 //= require jquery-ui/autocomplete
 //= require jquery_ujs
+//= require angular
 //= require selectize
 //= require multi-select
 //= require paloma
 //= require turbolinks
+//= require init.js
 //= require snaptable
 //= require_tree ./sitewide
-//= require_tree ../../../vendor/assets/javascripts/sitewide
+//= require_tree ../../../vendor/assets/javascripts

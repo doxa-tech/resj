@@ -5,8 +5,9 @@
     <% Canton.all.each do |canton| %>
       <% if accepted_canton.include?(canton.abbreviation) %>
       	<div class="field">
-  				<%= check_box_tag "canton_ids[]", canton.id, false, { id: "canton_#{canton.id}" } %>
-          <%= label_tag "canton_#{canton.id}", canton.name %>
+          <input id='<%= "canton_#{canton.id}" %>' type="checkbox" checklist-change="search()"
+            checklist-model="search.cantons" checklist-value="<%= canton.id %>">
+          <label for='<%= "canton_#{canton.id}" %>'><%= canton.name %></label>
   			</div>
       <% end %>
 		<% end %>

@@ -7,15 +7,11 @@ class CardsController < BaseController
 	layout 'admin', only: [:update, :overview]
 
 	def index
-		@cards = Card.search(params).order(:name)
-		@cards_paginate = @cards.paginate(page: params[:page], per_page: 10)
-
+    fjs true
 		respond_to do |format|
 			format.html
-			format.js
-			format.json
+			format.json { @cards = Card.search(params).order(:name) }
 		end
-
 	end
 
 	def show

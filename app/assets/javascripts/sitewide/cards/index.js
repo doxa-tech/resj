@@ -1,9 +1,35 @@
-/* global Paloma:true, load_mapbox:true, $:true */
+/* load_mapbox:true, $:true */
 "use strict";
 
-var CardsController = Paloma.controller("Cards");
+var cards_index = {
 
-CardsController.prototype.index = function() {
+  init: function() {
+
+    $.getJSON( "reseau.json", function( data ) {
+      load_mapbox.process_map(data);
+    });
+
+  },
+
+};
+
+app.controller('cards#index', ['$scope', '$http', function($scope, $http) {
+
+  $scope.search = {};
+
+  $scope.search = function() {
+    $http.get('reseau.json', { params: { 
+      'query' : $scope.search.query, 
+      'canton_ids[]': $scope.search.cantons, 
+      'card_type_ids[]': $scope.search.types,
+      'tag_ids[]': $scope.search.tags
+    }}).success(function(cards) {
+      $scope.cards = cards;
+      $scope.letter = { current: cards[0].name[0].toLowerCase() };
+    });
+  };
+
+  $scope.search();
 
   // Filters for the search
   $("#filter ul").hide();
@@ -51,17 +77,17 @@ CardsController.prototype.index = function() {
     });
   });
 
-
-};
-
-var cards_index = {
-
-  init: function() {
-
-    $.getJSON( "reseau.json", function( data ) {
-      load_mapbox.process_map(data);
-    });
-
-  },
-
-};
+}]).directive('displayLetter', function() {
+  return {
+    restrict: 'E',
+    transclude: true,
+    template: '<li class="letter" ng-transclude></li>',
+    link: function(scope, element, attrs) {
+      if(attrs.new !== scope.letter.current) {
+        scope.letter.current = attrs.new;
+      } else {
+        element.remove();
+      }
+    }
+  };
+});
