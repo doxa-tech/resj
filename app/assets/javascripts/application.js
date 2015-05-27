@@ -19,7 +19,10 @@
 //= require multi-select
 //= require paloma
 //= require turbolinks
+//= require_tree ../../../vendor/assets/javascripts/sitewide
+//= require mapbox/mapbox_v2.1.2.js
+//= require mapbox/leaflet.fullscreen.min_v0.0.3.js
+//= require mapbox/leaflet.markercluster.js
 //= require init.js
 //= require snaptable
 //= require_tree ./sitewide
-//= require_tree ../../../vendor/assets/javascripts

@@ -6,7 +6,7 @@ var load_mapbox = {
   markers: null,          // marker cluster
 
   // displays the map
-  loadMap: function(callback) {
+  loadMap: function(data) {
     if(this.map != null) this.map.remove();
     L.mapbox.accessToken = 'pk.eyJ1IjoibmtjciIsImEiOiI4UnhLZEx3In0.bakfmpx2lREiNbHn0lWq9Q';
     var zoom = 0;
@@ -18,7 +18,9 @@ var load_mapbox = {
     var map = L.mapbox.map('map', 'nkcr.i04348d7', {fullscreenControl: true, minZoom: 9}).setView([46.6221, 7.1960], zoom);
     map.scrollWheelZoom.disable();
     map.addControl(L.mapbox.shareControl())
-    map.on('ready', callback);
+    map.on('ready', function() {
+      load_mapbox.process_map(data);
+    });
     this.map = map;
   },
 

@@ -1,18 +1,6 @@
 /* load_mapbox:true, $:true */
 "use strict";
 
-var cards_index = {
-
-  init: function() {
-
-    $.getJSON( "reseau.json", function( data ) {
-      load_mapbox.process_map(data);
-    });
-
-  },
-
-};
-
 app.controller('cards#index', ['$scope', '$http', 'Paginator', function($scope, $http, Paginator) {
 
   $scope.search = {};
@@ -23,10 +11,17 @@ app.controller('cards#index', ['$scope', '$http', 'Paginator', function($scope, 
       'canton_ids[]': $scope.search.cantons, 
       'card_type_ids[]': $scope.search.types,
       'tag_ids[]': $scope.search.tags
+
     }}).success(function(cards) {
+
       $scope.cards = cards;
+
       $scope.letter = { current: null };
-      $scope.paginator = Paginator.new(2, cards.length);
+
+      $scope.paginator = Paginator.new(10, cards.length);
+
+      load_mapbox.loadMap(cards);
+
     });
   };
 
@@ -45,17 +40,10 @@ app.controller('cards#index', ['$scope', '$http', 'Paginator', function($scope, 
   /* Description */
   $("#results").on("click", ".show-description", function() {
     var btn = $(this);
-    var el = btn.next().next();
-    if(el.css("display")=="none") {
-      btn.css("color", "rgba(39,40,41,1)");
-    } else {
-      btn.css("color", "rgba(39,40,41,.6)");
-    }
-    el.slideToggle();
+    var desc = btn.nextAll(".description");
+    btn.toggleClass("selected")
+    desc.slideToggle();
   });
-
-  // Mapbox loading
-  load_mapbox.loadMap(cards_index.init);
 
   // Show marker when click
   $("#results").on("click", ".show-on-map", function(){
