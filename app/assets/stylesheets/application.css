@@ -13,6 +13,7 @@
  *= require selectize.default
  *= require jquery-ui/autocomplete
  *= require multi-select
+ *= require mapbox
  *= require snaptable
  *= require_tree .
  *= stub mail

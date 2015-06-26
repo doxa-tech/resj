@@ -281,6 +281,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    mapbox-rails (1.6.1.1)
     meta_request (0.3.4)
       callsite (~> 0.0, >= 0.0.11)
       rack-contrib (~> 1.1)
@@ -472,6 +473,7 @@ DEPENDENCIES
   jquery-rails (~> 4.0.1)
   jquery-turbolinks (~> 2.1.0)
   jquery-ui-rails (~> 5.0.0)
+  mapbox-rails
   meta_request
   mini_magick (~> 4.2.1)
   multi-select-rails
