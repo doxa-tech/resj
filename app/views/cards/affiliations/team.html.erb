@@ -1,3 +1,5 @@
+<% content_for :id, "cards-affiliation" %>
+
 <div class="back"><%= link_to "Retour sur l'édition", overview_card_path(@card) %></div>
 
 <div class="row">
@@ -18,8 +20,8 @@
 							<li><%= member_fields.object.full_name %>
 							<% unless member_fields.object == @card.user %>
 								<%= link_to "Retirer", card_affiliation_path(@card, member_fields.object), method: :delete, data: {confirm: "Etes-vous sûr de vouloir enlever cet utilisateur ?" }, class: "edit-btn" %>
-								<%= member_fields.check_box :card_edit, class: "card-edit" %>
-								<%= member_fields.check_box :team_edit, class: "team-edit" %>
+								<div class="check-box"><%= member_fields.label :card_edit, "Peut éditer le groupe" %> <%= member_fields.check_box :card_edit, class: "card-edit" %></div>
+								<div class="check-box"><%= member_fields.label :team_edit, "Peut éditer les droits du groupe" %><%= member_fields.check_box :team_edit, class: "team-edit" %></div>
 							<% end %></li>
 						<% end %>
 						<% if @card_permission.members.size > 1 %>
