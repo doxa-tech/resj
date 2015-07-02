@@ -8,7 +8,7 @@ class Responsable < ActiveRecord::Base
 	validates :lastname, presence: true, length: { maximum: 20 }
 	validates :email, :format => { :with => /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/ }
 
-	after_validation :format
+	before_validation :format
 
 	def full_name
     "#{firstname} #{lastname}"
@@ -17,11 +17,8 @@ class Responsable < ActiveRecord::Base
 	private
 
 	def format
-		self.firstname.strip!
-		self.lastname.strip!
-		self.email.strip!
-		self.firstname.capitalize!
-		self.lastname.capitalize!
-		self.email.downcase!
+		self.firstname = self.firstname.strip.split('-').map(&:capitalize).join('-')
+    self.lastname = self.lastname.strip.split('-').map(&:capitalize).join('-')
+    self.email = self.email.downcase
 	end
 end
