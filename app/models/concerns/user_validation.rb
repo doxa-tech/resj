@@ -37,7 +37,7 @@ module UserValidation
   def format
     self.firstname = self.firstname.strip.split('-').map(&:capitalize).join('-')
     self.lastname = self.lastname.strip.split('-').map(&:capitalize).join('-')
-    self.email = self.email.downcase
+    self.email = self.email.strip.downcase
   end
 
   def create_remember_token
