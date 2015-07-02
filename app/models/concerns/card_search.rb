@@ -8,9 +8,6 @@ module CardSearch
     include EsCallbacks
     extend EsSettings
 
-    after_touch { __elasticsearch__.index_document }
-    after_commit lambda { index_with_belongs_to(:status, :location) }, on: :update
-
     settings index: default_settings do
       mapping do
         indexes :name,  type: :string, analyzer: :partial_french, boost: 10
