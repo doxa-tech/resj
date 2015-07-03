@@ -105,4 +105,8 @@ end
 
 gem 'coveralls', require: false
 
+# HTML tables
 gem 'snaptable'
+
+# errors tracking
+gem 'rollbar', '~> 1.5.3'

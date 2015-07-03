@@ -1,6 +1,9 @@
 # Load DSL and set up stages
 require 'capistrano/setup'
 
+# Rollbar
+require 'rollbar/capistrano3'
+
 # Include default deployment tasks
 require 'capistrano/deploy'
 
