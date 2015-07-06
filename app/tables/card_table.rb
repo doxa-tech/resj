@@ -12,6 +12,10 @@ class CardTable < BaseTable
 		Card
 	end
 
+	def belongs_to_associations
+		[{ location: :canton }, :card_type, :status, :user]
+	end
+
 	module Search
 
 	 	def self.associations
