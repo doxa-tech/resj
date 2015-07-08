@@ -14,7 +14,7 @@ OratorsController.prototype.index = function() {
     }
   });
 
-	load_google_map.loadScript('orators_index.hello', null, true);
+	load_google_map.loadScript('orators_index.hello', true);
 
 }
 

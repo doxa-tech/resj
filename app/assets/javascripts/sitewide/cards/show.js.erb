@@ -2,9 +2,10 @@ var CardsController = Paloma.controller('Cards');
 
 CardsController.prototype.show = function() {
 
+  card_show.lat = this.params['lat'];
+  card_show.lng = this.params['lng'];
   // call the map
-  load_google_map.loadScript('card_show.initialize', 
-        [this.params['lat'], this.params['lng']], true);
+  load_google_map.loadScript('card_show.initialize', true);
 
   // edit popup of images
   $('.graphics').click('.edit-banner', function(){
@@ -53,9 +54,11 @@ var card_show = {
 
   map: null,
   marker: null,
+  lat: null,
+  lng: null,
 
-  initialize: function(lat, lng) {
-    var latlng = new google.maps.LatLng(lat, lng);
+  initialize: function() {
+    var latlng = new google.maps.LatLng(card_show.lat, card_show.lng);
     var mapOptions = {
       center: latlng,
       zoom: 15,
@@ -73,7 +76,7 @@ var card_show = {
 
     var banner = $('#banner-container');
     banner.find('img').prop('src', banner.data('src') + '/' + banner_format(window.innerWidth) + '_' + banner.data('filename'));
-    
+
     function banner_format(w) {
       if(w <= 768) {
         return 's';
