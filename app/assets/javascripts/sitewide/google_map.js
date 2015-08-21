@@ -43,3 +43,63 @@ var load_google_map = {
   }
 
 }
+
+var google_map = {
+  maximum_zoom: 17,
+  /*
+   * is the method called to load the map with given collection
+   * collection format : [ {"lat": 12.23, "lng": 41.003, "text": "xx"}, ... ]
+   */
+  load: function(collection) {
+    // load asynchrously
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&' +
+        'callback=google_map._load';
+    document.getElementsByTagName('head')[0].appendChild(script);
+    // sava data for later
+    this.collection = collection;
+  },
+
+  /*
+   * is the private method called when the script is loaded
+   */
+  _load: function() {
+    // create map options
+    var mapOptions = {
+      mapTypeId: google.maps.MapTypeId.PLAN
+    };
+    // create the map
+    var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+    // the bound object to center the map
+    var bounds = new google.maps.LatLngBounds();
+    // get all markers
+    for (var key in this.collection) {
+      var markerData = this.collection[key];
+      var latlng = new google.maps.LatLng(markerData.lat, markerData.lng);
+      var marker = new google.maps.Marker({
+        position: latlng,
+        map: map,
+        title: "click me",
+        html: markerData.text
+      });
+      bounds.extend(marker.position);
+      var infowindow = new google.maps.InfoWindow({ content: "Holding ..." });
+      // if there is 'text' key we show a popup
+      if(markerData.hasOwnProperty('text')) {
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.setContent(this.html);
+          infowindow.open(map,this);
+        });
+      }
+    }
+    // center the map
+    map.fitBounds(bounds);
+    // little tricky to zoom after fitBounds
+    var listener = google.maps.event.addListener(map, "idle", function() {
+      if (map.getZoom() > google_map.maximum_zoom) map.setZoom(google_map.maximum_zoom);
+      google.maps.event.removeListener(listener);
+    });
+  }
+
+}

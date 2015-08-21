@@ -6,9 +6,9 @@ app.controller('cards#index', ['$scope', '$http', 'Paginator', function($scope, 
   $scope.search = {};
 
   $scope.search = function() {
-    $http.get('reseau.json', { params: { 
-      'query' : $scope.search.query, 
-      'canton_ids[]': $scope.search.cantons, 
+    $http.get('reseau.json', { params: {
+      'query' : $scope.search.query,
+      'canton_ids[]': $scope.search.cantons,
       'card_type_ids[]': $scope.search.types,
       'tag_ids[]': $scope.search.tags
 

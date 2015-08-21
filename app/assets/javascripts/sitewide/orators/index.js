@@ -36,13 +36,17 @@ var orators_index = {
     orators_index.map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
     google.maps.event.addDomListener(window, 'load');
 
-    $.ajax({
-                 url: "orators", // Route to the Script Controller method
-                type: "GET",
-               error: function() {
-                        $('#map-canvas').html("<p class='err'>Erreur de chargement, rechargez la page.</p>");
-                      }
+    // $.ajax({
+    //              url: "orators", // Route to the Script Controller method
+    //             type: "GET",
+    //            error: function() {
+    //                     $('#map-canvas').html("<p class='err'>Erreur de chargement, rechargez la page.</p>");
+    //                   }
+    // });
+    $.getJSON( "orators.json", function( data ) {
+      google_map.load(data);
     });
+
 
 	},
 

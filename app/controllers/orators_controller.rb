@@ -7,10 +7,11 @@ class OratorsController < BaseController
 
 	def index
 		@orators = Orator.search(params)
-    # used to load
-    if request.xhr?
-      render 'index.js.erb'
-    end
+		@grouped = @orators.group_by{ |a| [a.location]}
+		respond_to do |format|
+			format.html
+			format.json
+		end
 	end
 
 	def show

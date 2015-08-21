@@ -19,20 +19,20 @@
 		 		</li>
 		 	<ul>
 		</div>
-		<div class="left">	
+		<div class="left">
 		  <div class="search">
 		  	<div class="form">
 					<input ng-model="search.query" ng-model-options="{debounce: 500}" ng-change="search()"
 						placeholder="Tapez 'Fribourg', 'camps', 'Flambeau'" %>
 					<button type="button">Tapez</button>
 				</div>
-		  </div>	
-		</div>		
+		  </div>
+		</div>
 	</div>
 
 	<div class="rows" id="results">
 		<div class="left">
-			<%= render 'filters' %>	
+			<%= render 'filters' %>
 			<div class="left-content">
 				<%= render 'results' %>
 			</div>
