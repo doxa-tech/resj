@@ -5,6 +5,13 @@ GIT
     capistrano-maintenance (1.0.0)
       capistrano (>= 3.0)
 
+GIT
+  remote: git://github.com/thedarkone/rails-dev-boost.git
+  revision: a709a10b06b7d9fc4a9846bc613c60c86af9dd7c
+  specs:
+    rails-dev-boost (0.3.0)
+      railties (>= 3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -344,6 +351,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.13.0)
     rake (10.4.2)
+    rb-fsevent (0.9.5)
     rdoc (4.2.0)
       json (~> 1.4)
     rest-client (1.8.0)
@@ -483,7 +491,9 @@ DEPENDENCIES
   quiet_assets
   railroady
   rails (= 4.2.1)
+  rails-dev-boost!
   rails-erd
+  rb-fsevent (>= 0.9.1)
   rspec-rails
   sass-rails (~> 5.0.3)
   sdoc

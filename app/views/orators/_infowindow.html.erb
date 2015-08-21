@@ -1,4 +1,9 @@
-<%= location.full_name %>
-<% orators.each do |orator| %>
-  <%= orator.firstname %> <%= orator.lastname %>
-<% end %>
+<div class="infowindow">
+  <p class="location"><%= location.full_name %></p>
+  <% if orators.size > 1 %>
+    <p class="info"><%= orators.size %> orateurs dans cette région</p>
+  <% end %>
+  <% orators.each do |orator| %>
+    <p><%= orator.firstname %> <%= orator.lastname %> <%= link_to "voir", orator_path(orator) %></p>
+  <% end %>
+</div>

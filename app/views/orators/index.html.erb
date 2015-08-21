@@ -21,15 +21,15 @@
 		 		</li>
 		 	<ul>
 		</div>
-		<div class="left">	
+		<div class="left">
 		  <div class="search">
 		  	<div class="form">
 					<%= search_field_tag :query, nil, placeholder: "Rechercher un orateur" %>
 					<button type="button">Tapez</button>
 					<%= submit_tag "", :name => nil, type: :hidden %>
 				</div>
-		  </div>	
-		</div>		
+		  </div>
+		</div>
 	</div>
 
 	<%= render "resource_goback" %>
@@ -40,7 +40,7 @@
 		  	<h3>Filtres <span class="show">voir</span></h3>
 		    <%= render 'theme_filter' %>
 		   	<%= render 'canton_filter' %>
-		  <% end %>	
+		  <% end %>
 			<div class="left-content"><%= render 'results_l' %></div>
 		</div>
 		<div class="right">

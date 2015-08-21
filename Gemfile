@@ -49,7 +49,7 @@ gem 'unicorn-worker-killer'
 
 # Use Capistrano for deployment
 gem 'capistrano', '~> 3.4.0'
-gem 'capistrano-maintenance', github: 'capistrano/maintenance', require: false 
+gem 'capistrano-maintenance', github: 'capistrano/maintenance', require: false
 
 # rails specific capistrano funcitons
 gem 'capistrano-rails'
@@ -103,6 +103,8 @@ group :development, :test do
 	gem 'email_spec'
 	gem 'faker'
 	gem 'timecop'
+  gem 'rails-dev-boost', :git => 'git://github.com/thedarkone/rails-dev-boost.git'
+  gem 'rb-fsevent', '>= 0.9.1' # goes with rails-dev-boost
 end
 
 gem 'coveralls', require: false
