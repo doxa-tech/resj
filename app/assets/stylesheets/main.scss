@@ -10,7 +10,7 @@ html, body
 }
 
 body.wait, body.wait *{
-  cursor: wait !important;   
+  cursor: wait !important;
 }
 
 #wrapper {
@@ -81,7 +81,7 @@ input[type="submit"] {
 	&:active,
 	&:focus {
 		background: #c42f2f;
-		  outline: 0; 
+		  outline: 0;
 	}
 }
 input[type="file"] {
@@ -116,7 +116,7 @@ button {
 
 }
 
-h2 
+h2
 {
 	text-align: center;
 	font-weight: 400;
