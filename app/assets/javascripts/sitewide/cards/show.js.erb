@@ -2,10 +2,7 @@ var CardsController = Paloma.controller('Cards');
 
 CardsController.prototype.show = function() {
 
-  // call the map
-  //load_google_map.loadScript('card_show.initialize',
-  //      [this.params['lat'], this.params['lng']], true);
-  google_map.load([
+  google_map.display([
       {"lat": this.params['lat'], "lng": this.params['lng']}
   ]);
 
@@ -53,24 +50,6 @@ CardsController.prototype.show = function() {
 }
 
 var card_show = {
-
-  map: null,
-  marker: null,
-
-  initialize: function(lat, lng) {
-    var latlng = new google.maps.LatLng(lat, lng);
-    var mapOptions = {
-      center: latlng,
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.PLAN
-    };
-    card_show.map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-    card_show.marker = new google.maps.Marker({position: latlng,map: card_show.map});
-  },
-
-  center: function() {
-    card_show.map.setCenter(card_show.marker.getPosition());
-  },
 
   load_banner: function() {
 

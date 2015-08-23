@@ -5,7 +5,7 @@ $('.wizard').html('<%=j render "#{@card.current_step}_step" %>');
 		selectize.default();
 	<% when "location" %>
 		selectize.location();
-		load_google_map.loadScript('card_new_map', null, true);
+		google_map.setGetCoord();
 	<% when "team" %>
 		autocomplete();
 		hide_contact()
