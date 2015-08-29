@@ -4,7 +4,7 @@
   <li>
     <% Theme.order(:name).each do |theme| %>
     	<div class="field">
-				<%= check_box_tag "themes_ids[]", theme.id, false, { id: "theme_#{theme.id}" } %>
+				<%= check_box_tag "theme_ids[]", theme.id, false, { id: "theme_#{theme.id}" } %>
         <%= label_tag "theme_#{theme.id}", theme.name %>
 			</div>
 		<% end %>

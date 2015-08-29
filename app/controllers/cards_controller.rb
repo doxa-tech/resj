@@ -10,7 +10,7 @@ class CardsController < BaseController
     fjs true
 		respond_to do |format|
 			format.html
-			format.json { @cards = Card.search(params).order(:name) }
+			format.json { @cards = Card.search(params).includes(:card_type, :inverse_parents) }
 		end
 	end
 

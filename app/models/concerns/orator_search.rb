@@ -64,7 +64,7 @@ module OratorSearch
               j.bool do
                 j.must(Abuilder.build do
                   add({ terms: { "location.canton.id" => params[:canton_ids] }}) unless params[:canton_ids].blank?
-                  add({ terms: { "themes.id" => params[:themes_ids] }}) unless params[:themes_ids].blank?
+                  add({ terms: { "themes.id" => params[:theme_ids] }}) unless params[:theme_ids].blank?
                   add({ term: { "disabled" => false }})
                 end)
               end

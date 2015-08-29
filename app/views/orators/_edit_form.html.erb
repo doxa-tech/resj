@@ -4,6 +4,7 @@
 		<%= form_for @user, url: orator_update_path do |f| %>
 
 			<%= render 'users/edit_form', f: f  %>
+			
 			<%= f.fields_for :orator do |orator_fields| %>
 
 			<div class="col split1">
@@ -41,7 +42,7 @@
 							<%= orator_fields.text_area :description, placeholder: 'Informations complémentaires' %>
 						</li>
 						<li>
-							<small>ce champ sert à vous mettre 'hors ligne'. Si il est coché, vous n'apparaîtrez plus dans la liste des orateurs.</small>
+							<small>ce champ sert à vous mettre 'hors ligne'. S'il est coché, vous n'apparaîtrez plus dans la liste des orateurs.</small>
 							<%= f.label :disabled %>
 							<%= orator_fields.check_box :disabled %>
 						</li>

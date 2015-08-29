@@ -6,11 +6,13 @@ class OratorsController < BaseController
 	after_action only: [:create, :update] { |c| c. track_activity @user }
 
 	def index
-		@orators = Orator.search(params)
-		@grouped = @orators.group_by{ |a| [a.location]}
+		fjs true
 		respond_to do |format|
 			format.html
-			format.json
+			format.json do
+				@orators = Orator.search(params).includes(:user, :themes, location: :canton)
+				@grouped = @orators.group_by{ |a| a.location}
+			end
 		end
 	end
 
