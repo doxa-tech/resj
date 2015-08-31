@@ -1,6 +1,6 @@
 /* Ajax loader */
 
-$(function(){
+$(document).on("ready page:load", function() {
 	var timer;
 	$(document).ajaxStart(function(){
 		timer && clearTimeout(timer);

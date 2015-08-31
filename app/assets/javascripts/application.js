@@ -11,7 +11,6 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.turbolinks
 //= require jquery-ui/autocomplete
 //= require jquery_ujs
 //= require angular

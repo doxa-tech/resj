@@ -1,23 +1,27 @@
 /* Ajax login */
 
-$(function() {
-	$("#login-overlay .close").click(function(){
-		$("#login-over").hide();
-		$("#login-overlay").hide();
+$(document).on("ready page:load", function() {
+
+	var loginOverlay = $("#login-overlay"),
+			loginOver = $("#login-over");
+	
+	loginOverlay.find(".close").click(function() {
+		loginOver.hide();
+		loginOverlay.hide();
 	});
-	$('#login-overlay').click(function(){
-		$("#login-over").hide();
-		$('#login-overlay').hide();
+	loginOverlay.click(function(){
+		loginOver.hide();
+		loginOverlay.hide();
 	});
 	// also called in session/new.js.erb
-	var a = $('nav .profil ul');
-	a.hide();
+	var nav = $('nav .profil ul');
+	nav.hide();
 	$('nav .profil').hover(
 		function(){
-			a.show();
+			nav.show();
 		}, 
 		function(){
-			a.hide();
+			nav.hide();
 		}
 	);
 });

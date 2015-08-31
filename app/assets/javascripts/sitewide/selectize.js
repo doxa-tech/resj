@@ -1,6 +1,6 @@
 /* Functions to selectize different types of field */
 
-$(function() {
+$(document).on("ready page:load", function() {
 
 	selectize.default();
   selectize.tags();
@@ -8,7 +8,7 @@ $(function() {
   selectize.cards();
   selectize.themes();
 
- });
+});
 
 var selectize = {
   default: function() {

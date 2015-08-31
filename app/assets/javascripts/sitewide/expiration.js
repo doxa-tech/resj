@@ -1,6 +1,6 @@
 /* Automatic page reload if user inactive */
 
-$(function() {
+$(document).on("ready page:load", function() {
   var idleTimer;
   function resetTimer(){
     clearTimeout(idleTimer);

@@ -1,6 +1,6 @@
 /* Select emails/groups for the newsletter */
 
-$(function() {
+$(document).on("ready page:load", function() {
 	$('#email-select').multiSelect({
 		selectableOptgroup: true,
 	  selectableHeader: "<input type='text' class='search-input' autocomplete='off'>",

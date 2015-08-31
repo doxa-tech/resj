@@ -1,6 +1,6 @@
 /* Admin header menu */
 
-$(function() {
+$(document).on("ready page:load", function() {
 	$('#admin_header .parent').find('ul').hide();
 	$('#admin_header .parent').find('.group_link').click(function(e) {
 		e.preventDefault();

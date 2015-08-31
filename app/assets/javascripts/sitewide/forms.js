@@ -1,4 +1,4 @@
-$(function() {
+$(document).on("ready page:load", function() {
 
   /* Search form for cards */
 
