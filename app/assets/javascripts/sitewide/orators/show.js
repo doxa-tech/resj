@@ -1,8 +1,9 @@
-var OratorsController = Paloma.controller('Orators');
+/* global app, google_map */
+"use strict";
 
-OratorsController.prototype.show = function() {
+app.controller("orators#show", ["params", function(params) {
 
   // call the map
-  google_map.display( [{ lat: this.params['lat'], lng: this.params['lng'] }] );
+  google_map.display( [{ lat: params.lat, lng: params.lng }] );
 
-}
+}]);

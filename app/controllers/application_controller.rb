@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   http_basic_authenticate_with name: "js-tech", password: Rails.application.secrets.basic_pswd if Rails.env.staging?
 
-  before_action :set_locale, :on_ajax
+  before_action :set_locale
 
   rescue_from ActionController::InvalidAuthenticityToken do |exception|
     respond_to do |format|
@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
     render_to_string("application/messages/#{error}", layout: false).html_safe
   end
 
-  def fjs(enabled, **args)
+  def js(enabled, **args)
     @js = enabled
     @js_params = args
   end
@@ -45,10 +45,6 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
-  end
-
-  def on_ajax
-    js false if request.xhr?
   end
 
 end

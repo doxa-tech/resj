@@ -1,16 +1,16 @@
-/* load_mapbox:true, $:true */
+/* global app, load_mapbox, $ */
 "use strict";
 
-app.controller('cards#index', ['$scope', '$http', 'Paginator', function($scope, $http, Paginator) {
+app.controller("cards#index", ["$scope", "$http", "Paginator", function($scope, $http, Paginator) {
 
   $scope.search = {};
 
   $scope.search = function() {
-    $http.get('reseau.json', { params: {
-      'query' : $scope.search.query,
-      'canton_ids[]': $scope.search.cantons,
-      'card_type_ids[]': $scope.search.types,
-      'tag_ids[]': $scope.search.tags
+    $http.get("reseau.json", { params: {
+      "query" : $scope.search.query,
+      "canton_ids[]": $scope.search.cantons,
+      "card_type_ids[]": $scope.search.types,
+      "tag_ids[]": $scope.search.tags
 
     }}).success(function(cards) {
 
@@ -30,10 +30,10 @@ app.controller('cards#index', ['$scope', '$http', 'Paginator', function($scope, 
   $scope.filter = "voir";
 
   $scope.toggleFilter = function() {
-    if($scope.filter === 'fermer') {
-      $scope.filter = 'voir'
+    if($scope.filter === "fermer") {
+      $scope.filter = "voir";
     } else {
-      $scope.filter = "fermer"
+      $scope.filter = "fermer";
     }
   };
 
@@ -41,7 +41,7 @@ app.controller('cards#index', ['$scope', '$http', 'Paginator', function($scope, 
   $("#results").on("click", ".show-description", function() {
     var btn = $(this);
     var desc = btn.nextAll(".description");
-    btn.toggleClass("selected")
+    btn.toggleClass("selected");
     desc.slideToggle();
   });
 

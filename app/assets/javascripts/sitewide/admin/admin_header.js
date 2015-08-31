@@ -1,20 +1,26 @@
+/* global $ */
+"use strict";
+
 /* Admin header menu */
 
 $(document).on("ready page:load", function() {
-	$('#admin_header .parent').find('ul').hide();
-	$('#admin_header .parent').find('.group_link').click(function(e) {
-		e.preventDefault();
-		$(this).next().slideToggle('1000', 'linear');
-	});
-	$('#admin_header .active').parents('.parent ul').show();
 
-	$('#admin_top_header').click(function(){
-		$('#admin_header').slideToggle();
+	var adminHeader = $("#admin_header");
+
+	adminHeader.find(".parent").find("ul").hide();
+	adminHeader.find(".parent").find(".group_link").click(function(e) {
+		e.preventDefault();
+		$(this).next().slideToggle("1000", "linear");
+	});
+	adminHeader.find(".active").parents(".parent ul").show();
+
+	$("#admin_top_header").click(function(){
+		adminHeader.slideToggle();
 		window.onresize = function() {
 			if(window.innerWidth > 1200) {
-				$('#admin_header').show();
+				adminHeader.show();
 			} else {
-				$('#admin_header').hide();
+				adminHeader.hide();
 			}
 		};
 	});

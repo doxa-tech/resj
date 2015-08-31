@@ -1,20 +1,20 @@
-/* global Paloma:true, load_google_map:true, google:true, alert:true */
-var CardWizardsController = Paloma.controller('CardWizards');
+/* global app, $, google_map */
+"use strict";
 
-CardWizardsController.prototype.new = function() {
+app.controller("cards/wizards#new", ["params", function(params) {
 
-  if(this.params['step'] == 'location') {
+  if(params.step == "location") {
     google_map.setGetCoord();
   }
 
   /* Card#new in ajax */
 
-  $('.wizard').on('click', '.send-a', function() {
-    $(this).text('En cours...');
-    $('body').attr("data-no-turbolink", "true");
-    $(window).bind('beforeunload', function(){
+  $(".wizard").on("click", ".send-a", function() {
+    $(this).text("En cours...");
+    $("body").attr("data-no-turbolink", "true");
+    $(window).bind("beforeunload", function(){
       return "Voulez-vous vraiment quitter cette page alors qu'un transfert est en cours ?";
     });
   });
 
-}
+}]);

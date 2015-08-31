@@ -11,12 +11,11 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery-ui/autocomplete
 //= require jquery_ujs
+//= require jquery-ui/autocomplete
 //= require angular
 //= require selectize
 //= require multi-select
-//= require paloma
 //= require turbolinks
 //= require_tree ../../../vendor/assets/javascripts/sitewide
 //= require mapbox.js

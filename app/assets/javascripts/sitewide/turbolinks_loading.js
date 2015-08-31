@@ -1,10 +1,13 @@
+/* global $ */
+"use strict";
+
 /* Page load indicator for Turbolinks */
 
 function startSpinner() {
-  $("body").addClass('wait');
+  $("body").addClass("wait");
 }
 function stopSpinner() {
-  $("body").removeClass('wait');
+  $("body").removeClass("wait");
 }
 $(document).on("page:fetch", startSpinner);
 $(document).on("page:receive", stopSpinner);

@@ -1,3 +1,6 @@
+/* global $, google, alert */
+"use strict";
+
 /*
  * Purpose : Provides methods to interract with google map that structure is immuable
  * Date : 08.2015
@@ -17,11 +20,11 @@ var google_map = {
    */
   load: function(callback) {
     // load asynchrously
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&' +
-        'callback=' + callback;
-    document.getElementsByTagName('head')[0].appendChild(script);
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://maps.googleapis.com/maps/api/js?v=3.exp&" +
+        "callback=" + callback;
+    document.getElementsByTagName("head")[0].appendChild(script);
   },
 
   /*
@@ -58,9 +61,9 @@ var google_map = {
       });
       bounds.extend(marker.position);
       var infowindow = new google.maps.InfoWindow({ content: "Holding ..." });
-      // if there is 'text' key we show a popup
-      if(markerData.hasOwnProperty('text')) {
-        google.maps.event.addListener(marker, 'click', function() {
+      // if there is "text" key we show a popup
+      if(markerData.hasOwnProperty("text")) {
+        google.maps.event.addListener(marker, "click", function() {
           infowindow.setContent(this.html);
           infowindow.open(map,this);
         });
@@ -94,7 +97,7 @@ var google_map = {
        marker: null,
        initialize: function() {
          var latlng;
-         if(google_map.params == undefined) {
+         if(google_map.params === undefined) {
            latlng = new google.maps.LatLng(google_map.default_lat, google_map.default_lng);
          } else {
            latlng = new google.maps.LatLng(google_map.params[0].lat, google_map.params[0].lng);
@@ -107,16 +110,16 @@ var google_map = {
          gmap.map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
          gmap.geocoder = new google.maps.Geocoder();
          gmap.marker = new google.maps.Marker({position: latlng,map: gmap.map});
-         google.maps.event.addListener(gmap.map, 'click', function(event) {
+         google.maps.event.addListener(gmap.map, "click", function(event) {
            gmap.marker.setPosition(event.latLng);
            var coord = event.latLng;
            document.getElementById("lat").value =  coord.lat();
            document.getElementById("lng").value =  coord.lng();
          });
-         google.maps.event.addDomListener(window, 'load');
+         google.maps.event.addDomListener(window, "load");
        },
        codeAddress: function(addr, map, marker) {
-         gmap.geocoder.geocode( { 'address': addr}, function(results, status) {
+         gmap.geocoder.geocode( { "address": addr}, function(results, status) {
            if (status == google.maps.GeocoderStatus.OK) {
              var coord = results[0].geometry.location;
              gmap.map.setCenter(coord);
@@ -124,27 +127,27 @@ var google_map = {
              document.getElementById("lat").value =  coord.lat();
              document.getElementById("lng").value =  coord.lng();
            } else {
-             alert('Impossible de trouver ' + addr + " - " + status);
+             alert("Impossible de trouver " + addr + " - " + status);
            }
          });
        }
      };
      gmap.initialize();
-     var street = document.getElementById('card_street');
-     var address = document.getElementById('address');
-     var btn = document.getElementById('geocode-addr');
-     var item = $('.item');
+     var street = document.getElementById("card_street");
+     var address = document.getElementById("address");
+     var btn = document.getElementById("geocode-addr");
+     var item = $(".item");
      street.onchange = function(){
-       item = $('.item');
-       if(item.length) address.value = street.value + " " + $('.item').html().replace(/(.*?\s-\s)?/,"").replace(/\s-\s/g, ' ') + ", Switzerland";
-     }
-     document.getElementById('card_location_id').onchange = function(){
-       item = $('.item');
-       if(item.length) address.value = street.value + " " + item.html().replace(/(.*?\s-\s)?/,"").replace(/\s-\s/g, ' ') + ", Switzerland";
-     }
+       item = $(".item");
+       if(item.length) address.value = street.value + " " + $(".item").html().replace(/(.*?\s-\s)?/,"").replace(/\s-\s/g, " ") + ", Switzerland";
+     };
+     document.getElementById("card_location_id").onchange = function(){
+       item = $(".item");
+       if(item.length) address.value = street.value + " " + item.html().replace(/(.*?\s-\s)?/,"").replace(/\s-\s/g, " ") + ", Switzerland";
+     };
      btn.onclick = function(){
        gmap.codeAddress(address.value, gmap.map, gmap.marker);
      };
    }
 
-}
+};

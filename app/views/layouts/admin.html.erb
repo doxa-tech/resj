@@ -10,24 +10,34 @@
 </head>
 <body>
 
-<div id="wrapper">
-  <%= render 'layouts/flash' %>
-  <%= render 'layouts/header' %>
+  <%= render "layouts/js_params" %>
 
-  <div id="admin">
-  	<%= render 'layouts/admin_top_header' %>
-  	<%= render 'layouts/admin_header' %>
-  	<div id="admin_content" <%= "class=#{yield(:id)}" if yield(:id).presence %>>
-  		<%= yield %>
-  	</div>
-  </div>
-  <div id="footer">
-    <%= render 'layouts/footer' %>
-  </div>
-</div>
+  <%= content_tag :div, ng_controller do %>
+
+    <%= render 'layouts/flash' %>
+
+    <div id="wrapper">
+      
+      <%= render 'layouts/header' %>
+
+      <div id="admin">
+
+      	<%= render 'layouts/admin_top_header' %>
+      	<%= render 'layouts/admin_header' %>
+
+      	<div id="admin_content" <%= "class=#{yield(:id)}" if yield(:id).presence %>>
+      		<%= yield %>
+      	</div>
+
+      </div>
+      
+      <div id="footer">
+        <%= render 'layouts/footer' %>
+      </div>
+    </div>
+
+  <% end %>
 
   <%= render 'layouts/ajax_loader' %>
-
-  <%= render 'layouts/paloma' %>
 </body>
 </html>

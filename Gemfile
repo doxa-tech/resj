@@ -16,8 +16,6 @@ gem 'jquery-ui-rails', '~> 5.0.0'
 gem 'selectize-rails'
 # Jquery select plugin
 gem 'multi-select-rails'
-# Paloma JS integration
-gem 'paloma', '~> 4.2.0'
 # Coffee script
 gem 'coffee-rails', '~> 4.1.0'
 # Use SCSS for stylesheets
@@ -28,8 +26,6 @@ gem 'mapbox-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks', '~> 2.5.3'
-# Add compatibility between JS events and Turbolinks
-gem 'jquery-turbolinks', '~> 2.1.0'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.2.16'

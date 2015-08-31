@@ -1,3 +1,6 @@
+/* global $ */
+"use strict";
+
 /* Ajax login */
 
 $(document).on("ready page:load", function() {
@@ -14,9 +17,9 @@ $(document).on("ready page:load", function() {
 		loginOverlay.hide();
 	});
 	// also called in session/new.js.erb
-	var nav = $('nav .profil ul');
+	var nav = $("nav .profil ul");
 	nav.hide();
-	$('nav .profil').hover(
+	$("nav .profil").hover(
 		function(){
 			nav.show();
 		}, 

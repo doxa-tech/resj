@@ -1,6 +1,9 @@
-app.controller('pages#home', ['$http', function($http) {
+/* global $, app, load_mapbox, appendScript, YT */
+"use strict";
 
-  $http.get('reseau.json').success(function(cards) {
+app.controller("pages#home", ["$http", function($http) {
+
+  $http.get("reseau.json").success(function(cards) {
 
     load_mapbox.loadMap(cards);
 
@@ -11,21 +14,21 @@ app.controller('pages#home', ['$http', function($http) {
   
   // Pie chart stuff
   var check = true;
-  if(isScrolledIntoView('.easy-chart')) {
+  if(isScrolledIntoView(".easy-chart")) {
     initChart();
   }
-  $(window).on('scroll', function(){
-    if(check && isScrolledIntoView('.easy-chart')) {
+  $(window).on("scroll", function(){
+    if(check && isScrolledIntoView(".easy-chart")) {
       check = false;
       initChart();
     }
   });
 
 	function initChart() {
-	  $('.easy-chart').easyPieChart({
+	  $(".easy-chart").easyPieChart({
 	      animate: 1000,
 	      onStep: function(from, to, percent) {
-					$(this.el).find('span').text(Math.round(percent) / to * $(this.el).data('value'));
+					$(this.el).find("span").text(Math.round(percent) / to * $(this.el).data("value"));
 				},
 				barColor:function(percent) {
 					return "rgba(255,97,41,"+percent/100+")";
@@ -41,18 +44,17 @@ app.controller('pages#home', ['$http', function($http) {
     var elemTop = $(elem).offset().top+30;
     var elemBottom = elemTop + $(elem).height();
 
-    return ((elemBottom >= docViewTop) && (elemTop <= docViewBottom)
-      && (elemBottom <= docViewBottom) &&  (elemTop >= docViewTop) );
+    return ((elemBottom >= docViewTop) && (elemTop <= docViewBottom) && (elemBottom <= docViewBottom) &&  (elemTop >= docViewTop) );
 	}
 
 }]);
 
 var player;
 function onYouTubeIframeAPIReady() {
-  player = new YT.Player('player', {
-    height: '390',
-    width: '640',
-    videoId: 'ppQ23qycHC0',
+  player = new YT.Player("player", {
+    height: "390",
+    width: "640",
+    videoId: "ppQ23qycHC0",
     playerVars: {"modestbranding": 1, "wmode": "opaque", "showinfo": 0, "autohide": 1, "controls": 1}
   });
 }

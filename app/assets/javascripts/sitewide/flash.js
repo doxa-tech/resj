@@ -1,3 +1,6 @@
+/* global $ */
+"use strict";
+
 $(document).on("ready page:load", function() {
 
   var flash = $("#flash");

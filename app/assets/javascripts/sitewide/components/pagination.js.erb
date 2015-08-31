@@ -1,52 +1,55 @@
-var module = angular.module('components');
+/* global angular */
+"use strict";
 
-module.filter('startFrom', function() {
+var module = angular.module("components");
+
+module.filter("startFrom", function() {
   return function(input, start) {
-    input = input || '';
+    input = input || "";
     start = parseInt(start);
     return input.slice(start);
-  }
+  };
 });
 
-module.directive('paginateButtons', function() {
+module.directive("paginateButtons", function() {
 
   return {
-    restrict: 'E',
-    templateUrl: '<%= asset_path("directives/paginate_buttons.html") %>'
+    restrict: "E",
+    templateUrl: "<%= asset_path('directives/paginate_buttons.html') %>"
   };
 
 });
 
-module.service('Paginator', function() {
+module.service("Paginator", function() {
 
   this.new = function(pageSize, length) {
 
     this.pageSize = pageSize;
     this.currentPage = 0;
     this.totalPages = Math.ceil(length/pageSize);
-    this.startFrom = this.getStartFrom()
+    this.startFrom = this.getStartFrom();
 
     return this;
   };
 
   this.getStartFrom = function() {
     return this.currentPage*this.pageSize;
-  }
+  };
 
   this.next = function() {
     this.currentPage = this.currentPage + 1;
-    this.startFrom = this.getStartFrom()
+    this.startFrom = this.getStartFrom();
   };
 
   this.previous = function() {
     this.currentPage = this.currentPage - 1;
-    this.startFrom = this.getStartFrom()
+    this.startFrom = this.getStartFrom();
   };
 
   this.setPage = function(number) {
     this.currentPage = number - 1;
-    this.startFrom = this.getStartFrom()
-  }
+    this.startFrom = this.getStartFrom();
+  };
 
 });
 

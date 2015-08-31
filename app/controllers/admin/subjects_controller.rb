@@ -8,10 +8,12 @@ class Admin::SubjectsController < Admin::BaseController
 	end
 
 	def new
+		js 'form'
 		@subject = current_user.subjects.new
 	end
 
-	def create 
+	def create
+		js 'form'
 		@subject = current_user.subjects.new(subject_params)
 		if @subject.save
 			flash[:success] = "Sujet créé"
@@ -22,10 +24,11 @@ class Admin::SubjectsController < Admin::BaseController
 	end
 
 	def edit
-		js 'Admin/Subjects#new'
+		js 'form'
 	end
 
 	def update
+		js 'form'
 		if @subject.update_attributes(subject_params)
 			flash[:success] = "Sujet édité"
 			render 'redirect', locals: { path: '/admin/subjects' }

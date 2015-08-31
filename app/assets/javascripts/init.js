@@ -1,7 +1,10 @@
-var app = angular.module('Resj', ['checklist-model', 'components'])
+/* global angular, $ */
+"use strict";
 
-angular.module('components', []);
+var app = angular.module("Resj", ["checklist-model", "components"]);
 
-$(document).on('ready page:load', function(arguments) {
-  angular.bootstrap(document.body, ['Resj'])
+angular.module("components", []);
+
+$(document).on("ready page:load", function(args) {
+  angular.bootstrap(document.body, ["Resj"]);
 });

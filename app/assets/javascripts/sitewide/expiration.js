@@ -1,3 +1,6 @@
+/* global $ */
+"use strict";
+
 /* Automatic page reload if user inactive */
 
 $(document).on("ready page:load", function() {
@@ -6,6 +9,6 @@ $(document).on("ready page:load", function() {
     clearTimeout(idleTimer);
     idleTimer = setTimeout(function() { window.location.reload(); }, 1800000);
   }
-  $(document).on('click', resetTimer );
+  $(document).on("click", resetTimer );
   resetTimer();
 });

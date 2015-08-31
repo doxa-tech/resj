@@ -7,7 +7,7 @@ class CardsController < BaseController
 	layout 'admin', only: [:update, :overview]
 
 	def index
-    fjs true
+    js true
 		respond_to do |format|
 			format.html
 			format.json { @cards = Card.search(params).includes(:card_type, :inverse_parents) }
@@ -18,14 +18,12 @@ class CardsController < BaseController
 		@card = Card.find(params[:id])
 		category = HelpCategory.find_by_name("Profil / gestion d'une oeuvre")
 		@help_url = "#{help_category_path(category)}##{CGI.escape 'Le bon format pour ma bannière et mon logo'}"
-		js lat: @card.latitude
-		js lng: @card.longitude
+		js true, lat: @card.latitude, lng: @card.longitude
 	end
 
 	def overview
 		@card = Card.find(params[:id])
-		js lat: @card.latitude
-		js lng: @card.longitude
+		js true, lat: @card.latitude, lng: @card.longitude
 	end
 
 	def update

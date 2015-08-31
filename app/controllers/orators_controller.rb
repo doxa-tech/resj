@@ -6,7 +6,7 @@ class OratorsController < BaseController
 	after_action only: [:create, :update] { |c| c. track_activity @user }
 
 	def index
-		fjs true
+		js true
 		respond_to do |format|
 			format.html
 			format.json do
@@ -17,8 +17,7 @@ class OratorsController < BaseController
 	end
 
 	def show
-		js lat: @orator.location.latitude
-		js lng: @orator.location.longitude
+		js true, lat: @orator.location.latitude, lng: @orator.location.longitude
 	end
 
 	def new
