@@ -91,12 +91,3 @@
 		margin: 10px 0 0 0;
 	}
 </style>
-
-
-<%= content_for :javascript do %>
-	<script data-turbolinks-track="true" type="text/javascript">
-		$(function() {
-			google_map.display(	[{ lat:<%= @card.latitude %>,lng:<%= @card.longitude %> }] );
-		});
-	</script>
-<% end %>

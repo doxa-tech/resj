@@ -8,9 +8,11 @@ class Admin::CardStatusesController < Admin::BaseController
 	end
 
 	def edit
+		js 'form', lat: @card.latitude, lng: @card.longitude
 	end
 
 	def update
+		js 'form', lat: @card.latitude, lng: @card.longitude
 		status = Status.find(params[:card][:status_id])
 		old_status = @card.status
 		@card.status = status

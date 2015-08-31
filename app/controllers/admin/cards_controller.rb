@@ -12,6 +12,7 @@ class Admin::CardsController < Admin::BaseController
 	end
 
 	def show
+		js true, lat: @card.latitude, lng: @card.longitude
 	end
 
 	def create

@@ -10,15 +10,7 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
-//= require jquery-ui/autocomplete
-//= require angular
-//= require selectize
-//= require turbolinks
-//= require_tree ../../../vendor/assets/javascripts/sitewide
-//= require mapbox.js
-//= require mapbox/leaflet.fullscreen.min_v0.0.3.js
-//= require mapbox/leaflet.markercluster.js
-//= require init.js
-//= require_tree ./sitewide
+//= require multi-select
+//= require_tree ../../../vendor/assets/javascripts/admin
+//= require snaptable/table
+//= require_tree ./admin
