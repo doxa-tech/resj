@@ -109,9 +109,8 @@
 					<h5>Ces enregistrements ne créent pas de comptes. Si un co-responsable veut avoir son compte sur le site et rejoindre votre groupe, il doit se créer un compte et s'affilier.</h5>
 				</div>
 
-				<div class="error">
-					<%= render 'error_messages', object: f.object %>
-				</div>
+				<div class="errors"><%= render 'error_messages', object: f.object %></div>
+				
 				<ul class="team">
 					<li>
 						<div class="association_fields autocomplete" data-link="responsables">
