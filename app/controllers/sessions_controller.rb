@@ -40,8 +40,8 @@ class SessionsController < BaseController
 		@user = User.users.find_by_email(params[:session][:email].strip.downcase)
 		if @user && !@user.confirmed
 			respond_to do |format|
-				format.html { redirect_to root_path, error: render_error("unconfirmed") }
-				format.js { render 'error', locals: { message: render_error("unconfirmed") } }
+				format.html { redirect_to root_path, error: render_message("unconfirmed") }
+				format.js { render 'error', locals: { message: render_message("unconfirmed") } }
 			end
 		end
 	end

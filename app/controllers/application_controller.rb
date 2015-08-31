@@ -32,8 +32,8 @@ class ApplicationController < ActionController::Base
     end
 	end
 
-  def render_error(error)
-    render_to_string("application/errors/#{error}", layout: false).html_safe
+  def render_message(error)
+    render_to_string("application/messages/#{error}", layout: false).html_safe
   end
 
   def fjs(enabled, **args)

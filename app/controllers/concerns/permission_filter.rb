@@ -8,7 +8,7 @@ module PermissionFilter
   def connected?
     if !current_user
       store_location
-      redirect_to connexion_path, error: render_error('login')
+      redirect_to connexion_path, error: render_message('login')
     end
   end
 
