@@ -3,7 +3,7 @@ class Admin::SubjectsController < Admin::BaseController
 	after_action only: [:create, :update, :destroy] { |c| c. track_activity @subject }
 
 	def index
-		@table = Table.new(self, Subject)
+		@table = SubjectTable.new(self)
 		@table.respond
 	end
 

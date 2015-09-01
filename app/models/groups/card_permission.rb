@@ -10,7 +10,7 @@ class CardPermission
   end
 
   def members
-    @member ||= card.confirmed_users.each{ |u| u.card = card }
+    @member ||= card.confirmed_users.each { |u| u.card = card }
   end
 
   def members_attributes=(attributes)

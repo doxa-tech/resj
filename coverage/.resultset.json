@@ -1,30 +1,23 @@
 {
   "RSpec": {
     "coverage": {
+<<<<<<< HEAD
       "/Users/khcr/Projets/Web/resj/spec/controllers/subjects_controller_spec.rb": [
         1,
         null,
+=======
+      "/Users/khcr/Projets/Web/resj/spec/models/card_user_spec.rb": [
+>>>>>>> master
         1,
         null,
         1,
         5,
         null,
-        1,
+        2,
         null,
         1,
         1,
-        null,
-        null,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
+<<<<<<< HEAD
         null,
         null,
         null,
@@ -45,6 +38,18 @@
         1,
         1,
         1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
         1,
         null,
         null,
@@ -54,6 +59,9 @@
         null,
         null,
         null,
+=======
+        1,
+>>>>>>> master
         null,
         null,
         null
@@ -373,10 +381,17 @@
         1,
         1,
         1,
+<<<<<<< HEAD
         6,
         1,
         1,
         6,
+=======
+        3,
+        1,
+        1,
+        3,
+>>>>>>> master
         1,
         null,
         1,
@@ -390,7 +405,11 @@
         null,
         null,
         1,
+<<<<<<< HEAD
         5,
+=======
+        2,
+>>>>>>> master
         null,
         null,
         null,
@@ -407,6 +426,7 @@
         1,
         1,
         1,
+<<<<<<< HEAD
         3,
         3,
         1,
@@ -419,6 +439,20 @@
         null,
         1,
         3,
+=======
+        2,
+        2,
+        2,
+        2,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+>>>>>>> master
         null,
         null,
         null,
@@ -435,22 +469,38 @@
         1,
         1,
         null,
+<<<<<<< HEAD
         2,
         1,
         null,
         2,
+=======
+        1,
+        1,
+        null,
+        1,
+>>>>>>> master
         null,
         1,
         1,
         1,
         1,
         1,
+<<<<<<< HEAD
         2,
         null,
         null,
         1,
         2,
         2,
+=======
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+>>>>>>> master
         1,
         1,
         null,
@@ -524,6 +574,17 @@
         1,
         1,
         1,
+        null,
+        1,
+        null,
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
         null
       ],
       "/Users/khcr/Projets/Web/resj/app/models/groups/affiliation.rb": [
@@ -887,7 +948,11 @@
         null,
         null,
         1,
+<<<<<<< HEAD
         9,
+=======
+        0,
+>>>>>>> master
         null,
         null,
         null,
@@ -933,13 +998,17 @@
         null,
         null,
         1,
-        3,
+        0,
         null,
         null,
         null,
         null,
         1,
+<<<<<<< HEAD
         2,
+=======
+        1,
+>>>>>>> master
         null,
         null,
         1,
@@ -966,8 +1035,13 @@
       "/Users/khcr/Projets/Web/resj/spec/support/spec_login_helper.rb": [
         1,
         1,
+<<<<<<< HEAD
         3,
         3,
+=======
+        0,
+        0,
+>>>>>>> master
         null,
         null,
         1,
@@ -975,7 +1049,11 @@
         null,
         null,
         1,
+<<<<<<< HEAD
         3,
+=======
+        0,
+>>>>>>> master
         null,
         null,
         null,
@@ -983,11 +1061,16 @@
         1,
         null
       ],
+<<<<<<< HEAD
       "/Users/khcr/Projets/Web/resj/app/controllers/subjects_controller.rb": [
+=======
+      "/Users/khcr/Projets/Web/resj/lib/tasks/csv.rake": [
+>>>>>>> master
         1,
         1,
         null,
         1,
+<<<<<<< HEAD
         3,
         null,
         null,
@@ -1008,15 +1091,34 @@
         1,
         null,
         null,
+=======
+        1,
+        1,
+        0,
+        0,
+        null,
+        null,
+        0,
+        0,
+        null,
+        null,
+        0,
+        0,
+        0,
+>>>>>>> master
+        null,
+        1,
+        null,
+<<<<<<< HEAD
+        1,
+=======
+>>>>>>> master
         null,
         1,
         null,
         1,
         null,
-        1,
-        null,
-        1,
-        null,
+<<<<<<< HEAD
         1,
         0,
         0,
@@ -1034,6 +1136,23 @@
         0,
         null,
         null,
+=======
+        null,
+        null,
+        null,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/khcr/Projets/Web/resj/lib/tasks/cucumber.rake": [
+>>>>>>> master
         null,
         1,
         1,
@@ -1044,84 +1163,180 @@
         0,
         null,
         null,
+<<<<<<< HEAD
         1,
         null,
         1,
         4,
+=======
         null,
+>>>>>>> master
+        null,
+        2,
         null,
         1,
+<<<<<<< HEAD
         4,
         null,
         null,
         null
       ],
       "/Users/khcr/Projets/Web/resj/app/controllers/concerns/permission_filter.rb": [
+=======
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+>>>>>>> master
         1,
         1,
         null,
         1,
         1,
         null,
+<<<<<<< HEAD
+=======
+        1,
+        1,
+        1,
+        1,
+>>>>>>> master
         null,
         1,
         0,
         0,
         0,
         null,
+        1,
+        1,
+        1,
+        1,
         null,
         null,
         1,
+<<<<<<< HEAD
         10,
         null,
+=======
+        1,
+        null,
+        1,
+        0,
+        0,
+        0,
+>>>>>>> master
+        null,
+        1,
+        0,
+        null,
+<<<<<<< HEAD
+        null,
+        1,
+        0,
+=======
+        1,
+        1,
+        null,
+        1,
+>>>>>>> master
+        null,
+        1,
+        0,
         null,
         1,
         0,
         null,
         null,
         1,
-        0,
-        null,
-        null,
-        1,
-        0,
-        null,
-        null,
-        1,
+<<<<<<< HEAD
         0,
         null,
         null,
         1,
         4,
         null,
+=======
+        null,
+        null,
+        1,
+        null,
+        0,
+        0,
+        0,
+>>>>>>> master
         null,
         1,
         null,
         null,
+<<<<<<< HEAD
         null,
         null
       ],
       "/Users/khcr/Projets/Web/resj/app/controllers/concerns/redirect.rb": [
         1,
         1,
+=======
+        null
+      ],
+      "/Users/khcr/Projets/Web/resj/lib/tasks/db.rake": [
+        1,
+        null,
+        1,
+        1,
+        0,
+>>>>>>> master
         null,
         1,
         1,
         null,
+<<<<<<< HEAD
+=======
+        1,
+        1,
+        0,
+>>>>>>> master
+        null,
+        null,
+        1,
+        1,
+        0,
+        0,
         null,
         null,
         null,
-        null,
-        null,
+<<<<<<< HEAD
         null,
         null,
         1,
         4,
+=======
+        1,
+        1,
+        0,
+        0,
         null,
         null,
+>>>>>>> master
+        null,
+        null
+      ],
+      "/Users/khcr/Projets/Web/resj/lib/tasks/demo.rake": [
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
         null,
         null,
-        null,
+<<<<<<< HEAD
         null,
         null,
         null,
@@ -1193,6 +1408,19 @@
         null,
         null,
         1,
+=======
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+>>>>>>> master
         1,
         1,
         1,
@@ -1204,6 +1432,7 @@
         1,
         null,
         null,
+<<<<<<< HEAD
         1,
         1,
         null,
@@ -1331,6 +1560,39 @@
         null
       ],
       "/Users/khcr/Projets/Web/resj/lib/tasks/seed.rake": [
+=======
+        null
+      ],
+      "/Users/khcr/Projets/Web/resj/lib/tasks/elasticsearch.rake": [
+        1
+      ],
+      "/Users/khcr/Projets/Web/resj/lib/tasks/elasticsearch_import.rake": [
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        0,
+        0,
+        0,
+        null,
+        null,
+        0,
+        null,
+        0,
+        null,
+        0,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/khcr/Projets/Web/resj/lib/tasks/seed.rake": [
         1,
         null,
         1,
@@ -1349,56 +1611,96 @@
         1,
         1,
         1,
+>>>>>>> master
+        1,
+        null,
+        1,
+        1,
+<<<<<<< HEAD
+        null,
+        1,
+        1,
+        1,
+        4,
+        null,
+=======
+        1,
+        1,
+        1,
+        1,
+>>>>>>> master
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+<<<<<<< HEAD
+=======
+        null,
+>>>>>>> master
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+<<<<<<< HEAD
+        1,
+        1,
+        1,
+        null,
+        null,
+=======
+>>>>>>> master
         1,
         1,
         null,
         null,
         1,
         1,
+        null,
+<<<<<<< HEAD
         1,
         1,
         1,
         1,
+=======
+>>>>>>> master
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+<<<<<<< HEAD
+        null,
         null,
         null,
         1,
-        1,
+        23,
         null,
-        1,
-        1,
-        1,
         null,
         1,
-        1,
+        23,
         null,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
+=======
         1,
         23,
         null,
@@ -1413,6 +1715,7 @@
         null,
         1,
         1,
+>>>>>>> master
         null,
         1,
         1,
@@ -1420,6 +1723,20 @@
         null,
         null,
         1,
+<<<<<<< HEAD
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null,
+=======
         0,
         null,
         null,
@@ -1440,6 +1757,7 @@
         null,
         null,
         1,
+>>>>>>> master
         1,
         1,
         1,
@@ -1447,6 +1765,34 @@
         null,
         null
       ],
+      "/Users/khcr/Projets/Web/resj/lib/tasks/sessions.rake": [
+        1,
+<<<<<<< HEAD
+        1,
+        null,
+        null,
+        null,
+        1,
+        5,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+=======
+        null,
+        1,
+        1,
+        0,
+        0,
+>>>>>>> master
+        null,
+        null,
+        null
+      ],
+<<<<<<< HEAD
       "/Users/khcr/Projets/Web/resj/lib/tasks/sessions.rake": [
         1,
         null,
@@ -1461,6 +1807,12 @@
       "/Users/khcr/Projets/Web/resj/lib/tasks/travis.rake": [
         1,
         null,
+=======
+      "/Users/khcr/Projets/Web/resj/lib/tasks/travis.rake": [
+        1,
+        null,
+        1,
+>>>>>>> master
         1,
         1,
         0,
@@ -1469,6 +1821,10 @@
         0,
         0,
         0,
+<<<<<<< HEAD
+=======
+        0,
+>>>>>>> master
         null,
         null,
         null,
@@ -1517,7 +1873,11 @@
         null,
         1,
         null,
+<<<<<<< HEAD
         7,
+=======
+        1,
+>>>>>>> master
         null,
         1,
         null,
@@ -1589,7 +1949,11 @@
         null,
         null,
         1,
+<<<<<<< HEAD
         2,
+=======
+        0,
+>>>>>>> master
         null,
         null,
         null,
@@ -1650,6 +2014,7 @@
         1,
         1,
         null,
+<<<<<<< HEAD
         31,
         null,
         null,
@@ -1715,19 +2080,20 @@
         null,
         1,
         0,
+=======
+        22,
+>>>>>>> master
         null,
         null,
         1,
-        0,
+        21,
         null,
         null,
         1,
-        0,
-        0,
-        0,
+        98,
         null,
         null,
-        null,
+<<<<<<< HEAD
         null
       ],
       "/Users/khcr/Projets/Web/resj/app/models/ownerships/element.rb": [
@@ -1737,10 +2103,13 @@
       ],
       "/Users/khcr/Projets/Web/resj/app/models/ownerships/ownership.rb": [
         1,
+=======
+>>>>>>> master
         1,
         5,
         null,
         1,
+<<<<<<< HEAD
         1,
         1,
         1,
@@ -1755,9 +2124,18 @@
         null,
         1,
         30,
+=======
+        3,
+        0,
+>>>>>>> master
         null,
         null,
         1,
+        0,
+        null,
+        null,
+        1,
+<<<<<<< HEAD
         0,
         null,
         null,
@@ -1767,10 +2145,6 @@
         null,
         1,
         0,
-        null,
-        null,
-        1,
-        0,
         0,
         0,
         0,
@@ -1783,11 +2157,210 @@
         0,
         null,
         1,
-        null,
+=======
+        3,
+        3,
+        3,
         null,
         null,
         1,
+        3,
+        null,
+        null,
         1,
+        3,
+        null,
+        null,
+        1,
+        3,
+        null,
+        null
+      ],
+      "/Users/khcr/Projets/Web/resj/app/uploaders/avatar_uploader.rb": [
+>>>>>>> master
+        null,
+        null,
+        1,
+        null,
+        1,
+        1,
+<<<<<<< HEAD
+        1,
+=======
+>>>>>>> master
+        null,
+        1,
+        0,
+        null,
+        1,
+<<<<<<< HEAD
+        1,
+        1,
+        1,
+        1,
+=======
+>>>>>>> master
+        null,
+        null,
+        null
+      ],
+      "/Users/khcr/Projets/Web/resj/app/models/concerns/autosave_associated_records.rb": [
+        1,
+        null,
+        1,
+<<<<<<< HEAD
+        34,
+        2,
+=======
+        1,
+>>>>>>> master
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/khcr/Projets/Web/resj/app/models/ownerships/action.rb": [
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/khcr/Projets/Web/resj/app/models/ownerships/ownership_action.rb": [
+        1,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+<<<<<<< HEAD
+        null
+      ],
+      "/Users/khcr/Projets/Web/resj/app/models/newsletter.rb": [
+=======
+        0,
+        null,
+        null,
+>>>>>>> master
+        1,
+        0,
+        0,
+        0,
+        null,
+<<<<<<< HEAD
+=======
+        null,
+        null,
+        null
+      ],
+      "/Users/khcr/Projets/Web/resj/app/models/ownerships/element.rb": [
+>>>>>>> master
+        1,
+        1,
+        null
+      ],
+<<<<<<< HEAD
+      "/Users/khcr/Projets/Web/resj/app/models/users/user_newsletter.rb": [
+        1,
+        1,
+=======
+      "/Users/khcr/Projets/Web/resj/app/models/ownerships/ownership.rb": [
+        1,
+        1,
+        1,
+        null,
+>>>>>>> master
+        1,
+        null
+      ],
+      "/Users/khcr/Projets/Web/resj/app/models/users/parent.rb": [
+        1,
+        1,
+        1,
+<<<<<<< HEAD
+        null,
+        1,
+        1,
+        null
+      ],
+      "/Users/khcr/Projets/Web/resj/app/models/help_category.rb": [
+=======
+>>>>>>> master
+        1,
+        1,
+        null,
+        1,
+<<<<<<< HEAD
+        0,
+=======
+>>>>>>> master
+        null,
+        null
+      ],
+      "/Users/khcr/Projets/Web/resj/app/models/help_page.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+<<<<<<< HEAD
+        1,
+=======
+        27,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+>>>>>>> master
+        1,
+        0,
+        null,
+        1,
+<<<<<<< HEAD
+=======
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+>>>>>>> master
+        0,
+        null,
+<<<<<<< HEAD
+        null
+      ],
+      "/Users/khcr/Projets/Web/resj/app/models/canton.rb": [
+        1,
+        1,
+=======
+        1,
+        1,
+        0,
+        null,
+        1,
+        null,
+        null,
+>>>>>>> master
+        null,
+        1,
+        null
+      ],
+      "/Users/khcr/Projets/Web/resj/app/models/location.rb": [
+        1,
+<<<<<<< HEAD
+        1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        0,
+=======
         1,
         null,
         null,
@@ -1804,14 +2377,21 @@
         1,
         null,
         1,
-        34,
-        2,
+        29,
+        1,
+>>>>>>> master
         null,
         null,
+        1,
+        0,
         null,
         null
       ],
+<<<<<<< HEAD
+      "/Users/khcr/Projets/Web/resj/app/models/theme.rb": [
+=======
       "/Users/khcr/Projets/Web/resj/app/models/ownerships/action.rb": [
+>>>>>>> master
         1,
         1,
         1,
@@ -1822,13 +2402,22 @@
       "/Users/khcr/Projets/Web/resj/app/models/ownerships/ownership_action.rb": [
         1,
         1,
+        null,
         1,
         null
       ],
       "/Users/khcr/Projets/Web/resj/app/models/newsletter.rb": [
         1,
         null,
+<<<<<<< HEAD
         1,
+        null,
+=======
+>>>>>>> master
+        1,
+        null
+      ],
+      "/Users/khcr/Projets/Web/resj/app/models/groups/card.rb": [
         1,
         null
       ],
@@ -1836,9 +2425,12 @@
         1,
         1,
         1,
+<<<<<<< HEAD
+=======
         null
       ],
       "/Users/khcr/Projets/Web/resj/app/models/users/parent.rb": [
+>>>>>>> master
         1,
         1,
         1,
@@ -1851,12 +2443,15 @@
         1,
         1,
         null,
+<<<<<<< HEAD
+=======
         1,
         0,
         null,
         null
       ],
       "/Users/khcr/Projets/Web/resj/app/models/help_page.rb": [
+>>>>>>> master
         1,
         1,
         null,
@@ -1864,12 +2459,15 @@
         1,
         1,
         null,
+<<<<<<< HEAD
+=======
         1,
         0,
         null,
         null
       ],
       "/Users/khcr/Projets/Web/resj/app/models/canton.rb": [
+>>>>>>> master
         1,
         1,
         null,
@@ -1879,6 +2477,12 @@
       "/Users/khcr/Projets/Web/resj/app/models/location.rb": [
         1,
         1,
+<<<<<<< HEAD
+        null,
+        1,
+        null,
+        null,
+=======
         1,
         null,
         1,
@@ -1894,11 +2498,17 @@
       ],
       "/Users/khcr/Projets/Web/resj/app/models/theme.rb": [
         1,
+>>>>>>> master
         1,
         1,
         null,
+        null,
         1,
         1,
+<<<<<<< HEAD
+        null,
+=======
+>>>>>>> master
         null,
         1,
         1,
@@ -1911,66 +2521,65 @@
       "/Users/khcr/Projets/Web/resj/app/models/groups/card.rb": [
         1,
         1,
+        null,
         1,
+        1,
+        null,
+<<<<<<< HEAD
+        1,
+        1,
+        null,
+=======
         1,
         1,
         1,
         null,
         1,
-        1,
-        1,
-        null,
-        1,
-        1,
-        1,
-        1,
-        null,
-        1,
-        1,
-        null,
-        1,
-        1,
-        null,
-        1,
-        null,
-        null,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        null,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        null,
-        1,
-        1,
-        null,
-        1,
-        1,
-        null,
+>>>>>>> master
         1,
         1,
         null,
         1,
         0,
         null,
+        1,
+        1,
         null,
         null,
         1,
+<<<<<<< HEAD
         0,
         null,
         null,
         null,
         1,
         0,
+=======
         null,
         null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+>>>>>>> master
+        null,
+        1,
+        1,
+        null,
+        1,
+        1,
         null,
         1,
         0,
@@ -1979,21 +2588,31 @@
         1,
         2,
         null,
+        1,
+        0,
         null,
         null,
         1,
         0,
         null,
+        1,
+        0,
         null,
         1,
         28,
         null,
         null,
+        1,
+        0,
         null,
         null,
         1,
+<<<<<<< HEAD
         2,
         2,
+=======
+        1,
+>>>>>>> master
         null,
         null,
         1,
@@ -2001,17 +2620,22 @@
         0,
         2,
         null,
+        1,
+        0,
         null,
         1,
         0,
         0,
         null,
+        1,
+        14,
         null,
         0,
         null,
         null,
         null,
         1,
+<<<<<<< HEAD
         2,
         null,
         null,
@@ -2022,8 +2646,69 @@
         0,
         null,
         0,
+=======
+        1,
+        1,
+>>>>>>> master
         null,
         null,
+        1,
+        0,
+        0,
+<<<<<<< HEAD
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        null,
+        null,
+=======
+        1,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null,
+        0,
+        null,
+        null,
+        null,
+        1,
+        1,
+>>>>>>> master
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+<<<<<<< HEAD
+        null,
+        0,
+=======
+>>>>>>> master
+        null,
+        0,
+        null,
+<<<<<<< HEAD
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null,
+        null,
+=======
         1,
         0,
         0,
@@ -2040,16 +2725,28 @@
         null,
         1,
         0,
+>>>>>>> master
         null,
         0,
         null,
         0,
         null,
+<<<<<<< HEAD
+        1,
+        0,
+=======
+>>>>>>> master
         0,
         null,
         0,
         null,
         null,
+<<<<<<< HEAD
+        null,
+        1,
+        0,
+        0,
+=======
         1,
         0,
         null,
@@ -2060,10 +2757,14 @@
         null,
         null,
         1,
+>>>>>>> master
         0,
         0,
         null,
         0,
+<<<<<<< HEAD
+        null,
+=======
         null,
         null,
         null,
@@ -2075,6 +2776,7 @@
         null,
         0,
         null,
+>>>>>>> master
         null,
         1,
         0,
@@ -2083,6 +2785,11 @@
         1,
         0,
         null,
+<<<<<<< HEAD
+=======
+        0,
+        null,
+>>>>>>> master
         0,
         null,
         0,
@@ -2096,8 +2803,14 @@
         0,
         null,
         null,
+<<<<<<< HEAD
+=======
         null,
         null,
+>>>>>>> master
+        null,
+        null,
+<<<<<<< HEAD
         null,
         null,
         1,
@@ -2127,6 +2840,37 @@
         null,
         1,
         28,
+=======
+        1,
+        1,
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null
+      ],
+      "/Users/khcr/Projets/Web/resj/app/models/concerns/wizard.rb": [
+        null,
+        null,
+        1,
+        1,
+        null,
+        1,
+        14,
+        null,
+        null,
+        1,
+        0,
+>>>>>>> master
         null,
         null,
         1,
@@ -2135,11 +2879,15 @@
         null,
         1,
         0,
+<<<<<<< HEAD
         null,
         null,
         1,
         0,
         null,
+=======
+        null,
+>>>>>>> master
         null,
         1,
         0,
@@ -2152,23 +2900,36 @@
         null
       ],
       "/Users/khcr/Projets/Web/resj/app/models/concerns/card_validation.rb": [
+<<<<<<< HEAD
+=======
         1,
         1,
         null,
+>>>>>>> master
+        1,
+        7,
         1,
         13,
         1,
         1,
         1,
         null,
+<<<<<<< HEAD
         11,
+=======
+        6,
+>>>>>>> master
         1,
         1,
         1,
         1,
         1,
         null,
+<<<<<<< HEAD
         7,
+=======
+        4,
+>>>>>>> master
         1,
         1,
         1,
@@ -2179,21 +2940,35 @@
         null,
         1,
         null,
+        1,
+<<<<<<< HEAD
+        2,
+=======
+        1,
+>>>>>>> master
+        0,
+        null,
+        null,
+        null,
+<<<<<<< HEAD
+=======
+        1,
+>>>>>>> master
         1,
         2,
         0,
         null,
         null,
         null,
-        1,
-        2,
-        0,
-        null,
-        null,
-        null,
+<<<<<<< HEAD
         1,
         2,
         2,
+=======
+        1,
+        1,
+        1,
+>>>>>>> master
         null,
         null,
         null,
@@ -2210,29 +2985,44 @@
         1,
         1,
         null,
+<<<<<<< HEAD
+=======
+        1,
+        1,
+        null,
+>>>>>>> master
         1,
         1,
         null,
         1,
         1,
         1,
+<<<<<<< HEAD
         null,
         null,
-        null,
+=======
         1,
         1,
-        1,
-        1,
-        null,
-        1,
-        1,
-        1,
-        1,
-        null,
+>>>>>>> master
         null,
         1,
         1,
+        1,
+        1,
         null,
+        1,
+        1,
+<<<<<<< HEAD
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+=======
+        null,
+>>>>>>> master
         null,
         null,
         null,
@@ -2273,7 +3063,6 @@
         null,
         null,
         null,
-        0,
         null,
         0,
         null,
@@ -2327,6 +3116,7 @@
         1,
         null,
         1,
+<<<<<<< HEAD
         null,
         null,
         null,
@@ -2390,38 +3180,48 @@
         null,
         1,
         0,
+=======
+        null,
+>>>>>>> master
+        null,
+        null,
+<<<<<<< HEAD
         null,
         1,
-        null,
-        null,
         1,
         1,
-        1,
-        null,
-        1,
-        1,
-        1,
-        1,
-        null,
         null,
         1,
         1,
         1,
         1,
+=======
+>>>>>>> master
         null,
         null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+<<<<<<< HEAD
         1,
         0,
         null,
         null,
         1,
         0,
+        0,
+        0,
+=======
         null,
         null,
-        1,
-        0,
-        0,
-        0,
+        null,
+        null,
+>>>>>>> master
         null,
         null,
         null,
@@ -2434,7 +3234,10 @@
       "/Users/khcr/Projets/Web/resj/app/uploaders/banner_uploader.rb": [
         null,
         null,
+<<<<<<< HEAD
         1,
+=======
+>>>>>>> master
         null,
         1,
         1,
@@ -2445,34 +3248,87 @@
         1,
         null,
         null,
+<<<<<<< HEAD
         1,
+=======
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        3,
+        null,
+        null,
+        null
+      ],
+      "/Users/khcr/Projets/Web/resj/app/uploaders/logo_uploader.rb": [
+        null,
+        null,
+>>>>>>> master
         1,
         null,
         null,
         1,
         1,
         1,
-        null,
-        null,
+<<<<<<< HEAD
+=======
         1,
-        1,
-        1,
-        null,
+>>>>>>> master
         null,
         1,
-        1,
-        1,
-        null,
+        0,
         null,
         1,
         1,
         1,
         null,
         null,
+<<<<<<< HEAD
         1,
         1,
         1,
+=======
+>>>>>>> master
+        null,
         1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+<<<<<<< HEAD
+        null,
+        null,
+        1,
+        1,
+=======
+        1,
+        null,
+        null,
+        1,
+>>>>>>> master
+        1,
+        1,
+        1,
+        null,
         null,
         1,
         0,
@@ -2489,6 +3345,7 @@
         null,
         null,
         null,
+<<<<<<< HEAD
         1,
         0,
         null,
@@ -2499,11 +3356,24 @@
         0,
         null,
         null,
+=======
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/khcr/Projets/Web/resj/app/uploaders/banner_uploader.rb": [
+        null,
+        null,
+        1,
+>>>>>>> master
         null,
         1,
         0,
         0,
         null,
+<<<<<<< HEAD
         null,
         1,
         0,
@@ -2534,18 +3404,45 @@
         null
       ],
       "/Users/khcr/Projets/Web/resj/app/models/orators/orator.rb": [
+=======
         1,
+        0,
+        null,
+        1,
+        null,
+        null,
+        1,
+>>>>>>> master
+        1,
+        null,
+        null,
         1,
         null,
         1,
         1,
-        1,
+        null,
+        null,
         1,
         1,
         1,
         null,
+        null,
+        1,
+        null,
         1,
         1,
+        null,
+<<<<<<< HEAD
+        1,
+        0,
+=======
+        null,
+        1,
+        1,
+        1,
+        null,
+>>>>>>> master
+        null,
         null,
         1,
         0,
@@ -2554,10 +3451,7 @@
         1,
         0,
         null,
-        null,
-        1,
-        0,
-        null,
+<<<<<<< HEAD
         null,
         null
       ],
@@ -2579,42 +3473,80 @@
         1,
         1,
         1,
-        1,
-        null,
-        null,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        null,
-        1,
-        null,
-        null,
-        null,
-        1,
-        0,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        1,
+=======
         null,
         1,
         0,
         0,
         0,
+        null,
+        null,
+        null,
+>>>>>>> master
+        1,
+        null,
+        null,
+<<<<<<< HEAD
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        1,
+=======
+        1,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null,
+        1,
+        0,
+        0,
+>>>>>>> master
+        null,
+        null,
+        null,
+        1,
+        0,
+<<<<<<< HEAD
+=======
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        0,
+        null,
+        null,
+        null,
+        null,
+>>>>>>> master
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+<<<<<<< HEAD
+        1,
+        null,
+        1,
+        0,
+        0,
+        0,
         0,
         0,
         0,
@@ -2639,12 +3571,22 @@
         null,
         0,
         null,
+=======
+        null,
+>>>>>>> master
         null,
         null,
         null,
         null
       ],
+<<<<<<< HEAD
       "/Users/khcr/Projets/Web/resj/app/models/subjects/subject.rb": [
+=======
+      "/Users/khcr/Projets/Web/resj/app/models/orators/orator.rb": [
+        1,
+        1,
+        null,
+>>>>>>> master
         1,
         1,
         null,
@@ -2655,18 +3597,33 @@
         null,
         1,
         1,
+<<<<<<< HEAD
         1,
         1,
+=======
         null,
         1,
+        0,
+>>>>>>> master
+        null,
         null,
         1,
         0,
         null,
         null,
+<<<<<<< HEAD
         null
       ],
       "/Users/khcr/Projets/Web/resj/app/models/concerns/subject_search.rb": [
+=======
+        1,
+        0,
+        null,
+        null,
+        null
+      ],
+      "/Users/khcr/Projets/Web/resj/app/models/concerns/orator_search.rb": [
+>>>>>>> master
         1,
         null,
         1,
@@ -2675,6 +3632,7 @@
         1,
         1,
         1,
+<<<<<<< HEAD
         1,
         null,
         1,
@@ -2682,29 +3640,62 @@
         1,
         1,
         1,
+=======
+        1,
+        null,
+        1,
+        1,
+        null,
+>>>>>>> master
         1,
         1,
         1,
         1,
+<<<<<<< HEAD
         null,
         null,
         null,
         null,
         1,
         0,
+=======
+        1,
+>>>>>>> master
         null,
         null,
         null,
         null,
+<<<<<<< HEAD
+=======
+        1,
+        1,
+        1,
+        1,
+>>>>>>> master
         null,
         1,
         null,
         1,
+<<<<<<< HEAD
         0,
         0,
         0,
         0,
         0,
+        0,
+        0,
+        0,
+        0,
+=======
+        1,
+        1,
+        null,
+        1,
+>>>>>>> master
+        null,
+        null,
+        null,
+        1,
         0,
         0,
         0,
@@ -2712,14 +3703,10 @@
         null,
         null,
         null,
-        0,
-        0,
-        0,
-        0,
+<<<<<<< HEAD
         null,
-        null,
-        null,
-        null,
+=======
+>>>>>>> master
         null,
         null,
         0,
@@ -2727,6 +3714,7 @@
         null,
         null,
         null,
+<<<<<<< HEAD
         null
       ],
       "/Users/khcr/Projets/Web/resj/app/controllers/permission_access.rb": [
@@ -2755,6 +3743,29 @@
         4,
         1,
         1,
+=======
+        1,
+        null,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+>>>>>>> master
         null,
         0,
         null,
@@ -2765,10 +3776,14 @@
         0,
         0,
         null,
+<<<<<<< HEAD
         null,
         1,
         4,
         4,
+=======
+        0,
+>>>>>>> master
         null,
         null,
         1,
@@ -2777,6 +3792,7 @@
         null,
         null
       ],
+<<<<<<< HEAD
       "/Users/khcr/Projets/Web/resj/app/models/ownerships/permission.rb": [
         1,
         null,
@@ -2785,6 +3801,15 @@
         4,
         null,
         null,
+=======
+      "/Users/khcr/Projets/Web/resj/app/models/subjects/subject.rb": [
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+>>>>>>> master
         1,
         0,
         0,
@@ -2792,9 +3817,15 @@
         null,
         null,
         1,
+<<<<<<< HEAD
         0,
         0,
         null,
+=======
+        1,
+        1,
+        1,
+>>>>>>> master
         null,
         1,
         3,
@@ -2803,6 +3834,7 @@
         null,
         1,
         0,
+<<<<<<< HEAD
         0,
         0,
         0,
@@ -2826,14 +3858,39 @@
         1,
         0,
         0,
+=======
         null,
+        null,
+        null
+      ],
+      "/Users/khcr/Projets/Web/resj/app/models/concerns/subject_search.rb": [
+        1,
         null,
         1,
-        4,
-        4,
-        4,
-        4,
+        1,
+>>>>>>> master
         null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+<<<<<<< HEAD
+        4,
+        4,
+        4,
+        4,
+=======
+>>>>>>> master
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
         null,
         1,
         5,
@@ -2843,6 +3900,8 @@
         0,
         0,
         null,
+        1,
+        0,
         null,
         1,
         0,
@@ -2854,12 +3913,24 @@
         null,
         null,
         1,
+<<<<<<< HEAD
         0,
         0,
         0,
         null,
+=======
+>>>>>>> master
         null,
         1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
         null,
         1,
         4,
@@ -2870,17 +3941,30 @@
         1,
         1,
         null,
+<<<<<<< HEAD
         1,
         1,
         null,
         1,
+=======
+        0,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+>>>>>>> master
         null,
         1,
         0,
         null,
         null,
-        1,
-        0,
+<<<<<<< HEAD
+=======
+        null,
         null,
         null
       ],
@@ -2892,13 +3976,32 @@
       ],
       "/Users/khcr/Projets/Web/resj/app/models/groups/responsable.rb": [
         1,
+>>>>>>> master
+        1,
+        null,
+<<<<<<< HEAD
+        null
+      ],
+      "/Users/khcr/Projets/Web/resj/app/models/groups/card_responsable.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/khcr/Projets/Web/resj/app/models/groups/responsable.rb": [
+=======
+>>>>>>> master
+        1,
         1,
         null,
         1,
         1,
+<<<<<<< HEAD
         null,
         1,
         1,
+=======
+>>>>>>> master
         1,
         null,
         1,
@@ -2942,7 +4045,11 @@
         null
       ]
     },
+<<<<<<< HEAD
     "timestamp": 1440867224
+=======
+    "timestamp": 1435400473
+>>>>>>> master
   },
   "Cucumber Features": {
     "coverage": {

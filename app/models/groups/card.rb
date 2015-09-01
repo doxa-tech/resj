@@ -10,7 +10,7 @@ class Card < ActiveRecord::Base
   scope :active, -> { joins(:status).where(statuses: { name: "En ligne" }) }
 
   belongs_to :card_type
-  belongs_to :user #owner of the card
+  belongs_to :user # owner of the card
   belongs_to :location
   belongs_to :status
 
@@ -66,7 +66,7 @@ class Card < ActiveRecord::Base
   end
 
   def tag_names
-    @tag_names || tags.map(&:name).join(' ')
+    @tag_names ||= tags.map(&:name).join(' ')
   end
 
   # define the wizard's steps
@@ -143,17 +143,11 @@ class Card < ActiveRecord::Base
     return self.parents.inject(''){|i, a| "#{i}, #{a.name}"}[1..-1]
   end
 
-  ##################
-  #     Mapbox     #
-  ##################
+  ### Mapbox
 
   # Used by mapbox to identify network markers
   def network?
-    if self.card_type.name == "Réseau régional"
-      return 1
-    else
-      return 0
-    end
+    self.card_type.name == "Réseau régional" ? 1 : 0
   end
 
   def network_members_coords
@@ -185,20 +179,13 @@ class Card < ActiveRecord::Base
     return color
   end
 
-  ##################
-  #   end Mapbox   #
-  ##################
-
   private
 
   def assign_tags
     self.tags = tag_names.split(' ').map do |tag|
-      if new_tag = Tag.find_by_name(tag)
-        new_tag.update_attribute(:popularity, new_tag.popularity + 1)
-        new_tag
-      else
-        Tag.create(name: tag)
-      end
+      tag = Tag.where(name: tag.strip).first_or_create!
+      tag.update_column(:popularity, tag.popularity + 1)
+      tag
     end
   end
 

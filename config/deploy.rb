@@ -51,6 +51,10 @@ set :keep_releases, 5
 
 set :maintenance_template_path, "config/deploy/templates/maintenance.html.erb"
 
+set :rollbar_token, '78ed4ff9ce4f413cad73572b5eda3b28'
+set :rollbar_env, Proc.new { fetch :stage }
+set :rollbar_role, Proc.new { :app }
+
 
 namespace :deploy do
   # make sure we're deploying what we think we're deploying

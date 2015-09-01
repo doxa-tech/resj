@@ -9,7 +9,8 @@ module UserValidation
 	    user.validates :gravatar_email, :format => { :with => /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/ }, on: :update?
 	    user.validate :avatar_presence?
 
-	    user.before_save :create_remember_token, :format
+      user.before_validation :format
+	    user.before_save :create_remember_token
 	    user.before_create :assign_gravatar
       user.after_create :assign_newsletters
 	  end
@@ -36,7 +37,7 @@ module UserValidation
   def format
     self.firstname = self.firstname.strip.split('-').map(&:capitalize).join('-')
     self.lastname = self.lastname.strip.split('-').map(&:capitalize).join('-')
-    self.email = self.email.downcase
+    self.email = self.email.strip.downcase
   end
 
   def create_remember_token

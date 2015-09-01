@@ -8,9 +8,6 @@ module OratorSearch
     include EsCallbacks
     extend EsSettings
 
-    after_touch { __elasticsearch__.index_document }
-    after_commit lambda { index_with_belongs_to(:user, :location) }, on: :update
-
     settings index: default_settings do
       mapping do
         indexes :user do

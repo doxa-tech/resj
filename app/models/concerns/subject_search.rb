@@ -5,10 +5,8 @@ module SubjectSearch
 
   included do
     include Elasticsearch::Model
-    include Elasticsearch::Model::Callbacks
+    include EsCallbacks
     extend EsSettings
-
-    after_touch { __elasticsearch__.index_document }
 
     settings index: default_settings do
       mapping do
