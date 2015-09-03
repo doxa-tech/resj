@@ -10,4 +10,5 @@ Rails.application.config.assets.version = '2.0'
 Rails.application.config.assets.precompile += %w( 
   admin.js
   mail.css
+  *.png *.jpg *.jpeg *.gif
 )
