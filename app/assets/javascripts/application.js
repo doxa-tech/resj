@@ -11,7 +11,7 @@
 // about supported directives.
 //
 //= require rollbar
-//= require jquery
+//= require jquery2
 //= require jquery_ujs
 //= require jquery-ui/autocomplete
 //= require angular

@@ -4,7 +4,7 @@
 <span ng-repeat="number in [] | range:1:paginator.totalPages">
   <a ng-class="{disabled: paginator.currentPage == number-1}" ng-click="paginator.setPage(number)">{{ number }}</a>
 </span>
-<button ng-disabled="currentPage >= cards.length/paginator.pageSize - 1" 
+<button ng-disabled="paginator.currentPage >= cards.length/paginator.pageSize - 1" 
   ng-click="paginator.next()">
   Suivant
 </button>

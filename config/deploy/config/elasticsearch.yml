@@ -2,10 +2,6 @@ production:
   host: 
   port:
 
-test:
-  host: "localhost"
-  port: 9900
-
 development:
   host: "localhost"
   port: 9200
