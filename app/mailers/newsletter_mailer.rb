@@ -1,7 +1,7 @@
 class NewsletterMailer < BaseMailer
 
   # sends welcome
-  def news(content, subject, emails, mandrill, options)
+  def news(content, subject, emails, mandrill)
   	if mandrill
 	    mandrill_mail to: emails,
 	    	from: "\"Team Réseau Jeunesse\" <info@resj.ch>",

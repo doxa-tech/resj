@@ -3,14 +3,12 @@ require 'rails_helper'
 RSpec.describe NewsletterMailer do
 
   before(:each) do
-    @valid_user = create(:user)
-    @invalid_user = create(:user, email: "invalid@user.com")
-    @invalid_user.newsletters = Newsletter.none
-    @email = NewsletterMailer.news("lorem ipsum", "Nouvelles fonctionalitées", [@invalid_user.email, @valid_user.email], false, Newsletter.all)
+    @emails = [create(:user).email, create(:user, email: "invalid@user.com").email]
+    @email = NewsletterMailer.news("lorem ipsum", "Nouvelles fonctionalitées", @emails, false)
   end
 
-  it "should be delivered to the emails passed in with the correct newsletter's options" do
-    expect(@email).to be_delivered_to(@valid_user.email)
+  it "should be delivered to the emails" do
+    expect(@email).to be_delivered_to(@emails)
   end
 
   it "should contain the mail body" do

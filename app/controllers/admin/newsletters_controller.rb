@@ -8,8 +8,8 @@ class Admin::NewslettersController < Admin::BaseController
 	end
 
 	def create
-		emails = User.joins(:newsletters).where(email: emails, newsletters: { id: options }).uniq.pluck(:email)
-		NewsletterMailer.news(params[:content], params[:subject], emails, params[:mandrill], params[:options]).deliver_now
+		emails = User.joins(:newsletters).where(email: params[:emails], newsletters: { id: params[:options] }).uniq.pluck(:email)
+		NewsletterMailer.news(params[:content], params[:subject], emails, params[:mandrill]).deliver_now
 		Activity.create(action: "create", controller: "admin/newsletters")
 		redirect_to new_admin_newsletter_path, success: t('newsletter.admin.new.success')
 	end
