@@ -6,7 +6,7 @@
 	//
 	// Top search partial
 	//
-	@include search-top; 
+	@include search-top;
 
 	.rows {
 
@@ -30,7 +30,7 @@
 					text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
 					&:hover {
 						background: #e54040;
-					}					
+					}
 				}
 				.previous_page {margin: 0 10px 0 0}
 				.next_page {margin: 0 0 0 10px}
@@ -42,7 +42,7 @@
 					padding: 4px 5px;
 					&:hover {
 						background: #AAA;
-					}	
+					}
 				}
 				em {
 					font-style: normal;
@@ -70,7 +70,7 @@
 						cursor: pointer;
 						&:hover {
 							background: #e54040;
-						}						
+						}
 					}
 				}
 				ul {
@@ -85,7 +85,7 @@
 						h4 {
 							text-align: center;
 							font-weight: 600;
-							font-size: 12px;							
+							font-size: 12px;
 						}
 						.field {
 							display: inline-block;
@@ -204,7 +204,7 @@
 						font-size: 50px;
 						padding: 0 0 20px 0;
 					}
-				}				
+				}
 			}
 		}
 		.right {
