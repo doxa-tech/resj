@@ -8,9 +8,6 @@ app.controller("pages#home", ["$http", function($http) {
     load_mapbox.loadMap(cards);
 
   });
-
-  // This code loads the IFrame Player API code asynchronously.
-  appendScript("https://www.youtube.com/iframe_api");
   
   // Pie chart stuff
   var check = true;
@@ -47,14 +44,9 @@ app.controller("pages#home", ["$http", function($http) {
     return ((elemBottom >= docViewTop) && (elemTop <= docViewBottom) && (elemBottom <= docViewBottom) &&  (elemTop >= docViewTop) );
 	}
 
-}]);
+  // This code loads the IFrame Player API code asynchronously.
+  appendScript("https://www.youtube.com/iframe_api");
 
-var player;
-function onYouTubeIframeAPIReady() {
-  player = new YT.Player("player", {
-    height: "390",
-    width: "640",
-    videoId: "ppQ23qycHC0",
-    playerVars: {"modestbranding": 1, "wmode": "opaque", "showinfo": 0, "autohide": 1, "controls": 1}
-  });
-}
+  onYouTubeIframeAPIReady && onYouTubeIframeAPIReady();
+
+}]);

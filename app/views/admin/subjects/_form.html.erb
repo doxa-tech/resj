@@ -19,7 +19,7 @@
 						<%= f.text_area :description %>
 					</li>
 					<li>
-						<%= f.label :theme_id %>
+						<%= f.label :theme_ids %>
 						<%= f.collection_select :theme_ids, Theme.all, :id, :name, {include_blank: "Sélectionnez des thèmes"}, {class: "selectize-themes", multiple: true} %>
 					</li>
 				</ul>
@@ -54,12 +54,12 @@
 										video/mp4'
 								%>
 								<%= documents_fields.hidden_field :_destroy, identifier: "destroy" %>
-								<%= link_to_remove_fields "remove" %>
+								<%= link_to_remove_fields "Supprimer" %>
 							</li>
 						<% end %>
 					<% end %>
 					<li>
-						<%= link_to_add_fields("New upload") %>
+						<%= link_to_add_fields("Nouveau fichier") %>
 					</li>
 				</ul>
 			</div>

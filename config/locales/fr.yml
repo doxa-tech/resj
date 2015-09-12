@@ -488,6 +488,7 @@ fr:
     disabled: "Désactivé"
     published_at: "A publier le"
     title: "Titre"
+    file: "Fichier"
   activerecord:
     attributes:
       card:

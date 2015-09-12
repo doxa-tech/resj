@@ -1,4 +1,4 @@
-/* global $ */
+/* global $, YT */
 "use strict";
 
 /* used in /resource */
@@ -12,13 +12,23 @@ function goToByScroll(el){
 /* used to add youtube and google api scrip */
 
 function appendScript(filepath) {
-    if ($("head script[src='" + filepath + "']").length > 0)
-      return;
-	  var script = document.createElement("script");
-	  script.setAttribute("data-turbolinks-track", true);
-	  script.type = "text/javascript";
-	  script.src = filepath;
-	  document.getElementsByTagName("head")[0].appendChild(script);
+  if (window.YT) { return; }
+  var tag = document.createElement("script");
+  tag.src = filepath;
+  var firstScriptTag = document.getElementsByTagName("script")[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+}
+
+/* youtube callback */
+var player = null;
+function onYouTubeIframeAPIReady() {
+  if (!window.YT) { return; }
+  player = new YT.Player("player", {
+    height: "390",
+    width: "640",
+    videoId: "ppQ23qycHC0",
+    playerVars: {"modestbranding": 1, "wmode": "opaque", "showinfo": 0, "autohide": 1, "controls": 1},
+  });
 }
 
 /* Upload form with ajax */
