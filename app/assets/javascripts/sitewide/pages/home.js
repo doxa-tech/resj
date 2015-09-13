@@ -1,4 +1,4 @@
-/* global $, app, load_mapbox, appendScript, YT */
+/* global $, app, load_mapbox, appendScript, onYouTubeIframeAPIReady */
 "use strict";
 
 app.controller("pages#home", ["$http", function($http) {
