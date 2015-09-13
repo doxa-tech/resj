@@ -25,7 +25,6 @@ app.controller("pages#home", ["$http", function($http) {
 	  $(".easy-chart").easyPieChart({
 	      animate: 1000,
 	      onStep: function(from, to, percent) {
-          console.log(Math.round(percent / to * $(this.el).data("value")));
 					$(this.el).find("span").text(Math.round(percent / to * $(this.el).data("value")));
 				},
 				barColor:function(percent) {
