@@ -51,17 +51,17 @@
 					<div class="charts">
 						<div class="chart">
 							<%= link_to "", reseau_path, class: "link" %>
-							<div class="easy-chart" data-value="<%= @card_count %>" data-percent="<%= [@card_count*100/150,1].max %>" ><span></span></div>
+							<div class="-chart" data-value="<%= @card_count %>" data-percent="<%= [@card_count*100/150,1].max %>" ><span></span></div>
 							<div class="label">Groupes, oeuvres ou réseaux</div>
 						</div>
 						<div class="chart">
 							<%= link_to "", orators_path, class: "link" %>
-							<div class="easy-chart" data-value="<%= @orator_count %>" data-percent="<%= @orator_count %>" ><span></span></div>
+							<div class="-chart" data-value="<%= @orator_count %>" data-percent="<%= @orator_count %>" ><span></span></div>
 							<div class="label">Orateurs</div>
 						</div>
 						<div class="chart">
 							<%= link_to "", documents_path, class: "link" %>
-							<div class="easy-chart" data-value="<%= @doc_count %>" data-percent="<%= @doc_count %>" ><span></span></div>
+							<div class="-chart" data-value="<%= @doc_count %>" data-percent="<%= @doc_count %>" ><span></span></div>
 							<div class="label">Documents</div>
 						</div>
 						<div class="chart">

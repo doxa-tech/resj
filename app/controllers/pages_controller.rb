@@ -7,7 +7,7 @@ class PagesController < BaseController
 		@card_count = Card.active.count
 		@orator_count = Orator.count
 		@doc_count = Document.count
-		@user_count = 231
+		@user_count = 20
 	end
 
 	def resj
