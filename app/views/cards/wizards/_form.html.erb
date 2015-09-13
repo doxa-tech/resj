@@ -2,9 +2,8 @@
 
 	<%= render 'step_header', f: f %>
 
-	<div class="error">
-		<%= render 'error_messages', object: f.object %>
-	</div>
+	<div class="errors"><%= render 'error_messages', object: f.object %></div>
+
 	<%= yield f %>
 	<%= f.hidden_field :current_step, value: @card.current_step %>
 

@@ -1,3 +1,6 @@
+/* global L, $ */
+"use strict";
+
 // Namespace for mapbox processing
 var load_mapbox = {
 
@@ -6,39 +9,41 @@ var load_mapbox = {
   markers: null,          // marker cluster
 
   // displays the map
-  loadMap: function(callback) {
-    if(this.map != null) this.map.remove();
-    L.mapbox.accessToken = 'pk.eyJ1IjoibmtjciIsImEiOiI4UnhLZEx3In0.bakfmpx2lREiNbHn0lWq9Q';
+  loadMap: function(data) {
+    if(this.map !== null) this.map.remove();
+    L.mapbox.accessToken = "pk.eyJ1IjoibmtjciIsImEiOiI4UnhLZEx3In0.bakfmpx2lREiNbHn0lWq9Q";
     var zoom = 0;
     if ($(window).width() < 626) {
             zoom = 8;
     } else {
             zoom = 9;
     }
-    var map = L.mapbox.map('map', 'nkcr.i04348d7', {fullscreenControl: true, minZoom: 9}).setView([46.6221, 7.1960], zoom);
+    var map = L.mapbox.map("map", "nkcr.i04348d7", {fullscreenControl: true, minZoom: 9}).setView([46.6221, 7.1960], zoom);
     map.scrollWheelZoom.disable();
-    map.addControl(L.mapbox.shareControl())
-    map.on('ready', callback);
+    map.addControl(L.mapbox.shareControl());
+    map.on("ready", function() {
+      load_mapbox.process_map(data);
+    });
     this.map = map;
   },
 
   process_map: function(collection) {
     if(collection.length > 0) {
 
-      markers = this.create_marker_cluster();
+      var markers = this.create_marker_cluster();
 
       // Add the cards
       for (var key in collection) {
         var card = collection[key];
 
         var title = this.map_popup(card);
-        var marker = L.marker(new L.LatLng( card.latitude, card.longitude ), options={
+        var options = {
           icon: L.icon({
             iconUrl: card.map_point_icon,
             iconSize: [25, 41],
             iconAnchor: [12, 41],
             popupAnchor: [0, -30],
-            shadowUrl: '<%= asset_path "map/images/marker-shadow.png" %>',
+            shadowUrl: "<%= asset_path 'marker-shadow.png' %>",
             shadowSize: [41, 41],
             shadowAnchor: [12, 41]
           }),
@@ -46,7 +51,8 @@ var load_mapbox = {
           riseOnHover: true,
           id: card.id,
           open_network: true,
-        });
+        };
+        var marker = L.marker(new L.LatLng( card.latitude, card.longitude ), options);
         markers.addLayer(marker);
         marker.bindPopup(title);
         if(!this.already_loaded) {
@@ -54,10 +60,10 @@ var load_mapbox = {
           (function(marker,card){
             if(card.is_network == 1) {
               var polyline_options = {
-                color: '#000',
+                color: "#000",
                 weight: 3,
               };
-              $("#map").on('click', "#net-toggle-" + card.id, function(){
+              $("#map").on("click", "#net-toggle-" + card.id, function(){
                 if(marker.options.open_network) {
                   marker.options.open_network = false;
                   marker.options.polylines = L.polyline(card.network_members_coords, polyline_options).addTo(this.map);
@@ -82,23 +88,23 @@ var load_mapbox = {
   },
 
   create_marker_cluster: function() {
-    if(this.markers != null) {
+    if(this.markers !== null) {
       this.markers.clearLayers();
     }
     /*
     *   create markercluster
     */
-    markers = new L.MarkerClusterGroup({
+    var markers = new L.MarkerClusterGroup({
       maxClusterRadius: 30,
     });
     this.markers = markers;
     /*
     *   Custom map
     */
-    markers.on('mouseover', function(e) {
+    markers.on("mouseover", function(e) {
         e.layer.openPopup();
     });
-    markers.on('click', function(e) {
+    markers.on("click", function(e) {
       e.layer.openPopup();
     });
     return markers;
@@ -106,14 +112,14 @@ var load_mapbox = {
 
   map_popup: function(card) {
     var a =
-    '<p class="type">' + card.card_type.name + '</p>' +
+    "<p class='type'>" + card.card_type.name + "</p>" +
     card.name +
-    ' <a href="cards/' + card.id + '-' + card.name + '">voir fiche</a>';
+    " <a href='cards/" + card.id + "-" + card.name + "'>voir fiche</a>";
     if(card.is_network == 1) {
-      a += '<p id="net-toggle-' + card.id + '"><button type="button"><span class="a">Afficher/Masquer</span> son réseau</button></p>';
+      a += "<p id='net-toggle-" + card.id + "'><button type='button'><span class='a'>Afficher/Masquer</span> son réseau</button></p>";
     }
     return a;
   },
 
 
-}
+};

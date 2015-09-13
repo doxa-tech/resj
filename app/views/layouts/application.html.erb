@@ -7,37 +7,40 @@
 
   <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
   <%= csrf_meta_tags %>
-  <%= render 'favicon' %>
-  <%= yield :javascript %>
+  <%= render 'layouts/favicon' %>
 </head>
 <body>
+  
+  <%= render "layouts/js_params" %>
 
-	<%= render 'layouts/flash' %>
+  <%= content_tag :div, ng_controller do %>
 
-	<div id="wrapper">
+  	<%= render 'layouts/flash' %>
 
-		<%= image_tag image_url("layout/shapes.jpg"), id: "shapes" %>
+  	<div id="wrapper">
 
-		<div id="login-over"></div>
-		<div id="login-overlay"><p class="close">fermer</p></div>
+  		<%= image_tag image_url("layout/shapes.jpg"), id: "shapes" %>
 
-		<div id="header">
-			<%= render 'layouts/header' %>
-		</div>
+  		<div id="login-over"></div>
+  		<div id="login-overlay"><p class="close">fermer</p></div>
 
-		<%= render 'layouts/banner' %>
+  		<div id="header">
+  			<%= render 'layouts/header' %>
+  		</div>
 
-		<div id="container"  <%= "class=#{yield(:id)}" if yield(:id).presence %>>
-			<%= yield %>
-		</div>
+  		<%= render 'layouts/banner' %>
 
-		<div id="footer">
-			<%= render 'layouts/footer' %>
-		</div>
-	</div>
+  		<div id="container"  <%= "class=#{yield(:id)}" if yield(:id).presence %>>
+  			<%= yield %>
+  		</div>
 
-	<%= render 'ajax_loader' %>
+  		<div id="footer">
+  			<%= render 'layouts/footer' %>
+  		</div>
+  	</div>
 
-  <%= render 'layouts/paloma' %>
+  <% end %>
+
+	<%= render 'layouts/ajax_loader' %>
 </body>
 </html>

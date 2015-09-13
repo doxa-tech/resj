@@ -1,0 +1,28 @@
+<div class="index" ng-cloak>
+  <div ng-show="orators">
+    <ul>
+  		<div ng-repeat="orator in orators">
+  			<li class="card" id="orator{{ orator.id }}">
+          <div class="wrapper">
+            <p class="description">
+              <i class="fi-megaphone"></i>
+              <a href="/resources/orators/{{ orator.id }}-{{ orator.firstname }}-{{ orator.lastname }}">
+                {{ orator.firstname }} {{ orator.lastname }}
+              </a>
+            </p>
+            <div class="tags">
+              <div ng-repeat="theme in orator.themes">
+                <div class="tag">{{ theme.name }}</div>
+              </div>
+            </div>
+          </div>
+        </li>
+  		</div>
+    </ul>
+  </div>
+
+  <div ng-hide="orators.length" class="nothing">
+    <p class="icon"><span class="fi-list-bullet"></span></p>
+    <p>Votre recherche n'a donné aucun résultat.</p>
+  </div>
+</div>

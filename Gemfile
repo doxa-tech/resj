@@ -16,18 +16,16 @@ gem 'jquery-ui-rails', '~> 5.0.0'
 gem 'selectize-rails'
 # Jquery select plugin
 gem 'multi-select-rails'
-# Paloma JS integration
-gem 'paloma', '~> 4.2.0'
 # Coffee script
 gem 'coffee-rails', '~> 4.1.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0.3'
+# Mapbox
+gem 'mapbox-rails'
 
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks', '~> 2.5.3'
-# Add compatibility between JS events and Turbolinks
-gem 'jquery-turbolinks', '~> 2.1.0'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.2.16'
@@ -47,7 +45,7 @@ gem 'unicorn-worker-killer'
 
 # Use Capistrano for deployment
 gem 'capistrano', '~> 3.4.0'
-gem 'capistrano-maintenance', github: 'capistrano/maintenance', require: false 
+gem 'capistrano-maintenance', github: 'capistrano/maintenance', require: false
 
 # rails specific capistrano funcitons
 gem 'capistrano-rails'
@@ -101,12 +99,17 @@ group :development, :test do
 	gem 'email_spec'
 	gem 'faker'
 	gem 'timecop'
+  gem 'rails-dev-boost', :git => 'git://github.com/thedarkone/rails-dev-boost.git'
+  gem 'rb-fsevent', '>= 0.9.1' # goes with rails-dev-boost
 end
 
 gem 'coveralls', require: false
 
 # HTML tables
 gem 'snaptable'
+
+# AngularJS
+gem 'angularjs-rails'
 
 # errors tracking
 gem 'rollbar', '~> 1.5.3'

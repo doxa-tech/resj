@@ -112,9 +112,8 @@
 					<b>Note:</b> Un email est un identifiant unique, ne pas utiliser plusieurs fois le même email.</h5>
 				</div>
 
-				<div class="error">
-					<%= render 'error_messages', object: f.object %>
-				</div>
+				<div class="errors"><%= render 'error_messages', object: f.object %></div>
+				
 				<ul class="team">
 					<li>
 						<div class="association_fields autocomplete" data-link="responsables">

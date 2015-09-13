@@ -6,16 +6,18 @@ class OratorsController < BaseController
 	after_action only: [:create, :update] { |c| c. track_activity @user }
 
 	def index
-		@orators = Orator.search(params)
-    # used to load
-    if request.xhr?
-      render 'index.js.erb'
-    end
+		js true
+		respond_to do |format|
+			format.html
+			format.json do
+				@orators = Orator.search(params).includes(:user, :themes, location: :canton)
+				@grouped = @orators.group_by{ |a| a.location}
+			end
+		end
 	end
 
 	def show
-		js lat: @orator.location.latitude
-		js lng: @orator.location.longitude
+		js true, lat: @orator.location.latitude, lng: @orator.location.longitude
 	end
 
 	def new
@@ -31,7 +33,7 @@ class OratorsController < BaseController
 			sign_in(@user)
 			OratorMailer.orator_created(@user).deliver_now
 			Parent.create(user: @user, parent: User.find_by_firstname('g_orator'))
-			redirect_to root_path, success: render_error('orator_created')
+			redirect_to root_path, success: render_message('orator_created')
 		else
 			render 'new'
 		end

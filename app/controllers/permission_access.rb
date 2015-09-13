@@ -22,9 +22,9 @@ class PermissionAccess < SimpleDelegator
   def authorize_resource
     if !authorized?(:read) && !current_permission.allow_resource?
       if !current_user
-        redirect_to connexion_path, infos: render_error('resources_login')
+        redirect_to connexion_path, infos: render_message('resources_login')
       else
-        redirect_to resources_path, infos: render_error('resources_unlinked_account')
+        redirect_to resources_path, infos: render_message('resources_unlinked_account')
       end
     end
   end

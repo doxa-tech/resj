@@ -17,7 +17,7 @@
 		</div>
 		<%= f.collection_select :location_id, [f.object.location].compact, :id, :full_name, {include_blank: "Tapez une ville"}, {class: "selectize-location"} %>
 	</div>
-	
+
 	<div class="block">
 		<div class="label">
 			<p><span class="num">7</span> Où est votre <span class="b">lieu</span> de rencontre? (à l'église, dans la rue, en face de la gare ...) (optionnel)</p>
@@ -25,7 +25,7 @@
 		<%= f.text_field :place, placeholder: 'Lieu de rencontre (optionnel)' %>
 	</div>
 
-	<div class="clear"></div>	
+	<div class="clear"></div>
 
 	<%= f.text_field :latitude, id: "lat", type: :hidden %>
 
@@ -39,22 +39,7 @@
 		<div class="map-panel">
 			<input id="address" type="textbox" value="Switzerland">
       <input type="button" value="find" id="geocode-addr">
-		</div>	
+		</div>
 	</div>
 
 <% end %>
-
-<script type="text/javascript">
- 
-load_google_map.loadScript('card_new_map');
-
-/* Card#new in ajax */
-
-$('.wizard').on('click', '.send-a', function() {
-  $(this).text('En cours...');
-  $('body').attr("data-no-turbolink", "true");
-  $(window).bind('beforeunload', function(){
-    return "Voulez-vous vraiment quitter cette page alors qu'un transfert est en cours ?";
-  });
-});
-</script>

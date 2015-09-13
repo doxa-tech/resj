@@ -1,70 +1,52 @@
-var PagesController = Paloma.controller('Pages');
+/* global $, app, load_mapbox, appendScript, onYouTubeIframeAPIReady */
+"use strict";
 
-PagesController.prototype.home = function() {
+app.controller("pages#home", ["$http", function($http) {
 
-	// Mapbox loading
-  load_mapbox.loadMap(cards_index.init);
+  $http.get("reseau.json").success(function(cards) {
 
-  // This code loads the IFrame Player API code asynchronously.
-  appendScript("https://www.youtube.com/iframe_api");
-	//
-	// Fix for map fullscreen and incompatibility with sublim video
-	//
-	var screen_change_events = "webkitfullscreenchange mozfullscreenchange fullscreenchange";
-	$(document).on(screen_change_events, function () {
-		$('#map').removeClass('leaflet-fullscreen-on');
-	});
-	//
-	// Pie chart stuff
-	//
-	var check = true;
-	if(page_home.isScrolledIntoView('.easy-chart')) {
-		page_home.initChart();
-	}
-	$(window).on('scroll', function(){
-		if(check && page_home.isScrolledIntoView('.easy-chart')) {
-			check = false;
-	    page_home.initChart();
-		}
-	});
+    load_mapbox.loadMap(cards);
 
-
-}
-
-var player;
-function onYouTubeIframeAPIReady() {
-  player = new YT.Player('player', {
-    height: '390',
-    width: '640',
-    videoId: 'ppQ23qycHC0',
-    playerVars: {"modestbranding": 1, "wmode": "opaque", "showinfo": 0, "autohide": 1, "controls": 1}
   });
-}
+  
+  // Pie chart stuff
+  var check = true;
+  if(isScrolledIntoView(".easy-chart")) {
+    initChart();
+  }
+  $(window).on("scroll", function(){
+    if(check && isScrolledIntoView(".easy-chart")) {
+      check = false;
+      initChart();
+    }
+  });
 
-
-// ATTENTION easypiechart.js needs to be included !!
-var page_home = {
-
-	initChart: function() {
-	  $('.easy-chart').easyPieChart({
+	function initChart() {
+	  $(".easy-chart").easyPieChart({
 	      animate: 1000,
 	      onStep: function(from, to, percent) {
-					$(this.el).find('span').text(Math.round(percent) / to * $(this.el).data('value'));
+					$(this.el).find("span").text(Math.round(percent) / to * $(this.el).data("value"));
 				},
 				barColor:function(percent) {
 					return "rgba(255,97,41,"+percent/100+")";
 				},
 				scaleColor: "#ccc",
 	  });
-	},
-	isScrolledIntoView: function(elem) {
+	}
+
+	function isScrolledIntoView(elem) {
     var docViewTop = $(window).scrollTop();
     var docViewBottom = docViewTop + $(window).height();
 
     var elemTop = $(elem).offset().top+30;
     var elemBottom = elemTop + $(elem).height();
 
-    return ((elemBottom >= docViewTop) && (elemTop <= docViewBottom)
-      && (elemBottom <= docViewBottom) &&  (elemTop >= docViewTop) );
+    return ((elemBottom >= docViewTop) && (elemTop <= docViewBottom) && (elemBottom <= docViewBottom) &&  (elemTop >= docViewTop) );
 	}
-}
+
+  // This code loads the IFrame Player API code asynchronously.
+  appendScript("https://www.youtube.com/iframe_api");
+
+  onYouTubeIframeAPIReady && onYouTubeIframeAPIReady();
+
+}]);

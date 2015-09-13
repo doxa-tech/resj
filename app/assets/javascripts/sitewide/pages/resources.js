@@ -1,6 +1,6 @@
-var PagesController = Paloma.controller('Pages');
+"use strict";
 
-PagesController.prototype.resources = function() {
+app.controller('pages#resources', function() {
 
 	$('#btn-articles').click(function(e){
 		e.preventDefault();
@@ -32,4 +32,4 @@ PagesController.prototype.resources = function() {
 		});
 	}
 	
-};
+});

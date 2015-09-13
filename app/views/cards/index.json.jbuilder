@@ -1,6 +1,7 @@
 json.array! @cards do |card|
 	json.id card.id
 	json.name card.name
+	json.description card.description
 	json.latitude card.latitude
 	json.longitude card.longitude
 	json.card_type do

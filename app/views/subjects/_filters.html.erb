@@ -1,0 +1,18 @@
+<div id="filter">
+
+  <h3>Filtres <span class="show" ng-click="toggleFilter()">voir</span></h3>
+  <div ng-show="filter == 'fermer'">
+    <ul>
+      <li>
+        <h4>Themes</h4>  
+      <li>
+        <% Theme.order(:name).each do |theme| %>
+        	<div class="field">
+    				<%= check_box_tag "theme_ids[]", theme.id, false, { id: "theme_#{theme.id}" } %>
+            <%= label_tag "theme_#{theme.id}", theme.name %>
+    			</div>
+    		<% end %>
+      </li>
+    </ul>
+  </div>
+</div>

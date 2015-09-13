@@ -11,14 +11,15 @@
 // about supported directives.
 //
 //= require rollbar
-//= require jquery
-//= require jquery.turbolinks
-//= require jquery-ui/autocomplete
+//= require jquery2
 //= require jquery_ujs
+//= require jquery-ui/autocomplete
+//= require angular
 //= require selectize
-//= require multi-select
-//= require paloma
 //= require turbolinks
-//= require snaptable
-//= require_tree ./sitewide
 //= require_tree ../../../vendor/assets/javascripts/sitewide
+//= require mapbox.js
+//= require mapbox/leaflet.fullscreen.min_v0.0.3.js
+//= require mapbox/leaflet.markercluster.js
+//= require init.js
+//= require_tree ./sitewide

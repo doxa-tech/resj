@@ -8,7 +8,7 @@ module ResourcesHelper
 			return "video"
 		else
 			return subject.documents.last.extension[0..2]
-		end   
+		end
 	end
 
 	def document_type(document)
@@ -32,5 +32,5 @@ module ResourcesHelper
 			raise "Invalid ext type"
 		end
 	end
-	
+
 end

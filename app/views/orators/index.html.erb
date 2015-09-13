@@ -1,8 +1,6 @@
-<% # javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyBgFFWiaY1lm8ex24rqBlwLmYnVU_bwmuU&sensor=false" %>
-
 <% content_for :id, 'orators' %>
-<%= form_tag orators_path, method: :get, remote: true, id: "search-form" do %>
 
+<form>
 	<div id="_search-top">
 		<div class="right">
 		 	<ul class="nav">
@@ -21,31 +19,29 @@
 		 		</li>
 		 	<ul>
 		</div>
-		<div class="left">	
+		<div class="left">
 		  <div class="search">
 		  	<div class="form">
-					<%= search_field_tag :query, nil, placeholder: "Rechercher un orateur" %>
+					<input ng-model="search.query" ng-model-options="{debounce: 500}" ng-change="search()"
+						placeholder="Rechercher un orateur" %>
 					<button type="button">Tapez</button>
-					<%= submit_tag "", :name => nil, type: :hidden %>
 				</div>
-		  </div>	
-		</div>		
+		  </div>
+		</div>
 	</div>
 
 	<%= render "resource_goback" %>
 
 	<div class="rows" id="results">
 		<div class="left">
-			<%= content_tag :div, id: "filter" do %>
-		  	<h3>Filtres <span class="show">voir</span></h3>
-		    <%= render 'theme_filter' %>
-		   	<%= render 'canton_filter' %>
-		  <% end %>	
-			<div class="left-content"><%= render 'results_l' %></div>
+		  <%= render 'filters' %>
+			<div class="left-content">
+				<%= render 'results' %>
+			</div>
 		</div>
 		<div class="right">
-			<%= render 'results_r' %>
+			<div id="map-canvas"></div>
 		</div>
 		<div id="clear"></div>
 	</div>
-<% end %>
+</form>

@@ -1,20 +1,18 @@
 class NewsletterMailer < BaseMailer
 
   # sends welcome
-  def news(content, subject, emails, mandrill, options)
-  	emails = User.joins(:newsletters).where(email: emails, newsletters: {id: options}).uniq.pluck(:email)
+  def news(content, subject, emails, mandrill)
   	if mandrill
-	    mail to:      emails,
-	    		 from: "\"Team Réseau Jeunesse\" <info@resj.ch>",
-	         subject: subject,
-	         body:
-	    params({TEXT: content}) # variables
-	    template 'newsletter'  # template
+	    mandrill_mail to: emails,
+	    	from: "\"Team Réseau Jeunesse\" <info@resj.ch>",
+        subject: subject,
+        template: 'newsletter',
+        params: { TEXT: content }
   	else
 	  	@content = content
-	    mail 	to:      emails,
-	    			from: "\"Team Réseau Jeunesse\" <info@resj.ch>",
-	         	subject: subject
+	    mail to: emails,
+	    	from: "\"Team Réseau Jeunesse\" <info@resj.ch>",
+        subject: subject
 	  end
   end
 

@@ -7,36 +7,30 @@ class CardsController < BaseController
 	layout 'admin', only: [:update, :overview]
 
 	def index
-		@cards = Card.search(params).order(:name)
-		@cards_paginate = @cards.paginate(page: params[:page], per_page: 10)
-
+    js true
 		respond_to do |format|
 			format.html
-			format.js
-			format.json
+			format.json { @cards = Card.search(params).includes(:card_type, :inverse_parents) }
 		end
-
 	end
 
 	def show
 		@card = Card.find(params[:id])
 		category = HelpCategory.find_by_name("Profil / gestion d'une oeuvre")
 		@help_url = "#{help_category_path(category)}##{CGI.escape 'Le bon format pour ma bannière et mon logo'}"
-		js lat: @card.latitude
-		js lng: @card.longitude
+		js true, lat: @card.latitude, lng: @card.longitude
 	end
 
 	def overview
 		@card = Card.find(params[:id])
-		js lat: @card.latitude
-		js lng: @card.longitude
+		js true, lat: @card.latitude, lng: @card.longitude
 	end
 
 	def update
 		if @card.update_attributes(card_params)
 			respond_to do |format|
 				format.html { redirect_to overview_card_path(@card), success: t('card.edit.success') }
-				format.js do 
+				format.js do
 					@value = @card.updated_attribute_value(params[:card].keys[0], params[:card].values[0])
 					render 'overview_success'
 				end

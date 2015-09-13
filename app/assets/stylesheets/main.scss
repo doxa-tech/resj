@@ -10,7 +10,7 @@ html, body
 }
 
 body.wait, body.wait *{
-  cursor: wait !important;   
+  cursor: wait !important;
 }
 
 #wrapper {
@@ -81,7 +81,7 @@ input[type="submit"] {
 	&:active,
 	&:focus {
 		background: #c42f2f;
-		  outline: 0; 
+		  outline: 0;
 	}
 }
 input[type="file"] {
@@ -90,15 +90,17 @@ input[type="file"] {
 button {
 	padding: 4px 6px;
 	border: 0;
-	background: #77E;
 	color: #EEE;
-	cursor: pointer;
 	margin: 3px;
 	font-size: 10px;
 	border-radius: 2px;
 	-webkit-font-smoothing: antialiased;
 	&:focus {
 	  outline: none;
+	}
+	&:not([disabled]) {
+		background: #77E;
+		cursor: pointer;
 	}
 }
 
@@ -116,7 +118,7 @@ button {
 
 }
 
-h2 
+h2
 {
 	text-align: center;
 	font-weight: 400;

@@ -1,0 +1,30 @@
+<div>
+  <p class="paginate-infos">
+    {{ paginator.startFrom }}-{{ paginator.startFrom + paginator.pageSize}} sur {{ cards.length }}
+  </p>
+  <paginate-buttons><paginate-buttons>
+</div>
+
+<div class="index" ng-cloak>
+  <div ng-show="cards">
+    <ul>
+  		<div ng-repeat="card in cards | startFrom:paginator.startFrom | limitTo: paginator.pageSize">
+        <display-letter new="{{ card.name[0].toLowerCase() }}">{{ card.name[0].toLowerCase() }}</display-letter>
+  			<li class="card">
+          <span class="type">{{ card.card_type.name }}</span>
+          <a ng-href="cards/{{ card.id }}-{{ card.name }}">{{ card.name }}</a>
+          <i class="fi-arrow-down show-description"></i>
+          <i class="fi-marker show-on-map {{ card.map_marker_color }}" data-id="{{ card.id }}"></i>
+          <p class="description"><i class="fi-megaphone"></i>{{ card.description }}</p>
+        </li>
+  		<div>
+    </ul>
+  </div>
+
+  <div id="clear"></div>
+
+  <div ng-hide="cards.length" class="nothing">
+    <p class="icon"><span class="fi-list-bullet"></span></p>
+    <p>Votre recherche n'a donné aucun résultat.</p>
+  </div>
+</div>

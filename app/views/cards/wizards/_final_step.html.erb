@@ -3,9 +3,9 @@
 		<p> <i class="foundicong-star"></i> Vous avez maintenant terminé l'enregistrement. Vous pouvez contrôller les informations et revenir sur l'une des étapes pour faire des modifications.<br>Sélectionnez les titres pour acéder à l'étape. </p>
 	</div>
 	<%= form_for @card, url: change_cards_wizards_path, remote: true do |f| %>
-		<div class="error">
-			<%= render 'error_messages', object: f.object %>
-		</div>
+
+		<div class="errors"><%= render 'error_messages', object: f.object %></div>
+
 		<%= f.hidden_field :current_step, value: @card.current_step %>
 		<%= f.submit "Général", :name => "step[general]" %>
 		<ul>

@@ -10,7 +10,10 @@ module CardSearch
 
     settings index: default_settings do
       mapping do
-        indexes :name,  type: :string, analyzer: :partial_french, boost: 10
+        indexes :name, type: :multi_field, fields: { 
+          name: { type: :string, analyzer: :partial_french, boost: 10 }, 
+          lowercase: { type: :string, analyzer: :case_insensitive_sort } 
+        }
         indexes :card_type_id, type: :integer
         indexes :tags do
           indexes :id, type: :integer
@@ -65,6 +68,7 @@ module CardSearch
             end
           end
         end
+        j.sort [{ "name.lowercase" => { order: "asc" }}]
       end
       @cards = Card.__elasticsearch__.search(query).records
     end

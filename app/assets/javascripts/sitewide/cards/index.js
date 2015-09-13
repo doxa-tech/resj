@@ -1,42 +1,49 @@
-/* global Paloma:true, load_mapbox:true, $:true */
+/* global app, load_mapbox, $ */
 "use strict";
 
-var CardsController = Paloma.controller("Cards");
+app.controller("cards#index", ["$scope", "$http", "Paginator", function($scope, $http, Paginator) {
 
-CardsController.prototype.index = function() {
+  $scope.search = {};
 
-  // Filters for the search
-  $("#filter ul").hide();
-  $("#filter h3 span.show").click(function(){
-    var btn = $(this);
-    $("#filter ul").slideToggle();
-    if (btn.text()=="voir") {
-      btn.text("fermer");
+  $scope.search = function() {
+    $http.get("reseau.json", { params: {
+      "query" : $scope.search.query,
+      "canton_ids[]": $scope.search.cantons,
+      "card_type_ids[]": $scope.search.types,
+      "tag_ids[]": $scope.search.tags
+
+    }}).success(function(cards) {
+
+      $scope.cards = cards;
+
+      $scope.letter = { current: null };
+
+      $scope.paginator = Paginator.new(10, cards.length);
+
+      load_mapbox.loadMap(cards);
+
+    });
+  };
+
+  $scope.search();
+
+  $scope.filter = "voir";
+
+  $scope.toggleFilter = function() {
+    if($scope.filter === "fermer") {
+      $scope.filter = "voir";
     } else {
-      btn.text("voir");
+      $scope.filter = "fermer";
     }
-  });
+  };
 
   /* Description */
-  $("#results").on("click", ".show-description", function(){
+  $("#results").on("click", ".show-description", function() {
     var btn = $(this);
-    var el = btn.next().next();
-    if(el.css("display")=="none") {
-      btn.css("color", "rgba(39,40,41,1)");
-    } else {
-      btn.css("color", "rgba(39,40,41,.6)");
-    }
-    el.slideToggle();
+    var desc = btn.nextAll(".description");
+    btn.toggleClass("selected");
+    desc.slideToggle();
   });
-
-  // Ajax for will_paginate
-  $("#results").on("click", ".pagination a", function() {
-    $.getScript(this.href);
-    return false;
-  });
-
-  // Mapbox loading
-  load_mapbox.loadMap(cards_index.init);
 
   // Show marker when click
   $("#results").on("click", ".show-on-map", function(){
@@ -51,17 +58,4 @@ CardsController.prototype.index = function() {
     });
   });
 
-
-};
-
-var cards_index = {
-
-  init: function() {
-
-    $.getJSON( "reseau.json", function( data ) {
-      load_mapbox.process_map(data);
-    });
-
-  },
-
-};
+}]);

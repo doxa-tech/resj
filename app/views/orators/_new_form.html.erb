@@ -1,6 +1,7 @@
 <%= form_for @user, url: orators_path, method: :post do |f| %>
 
 	<%= render 'users/new_form', f: f  %>
+	
 	<% num = 4 %>
 	<%= f.fields_for :orator do |orator_fields| %>
 		<div class="section">

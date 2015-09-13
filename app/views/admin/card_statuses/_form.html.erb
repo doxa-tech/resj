@@ -109,24 +109,3 @@
 		</ul>
 	</div>
 </div>
-
-<style type="text/css">
-	#map-canvas {
-		width: 100%;
-		height: 300px;
-		margin: auto;
-		box-shadow: 4px 4px 0px rgba(151,184,140,1);
-		border: 1px solid rgba(151,184,140,.5);
-		margin: 10px 0 0 0;
-	}
-</style>
-
-
-<%= content_for :javascript do %>
-	<script data-turbolinks-track="true" type="text/javascript">
-		$(function() {
-			load_google_map.loadScript('card_overview',
-				[<%= @card.latitude %>, <%= @card.longitude %>]);
-		});
-	</script>
-<% end %>

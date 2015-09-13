@@ -5,7 +5,7 @@ class Cards::WizardsController < BaseController
 		session[:card_params] ||= {}
 		@card = Card.new(session[:card_params])
 		@card.current_step ||= @card.steps.first
-		js step: @card.current_step 
+		js true, step: @card.current_step 
 	end
 
 	# Change wizard steps

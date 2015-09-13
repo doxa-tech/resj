@@ -1,5 +1,11 @@
-$(function() {
-	$('#flash .close').click(function(){
-		$('#flash').hide();
+/* global $ */
+"use strict";
+
+$(document).on("ready page:load", function() {
+
+  var flash = $("#flash");
+
+	flash.find(".close").click(function(){
+		flash.hide();
 	});
 });
