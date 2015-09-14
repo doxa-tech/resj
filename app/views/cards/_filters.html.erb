@@ -3,7 +3,7 @@
   <div ng-show="filter == 'fermer'">
     <ul>
       <li>
-        <h4>Types</h4>  
+        <h4>Types</h4>
       <li>
         <% CardType.all.each do |card_type| %>
           <div class="field">
@@ -21,7 +21,7 @@
 
     <ul>
       <li>
-        <h4>Tags</h4>  
+        <h4>Tags</h4>
       <li>
         <% Tag.order('popularity desc').last(10).each do |tag| %>
           <div class="field">

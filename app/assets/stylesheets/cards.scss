@@ -18,36 +18,17 @@
 			padding: 0 10px 0 0;
 
 			.pagination {
-				text-align: center;
-				margin: 10px 0 0 0;
-				font-size: 12px;
-				.previous_page, .next_page {
-					background: #D83C3C;
-					color: #EEE;
-					-webkit-font-smoothing: antialiased;
-					border-radius: 3px;
-					padding: 4px 5px;
-					text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
-					&:hover {
-						background: #e54040;
-					}
+				a {
+					padding: 4px;
 				}
-				.previous_page {margin: 0 10px 0 0}
-				.next_page {margin: 0 0 0 10px}
-				.disabled {
-					background: #AAA;
-					color: #EEE;
-					-webkit-font-smoothing: antialiased;
-					border-radius: 3px;
-					padding: 4px 5px;
-					&:hover {
-						background: #AAA;
-					}
+				a:hover {
+					font-weight: bold;
 				}
-				em {
-					font-style: normal;
+				a.disabled {
+					cursor: auto;
+					font-weight: bold;
 				}
-			} // pagination
+			}
 
 			#filter {
 				background: #272829;
