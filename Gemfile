@@ -112,4 +112,4 @@ gem 'snaptable'
 gem 'angularjs-rails'
 
 # errors tracking
-gem 'rollbar', '~> 1.5.3'
+gem 'rollbar', '~> 2.2.1'
