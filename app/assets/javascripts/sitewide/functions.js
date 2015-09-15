@@ -9,7 +9,7 @@ function goToByScroll(el){
   "slow");
 }
 
-/* used to add youtube and google api scrip */
+/* used to add youtube script */
 
 function appendScript(filepath) {
   if (window.YT) { return; }
@@ -38,5 +38,17 @@ function customAjaxForm(locator) {
   formP.find("input[type='submit']").on("click", function() {
   	$(this).attr("value", "En cours...");
   });
-  formP.ajaxForm(); 
+  formP.ajaxForm();
+}
+
+/* used in google map to execute callbacks */
+
+function executeFunctionByName(functionName, context /*, args */) {
+  var args = [].slice.call(arguments).splice(2);
+  var namespaces = functionName.split(".");
+  var func = namespaces.pop();
+  for(var i = 0; i < namespaces.length; i++) {
+    context = context[namespaces[i]];
+  }
+  return context[func].apply(this, args);
 }

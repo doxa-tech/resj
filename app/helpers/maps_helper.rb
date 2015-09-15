@@ -12,6 +12,8 @@ module MapsHelper
 			"blue"
 		when "Réseau régional"
 			"violet"
+		when "Formation"
+			"cyan"
 		end
 	end
 
