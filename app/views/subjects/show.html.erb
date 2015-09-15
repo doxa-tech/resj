@@ -20,7 +20,7 @@
 	</p>
 	<% if document_type(document) == "video" %>
 		<div class="video">
-			<video controls poster="poster.png">
+			<video controls>
 			  <source src="<%= document.file.url %>" type="video/mp4" />
 			  Votre navigateur ne supporte pas la lecture de ce format vidéo.
 			</video>

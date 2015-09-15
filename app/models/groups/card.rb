@@ -31,7 +31,7 @@ class Card < ActiveRecord::Base
   has_many :users, through: :card_users
 
   # Card belongs to local networks -> .parents
-  # Local network has many cards -> .inverse_parents 
+  # Local network has many cards -> .inverse_parents
   has_many :card_parents, dependent: :destroy
   has_many :parents, through: :card_parents
   has_many :inverse_card_parents, :class_name => "CardParent", :foreign_key => "parent_id", dependent: :destroy
@@ -62,7 +62,7 @@ class Card < ActiveRecord::Base
 
   # Users request from a card and not answered
   def pending_users
-    User.joins(:card_users).where(card_users: {user_validated: nil, card_validated: true, card_id: id}) 
+    User.joins(:card_users).where(card_users: {user_validated: nil, card_validated: true, card_id: id})
   end
 
   def tag_names
@@ -79,7 +79,7 @@ class Card < ActiveRecord::Base
   end
 
   # Methods called before card's associations are saved (bound to accepts_nested_attributes_for)
-  # Find a responsable or create a new one 
+  # Find a responsable or create a new one
   def autosave_associated_records_for_responsables
     self.responsables = filter_responsables
     CardMailer.team_welcome(self).deliver_now if new_record?
@@ -155,7 +155,7 @@ class Card < ActiveRecord::Base
     inverse_parents.each do |parent|
       coords.push [latitude, longitude]
       coords.push [parent.latitude, parent.longitude]
-    end 
+    end
     return coords
   end
 
@@ -166,17 +166,18 @@ class Card < ActiveRecord::Base
   def map_marker_color
     case card_type.name
     when "Groupe de jeunes"
-      color = "red"
+      "red"
     when "Groupe de jeunes adultes"
-      color = "green"
+      "green"
     when "Groupe d'action"
-      color = "orange"
+      "orange"
     when "Oeuvre jeunesse"
-      color = "blue"
+      "blue"
     when "Réseau régional"
-      color = "violet"
+      "violet"
+    when "Formation"
+      "cyan"
     end
-    return color
   end
 
   private

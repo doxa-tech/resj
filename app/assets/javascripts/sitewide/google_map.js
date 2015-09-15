@@ -7,6 +7,10 @@
  * Author : Noémien Kocher
  */
 var google_map = {
+  /*
+   * To prevent multiple loadings
+   */
+  already_loaded: false,
 
   /*
    * Default params
@@ -19,12 +23,17 @@ var google_map = {
    * that method gets the scripts at google's and fires the callback
    */
   load: function(callback) {
-    // load asynchrously
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src = "https://maps.googleapis.com/maps/api/js?v=3.exp&" +
-        "callback=" + callback;
-    document.getElementsByTagName("head")[0].appendChild(script);
+    if(!google_map.already_loaded) {
+      // load asynchrously
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = "https://maps.googleapis.com/maps/api/js?v=3.exp&" +
+          "callback=" + callback;
+      document.getElementsByTagName("head")[0].appendChild(script);
+      google_map.already_loaded = true;
+    } else {
+      executeFunctionByName(callback, window);
+    }
   },
 
   /*
@@ -33,7 +42,7 @@ var google_map = {
    */
   display: function(collection) {
     // sava data for later
-    this.collection = collection;
+    google_map.collection = collection;
     google_map.load("google_map._display");
   },
 
@@ -50,8 +59,8 @@ var google_map = {
     // the bound object to center the map
     var bounds = new google.maps.LatLngBounds();
     // get all markers
-    for (var key in this.collection) {
-      var markerData = this.collection[key];
+    for (var key in google_map.collection) {
+      var markerData = google_map.collection[key];
       var latlng = new google.maps.LatLng(markerData.lat, markerData.lng);
       var marker = new google.maps.Marker({
         position: latlng,
@@ -83,7 +92,7 @@ var google_map = {
    * params format : [{ lat: 12.2, lng: 3.003 }] (optional)
    */
    setGetCoord: function(params) {
-     this.params = params;
+     google_map.params = params;
      google_map.load("google_map._setGetCoord");
    },
 
