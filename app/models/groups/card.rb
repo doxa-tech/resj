@@ -151,32 +151,9 @@ class Card < ActiveRecord::Base
   end
 
   def network_members_coords
-    coords = []
-    inverse_parents.each do |parent|
-      coords.push [latitude, longitude]
-      coords.push [parent.latitude, parent.longitude]
-    end 
-    return coords
-  end
-
-  def map_point_icon
-    ActionController::Base.helpers.asset_path("map/images/marker-icon-#{map_marker_color}.png")
-  end
-
-  def map_marker_color
-    case card_type.name
-    when "Groupe de jeunes"
-      color = "red"
-    when "Groupe de jeunes adultes"
-      color = "green"
-    when "Groupe d'action"
-      color = "orange"
-    when "Oeuvre jeunesse"
-      color = "blue"
-    when "Réseau régional"
-      color = "violet"
-    end
-    return color
+    inverse_parents.map do |parent|
+      [[latitude, longitude], [parent.latitude, parent.longitude]]
+    end.flatten(1)
   end
 
   private
