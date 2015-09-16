@@ -42,5 +42,7 @@ module Resj
 
     config.paths.add "app/models", eager_load: true, glob: "*"
 
+    config.middleware.use Rack::Deflater
+
   end
 end
