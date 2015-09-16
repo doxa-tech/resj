@@ -41,8 +41,5 @@ module Resj
     config.exceptions_app = self.routes
 
     config.paths.add "app/models", eager_load: true, glob: "*"
-
-    config.middleware.use Rack::Deflater
-
   end
 end
