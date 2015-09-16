@@ -41,7 +41,6 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Use unicorn as the app server
 gem 'unicorn'
-gem 'unicorn-worker-killer'
 
 # Use Capistrano for deployment
 gem 'capistrano', '~> 3.4.0'

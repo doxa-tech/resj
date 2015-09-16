@@ -8,7 +8,6 @@ server {
   root <%= fetch(:deploy_to) %>/current/public;
 
   location ^~ /assets/ {
-    gzip_static on;
     expires max;
     add_header Cache-Control public;
   }
