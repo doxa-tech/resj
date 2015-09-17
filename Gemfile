@@ -39,8 +39,8 @@ end
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-# Use unicorn as the app server
-gem 'unicorn'
+# Use puma as the app server
+gem 'puma'
 
 # Use Capistrano for deployment
 gem 'capistrano', '~> 3.4.0'
@@ -64,6 +64,7 @@ group :development do
 	gem 'active_record_query_trace'
 	gem 'web-console'
 	gem 'spring'
+	gem 'capistrano3-puma'
 end
 
 # Use debugger
