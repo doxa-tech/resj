@@ -23,6 +23,7 @@ require 'capistrano/rails/assets'
 require 'capistrano/rails/migrations'
 # require 'capistrano/passenger'
 require 'capistrano/maintenance'
+require 'capistrano/puma'
 
 # Rollbar
 require 'rollbar/capistrano3'

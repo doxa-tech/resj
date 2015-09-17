@@ -26,17 +26,12 @@ set :server_files, [
   {
     name: 'nginx.conf.erb',
     path: "/etc/nginx/sites-enabled/#{fetch(:application)}",
-  },
-  {
-    name: 'unicorn_init.sh.erb',
-    path: "/etc/init.d/unicorn_#{fetch(:application)}",
-    executable: true
   }
 ]
 
 # Default value for :linked_files is []
 # set :linked_files, fetch(:linked_files, []).push('config/database.yml')
-set :linked_files, %w{config/database.yml config/secrets.yml config/unicorn.rb config/elasticsearch.yml}
+set :linked_files, %w{config/database.yml config/secrets.yml config/elasticsearch.yml}
 
 # Default value for linked_dirs is []
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
@@ -51,6 +46,13 @@ set :keep_releases, 5
 
 set :maintenance_template_path, "config/deploy/templates/maintenance.html.erb"
 
+# puma
+set :puma_threads, [4, 16]
+set :puma_workers, 0
+set :puma_init_active_record, true
+set :puma_bind, "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"
+
+
 set :rollbar_token, '78ed4ff9ce4f413cad73572b5eda3b28'
 set :rollbar_env, Proc.new { fetch :stage }
 set :rollbar_role, Proc.new { :app }
@@ -63,16 +65,16 @@ namespace :deploy do
   # cleanup
   after :finishing, 'deploy:cleanup'
 
-  before 'deploy:started', 'deploy:setup_config'
+  before :started, 'deploy:setup_config'
 
   # reload nginx to it will pick up any modified vhosts from
   # setup_config
-  after 'deploy:setup_config', 'nginx:reload'
+  after :setup_config, 'nginx:reload'
 
   # As of Capistrano 3.1, the `deploy:restart` task is not called
   # automatically.
-  after 'deploy:publishing', 'deploy:restart'
+  after :publishing, 'deploy:restart'
 
-  after 'deploy:finished', 'elasticsearch:reindex'
+  after :finished, 'elasticsearch:reindex'
   
 end
