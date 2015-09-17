@@ -26,11 +26,6 @@ set :server_files, [
   {
     name: 'nginx.conf.erb',
     path: "/etc/nginx/sites-enabled/#{fetch(:application)}",
-  },
-  {
-    name: 'unicorn_init.sh.erb',
-    path: "/etc/init.d/unicorn_#{fetch(:application)}",
-    executable: true
   }
 ]
 
