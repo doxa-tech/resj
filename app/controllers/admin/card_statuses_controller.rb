@@ -3,7 +3,7 @@ class Admin::CardStatusesController < Admin::BaseController
 	after_action only: [:update] { |c| c. track_activity @card }
 
 	def index
-		@table = CardTable.new(self, nil, buttons: false, search: true)
+		@table = CardTable.new(self, nil, search: true)
 		@table.respond
 	end
 

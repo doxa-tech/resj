@@ -3,7 +3,7 @@ class Admin::AccessTokensController < Admin::BaseController
 	after_action only: [:create, :destroy] { |c| c. track_activity @access_token }
 
 	def index
-		@table = AccessTokenTable.new(self, nil, buttons: false)
+		@table = AccessTokenTable.new(self)
 		@table.respond
 	end
 
@@ -13,7 +13,7 @@ class Admin::AccessTokensController < Admin::BaseController
 		if @access_token.save
 			redirect_to admin_access_tokens_path, success: t('access_token.admin.create.success')
 		else
-			@table = AccessTokenTable.new(self, nil, { buttons: false } )
+			@table = AccessTokenTable.new(self)
 			render 'index'
 		end
 	end

@@ -3,7 +3,6 @@ var parent = $('#ip-cur');
 var current = parent.children('p');
 var form = parent.children('form');
 
-//current.text('<%=j raw params[:card].values[0] %>');
 current.text('<%=j raw @value %>');
 form.hide();
 current.show();

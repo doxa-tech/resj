@@ -29,7 +29,6 @@ class CardsController < BaseController
 	def update
 		if @card.update_attributes(card_params)
 			respond_to do |format|
-				format.html { redirect_to overview_card_path(@card), success: t('card.edit.success') }
 				format.js do
 					@value = @card.updated_attribute_value(params[:card].keys[0], params[:card].values[0])
 					render 'overview_success'
@@ -37,7 +36,6 @@ class CardsController < BaseController
 			end
 		else
 			respond_to do |format|
-				format.html { render 'overview' }
 				format.js { render 'overview_error' }
 			end
 		end

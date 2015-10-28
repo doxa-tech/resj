@@ -3,7 +3,7 @@ class Admin::PagesController < Admin::BaseController
 	after_action only: [:update] { |c| c. track_activity @page }
 
 	def index
-		@table = PageTable.new(self, nil, buttons: false)
+		@table = PageTable.new(self)
 		@table.respond
 	end
 
