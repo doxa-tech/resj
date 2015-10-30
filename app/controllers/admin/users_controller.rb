@@ -39,6 +39,7 @@ class Admin::UsersController < Admin::BaseController
 	end
 
 	def invitation
+		js 'invitation'
 		@users = User.users.includes(:orator).where( orators: { user_id: nil })
 	end
 

@@ -1,7 +1,7 @@
 /* global app, multiSelect */
 "use strict";
 
-app.controller("admin/newsletters#form", function() {
+app.controller("admin/users#invitation", function() {
 
   multiSelect();
 

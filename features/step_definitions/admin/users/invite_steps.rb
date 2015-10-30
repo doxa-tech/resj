@@ -7,6 +7,5 @@ When(/^I complete the invitation form$/) do
   fill_in "Emails", with: "foo@bar.com"
   multiselect "email-select", with: "John Smith"
   click_button "Envoyer"
-  #page.driver.browser.switch_to.alert.accept
   page.driver.browser.accept_js_confirms
 end

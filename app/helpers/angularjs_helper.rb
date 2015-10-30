@@ -1,8 +1,12 @@
 module AngularjsHelper
 
   def ng_controller
-    params[:action] = @js if @js.is_a?(String)
-    {"ng-controller" => "#{params[:controller]}##{params[:action]}"} unless @js.blank?
+    if @js.is_a?(String)
+      controller, action = params[:controller], @js
+    else
+      controller, action = params[:controller], params[:action]
+    end
+    {"ng-controller" => "#{controller}##{action}"} unless @js.blank?
   end
 
   def js_params

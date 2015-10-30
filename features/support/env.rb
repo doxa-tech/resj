@@ -81,7 +81,7 @@ After('@selenium') do
   Capybara.javascript_driver = :webkit
 end
 
-Capybara.default_wait_time = 4
+Capybara.default_max_wait_time = 5
 
 World(FactoryGirl::Syntax::Methods)
 
