@@ -22,6 +22,9 @@ namespace :deploy do
         execute :chmod, "#{file[:permission]} #{file_path}" if file[:permission] # change permission if needed
         sudo :ln, "-nfs #{file_path} #{file[:path]}" # symlinks
       end
+
+      # reload /etc/init
+      sudo :initctl, "reload-configuration"
     end
   end
 end

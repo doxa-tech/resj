@@ -32,7 +32,7 @@ In */etc/ssh/sshd_config* change the following fields
 
 After that restart ssh deamon with *reload ssh*
 
-Little sugar (make your terminal red under Mac) :
+Little sugar: make your terminal red under Mac
 
     function tabc() {
     NAME=$1; if [ -z "$NAME" ]; then NAME="Pro"; fi
@@ -146,7 +146,7 @@ Visit the website to get the last instructions http://www.elasticsearch.org/guid
 
 Set the `ES_HEAP_SIZE` variable in the service init script with half of the memory available (e.g.: 512m)
 
-Set `bootstrap.mlockall` in `/etc/elasticsearch/elasticsearch.yml`
+Set `bootstrap.mlockall` in `/etc/elasticsearch/elasticsearch.yml` to `true`
 
 ## Imagemagick
 
@@ -169,14 +169,16 @@ Grant deployer user to write the config files and to execute the init scripts
     # visudo
     resj ALL=(ALL) NOPASSWD: /etc/init.d/elasticsearch
     resj ALL=(ALL) NOPASSWD: /etc/init.d/nginx
-    resj ALL=(ALL) NOPASSWD: /etc/init.d/unicorn_resj
-    resj ALL=(ALL) NOPASSWD: /bin/ln -* /* /etc/init.d/unicorn_resj
     resj ALL=(ALL) NOPASSWD: /bin/ln -* /* /etc/nginx/sites-enabled/*
+    resj ALL=(ALL) NOPASSWD: /usr/bin/service puma start app=*, /usr/bin/service puma stop app=*, /usr/bin/service puma restart app=*, /usr/bin/service puma status app*
+    resj ALL=(ALL) NOPASSWD: /bin/ln -* /* /etc/init/puma.conf
+    resj ALL=(ALL) NOPASSWD: /bin/ln -* /* /etc/init/puma-manager.conf
+    resj ALL=(ALL) NOPASSWD: /bin/ln -* /* /home/resj/apps/*
+    resj ALL=(ALL) NOPASSWD: /bin/ln -* /* /etc/puma.conf
+    resj ALL=(ALL) NOPASSWD: /sbin/initctl reload-configuration
 
 # First deployment
 
 First run `cap stage deploy:setup_config` and then edit the files with the secrets
 
 Finally run `cap stage deploy`
-
-To run unicorn on startup run `sudo update-rc.d unicorn_resj defaults`

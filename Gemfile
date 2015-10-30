@@ -64,7 +64,6 @@ group :development do
 	gem 'active_record_query_trace'
 	gem 'web-console'
 	gem 'spring'
-	gem 'capistrano3-puma'
 end
 
 # Use debugger

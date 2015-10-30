@@ -1,11 +1,11 @@
 # config valid only for current version of Capistrano
-lock '3.4.0'
+lock "3.4.0"
 
-set :application, 'resj'
-set :deploy_user, 'resj'
+set :application, "resj"
+set :deploy_user, "resj"
 
 set :scm, "git"
-set :repo_url, 'git@github.com:JS-Tech/resj.git'
+set :repo_url, "git@github.com:JS-Tech/resj.git"
 
 # Default branch is :master
 ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
@@ -24,8 +24,24 @@ set :deploy_to, "/home/#{fetch(:deploy_user)}/apps/#{fetch(:application)}"
 
 set :server_files, [
   {
-    name: 'nginx.conf.erb',
+    name: "nginx.conf.erb",
     path: "/etc/nginx/sites-enabled/#{fetch(:application)}",
+  },
+  {
+    name: "puma-manager.conf.erb",
+    path: "/etc/init/puma-manager.conf"
+  },
+  {
+    name: "puma-upstart.conf.erb",
+    path: "/etc/init/puma.conf"
+  },
+  {
+    name: "puma.rb.erb",
+    path: "#{shared_path}/puma.rb"
+  },
+  {
+    name: "puma.conf",
+    path: "/etc/puma.conf"
   }
 ]
 
@@ -46,14 +62,7 @@ set :keep_releases, 5
 
 set :maintenance_template_path, "config/deploy/templates/maintenance.html.erb"
 
-# puma
-set :puma_threads, [4, 16]
-set :puma_workers, 0
-set :puma_init_active_record, true
-set :puma_bind, "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"
-
-
-set :rollbar_token, '78ed4ff9ce4f413cad73572b5eda3b28'
+set :rollbar_token, "78ed4ff9ce4f413cad73572b5eda3b28"
 set :rollbar_env, Proc.new { fetch :stage }
 set :rollbar_role, Proc.new { :app }
 
@@ -63,18 +72,20 @@ namespace :deploy do
   before :deploy, "deploy:check_revision"
 
   # cleanup
-  after :finishing, 'deploy:cleanup'
+  after :finishing, "deploy:cleanup"
 
-  before :started, 'deploy:setup_config'
+  # before :started, 'deploy:setup_config'
 
   # reload nginx to it will pick up any modified vhosts from
   # setup_config
-  after :setup_config, 'nginx:reload'
+  before :setup_config, "puma:stop"
+  after :setup_config, "puma:start"
+  after :setup_config, "nginx:reload"
 
   # As of Capistrano 3.1, the `deploy:restart` task is not called
   # automatically.
-  after :publishing, 'deploy:restart'
+  after :publishing, "puma:restart"
 
-  after :finished, 'elasticsearch:reindex'
+  after :finished, "elasticsearch:reindex"
   
 end
