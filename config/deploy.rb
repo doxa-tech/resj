@@ -13,6 +13,8 @@ ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/home/#{fetch(:deploy_user)}/apps/#{fetch(:application)}"
 
+# set :assets_roles, [:web, :app]
+
 # Default value for :format is :pretty
 # set :format, :pretty
 
