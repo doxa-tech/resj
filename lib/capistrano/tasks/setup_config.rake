@@ -7,9 +7,14 @@ namespace :deploy do
       execute :mkdir, "-p #{shared_path}/config"
       execute :mkdir, "-p #{shared_path}/server"
 
-      fetch(:linked_files).each do |file|
-        unless test("[ -f #{shared_path}/#{file} ]")
-          upload! "config/deploy/#{file}", "#{shared_path}/#{file}"
+      fetch(:linked_files).each do |filename|
+        unless test("[ -f #{shared_path}/#{filename} ]")
+          begin
+            file = StringIO.new(ERB.new(File.read("config/deploy/#{filename}.erb")).result(binding)) # render .erb files
+          rescue
+            file = "config/deploy/#{filename}"
+          end
+          upload! file, "#{shared_path}/#{filename}"
         end
       end
 

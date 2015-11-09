@@ -22,7 +22,7 @@ module.directive("loading", ["$http", function($http)
 {
   return {
     restrict: "A",
-    link: function (scope, elm, attrs) {
+    link: function(scope, elm, attrs) {
       scope.isLoading = function () {
         return $http.pendingRequests.length > 0;
       };
@@ -32,3 +32,11 @@ module.directive("loading", ["$http", function($http)
     }
   };
 }]);
+
+module.filter("parameterize", function () {
+  return function (text) {
+    var str = text.replace(/[\.\s\/,:;'()]+/g, "-");
+    str = str.replace(/[éèë]+/g, "e").replace(/[ï]+/g, "i").replace(/[àä]+/g, "a").replace(/[ùü]+/g, "u");
+    return str.toLowerCase();
+  };
+});

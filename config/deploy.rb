@@ -36,10 +36,6 @@ set :server_files, [
     path: "/etc/init/puma.conf"
   },
   {
-    name: "puma.rb.erb",
-    path: "#{shared_path}/puma.rb"
-  },
-  {
     name: "puma.conf",
     path: "/etc/puma.conf"
   }
@@ -47,7 +43,7 @@ set :server_files, [
 
 # Default value for :linked_files is []
 # set :linked_files, fetch(:linked_files, []).push('config/database.yml')
-set :linked_files, %w{config/database.yml config/secrets.yml config/elasticsearch.yml}
+set :linked_files, %w{config/database.yml config/secrets.yml config/elasticsearch.yml config/puma.rb}
 
 # Default value for linked_dirs is []
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
