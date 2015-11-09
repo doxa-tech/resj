@@ -12,7 +12,7 @@
         <display-letter new="{{ card.name[0].toLowerCase() }}">{{ card.name[0].toLowerCase() }}</display-letter>
   			<li class="card">
           <span class="type">{{ card.card_type.name }}</span>
-          <a ng-href="cards/{{ card.id }}-{{ card.name | parameterize }}">{{ card.name }}</a>
+          <a ng-href="cards/{{ card.id }}-{{ card.name }}">{{ card.name }}</a>
           <i class="fi-arrow-down show-description"></i>
           <i class="fi-marker show-on-map {{ card.map_marker_color }}" data-id="{{ card.id }}"></i>
           <p class="description"><i class="fi-megaphone"></i>{{ card.description }}</p>
