@@ -33,10 +33,10 @@ module.directive("loading", ["$http", function($http)
   };
 }]);
 
-module.filter("parameterize", function () {
-  return function (text) {
-    var str = text.replace(/[\.\s\/,:;'()]+/g, "-");
-    str = str.replace(/[éèë]+/g, "e").replace(/[ï]+/g, "i").replace(/[àä]+/g, "a").replace(/[ùü]+/g, "u");
-    return str.toLowerCase();
-  };
-});
+// module.filter("parameterize", function () {
+//   return function (text) {
+//     var str = text.replace(/[\.\s\/,:;'()]+/g, "-");
+//     str = str.replace(/[éèë]+/g, "e").replace(/[ï]+/g, "i").replace(/[àä]+/g, "a").replace(/[ùü]+/g, "u");
+//     return str.toLowerCase();
+//   };
+// });
