@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.5'
 
 # Use postgres as the database for Active Record
 gem 'pg', '~> 0.18.2'
@@ -45,6 +45,7 @@ gem 'puma'
 # Use Capistrano for deployment
 gem 'capistrano', '~> 3.4.0'
 gem 'capistrano-maintenance', github: 'capistrano/maintenance', require: false
+gem 'capistrano-server', github: 'JS-Tech/capistrano-server'
 
 # rails specific capistrano funcitons
 gem 'capistrano-rails'
@@ -98,14 +99,14 @@ group :development, :test do
 	gem 'email_spec'
 	gem 'faker'
 	gem 'timecop'
-  gem 'rails-dev-boost', :git => 'git://github.com/thedarkone/rails-dev-boost.git'
-  gem 'rb-fsevent', '>= 0.9.1' # goes with rails-dev-boost
+    gem 'rails-dev-boost', :git => 'git://github.com/thedarkone/rails-dev-boost.git'
+    gem 'rb-fsevent', '>= 0.9.1' # goes with rails-dev-boost
 end
 
 gem 'coveralls', require: false
 
 # HTML tables
-gem 'snaptable'
+gem 'snaptable', '< 1.0.0'
 
 # AngularJS
 gem 'angularjs-rails'

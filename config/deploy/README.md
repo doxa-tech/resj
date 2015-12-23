@@ -12,7 +12,7 @@
 To set the date
 
     sudo dpkg-reconfigure tzdata
-    
+
 If locales are not set and you got message *perl: warning: Setting locale failed.*
 
     sudo locale-gen fr_CH.UTF-8 # you can see your local with *locale*
@@ -22,8 +22,8 @@ If locales are not set and you got message *perl: warning: Setting locale failed
 Copy public key to server
 
     cat ~/.ssh/id_rsa.pub | ssh user@123.45.56.78 "mkdir -p ~/.ssh && cat >>  ~/.ssh/authorized_keys"
-    
-In */etc/ssh/sshd_config* change the following fields 
+
+In */etc/ssh/sshd_config* change the following fields
 
     Port 44                     # change port connection
     PermitRootLogin no          # deny root login
@@ -58,16 +58,16 @@ Dowload sources from [AES website](https://www.aescrypt.com/download/) and do
 Hints : to copy with scp : "$ scp -r -P 44 user@12.34.56.78:folder ~/Desktop"
 
     sudo /etc/init.d/unicorn_resj stop
-    
+
     sudo -u postgres psql
     # if there is alread a database
     > drop database resj_production;
     > create database resj_production owner resj;
     > \q
-    
+
     sudo -u postgres psql resj_production < backup.txt
     sudo /etc/init.d/unicorn_resj restart
-    
+
 
 ## Cron jobs (backup and daily rake task)
 
@@ -90,11 +90,11 @@ Hints : to copy with scp : "$ scp -r -P 44 user@12.34.56.78:folder ~/Desktop"
     swapon /swapfile
 
     # /etc/fstab
-    /swapfile       none    swap    sw      0       0 
+    /swapfile       none    swap    sw      0       0
 
     echo 10 | sudo tee /proc/sys/vm/swappiness
     echo vm.swappiness = 10 | sudo tee -a /etc/sysctl.conf
-    chown root:root /swapfile 
+    chown root:root /swapfile
     chmod 0600 /swapfile
 
 ## Nginx
@@ -132,14 +132,14 @@ Hints : to copy with scp : "$ scp -r -P 44 user@12.34.56.78:folder ~/Desktop"
 Visit the website to get the last instructions http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/setup-repositories.html
 
 ### Install
-  
+
     wget -qO - https://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add -
     add-apt-repository "deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main"
     apt-get update && apt-get install elasticsearch
     update-rc.d elasticsearch defaults 95 10
 
 ### Java
-    
+
     apt-get install default-jre
 
 ### Config
@@ -163,22 +163,41 @@ run the commands logged as the deployer user
     # Bundler
     gem install bundler --no-ri --no-rdoc
 
+# Capistrano
+
+Install Capistrano, Puma and PG gems to deploy the app
+
+    # Gemfile
+    # Use Capistrano for deployment
+    gem 'capistrano', '~> 3.4.0'
+
+    gem 'capistrano-maintenance', github: 'capistrano/maintenance', require: false
+
+    gem 'capistrano-server', github: 'JS-Tech/capistrano-server'
+
+    # rails specific capistrano funcitons
+    gem 'capistrano-rails'
+
+    # integrate bundler with capistrano
+    gem 'capistrano-bundler'
+
+    # if you are using RVM
+    gem 'capistrano-rvm'
+
+Follow instructions from [capistrano](https://github.com/capistrano/capistrano) & [capistrano-server](https://github.com/JS-Tech/capistrano-server)
+
 # Sever permissions
 Grant deployer user to write the config files and to execute the init scripts
-    
+
     # visudo
     resj ALL=(ALL) NOPASSWD: /etc/init.d/elasticsearch
-    resj ALL=(ALL) NOPASSWD: /etc/init.d/nginx
-    resj ALL=(ALL) NOPASSWD: /bin/ln -* /* /etc/nginx/sites-enabled/*
-    resj ALL=(ALL) NOPASSWD: /usr/bin/service puma start app=*, /usr/bin/service puma stop app=*, /usr/bin/service puma restart app=*, /usr/bin/service puma status app*
-    resj ALL=(ALL) NOPASSWD: /bin/ln -* /* /etc/init/puma.conf
-    resj ALL=(ALL) NOPASSWD: /bin/ln -* /* /etc/init/puma-manager.conf
-    resj ALL=(ALL) NOPASSWD: /bin/ln -* /* /home/resj/apps/*
-    resj ALL=(ALL) NOPASSWD: /bin/ln -* /* /etc/puma.conf
+    resj ALL=(ALL) NOPASSWD: /etc/init.d/nginx, /bin/ln -* /* /etc/nginx/sites-enabled/*
+    resj ALL=(ALL) NOPASSWD: /sbin/start puma app=*, /sbin/stop puma app=*, /sbin/restart puma app=*, /sbin/status puma app=*
+    resj ALL=(ALL) NOPASSWD: /bin/ln -* /* /etc/init/puma.conf, /bin/ln -* /* /etc/init/puma-manager.conf, /bin/ln -* /* /home/resj/apps/*, /bin/ln -* /* /etc/puma.conf
     resj ALL=(ALL) NOPASSWD: /sbin/initctl reload-configuration
 
 # First deployment
 
-First run `cap stage deploy:setup_config` and then edit the files with the secrets
+First run `cap stage server:setup` and then edit the files with the secrets
 
 Finally run `cap stage deploy`
