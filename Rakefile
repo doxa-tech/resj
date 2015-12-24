@@ -4,3 +4,6 @@
 require File.expand_path('../config/application', __FILE__)
 
 Resj::Application.load_tasks
+
+require 'coveralls/rake/task'
+Coveralls::RakeTask.new

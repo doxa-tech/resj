@@ -2,7 +2,7 @@ require 'rake'
 require 'email_spec'
 require 'coveralls'
 
-Coveralls.wear!('rails')
+Coveralls.wear_merged!
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
