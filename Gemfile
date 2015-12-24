@@ -42,19 +42,22 @@ gem 'bcrypt', '~> 3.1.7'
 # Use puma as the app server
 gem 'puma'
 
-# Use Capistrano for deployment
-gem 'capistrano', '~> 3.4.0'
-gem 'capistrano-maintenance', github: 'capistrano/maintenance', require: false
-gem 'capistrano-server', github: 'JS-Tech/capistrano-server'
+group :development do
 
-# rails specific capistrano funcitons
-gem 'capistrano-rails'
+    # Use Capistrano for deployment
+    gem 'capistrano', '~> 3.4.0'
+    gem 'capistrano-maintenance', github: 'capistrano/maintenance', require: false
+    gem 'capistrano-server', github: 'JS-Tech/capistrano-server'
 
-# integrate bundler with capistrano
-gem 'capistrano-bundler'
+    # rails specific capistrano funcitons
+    gem 'capistrano-rails'
 
-# if you are using RBENV
-gem 'capistrano-rvm'
+    # integrate bundler with capistrano
+    gem 'capistrano-bundler'
+
+    # if you are using RBENV
+    gem 'capistrano-rvm'
+end
 
 group :development do
 	gem 'railroady'
@@ -65,6 +68,8 @@ group :development do
 	gem 'active_record_query_trace'
 	gem 'web-console'
 	gem 'spring'
+    gem 'rails-dev-boost', :git => 'git://github.com/thedarkone/rails-dev-boost.git'
+    gem 'rb-fsevent', '>= 0.9.1' # goes with rails-dev-boost
 end
 
 # Use debugger
@@ -99,8 +104,6 @@ group :development, :test do
 	gem 'email_spec'
 	gem 'faker'
 	gem 'timecop'
-    gem 'rails-dev-boost', :git => 'git://github.com/thedarkone/rails-dev-boost.git'
-    gem 'rb-fsevent', '>= 0.9.1' # goes with rails-dev-boost
 end
 
 gem 'coveralls', require: false
