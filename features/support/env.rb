@@ -9,7 +9,7 @@ require 'email_spec/cucumber'
 
 require 'coveralls'
 
-Coveralls.wear!
+Coveralls.wear!('rails')
 
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any
@@ -85,7 +85,7 @@ Capybara.default_max_wait_time = 5
 
 World(FactoryGirl::Syntax::Methods)
 
-After('@reset') do 
+After('@reset') do
   Capybara.current_session.driver.quit
 end
 
