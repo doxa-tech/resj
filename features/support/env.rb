@@ -73,6 +73,10 @@ Cucumber::Rails::Database.javascript_strategy = :truncation
 #
 Capybara.javascript_driver = :webkit
 
+Capybara::Webkit.configure do |config|
+  config.block_unknown_urls
+end
+
 Before('@selenium') do
   Capybara.javascript_driver = :selenium
 end
@@ -87,8 +91,4 @@ World(FactoryGirl::Syntax::Methods)
 
 After('@reset') do
   Capybara.current_session.driver.quit
-end
-
-Before('@javascript', '~@selenium') do
-  page.driver.block_unknown_urls
 end
