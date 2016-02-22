@@ -85,7 +85,7 @@ gem 'elasticsearch-rails'
 # image & video uploader
 gem 'carrierwave', '~> 0.10.0'
 gem 'carrierwave-processing'
-gem 'fog', '~> 1.30.0'
+gem 'fog', '~> 1.37.0'
 # image manipulating
 gem 'mini_magick', '~> 4.2.1'
 
