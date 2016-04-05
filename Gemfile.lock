@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/JS-Tech/capistrano-server.git
-  revision: 4234a29bcd544bee5befa38fbf9b4cb6bc3f18cb
+  revision: d0aa637bd540d60d10f7e96d815f82115701456e
   specs:
-    capistrano-server (0.5.0)
+    capistrano-server (0.5.1)
       capistrano (~> 3.1)
 
 GIT
@@ -66,7 +66,7 @@ GEM
     addressable (2.4.0)
     angularjs-rails (1.5.0)
     arel (6.0.3)
-    bcrypt (3.1.10)
+    bcrypt (3.1.11)
     builder (3.2.2)
     bullet (5.0.0)
       activesupport (>= 3.0.0)
@@ -92,7 +92,7 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    capybara-webkit (1.8.0)
+    capybara-webkit (1.9.0)
       capybara (>= 2.3.0, < 2.7.0)
       json
     carrierwave (0.10.0)
@@ -112,14 +112,14 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
-    concurrent-ruby (1.0.0)
-    coveralls (0.8.11)
+    concurrent-ruby (1.0.1)
+    coveralls (0.8.13)
       json (~> 1.8)
       simplecov (~> 0.11.0)
       term-ansicolor (~> 1.3)
       thor (~> 0.19.1)
       tins (~> 1.6.0)
-    cucumber (2.3.2)
+    cucumber (2.3.3)
       builder (>= 2.1.2)
       cucumber-core (~> 1.4.0)
       cucumber-wire (~> 0.0.1)
@@ -158,14 +158,14 @@ GEM
       launchy (~> 2.1)
       mail (~> 2.6.3)
     erubis (2.7.0)
-    excon (0.45.4)
+    excon (0.49.0)
     execjs (2.6.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.6.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
-    faker (1.6.2)
+    faker (1.6.3)
       i18n (~> 0.5)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
@@ -206,7 +206,7 @@ GEM
     fog-atmos (0.1.0)
       fog-core
       fog-xml
-    fog-aws (0.8.1)
+    fog-aws (0.9.2)
       fog-core (~> 1.27)
       fog-json (~> 1.0)
       fog-xml (~> 0.1)
@@ -215,11 +215,11 @@ GEM
       fog-core (~> 1.22)
       fog-json
       inflecto (~> 0.0.2)
-    fog-core (1.35.0)
+    fog-core (1.37.0)
       builder
       excon (~> 0.45)
       formatador (~> 0.2)
-    fog-dynect (0.0.2)
+    fog-dynect (0.0.3)
       fog-core
       fog-json
       fog-xml
@@ -233,7 +233,7 @@ GEM
     fog-json (1.0.2)
       fog-core (~> 1.0)
       multi_json (~> 1.10)
-    fog-local (0.2.1)
+    fog-local (0.3.0)
       fog-core (~> 1.27)
     fog-powerdns (0.1.1)
       fog-core (~> 1.27)
@@ -272,7 +272,7 @@ GEM
     fog-voxel (0.1.0)
       fog-core
       fog-xml
-    fog-vsphere (0.6.0)
+    fog-vsphere (0.6.3)
       fog-core
       rbvmomi (~> 1.8)
     fog-xenserver (0.2.3)
@@ -305,14 +305,16 @@ GEM
       addressable (~> 2.3)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
-    mail (2.6.3)
-      mime-types (>= 1.16, < 3)
+    mail (2.6.4)
+      mime-types (>= 1.16, < 4)
     mapbox-rails (1.6.1.1)
     meta_request (0.4.0)
       callsite (~> 0.0, >= 0.0.11)
       rack-contrib (~> 1.1)
       railties (>= 3.0.0, < 5.1.0)
-    mime-types (2.99.1)
+    mime-types (3.0)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2016.0221)
     mini_magick (4.2.10)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
@@ -323,12 +325,12 @@ GEM
     multipart-post (2.0.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
-    net-ssh (3.0.2)
-    newrelic_rpm (3.15.0.314)
+    net-ssh (3.1.1)
+    newrelic_rpm (3.15.1.316)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     pg (0.18.4)
-    puma (2.16.0)
+    puma (3.2.0)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.4)
@@ -367,7 +369,7 @@ GEM
       activesupport (= 4.2.5)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (10.5.0)
+    rake (11.1.2)
     rb-fsevent (0.9.7)
     rbvmomi (1.8.2)
       builder
@@ -375,8 +377,9 @@ GEM
       trollop
     rdoc (4.2.2)
       json (~> 1.4)
-    rollbar (2.2.1)
-    rspec-core (3.4.3)
+    rollbar (2.8.3)
+      multi_json
+    rspec-core (3.4.4)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -395,7 +398,7 @@ GEM
     rspec-support (3.4.1)
     ruby-graphviz (1.2.2)
     rubyzip (1.2.0)
-    sass (3.4.21)
+    sass (3.4.22)
     sass-rails (5.0.4)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.1)
@@ -406,9 +409,8 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     selectize-rails (0.12.1)
-    selenium-webdriver (2.52.0)
+    selenium-webdriver (2.53.0)
       childprocess (~> 0.5)
-      multi_json (~> 1.0)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
     simplecov (0.11.2)
@@ -421,15 +423,15 @@ GEM
       rails (~> 4.2.1)
       sass-rails
       will_paginate
-    spring (1.6.3)
+    spring (1.6.4)
     sprockets (3.5.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    sprockets-rails (3.0.1)
+    sprockets-rails (3.0.4)
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sshkit (1.8.1)
+    sshkit (1.9.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     term-ansicolor (1.3.2)
@@ -437,7 +439,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.2)
-    timecop (0.8.0)
+    timecop (0.8.1)
     tins (1.6.0)
     trollop (2.1.2)
     turbolinks (2.5.3)
@@ -502,7 +504,7 @@ DEPENDENCIES
   rails-dev-boost!
   rails-erd
   rb-fsevent (>= 0.9.1)
-  rollbar (~> 2.2.1)
+  rollbar
   rspec-rails
   sass-rails (~> 5.0.3)
   sdoc
