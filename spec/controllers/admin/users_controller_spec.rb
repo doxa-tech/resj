@@ -7,10 +7,10 @@ RSpec.describe Admin::UsersController, :type => :controller do
 
     before(:each) do
       @user = create(:user)
-      create(:ownership, element_name: "admin/users", type_name: "all_entries", 
+      create(:ownership, element_name: "admin/users", type_name: "all_entries",
         right_read: true, right_create: true, right_delete: true, right_update: true, action: "invite")
       sign_in @user
-      post :invite, emails: "kocher.ke@gmail.com", users: ["nkcr.je@gmail.com"] 
+      post :invite, emails: "kocher.ke@gmail.com", users: ["nkcr.je@gmail.com"]
     end
 
     it "should send emails" do
@@ -18,7 +18,7 @@ RSpec.describe Admin::UsersController, :type => :controller do
     end
 
     it "should contain the link with a token" do
-      expect(ActionMailer::Base.deliveries.last.to_s).to include "/resources/orators/new?token=#{AccessToken.last.token}" 
+      expect(ActionMailer::Base.deliveries.last.body.raw_source).to include "/resources/orators/new?token=#{AccessToken.last.token}"
     end
 
     it "should contain the sender's full name" do

@@ -8,15 +8,13 @@ RSpec.describe Admin::NewslettersController, :type => :controller do
 			sign_in User.find_by_email('kocher.ke@gmail.com')
 			@params = {
 				options:  Newsletter.all.map{|n| n.id.to_s},
-				subject: "Nouvelles fonctionalitées",
-				content: "Lorem ipsum",
-				mandrill: false
+				subject: "Nouvelles fonctionalitées"
 			}
 		end
 
 		it "should send an email with the right params" do
 			@params[:emails] =  create_list(:user_list, 5).map(&:email)
-			expect(NewsletterMailer).to receive(:news).with(@params[:content], @params[:subject], array_including(@params[:emails]), @params[:mandrill]).and_call_original
+			expect(NewsletterMailer).to receive(:news).with(@params[:subject], array_including(@params[:emails])).and_call_original
 			post :create, **@params
 		end
 
@@ -24,7 +22,7 @@ RSpec.describe Admin::NewslettersController, :type => :controller do
 			valid_user = create(:user); invalid_user = create(:user, email: "invalid@user.com")
 			invalid_user.newsletters = Newsletter.none
 			@params[:emails] = [valid_user.email, invalid_user.email]
-			expect(NewsletterMailer).to receive(:news).with(@params[:content], @params[:subject], [valid_user.email], @params[:mandrill]).and_call_original
+			expect(NewsletterMailer).to receive(:news).with(@params[:subject], [valid_user.email]).and_call_original
 			post :create, **@params
 		end
 

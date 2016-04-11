@@ -5,14 +5,7 @@
 <div class="row">
 	<ul>
 
-		<li>
-			<%= label_tag :mandrill, "Utiliser Mandrill ?" %>
-			<%= check_box_tag :mandrill %>
-		</li>
-
 		<li><%= text_field_tag :subject, nil, placeholder: "Sujet" %></li>
-
-		<li><%= text_area_tag :content, nil %></li>
 
 		<li><%= select_tag :emails, grouped_options_for_select([["Orateurs", map_users(@orators)], ["Propriétaires", map_users(@owners)], ["Responables", map_users(@resps)], ["Utilisateurs", map_users(@users)]]), multiple: true, id: "email-select" %></li>
 		<li><%= submit_tag "Envoyer", data: {confirm: "Confirmez-vous l'envoi de cette newsletter ?"} %></li>

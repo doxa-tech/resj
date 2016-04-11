@@ -8,6 +8,7 @@ FactoryGirl.define do
     password_confirmation "12341"
     user_type { UserType.find_or_create_by(name: 'user') }
     confirmed true
+    reset_token "blabla"
 
     factory :unconfirmed_user do
       confirmed false
@@ -47,9 +48,17 @@ FactoryGirl.define do
       card.user.ownerships.create(element_id: Element.find_or_create_by(name: 'cards/affiliations').id, ownership_type_id: OwnershipType.find_or_create_by(name: 'on_entry').id, id_element: card.id, right_create: true, right_delete: true, right_update: true, right_read: true)
     end
 
+    trait :with_responsables do
+      after(:create) do |card|
+        card.responsables << create(:responsable)
+        card.responsables << create(:responsable)
+      end
+    end
+
     factory :active_card do
       status { Status.find_or_create_by(name: "En ligne") }
     end
+
   end
 
   factory :access_token do
@@ -67,7 +76,7 @@ FactoryGirl.define do
     end
     element { Element.find_or_create_by(name: element_name) }
     user { if group_name.nil? then User.find_by_firstname_and_lastname(*user_name.split()) else User.find_by_firstname(group_name) end }
-    
+
     ownership_type { OwnershipType.find_or_create_by(name: type_name) }
 
     id_element nil

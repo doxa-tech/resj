@@ -1,0 +1,10 @@
+<% to_layout("Changement de statut", "Du nouveau pour vous sur le réseau") %>
+
+<p>Bonjour <%= @name %>,</p>
+<p>Votre <%= @type %> <i><%= @gname %></i> à changé de statut et requiert votre attention.<br>
+  Afin de maintenir un contenu actuel et pertinent nous vous demandons d'actualiser
+  les informations ou de faire une action spéciale.<p>
+<p>Ancien statut: <i><%= @old_status %></i><br>Nouveau statut: <i><%= @status %></i></p>
+<p><%= @infos %></p>
+<p><a href="http://reseaujeunesse.ch/profile">http://reseaujeunesse.ch/profile</a></p>
+<p>A bientôt sur le réseau !</p>

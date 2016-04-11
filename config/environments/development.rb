@@ -23,12 +23,13 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default :charset => "utf-8"
   config.action_mailer.smtp_settings = {
-    :address   => "smtp.mandrillapp.com",
-    :port      => 587,
-    :enable_starttls_auto => true,
     :user_name => Rails.application.secrets.mail_usr,
     :password  => Rails.application.secrets.mail_pswd,
-    :authentication => 'login'
+    :domain => 'resj.ch',
+    :address   => "smtp.mailgun.org",
+    :port      => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
   }
 
   # Print deprecation notices to the Rails logger.

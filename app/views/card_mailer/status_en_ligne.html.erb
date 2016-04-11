@@ -1,0 +1,14 @@
+<% to_layout("Changement de statut", "Du nouveau pour vous sur le réseau") %>
+
+<p>Bonjour <%= @name %>,</p>
+<p>Yes! Votre <%= @type %> <i><%= @gname %></i> à changé de statut et est désormais en ligne.</p>
+<p><b>So, what's next?</b><br>
+N'hésitez pas à compléter vos informations et à les mettre à jour. Vous pouvez
+aussi dès maintenant rajouter une bannière et un logo sur votre page!
+Pour savoir comment procéder, c'est <a href="http://reseaujeunesse.ch/help/1-profil-gestion-d-une-oeuvre">ici</a>.
+Le team serait aussi heureux d'avoir ton feedback, pas exemple sur
+notre <a href="https://www.facebook.com/reseaujeunesse.ch">page facebook</a>.<p>
+<p>Ancien statut: <i><%= @old_status %></i><br>Nouveau statut: <i><%= @status %></i></p>
+<p><%= @infos %></p>
+<p>Profil : <a href="http://reseaujeunesse.ch/profile">http://reseaujeunesse.ch/profile</a></p>
+<p>A bientôt sur le réseau !</p>

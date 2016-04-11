@@ -4,9 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width"/>
 
-    <style type="text/css">
-
-      /* Ink styles go here in production */
+  <style>
 /**********************************************
 * Ink v1.0.5 - Copyright 2013 ZURB Inc        *
 **********************************************/
@@ -55,7 +53,6 @@ img {
   float: left;
   clear: both;
   display: block;
-  padding: 15px;
 }
 
 center {
@@ -330,10 +327,10 @@ body, table.body, h1, h2, h3, h4, h5, h6, p, td {
   color: #222222;
   font-family: "Helvetica", "Arial", sans-serif;
   font-weight: normal;
-  padding:10px 0;
+  padding:0;
   margin: 0;
   text-align: left;
-  line-height: 1.3em;
+  line-height: 1.3;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -343,10 +340,10 @@ h1, h2, h3, h4, h5, h6 {
 h1 {font-size: 40px;}
 h2 {font-size: 36px;}
 h3 {font-size: 32px;}
-h4 {font-size: 28px; text-align: center; padding: 10px;}
+h4 {font-size: 28px;}
 h5 {font-size: 24px;}
 h6 {font-size: 20px;}
-body, table.body, p, td {font-size: 16px;line-height:25px;}
+body, table.body, p, td {font-size: 14px;line-height:19px;}
 
 p.lead, p.lede, p.leed {
   font-size: 18px;
@@ -697,177 +694,182 @@ body.outlook p {
   }
 }
 
-    </style>
+  </style>
+  <style>
+
+    table.facebook td {
+      background: #3b5998;
+      border-color: #2d4473;
+    }
+
+    table.facebook:hover td {
+      background: #2d4473 !important;
+    }
+
+    table.twitter td {
+      background: #00acee;
+      border-color: #0087bb;
+    }
+
+    table.twitter:hover td {
+      background: #0087bb !important;
+    }
+
+    table.google-plus td {
+      background-color: #DB4A39;
+      border-color: #CC0000;
+    }
+
+    table.google-plus:hover td {
+      background: #CC0000 !important;
+    }
+
+    .template-label {
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 11px;
+    }
+
+    .callout .wrapper {
+      padding-bottom: 20px;
+    }
+
+    .callout .panel {
+      background: #ECF8FF;
+      border-color: #b9e5ff;
+    }
+
+    .header {
+      background: #999999;
+    }
+
+    .footer .wrapper {
+      background: #ebebeb;
+    }
+
+    .footer h5 {
+      padding-bottom: 10px;
+    }
+
+    table.columns .text-pad {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    table.columns .left-text-pad {
+      padding-left: 10px;
+    }
+
+    table.columns .right-text-pad {
+      padding-right: 10px;
+    }
+
+    @media only screen and (max-width: 600px) {
+
+      table[class="body"] .right-text-pad {
+        padding-left: 10px !important;
+      }
+
+      table[class="body"] .left-text-pad {
+        padding-right: 10px !important;
+      }
+    }
+
+  </style>
     <style type="text/css">
 
-      /* Your custom styles go here */
-      .header {
-        background: #F24C45;
-        color: #FFFFFF;
-      }
-      body {
-        -webkit-font-smoothing: antialiased;
-      }
+        h1 {
+            font-size: 16px;
+            font-weight: 600;
+            padding: 0 0 7px 0;
+        }
+
     </style>
   </head>
-  <body style="padding:0">
+  <body>
     <table class="body">
       <tr>
-        <td class="center" align="center" valign="top" style="padding:0">
+        <td class="center" align="center" valign="top">
           <center>
-
-            <table class="row header">
-              <tr>
-                <td>
-                  <table class="columns">
-                    <tr>
-                      <td>
-                        <h6 style="font-size:14px;padding:0;color:rgb(130, 12, 22)">Le Réseau Jeunesse est une initiative du Réseau évangélique Suisse, coordinateur du Kingdom Festival.</h6>
-                  <!-- Content not large enough to "prop" the container open all the way -->
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-                <td class="expander"></td> <!-- Used to fix columns on small screens -->
-              </tr>
-            </table>
-
-            <table class="row header">
-              <tr>
-                <td>
-                  <table class="columns">
-                    <tr>
-                      <td>
-                        <img src="http://s24.postimg.org/pxt4fvz85/10448519_1445522215698249_6302303559858952680_o.jpg">
-                        <!-- Content not large enough to "prop" the container open all the way -->
-                      </td>
-                      <td class="expander"></td> <!-- Used to fix columns on small screens -->
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-            </table>
-
-
-
 
             <table class="container">
               <tr>
                 <td>
 
+                  <table class="row">
+                    <tr>
+                      <td class="wrapper">
 
-                   <table class="row">
+                        <table class="eight columns">
+                          <tr>
+                              <td style="padding: 30px 0 0 0">
+
+                                <h1><%= yield(:title) %></h1>
+                                  <p style="color: #df6d00; font-size: 12px; line-height: 13px">
+                                      <%= yield(:subtitle) %>
+                                  </p>
+
+                            </td>
+                            <td class="expander"></td>
+                          </tr>
+                        </table>
+
+                      </td>
+                      <td class="wrapper last">
+
+                        <table class="four columns">
+                          <tr>
+                            <td class="center">
+            					<center>
+                                <img style="float:none" src="http://storage.googleapis.com/reseaujeunesse-ch/my-assets/_outsite/mails/res_logo_color_email.jpg">
+                                </center>
+                            </td>
+                            <td class="expander"></td>
+                          </tr>
+                        </table>
+
+                      </td>
+                    </tr>
+                  </table>
+
+                  <table class="row">
                     <tr>
                       <td class="wrapper last">
+
                         <table class="twelve columns">
                           <tr>
                             <td>
-                              <h1 style="color:rgb(242, 83, 64)">Offre LAST MINUTE: Le Kingdom Festival gratuitement, pour tout ton groupe de jeunes!</h1>
-<p>Tu n’es pas encore inscrit au <a href="http://www.kingdomfestival.ch/">Kingdom Festival</a>, le grand événement du Réseau évangélique suisse? Ton groupe de jeunes non plus? Voici une offre à ne pas manquer!</p>
-<p><img src="http://s27.postimg.org/unprqyvkf/10494843_1449917695258701_6267192709354386744_n.jpg"></p>
-<p>Le Kingdom Festival propose une offre «Last Minute» d’hébergement à 99.- (à quoi il faut ajouter l’inscription selon <a href="https://scontent-cdg2-1.xx.fbcdn.net/hphotos-xfp1/t31.0-8/10368971_1592588970991572_4041339081395791107_o.jpg">tarifs actuels</a>). Cela avec pension complète et hébergement en dortoirs.</p>
-<p>Mais en combinant cela avec les rabais du bénévolat, il est possible de participer au Kingdom Festival <b>ENTIÉREMENT GRATUITEMENT</b>! (En effet, les bénévoles ne paient pas d’inscription et ont un rabais de 100.- sur l’hébergement… donc zéro francs à dépenser!)</p>
-<p>Servir en tant que bénévole ne signifie pas être occupé toute la journée! L’engagement est pour 2 sessions par jour, ce qui laisse libre le matin, l’après-midi ou le soir.</p>
-<h2>Où peut-on servir?</h2>
-Le Kingdom Festival cherche des bénévoles dans l’accueil et l’information, dans le service aux bars, dans les programmes pour les enfants, dans la technique ou la sécurité (portes)… Plein de possibilités pour s’engager en groupe!</p>
-Il est également possible de prolonger l’aventure! Soit en venant les jours avant le Kingdom Festival pour aider à installer et monter (du 27 juin au 5 juillet), soit en restant les jours après le Kingdom Festival. Pour ces temps, l’hébergement est organisé et offert.</p>
-<h2>Formation vidéo</h2>
-<p>Tu as, dans ton groupe de jeunes, quelqu’un de motivé par la vidéo? Up Light Studio propose une <a href="https://www.facebook.com/kingdomfestival.ch/photos/a.1447969122120225.1073741828.1438947493022388/1590381617878974/?type=1">formation vidéo</a> durant le Kingdom Festival! Filmer en Live, créer des clips et vidéos de témoignages… Des choses dont ton groupe de jeunes peut profiter ! Et vu que ça compte comme du bénévolat, c’est également un moyen de profiter d’une participation gratuite au Kingdom Festival !</p>
-<p>Plus d’infos sur les divers liens dans ce mail! <a href="http://www.kingdomfestival.ch/inscriptions/">Inscris-toi</a> rapidement, l’inscription LAST MINUTE n’est disponible que jusqu’à ce jeudi 25 juin! Après t’être inscrit, choisis ton engagement bénévole ou celui de ton groupe sur <a href="http://www.kingdomfestival.ch/benevoles/">ce formulaire</a>.</p>
-<p>On se réjouit de t’y retouver,<br>
-Ton Réseau Jeunesse RES-J</p>
+
+                              <%= yield %>
 
                             </td>
                             <td class="expander"></td>
                           </tr>
                         </table>
-                      </td>
-                    </tr>
-                  </table>
-                  <table style="margin-top: 20px;">
-                    <tr class="row">
-                      <td class="wrapper">
-                        <table class="six columns">
-                          <tr>
-                            <td class="center" align="center">
-                              <center>
-                                <h6 style="color: #888;">Ah, et pendant qu'on y est, on est aussi sur les réseaux sociaux</h6>
 
-                                  <a style="display:inline-block; float: none; padding: 10px;" href="https://www.facebook.com/reseaujeunesse.ch"><img src="http://s17.postimg.org/71wj0xh2z/FB_f_Logo_blue_29.png"></a>
-                                  <a style="display:inline-block; float: none; padding: 10px;" href="https://twitter.com/ReseauJeunesse"><img src="http://s13.postimg.org/u1hl27sn7/Twitter_logo_blue.png"></a>
-                                  <a style="display:inline-block; float: none; padding: 10px;" href="http://instagram.com/reseaujeunesse"><img src="http://s15.postimg.org/da8fsu1jr/Instagram_Glyph.png"></a>
-
-                              </center>
-                            </td>
-                            <td class="expander"></td>
-                          </tr>
-                        </table>
-                      </td>
-                      <td class="wrapper">
-                        <table class="six columns">
-                          <tr>
-                            <td class="center">
-                              <center>
-                                <h6 style="color: #888;">Tes ressources</h6>
-                                <p style="margin-top: 10px;">
-                                  <a href="http://reseaujeunesse.ch/resources/articles">Des articles Pertinents</a>
-                                  <a href="http://reseaujeunesse.ch/resources/articles"><img style="padding-right: 10px;" src="http://s10.postimg.org/z2s097wpx/article2_2.png"></a>
-                                </p>
-                              </center>
-                            </td>
-                            <td class="expander"></td>
-                          </tr>
-                          <tr>
-                            <td class="center">
-                              <center>
-                                <p>
-                                  <a href="http://reseaujeunesse.ch/resources/documents">Des documents explosifs</a>
-                                  <a href="http://reseaujeunesse.ch/resources/documents"><img style="padding-right: 10px;" src="http://s9.postimg.org/lpy0ghbbv/physics1.jpg"></a>
-                                </p>
-                              </center>
-                            </td>
-                            <td class="expander"></td>
-                          </tr>
-                          <tr>
-                            <td class="center">
-                              <center>
-                                <p>
-                                  <a href="http://reseaujeunesse.ch/resources/orators">Une liste d'orateurs</a>
-                                  <a href="http://reseaujeunesse.ch/resources/orators"><img style="padding-right: 10px;" src="http://s28.postimg.org/kq66ucywp/users5.jpg"></a>
-                                </p>
-                              </center>
-                            </td>
-                            <td class="expander"></td>
-                          </tr>
-                        </table>
                       </td>
                     </tr>
                   </table>
 
-
-
-
-                </td>
-              </tr>
-            </table>
-
-            <table class="row header">
-              <tr>
-                <td class="wrapper last">
-                  <table class="twelve columns">
+                  <table class="row" style="background:#df6d00">
                     <tr>
-                      <td class="text-pad">
-                        <p style="color: #CECECE; font-weight: 100; font-size: 13px">
-                            Cet email vous a été envoyé car vous (ou par l'intermédiaire d'un amis) vous êtes inscrit au site <a href="http://reseaujeunesse.ch">reseaujeunesse.ch</a>. Ce message est dans la catégorie <i>Evénements/Agenda pour la jeunesse en suisse romande</i>.<br>
-                          Si vous avez la moindre question ou remarque, n'hésitez pas à répondre à cet email.
-                        </p>
-                        <p style="color: #CECECE; font-weight: 100; font-size: 13px">
-                          Vous pouvez choisir les email que vous recevez de notre par sur votre profil à <a href="http://reseaujeunesse.ch/user/notifications">reseaujeunesse.ch/user/notifications</a>
-                        </p>
+                      <td class="wrapper last">
+
+                        <table class="twelve columns">
+                          <tr>
+                            <td class="center">
+            					<center>
+                                    <span style="font-size:10px; color: #fff">ResJ - Réseau Evangélique Suisse Jeunesse<br>Si vous avez des questions ou besoin d'aide, vous pouvez simplement répondre à cet email</span>
+                                </center>
+                            </td>
+                            <td class="expander"></td>
+                          </tr>
+                        </table>
+
                       </td>
-                      <td class="expander"></td>
                     </tr>
                   </table>
+
                 </td>
               </tr>
             </table>

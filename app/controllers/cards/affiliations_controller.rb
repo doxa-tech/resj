@@ -10,7 +10,7 @@ class Cards::AffiliationsController < BaseController
 		user = User.users.find_by_id(params[:user_id])
     success, card_user = Request.new(:card, user: user, card: @card).process
     if user && success
-    	UserMailer.request(@card, user).deliver_now
+    	UserMailer.card_affiliation_request(@card, user).deliver_now
 			track_activity card_user
 			redirect_to card_team_path(@card), success: t('card.user.request.success')
 		else

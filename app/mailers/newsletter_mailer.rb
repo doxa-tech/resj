@@ -1,19 +1,8 @@
 class NewsletterMailer < BaseMailer
+  layout false
 
-  # sends welcome
-  def news(content, subject, emails, mandrill)
-  	if mandrill
-	    mandrill_mail to: emails,
-	    	from: "\"Team Réseau Jeunesse\" <info@resj.ch>",
-        subject: subject,
-        template: 'newsletter',
-        params: { TEXT: content }
-  	else
-	  	@content = content
-	    mail to: emails,
-	    	from: "\"Team Réseau Jeunesse\" <info@resj.ch>",
-        subject: subject
-	  end
+  def news(subject, emails)
+	   mail to: emails, from: "\"Team Réseau Jeunesse\" <info@resj.ch>", subject: subject
   end
 
 end
