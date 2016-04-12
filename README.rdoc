@@ -1,5 +1,0 @@
-{<img src='https://semaphoreci.com/api/v1/projects/047e078c-9a7d-4c53-8100-3be27862bd60/454990/badge.svg' alt='Build Status'>}[https://semaphoreci.com/khcr/resj]
-{<img src="https://coveralls.io/repos/JS-Tech/resj/badge.svg?branch=master&service=github" alt="Coverage Status" />}[https://coveralls.io/github/JS-Tech/resj?branch=master]
-{<img src="https://codeclimate.com/github/JS-Tech/resj/badges/gpa.svg">}[https://codeclimate.com/github/JS-Tech/resj]
-
-Réseau jeunesse, ministère évangélique du Réseau évangélique suisse, http://reseaujeunesse.ch
