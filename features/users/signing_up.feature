@@ -20,7 +20,7 @@ Feature: Signing up
 	Scenario: Confirm account after valid form submission
 		Given I signed up
 		When I open the email with subject "Confirmation de votre email"
-		And I click the first link in the email
+		And I follow "activer" in the email
 		Then I should see a flash with "Compte confirmé. Vous êtes maintenant connecté !"
 
 	@javascript
