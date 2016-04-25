@@ -5,7 +5,7 @@ Rollbar.configure do |config|
 
   config.access_token = Rails.application.secrets.rollbar_key
 
-  if Rails.env.test? || Rails.env.development? || rails.env.staging?
+  if Rails.env.test? || Rails.env.development? || Rails.env.staging?
     config.enabled = false
   end
 
