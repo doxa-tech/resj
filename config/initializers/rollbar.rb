@@ -2,15 +2,15 @@ require 'rollbar/rails'
 Rollbar.configure do |config|
   # Without configuration, Rollbar is enabled in all environments.
   # To disable in specific environments, set config.enabled=false.
-  
+
   config.access_token = Rails.application.secrets.rollbar_key
 
-  if Rails.env.test? || Rails.env.development?
+  if Rails.env.test? || Rails.env.development? || rails.env.staging?
     config.enabled = false
   end
 
   config.scrub_fields |= [:remember_token]
-  
+
   config.person_username_method = "full_name"
 
   # If you want to attach custom data to all exception and message reports,
