@@ -9,11 +9,11 @@ module EsSettings
           edge_ngram_filter: {
             type:     "edgeNGram",
             min_gram: 1,
-            max_gram: 20
+            max_gram: 15
           },
           ngram_filter: {
-            type:     "NGram",
-            min_gram: 3,
+            type:     "nGram",
+            min_gram: 2,
             max_gram: 3
           },
           french_elision: {
@@ -24,7 +24,7 @@ module EsSettings
           },
           french_stop: {
             type: "stop",
-            stopwords: "_french_" 
+            stopwords: "_french_"
           },
           french_stemmer: {
             type: "stemmer",
