@@ -9,3 +9,10 @@ Réseau jeunesse, ministère évangélique du Réseau évangélique suisse, http
 ```
 rake elasticsearch:import:all FORCE=true
 ```
+
+### Run tests
+
+```
+$ rake cucumber
+$ rspec 
+```

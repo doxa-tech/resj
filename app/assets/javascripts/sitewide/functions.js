@@ -4,9 +4,11 @@
 /* used in /resource */
 
 function goToByScroll(el){
-  $("html,body").animate({
-    scrollTop: el.offset().top},
-  "slow");
+  if(el.length) {
+    $("html,body").animate({
+      scrollTop: el.offset().top},
+    "slow");
+  }
 }
 
 /* used to add youtube script */
