@@ -4,6 +4,8 @@ lock "3.4.1"
 set :application, "resj"
 set :deploy_user, "resj"
 
+set :ssl, true
+
 set :url, "reseaujeunesse.ch"
 
 set :scm, "git"
