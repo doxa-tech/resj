@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/JS-Tech/capistrano-server.git
-  revision: d0aa637bd540d60d10f7e96d815f82115701456e
+  revision: 766babf0eefbe611a39318811ceeb4e15d5a9829
   specs:
-    capistrano-server (0.5.1)
+    capistrano-server (0.5.2)
       capistrano (~> 3.1)
 
 GIT
@@ -53,10 +53,12 @@ GEM
       activemodel (= 4.2.5)
       activesupport (= 4.2.5)
       arel (~> 6.0)
-    activerecord-session_store (0.1.2)
-      actionpack (>= 4.0.0, < 5)
-      activerecord (>= 4.0.0, < 5)
-      railties (>= 4.0.0, < 5)
+    activerecord-session_store (1.0.0)
+      actionpack (>= 4.0, < 5.1)
+      activerecord (>= 4.0, < 5.1)
+      multi_json (~> 1.11, >= 1.11.2)
+      rack (>= 1.5.2, < 3)
+      railties (>= 4.0, < 5.1)
     activesupport (4.2.5)
       i18n (~> 0.7)
       json (~> 1.7, >= 1.7.7)
@@ -64,7 +66,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.4.0)
-    angularjs-rails (1.5.0)
+    angularjs-rails (1.5.5)
     arel (6.0.3)
     bcrypt (3.1.11)
     builder (3.2.2)
@@ -85,14 +87,14 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
-    capybara (2.7.0)
+    capybara (2.7.1)
       addressable
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    capybara-webkit (1.10.1)
+    capybara-webkit (1.11.1)
       capybara (>= 2.3.0, < 2.8.0)
       json
     carrierwave (0.10.0)
@@ -112,7 +114,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
-    concurrent-ruby (1.0.1)
+    concurrent-ruby (1.0.2)
     coveralls (0.8.13)
       json (~> 1.8)
       simplecov (~> 0.11.0)
@@ -145,15 +147,15 @@ GEM
       elasticsearch-transport (= 1.0.17)
     elasticsearch-api (1.0.17)
       multi_json
-    elasticsearch-model (0.1.8)
+    elasticsearch-model (0.1.9)
       activesupport (> 3)
       elasticsearch (> 0.4)
       hashie
-    elasticsearch-rails (0.1.8)
+    elasticsearch-rails (0.1.9)
     elasticsearch-transport (1.0.17)
       faraday
       multi_json
-    email_spec (2.0.0)
+    email_spec (2.1.0)
       htmlentities (~> 4.3.3)
       launchy (~> 2.1)
       mail (~> 2.6.3)
@@ -215,7 +217,7 @@ GEM
       fog-core (~> 1.22)
       fog-json
       inflecto (~> 0.0.2)
-    fog-core (1.38.0)
+    fog-core (1.39.0)
       builder
       excon (~> 0.49)
       formatador (~> 0.2)
@@ -257,7 +259,7 @@ GEM
     fog-serverlove (0.1.2)
       fog-core
       fog-json
-    fog-softlayer (1.1.0)
+    fog-softlayer (1.1.1)
       fog-core
       fog-json
     fog-storm_on_demand (0.1.1)
@@ -272,7 +274,7 @@ GEM
     fog-voxel (0.1.0)
       fog-core
       fog-xml
-    fog-vsphere (0.6.4)
+    fog-vsphere (0.7.0)
       fog-core
       rbvmomi (~> 1.8)
     fog-xenserver (0.2.3)
@@ -286,7 +288,7 @@ GEM
     git-version-bump (0.15.1)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
-    hashie (3.4.3)
+    hashie (3.4.4)
     htmlentities (4.3.4)
     i18n (0.7.0)
     inflecto (0.0.2)
@@ -317,16 +319,16 @@ GEM
     mime-types-data (3.2016.0221)
     mini_magick (4.2.10)
     mini_portile2 (2.0.0)
-    minitest (5.8.4)
+    minitest (5.9.0)
     multi-select-rails (0.9.12)
       railties (>= 3.0)
-    multi_json (1.11.3)
+    multi_json (1.12.0)
     multi_test (0.1.2)
     multipart-post (2.0.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (3.1.1)
-    newrelic_rpm (3.15.1.316)
+    newrelic_rpm (3.15.2.317)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     pg (0.18.4)
@@ -377,7 +379,7 @@ GEM
       trollop
     rdoc (4.2.2)
       json (~> 1.4)
-    rollbar (2.10.0)
+    rollbar (2.11.3)
       multi_json
     rspec-core (3.4.4)
       rspec-support (~> 3.4.0)
@@ -438,7 +440,7 @@ GEM
       tins (~> 1.0)
     thor (0.19.1)
     thread_safe (0.3.5)
-    tilt (2.0.2)
+    tilt (2.0.4)
     timecop (0.8.1)
     tins (1.6.0)
     trollop (2.1.2)
