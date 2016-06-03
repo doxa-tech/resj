@@ -7,10 +7,24 @@
 
 		<li><%= text_field_tag :subject, nil, placeholder: "Sujet" %></li>
 
-		<li><%= select_tag :emails, grouped_options_for_select([["Orateurs", map_users(@orators)], ["Propriétaires", map_users(@owners)], ["Responables", map_users(@resps)], ["Utilisateurs", map_users(@users)]]), multiple: true, id: "email-select" %></li>
-		<li><%= submit_tag "Envoyer", data: {confirm: "Confirmez-vous l'envoi de cette newsletter ?"} %></li>
+		<li><%= text_area_tag :content, "Contenu" %></li>
 
-		<li><%= select_tag :options, options_from_collection_for_select(Newsletter.all, :id, :name), multiple: true %></li>
+		<li>
+			<%= select_tag :emails,
+				grouped_options_for_select([["Orateurs", map_users(@orators)],
+				["Propriétaires", map_users(@owners)], ["Responables", map_users(@resps)],
+				["Utilisateurs", map_users(@users)]]), multiple: true, id: "email-select" %>
+		</li>
+		<li>
+			<%= submit_tag "Envoyer",
+				data: {confirm: "Confirmez-vous l'envoi de cette newsletter ?"} %>
+		</li>
+
+		<li>
+			<%= select_tag :options,
+				options_from_collection_for_select(Newsletter.all, :id, :name),
+				multiple: true %>
+		</li>
 	</ul>
 </div>
 

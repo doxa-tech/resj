@@ -309,6 +309,8 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
+    mailgun (0.8)
+      rest-client
     mapbox-rails (1.6.1.1)
     meta_request (0.4.0)
       callsite (~> 0.0, >= 0.0.11)
@@ -379,6 +381,8 @@ GEM
       trollop
     rdoc (4.2.2)
       json (~> 1.4)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rollbar (2.11.3)
       multi_json
     rspec-core (3.4.4)
@@ -493,6 +497,7 @@ DEPENDENCIES
   jbuilder (~> 2.2.16)
   jquery-rails (~> 4.0.1)
   jquery-ui-rails (~> 5.0.0)
+  mailgun
   mapbox-rails
   meta_request
   mini_magick (~> 4.2.1)

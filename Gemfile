@@ -116,3 +116,6 @@ gem 'angularjs-rails'
 
 # errors tracking
 gem 'rollbar'
+
+# use mailgun api
+gem 'mailgun'
