@@ -8,7 +8,7 @@ app.controller("pages#home", ["$http", function($http) {
     load_mapbox.loadMap(cards);
 
   });
-  
+
   // Pie chart stuff
   var check = true;
   if(isScrolledIntoView(".easy-chart")) {
@@ -34,14 +34,16 @@ app.controller("pages#home", ["$http", function($http) {
 	  });
 	}
 
-	function isScrolledIntoView(elem) {
-    var docViewTop = $(window).scrollTop();
-    var docViewBottom = docViewTop + $(window).height();
+	function isScrolledIntoView(element) {
+    if(element.length) {
+      var docViewTop = $(window).scrollTop();
+      var docViewBottom = docViewTop + $(window).height();
 
-    var elemTop = $(elem).offset().top+30;
-    var elemBottom = elemTop + $(elem).height();
+      var elementTop = $(element).offset().top + 30;
+      var elementBottom = elementTop + $(element).height();
 
-    return ((elemBottom >= docViewTop) && (elemTop <= docViewBottom) && (elemBottom <= docViewBottom) &&  (elemTop >= docViewTop) );
+      return ((elementBottom >= docViewTop) && (elementTop <= docViewBottom) && (elementBottom <= docViewBottom) && (elementTop >= docViewTop));
+    }
 	}
 
   // This code loads the IFrame Player API code asynchronously.

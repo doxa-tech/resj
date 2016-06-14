@@ -3,10 +3,10 @@
 
 /* used in /resource */
 
-function goToByScroll(el){
-  if(el.length) {
-    $("html,body").animate({
-      scrollTop: el.offset().top},
+function goToByScroll(element){
+  if(element.length) {
+    $("html, body").animate({
+      scrollTop: element.offset().top },
     "slow");
   }
 }

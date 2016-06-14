@@ -7,17 +7,17 @@ gem 'rails', '4.2.5'
 gem 'pg', '~> 0.18.2'
 
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '~> 2.7.1'
+gem 'uglifier'
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails', '~> 4.0.1'
+gem 'jquery-rails', '~> 4.1.0'
 gem 'jquery-ui-rails', '~> 5.0.0'
 # add the jquery plugin selectize.js
 gem 'selectize-rails'
 # Jquery select plugin
 gem 'multi-select-rails'
 # Coffee script
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0.3'
 # Mapbox
@@ -30,7 +30,7 @@ gem 'angularjs-rails'
 gem 'turbolinks', '~> 2.5.3'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.2.16'
+gem 'jbuilder'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -39,7 +39,7 @@ end
 
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt'
 
 # Use puma as the app server
 gem 'puma'
@@ -78,18 +78,18 @@ end
 # gem 'debugger', group: [:development, :test]
 
 # pagination
-gem 'will_paginate', '~> 3.0.5'
+gem 'will_paginate', '~> 3.1.0'
 
 # search
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 
 # image & video uploader
-gem 'carrierwave', '~> 0.10.0'
+gem 'carrierwave', '~> 0.11.0'
 gem 'carrierwave-processing'
 gem 'fog', '~> 1.37.0'
 # image manipulating
-gem 'mini_magick', '~> 4.2.1'
+gem 'mini_magick', '~> 4.5.0'
 
 # new relic
 gem 'newrelic_rpm'

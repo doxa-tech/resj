@@ -13,6 +13,10 @@ Rollbar.configure do |config|
 
   config.person_username_method = "full_name"
 
+  config.exception_level_filters.merge!({
+    'ActionController::RoutingError' => 'ignore',
+  })
+
   # If you want to attach custom data to all exception and message reports,
   # provide a lambda like the following. It should return a hash.
   # config.custom_data_method = lambda { {:some_key => "some_value" } }

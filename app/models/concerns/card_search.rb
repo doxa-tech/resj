@@ -10,9 +10,9 @@ module CardSearch
 
     settings index: default_settings do
       mapping do
-        indexes :name, type: :multi_field, fields: { 
-          name: { type: :string, analyzer: :partial_french, boost: 10 }, 
-          lowercase: { type: :string, analyzer: :case_insensitive_sort } 
+        indexes :name, type: :multi_field, fields: {
+          name: { type: :string, analyzer: :partial_french, boost: 10 },
+          lowercase: { type: :string, analyzer: :case_insensitive_sort }
         }
         indexes :card_type_id, type: :integer
         indexes :tags do
@@ -32,7 +32,7 @@ module CardSearch
     end
 
     def as_indexed_json(options={})
-      as_json(only: [:name, :card_type_id], include: { 
+      as_json(only: [:name, :card_type_id], include: {
         location: { only: [], include: { canton: { only: [:id, :name] } } },
         status: { only: [:name] },
         tags: { only: [:name, :id] }
