@@ -2,7 +2,9 @@ CarrierWave.configure do |config|
   if Rails.env.production?
     config.storage :fog
 
-    config.fog_provider = 'fog-google'
+    # wainting on the latest CarrierWave release to only use 'fog-google'
+    # config.fog_provider = 'fog-google'
+
     config.fog_credentials = {
       :provider                         => 'Google',
       :google_storage_access_key_id     => Rails.application.secrets.gcloud_id,

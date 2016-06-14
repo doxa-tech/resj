@@ -89,9 +89,7 @@ gem 'carrierwave', '~> 0.11.0'
 gem 'carrierwave-processing'
 
 # google cloud adapter
-gem 'fog-google'
-gem 'google-api-client', '< 0.9', '>= 0.6.2'
-gem 'mime-types'
+gem 'fog'
 
 # image manipulating
 gem 'mini_magick', '~> 4.5.0'

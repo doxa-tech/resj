@@ -55,7 +55,7 @@ $(document).on("ready page:load", function() {
   /* User's avatar uploader */
 
   $("#user_avatar").change(function(){
-    $("input[name='user[gravatar]']").removeProp("disabled");
+    $("input[name='user[gravatar]']").removeAttr("disabled");
   });
 
   /* Form's function needed to be recallable */
@@ -88,7 +88,7 @@ function autocomplete() {
           async: true,
           cache: true,
           success: function(data){
-            response(data); 
+            response(data);
           }
         });
       }
