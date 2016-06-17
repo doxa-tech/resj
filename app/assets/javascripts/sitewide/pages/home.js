@@ -3,21 +3,25 @@
 
 app.controller("pages#home", ["$http", function($http) {
 
-  $http.get("reseau.json").success(function(cards) {
-
-    load_mapbox.loadMap(cards);
-
-  });
-
-  // Pie chart stuff
-  var check = true;
-  if(isScrolledIntoView(".easy-chart")) {
-    initChart();
+  var mapInitialized = false;
+  if(isScrolledIntoView("#map")) {
+    mapInitialized = initMap();
   }
+
+  // Pie chart
+  var chartInitialized = false;
+  if(isScrolledIntoView(".charts")) {
+    chartInitialized = initChart();
+  }
+
   $(window).on("scroll", function(){
-    if(check && isScrolledIntoView(".easy-chart")) {
-      check = false;
-      initChart();
+
+    if(!chartInitialized && isScrolledIntoView(".charts", true)) {
+      chartInitialized = initChart();
+    }
+
+    if(!mapInitialized && isScrolledIntoView("#map")) {
+      mapInitialized =  initMap();
     }
   });
 
@@ -28,21 +32,41 @@ app.controller("pages#home", ["$http", function($http) {
 					$(this.el).find("span").text(Math.round(percent / to * $(this.el).data("value")));
 				},
 				barColor:function(percent) {
-					return "rgba(255,97,41,"+percent/100+")";
+					return "rgba(255,97,41," + percent / 100 + ")";
 				},
 				scaleColor: "#ccc",
 	  });
+    return true;
 	}
 
-	function isScrolledIntoView(element) {
+  function initMap() {
+    $http.get("reseau.json").success(function(cards) {
+
+      load_mapbox.loadMap(cards);
+
+    });
+    return true;
+  }
+
+  /*
+    elementBottom >= docViewTop checks if the element is above the viewport
+    elementTop <= docViewBottom checks if the element is below the viewport
+  */
+	function isScrolledIntoView(selector, entirelyVisible) {
+    if (typeof entirelyVisible === 'undefined') { entirelyVisible = false; }
+    var element = $(selector);
+
     if(element.length) {
-      var docViewTop = $(window).scrollTop();
-      var docViewBottom = docViewTop + $(window).height();
+      var docViewTop = $(window).scrollTop(),
+          docViewBottom = docViewTop + $(window).height();
 
-      var elementTop = $(element).offset().top + 30;
-      var elementBottom = elementTop + $(element).height();
+      var elementTop = element.offset().top,
+          elementBottom = elementTop + element.height();
 
-      return ((elementBottom >= docViewTop) && (elementTop <= docViewBottom) && (elementBottom <= docViewBottom) && (elementTop >= docViewTop));
+      var isVisible = elementBottom >= docViewTop && elementTop <= docViewBottom,
+          isEntirelyVisible = elementBottom <= docViewBottom && elementTop >= docViewTop;
+
+      return isVisible && (!entirelyVisible || isEntirelyVisible);
     }
 	}
 

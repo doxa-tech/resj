@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   after_update { self.orator.touch unless orator.nil? || orator.new_record? }
 
   belongs_to :user_type
-  
+
   # User belongs to other users -> .users
   # User has many users -> .inverse_users
   has_many :parents, dependent: :destroy
@@ -55,9 +55,9 @@ class User < ActiveRecord::Base
   def gravatar_url(size = 100)
     default_url = URI.escape "identicon"
     if self.gravatar_email
-      "http://gravatar.com/avatar/#{Digest::MD5.hexdigest(self.gravatar_email.downcase)}.png?d=#{default_url}&s=#{size}"
+      "https://gravatar.com/avatar/#{Digest::MD5.hexdigest(self.gravatar_email.downcase)}.png?d=#{default_url}&s=#{size}"
     else
-      "http://gravatar.com/avatar/#{Digest::MD5.hexdigest('no')}.png?d=#{default_url}&s=#{size}"
+      "https://gravatar.com/avatar/#{Digest::MD5.hexdigest('no')}.png?d=#{default_url}&s=#{size}"
     end
   end
 
@@ -109,14 +109,14 @@ class User < ActiveRecord::Base
   end
 
   def team_edit=(bool)
-    Ownership.create_or_destroy_by(bool, right_read: true, right_create: true, right_update: true, right_delete: true, 
+    Ownership.create_or_destroy_by(bool, right_read: true, right_create: true, right_update: true, right_delete: true,
       element: "cards/affiliations", type: "on_entry", id_element: card.id, user: self)
   end
 
   def card_edit=(bool)
-    Ownership.create_or_destroy_by(bool, right_read: true, right_create: true, right_update: true, 
+    Ownership.create_or_destroy_by(bool, right_read: true, right_create: true, right_update: true,
       element: "cards", type: "on_entry", id_element: card.id, user: self)
   end
 
-  
+
 end
