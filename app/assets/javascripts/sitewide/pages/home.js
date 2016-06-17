@@ -10,7 +10,7 @@ app.controller("pages#home", ["$http", function($http) {
 
   // Pie chart
   var chartInitialized = false;
-  if(isScrolledIntoView(".charts")) {
+  if(isScrolledIntoView(".charts", true)) {
     chartInitialized = initChart();
   }
 
