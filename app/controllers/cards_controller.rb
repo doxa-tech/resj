@@ -1,8 +1,8 @@
 class CardsController < BaseController
-	before_action :current_resource, only: [:update, :overview]
-	before_action :authorize_modify, only: [:update]
+	before_action :current_resource, only: [:update, :overview, :destroy]
+	before_action :authorize_modify, only: [:update, :destroy]
 	before_action :authorize_or_redirect, only: [:overview]
-	after_action only: [:update] { |c| c. track_activity @card }
+	after_action only: [:update, :destroy] { |c| c. track_activity @card }
 
 	layout 'admin', only: [:update, :overview]
 
@@ -40,6 +40,17 @@ class CardsController < BaseController
 			end
 		end
 	end
+
+  def destroy
+    if params[:card_name] == @card.name
+      @card.destroy
+      flash[:success] = "Votre groupe a été supprimé"
+      render 'redirect', locals: { path: user_my_cards_path }
+    elsif params[:card_name].present?
+      @card.errors.add(:name, "ne correspond pas")
+      render 'cards/destroy/error'
+    end
+  end
 
 	private
 

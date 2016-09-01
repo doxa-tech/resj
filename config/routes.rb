@@ -58,8 +58,8 @@ Rails.application.routes.draw do
     end
     resources :sessions, only: [:create]
     resources :password_resets, except: [:index, :show, :destroy]
-    
-    resources :cards, only: [:show, :update] do
+
+    resources :cards, only: [:show, :update, :destroy] do
       member do
         get 'overview'
       end
@@ -87,7 +87,7 @@ Rails.application.routes.draw do
       end
     end
 
-    
+
     namespace :cards do
       resources :wizards, only: [:new, :create] do
         collection do
@@ -133,6 +133,6 @@ Rails.application.routes.draw do
     end
 
     root to: 'pages#home'
-    
+
   end
 end

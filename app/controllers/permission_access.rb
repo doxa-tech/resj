@@ -16,15 +16,26 @@ class PermissionAccess < SimpleDelegator
   end
 
   def authorize(action)
-    redirect_to connexion_path, error: "Vous ne pouvez pas accéder à cette page" unless authorized?(action)
+    unless authorized?(action)
+      respond_to do |f|
+        f.all { head :unauthorized }
+        f.html { redirect_to connexion_path, error: "Vous ne pouvez pas accéder à cette page" }
+      end
+    end
   end
 
   def authorize_resource
     if !authorized?(:read) && !current_permission.allow_resource?
       if !current_user
-        redirect_to connexion_path, infos: render_message('resources_login')
+        respond_to do |f|
+          f.all { head :forbidden }
+          f.html { redirect_to connexion_path, infos: render_message('resources_login') }
+        end
       else
-        redirect_to resources_path, infos: render_message('resources_unlinked_account')
+        respond_to do |f|
+          f.all { head :forbidden }
+          f.html { redirect_to resources_path, infos: render_message('resources_unlinked_account') }
+        end
       end
     end
   end

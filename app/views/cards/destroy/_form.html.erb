@@ -1,0 +1,12 @@
+<%= form_tag nil, method: :delete, remote: true do %>
+
+  <div class="errors"></div>
+
+  <p>Nom du groupe: <%= @card.name %></p>
+
+  <%= label_tag :card_name, "Nom du groupe" %>
+  <%= text_field_tag :card_name %>
+
+  <%= submit_tag "Supprimer" %>
+
+<% end %>
