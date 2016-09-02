@@ -1,4 +1,4 @@
-namespace :demo do 
+namespace :demo do
 
   desc "Setup data for testing"
   task :all => [:validator, :location, :theme, :newsletter, :user_types]

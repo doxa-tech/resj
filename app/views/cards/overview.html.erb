@@ -155,6 +155,10 @@
 	</div>
 </div>
 
+<div id="transfer-card">
+  <%= link_to "Transférer le groupe", transfer_card_path(@card), method: :put, remote: true %>
+</div>
+
 <div id="destroy-card">
   <%= link_to "Supprimer le groupe", card_path(@card), method: :delete, remote: true %>
 </div>

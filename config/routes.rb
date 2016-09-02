@@ -62,6 +62,7 @@ Rails.application.routes.draw do
     resources :cards, only: [:show, :update, :destroy] do
       member do
         get 'overview'
+        put 'transfer'
       end
 
       scope module: :cards do

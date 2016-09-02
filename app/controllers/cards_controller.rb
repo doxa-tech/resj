@@ -1,5 +1,5 @@
 class CardsController < BaseController
-	before_action :current_resource, only: [:update, :overview, :destroy]
+	before_action :current_resource, only: [:update, :overview, :destroy, :transfer]
 	before_action :authorize_modify, only: [:update, :destroy]
 	before_action :authorize_or_redirect, only: [:overview]
 	after_action only: [:update, :destroy] { |c| c. track_activity @card }
@@ -50,6 +50,10 @@ class CardsController < BaseController
       @card.errors.add(:name, "ne correspond pas")
       render 'cards/destroy/error'
     end
+  end
+
+  def transfer
+
   end
 
 	private

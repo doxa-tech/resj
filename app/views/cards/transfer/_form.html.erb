@@ -1,0 +1,15 @@
+<%= form_tag transfer_card_path(@card), method: :put, remote: true do %>
+
+  <div class="errors"></div>
+
+  <%= label_tag :user, "Sélectionner un utilisateur" %>
+  <%= select_tag :user, nil, class: "selectize-users" %>
+
+  <p>Nom du groupe: <%= @card.name %></p>
+
+  <%= label_tag :card_name, "Nom du groupe" %>
+  <%= text_field_tag :card_name %>
+
+  <%= submit_tag "Transférer" %>
+
+<% end %>

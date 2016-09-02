@@ -86,4 +86,8 @@ var selectize = {
       dropdownParent: "body" // prevent overflow error in admin
     });
   }
+
+  users: function() {
+    $(".selectize-users").selectize();
+  }
 };
