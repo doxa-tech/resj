@@ -1,6 +1,7 @@
 class CardsController < BaseController
 	before_action :current_resource, only: [:update, :overview, :destroy, :transfer]
 	before_action :authorize_modify, only: [:update, :destroy]
+  before_action :authorize_action, only: [:transfer]
 	before_action :authorize_or_redirect, only: [:overview]
 	after_action only: [:update, :destroy] { |c| c. track_activity @card }
 
@@ -31,12 +32,12 @@ class CardsController < BaseController
 			respond_to do |format|
 				format.js do
 					@value = @card.updated_attribute_value(params[:card].keys[0], params[:card].values[0])
-					render 'overview_success'
+					render 'cards/overview/success'
 				end
 			end
 		else
 			respond_to do |format|
-				format.js { render 'overview_error' }
+				format.js { render 'cards/overview/error' }
 			end
 		end
 	end
@@ -53,7 +54,18 @@ class CardsController < BaseController
   end
 
   def transfer
-
+    if params[:card_name] && params[:user]
+       @user = User.find_by(id: params[:user])
+       @card.errors.add(:user, "n'est pas valide") if @user.nil? || @user == @card.user
+       @card.errors.add(:name, "ne correspond pas") if params[:card_name] != @card.name
+       if @card.errors.any?
+         render 'cards/destroy/error'
+       else
+         @card.update_attribute(:user, @user)
+         flash[:success] = "Votre groupe a été transféré"
+         render 'redirect', locals: { path: user_my_cards_path }
+       end
+    end
   end
 
 	private

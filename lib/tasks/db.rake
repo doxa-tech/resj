@@ -1,4 +1,4 @@
-namespace :db do 
+namespace :db do
 
 	desc "Ownership to receive the notification email when a card is created"
 	task notification_ownership: :environment do
@@ -21,6 +21,21 @@ namespace :db do
   task publish_articles: :environment do
     Article.all.each do |article|
       article.update_attribute(:published_at, Time.now)
+    end
+  end
+
+  desc "Update owner's permissions to delete and transfer his card"
+  task update_owner_permissions: :environment do
+    action = Action.find_or_create_by(name: "transfer")
+    Card.all.each do |card|
+      user = card.user
+      ownership = Ownership.joins(:element, :ownership_type, :user).where(elements: { name: "card" }, ownership_types: { name: "on_entry" }, users: { email: user.email }, id_element: card.id).first
+      if ownership.nil?
+        puts "Ownership not found: card #{card.name}"
+      else
+        ownership.update_attribute(:right_delete, true)
+        ownership.actions << action
+      end
     end
   end
 

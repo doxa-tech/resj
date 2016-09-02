@@ -44,7 +44,8 @@ FactoryGirl.define do
     card_type { CardType.find_or_create_by(name: "Groupe de jeunes") }
 
     after(:create) do |card|
-      card.user.ownerships.create(element_id: Element.find_or_create_by(name: 'cards').id, ownership_type_id: OwnershipType.find_or_create_by(name: 'on_entry').id, id_element: card.id, right_read: true, right_update: true, right_create: true, right_delete: true)
+      action = [Action.find_or_create_by(name: "transfer")]
+      card.user.ownerships.create(element_id: Element.find_or_create_by(name: 'cards').id, ownership_type_id: OwnershipType.find_or_create_by(name: 'on_entry').id, id_element: card.id, right_read: true, right_update: true, right_create: true, right_delete: true, actions: action)
       card.user.ownerships.create(element_id: Element.find_or_create_by(name: 'cards/affiliations').id, ownership_type_id: OwnershipType.find_or_create_by(name: 'on_entry').id, id_element: card.id, right_create: true, right_delete: true, right_update: true, right_read: true)
     end
 

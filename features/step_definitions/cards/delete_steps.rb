@@ -13,7 +13,3 @@ end
 Then(/^I should see an error in the delete form$/) do
   expect(find "#error").to have_content 'Le champs "Nom" ne correspond pas'
 end
-
-Then(/^I should no more see the card$/) do
-  expect(find ".confirmed").not_to have_content "Waykup"
-end

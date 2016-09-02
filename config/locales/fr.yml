@@ -489,6 +489,7 @@ fr:
     published_at: "A publier le"
     title: "Titre"
     file: "Fichier"
+    user: "Utilisateur"
   activerecord:
     attributes:
       card:

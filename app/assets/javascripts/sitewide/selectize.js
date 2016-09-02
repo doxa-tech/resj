@@ -85,9 +85,28 @@ var selectize = {
       plugins: ["remove_button"],
       dropdownParent: "body" // prevent overflow error in admin
     });
-  }
+  },
 
   users: function() {
-    $(".selectize-users").selectize();
+    $(".selectize-users").selectize({
+      valueField: "id",
+      labelField: "full_name",
+      searchField: "full_name",
+      load: function(query, callback) {
+        if (!query.length) return callback();
+        $.ajax({
+          url: "/searches/users",
+          type: "POST",
+          data: "query=" + query,
+          dataType: "json",
+          error: function() {
+            callback();
+          },
+          success: function(res) {
+            callback(res);
+          }
+        });
+      }
+    });
   }
 };

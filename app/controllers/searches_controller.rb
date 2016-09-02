@@ -31,6 +31,17 @@ class SearchesController < BaseController
 		render json: locations
 	end
 
+  def users
+    query = "%(" + params[:query].downcase.split(" ").join("|") + ")%"
+    users = User.users.where("lower(firstname) similar to :query OR lower(lastname) similar to :query AND confirmed = :confirmed", query: query, confirmed: true).map do |user|
+      {
+        "full_name" => user.full_name,
+        "id" => user.id
+      }
+    end
+    render json: users
+  end
+
 	private
 
 	def search(model, params)
@@ -43,7 +54,7 @@ class SearchesController < BaseController
 
 	def fetch_responsables_and_users(params)
 		responsables = Responsable.where("#{params[:attr]} ilike ?", "%#{params[:term]}%" ).pluck(params[:attr])
-		users = User.joins(:user_type).where("#{params[:attr]} ilike ? AND user_types.name != ?", "%#{params[:term]}%", "group" ).pluck(params[:attr])
+		users = User.users.where("#{params[:attr]} ilike ?", "%#{params[:term]}%").pluck(params[:attr])
 		return responsables.concat(users).uniq
 	end
 
