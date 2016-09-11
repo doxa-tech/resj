@@ -14,7 +14,7 @@ namespace :elasticsearch do
 
   task :restart do
     on roles(:app) do
-      sudo "/etc/init.d/elasticsearch restart"
+      sudo "systemctl restart elasticsearch.service"
     end
   end
 end
