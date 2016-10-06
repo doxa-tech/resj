@@ -154,19 +154,30 @@
 		</div>
 	</div>
 </div>
+<div class="actions">
+	<% if true or current_permission.allow_action?('cards', 'transfer', @card) %>
+	<div class="row">
+		<div class="col split1">
+			<div class="block">
+				<div id="transfer-card">
+					<div class="header"><h2>Transférer le groupe</h2></div>
+				  <%= render 'cards/transfer/form' %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<% end %>
 
-<!--
-
-<%# if current_permission.allow_action?('cards', 'transfer', @card) %>
-<div id="transfer-card">
-  <%#= link_to "Transférer le groupe", transfer_card_path(@card), method: :put, remote: true %>
+	<% if current_permission.allow_modify?('cards', 'destroy', @card) %>
+	<div class="row">
+		<div class="col split1">
+			<div class="block">
+				<div id="destroy-card">
+					<h2>Suppression du groupe</h2>
+					<%= render 'cards/destroy/form' %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<% end %>
 </div>
-<%# end %>
-
-<%# if current_permission.allow_modify?('cards', 'destroy', @card) %>
-<div id="destroy-card">
-  <%#= link_to "Supprimer le groupe", card_path(@card), method: :delete, remote: true %>
-</div>
-<%# end %>
-
--->
