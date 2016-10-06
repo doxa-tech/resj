@@ -18,6 +18,7 @@ var google_map = {
   maximum_zoom: 17,
   default_lat: 46.57,
   default_lng: 6.8794,
+  api_key: 'AIzaSyCVZJYFYD0JEPX5-ron3e26jrj22_NxNhQ',
 
   /*
    * that method gets the scripts at google's and fires the callback
@@ -28,6 +29,7 @@ var google_map = {
       var script = document.createElement("script");
       script.type = "text/javascript";
       script.src = "https://maps.googleapis.com/maps/api/js?v=3.exp&" +
+          "key=" + google_map.api_key + "&" +
           "callback=" + callback;
       document.getElementsByTagName("head")[0].appendChild(script);
       google_map.already_loaded = true;
