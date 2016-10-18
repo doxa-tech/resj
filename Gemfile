@@ -32,12 +32,6 @@ gem 'turbolinks', '~> 2.5.3'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
 
-group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
-end
-
-
 # Use ActiveModel has_secure_password
 gem 'bcrypt'
 
@@ -47,31 +41,30 @@ gem 'puma'
 group :development do
 
     # Use Capistrano for deployment
-    gem 'capistrano', '~> 3.4.0'
-    gem 'capistrano-maintenance', github: 'capistrano/maintenance', require: false
-    gem 'capistrano-server', github: 'JS-Tech/capistrano-server'
+  gem 'capistrano', '~> 3.4.0'
 
-    # rails specific capistrano funcitons
-    gem 'capistrano-rails'
+  gem 'capistrano-maintenance', require: false
 
-    # integrate bundler with capistrano
-    gem 'capistrano-bundler'
+  gem 'capistrano-server', git: 'https://github.com/JS-Tech/capistrano-server'
 
-    # if you are using RBENV
-    gem 'capistrano-rvm'
+  # rails specific capistrano funcitons
+  gem 'capistrano-rails'
+
+  # integrate bundler with capistrano
+  gem 'capistrano-bundler'
+
+  # if you are using RBENV
+  gem 'capistrano-rvm'
 end
 
 group :development do
-	gem 'railroady'
-	gem 'rails-erd'
-	gem 'quiet_assets'
 	gem 'bullet'
 	gem 'meta_request'
 	gem 'active_record_query_trace'
 	gem 'web-console'
 	gem 'spring'
-    gem 'rails-dev-boost', :git => 'git://github.com/thedarkone/rails-dev-boost.git'
-    gem 'rb-fsevent', '>= 0.9.1' # goes with rails-dev-boost
+  gem 'rails-dev-boost', :git => 'https://github.com/thedarkone/rails-dev-boost.git'
+  gem 'rb-fsevent', '>= 0.9.1' # goes with rails-dev-boost
 end
 
 # Use debugger

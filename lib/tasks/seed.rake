@@ -76,6 +76,9 @@ namespace :seed do
 
 		invite = Action.find_or_create_by(name: "invite")
 		Ownership.joins(:element).find_by(elements: { name: 'admin/users' }, user: g_admin, ownership_type: all_entries).update_attribute(:actions, [invite])
+
+		transfer = Action.find_or_create_by(name: "transfer")
+		Ownership.joins(:element).find_by(elements: { name: 'cards' }, user: g_admin, ownership_type: all_entries).update_attribute(:actions, [transfer])
 	end
 
 	desc "Create a superuser"
