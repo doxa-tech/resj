@@ -2,8 +2,9 @@
 
   <div class="errors"></div>
 
-  <p>Pour confirmer la suppression, veuillez entrer le nom du groupe (<%= @card.name %>):</p>
+  <p>Nom du groupe: <%= @card.name %></p>
 
+  <%= label_tag :card_name, "Nom du groupe" %>
   <%= text_field_tag :card_name %>
 
   <%= submit_tag "Supprimer" %>

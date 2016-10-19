@@ -38,7 +38,4 @@ app.controller("cards#overview", ["params", function(params) {
     }
   };
 
-  // To transfer
-  selectize.users();
-
 }]);

@@ -2,12 +2,10 @@
 
   <div class="errors"></div>
 
-  <p>Cette action va tranférer les droits d'administrateur du groupe à un des co-responsable de votre groupe.</p>
-
   <%= label_tag :user, "Sélectionner un utilisateur" %>
   <%= select_tag :user, nil, class: "selectize-users" %>
 
-  <p>Pour confirmer le transfert, veuillez entrer le nom du groupe (<%= @card.name %>):</p>
+  <p>Nom du groupe: <%= @card.name %></p>
 
   <%= label_tag :card_name, "Nom du groupe" %>
   <%= text_field_tag :card_name %>

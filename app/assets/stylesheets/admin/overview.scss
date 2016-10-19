@@ -27,7 +27,7 @@
 		box-shadow: 4px 4px 0px rgba(151,184,140,1);
 		border: 1px solid rgba(151,184,140,.5);
 		margin: 10px 0 0 0;
-	}
+	}	
 	#lat, #lng {
 		width: 200px;
 		border: none;
@@ -43,7 +43,7 @@
 			}
 		}
 	}
-
+	
 	.card-form {text-align: right}
 
 	input[type=submit] {
@@ -51,15 +51,5 @@
 		height: 25px;
 		padding: 0 5px;
 		text-transform: capitalize;
-	}
-
-	.actions {
-		p {
-			padding: 10px;
-		}
-		.errors {
-			background: #ff9a8c;
-			padding: 3px;
-		}
 	}
 }
