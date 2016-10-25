@@ -1,12 +1,10 @@
 <%= form_tag nil, method: :delete, remote: true do %>
+  <div class="col split1">
+    <div class="errors"></div>
+    <h2>Suppression du groupe</h2>
+    <p>Pour confirmer la suppression, veuillez entrer le nom du groupe (<%= @card.name %>):</p>
+    <%= text_field_tag :card_name %>
 
-  <div class="errors"></div>
-
-  <p>Nom du groupe: <%= @card.name %></p>
-
-  <%= label_tag :card_name, "Nom du groupe" %>
-  <%= text_field_tag :card_name %>
-
-  <%= submit_tag "Supprimer" %>
-
+    <%= submit_tag "Supprimer" %>
+  </div>
 <% end %>
