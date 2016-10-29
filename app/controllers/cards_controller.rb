@@ -47,7 +47,7 @@ class CardsController < BaseController
       @card.destroy
       flash[:success] = "Votre groupe a été supprimé"
       render 'redirect', locals: { path: user_my_cards_path }
-    elsif params[:card_name].present?
+    elsif !params[:card_name].nil?
       @card.errors.add(:name, "ne correspond pas")
       render 'cards/destroy/error'
     end

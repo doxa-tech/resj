@@ -1,4 +1,4 @@
-@javascript
+@javascript @selenium @wip
 Feature: transfer a card
 
   So that a new user can manage the card
@@ -23,7 +23,6 @@ Feature: transfer a card
     And I mistype the name of the card
     Then I should see the error "Le champs "Nom" ne correspond pas" in the transfer form
 
-  @wip
   Scenario: I transfer to myself
     When I choose myself to receive the card
     And I confirm transfering the card

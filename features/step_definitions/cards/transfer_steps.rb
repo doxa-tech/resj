@@ -8,12 +8,12 @@ When(/^I choose an user to receive the card$/) do
 end
 
 When(/^I confirm transfering the card$/) do
-  fill_in "Nom du groupe", with: "Waykup"
+  fill_in "card_name", with: "Waykup"
   click_button "Transférer"
 end
 
 When(/^I mistype the name of the card$/) do
-  fill_in "Nom du groupe", with: "Wrong name"
+  fill_in "card_name", with: "Wrong name"
   click_button "Transférer"
 end
 

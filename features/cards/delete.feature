@@ -1,4 +1,4 @@
-@javascript
+@javascript @selenium
 Feature: delete a card
 
   So that I can remove a card that is no more relevant
