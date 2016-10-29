@@ -159,13 +159,13 @@
 	<div class="block danger-zone">
 		<h2>Zone dangereuse</h2>
 		<div class="links">
-		<%# if current_permission.allow_action?('cards', 'transfer', @card) %>
+		<% if current_permission.allow_action?('cards', 'transfer', @card) %>
 		  <%= link_to "Transférer le groupe", transfer_card_path(@card), method: :put, remote: true, id: "transfer-btn" %>
-		<%# end %>
+		<% end %>
 
-		<%# if current_permission.allow_modify?('cards', 'destroy', @card) %>
+		<% if current_permission.allow_modify?('cards', 'destroy', @card) %>
 		  <%= link_to "Supprimer le groupe", card_path(@card), method: :delete, remote: true, id: "destroy-btn" %>
-		<%# end %>
+		<% end %>
 		</div>
 	</div>
 </div>
