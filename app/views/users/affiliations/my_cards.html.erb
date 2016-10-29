@@ -26,7 +26,9 @@
 									<%= render 'application/admin/edit_btn', path: overview_card_path(card) %>
 								<% end %>
 								<%  %>
-								<%= link_to "Quitter", users_affiliation_path(card), method: :delete, data: {confirm: "Etes-vous sûr de vouloir quitter ce groupe ?" }, class: "edit-btn" if card.user_id != current_user.id %>
+								<%= link_to users_affiliation_path(card), method: :delete, data: {confirm: "Etes-vous sûr de vouloir quitter ce groupe ?" }, class: "edit-btn" do %>
+									Quitter <span class="exit fi-power"></span>
+								<% end %>
 							</li>
 						<% end %>
 				<% end %>
