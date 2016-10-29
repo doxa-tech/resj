@@ -7,7 +7,7 @@ class Permission
 
 	def allow_modify?(controller, action, current_resource = nil)
 		right_to = right[action] || "right_update"
-		@modify_ownerships ||= Ownership.permission.where("user_id IN (?) AND elements.name = ? AND #{right_to} = ?", @ids, controller, true)
+		@modify_ownerships = Ownership.permission.where("user_id IN (?) AND elements.name = ? AND #{right_to} = ?", @ids, controller, true)
 		allow?(@modify_ownerships, current_resource)
 	end
 

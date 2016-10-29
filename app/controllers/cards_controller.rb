@@ -1,7 +1,7 @@
 class CardsController < BaseController
 	before_action :current_resource, only: [:update, :overview, :destroy, :transfer]
 	before_action :authorize_modify, only: [:update, :destroy]
-  before_action :authorize_action, only: [:transfer]
+  #before_action :authorize_action, only: [:transfer]
 	before_action :authorize_or_redirect, only: [:overview]
 	after_action only: [:update, :destroy] { |c| c. track_activity @card }
 
