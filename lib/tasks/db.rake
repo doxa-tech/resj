@@ -29,8 +29,8 @@ namespace :db do
     action = Action.find_or_create_by(name: "transfer")
     Card.all.each do |card|
       user = card.user
-      ownership = Ownership.joins(:element, :ownership_type, :user).where(elements: { name: "card" }, ownership_types: { name: "on_entry" }, users: { email: user.email }, id_element: card.id).first
-      if ownership.nil?
+      ownership = Ownership.search(element: "cards", type: "on_entry", user: user, id_element: card.id).first
+			if ownership.nil?
         puts "Ownership not found: card #{card.name}"
       else
         ownership.update_attribute(:right_delete, true)

@@ -108,7 +108,8 @@ class Card < ActiveRecord::Base
     card_user, new_user, password = find_or_create_owner(owner)
     self.update_attribute(:user, card_user)
     transfer = Action.find_by_name("transfer")
-    Ownership.add(user: card_user, element: "cards", type: "on_entry", id_element: id, right_read: true, right_update: true, right_create: true, right_delete: true, actions: [transfer])
+    Ownership.add(user: card_user, element: "cards", type: "on_entry", id_element: id,
+      right_read: true, right_update: true, right_create: true, right_delete: true, actions: [transfer])
     Ownership.add(user: card_user, element: "cards/affiliations", type: "on_entry", id_element: id,
       right_create: true, right_delete: true, right_update: true, right_read: true)
     CardMailer.owner_created(self, new_user, password).deliver_now

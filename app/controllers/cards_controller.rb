@@ -61,8 +61,12 @@ class CardsController < BaseController
        if @card.errors.any?
          render 'cards/destroy/error'
        else
-         @card.update_attribute(:user, @user)
-         flash[:success] = "Votre groupe a été transféré"
+				 cards = Ownership.search(element: "cards", type: "on_entry", user: @card.user, id_element: @card.id).first
+				 affiliations = Ownership.search(element: "cards/affiliations", type: "on_entry", user: @card.user, id_element: @card.id).first
+				 cards.update_attribute(:user, @user)
+				 affiliations.update_attribute(:user, @user)
+				 @card.update_attribute(:user, @user)
+				 flash[:success] = "Votre groupe a été transféré"
          render 'redirect', locals: { path: user_my_cards_path }
        end
     end

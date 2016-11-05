@@ -44,8 +44,9 @@ class Permission
   end
 
   def allow_action?(controller, action, current_resource = nil)
-  	@action_ownerships ||= Ownership.permission.joins(:actions).where(user_id: @ids, elements: {name: controller}, actions: {name: action})
-  	allow?(@action_ownerships, current_resource)
+  	@action_ownerships = Ownership.permission.joins(:actions).where(user_id: @ids, elements: {name: controller}, actions: {name: action})
+		@action_ownerships.any?
+		allow?(@action_ownerships, current_resource)
   end
 
   def allow_token?(controller, action, token, current_resource = nil)
