@@ -1,4 +1,4 @@
-@javascript @selenium @wip
+@javascript @selenium
 Feature: transfer a card
 
   So that a new user can manage the card

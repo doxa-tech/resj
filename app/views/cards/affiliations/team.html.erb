@@ -24,7 +24,7 @@
 								<div class="check-box"><%= member_fields.label :team_edit, "Peut éditer les droits du groupe" %><%= member_fields.check_box :team_edit, class: "team-edit" %></div>
 							<% end %></li>
 						<% end %>
-						<% if @card_permission.members.size > 1 %>
+						<% if @card_permission.members.size >= 1 %>
 							<li><%= f.submit "Enregistrer" %></li>
 						<% end %>
 					<% end %>
@@ -113,7 +113,7 @@
 				</div>
 
 				<div class="errors"><%= render 'error_messages', object: f.object %></div>
-				
+
 				<ul class="team">
 					<li>
 						<div class="association_fields autocomplete" data-link="responsables">
