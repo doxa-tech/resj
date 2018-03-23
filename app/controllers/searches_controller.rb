@@ -55,7 +55,7 @@ class SearchesController < BaseController
 	def fetch_responsables_and_users(params)
 		responsables = Responsable.where("#{params[:attr]} ilike ?", "%#{params[:term]}%" ).pluck(params[:attr])
 		users = User.users.where("#{params[:attr]} ilike ?", "%#{params[:term]}%").pluck(params[:attr])
-		return responsables.concat(users).uniq
+		return responsables.concat(users).distinct
 	end
 
 end

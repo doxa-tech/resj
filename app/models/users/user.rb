@@ -78,7 +78,7 @@ class User < ApplicationRecord
   def confirmed_cards
     Card.joins("LEFT JOIN card_users ON card_users.card_id = cards.id").where(
       "card_users.user_id = ? AND card_users.user_validated = ? AND card_users.card_validated = ? OR cards.user_id = ?", id, true, true, id
-      ).uniq
+      ).distinct
   end
 
   # Cards request from an user and not answered
