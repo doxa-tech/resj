@@ -5,7 +5,7 @@ module HeaderHelper
 	end
 
 	def allowed_links
-    @admin_links ||= Element.joins(:ownerships).where(ownerships: {user_id: current_user.parents.pluck(:parent_id) << current_user.id }, name: active_links ).pluck(:name).distinct
+    @admin_links ||= Element.joins(:ownerships).where(ownerships: {user_id: current_user.parents.pluck(:parent_id) << current_user.id }, name: active_links ).pluck(:name).uniq
   end
 
 	def grouped_links
