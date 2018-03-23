@@ -252,7 +252,7 @@ GEM
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
     os (0.9.6)
-    pg (1.0.0)
+    pg (0.21.0)
     public_suffix (3.0.2)
     puma (3.11.3)
     rack (2.0.4)
@@ -407,7 +407,7 @@ DEPENDENCIES
   mapbox-rails (~> 1.6.0)
   mini_magick
   multi-select-rails
-  pg (~> 1.0.0)
+  pg (~> 0.21)
   puma (~> 3.11)
   rails (~> 5.0.0)
   rspec-rails
