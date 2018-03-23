@@ -1,4 +1,4 @@
-class HelpPage < ActiveRecord::Base
+class HelpPage < ApplicationRecord
   belongs_to :category, class_name: HelpCategory, foreign_key: "help_category_id"
 
   validates :name, presence: true, length: { maximum: 60 }

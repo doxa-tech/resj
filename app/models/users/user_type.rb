@@ -1,3 +1,3 @@
-class UserType < ActiveRecord::Base
+class UserType < ApplicationRecord
 	has_many :users
 end

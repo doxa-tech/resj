@@ -1,4 +1,4 @@
-class Theme < ActiveRecord::Base
+class Theme < ApplicationRecord
 	has_many :orator_themes, dependent: :destroy
 	has_many :orators, through: :orator_themes
 

@@ -1,4 +1,4 @@
-class CardVerification < ActiveRecord::Base
+class CardVerification < ApplicationRecord
   belongs_to :card
   belongs_to :user
 end

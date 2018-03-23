@@ -1,4 +1,4 @@
-class Document < ActiveRecord::Base
+class Document < ApplicationRecord
 	belongs_to :subject
 
 	validates :name, presence: true, length: { maximum: 30 }

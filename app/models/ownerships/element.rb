@@ -1,3 +1,3 @@
-class Element < ActiveRecord::Base
+class Element < ApplicationRecord
 	has_many :ownerships
 end

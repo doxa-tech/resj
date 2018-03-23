@@ -1,4 +1,4 @@
-class Ownership < ActiveRecord::Base
+class Ownership < ApplicationRecord
   include AutosaveAssociatedRecords
   scope :permission, -> { includes(:ownership_type).joins(:element) }
 

@@ -1,4 +1,4 @@
-class Card < ActiveRecord::Base
+class Card < ApplicationRecord
   include AutosaveAssociatedRecords
   include Wizard
   include CardValidation

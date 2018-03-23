@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   include UserValidation
 	attr_accessor :current_password, :card
 

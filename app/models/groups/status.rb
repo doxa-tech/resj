@@ -1,5 +1,5 @@
-class Status < ActiveRecord::Base
-  
+class Status < ApplicationRecord
+
 	has_many :cards
 
 	validates :name, presence: true, length: { maximum: 30 }

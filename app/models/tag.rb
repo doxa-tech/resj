@@ -1,4 +1,4 @@
-class Tag < ActiveRecord::Base
+class Tag < ApplicationRecord
 	has_many :taggings, dependent: :destroy
 	has_many :cards, through: :taggings
 

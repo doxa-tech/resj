@@ -1,3 +1,3 @@
-class OwnershipType < ActiveRecord::Base
+class OwnershipType < ApplicationRecord
 	has_many :ownerships
 end

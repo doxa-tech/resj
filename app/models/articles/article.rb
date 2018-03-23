@@ -1,4 +1,4 @@
-class Article < ActiveRecord::Base
+class Article < ApplicationRecord
   belongs_to :user
   has_many :article_themes
   has_many :themes, through: :article_themes

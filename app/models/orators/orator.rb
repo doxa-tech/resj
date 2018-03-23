@@ -1,4 +1,4 @@
-class Orator < ActiveRecord::Base
+class Orator < ApplicationRecord
   include OratorSearch
 
   belongs_to :user

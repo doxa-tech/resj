@@ -1,4 +1,4 @@
-class AccessToken < ActiveRecord::Base
+class AccessToken < ApplicationRecord
   belongs_to :ownership
 
   validates :ownership_id, presence: true

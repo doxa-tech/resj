@@ -1,5 +1,5 @@
-class Page < ActiveRecord::Base
+class Page < ApplicationRecord
 
 	validates :content, presence: true
-	
+
 end
