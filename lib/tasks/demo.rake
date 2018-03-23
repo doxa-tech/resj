@@ -5,7 +5,7 @@ namespace :demo do
 
 	desc "Add a admin to notify when a card is created"
 	task validator: :environment do
-    user = FactoryGirl.create(:user, firstname: "Fred", lastname: "Vegas")
+    user = FactoryBot.create(:user, firstname: "Fred", lastname: "Vegas")
 		Ownership.find_or_add_by(element: 'admin/card_statuses', user: user, type: 'all_entries', right_update: true)
 	end
 

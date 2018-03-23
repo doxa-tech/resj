@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock "3.4.1"
+lock "3.6.1"
 
 set :application, "resj"
 set :deploy_user, "resj"
@@ -44,10 +44,6 @@ set :bundle_binstubs, nil
 set :keep_releases, 5
 
 set :maintenance_template_path, "config/deploy/templates/maintenance.html.erb"
-
-set :rollbar_token, "78ed4ff9ce4f413cad73572b5eda3b28"
-set :rollbar_env, Proc.new { fetch :stage }
-set :rollbar_role, Proc.new { :app }
 
 namespace :deploy do
   # cleanup

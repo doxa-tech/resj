@@ -17,24 +17,24 @@ class BannerUploader < CarrierWave::Uploader::Base
 
   version :xl do
     process :check_ratio
-    process :resize_to_limit => [1920, nil] 
+    process :resize_to_limit => [1920, nil]
   end
 
   version :l do
     process :check_ratio
-    process :resize_to_limit => [1200, nil] 
+    process :resize_to_limit => [1200, nil]
   end
 
   version :m do
     process :check_ratio
-    process :resize_to_limit => [992, nil] 
+    process :resize_to_limit => [992, nil]
   end
 
   version :s do
     process :check_ratio
-    process :resize_to_limit => [768, nil] 
+    process :resize_to_limit => [768, nil]
   end
-  
+
   process :check_size
   process :resize_to_limit => [2500, 2500]
   process :quality => 90
@@ -44,7 +44,7 @@ class BannerUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  def extension_white_list
+  def extension_whitelist
     %w(jpg jpeg gif png)
   end
 

@@ -33,7 +33,7 @@ class DocumentsUploader < CarrierWave::Uploader::Base
     "/tmp/uploads/documents/#{model.id}"
   end
 
-  def extension_white_list
+  def extension_whitelist
     %w[doc docx ppt pptx xls xlsx pdf odt odp ods].concat(Document::VIDEO_EXT)
   end
 

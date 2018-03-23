@@ -1,17 +1,17 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5'
+gem 'rails', '~> 5.0.0'
 
 # Use postgres as the database for Active Record
-gem 'pg', '~> 0.18.2'
+gem 'pg', '~> 1.0.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails', '~> 4.1.0'
-gem 'jquery-ui-rails', '~> 5.0.0'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
 # add the jquery plugin selectize.js
 gem 'selectize-rails'
 # Jquery select plugin
@@ -19,29 +19,29 @@ gem 'multi-select-rails'
 # Coffee script
 gem 'coffee-rails'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0.3'
+gem 'sass-rails'
 # Mapbox
-gem 'mapbox-rails'
+gem 'mapbox-rails', '~> 1.6.0'
 # AngularJS
-gem 'angularjs-rails'
+gem 'angularjs-rails', '~> 1.6.0'
 
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks', '~> 2.5.3'
+gem 'turbolinks', '~> 5.1'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder'
+gem 'jbuilder', '~> 2.6'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt'
 
 # Use puma as the app server
-gem 'puma'
+gem 'puma', '~> 3.11'
 
 group :development do
 
     # Use Capistrano for deployment
-  gem 'capistrano', '~> 3.4.0'
+  gem 'capistrano', '3.6.1'
 
   gem 'capistrano-maintenance', require: false
 
@@ -55,40 +55,35 @@ group :development do
 
   # if you are using RBENV
   gem 'capistrano-rvm'
-end
 
-group :development do
-	gem 'bullet'
-	gem 'meta_request'
-	gem 'active_record_query_trace'
-	gem 'web-console'
-	gem 'spring'
-  gem 'rails-dev-boost', :git => 'https://github.com/thedarkone/rails-dev-boost.git'
-  gem 'rb-fsevent', '>= 0.9.1' # goes with rails-dev-boost
+    # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
+  gem 'web-console'
+  gem 'listen'
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+  gem 'spring-watcher-listen'
 end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
 # pagination
-gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate'
 
 # search
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 
 # image & video uploader
-gem 'carrierwave', '~> 0.11.0'
+gem 'carrierwave', '~> 1.2.0'
+gem 'carrierwave-i18n'
 gem 'carrierwave-processing'
 
 # google cloud adapter
-gem 'fog'
+gem 'fog-google'
 
 # image manipulating
-gem 'mini_magick', '~> 4.5.0'
-
-# new relic
-gem 'newrelic_rpm'
+gem 'mini_magick'
 
 gem 'activerecord-session_store'
 
@@ -97,20 +92,15 @@ group :development, :test do
 	gem 'cucumber-rails', require: false
 	gem 'database_cleaner'
 	gem 'capybara-webkit'
-	gem 'selenium-webdriver', '~> 2.53'
-	gem 'factory_girl_rails'
+	gem 'selenium-webdriver'
+	gem 'factory_bot_rails'
 	gem 'email_spec'
 	gem 'faker'
 	gem 'timecop'
 end
 
-gem 'coveralls', require: false
-
 # HTML tables
-gem 'snaptable', '< 1.0.0'
-
-# errors tracking
-gem 'rollbar'
+gem 'snaptable'
 
 # use mailgun api
 gem 'mailgun'

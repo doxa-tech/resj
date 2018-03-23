@@ -1,4 +1,4 @@
-require File.expand_path('../boot', __FILE__)
+require_relative 'boot'
 
 require 'rails/all'
 
@@ -34,10 +34,10 @@ module Resj
       g.stylesheets     false
       g.javascripts     false
       g.helper          false
-      g.factory_girl    false
+      g.factory_bot    false
     end
 
-    # for exceptions (404, ...) (nkcr)
+    # for exceptions (404, ...)
     config.exceptions_app = self.routes
 
     config.paths.add "app/models", eager_load: true, glob: "*"
