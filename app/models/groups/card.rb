@@ -57,7 +57,7 @@ class Card < ApplicationRecord
 
   # Users affiliations
   def confirmed_users
-    User.joins(:card_users).where(card_users: {user_validated: true, card_validated: true, card_id: id} ).or User.find(user_id)
+    User.joins(:card_users).where(card_users: {user_validated: true, card_validated: true, card_id: id} ).or User.where(id: user_id)
   end
 
   # Users request from a card and not answered
