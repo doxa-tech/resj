@@ -49,18 +49,15 @@ RSpec.describe CardMailer do
     end
   end
 
-  describe 'for team_welcome', skip: true do
+  describe 'for team_welcome' do
     let(:email) { CardMailer.team_welcome(card) }
 
     it "should be delivered to card's owner email" do
-      p card.responsables
-      p card.responsables.pluck(:email)
       expect(email).to be_delivered_to(card.responsables.pluck(:email))
     end
 
     it "should send the email" do
-      p email
-      expect { email.deliver_now }.to change { ActionMailer::Base.deliveries.count }.by(card.responsables.count)
+      expect { email.deliver_now }.to change { ActionMailer::Base.deliveries.size }.by(1)
     end
   end
 
