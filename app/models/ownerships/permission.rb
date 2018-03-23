@@ -35,11 +35,12 @@ class Permission
 	end
 
   def index_ownerships(controller, token=nil)
-    @index_ownerships ||= Ownership.permission.where(user_id: @ids, right_read: true, elements: {name: controller})
-    if !(@index_token ||= AccessToken.find_by_token token).nil? && @index_token.is_valid?
+    @index_ownerships ||= Ownership.permission.where(user_id: @ids, right_read: true, elements: {name: controller}).to_a
+		@index_token ||= AccessToken.find_by_token(token)
+    if !@index_token.nil? && @index_token.is_valid?
       @index_ownerships << @index_token.ownership
     end
-    @index_ids ||= @index_ownerships.pluck(:id_element)
+    @index_ids ||= @index_ownerships.map(&:id_element)
     return @index_ownerships, @index_ids
   end
 

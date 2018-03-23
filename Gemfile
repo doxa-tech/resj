@@ -97,6 +97,7 @@ group :development, :test do
 	gem 'email_spec'
 	gem 'faker'
 	gem 'timecop'
+  gem 'rails-controller-testing'
 end
 
 # HTML tables
