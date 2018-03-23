@@ -4,9 +4,9 @@ RSpec.describe Cards::AffiliationsController, :type => :controller do
 
   describe "GET #team" do
     let(:card) { create(:card) }
-    let(:response) { get :team, card_id: card }
+    let(:response) { get :team, params: { card_id: card }}
 
-    it "should allow a authorized user" do 
+    it "should allow a authorized user" do
       user = create(:user)
       create(:ownership, user: user, element_name: "cards/affiliations", right_update: true, id_element: card.id, type_name: "on_entry")
       sign_in user
@@ -22,6 +22,6 @@ RSpec.describe Cards::AffiliationsController, :type => :controller do
       sign_in user
       expect(response).to redirect_to connexion_path
     end
-    
+
   end
 end

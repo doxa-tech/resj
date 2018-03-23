@@ -12,7 +12,7 @@ RSpec.describe Admin::CardsController, :type => :controller do
 
     it "should create or find the related actions" do
       params = @card_params.merge({affiliations_attributes: {"0" => {name: @affiliation.name}, "1" => {name: "Uptown"}}})
-      post :create, card: params
+      post :create, params: { card: params }
       expect(Card.last.affiliations).to include(@affiliation, Affiliation.find_by_name("Uptown"))
     end
   end

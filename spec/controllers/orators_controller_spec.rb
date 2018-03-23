@@ -14,11 +14,11 @@ RSpec.describe OratorsController, :type => :controller do
     context "when visitor" do
 
       it "should store the token" do
-        get :new, token: @token.token 
+        get :new, params: { token: @token.token }
         expect(response.status).to eq 200
         get :new
         expect(response.status).to eq 200
-      end 
+      end
 
     end
 
@@ -28,12 +28,12 @@ RSpec.describe OratorsController, :type => :controller do
       end
 
       it "should redirect" do
-        get :new, token: @token.token 
+        get :new, params: { token: @token.token }
         expect(response).to redirect_to root_path
       end
 
       it "should display a flash" do
-        get :new, token: @token.token 
+        get :new, params: { token: @token.token }
         expect(flash[:error]).to eq "Vous êtes déjà un orateur."
       end
 
@@ -42,14 +42,14 @@ RSpec.describe OratorsController, :type => :controller do
     context "when user" do
       it "should be ok" do
         sign_in create(:user)
-        get :new, token: @token.token 
+        get :new, params: { token: @token.token }
         expect(response.status).to eq 200
       end
     end
 
     context "when not signed in" do
       it "should be ok" do
-        get :new, token: @token.token 
+        get :new, params: { token: @token.token }
         expect(response.status).to eq 200
       end
     end

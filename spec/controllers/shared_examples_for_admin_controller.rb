@@ -4,7 +4,7 @@ shared_examples_for "an admin controller" do |object|
 
     before(:each) do
       @user = create(:user)
-      create(:ownership, element_name: "admin/#{object.to_s.pluralize}", type_name: "all_entries", 
+      create(:ownership, element_name: "admin/#{object.to_s.pluralize}", type_name: "all_entries",
         right_read: true, right_create: true, right_delete: true, right_update: true)
       sign_in @user
     end
@@ -31,7 +31,7 @@ shared_examples_for "an admin controller" do |object|
     end
 
     describe "POST #create" do
-      let!(:response) { post :create, hash_name(object) => object_params(object) }
+      let!(:response) { post :create, params: { hash_name(object) => object_params(object) }}
 
       it "should redirect to the list" do
         expect(response).to redirect_to controller_path(object)
@@ -47,7 +47,7 @@ shared_examples_for "an admin controller" do |object|
       let!(:record) { create(factory(object)) }
 
       describe "GET #edit" do
-        let!(:response) { get :edit, id: record.id }
+        let!(:response) { get :edit, params: { id: record.id }}
 
         it "should allow the user" do
           expect(response).to_not redirect_to anything
@@ -55,7 +55,7 @@ shared_examples_for "an admin controller" do |object|
       end
 
       describe "PATCH #update" do
-        let!(:response) { patch :update, id: record.id, hash_name(object) => {attribute => value} }
+        let!(:response) { patch :update, params: { id: record.id, hash_name(object) => {attribute => value} }}
 
         it "should redirect to the list" do
           expect(response).to redirect_to controller_path(object)
@@ -68,7 +68,7 @@ shared_examples_for "an admin controller" do |object|
       end
 
       describe "DELETE #destroy" do
-        let(:response) { delete :destroy, id: record.id }
+        let(:response) { delete :destroy, params: { id: record.id }}
 
         it "should destroy the object" do
           expect{ response }.to change(model(object), :count).by(-1)
@@ -124,7 +124,7 @@ shared_examples_for "an admin controller" do |object|
       let!(:record) { create(factory(object)) }
 
       describe "GET #edit" do
-        let!(:response) { get :edit, id: record.id }
+        let!(:response) { get :edit, params: { id: record.id }}
 
         it "should not allow the user" do
           expect(response).to redirect_to anything #profile_path
@@ -132,7 +132,7 @@ shared_examples_for "an admin controller" do |object|
       end
 
       describe "PATCH #update" do
-        let!(:response) { patch :update, id: record.id, hash_name(object) => {attribute => value} }
+        let!(:response) { patch :update, params: { id: record.id, hash_name(object) => {attribute => value} }}
 
         it "should not allow the user" do
           expect(response).to redirect_to anything #profile_path
@@ -145,7 +145,7 @@ shared_examples_for "an admin controller" do |object|
       end
 
       describe "DELETE #destroy" do
-        let(:response) { delete :destroy, id: record.id }
+        let(:response) { delete :destroy, params: { id: record.id }}
 
         it "should not destroy the object" do
           expect{ response }.to_not change(model(object), :count)
@@ -194,7 +194,7 @@ shared_examples_for "an admin controller" do |object|
       let!(:record) { create(factory(object)) }
 
       describe "GET #edit" do
-        let!(:response) { get :edit, id: record.id }
+        let!(:response) { get :edit, params: { id: record.id }}
 
         it "should not redirect" do
           expect(response).to redirect_to connexion_path
@@ -202,7 +202,7 @@ shared_examples_for "an admin controller" do |object|
       end
 
       describe "POST #update" do
-        let!(:response) { patch :update, id: record.id, hash_name(object) => {attribute => value} }
+        let!(:response) { patch :update, params: { id: record.id, hash_name(object) => {attribute => value} }}
 
         it "should redirect to the login" do
           expect(response).to redirect_to connexion_path
@@ -214,7 +214,7 @@ shared_examples_for "an admin controller" do |object|
       end
 
       describe "DELETE #destroy" do
-        let(:response) { delete :destroy, id: record.id }
+        let(:response) { delete :destroy, params: { id: record.id }}
 
         it "should not destroy the object" do
           expect{ response }.to_not change(model(object), :count)

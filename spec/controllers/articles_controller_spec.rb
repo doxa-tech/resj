@@ -17,7 +17,7 @@ RSpec.describe ArticlesController, :type => :controller do
     describe "GET #show" do
 
       it "should display a published article" do
-        get :show, id: article.id
+        get :show, params: { id: article.id }
         expect(assigns(:article)).to eq(article)
       end
     end
@@ -39,7 +39,7 @@ RSpec.describe ArticlesController, :type => :controller do
     describe "GET #show" do
 
       it "should not display an unpublished article" do
-        expect { get :show, id: article.id }.to raise_error(ActiveRecord::RecordNotFound)
+        expect { get :show, params: { id: article.id }}.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
 

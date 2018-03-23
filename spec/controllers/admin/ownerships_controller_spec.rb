@@ -12,7 +12,7 @@ RSpec.describe Admin::OwnershipsController, :type => :controller do
 
     it "should create or find the related actions" do
       params = @ownership_params.merge({actions_attributes: {"0" => {name: @action.name}, "1" => {name: "team"}}})
-      post :create, ownership: params
+      post :create, params: { ownership: params }
       expect(assigns(:ownership).actions).to include(@action, Action.find_by_name("team"))
     end
   end

@@ -6,14 +6,6 @@ class String
   end
 end
 
-class Fixnum
-  def to_bool
-    return true if self == 1
-    return false if self == 0
-    raise ArgumentError.new("Invalid value for Boolean: \"#{self}\"")
-  end
-end
-
 class TrueClass
   def to_i; 1; end
   def to_bool; self; end
