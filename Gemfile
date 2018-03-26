@@ -92,7 +92,7 @@ group :development, :test do
 	gem 'cucumber-rails', require: false
 	gem 'database_cleaner'
 	gem 'capybara-webkit'
-	gem 'selenium-webdriver', '~> 3.6.0'
+	gem 'selenium-webdriver', '~> 2.53.0'
 	gem 'factory_bot_rails'
 	gem 'email_spec'
 	gem 'faker'
