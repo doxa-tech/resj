@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: resj_development
+
+  
+test:
+  <<: *default
+  database: resj_test
+
+production:
+  <<: *default
+  database: resj_production
+  username: resj
+  password: 

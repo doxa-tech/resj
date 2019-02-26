@@ -1,8 +1,0 @@
-<% if flash.any? %>
-	<% flash.each do |key, value| %>
-		<%= content_tag(:div, id: "flash", class: "flash-#{key}") do %>
-			<%= value %>
-			<span class="close">fermer</span>
-		<% end %>
-	<% end %>
-<% end %>

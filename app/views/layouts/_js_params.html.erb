@@ -1,7 +1,0 @@
-<% unless js_params.empty? %>
-  <script>
-    app.service('params', function(){
-      return <%= js_params.to_json.html_safe %>;
-    });
-  </script>
-<% end %>

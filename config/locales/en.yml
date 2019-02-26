@@ -1,229 +1,33 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at https://guides.rubyonrails.org/i18n.html.
+
 en:
-  application:
-    error: "error"
-  layout:
-    header:
-      home: "Home"
-      reseau: "Réseau"
-      resources: "Resources"
-      resj: "ResJ"
-      admin:
-        cards: "Cards"
-        pages: "Pages"
-        users: "Users"
-        affiliations: "Affiliations"
-        tags: "Tags"
-        responsables: "Responsables"
-        ownerships: "Ownerships"
-        actions: "Actions"
-        parents: "Inheritances"
-        access_tokens: "Tokens"
-        card_types: "Card Types"
-        themes: "Themes"
-        resources: "Resources"
-        articles: "Articles"
-  card:
-    create:
-      title: "Create a new card"
-      success: "Card created"
-    edit:
-      title: "Edit a card"
-      success: "Card edited"
-    admin:
-      index: "Cards"
-      validated_error: "could not be activated. The card has not been verified."
-      create:
-        title: "Create a new card"
-        success: "Card created"
-      edit:
-        title: "Edit a card"
-        success: "Card edited"
-      destroy:
-        success: "Card deleted"
-  user:
-    create:
-      title: "Sign up"
-      success: "You will receive a email with a link to confirm it !"
-    edit:
-      title: "Update your account"
-      success: "Account updated"
-    card:
-      confirmation:
-        success: "You're now an official responsable"
-        error: "Error in the process"
-      request:
-        success: "Card request sent"
-        error: "Error in the process"
-    admin:
-      create:
-        title: "Create a new user"
-        success: "User created"
-      edit:
-        title: "Edit an user"
-        success: "User updated"
-      destroy:
-        success: "User deleted"
-  session:
-    create:
-      success: "Connected"
-      error: "Invalid email/password"
-    destroy:
-      success: "Signed out"
-  page:
-    admin:
-      index: "Pages"
-      edit:
-        success: "Page edited"
-        title: "Edit a page"
-  ownership:
-    admin:
-      index: "Ownership"
-      create:
-        title: "Create a new ownership"
-        success: "Ownership created"
-      edit:
-        title: "Edit an ownership"
-        success: "Ownership updated"
-      destroy:
-        success: "Ownership deleted"
-  action:
-    admin:
-      index: "Actions"
-      create:
-        title: "Create a new action"
-        success: "Action created"
-      edit:
-        title: "Edit an action"
-        success: "Action updated"
-      destroy:
-        success: "Action deleted"
-  affiliation:
-    admin:
-      index: "Affiliations"
-      create:
-        title: "Create a new affiliation"
-        success: "Affiliation created"
-      edit:
-        title: "Edit an affiliation"
-        success: "Affiliation updated"
-      destroy:
-        success: "Affiliation deleted"
-  card_type:
-    admin:
-      index: "Card types"
-      create:
-        title: "Create a new card type"
-        success: "Card type created"
-      edit:
-        title: "Edit an card type"
-        success: "Card type updated"
-      destroy:
-        success: "Card type deleted"
-  responsable:
-    admin:
-      index: "Responsables"
-      create:
-        title: "Create a new responsable"
-        success: "Responsable created"
-      edit:
-        title: "Edit an responsable"
-        success: "Responsable updated"
-      destroy:
-        success: "Responsable deleted"
-  tag:
-    admin:
-      index: "Tags"
-      create:
-        title: "Create a new tag"
-        success: "Tag created"
-      edit:
-        title: "Edit an tag"
-        success: "Tag updated"
-      destroy:
-        success: "Tag deleted"
-  theme:
-    admin:
-      index: "Themes"
-      create:
-        title: "Create a new theme"
-        success: "Theme created"
-      edit:
-        title: "Edit an theme"
-        success: "Theme updated"
-      destroy:
-        success: "Theme deleted"
-  resource:
-    admin:
-      index: "Resources"
-      create:
-        title: "Create a new resource"
-        success: "Resource created"
-      edit:
-        title: "Edit an resource"
-        success: "Resource updated"
-      destroy:
-        success: "Resource deleted"
-  verificator_comment:
-    admin:
-      create:
-        success: "Comment created"
-      edit:
-        success: "Comment updated"
-      destroy:
-        success: "Comment deleted"
-  parent:
-    admin:
-      index: "Inheritances"
-      create:
-        title: "Create a new inheritance"
-        success: "inheritance created"
-      edit:
-        title: "Edit an inheritance"
-        success: "Inheritance updated"
-      destroy:
-        success: "Inheritance deleted"
-  access_token:
-    admin:
-      index: "Tokens"
-      create:
-        title: "Create a new access token"
-        success: "Token created"
-      destroy:
-        success: "Token deleted"
-  orator:
-    index: "Orators"
-    create:
-      title: "Create an orator's account"
-      success: "Orator's account created"
-    edit:
-      success: "Orator's account updated"
-  article:
-    admin:
-      index: "Articles"
-      create:
-        title: "Create a new article"
-        success: "Article created"
-      edit:
-        title: "Edit an article"
-        success: "Article updated"
-      destroy:
-        success: "Article deleted"
-  subject:
-    admin:
-      index: "Resources"
-      create:
-        title: "Create a new resource"
-        success: "Resource created"
-      edit:
-        title: "Edit an resource"
-        success: "Resource updated"
-      destroy:
-        success: "Resource deleted"
-  will_paginate:
-    previous_label: "<i class='fi-arrow-left'></i> Previous"
-    next_label: "Next <i class='fi-arrow-right'></i>"
-    page_gap: "&hellip;"
-  activerecord:
-    attributes:
-      card:
-        card_id: "Regional network"
+  hello: "Hello world"

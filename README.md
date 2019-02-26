@@ -1,17 +1,24 @@
-[![Build Status](https://semaphoreci.com/api/v1/js-tech/resj/branches/master/badge.svg)](https://semaphoreci.com/js-tech/resj)
-[![Code Climate](https://codeclimate.com/github/JS-Tech/resj/badges/gpa.svg)](https://codeclimate.com/github/JS-Tech/resj)
+# README
 
-Réseau jeunesse, ministère évangélique du Réseau évangélique suisse, http://reseaujeunesse.ch
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-### Elasticsearch (1.6.2)
+Things you may want to cover:
 
-```
-rake elasticsearch:import:all FORCE=true
-```
+* Ruby version
 
-### Run tests
+* System dependencies
 
-```
-$ rake cucumber
-$ rspec
-```
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
