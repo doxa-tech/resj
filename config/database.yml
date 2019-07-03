@@ -8,7 +8,7 @@ development:
   database: resj_development
 
   
-test:
+test: &test
   <<: *default
   database: resj_test
 
@@ -17,3 +17,6 @@ production:
   database: resj_production
   username: resj
   password: 
+
+cucumber:
+  <<: *test
