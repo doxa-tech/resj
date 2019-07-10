@@ -1,0 +1,8 @@
+
+<%= form_for Card.new, url: cards_wizard_path do |f| %>
+
+  <%= render "cards/wizards/general_step", f: f %>
+  <%= render "cards/wizards/location_step", f: f %>
+  <%= render "cards/wizards/extra_step", f: f %>
+
+<% end %>

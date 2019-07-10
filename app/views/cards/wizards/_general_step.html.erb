@@ -1,0 +1,13 @@
+<p>Bienvenue dans le processus.<br>En suivant quelques étatpes vous allez pouvoir enregistrer votre oeuvre jeunesse. Pour passer à l'étape suivante, il faut valider l'étape en cours.</p>
+
+<p><span class="num">1</span> Indiquez le <span class="b">nom</span> de votre groupe</p>
+<%= f.text_field :name, placeholder: 'Nom' %>
+
+<p><span class="num">2</span> Entrez une courte <span class="b">description</span>. Une bonne description améliore les résultats de recherche.</p>
+<%= f.text_area :description, placeholder: 'Description' %>
+
+<p><span class="num">3</span> Quelle <span class="b">catégorie</span> vous correspond le mieux?</p>
+<%= f.select :card_type, options_for_enum(f.object, :card_type) %>
+
+<p><span class="num">4</span> Faites-vous partie d'un <span class="b">réseau régional</span>? (optionnel)</p>
+<%= f.collection_select :parent_ids, Card.network, :id, :name, {include_blank: "Sélectionnez des réseaux"}, {class: "selectize-cards", multiple: true} %>

@@ -1,5 +1,7 @@
 class Card < ApplicationRecord
 
+  attr_reader :tag_names
+
   enum card_type: [:youth, :adult, :activist, :organization, :network, :training]
   enum status: [:online, :pending, :incomplete, :change]
 
