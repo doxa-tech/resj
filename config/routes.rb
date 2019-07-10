@@ -6,4 +6,10 @@ Rails.application.routes.draw do
     get page, to: "pages##{page}"
   end
 
+  namespace :cards do
+
+    resources :wizards, only: [:new, :edit, :update]
+
+  end
+
 end
