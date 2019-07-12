@@ -1,15 +1,16 @@
 When("I complete the first step and submit it") do
   fill_in "card_name", with: "Waykup"
 	fill_in "card_description", with: "Un groupe de jeunes"
-	fill_in_selectized "card_card_type_id", with: "Groupe de jeunes"
+	slimselect "Groupes de jeunes", from: "card_type"
+	click_button "Prochaine étape"
 end
 
 When("I complete the second step and submit it") do
   fill_in "card_street", with: "Route du verdel 8"
-	fill_in_selectized "card_location_id", with: "Bulle"
+	remote_slimselect "Bulle", from: "card_location"
 	fill_in "card_place", with: "A l'église"
-	find('input#lat', visible: false).set(46)
-	find('input#lng', visible: false).set(7)
+	find('input#lat', visible: false).execute_script("this.value = 46")
+	find('input#lng', visible: false).execute_script("this.value = 7")
 	click_button "Prochaine étape"
 end
 

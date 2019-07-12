@@ -56,3 +56,9 @@ end
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
+Capybara.javascript_driver = :selenium_chrome_headless
+
+Capybara.server_port = 3005
+
+Capybara.server = :puma, { Silent: true } 
+
