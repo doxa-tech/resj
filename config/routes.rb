@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Adeia::Engine => "/admin"
 
   root to: "pages#home"
 
@@ -9,6 +10,12 @@ Rails.application.routes.draw do
   namespace :cards do
 
     resources :wizards, only: [:new, :edit, :update]
+
+  end
+
+  namespace :api do
+
+    resources :locations, only: [:index]
 
   end
 
