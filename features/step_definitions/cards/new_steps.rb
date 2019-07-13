@@ -15,14 +15,11 @@ When("I complete the second step and submit it") do
 end
 
 When("I complete the third step and submit it") do
-  fill_in "card_email", with: "waykup@googlegroups.com"
-end
-
-When("I complete the fourth step and submit it") do
+	fill_in "card_email", with: "waykup@googlegroups.com"
   fill_in "card_website", with: "waykup.ch"
 	fill_in "card_affiliation", with: "EEbulle"
-	fill_in_selectized "card_tag_names", with: "camp "
-	click_button "Prochaine étape"
+	remote_slimselect "camp", from: "card_tag_names"
+	click_button "Aller à la confirmation"
 end
 
 When("I confirm and submit my card") do

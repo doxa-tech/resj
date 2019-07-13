@@ -3,7 +3,7 @@
   <%= f.text_field :street, placeholder: 'Rue' %>
 
   <p><span class="num">6</span> Dans quelle <span class="b">localité</span> êtes-vous?</p>
-  <%= f.collection_select :location_id, [f.object.location].compact, :id, :full_name, { include_blank: "Tapez une ville" }, { class: "card_location", "data-controller": "select--remote" } %>
+  <%= f.collection_select :location_id, [f.object.location].compact, :id, :full_name, {}, { class: "card_location", "data-controller": "select--locations" } %>
 
   <p><span class="num">7</span> Où est votre <span class="b">lieu</span> de rencontre? (à l'église, dans la rue, en face de la gare ...) (optionnel)</p>
   <%= f.text_field :place, placeholder: 'Lieu de rencontre (optionnel)' %>

@@ -7,21 +7,23 @@ export default class extends Controller {
 
     new SlimSelect({
       select: this.element,
+      placeholder: "Ajouter des tags",
       searchingText: 'Cherche...',
-      searchText: 'Pas de résultat',
+      searchText: 'Ajouter de nouveaux tags en cliquant sur la croix',
       searchPlaceholder: 'Chercher',
-      ajax: function (search, callback) {
+      addable: function(value) { return value; },
+      ajax: function(search, callback) {
         if (search.length < 2) {
           callback(false)
           return
         }
     
-        fetch('/api/locations?query=' + search).then(function(res) {
+        fetch('/api/tags?query=' + search).then(function(res) {
           return res.json()
         }).then(function(json) {
           let data = []
           for (let i = 0; i < json.length; i++) {
-            data.push({text: json[i].name, value: json[i].id})
+            data.push({text: json[i].name + " (" + json[i].popularity + ")", value: json[i].id})
           }
           callback(data)
         })
@@ -30,6 +32,7 @@ export default class extends Controller {
         })
       }
     });
-
+    
   }
+
 }
