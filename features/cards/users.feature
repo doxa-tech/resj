@@ -1,3 +1,4 @@
+@ignore
 Feature: Sign in or up before creating a card
 
   So that I can create a card

@@ -9,7 +9,12 @@ Rails.application.routes.draw do
 
   namespace :cards do
 
-    resources :wizards, only: [:new, :edit, :update]
+    resources :wizards, only: [:new, :edit, :update] do
+      member do
+        get "confirmation"
+        patch "confirm"
+      end
+    end
 
   end
 
