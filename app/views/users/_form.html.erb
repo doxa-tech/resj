@@ -1,0 +1,21 @@
+
+<%= form_for record, url: url do |f| %>
+
+  <%= f.label :firstname %>
+  <%= f.text_field :firstname %>
+
+  <%= f.label :lastname %>
+  <%= f.text_field :lastname %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+
+  <%= f.submit %>
+
+<% end %>

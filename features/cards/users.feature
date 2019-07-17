@@ -1,10 +1,10 @@
-@ignore
 Feature: Sign in or up before creating a card
 
   So that I can create a card
   As a visitor
   I want to sign in or up
 
+  @wip
   Scenario: I successfully sign in
     Given I am a confirmed user
     When I visit "cards/wizards/new"

@@ -7,7 +7,15 @@ Rails.application.routes.draw do
     get page, to: "pages##{page}"
   end
 
+  resources :sessions, only: :create
+  delete "signout", to: "sessions#destroy"
+  get "signin", to: "sessions#new"
+
+  resources :users, except: :delete
+
   namespace :cards do
+
+    resources :users, only: [:new, :create]
 
     resources :wizards, only: [:new, :edit, :update] do
       member do
@@ -15,6 +23,12 @@ Rails.application.routes.draw do
         patch "confirm"
       end
     end
+
+  end
+
+  namespace :users do
+
+    resources :password_resets, only: [:new, :create, :edit, :update]
 
   end
 

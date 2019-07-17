@@ -4,7 +4,7 @@ Feature: Create a new card
   As a visitor
   I want to create a new card
 
-  @locations @tags @javascript @wip
+  @locations @tags @javascript
   Scenario: I successfully complete all steps
     When I visit "/cards/wizards/new"
     And I complete the first step and submit it

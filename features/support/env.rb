@@ -62,3 +62,5 @@ Capybara.server_port = 3005
 
 Capybara.server = :puma, { Silent: true } 
 
+# Factory bot
+World(FactoryBot::Syntax::Methods)
