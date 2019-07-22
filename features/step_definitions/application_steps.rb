@@ -8,7 +8,7 @@ end
 Given("I am signed in") do
   visit signin_path
   fill_in "Email", with: "john@smith.com"
-  fill_in "Mot de passe", with: "carottes"
+  fill_in "Mot de passe", with: "choux"
   click_button "Se connecter"
 end
 
@@ -33,7 +33,7 @@ Then("I should see a flash with {string}") do |message|
 end
 
 Then("I should see errors for the fields {string}") do |fields|
-	fields.split(",").each do |field|
+	fields.split(",").map(&:strip).each do |field|
 		expect(find '#error').to have_content field
 	end
 end

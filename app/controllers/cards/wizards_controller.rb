@@ -2,9 +2,11 @@ class Cards::WizardsController < ApplicationController
   before_action :check_if_signed_in, only: [:new]
 
   def new
-    sign_out
     @card = current_user.cards.find_by(status: nil)
-    @card = current_user.cards.create! if @card.nil?
+    if @card.nil?
+      @card = current_user.cards.new
+      @card.save!(validate: false) # TODO: validate: false may not be necessary later
+    end
     redirect_to edit_cards_wizard_path(@card)
   end
 

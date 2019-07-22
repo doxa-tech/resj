@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_12_123025) do
+ActiveRecord::Schema.define(version: 2019_07_22_093212) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -193,10 +193,10 @@ ActiveRecord::Schema.define(version: 2019_07_12_123025) do
     t.string "uuid"
     t.string "reset_token"
     t.datetime "reset_sent_at"
-    t.boolean "confirmed"
+    t.boolean "confirmed", default: false
     t.string "avatar"
     t.string "gravatar_email"
-    t.boolean "gravatar"
+    t.boolean "gravatar", default: true
     t.boolean "newsletter", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

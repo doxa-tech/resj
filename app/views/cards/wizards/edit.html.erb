@@ -1,6 +1,8 @@
 <div data-controller="cards--form" data-cards--form-step="general">
+
+  <h1>Enregistrer un nouveau groupe</h1>
   
-  <%= form_for Card.new, url: cards_wizard_path do |f| %>
+  <%= form_with model: Card.new, url: cards_wizard_path do |f| %>
 
     <%= render "cards/wizards/general_step", f: f %>
     <%= render "cards/wizards/location_step", f: f %>

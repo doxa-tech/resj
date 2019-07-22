@@ -4,6 +4,10 @@ Feature: Create a new card
   As a visitor
   I want to create a new card
 
+  Background:
+    Given I am a confirmed user
+    And I am signed in
+
   @locations @tags @javascript
   Scenario: I successfully complete all steps
     When I visit "/cards/wizards/new"

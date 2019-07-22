@@ -1,5 +1,7 @@
 
-<%= form_for record, url: url do |f| %>
+<%= form_with model: record, url: url, local: true do |f| %>
+
+  <%= render "error_messages", object: f.object %>
 
   <%= f.label :firstname %>
   <%= f.text_field :firstname %>

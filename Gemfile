@@ -64,4 +64,5 @@ group :test do
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'
   gem 'factory_bot_rails'
+  gem 'email_spec'
 end
