@@ -1,14 +1,18 @@
 import { Controller } from "stimulus"
-import SlimSelect from "slim-select"
+import Choices from "choices.js"
 
 export default class extends Controller {
 
-  connect() {
+  initialize() {
 
-    new SlimSelect({
-      select: this.element,
-      placeholder: "Choisissez",
-      showSearch: false
+    new Choices(this.element, {
+      searchEnabled: false,
+      placeholderValue: "Sélectionner",
+      noChoicesText: "Plus d'option disponible",
+      itemSelectText: "Cliquez pour séléectionner",
+      classNames: {
+        containerOuter: "choices " + this.element.className 
+      }
     });
 
   }

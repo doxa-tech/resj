@@ -32,8 +32,8 @@ fr:
     updated_at: "Modifié le"
   card:
     card_types:
-      youth: "Groupes de jeunes"
-      adult: "Groupes de jeunes adultes"
+      youth: "Groupe de jeunes"
+      adult: "Groupe de jeunes adultes"
       activist: "Groupe d'action"
       organization: "Oeuvre jeunesse"
       network: "Réseau régional"

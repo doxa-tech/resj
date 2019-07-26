@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class CardsForm extends Controller {
-  static targets = [ "step", "previous", "next", "confirmation" ]
+  static targets = [ "form", "step", "previous", "next", "confirmation" ]
   static steps = ["general", "location", "extra"]
 
   initialize() {
@@ -22,6 +22,7 @@ export default class CardsForm extends Controller {
   }
 
   next() {
+    this.update();
     if (this.stepIndex >= CardsForm.steps.length - 1) throw "Can not go further";
     this.stepIndex++;
     this.showCurrentStep();
@@ -34,7 +35,9 @@ export default class CardsForm extends Controller {
   }
 
   confirmation() {
-    Turbolinks.visit(window.location.pathname.replace("edit", "confirmation"));
+    let request = this.update(() =>{
+      Turbolinks.visit(window.location.pathname.replace("edit", "confirmation"));
+    });
   }
 
   get stepIndex() {
@@ -46,5 +49,23 @@ export default class CardsForm extends Controller {
   set stepIndex(i) {
     if (i >= CardsForm.steps.length) throw "Step index is out of bound";
     this.data.set("step", CardsForm.steps[i]);
+  }
+
+  update(onSuccess) {
+    let formData = new FormData(this.formTarget);
+    let request = new XMLHttpRequest();
+    request.onreadystatechange = function(event) {
+      if (this.readyState === XMLHttpRequest.DONE) {
+        if (this.status === 200) {
+          if (onSuccess) onSuccess();
+        } else {
+          console.log("Request status: %d (%s)", this.status, this.statusText);
+        }
+      }
+    };
+    // TODO: handle request onError and HTTP status other than 200
+    request.open("PATCH", this.formTarget.getAttribute("action"));
+    request.send(formData);
+    return request;
   }
 }

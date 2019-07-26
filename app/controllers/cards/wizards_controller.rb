@@ -11,23 +11,30 @@ class Cards::WizardsController < ApplicationController
   end
 
   def edit
-    # @card = Card.find(params[:id])
+    @card = Card.find(params[:id])
   end
 
   def update
-    # @card = Card.find(params[:id])
+    @card = Card.find(params[:id])
+    @card.update(card_params)
+    render json: @card.errors.full_messages
   end
   
   def confirmation
-    # @card = Card.find(params[:id])
+    @card = Card.find(params[:id])
   end
 
   def confirm
-    # @card = Card.find(params[:id])
+    @card = Card.find(params[:id])
     redirect_to root_path, success: "Vous êtes entré dans le réseau avec succès !"
   end
 
   private
+
+  def card_params
+    params.require(:card).permit(:name, :description, :card_type, :street, :place, :location_id,
+      :latitude, :longitude, :email, :website, :affiliation, :tag_names, parent_ids: [])
+  end
 
   def check_if_signed_in
     if current_user.nil?

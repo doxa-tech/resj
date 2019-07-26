@@ -2,23 +2,24 @@
 
   <p>Général</p>
 
-  <p>Nom</p><p data-target="cards--confirmation.general"></p>
-  <p>Description</p><p data-target="cards--confirmation.general"></p>
-  <p>Catégorie</p><p data-target="cards--confirmation.general"></p>
-  <p>Réseau régional</p><p data-target="cards--confirmation.general"></p>
+  <p>Nom</p><p><%= @card.name %></p>
+  <p>Description</p><p><%= @card.description %></p>
+  <p>Catégorie</p><p><%= t "card.card_types.#{@card.card_type}" %></p>
+  <p>Réseau régional</p><p><%= @card.parents %></p>
 
   <p>Lieu</p>
 
-  <p>Adresse</p><p data-target="cards--confirmation.location"></p>
-  <p>Ville</p><p data-target="cards--confirmation.location"></p>
-  <p>Lieu de rencontre</p><p data-target="cards--confirmation.location"></p>
+  <p>Adresse</p><p><%= @card.street %></p>
+  <p>Ville</p><p><%= @card.location.official_name if @card.location %></p>
+  <p>Lieu de rencontre</p><p><%= @card.place %></p>
 
   <p>Extra</p>
 
-  <p>Site web</p><p data-target="cards--confirmation.extra"></p>
-  <p>Affiliations</p><p data-target="cards--confirmation.extra"></p>
-  <p>Tags</p><p data-target="cards--confirmation.extra"></p>
+  <p>Email de contact</p><p><%= @card.email %></p>
+  <p>Site web</p><p><%= @card.website %></p>
+  <p>Affiliations</p><p><%= @card.affiliation %></p>
+  <p>Tags</p><p><%= @card.tag_names %></p>
 
-  <%= link_to "Envoyer", confirm_cards_wizard_path(0), method: :patch %>
+  <%= link_to "Envoyer", confirm_cards_wizard_path(@card), method: :patch %>
 
 </div>

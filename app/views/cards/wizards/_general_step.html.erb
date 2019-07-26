@@ -8,8 +8,8 @@
   <%= f.text_area :description, placeholder: 'Description' %>
 
   <p><span class="num">3</span> Quelle <span class="b">catégorie</span> vous correspond le mieux?</p>
-  <%= f.select :card_type, options_for_enum(f.object, :card_type), { include_blank: true }, { class: "card_type", "data-controller": "select--simple" } %>
+  <%= f.select :card_type, options_for_enum(f.object, :card_type), {}, { class: "card_type", "data-controller": "select--simple" } %>
 
   <p><span class="num">4</span> Faites-vous partie d'un <span class="b">réseau régional</span>? (optionnel)</p>
-  <%= f.collection_select :parent_ids, Card.network, :id, :name, { include_blank: true }, { multiple: true, "data-controller": "select--simple" } %>
+  <%= f.collection_select :parent_ids, Card.network, :id, :name, {}, { multiple: true, "data-controller": "select--simple" } %>
 </div>

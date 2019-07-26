@@ -14,5 +14,4 @@ Feature: Create a new card
     And I complete the first step and submit it
 		And I complete the second step and submit it
 		And I complete the third step and submit it
-    When I confirm and submit my card
-    Then I should see a flash with "Vous êtes entré dans le réseau avec succès !"
+    Then I should see the confirmation with card's information

@@ -1,38 +1,28 @@
 import { Controller } from "stimulus"
-import SlimSelect from "slim-select"
+import Choices from "choices.js"
 
 export default class extends Controller {
 
-  connect() {
+  initialize() {
 
-    new SlimSelect({
-      select: this.element,
-      placeholder: "Ajouter des tags",
-      searchingText: 'Cherche...',
-      searchText: 'Ajouter de nouveaux tags en cliquant sur la croix',
-      searchPlaceholder: 'Chercher',
-      addable: function(value) { return value; },
-      ajax: function(search, callback) {
-        if (search.length < 2) {
-          callback(false)
-          return
-        }
-    
-        fetch('/api/tags?query=' + search).then(function(res) {
-          return res.json()
-        }).then(function(json) {
-          let data = []
-          for (let i = 0; i < json.length; i++) {
-            data.push({text: json[i].name + " (" + json[i].popularity + ")", value: json[i].id})
-          }
-          callback(data)
-        })
-        .catch(function(error) {
-          callback(false)
-        })
+    new Choices(this.element, {
+      maxItemCount: 5,
+      customAddItemText: "Tag de 3 lettres minimum",
+      addItemText: (value) => {
+        return `Appuyer sur Enter pour ajouter <b>"${value}"</b>`;
+      },
+      maxItemText: (maxItemCount) => {
+        return `Seulement ${maxItemCount} tags autorisés`;
+      },
+      addItemFilterFn: (value) => {
+        return (value.length > 2);
+      },
+      classNames: {
+        containerOuter: "choices " + this.element.className 
       }
     });
-    
+
+
   }
 
 }
