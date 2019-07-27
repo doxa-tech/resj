@@ -5,7 +5,7 @@
   <p>Nom</p><p><%= @card.name %></p>
   <p>Description</p><p><%= @card.description %></p>
   <p>Catégorie</p><p><%= t "card.card_types.#{@card.card_type}" %></p>
-  <p>Réseau régional</p><p><%= @card.parents %></p>
+  <p>Réseau régional</p><p><%= @card.parents.map(&:name).join(", ") %></p>
 
   <p>Lieu</p>
 

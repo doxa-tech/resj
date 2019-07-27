@@ -16,6 +16,8 @@ class Card < ApplicationRecord
 
   after_save :assign_tags
 
+  validates :description, presence: true
+
   def tag_names
     @tag_names ||= self.tags.map(&:name).join(', ')
   end

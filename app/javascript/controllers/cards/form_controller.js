@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class CardsForm extends Controller {
-  static targets = [ "form", "step", "previous", "next", "confirmation" ]
+  static targets = [ "form", "step", "previous", "next", "confirmation", "error" ]
   static steps = ["general", "location", "extra"]
 
   initialize() {
@@ -21,11 +21,19 @@ export default class CardsForm extends Controller {
     this.confirmationTarget.classList.toggle("current", this.stepIndex >= CardsForm.steps.length - 1);
   }
 
+  showErrors(data) {
+    this.errorTarget.innerHTML = "";
+    data.forEach((e) => {
+      this.errorTarget.innerHTML += "<p>" + e + "</p>";
+    });
+  }
+
   next() {
-    this.update();
     if (this.stepIndex >= CardsForm.steps.length - 1) throw "Can not go further";
-    this.stepIndex++;
-    this.showCurrentStep();
+    this.update(() => {
+      this.stepIndex++;
+      this.showCurrentStep();
+    });
   }
 
   previous() {
@@ -35,7 +43,7 @@ export default class CardsForm extends Controller {
   }
 
   confirmation() {
-    let request = this.update(() =>{
+    this.update(() => {
       Turbolinks.visit(window.location.pathname.replace("edit", "confirmation"));
     });
   }
@@ -52,20 +60,31 @@ export default class CardsForm extends Controller {
   }
 
   update(onSuccess) {
+    this.submit().then((success) => {
+      if (success && onSuccess) onSuccess();
+    });
+  }
+
+  submit() {
     let formData = new FormData(this.formTarget);
-    let request = new XMLHttpRequest();
-    request.onreadystatechange = function(event) {
-      if (this.readyState === XMLHttpRequest.DONE) {
-        if (this.status === 200) {
-          if (onSuccess) onSuccess();
-        } else {
-          console.log("Request status: %d (%s)", this.status, this.statusText);
-        }
+    return fetch(this.formTarget.getAttribute("action"), {
+      method: "PATCH", body: formData
+    }).then((res) => {
+      if (res.status === 200) {
+        return res.json().then((data) => {
+          if (data.length === 0) {
+            return true;
+          } else {
+            this.showErrors(data);
+            return false;
+          }
+        });
+      } else {
+        console.log("Request rejected by the server with the code " + res.status);
+        return false;
       }
-    };
-    // TODO: handle request onError and HTTP status other than 200
-    request.open("PATCH", this.formTarget.getAttribute("action"));
-    request.send(formData);
-    return request;
+    }).catch((error) => {
+      console.log("Error in the request: " + error);
+    });
   }
 }
