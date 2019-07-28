@@ -33,6 +33,10 @@ When("I successfully complete the signup form") do
 	end
 end
 
+When("I fill in an invalid email for the card") do
+	fill_in "card_email", with: "invalid email"
+end
+
 Then("I should see the confirmation with card's information") do
 	["Waykup", "Un groupe de jeunes", "Groupe de jeunes", "Route du verdel 8", "Bulle", 
 		"A l'église", "waykup@googlegroups.com", "waykup.ch", "EEbulle", "camp"].each do |word|

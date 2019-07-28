@@ -33,7 +33,7 @@ class Cards::WizardsController < ApplicationController
 
   def card_params
     params.require(:card).permit(:name, :description, :card_type, :street, :place, :location_id,
-      :latitude, :longitude, :email, :website, :affiliation, :tag_names, parent_ids: [])
+      :latitude, :longitude, :email, :website, :affiliation, :tag_names, :current_step, parent_ids: [])
   end
 
   def check_if_signed_in

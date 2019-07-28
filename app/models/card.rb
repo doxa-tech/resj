@@ -1,6 +1,7 @@
 class Card < ApplicationRecord
 
   attr_writer :tag_names
+  attr_accessor :current_step
 
   enum card_type: [:youth, :adult, :activist, :organization, :network, :training]
   enum status: [:online, :pending, :incomplete, :change]
@@ -16,15 +17,36 @@ class Card < ApplicationRecord
 
   after_save :assign_tags
 
-  validates :description, presence: true
+  with_options if: Proc.new { |c| c.current_step?("general")} do |c|
+    c.validates :name, presence: true, length: { maximum: 30 }, uniqueness: { case_sensitive: false }
+    c.validates :description, presence: true, length: { maximum: 800 }
+    c.validates :card_type, presence: true
+  end
+  with_options if: Proc.new { |c| c.current_step?("location")} do |c|
+    c.validates :street, presence: true
+    c.validates :location, presence: true
+    c.validates :place, length: { maximum: 60 }
+    c.validates :latitude, presence: { message: "Veuillez spécifier votre emplacement sur la carte" }
+    c.validates :longitude, presence: { message: "Veuillez spécifier votre emplacement sur la carte" }
+  end
+  with_options if: Proc.new { |c| c.current_step?("extra")} do |c|
+    c.validates :website, length: { maximum: 60 }
+    c.validates :email, length: { maximum: 60 },  format: { with: /@/ }, allow_blank: true
+    c.validates :affiliation, length: { maximum: 60 }
+  end
 
   def tag_names
     @tag_names ||= self.tags.map(&:name).join(', ')
   end
 
+  def current_step?(step)
+    self.current_step == step
+  end
+
   private
 
   def assign_tags
+    # TODO: popularity is increased every time the card is updated
     self.tags = tag_names.split(',').map do |tag|
       tag = tag.strip.downcase
       tag = Tag.where(name: tag).first_or_create!

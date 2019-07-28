@@ -67,6 +67,7 @@ export default class CardsForm extends Controller {
 
   submit() {
     let formData = new FormData(this.formTarget);
+    formData.append("card[current_step]", this.data.get("step"));
     return fetch(this.formTarget.getAttribute("action"), {
       method: "PATCH", body: formData
     }).then((res) => {

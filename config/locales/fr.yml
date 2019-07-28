@@ -19,17 +19,24 @@ fr:
         password: "Mot de passe"
         remember_me: "Rester connecté"
   attributes:
+    name: "Nom"
     firstname: "Prénom"
     lastname: "Nom de famille"
     address: "Adresse"
     zip: "NPA"
     city: "Ville"
+    street: "Rue"
+    location: "Localité"
     country: "Pays"
     password: "Mot de passe"
     password_confirmation: "Confirmation"
     current_password: "Mot de passe actuel"
     created_at: "Créé le"
     updated_at: "Modifié le"
+  activerecord:
+    attributes:
+      card:
+        card_type: "Catégorie"
   card:
     card_types:
       youth: "Groupe de jeunes"
