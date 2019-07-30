@@ -49,43 +49,44 @@ export default class CardsForm extends Controller {
   }
 
   get stepIndex() {
-    let i = CardsForm.steps.indexOf(this.data.get("step"));
+    const i = CardsForm.steps.indexOf(this.data.get("step"));
     if (i === -1) throw "Invalid step provided";
     return i;
   }
 
   set stepIndex(i) {
     if (i >= CardsForm.steps.length) throw "Step index is out of bound";
-    this.data.set("step", CardsForm.steps[i]);
+    const step = CardsForm.steps[i]
+    this.data.set("step", step);
+    const url = new URL(window.location.href);
+    url.searchParams.set("step", step);
+    history.pushState({ step: step }, document.title, url.pathname + url.search);
   }
 
-  update(onSuccess) {
-    this.submit().then((success) => {
-      if (success && onSuccess) onSuccess();
-    });
+  async update(onSuccess) {
+    const success = await this.submit();
+    if (success && onSuccess) onSuccess();
   }
 
-  submit() {
-    let formData = new FormData(this.formTarget);
+  async submit() {
+    const formData = new FormData(this.formTarget);
     formData.append("card[current_step]", this.data.get("step"));
-    return fetch(this.formTarget.getAttribute("action"), {
-      method: "PATCH", body: formData
-    }).then((res) => {
+    try {
+      const res = await fetch(this.formTarget.getAttribute("action"), { method: "PATCH", body: formData});
       if (res.status === 200) {
-        return res.json().then((data) => {
-          if (data.length === 0) {
-            return true;
-          } else {
-            this.showErrors(data);
-            return false;
-          }
-        });
+        const errors = await res.json();
+        if (errors.length === 0) {
+          return true;
+        } else {
+          this.showErrors(data);
+          return false;
+        }
       } else {
         console.log("Request rejected by the server with the code " + res.status);
         return false;
       }
-    }).catch((error) => {
+    } catch (e) {
       console.log("Error in the request: " + error);
-    });
+    } 
   }
 }
