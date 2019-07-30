@@ -78,7 +78,7 @@ export default class CardsForm extends Controller {
         if (errors.length === 0) {
           return true;
         } else {
-          this.showErrors(data);
+          this.showErrors(errors);
           return false;
         }
       } else {
@@ -86,7 +86,7 @@ export default class CardsForm extends Controller {
         return false;
       }
     } catch (e) {
-      console.log("Error in the request: " + error);
+      console.log(e);
     } 
   }
 }
