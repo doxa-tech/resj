@@ -6,6 +6,12 @@ export default class CardsForm extends Controller {
 
   initialize() {
     this.showCurrentStep();
+    window.onpopstate = (e) => {
+      if ('step' in e.state) {
+        this.stepIndex = this.stepToIndex(e.state.step);
+        this.showCurrentStep();
+      }
+    };
   }
 
   showCurrentStep() {
@@ -49,9 +55,7 @@ export default class CardsForm extends Controller {
   }
 
   get stepIndex() {
-    const i = CardsForm.steps.indexOf(this.data.get("step"));
-    if (i === -1) throw "Invalid step provided";
-    return i;
+    return this.stepToIndex(this.data.get("step"));
   }
 
   set stepIndex(i) {
@@ -61,6 +65,12 @@ export default class CardsForm extends Controller {
     const url = new URL(window.location.href);
     url.searchParams.set("step", step);
     history.pushState({ step: step }, document.title, url.pathname + url.search);
+  }
+
+  stepToIndex(step) {
+    const i = CardsForm.steps.indexOf(step);
+    if (i === -1) throw "Invalid step provided";
+    return i;
   }
 
   async update(onSuccess) {
