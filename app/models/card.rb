@@ -40,7 +40,7 @@ class Card < ApplicationRecord
   end
 
   def current_step?(step)
-    self.current_step == step
+    current_step.nil? || current_step == step
   end
 
   private

@@ -26,7 +26,12 @@ class Cards::WizardsController < ApplicationController
 
   def confirm
     @card = Card.find(params[:id])
-    redirect_to root_path, success: "Vous êtes entré dans le réseau avec succès !"
+    if @card.valid?
+      @card.update_attribute(:status, :pending)
+      redirect_to root_path, success: "Vous êtes entré dans le réseau avec succès ! Votre groupe n'apparaît pas directement sur la carte car elle doit d'abord être validée."
+    else
+      render 'confirmation'
+    end
   end
 
   private

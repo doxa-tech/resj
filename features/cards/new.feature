@@ -1,7 +1,7 @@
 Feature: Create a new card
 
   So that my card is registered
-  As a visitor
+  As a user
   I want to create a new card
 
   Background:

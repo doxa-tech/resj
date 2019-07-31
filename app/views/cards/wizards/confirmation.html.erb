@@ -1,4 +1,6 @@
-<div>  
+<div>
+
+  <%= render 'error_messages', object: @card %>
 
   <p>Général</p>
 
@@ -20,6 +22,6 @@
   <p>Affiliations</p><p><%= @card.affiliation %></p>
   <p>Tags</p><p><%= @card.tag_names %></p>
 
-  <%= link_to "Envoyer", confirm_cards_wizard_path(@card), method: :patch %>
+  <%= link_to "Confirmer", confirm_cards_wizard_path(@card), method: :patch %>
 
 </div>
