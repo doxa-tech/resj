@@ -1,5 +1,5 @@
-Given("I have a completed card") do
-  @card = create(:card)
+Given("I have a complete card") do
+  @card = create(:card, user: @user)
 end
 
 When("I visit the card confirmation page") do
