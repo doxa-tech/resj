@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     get page, to: "pages##{page}"
   end
 
+  get "reseau", to: "cards#index"
+
   resources :sessions, only: :create
   delete "signout", to: "sessions#destroy"
   get "signin", to: "sessions#new"

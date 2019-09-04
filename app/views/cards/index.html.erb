@@ -1,0 +1,26 @@
+<div data-controller="cards--search">
+  <%= form_with url: "/reseau.json", method: :get, local: true, data: { target: "cards--search.form" } do |f| %>
+
+    <%= f.text_field :name, placeholder: "Taper le nom d'un groupe", "data-target": "cards--search.input" %>
+
+    <%= f.collection_check_boxes :card_types, Card.card_types, :last, :first, {}, "data-target": "cards--search.input" do |b| %>
+      <%= b.label { t("card.card_types.#{b.text}") } %>
+      <%= b.check_box %>
+    <% end %>
+
+    <%= f.collection_check_boxes :cantons, Canton.all, :id, :name, {}, "data-target": "cards--search.input" %>
+
+    <%= f.collection_check_boxes :tags, Tag.order("popularity desc").first(10), :id, :name, {}, "data-target": "cards--search.input" %>
+
+  <% end %>
+
+  <div data-target="cards--search.list" data-controller="cards--list">
+    <div hidden data-target="cards--list.template">
+      <div data-target="cards--list.name"></div>
+      <div data-target="cards--list.type"></div>
+    </div>
+    <div data-target="cards--list.items">
+    </div>
+  </div>
+</div>
+
