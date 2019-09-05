@@ -6,6 +6,7 @@ export default class CardsForm extends Controller {
 
   initialize() {
     this.showCurrentStep();
+    // set the state according to the browser history
     window.onpopstate = (e) => {
       if ('step' in e.state) {
         this.stepIndex = this.stepToIndex(e.state.step);

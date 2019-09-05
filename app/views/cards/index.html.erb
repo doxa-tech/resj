@@ -14,13 +14,21 @@
 
   <% end %>
 
-  <div data-target="cards--search.list" data-controller="cards--list">
-    <div hidden data-target="cards--list.template">
+  <div data-target="cards--search.list" data-cards--list-page="1" data-controller="cards--list">
+    <div hidden data-target="cards--list.itemTemplate">
       <div data-target="cards--list.name"></div>
       <div data-target="cards--list.type"></div>
     </div>
     <div data-target="cards--list.items">
     </div>
+    <div class="pagination">
+      <button class="nav" data-target="cards--list.previous" data-action="cards--list#previous">Précédent</button>
+      <div hidden data-target="cards--list.numberTemplate">
+        <a data-target="cards--list.number" data-action="cards--list#go" class="number"></a>
+      </div>
+      <div data-target="cards--list.numbers">
+      </div>
+      <button class="nav" data-target="cards--list.next" data-action="cards--list#next">Suivant</button>
+    </div>
   </div>
 </div>
-

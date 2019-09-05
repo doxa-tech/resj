@@ -8,27 +8,38 @@ export default class extends Controller {
     this.inputTargets.forEach((i) => {
       i.addEventListener("input", () => {
         clearTimeout(timeout);
-        timeout = setTimeout(this.search.bind(this), 1000);
+        timeout = setTimeout(this.search.bind(this), 800);
       });
     });
   }
 
-  search() {
+  async connect() {
+    const cards = await this.request()
+    this.listController.updateCards(cards);
+  }
+
+  async search() {
     const formData = new FormData(this.formTarget);
     let params = "?";
     for(var param of formData.entries()) {
       params += param[0] + "=" + param[1] + "&";
     } 
-    fetch(this.formTarget.getAttribute("action") + params).then((res) => {
-      res.json().then((cards) => {
-        this.listController.update(cards);
-      });
-    }).catch(function(error) {
-      console.log('Following problem in the request: ' + error.message);
-    });
+    const cards = await this.request(params);
+    this.listController.updateCards(cards);
   }
 
   get listController() {
     return this.application.getControllerForElementAndIdentifier(this.listTarget, "cards--list")
+  }
+
+  async request(params) {
+    params = params || "";
+    try {
+      const res = await fetch(this.formTarget.getAttribute("action") + params);
+      const cards = await res.json();
+      return cards;
+    } catch (e) {
+      console.log(e);
+    } 
   }
 }
