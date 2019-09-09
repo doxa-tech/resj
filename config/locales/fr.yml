@@ -13,6 +13,8 @@ fr:
         submit: "Se connecter"
       user:
         create: "Créer mon compte"
+      orator:
+        create: "Envoyer"
     label:
       session:
         email: "Email"
@@ -33,10 +35,14 @@ fr:
     current_password: "Mot de passe actuel"
     created_at: "Créé le"
     updated_at: "Modifié le"
+    phone: "Téléphone"
   activerecord:
     attributes:
       card:
         card_type: "Catégorie"
+      orator:
+        disponibility: "Disponibilités spéciales"
+        theme_ids: "Thèmes"
   card:
     card_types:
       youth: "Groupe de jeunes"
