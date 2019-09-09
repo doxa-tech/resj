@@ -12,8 +12,10 @@ Rails.application.routes.draw do
   resources :sessions, only: :create
   delete "signout", to: "sessions#destroy"
   get "signin", to: "sessions#new"
+  get "signup", to: "users#new"
 
   resources :users, except: :delete
+  resources :orators, only: [:new, :create]
 
   namespace :cards do
 

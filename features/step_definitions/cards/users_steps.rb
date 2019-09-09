@@ -1,10 +1,3 @@
-When("I sign in") do
-  within ".signin" do
-    fill_in "Email", with: "john@smith.com"
-    fill_in "Mot de passe", with: "choux"
-    click_button "Se connecter"
-  end
-end
 
 Then("I should see the card wizard") do
   expect(page).to have_content "Enregistrer un nouveau groupe"
