@@ -3,6 +3,25 @@
 
   <%= render "error_messages", object: f.object %>
 
+  <%= f.fields_for :user do |user_f| %>
+
+    <%= user_f.label :firstname %>
+    <%= user_f.text_field :firstname %>
+
+    <%= user_f.label :lastname %>
+    <%= user_f.text_field :lastname %>
+
+    <%= user_f.label :email %>
+    <%= user_f.email_field :email %>
+
+    <%= user_f.label :password %>
+    <%= user_f.password_field :password %>
+
+    <%= user_f.label :password_confirmation %>
+    <%= user_f.password_field :password_confirmation %>
+
+  <% end %>
+
   <%= f.label :description %>
   <%= f.text_area :description %>
 

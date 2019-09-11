@@ -22,6 +22,7 @@ fr:
         remember_me: "Rester connecté"
   attributes:
     name: "Nom"
+    email: "Email"
     firstname: "Prénom"
     lastname: "Nom de famille"
     address: "Adresse"
@@ -42,6 +43,7 @@ fr:
         card_type: "Catégorie"
       orator:
         disponibility: "Disponibilités spéciales"
+        disponibility_ids: "Disponibilités"
         theme_ids: "Thèmes"
   card:
     card_types:

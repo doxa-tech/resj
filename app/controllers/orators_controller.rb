@@ -2,6 +2,7 @@ class OratorsController < ApplicationController
 
   def new
     @orator = Orator.new
+    @orator.user = User.new unless signed_in?
   end
 
   def create
@@ -17,7 +18,9 @@ class OratorsController < ApplicationController
   private
 
   def orator_params
-    params.require(:orator).permit(:description, :street, :location_id, :phone, :disponibility, theme_ids: [], disponibility_ids: [])
+    attributes = [:description, :street, :location_id, :phone, :disponibility, theme_ids: [], disponibility_ids: []]
+    attributes.push(user_attributes: [:firstname, :lastname, :email, :password, :password_confirmation]) unless signed_in?
+    params.require(:orator).permit(attributes)
   end
 
 end
