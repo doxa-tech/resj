@@ -139,7 +139,7 @@ ActiveRecord::Schema.define(version: 2019_09_09_151026) do
     t.bigint "location_id"
     t.string "disponibility"
     t.text "description"
-    t.boolean "disabled"
+    t.boolean "disabled", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "phone"
