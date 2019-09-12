@@ -1,6 +1,6 @@
 import { Controller } from "stimulus"
 
-export default class extends Controller {
+export default class SearchController extends Controller {
   static targets = [ "form", "input", "list" ]
 
   initialize() {
@@ -14,8 +14,8 @@ export default class extends Controller {
   }
 
   async connect() {
-    const cards = await this.request()
-    this.listController.updateCards(cards);
+    const items = await this.request()
+    this.listController.updateItems(items);
   }
 
   async search() {
@@ -24,22 +24,22 @@ export default class extends Controller {
     for(var param of formData.entries()) {
       params += param[0] + "=" + param[1] + "&";
     } 
-    const cards = await this.request(params);
-    this.listController.updateCards(cards);
-  }
-
-  get listController() {
-    return this.application.getControllerForElementAndIdentifier(this.listTarget, "cards--list")
+    const items = await this.request(params);
+    this.listController.updateItems(items);
   }
 
   async request(params) {
     params = params || "";
     try {
       const res = await fetch(this.formTarget.getAttribute("action") + params);
-      const cards = await res.json();
-      return cards;
+      const items = await res.json();
+      return items;
     } catch (e) {
       console.log(e);
     } 
+  }
+
+  get listController() {
+    return this.application.getControllerForElementAndIdentifier(this.listTarget, this.data.get("list-controller"));
   }
 }

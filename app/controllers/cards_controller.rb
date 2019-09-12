@@ -3,13 +3,13 @@ class CardsController < ApplicationController
   def index
     respond_to do |format|
 			format.html
-			format.json { @cards = search(params) }
+			format.json { @cards = search }
 		end
   end
 
   private
 
-  def search(params)
+  def search
     clean(params)
     cards = Card.all
     if params[:name].present?
