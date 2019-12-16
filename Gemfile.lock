@@ -151,7 +151,7 @@ GEM
       launchy (~> 2.1)
       mail (~> 2.6)
     erubi (1.7.1)
-    excon (0.61.0)
+    excon (0.71.0)
     execjs (2.7.0)
     factory_bot (4.8.2)
       activesupport (>= 3.0.0)
