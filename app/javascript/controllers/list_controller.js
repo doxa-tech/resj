@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class ListController extends Controller {
-  static targets = [ "numberTemplate", "items", "number", "numbers", "previous", "next" ]
+  static targets = ["numberTemplate", "items", "number", "numbers", "previous", "next"]
 
   items;
 
@@ -14,13 +14,13 @@ export default class ListController extends Controller {
     const start = (this.currentPage - 1) * this.itemPerPage;
     let items = this.items.slice(start, start + this.itemPerPage);
     this.itemsTarget.innerHTML = this.updateList(items);
-    this.updateMap();
+    this.updateMap(this.items);
     this.updatePagination();
   }
 
   updatePagination() {
     this.numbersTarget.innerHTML = "";
-    for(let i = 1; i <= this.numberOfPages; i++) {
+    for (let i = 1; i <= this.numberOfPages; i++) {
       this.numberTarget.innerHTML = i;
       this.numberTarget.classList.toggle("current", i == this.currentPage);
       this.numbersTarget.innerHTML += this.numberTemplateTarget.innerHTML;
@@ -64,7 +64,7 @@ export default class ListController extends Controller {
     throw "#updateList must be defined in the child class."
   }
 
-  updateMap() {
+  updateMap(items) {
     throw "#updateMap must be defined in the child class."
   }
 

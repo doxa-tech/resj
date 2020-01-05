@@ -1,3 +1,5 @@
+<div id="mapbox"></div>
+
 <div data-controller="search" data-search-list-controller="cards--list">
   <%= form_with url: "/reseau.json", method: :get, local: true, data: { target: "search.form" } do |f| %>
 
@@ -31,5 +33,4 @@
       <button class="nav" data-target="cards--list.next" data-action="cards--list#next">Suivant</button>
     </div>
   </div>
-  
 </div>

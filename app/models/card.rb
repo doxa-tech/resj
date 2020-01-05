@@ -43,6 +43,17 @@ class Card < ApplicationRecord
     current_step.nil? || current_step == step
   end
 
+  def color
+    case card_type
+    when "youth" 
+      "255,0,0"
+    when "adult"
+      "0,255,0"
+    else 
+      "128,128,128"
+    end
+  end
+
   private
 
   def assign_tags
