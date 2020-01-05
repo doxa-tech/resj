@@ -1,0 +1,19 @@
+div#application-header {
+  width: 100%;
+
+  div.wrapper {
+    max-width: 1000px;
+    padding: 30px 0;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    div.left {
+      img {
+        max-width: 128px;
+      }
+    }
+  }
+}
