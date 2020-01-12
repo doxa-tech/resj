@@ -8,4 +8,18 @@
     width: 100%;
     height: 400px;
   }
+
+  div.orator {
+    h2 {
+      text-align: center;
+      font-size: 1.8em;
+    }
+
+    p.intro {
+      text-align: center;
+      color: #777;
+      font-size: 1.2em;
+      line-height: 1.1em;
+    }
+  }
 }

@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class SearchController extends Controller {
-  static targets = [ "form", "input", "list" ]
+  static targets = ["form", "input", "list", "filtersBtn", "filtersHolder"]
 
   initialize() {
     let timeout;
@@ -11,6 +11,9 @@ export default class SearchController extends Controller {
         timeout = setTimeout(this.search.bind(this), 800);
       });
     });
+    console.log("hi from the search")
+    this.filtersHolderTarget.style.display = "none";
+    this.filtersBtnTarget.innerText = "Voir les filtres";
   }
 
   async connect() {
@@ -21,9 +24,9 @@ export default class SearchController extends Controller {
   async search() {
     const formData = new FormData(this.formTarget);
     let params = "?";
-    for(var param of formData.entries()) {
+    for (var param of formData.entries()) {
       params += param[0] + "=" + param[1] + "&";
-    } 
+    }
     const items = await this.request(params);
     this.listController.updateItems(items);
   }
@@ -36,10 +39,22 @@ export default class SearchController extends Controller {
       return items;
     } catch (e) {
       console.log(e);
-    } 
+    }
   }
 
   get listController() {
     return this.application.getControllerForElementAndIdentifier(this.listTarget, this.data.get("list-controller"));
+  }
+
+  toggleFilters() {
+    const holder = this.filtersHolderTarget
+    const btn = this.filtersBtnTarget
+    if (holder.style.display === "none") {
+      holder.style.display = "block";
+      btn.innerText = "Cacher les filtre"
+    } else {
+      holder.style.display = "none";
+      btn.innerText = "Voir les filtres"
+    }
   }
 }

@@ -13,7 +13,13 @@ export default class ListController extends Controller {
   update() {
     const start = (this.currentPage - 1) * this.itemPerPage;
     let items = this.items.slice(start, start + this.itemPerPage);
-    this.itemsTarget.innerHTML = this.updateList(items);
+    const updatedList = this.updateList(items)
+    this.itemsTarget.innerHTML = ""
+    let content = ""
+    for (let i = 0; i < updatedList.length; i++) {
+      content += updatedList[i]
+    }
+    this.itemsTarget.innerHTML = content
     this.updateMap(this.items);
     this.updatePagination();
   }

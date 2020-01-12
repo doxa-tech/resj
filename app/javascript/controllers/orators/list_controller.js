@@ -1,13 +1,15 @@
 import ListController from "controllers/list_controller.js"
 
 export default class extends ListController {
-  static targets = [...ListController.targets, "itemTemplate", "name" ];
+  static targets = [...ListController.targets, "itemTemplate", "firstname", "lastname", "themes"];
 
   updateList(items) {
-    let content = "";
+    let content = [];
     items.forEach((c) => {
-      this.nameTarget.innerHTML = c.name;
-      content += this.itemTemplateTarget.innerHTML;
+      this.firstnameTarget.innerHTML = c.firstname;
+      this.lastnameTarget.innerHTML = c.lastname;
+      this.themesTarget.innerHTML = c.themes;
+      content.push(this.itemTemplateTarget.outerHTML);
     });
     return content;
   }
@@ -17,7 +19,7 @@ export default class extends ListController {
   }
 
   get itemPerPage() {
-    return 1;
+    return 10;
   }
 
 }

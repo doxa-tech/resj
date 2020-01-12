@@ -209,17 +209,17 @@ export default class extends ListController {
   }
 
   updateList(items) {
-    let content = "";
+    // a table of rows
+    let content = [];
     items.forEach((c) => {
       this.nameTarget.innerHTML = c.properties.name;
       this.typeTarget.innerHTML = c.properties.type;
-      content += this.itemTemplateTarget.innerHTML;
+      content.push(this.itemTemplateTarget.outerHTML);
     });
     return content;
   }
 
   updateMap(items) {
-    console.log(items);
     let map = this.map;
     if (!map.loaded()) {
       map.on('load', () => {
@@ -231,7 +231,7 @@ export default class extends ListController {
   }
 
   get itemPerPage() {
-    return 5;
+    return 10;
   }
 
   setMap(items) {
