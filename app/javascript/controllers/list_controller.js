@@ -58,7 +58,7 @@ export default class ListController extends Controller {
 
   set currentPage(i) {
     if (i <= 0) throw "Current page cannot be equal or lower than zero.";
-    if (i > this.numberOfPages) throw "Current page cannot be greater than the total number."
+    if (i > this.numberOfPages) throw "Current page cannot be greater than the total number"
     this.data.set("page", i);
   }
 

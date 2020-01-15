@@ -240,5 +240,30 @@ export default class extends ListController {
       "type": "FeatureCollection",
       "features": items
     });
+    const boundingBox = this.getBoundingBox(items);
+    if (boundingBox.xMin !== undefined && boundingBox.yMin !== undefined &&
+      boundingBox.xMax !== undefined && boundingBox.yMax) {
+      map.fitBounds([[boundingBox.xMin, boundingBox.yMin], [boundingBox.xMax, boundingBox.yMax]]);
+    }
+  }
+
+
+  getBoundingBox(data) {
+    var bounds = {}, coords, point, latitude, longitude;
+
+    for (var i = 0; i < data.length; i++) {
+      coords = data[i].geometry.coordinates;
+
+      for (var j = 0; j < coords.length; j++) {
+        longitude = coords[0];
+        latitude = coords[1];
+        bounds.xMin = bounds.xMin < longitude ? bounds.xMin : longitude;
+        bounds.xMax = bounds.xMax > longitude ? bounds.xMax : longitude;
+        bounds.yMin = bounds.yMin < latitude ? bounds.yMin : latitude;
+        bounds.yMax = bounds.yMax > latitude ? bounds.yMax : latitude;
+      }
+    }
+
+    return bounds;
   }
 }
