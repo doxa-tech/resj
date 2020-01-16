@@ -1,4 +1,4 @@
-<div class="location step" data-target="cards--form.step">
+<div class="location step" data-target="cards--form.step" data-controller="cards--wizard">
   <p><span class="num">5</span> Quelle est votre <span class="b">rue</span>?</p>
   <%= f.text_field :street, placeholder: 'Rue' %>
 
@@ -8,11 +8,13 @@
   <p><span class="num">7</span> Où est votre <span class="b">lieu</span> de rencontre? (à l'église, dans la rue, en face de la gare ...) (optionnel)</p>
   <%= f.text_field :place, placeholder: 'Lieu de rencontre (optionnel)' %>
 
-  <%= f.text_field :latitude, id: "lat", type: :hidden %>
-  <%= f.text_field :longitude, id: "lng", type: :hidden %>
+  <p>Latitude</p>
+  <%= f.text_field :latitude, id: "lat", disabled: "disabled", data: { "target" => "cards--wizard.latitude" } %>
+  <p>Longitude</p>
+  <%= f.text_field :longitude, id: "lng", disabled: "disabled", data: { "target" => "cards--wizard.longitude" } %>
 
-  <p><span class="num">8</span> Sur une carte, quelle est votre <span class="b">emplacement</span>? Positionnez le curseur en cliquant sur la carte au bon endroit </p>
-  <div id="map-canvas"></div>
+  <p><span class="num">8</span> Sur une carte, quelle est votre <span class="b">emplacement</span>? Zoomer à l'emplacement sur la carte puis clickez sur l'endroit afin de placer le marker. </p>
+  <div id="mapbox"></div>
   <div class="map-panel">
     <input id="address" type="textbox" value="Switzerland">
     <input type="button" value="find" id="geocode-addr">

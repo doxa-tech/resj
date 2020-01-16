@@ -1,4 +1,6 @@
-<div data-controller="cards--form" data-cards--form-step="<%= params[:step] || 'general' %>">
+<% content_for :id, "cards-edit" %>
+
+<div class="container" data-controller="cards--form" data-cards--form-step="<%= params[:step] || 'general' %>">
 
   <h1>Enregistrer un nouveau groupe</h1>
   

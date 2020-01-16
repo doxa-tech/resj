@@ -204,7 +204,7 @@ export default class extends ListController {
       });
       this.map = map;
     } else {
-      console.error("mapbox html element not found")
+      console.error("mapbox html element not found.")
     }
   }
 
@@ -253,15 +253,14 @@ export default class extends ListController {
 
     for (var i = 0; i < data.length; i++) {
       coords = data[i].geometry.coordinates;
+      longitude = coords[0];
+      latitude = coords[1];
+      if (longitude === null || latitude === null) continue
+      bounds.xMin = bounds.xMin < longitude ? bounds.xMin : longitude;
+      bounds.xMax = bounds.xMax > longitude ? bounds.xMax : longitude;
+      bounds.yMin = bounds.yMin < latitude ? bounds.yMin : latitude;
+      bounds.yMax = bounds.yMax > latitude ? bounds.yMax : latitude;
 
-      for (var j = 0; j < coords.length; j++) {
-        longitude = coords[0];
-        latitude = coords[1];
-        bounds.xMin = bounds.xMin < longitude ? bounds.xMin : longitude;
-        bounds.xMax = bounds.xMax > longitude ? bounds.xMax : longitude;
-        bounds.yMin = bounds.yMin < latitude ? bounds.yMin : latitude;
-        bounds.yMax = bounds.yMax > latitude ? bounds.yMax : latitude;
-      }
     }
 
     return bounds;

@@ -1,22 +1,40 @@
-// TODO: placed here by khcr for the wizard
+#container.cards-edit {
+  & > .container {
+    .step {
+      display: none;
+    }
 
-.step {
-  display: none;
-}
+    .step.current {
+      display: block;
+    }
 
-.step.current {
-  display: block;
-}
+    .nav {
+      display: none;
+    }
 
-.nav {
-  display: none;
-}
+    .nav.current {
+      display: inline;
+    }
 
-.nav.current {
-  display: inline;
-}
+    // TODO: for the test suit to pass
+    form .nav {
+      margin-top: 150px;
+    }
 
-// TODO: for the test suit to pass
-form .nav {
-  margin-top: 150px;
+    #mapbox {
+      width: 100%;
+      max-width: 600px;
+      height: 300px;
+      margin: auto;
+    }
+    .marker {
+      background-image: url("mapbox-icon.png");
+      background-color: red;
+      background-size: cover;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  }
 }
