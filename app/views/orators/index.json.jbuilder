@@ -5,4 +5,5 @@ json.array! @orators do |orator|
   json.themes do
     json.array! orator.themes.map{|t| t.name}
   end
+  json.href orator_path(orator)
 end

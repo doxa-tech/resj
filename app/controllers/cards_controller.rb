@@ -7,6 +7,10 @@ class CardsController < ApplicationController
 		end
   end
 
+  def show
+    @card = Card.find(params[:id])
+  end
+
   private
 
   def search
