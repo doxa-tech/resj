@@ -1,0 +1,31 @@
+<p><%= "#{@orator.user.firstname} #{@orator.user.lastname}" %>
+
+<p>Thêmes:</p>
+<ul>
+<% @orator.themes.each do |theme| %>
+  <li><%= theme.name %></li>
+<% end %>
+</ul>
+
+<p>Disponibilités: <%= @orator.disponibility %></p>
+
+<p>Description: <%= @orator.description %>
+
+<p>Canton: <%= @orator.location.canton.name %></p>
+<p>NPA: <%= @orator.location.zip %></p>
+
+<p><b>Contacter cet orateur</b></p>
+<p>Merci de n'utiliser ce service seulement si tu recherche un orateur pour une soirée / événement. Si tu as déjà envoyé un message mais que tu n'as pas reçus de réponse ne renvois pas un message tout de suite mais attend quelques semaines.
+
+<form>
+  <label>Ton message</label>
+  <textarea></textarea><br>
+  <label>Ton email</label>
+  <input type="email"><br>
+  <label>Combien font 2+2?</label>
+  <input type="text"><br>
+  <input type="checkbox" value="ok">
+  <label>J'accepte les conditions d'utilisations</label><br>
+  
+  <input type="submit" value="Envoyer un message"/>
+</form>

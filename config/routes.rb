@@ -15,9 +15,9 @@ Rails.application.routes.draw do
   get "signup", to: "users#new"
 
   resources :users, except: :delete
-  resources :orators, only: [:index, :new, :create]
+  resources :orators, only: [:index, :new, :create, :show]
 
-  namespace :cards do
+  resources :cards do
 
     resources :users, only: [:new, :create]
 

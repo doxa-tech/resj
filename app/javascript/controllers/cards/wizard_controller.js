@@ -42,7 +42,7 @@ export default class WizardController extends Controller {
         });
       });
     } else {
-      console.error("mapbox html element not found.")
+      console.error("mapbox html element not found. ")
     }
   }
 

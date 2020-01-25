@@ -22,6 +22,10 @@ class OratorsController < ApplicationController
     end
   end
 
+  def show
+    @orator = Orator.find(params[:id])
+  end
+
   private
 
   def search

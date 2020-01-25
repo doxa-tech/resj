@@ -1,13 +1,13 @@
 import ListController from "controllers/list_controller.js"
 
 export default class extends ListController {
-  static targets = [...ListController.targets, "itemTemplate", "firstname", "lastname", "themes"];
+  static targets = [...ListController.targets, "itemTemplate", "title", "themes"];
 
   updateList(items) {
     let content = [];
     items.forEach((c) => {
-      this.firstnameTarget.innerHTML = c.firstname;
-      this.lastnameTarget.innerHTML = c.lastname;
+      this.titleTarget.innerHTML = c.firstname + " " + c.lastname;
+      this.titleTarget.href = c.href
       this.themesTarget.innerHTML = c.themes;
       content.push(this.itemTemplateTarget.outerHTML);
     });

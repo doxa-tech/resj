@@ -13,5 +13,6 @@ json.array! @cards do |card|
 		json.description "<h4>#{card.name}</h4>
 			<p>#{card.description}</p>"
 		json.color card.color
+		json.href card_path(card)
 	end
 end
