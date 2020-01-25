@@ -24,6 +24,10 @@ When("I click the link {string}") do |link|
   click_link link
 end
 
+When("I wait {int} hours") do |int|
+  travel int.hours
+end
+
 When("I miscomplete the form") do
   find("form").find("input[type=submit]").click
 end

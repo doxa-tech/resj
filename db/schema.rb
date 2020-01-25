@@ -121,11 +121,11 @@ ActiveRecord::Schema.define(version: 2019_09_09_151026) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "disponibilities_orators", id: :bigint, default: -> { "nextval('orators_disponibilities_id_seq'::regclass)" }, force: :cascade do |t|
+  create_table "disponibilities_orators", force: :cascade do |t|
     t.bigint "orator_id"
     t.bigint "disponibility_id"
-    t.index ["disponibility_id"], name: "index_orators_disponibilities_on_disponibility_id"
-    t.index ["orator_id"], name: "index_orators_disponibilities_on_orator_id"
+    t.index ["disponibility_id"], name: "index_disponibilities_orators_on_disponibility_id"
+    t.index ["orator_id"], name: "index_disponibilities_orators_on_orator_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -178,11 +178,11 @@ ActiveRecord::Schema.define(version: 2019_09_09_151026) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "themes_orators", id: :bigint, default: -> { "nextval('orators_themes_id_seq'::regclass)" }, force: :cascade do |t|
+  create_table "themes_orators", force: :cascade do |t|
     t.bigint "orator_id"
     t.bigint "theme_id"
-    t.index ["orator_id"], name: "index_orators_themes_on_orator_id"
-    t.index ["theme_id"], name: "index_orators_themes_on_theme_id"
+    t.index ["orator_id"], name: "index_themes_orators_on_orator_id"
+    t.index ["theme_id"], name: "index_themes_orators_on_theme_id"
   end
 
   create_table "users", force: :cascade do |t|
