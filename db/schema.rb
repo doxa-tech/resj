@@ -121,6 +121,13 @@ ActiveRecord::Schema.define(version: 2019_09_09_151026) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "disponibilities_orators", id: :bigint, default: -> { "nextval('orators_disponibilities_id_seq'::regclass)" }, force: :cascade do |t|
+    t.bigint "orator_id"
+    t.bigint "disponibility_id"
+    t.index ["disponibility_id"], name: "index_orators_disponibilities_on_disponibility_id"
+    t.index ["orator_id"], name: "index_orators_disponibilities_on_orator_id"
+  end
+
   create_table "locations", force: :cascade do |t|
     t.integer "zip"
     t.string "official_name"
@@ -147,20 +154,6 @@ ActiveRecord::Schema.define(version: 2019_09_09_151026) do
     t.index ["user_id"], name: "index_orators_on_user_id"
   end
 
-  create_table "orators_disponibilities", force: :cascade do |t|
-    t.bigint "orator_id"
-    t.bigint "disponibility_id"
-    t.index ["disponibility_id"], name: "index_orators_disponibilities_on_disponibility_id"
-    t.index ["orator_id"], name: "index_orators_disponibilities_on_orator_id"
-  end
-
-  create_table "orators_themes", force: :cascade do |t|
-    t.bigint "orator_id"
-    t.bigint "theme_id"
-    t.index ["orator_id"], name: "index_orators_themes_on_orator_id"
-    t.index ["theme_id"], name: "index_orators_themes_on_theme_id"
-  end
-
   create_table "taggings", force: :cascade do |t|
     t.bigint "card_id"
     t.bigint "tag_id"
@@ -183,6 +176,13 @@ ActiveRecord::Schema.define(version: 2019_09_09_151026) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "themes_orators", id: :bigint, default: -> { "nextval('orators_themes_id_seq'::regclass)" }, force: :cascade do |t|
+    t.bigint "orator_id"
+    t.bigint "theme_id"
+    t.index ["orator_id"], name: "index_orators_themes_on_orator_id"
+    t.index ["theme_id"], name: "index_orators_themes_on_theme_id"
   end
 
   create_table "users", force: :cascade do |t|
