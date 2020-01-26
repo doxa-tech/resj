@@ -1,0 +1,15 @@
+<h2>Réinitialiser son mot de passe</h2>
+
+<%= form_for @user, url: users_password_reset_path(params[:id]) do |f| %>
+
+  <%= render 'error_messages', object: f.object %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password, placeholder: "Nouveau mot de passe" %>
+
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+
+  <%= f.submit "Mettre à jour" %>
+
+<% end %>

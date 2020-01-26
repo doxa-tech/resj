@@ -8,6 +8,14 @@ FactoryBot.define do
     password_confirmation { "choux" }
   end 
 
+  factory :orator do
+    user 
+    location
+    street { "Route du moulin 12" }
+    phone { "+41797891011" }
+    description { "A votre service !" }
+  end
+
   factory :card do
     name { "Waykup" }
     description { "Un super groupe de jeunes" }

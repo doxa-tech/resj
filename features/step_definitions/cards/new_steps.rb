@@ -9,8 +9,8 @@ When("I complete the second step and submit it") do
   fill_in "card_street", with: "Route du verdel 8"
 	remote_choiceselect "Bulle", from: "card_location"
 	fill_in "card_place", with: "A l'église"
-	find('input#lat', visible: false).execute_script("this.value = 46")
-	find('input#lng', visible: false).execute_script("this.value = 7")
+	find_field('card_latitude').execute_script("this.value = 46")
+	find_field('card_longitude').execute_script("this.value = 7")
 	click_button "Prochaine étape"
 end
 

@@ -1,0 +1,15 @@
+
+  <h2>Réinitialiser son mot de passe</h2>
+
+  <p>
+    Mot de passe oublié ? Rentrez simplement votre email et vous recevrez un message pour obtenir un nouveau mot de passe.
+  </p>
+
+  <%= form_tag users_password_resets_path, :method => :post do %>
+
+    <%= label_tag :email %>
+    <%= text_field_tag :email %>
+
+    <%= submit_tag "Réinitialiser son mot de passe" %>
+
+  <% end %>

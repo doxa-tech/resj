@@ -14,6 +14,9 @@ class User < ApplicationRecord
   validates :email, format: { with: /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/ }, uniqueness: true
   validates :gravatar_email, :format => { :with => /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/ }, on: :update
 
+  # password reset
+  validates :password, presence: true, on: :reset
+
   private
 
   def create_remember_token

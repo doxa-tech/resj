@@ -9,9 +9,9 @@
   <%= f.text_field :place, placeholder: 'Lieu de rencontre (optionnel)' %>
 
   <p>Latitude</p>
-  <%= f.text_field :latitude, id: "lat", disabled: "disabled", data: { "target" => "cards--wizard.latitude" } %>
+  <%= f.text_field :latitude, readonly: "readonly", data: { "target" => "cards--wizard.latitude" } %>
   <p>Longitude</p>
-  <%= f.text_field :longitude, id: "lng", disabled: "disabled", data: { "target" => "cards--wizard.longitude" } %>
+  <%= f.text_field :longitude, readonly: "readonly", data: { "target" => "cards--wizard.longitude" } %>
 
   <p><span class="num">8</span> Sur une carte, quelle est votre <span class="b">emplacement</span>? Zoomer à l'emplacement sur la carte puis clickez sur l'endroit afin de placer le marker. </p>
   <div id="mapbox"></div>

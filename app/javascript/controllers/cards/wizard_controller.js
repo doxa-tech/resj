@@ -28,7 +28,6 @@ export default class WizardController extends Controller {
       map.on('load', function () {
         map.addControl(new mapboxgl.NavigationControl());
         map.on('click', function (e) {
-          console.log(e.lngLat.lat)
           latTarget.value = e.lngLat.lat
           lngTarget.value = e.lngLat.lng
           var el = document.createElement('div');
