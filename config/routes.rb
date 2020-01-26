@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   resources :users, except: :delete
   resources :orators, only: [:index, :new, :create, :show]
 
-  resources :cards do
+  resources :cards, only: [:show]
+
+  namespace :cards do
 
     resources :users, only: [:new, :create]
 
