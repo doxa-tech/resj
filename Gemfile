@@ -10,7 +10,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sassc-rails', '~> 2.0'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '>= 4.0.7'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -26,7 +26,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'adeia'
 
 # Display DB tables
-gem 'snaptable'
+gem 'snaptable', '~> 3.0'
 
 # Pagination
 gem 'will_paginate', '~> 3.1.0'
