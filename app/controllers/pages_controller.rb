@@ -6,4 +6,7 @@ class PagesController < ApplicationController
   def resj
   end
 
+  def faq
+  end
+
 end

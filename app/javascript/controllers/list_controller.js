@@ -75,7 +75,7 @@ export default class ListController extends Controller {
   }
 
   get itemPerPage() {
-    throw "Getter #itemPerPage must be defined in the child class."
+    throw "Getter #itemPerPage must be defined in the child class"
   }
 
 }
