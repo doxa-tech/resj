@@ -1,12 +1,12 @@
 import { Controller } from "stimulus"
 import mapboxgl from 'mapbox-gl';
 
-export default class WizardController extends Controller {
-  static targets = ["latitude", "longitude"];
+export default class LocationController extends Controller {
+  static targets = ["latitude", "longitude", "map"];
   map;
 
   initialize() {
-    const mapElement = document.getElementById('mapbox');
+    const mapElement = this.mapTarget;
     if (mapElement) {
       mapboxgl.accessToken = 'pk.eyJ1IjoibmtjciIsImEiOiI4UnhLZEx3In0.bakfmpx2lREiNbHn0lWq9Q';
       var zoom = 0;
@@ -41,7 +41,7 @@ export default class WizardController extends Controller {
         });
       });
     } else {
-      console.error("mapbox html element not found. ")
+      console.error("Mapbox HTML element not found.")
     }
   }
 

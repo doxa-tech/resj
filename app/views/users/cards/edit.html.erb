@@ -1,0 +1,55 @@
+<h1>Mettre à jour mon groupe</h1>
+  
+<%= form_with model: [:users, @card] do |f| %>
+
+  <%= render "error_messages", object: f.object %>
+
+  <h2>Général</h2>
+
+  <%= f.label :name %>
+  <%= f.text_field :name, placeholder: 'Nom' %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description, placeholder: 'Description' %>
+
+  <%= f.label :card_type %>
+  <%= f.select :card_type, options_for_enum(f.object, :card_type), { prompt: "Choisissez une catégorie" }, { class: "card_type", "data-controller": "select--simple" } %>
+
+  <%= f.label :parent_ids %>
+  <%= f.collection_select :parent_ids, Card.network, :id, :name, {}, { multiple: true, "data-controller": "select--simple" } %>
+
+  <h2>Lieu</h2>
+  
+  <%= f.label :street %>
+  <%= f.text_field :street, placeholder: 'Rue' %>
+
+  <%= f.label :location_id %>
+  <%= f.collection_select :location_id, [f.object.location].compact, :id, :full_name, {}, { class: "card_location", "data-controller": "select--locations" } %>
+  
+  <%= f.label :place %>
+  <%= f.text_field :place, placeholder: 'Lieu de rencontre (optionnel)' %>
+  
+  <div data-controller="cards--location">
+    <%= f.label :latitude %>
+    <%= f.text_field :latitude, readonly: "readonly", data: { "target" => "cards--location.latitude" } %>
+    
+    <%= f.label :longitude %>
+    <%= f.text_field :longitude, readonly: "readonly", data: { "target" => "cards--location.longitude" } %>
+
+    <div id="mapbox" data-target="cards--location.map"></div>
+  </div>
+
+  <h2>Contact</h2>
+
+  <%= f.label :email %>
+  <%= f.text_field :email, placeholder: "contact@mail.ch" %>
+
+  <%= f.label :website %>
+  <%= f.text_field :website, placeholder: "http://mon-groupe.ch (optionnel)" %>
+
+  <%= f.label :affiliation %>
+  <%= f.text_area :affiliation, placeholder: 'Eglise évangélique de ... (optionnel)' %>
+  
+  <%= f.submit %>
+
+<% end %>
