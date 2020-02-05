@@ -1,15 +1,16 @@
 class Users::CardsController < ApplicationController
+  before_action :check_if_signed_in
 
   def show
-    @card = Card.find(params[:id])
+    @card = card
   end
 
   def edit
-    @card = Card.find(params[:id])
+    @card = card
   end
 
   def update
-    @card = Card.find(params[:id])
+    @card = card
     if @card.update(card_params)
       redirect_to users_card_path(@card)
     else
@@ -18,6 +19,10 @@ class Users::CardsController < ApplicationController
   end
 
   private
+
+  def card
+    @card ||= current_user.cards.find(params[:id])
+  end
 
   def card_params
     params.require(:card).permit(:name, :description, :card_type, :street, :place, :location_id,
