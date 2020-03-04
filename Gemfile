@@ -36,7 +36,7 @@ gem 'jbuilder', '~> 2.6'
 gem 'bcrypt'
 
 # Use puma as the app server
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 
 group :development do
 
