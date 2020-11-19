@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Resj</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'admin', 'data-turbolinks-track': 'reload' %>
+
+  </head>
+
+  <body>
+
+    <%= render 'layouts/header' %>
+
+    <%= render 'layouts/flash' %>
+
+    <div id="container" class="<%= yield :id %>">
+      <%= yield %>
+    </div>
+
+    <%= render 'layouts/footer' %>
+
+  </body>
+</html>

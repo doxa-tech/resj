@@ -35,6 +35,13 @@ Rails.application.routes.draw do
   namespace :users do
 
     resources :password_resets, only: [:new, :create, :edit, :update]
+    resources :cards, only: [:show, :edit, :update]
+
+  end
+
+  namespace :admin do
+
+    resources :cards
 
   end
 
