@@ -19,11 +19,13 @@
 
     <div class="orators-list" data-target="search.list" data-orators--list-page="1" data-controller="orators--list">
       <table>
+        <tr data-target="orators--list.itemTemplate">
+          <td><a data-target="orators--list.title"></a></td>
+          <td data-target="orators--list.themes"></td>
+        </tr>
+      </table>
+      <table>
         <tbody data-target="orators--list.items">
-          <tr data-target="orators--list.itemTemplate">
-            <td><a data-target="orators--list.title"></a></td>
-            <td data-target="orators--list.themes"></td>
-          </tr>
         </tbody>
       </table>
       <div class="pagination">

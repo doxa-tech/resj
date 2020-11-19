@@ -53,11 +53,11 @@ psql
 > drop table help_categories;
 > drop table help_pages;
 > drop table newsletters;
-> alter table orator_disponibilities rename to orators_disponibilities;
-> alter table orators_disponibilities drop column created_at, drop column updated_at;
+> alter table orator_disponibilities rename to disponibilities_orators;
+> alter table disponibilities_orators drop column created_at, drop column updated_at;
 > alter table orator_themes rename to orators_themes;
 > alter table orators_themes drop column created_at, drop column updated_at;
-> alter table orator_disponibilities_id_seq rename to orators_disponibilities_id_seq;
+> alter table orator_disponibilities_id_seq rename to disponibilities_orators_id_seq;
 > alter table orator_themes_id_seq rename to orators_themes_id_seq;
 > drop table ownership_types;
 > drop table ownership_actions;

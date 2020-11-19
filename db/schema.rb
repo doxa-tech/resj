@@ -121,13 +121,6 @@ ActiveRecord::Schema.define(version: 2019_09_09_151026) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "disponibilities_orators", force: :cascade do |t|
-    t.bigint "orator_id"
-    t.bigint "disponibility_id"
-    t.index ["disponibility_id"], name: "index_disponibilities_orators_on_disponibility_id"
-    t.index ["orator_id"], name: "index_disponibilities_orators_on_orator_id"
-  end
-
   create_table "locations", force: :cascade do |t|
     t.integer "zip"
     t.string "official_name"
@@ -152,6 +145,13 @@ ActiveRecord::Schema.define(version: 2019_09_09_151026) do
     t.string "phone"
     t.index ["location_id"], name: "index_orators_on_location_id"
     t.index ["user_id"], name: "index_orators_on_user_id"
+  end
+
+  create_table "orators_disponibilities", force: :cascade do |t|
+    t.bigint "orator_id"
+    t.bigint "disponibility_id"
+    t.index ["disponibility_id"], name: "index_orators_disponibilities_on_disponibility_id"
+    t.index ["orator_id"], name: "index_orators_disponibilities_on_orator_id"
   end
 
   create_table "orators_themes", force: :cascade do |t|

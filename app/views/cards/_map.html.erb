@@ -36,11 +36,13 @@
 
     <div class="cards-list" data-target="search.list" data-cards--list-page="1" data-controller="cards--list">
       <table>
-        <tbody data-target="cards--list.items">
           <tr data-target="cards--list.itemTemplate">
             <td><%= link_to "", "#", data: { "target" => "cards--list.name"} %></td>
             <td data-target="cards--list.type"></td>
           </tr>
+      </table>
+      <table>
+        <tbody data-target="cards--list.items">
         </tbody> 
       </table>
       <div class="pagination">
