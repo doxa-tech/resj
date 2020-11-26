@@ -18,12 +18,12 @@ var load_mapbox = {
     } else {
             zoom = 9;
     }
-    var map = L.mapbox.map("map", "nkcr.i04348d7", {fullscreenControl: true, minZoom: 9}).setView([46.6221, 7.1960], zoom);
-    map.scrollWheelZoom.disable();
-    map.addControl(L.mapbox.shareControl());
-    map.on("ready", function() {
-      load_mapbox.process_map(data);
+    var map = L.mapbox.map("map")
+    this.map = map;
+    map.on('load', function(e) {
+      load_mapbox.process_map(data.data);
     });
+    map.setView([46.6221, 7.1960], zoom).addLayer(L.mapbox.styleLayer('mapbox://styles/nkcr/ck4vla6vz2ir81cnya5cl6uog'));
     this.map = map;
   },
 

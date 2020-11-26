@@ -21,7 +21,7 @@ gem 'coffee-rails'
 # Use SCSS for stylesheets
 gem 'sass-rails'
 # Mapbox
-gem 'mapbox-rails', '~> 1.6.0'
+gem 'mapbox-rails', '~> 2.3.0'
 # AngularJS
 gem 'angularjs-rails', '~> 1.6.0'
 

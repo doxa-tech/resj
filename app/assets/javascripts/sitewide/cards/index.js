@@ -1,18 +1,20 @@
 /* global app, load_mapbox, $ */
 "use strict";
 
-app.controller("cards#index", ["$scope", "$http", "Paginator", function($scope, $http, Paginator) {
+app.controller("cards#index", ["$scope", "$http", "Paginator", function ($scope, $http, Paginator) {
 
   $scope.search = {};
 
-  $scope.search = function() {
-    $http.get("reseau.json", { params: {
-      "query" : $scope.search.query,
-      "canton_ids[]": $scope.search.cantons,
-      "card_type_ids[]": $scope.search.types,
-      "tag_ids[]": $scope.search.tags
+  $scope.search = function () {
+    $http.get("reseau.json", {
+      params: {
+        "query": $scope.search.query,
+        "canton_ids[]": $scope.search.cantons,
+        "card_type_ids[]": $scope.search.types,
+        "tag_ids[]": $scope.search.tags
 
-    }}).success(function(cards) {
+      }
+    }).then(function (cards) {
 
       $scope.cards = cards;
 
@@ -22,6 +24,8 @@ app.controller("cards#index", ["$scope", "$http", "Paginator", function($scope, 
 
       load_mapbox.loadMap(cards);
 
+    }, function (err) {
+      console.log("failed to load json", err)
     });
   };
 
@@ -29,8 +33,8 @@ app.controller("cards#index", ["$scope", "$http", "Paginator", function($scope, 
 
   $scope.filter = "voir";
 
-  $scope.toggleFilter = function() {
-    if($scope.filter === "fermer") {
+  $scope.toggleFilter = function () {
+    if ($scope.filter === "fermer") {
       $scope.filter = "voir";
     } else {
       $scope.filter = "fermer";
@@ -38,7 +42,7 @@ app.controller("cards#index", ["$scope", "$http", "Paginator", function($scope, 
   };
 
   /* Description */
-  $("#results").on("click", ".show-description", function() {
+  $("#results").on("click", ".show-description", function () {
     var btn = $(this);
     var desc = btn.nextAll(".description");
     btn.toggleClass("selected");
@@ -46,12 +50,12 @@ app.controller("cards#index", ["$scope", "$http", "Paginator", function($scope, 
   });
 
   // Show marker when click
-  $("#results").on("click", ".show-on-map", function(){
+  $("#results").on("click", ".show-on-map", function () {
     var link = $(this);
     document.getElementById("map").scrollIntoView();
-    load_mapbox.markers.eachLayer(function(layer){
-      if(layer.options.id == parseInt(link.data("id"))) {
-        load_mapbox.markers.zoomToShowLayer(layer, function() {
+    load_mapbox.markers.eachLayer(function (layer) {
+      if (layer.options.id == parseInt(link.data("id"))) {
+        load_mapbox.markers.zoomToShowLayer(layer, function () {
           layer.openPopup();
         });
       }

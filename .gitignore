@@ -20,3 +20,6 @@ uploads
 
 config/database.yml
 config/elasticsearch.yml
+
+data/
+.DS_Store
