@@ -40,10 +40,13 @@ app.controller("pages#home", ["$http", function($http) {
 	}
 
   function initMap() {
-    $http.get("reseau.json").success(function(cards) {
+    $http.get("reseau.json").then(function(res) {
+      var cards = res.data;
 
       load_mapbox.loadMap(cards);
 
+    }, function(err) {
+      console.log("failed to load cards", err)
     });
     return true;
   }

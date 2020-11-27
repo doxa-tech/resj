@@ -1,4 +1,4 @@
-class CreateCardTypes < ActiveRecord::Migration
+class CreateCardTypes < ActiveRecord::Migration[4.2]
   def change
     create_table :card_types do |t|
       t.string :name

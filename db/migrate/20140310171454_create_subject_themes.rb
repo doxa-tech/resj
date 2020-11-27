@@ -1,4 +1,4 @@
-class CreateSubjectThemes < ActiveRecord::Migration
+class CreateSubjectThemes < ActiveRecord::Migration[4.2]
   def change
     create_table :subject_themes do |t|
       t.belongs_to :subject, index: true

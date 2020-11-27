@@ -1,4 +1,4 @@
-class CreateParents < ActiveRecord::Migration
+class CreateParents < ActiveRecord::Migration[4.2]
   def change
     create_table :parents do |t|
       t.belongs_to :user, index: true

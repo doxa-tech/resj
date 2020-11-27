@@ -1,4 +1,4 @@
-class CreateCardAffiliations < ActiveRecord::Migration
+class CreateCardAffiliations < ActiveRecord::Migration[4.2]
   def change
     create_table :card_affiliations do |t|
       t.belongs_to :card, index: true

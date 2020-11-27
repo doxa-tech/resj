@@ -1,6 +1,6 @@
 class Admin::SubjectsController < Admin::BaseController
 	before_action :current_resource, only: [:edit, :update, :destroy]
-	after_action only: [:create, :update, :destroy] { |c| c. track_activity @subject }
+	after_action -> { track_activity(@subject) }, only: [:create, :update, :destroy]
 
 	def index
 		@table = SubjectTable.new(self)

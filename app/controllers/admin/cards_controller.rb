@@ -1,6 +1,6 @@
 class Admin::CardsController < Admin::BaseController
 	before_action :current_resource, only: [:show, :edit, :update, :destroy]
-	after_action only: [:create, :update, :destroy] { |c| c. track_activity @card }
+	after_action -> { track_activity(@card) }, only: [:create, :update, :destroy]
 
 	def index
 		@table = CardTable.new(self, nil, search: true)

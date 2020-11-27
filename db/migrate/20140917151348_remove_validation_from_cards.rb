@@ -1,4 +1,4 @@
-class RemoveValidationFromCards < ActiveRecord::Migration
+class RemoveValidationFromCards < ActiveRecord::Migration[4.2]
   def change
   	change_table(:cards) do |t|
   		t.references :status

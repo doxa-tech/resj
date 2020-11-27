@@ -28,7 +28,7 @@ end
 
 Then /^I should see errors for the fields "(.*?)"$/ do |fields|
 	fields.split(",").each do |field|
-		expect(find '#error').to have_content field
+		expect(find '#error').to have_content field.strip
 	end
 end
 

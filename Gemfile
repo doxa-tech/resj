@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '~> 5.1.0'
 
 # Use postgres as the database for Active Record
-gem 'pg', '~> 0.21'
+gem 'pg'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
@@ -19,24 +19,24 @@ gem 'multi-select-rails'
 # Coffee script
 gem 'coffee-rails'
 # Use SCSS for stylesheets
-gem 'sass-rails'
+gem 'sass-rails', '~> 5.0.0'
 # Mapbox
-gem 'mapbox-rails', '~> 1.6.0'
+gem 'mapbox-rails', '~> 2.3.0'
 # AngularJS
-gem 'angularjs-rails', '~> 1.6.0'
+gem 'angularjs-rails', '~> 1.6.8'
 
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks', '~> 5.1'
+gem 'turbolinks', '~> 5.1.0'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.6'
+gem 'jbuilder'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt'
 
 # Use puma as the app server
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 4.3'
 
 group :development do
 
@@ -71,16 +71,16 @@ end
 gem 'will_paginate'
 
 # search
-gem 'elasticsearch-model'
-gem 'elasticsearch-rails'
+gem 'elasticsearch-model', '~> 5.0.0'
+gem 'elasticsearch-rails', '~> 5.0.0'
 
 # image & video uploader
-gem 'carrierwave', '~> 1.2.0'
+gem 'carrierwave', '~> 1.3.0'
 gem 'carrierwave-i18n'
 gem 'carrierwave-processing'
 
 # google cloud adapter
-gem 'fog-google'
+gem 'fog-google', '~> 1.11'
 
 # image manipulating
 gem 'mini_magick'
@@ -91,9 +91,8 @@ group :development, :test do
 	gem 'rspec-rails'
 	gem 'cucumber-rails', require: false
 	gem 'database_cleaner'
-	gem 'capybara-webkit'
-	gem 'selenium-webdriver', '~> 2.53.0'
-	gem 'factory_bot_rails'
+	gem 'selenium-webdriver'
+	gem 'factory_bot_rails', '~> 5.2'
 	gem 'email_spec'
 	gem 'faker'
 	gem 'timecop'

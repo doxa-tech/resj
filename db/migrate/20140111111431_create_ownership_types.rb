@@ -1,4 +1,4 @@
-class CreateOwnershipTypes < ActiveRecord::Migration
+class CreateOwnershipTypes < ActiveRecord::Migration[4.2]
   def change
     create_table :ownership_types do |t|
       t.string :name

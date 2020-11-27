@@ -1,4 +1,4 @@
-class AddCooToLocations < ActiveRecord::Migration
+class AddCooToLocations < ActiveRecord::Migration[4.2]
   def change
     add_column :locations, :latitude, :float
     add_column :locations, :longitude, :float

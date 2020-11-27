@@ -1,7 +1,7 @@
 /* global $ */
 "use strict";
 
-$(document).on("ready page:load", function() {
+$(document).on("ready turbolinks:load", function() {
 
   $("#lightbox").click(function(e) {
     if(e.target.id == "lightbox") {

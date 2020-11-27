@@ -1,6 +1,6 @@
 class UsersController < BaseController
 	before_action :connected?, only: [:profile, :edit, :update, :avatar, :avatar_update, :my_cards]
-	after_action only: [:create, :update, :confirmation] { |c| c. track_activity @user }
+	after_action -> { track_activity(@user) }, only: [:create, :update, :confirmation]
 	layout 'admin'
 
 	def new

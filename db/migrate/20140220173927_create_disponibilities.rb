@@ -1,4 +1,4 @@
-class CreateDisponibilities < ActiveRecord::Migration
+class CreateDisponibilities < ActiveRecord::Migration[4.2]
   def change
     create_table :disponibilities do |t|
       t.string :name

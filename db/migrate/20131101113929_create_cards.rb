@@ -1,4 +1,4 @@
-class CreateCards < ActiveRecord::Migration
+class CreateCards < ActiveRecord::Migration[4.2]
   def change
     create_table :cards do |t|
       t.belongs_to :card_type, index: true

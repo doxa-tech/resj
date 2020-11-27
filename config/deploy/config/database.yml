@@ -36,3 +36,21 @@ staging:
 
 cucumber:
   <<: *test
+
+# When using docker you might use those
+# default: &default
+#   adapter: postgresql
+#   encoding: unicode
+#   host: db
+#   username: postgres
+#   password: password
+#   pool: 5
+
+# development:
+#   <<: *default
+#   database: resj_development
+
+
+# test:
+#   <<: *default
+#   database: resj_test

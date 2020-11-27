@@ -3,7 +3,7 @@
 
 /* Automatic page reload if user inactive */
 
-$(document).on("ready page:load", function() {
+$(document).on("ready turbolinks:load", function() {
   var idleTimer;
   function resetTimer(){
     clearTimeout(idleTimer);
