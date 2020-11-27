@@ -1,6 +1,6 @@
 class Admin::ThemesController < Admin::BaseController
 	before_action :current_resource, only: [:edit, :update, :destroy]
-	after_action only: [:create, :update, :destroy] { |c| c. track_activity @theme }
+	after_action -> { track_activty(@theme) }, only: [:create, :update, :destroy]
 
 	def index
 		@table = Table.new(self, Theme)

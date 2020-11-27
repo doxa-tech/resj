@@ -3,7 +3,7 @@ class OratorsController < BaseController
 	before_action :authorize_resource, only: [:index, :show]
 	before_action :disabled?, only: [:show]
 	before_action :orator?, only: [:new, :create]
-	after_action only: [:create, :update] { |c| c. track_activity @user }
+	after_action -> { track_activity(@user) }, only: [:create, :update]
 
 	def index
 		js true

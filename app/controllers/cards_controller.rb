@@ -3,7 +3,7 @@ class CardsController < BaseController
 	before_action :authorize_modify, only: [:update, :destroy]
   before_action :authorize_action, only: [:transfer]
 	before_action :authorize_or_redirect, only: [:overview]
-	after_action only: [:update, :destroy] { |c| c. track_activity @card }
+	after_action -> { track_activity(@card) }, only: [:update, :destroy]
 
 	layout 'admin', only: [:update, :overview]
 

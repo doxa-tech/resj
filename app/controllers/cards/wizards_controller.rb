@@ -1,5 +1,5 @@
 class Cards::WizardsController < BaseController
-	after_action only: [:create] { |c| c. track_activity @card }
+	after_action -> { track_activty(@card) }, only: [:create]
 
 	def new
 		session[:card_params] ||= {}

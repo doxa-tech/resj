@@ -1,6 +1,6 @@
 class Admin::PagesController < Admin::BaseController
 	before_action :current_resource, only: [:edit, :update, :destroy]
-	after_action only: [:update] { |c| c. track_activity @page }
+	after_action -> { track_activty(@page) }, only: [:update]
 
 	def index
 		@table = PageTable.new(self)
