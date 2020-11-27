@@ -100,7 +100,7 @@ group :development, :test do
 end
 
 # HTML tables
-gem 'snaptable'
+gem 'snaptable', '~> 2.0.5'
 
 # use mailgun api
 gem 'mailgun'
