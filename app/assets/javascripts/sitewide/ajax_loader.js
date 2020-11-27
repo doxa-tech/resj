@@ -3,7 +3,7 @@
 
 /* Ajax loader */
 
-$(document).on("ready page:load", function() {
+$(document).on("ready turbolinks:load", function() {
 	var timer;
 	$(document).ajaxStart(function(){
 		timer && clearTimeout(timer);

@@ -3,7 +3,7 @@
 
 /* Admin header menu */
 
-$(document).on("ready page:load", function() {
+$(document).on("ready turbolinks:load", function() {
 
 	var adminHeader = $("#admin_header");
 

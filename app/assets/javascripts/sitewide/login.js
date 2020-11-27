@@ -3,7 +3,7 @@
 
 /* Ajax login */
 
-$(document).on("ready page:load", function() {
+$(document).on("ready turbolinks:load", function() {
 
 	var loginOverlay = $("#login-overlay"),
 			loginOver = $("#login-over");

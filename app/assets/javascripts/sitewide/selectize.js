@@ -3,7 +3,7 @@
 
 /* Functions to selectize different types of field */
 
-$(document).on("ready page:load", function() {
+$(document).on("ready turbolinks:load", function() {
 
 	selectize.default();
   selectize.tags();
