@@ -40,7 +40,8 @@ app.controller("pages#home", ["$http", function($http) {
 	}
 
   function initMap() {
-    $http.get("reseau.json").then(function(cards) {
+    $http.get("reseau.json").then(function(res) {
+      var cards = res.data;
 
       load_mapbox.loadMap(cards);
 
