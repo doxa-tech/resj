@@ -1,0 +1,20 @@
+[2020-11-27 11:10:29,235][INFO ][node                     ] [Hornet] version[2.4.6], pid[54714], build[5376dca/2017-07-18T12:17:44Z]
+[2020-11-27 11:10:29,236][INFO ][node                     ] [Hornet] initializing ...
+[2020-11-27 11:10:29,781][INFO ][plugins                  ] [Hornet] modules [reindex, lang-expression, lang-groovy], plugins [], sites []
+[2020-11-27 11:10:29,838][INFO ][env                      ] [Hornet] using [1] data paths, mounts [[/ (/dev/disk1s5)]], net usable_space [118.1gb], net total_space [408.8gb], spins? [unknown], types [apfs]
+[2020-11-27 11:10:29,838][INFO ][env                      ] [Hornet] heap size [989.8mb], compressed ordinary object pointers [true]
+[2020-11-27 11:10:29,839][WARN ][env                      ] [Hornet] max file descriptors [10240] for elasticsearch process likely too low, consider increasing to at least [65536]
+[2020-11-27 11:10:31,462][INFO ][node                     ] [Hornet] initialized
+[2020-11-27 11:10:31,462][INFO ][node                     ] [Hornet] starting ...
+[2020-11-27 11:10:31,533][INFO ][transport                ] [Hornet] publish_address {127.0.0.1:9300}, bound_addresses {[fe80::1]:9300}, {[::1]:9300}, {127.0.0.1:9300}
+[2020-11-27 11:10:31,539][INFO ][discovery                ] [Hornet] elasticsearch/3PNXtc1KRJaZxz6Lhf3NFA
+[2020-11-27 11:10:34,578][INFO ][cluster.service          ] [Hornet] new_master {Hornet}{3PNXtc1KRJaZxz6Lhf3NFA}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
+[2020-11-27 11:10:34,604][INFO ][http                     ] [Hornet] publish_address {127.0.0.1:9200}, bound_addresses {[fe80::1]:9200}, {[::1]:9200}, {127.0.0.1:9200}
+[2020-11-27 11:10:34,604][INFO ][node                     ] [Hornet] started
+[2020-11-27 11:10:34,626][INFO ][gateway                  ] [Hornet] recovered [0] indices into cluster_state
+[2020-11-27 11:10:52,574][INFO ][cluster.metadata         ] [Hornet] [cards] creating index, cause [api], templates [], shards [1]/[0], mappings [card]
+[2020-11-27 11:10:52,770][INFO ][cluster.routing.allocation] [Hornet] Cluster health status changed from [RED] to [GREEN] (reason: [shards started [[cards][0]] ...]).
+[2020-11-27 11:10:52,957][INFO ][cluster.metadata         ] [Hornet] [orators] creating index, cause [api], templates [], shards [1]/[0], mappings [orator]
+[2020-11-27 11:10:52,989][INFO ][cluster.routing.allocation] [Hornet] Cluster health status changed from [RED] to [GREEN] (reason: [shards started [[orators][0]] ...]).
+[2020-11-27 11:10:53,046][INFO ][cluster.metadata         ] [Hornet] [subjects] creating index, cause [api], templates [], shards [1]/[0], mappings [subject]
+[2020-11-27 11:10:53,078][INFO ][cluster.routing.allocation] [Hornet] Cluster health status changed from [RED] to [GREEN] (reason: [shards started [[subjects][0]] ...]).
