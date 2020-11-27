@@ -23,11 +23,11 @@ gem 'sass-rails', '~> 5.0.0'
 # Mapbox
 gem 'mapbox-rails', '~> 2.3.0'
 # AngularJS
-gem 'angularjs-rails', '~> 1.8.0'
+gem 'angularjs-rails', '~> 1.6.8'
 
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks', '~> 5.2'
+gem 'turbolinks', '~> 5.1.0'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
@@ -91,7 +91,6 @@ group :development, :test do
 	gem 'rspec-rails'
 	gem 'cucumber-rails', require: false
 	gem 'database_cleaner'
-	gem 'capybara-webkit'
 	gem 'selenium-webdriver'
 	gem 'factory_bot_rails', '~> 5.2'
 	gem 'email_spec'
