@@ -23,3 +23,8 @@ config/elasticsearch.yml
 
 data/
 .DS_Store
+
+# Javascript
+node_modules
+public/packs
+public/packs-test
