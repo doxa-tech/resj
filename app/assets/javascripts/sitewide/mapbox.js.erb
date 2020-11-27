@@ -21,7 +21,7 @@ var load_mapbox = {
     var map = L.mapbox.map("map")
     this.map = map;
     map.on('load', function(e) {
-      load_mapbox.process_map(data.data);
+      load_mapbox.process_map(data);
     });
     map.setView([46.6221, 7.1960], zoom).addLayer(L.mapbox.styleLayer('mapbox://styles/nkcr/ck4vla6vz2ir81cnya5cl6uog'));
     this.map = map;

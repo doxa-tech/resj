@@ -14,7 +14,8 @@ app.controller("cards#index", ["$scope", "$http", "Paginator", function ($scope,
         "tag_ids[]": $scope.search.tags
 
       }
-    }).then(function (cards) {
+    }).then(function (res) {
+      var cards = res.data;
 
       $scope.cards = cards;
 
@@ -22,6 +23,7 @@ app.controller("cards#index", ["$scope", "$http", "Paginator", function ($scope,
 
       $scope.paginator = Paginator.new(10, cards.length);
 
+      console.log(cards)
       load_mapbox.loadMap(cards);
 
     }, function (err) {
