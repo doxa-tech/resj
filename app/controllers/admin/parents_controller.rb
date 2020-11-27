@@ -1,6 +1,6 @@
 class Admin::ParentsController < Admin::BaseController
 	before_action :current_resource, only: [:edit, :update, :destroy]
-	after_action -> { track_activty(@parent) }, only: [:create, :update, :destroy]
+	after_action -> { track_activity(@parent) }, only: [:create, :update, :destroy]
 
 	def index
 		@table = ParentTable.new(self)

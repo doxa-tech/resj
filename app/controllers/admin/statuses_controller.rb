@@ -1,6 +1,6 @@
 class Admin::StatusesController < Admin::BaseController
 	before_action :current_resource, only: [:edit, :update, :destroy]
-	after_action -> { track_activty(@status) }, only: [:create, :update, :destroy]
+	after_action -> { track_activity(@status) }, only: [:create, :update, :destroy]
 
 	def index
 		@table = Table.new(self, Status)

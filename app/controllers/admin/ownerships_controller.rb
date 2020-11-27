@@ -1,6 +1,6 @@
 class Admin::OwnershipsController < Admin::BaseController
 	before_action :current_resource, only: [:edit, :update, :destroy]
-	after_action -> { track_activty(@ownership) }, only: [:create, :update, :destroy]
+	after_action -> { track_activity(@ownership) }, only: [:create, :update, :destroy]
 
 	def index
 		@table = OwnershipTable.new(self, nil, search: true)

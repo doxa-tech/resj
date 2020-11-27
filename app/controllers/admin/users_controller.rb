@@ -1,7 +1,7 @@
 class Admin::UsersController < Admin::BaseController
 	before_action :current_resource, only: [:edit, :update, :destroy]
 	before_action :authorize_invitation, only: [:invite, :invitation]
-	after_action -> { track_activty(@user) }, only: [:create, :update, :destroy]
+	after_action -> { track_activity(@user) }, only: [:create, :update, :destroy]
 
 	def index
 		@table = UserTable.new(self, nil, search: true)
