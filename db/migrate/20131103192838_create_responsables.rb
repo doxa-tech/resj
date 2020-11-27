@@ -1,4 +1,4 @@
-class CreateResponsables < ActiveRecord::Migration
+class CreateResponsables < ActiveRecord::Migration[4.2]
   def change
     create_table :responsables do |t|
       t.string :firstname

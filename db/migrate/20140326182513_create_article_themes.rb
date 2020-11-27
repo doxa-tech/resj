@@ -1,4 +1,4 @@
-class CreateArticleThemes < ActiveRecord::Migration
+class CreateArticleThemes < ActiveRecord::Migration[4.2]
   def change
     create_table :article_themes do |t|
       t.belongs_to :article, index: true

@@ -1,4 +1,4 @@
-class CreateOrators < ActiveRecord::Migration
+class CreateOrators < ActiveRecord::Migration[4.2]
   def change
     create_table :orators do |t|
       t.belongs_to :user, index: true

@@ -1,4 +1,4 @@
-class CreateHelpPages < ActiveRecord::Migration
+class CreateHelpPages < ActiveRecord::Migration[4.2]
   def change
     create_table :help_pages do |t|
       t.string :name

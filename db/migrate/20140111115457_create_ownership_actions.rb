@@ -1,4 +1,4 @@
-class CreateOwnershipActions < ActiveRecord::Migration
+class CreateOwnershipActions < ActiveRecord::Migration[4.2]
   def change
     create_table :ownership_actions do |t|
     	t.belongs_to :action, index: true

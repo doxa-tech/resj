@@ -1,4 +1,4 @@
-class CreateUserNewsletters < ActiveRecord::Migration
+class CreateUserNewsletters < ActiveRecord::Migration[4.2]
   def change
     create_table :user_newsletters do |t|
       t.belongs_to :user, index: true
