@@ -1,1 +1,1 @@
-Snaptable.use_permission = true
+Snaptable.use_permission = false
