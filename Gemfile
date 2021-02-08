@@ -75,7 +75,7 @@ gem 'elasticsearch-model', '~> 5.0.0'
 gem 'elasticsearch-rails', '~> 5.0.0'
 
 # image & video uploader
-gem 'carrierwave', '~> 2.1.0'
+gem 'carrierwave', '~> 2.1.1'
 gem 'carrierwave-i18n'
 gem 'carrierwave-processing'
 
