@@ -13,7 +13,6 @@ export default class SearchController extends Controller {
     });
     console.log("hi from the search")
     this.filtersHolderTarget.style.display = "none";
-    this.filtersBtnTarget.innerText = "Voir les filtres";
   }
 
   async connect() {
@@ -51,10 +50,10 @@ export default class SearchController extends Controller {
     const btn = this.filtersBtnTarget
     if (holder.style.display === "none") {
       holder.style.display = "block";
-      btn.innerText = "Cacher les filtre"
+      btn.classList.toggle("open", true);
     } else {
       holder.style.display = "none";
-      btn.innerText = "Voir les filtres"
+      btn.classList.toggle("open", false);
     }
   }
 }

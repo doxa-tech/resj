@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class ListController extends Controller {
-  static targets = ["numberTemplate", "items", "number", "numbers", "previous", "next"]
+  static targets = ["numberTemplate", "items", "number", "numberwrapper", "numbers", "previous", "next", "total"]
 
   items;
 
@@ -22,13 +22,14 @@ export default class ListController extends Controller {
     this.itemsTarget.innerHTML = content
     this.updateMap(this.items);
     this.updatePagination();
+    this.totalTarget.innerHTML = this.items.length
   }
 
   updatePagination() {
     this.numbersTarget.innerHTML = "";
     for (let i = 1; i <= this.numberOfPages; i++) {
       this.numberTarget.innerHTML = i;
-      this.numberTarget.classList.toggle("current", i == this.currentPage);
+      this.numberwrapperTarget.classList.toggle("current", i == this.currentPage);
       this.numbersTarget.innerHTML += this.numberTemplateTarget.innerHTML;
     }
     this.previousTarget.classList.toggle("current", this.currentPage > 1);

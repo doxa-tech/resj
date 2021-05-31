@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Resj</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.1/mapbox-gl.css" rel="stylesheet" />
+<head>
+  <title>Resj</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-  </head>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.1/mapbox-gl.css" rel="stylesheet" />
 
-  <body>
+</head>
 
-    <%= render 'layouts/header' %>
+<body>
+  <%= render 'layouts/header' %>
 
-    <%= render 'layouts/flash' %>
+  <%= render 'layouts/flash' %>
 
-    <div id="container" class="<%= yield :id %>">
-      <%= yield %>
-    </div>
+  <div class="<%= yield :id %>">
+    <%= yield %>
+  </div>
 
-    <%= render 'layouts/footer' %>
+  <%= render 'layouts/footer' %>
 
-  </body>
+</body>
+
 </html>

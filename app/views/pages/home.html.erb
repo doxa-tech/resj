@@ -1,15 +1,226 @@
-<% content_for :id, "home" %>
+<% content_for :id, "container-home" %>
 
-<h1>Bienvenue sur le réseau - Trouve <span>un groupe de jeunes</span></h1>
+<div class="cards-search" data-controller="search" data-search-list-controller="cards--list">
+  <%= form_with url: "/reseau.json", method: :get, local: true, data: { target: "search.form" } do |f| %>
 
-<%= render "cards/map" %>
+  <section class="top">
+    <div class="content-wrapper">
+      <div class="text-intro-container">
+        <div class="text-intro-wrapper">
+          <h1>RES-J Réseau évangélique suisse Jeunesse</h1>
 
-<div class="orator">
-  <h2>Une ressource unique</h2>
+          <p class="intro">
+            Le RES-J (Réseau évangélique suisee Jeunesse) est un groupe de travail du réseau évangélique suisse. Son ojectif est d'offrir une plateforme ressources pour soutenir ceux qui travaillent parmis la jeunesse chrétienne de suisse romande.
+          </p>
+        </div>
+      </div>
 
-  <p class="intro">Profitez de la base de donnée pour trouver vos intervenants. Cherchez par thèmes, régions, nom et trouvez les personnes adaptées pour vos rencontres.</p>
+      <span class="info-box-red">trouver un groupe ?</span>
 
-  <%= render "orators/orators" %>
+      <div class="map-holder">
 
-  <p><%= link_to "je veux m'inscrire sur cette liste", new_orator_path %></p>
+        <div id="mapbox"></div>
+
+        <div class="filters">
+          <div class="filter-btn-holder">
+            <span data-action="click->search#toggleFilters" data-target="search.filtersBtn">Filtrer</span>
+          </div>
+          <div class="filter-elements" data-target="search.filtersHolder">
+            <h5>Canton :</h5>
+            <%= f.collection_check_boxes :cantons, Canton.romand, :id, :name, {}, "data-target": "search.input" do |b| %>
+            <label class="container"><%= b.object.name %>
+              <%= b.check_box %>
+              <span class="checkmark"></span>
+            </label>
+            <% end %>
+
+            <h5>Tag :</h5>
+            <%= f.collection_check_boxes :tags, Tag.order("popularity desc").first(10), :id, :name, {}, "data-target": "search.input" do |b| %>
+            <label class="container"><%= b.object.name %>
+              <%= b.check_box %>
+              <span class="checkmark"></span>
+            </label>
+            <% end %>
+
+            <h5>Types :</h5>
+            <%= f.collection_check_boxes :card_types, Card.card_types, :last, :first, {}, "data-target": "search.input" do |b| %>
+            <label class="container"><%= t("card.card_types.#{b.text}") %>
+              <%= b.check_box %>
+              <span class="checkmark"></span>
+            </label>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="groups">
+    <div class="search-row">
+      <div class="form">
+        <span class="info-box-red">trouver un groupe ?</span>
+        <div class="search">
+          <%= f.text_field :name, placeholder: "Nom, lieu, mot-clé", "data-target": "search.input" %>
+          <label for="name">
+            <svg width="100%" height="100%" viewBox="0 0 50 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+              <path d="M24.895,24.618C20.114,29.587 12.327,30.561 6.411,26.578C-0.229,22.108 -1.998,13.086 2.46,6.428C6.918,-0.23 15.915,-2.004 22.555,2.467C28.472,6.45 30.521,14.046 27.744,20.363L49.147,34.773L46.298,39.028L24.895,24.618Z" />
+            </svg>
+          </label>
+        </div>
+      </div>
+      <div class="img">
+        <%= image_tag "home/Illustration-groupes" %>
+      </div>
+    </div>
+
+    <div class="cards-list" data-target="search.list" data-cards--list-page="1" data-controller="cards--list">
+      <div class="group-title">
+        <span class="info-box-red-lower">Les groupes (<span data-target="cards--list.total"></span>)</span>
+        <%= link_to "+ Inscrire un groupe", new_cards_wizard_path, :class => "subscribe" %>
+      </div>
+
+      <div class="table">
+        <div class="row header">
+          <div>Logo</div>
+          <div>Nom du groupe</div>
+          <div>Lieu</div>
+          <div>Description</div>
+          <div>Contact</div>
+        </div>
+      </div>
+
+      <div hidden class="table">
+        <div hidden class="row" data-target="cards--list.itemTemplate">
+          <div>
+            <%= image_tag "cards/default-avatar" %>
+          </div>
+          <div data-target="cards--list.name"></div>
+          <div>
+            <span data-target="cards--list.place"></span><br>
+            <span data-target="cards--list.canton"></span>
+          </div>
+          <div>
+            <p data-target="cards--list.description"></p>
+            <p><i data-target="cards--list.type"></i></p>
+          </div>
+          <div>
+            <span data-target="cards--list.user"></span><br>
+            <span data-target="cards--list.email"></span>
+            <div>
+              <%= link_to "#", data: { "target" => "cards--list.link"} do %>
+              <svg width="100%" height="100%" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.5;">
+                <path d="M50,30L50,70" style="fill:none;stroke-width:5px;" />
+                <path d="M30,50L70,50" style="fill:none;stroke-width:5px;" />
+              </svg>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="table" data-target="cards--list.items">
+      </div>
+      <div class="pagination">
+        <button class="nav" data-target="cards--list.previous" data-action="cards--list#previous">&#60;&#60;</button>
+        <div hidden data-target="cards--list.numberTemplate">
+          <button class="number-wrapper" data-target="cards--list.numberwrapper" data-action="cards--list#go">
+            <a data-target="cards--list.number" class="number"></a>
+          </button>
+        </div>
+        <div class="numbers" data-target="cards--list.numbers">
+        </div>
+        <button class="nav" data-target="cards--list.next" data-action="cards--list#next">&#62;&#62;</button>
+      </div>
+    </div>
+  </section>
+
+  <% end %>
 </div>
+
+<section class="orator">
+  <div class="orators-index">
+
+    <div class="orators-search" data-controller="search" data-search-list-controller="orators--list">
+      <%= form_with url: "/orators.json", method: :get, local: true, data: { target: "search.form" } do |f| %>
+
+      <div class="search-row">
+        <div class="img">
+          <%= image_tag "home/Illustration-orateurs" %>
+        </div>
+
+        <div class="form">
+          <span class="info-box-orange">trouver un orateur ?</span>
+          <div class="search">
+            <%= f.text_field :name, placeholder: "Nom, thèmes, mot-clé", "data-target": "search.input" %>
+            <label for="name">
+              <svg width="100%" height="100%" viewBox="0 0 50 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+                <path d="M24.895,24.618C20.114,29.587 12.327,30.561 6.411,26.578C-0.229,22.108 -1.998,13.086 2.46,6.428C6.918,-0.23 15.915,-2.004 22.555,2.467C28.472,6.45 30.521,14.046 27.744,20.363L49.147,34.773L46.298,39.028L24.895,24.618Z" />
+              </svg>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter-btn-holder">
+        <span data-action="click->search#toggleFilters" data-target="search.filtersBtn">Filtres</span>
+      </div>
+      <div data-target="search.filtersHolder">
+        <%= f.collection_check_boxes :cantons, Canton.all, :id, :name, {}, "data-target": "search.input" %>
+        <%= f.collection_check_boxes :themes, Theme.all, :id, :name, {}, "data-target": "search.input" %>
+      </div>
+      <% end %>
+
+      <div class="orators-list" data-target="search.list" data-orators--list-page="1" data-controller="orators--list">
+        <div class="orator-title">
+          <span class="info-box-orange-lower">Les orateurs (<span data-target="orators--list.total"></span>)</span>
+          <%= link_to "+ Inscrire un orateur", new_orator_path, :class => "subscribe" %>
+        </div>
+
+        <div class="table">
+          <div class="row header">
+            <div>Photo</div>
+            <div>Nom, prénom</div>
+            <div>Présentation</div>
+            <div>Sujets/thèmes proposés</div>
+            <div>Contact</div>
+          </div>
+        </div>
+
+        <div hidden class="table">
+          <div class="row" data-target="orators--list.itemTemplate">
+            <div>
+              <%= image_tag "orators/default-avatar" %>
+            </div>
+            <div data-target="orators--list.title"></div>
+            <div></div>
+            <div data-target="orators--list.themes"></div>
+            <div>
+              <div>
+                <%= link_to "#", data: { "target" => "orators--list.link"} do %>
+                <svg width="100%" height="100%" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.5;">
+                  <path d="M50,30L50,70" style="fill:none;stroke-width:5px;" />
+                  <path d="M30,50L70,50" style="fill:none;stroke-width:5px;" />
+                </svg>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="table" data-target="orators--list.items">
+        </div>
+
+        <div class="pagination">
+          <button class="nav" data-target="orators--list.previous" data-action="orators--list#previous">&#60;&#60;</button>
+          <div hidden data-target="orators--list.numberTemplate">
+            <button class="number-wrapper" data-target="orators--list.numberwrapper" data-action="orators--list#go">
+              <a data-target="orators--list.number" class="number"></a>
+            </button>
+          </div>
+          <div class="numbers" data-target="orators--list.numbers">
+          </div>
+          <button class="nav" data-target="orators--list.next" data-action="orators--list#next">&#62;&#62;</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

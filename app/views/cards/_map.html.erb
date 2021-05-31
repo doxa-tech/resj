@@ -7,43 +7,43 @@
   <div class="cards-search" data-controller="search" data-search-list-controller="cards--list">
     <%= form_with url: "/reseau.json", method: :get, local: true, data: { target: "search.form" } do |f| %>
 
-      <h4>Recherche</h4>
-      <div class="search">
-        <%= f.text_field :name, placeholder: "Taper le nom d'un groupe", "data-target": "search.input" %>
-      </div>
+    <h4>Recherche</h4>
+    <div class="search">
+      <%= f.text_field :name, placeholder: "Taper le nom d'un groupe", "data-target": "search.input" %>
+    </div>
 
-      <div class="filter-btn-holder">
-        <span data-action="click->search#toggleFilters" data-target="search.filtersBtn">Filtres</span>
-      </div>
-      <div data-target="search.filtersHolder">
-        <h5>Types</h5>
-        <div class="text-boxes">
-          <%= f.collection_check_boxes :card_types, Card.card_types, :last, :first, {}, "data-target": "search.input" do |b| %>
-            <div class="box-wrapper">
-              <%= b.label { t("card.card_types.#{b.text}") } %>
-              <%= b.check_box %>
-            </div>
-          <% end %>
+    <div class="filter-btn-holder">
+      <span data-action="click->search#toggleFilters" data-target="search.filtersBtn">Filtres</span>
+    </div>
+    <div data-target="search.filtersHolder">
+      <h5>Types</h5>
+      <div class="text-boxes">
+        <%= f.collection_check_boxes :card_types, Card.card_types, :last, :first, {}, "data-target": "search.input" do |b| %>
+        <div class="box-wrapper">
+          <%= b.label { t("card.card_types.#{b.text}") } %>
+          <%= b.check_box %>
         </div>
-
-        <h5>Canton</h5>
-        <%= f.collection_check_boxes :cantons, Canton.all, :id, :name, {}, "data-target": "search.input" %>
-
-        <h5>Tag</h5>
-        <%= f.collection_check_boxes :tags, Tag.order("popularity desc").first(10), :id, :name, {}, "data-target": "search.input" %>
+        <% end %>
       </div>
+
+      <h5>Canton</h5>
+      <%= f.collection_check_boxes :cantons, Canton.all, :id, :name, {}, "data-target": "search.input" %>
+
+      <h5>Tag</h5>
+      <%= f.collection_check_boxes :tags, Tag.order("popularity desc").first(10), :id, :name, {}, "data-target": "search.input" %>
+    </div>
     <% end %>
 
     <div class="cards-list" data-target="search.list" data-cards--list-page="1" data-controller="cards--list">
       <table>
-          <tr data-target="cards--list.itemTemplate">
-            <td><%= link_to "", "#", data: { "target" => "cards--list.name"} %></td>
-            <td data-target="cards--list.type"></td>
-          </tr>
+        <tr data-target="cards--list.itemTemplate">
+          <td><%= link_to "", "#", data: { "target" => "cards--list.name"} %></td>
+          <td data-target="cards--list.type"></td>
+        </tr>
       </table>
       <table>
         <tbody data-target="cards--list.items">
-        </tbody> 
+        </tbody>
       </table>
       <div class="pagination">
         <button class="nav" data-target="cards--list.previous" data-action="cards--list#previous">Précédent</button>

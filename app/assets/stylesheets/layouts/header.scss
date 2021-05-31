@@ -1,18 +1,53 @@
+@import "../global/variables";
+
 div#application-header {
   width: 100%;
 
   div.wrapper {
-    max-width: 1000px;
-    padding: 30px 0;
+    max-width: $content-width;
+    padding: 50px 0 40px 0;
     margin: auto;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: flex-start;
 
     div.left {
+      position: relative;
+      flex: 1;
+
       img {
-        max-width: 128px;
+        max-width: 220px;
+        position: absolute;
+        top: 0px;
+      }
+    }
+
+    div.right {
+      a {
+        font-family: asap;
+        font-size: 1em;
+        text-decoration: none;
+
+        &.group,
+        &.orator {
+          padding: 10px 10px;
+          color: #fff;
+        }
+
+        &.group {
+          background: #8d0d3d;
+        }
+
+        &.orator {
+          background: #fd5633;
+          margin: 0 20px 0 30px;
+        }
+
+        &.second {
+          color: #6e6e6e;
+          padding: 0 20px;
+        }
       }
     }
   }

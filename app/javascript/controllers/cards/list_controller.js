@@ -2,7 +2,9 @@ import ListController from "controllers/list_controller.js"
 import mapboxgl from 'mapbox-gl';
 
 export default class extends ListController {
-  static targets = [...ListController.targets, "itemTemplate", "name", "type"];
+  static targets = [...ListController.targets, "itemTemplate", "name", "type",
+    "place", "canton", "description", "user", "email", "link"];
+
   map;
 
   initialize() {
@@ -11,13 +13,13 @@ export default class extends ListController {
       mapboxgl.accessToken = 'pk.eyJ1IjoibmtjciIsImEiOiI4UnhLZEx3In0.bakfmpx2lREiNbHn0lWq9Q';
       var zoom = 0;
       if (window.innerWidth < 626) {
-        zoom = 7;
+        zoom = 9;
       } else {
-        zoom = 8;
+        zoom = 9;
       }
       let map = new mapboxgl.Map({
         container: 'mapbox',
-        style: 'mapbox://styles/nkcr/ck4vla6vz2ir81cnya5cl6uog',
+        style: 'mapbox://styles/nkcr/ckoxc46cg1eqy17pfcfzq79gx',
         minZoom: 7,
         center: [7.1960, 46.6221],
         zoom: zoom,
@@ -35,17 +37,20 @@ export default class extends ListController {
           .replace(prefix, '')
           .split(',')
           .map(Number);
-        var w = 25;
-        var h = 41;
+        var w = 30;
+        var h = 30;
 
-        // implementation of CustomLayerInterface to draw a pulsing dot icon on the map
-        // see https://docs.mapbox.com/mapbox-gl-js/api/#customlayerinterface for more info
+        // implementation of CustomLayerInterface to draw a pulsing dot icon on
+        // the map see
+        // https://docs.mapbox.com/mapbox-gl-js/api/#customlayerinterface for
+        // more info
         var pulsingDot = {
           width: w,
           height: h,
           data: new Uint8Array(w * h * 4),
 
-          // get rendering context for the map canvas when layer is added to the map
+          // get rendering context for the map canvas when layer is added to the
+          // map
           onAdd: function () {
             var canvas = document.createElement('canvas');
             canvas.width = this.width;
@@ -54,15 +59,17 @@ export default class extends ListController {
             // draw inner circle
             var context = this.context
 
-            var p = new Path2D('M12.629,41c5.069,0 12.371,-21.381 12.371,-28.07c0,-6.69 -5.135,-12.93 -12.371,-12.93c-7.235,0 -12.629,6.55 -12.629,12.93c0,6.38 7.561,28.07 12.629,28.07Z')
+            // a classic marker:
+            // var p = new Path2D('M12.629,41c5.069,0 12.371,-21.381 12.371,-28.07c0,-6.69 -5.135,-12.93 -12.371,-12.93c-7.235,0 -12.629,6.55 -12.629,12.93c0,6.38 7.561,28.07 12.629,28.07Z')
+            // losange:
+            var p = new Path2D('M14.042,0L28.083,14.042L14.042,28.083L0,14.042L14.042,0Z')
             context.fillStyle = "rgb(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + ")";
             context.fill(p);
 
             context.beginPath();
-            context.arc(12.379, 12.93, 5.323, 0, 2 * Math.PI, false);
+            context.arc(14.042, 10.263, 4.035, 0, 2 * Math.PI, false);
             context.fillStyle = '#fff';
             context.fill();
-            // <circle cx="" cy="" r="" style="fill:#fff;"/>
             // update this image's data with data from the canvas
             this.data = context.getImageData(
               0,
@@ -84,15 +91,18 @@ export default class extends ListController {
         map.addImage(id, pulsingDot, { pixelRatio: 2 });
       });
       map.on('load', function () {
-        map.addControl(new mapboxgl.FullscreenControl());
-        map.addControl(new mapboxgl.NavigationControl());
+        map.addControl(new mapboxgl.NavigationControl({
+          showCompass: false,
+          visualizePitch: false
+        }), 'bottom-left');
         map.addSource('items', {
           type: "geojson",
           data: {
             "type": "FeatureCollection",
             "features": []
           },
-          cluster: true
+          cluster: true,
+          clusterRadius: 30
         });
         map.addLayer({
           id: 'clusters',
@@ -104,9 +114,9 @@ export default class extends ListController {
               property: 'point_count',
               type: 'interval',
               stops: [
-                [0, '#41A337'],
-                [5, '#2D7026'],
-                [10, '#0B5703'],
+                [0, '#111111'],
+                [5, '#373736'],
+                [10, '#333333'],
               ]
             },
             'circle-radius': {
@@ -129,6 +139,9 @@ export default class extends ListController {
             'text-field': '{point_count_abbreviated}',
             'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
             'text-size': 12
+          },
+          paint: {
+            "text-color": "#fff"
           }
         });
 
@@ -140,7 +153,7 @@ export default class extends ListController {
 
           'layout': {
             'icon-image': ['concat', 'marker-rgb-', ['get', 'color']],
-            'icon-size': 1.6,
+            'icon-size': 2,
             'icon-offset': [0, -1]
           }
         });
@@ -213,9 +226,14 @@ export default class extends ListController {
     let content = [];
     items.forEach((c) => {
       this.nameTarget.innerHTML = c.properties.name;
-      this.nameTarget.href = c.properties.href
       this.typeTarget.innerHTML = c.properties.type;
+      this.placeTarget.innerHTML = c.properties.place;
+      this.cantonTarget.innerHTML = c.properties.canton;
+      this.descriptionTarget.innerHTML = c.properties.description;
+      this.userTarget.innerHTML = c.properties.user;
+      this.emailTarget.innerHTML = c.properties.email;
       content.push(this.itemTemplateTarget.outerHTML);
+      this.linkTarget.href = c.properties.href
     });
     return content;
   }
@@ -232,7 +250,7 @@ export default class extends ListController {
   }
 
   get itemPerPage() {
-    return 10;
+    return 4;
   }
 
   setMap(items) {
