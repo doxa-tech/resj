@@ -54,6 +54,25 @@
       div#mapbox {
         width: 100%;
         height: 600px;
+
+        .mapboxgl-popup-content {
+          background-color: $color-red;
+          color: #fff;
+
+          h5 {
+            text-transform: uppercase;
+            font-size: 1em;
+          }
+
+          a {
+            text-decoration: underline;
+            color: #fff;
+          }
+        }
+
+        .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+          border-top-color: $color-red;
+        }
       }
 
       div.filters {

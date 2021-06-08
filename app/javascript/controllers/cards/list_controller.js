@@ -102,7 +102,7 @@ export default class extends ListController {
             "features": []
           },
           cluster: true,
-          clusterRadius: 30
+          clusterRadius: 20
         });
         map.addLayer({
           id: 'clusters',
@@ -154,7 +154,8 @@ export default class extends ListController {
           'layout': {
             'icon-image': ['concat', 'marker-rgb-', ['get', 'color']],
             'icon-size': 2,
-            'icon-offset': [0, -1]
+            'icon-offset': [0, -1],
+            'icon-allow-overlap': true
           }
         });
 
@@ -188,7 +189,8 @@ export default class extends ListController {
         // location of the feature, with description HTML from its properties.
         map.on('click', 'unclustered-point', function (e) {
           var coordinates = e.features[0].geometry.coordinates.slice();
-          var description = e.features[0].properties.description;
+          var type = e.features[0].properties.type;
+          var name = e.features[0].properties.name;
 
           // Ensure that if the map is zoomed out such that multiple
           // copies of the feature are visible, the popup appears
@@ -199,9 +201,9 @@ export default class extends ListController {
 
           map.flyTo({ center: e.features[0].geometry.coordinates });
 
-          new mapboxgl.Popup()
+          new mapboxgl.Popup({ closeButton: false })
             .setLngLat(coordinates)
-            .setHTML(description)
+            .setHTML(`<h5>${type}</h5><p>${name}</p><p><a href="${e.features[0].properties.href}">En savoir plus</a></p>`)
             .addTo(map);
         });
 
