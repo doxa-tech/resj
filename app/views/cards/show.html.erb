@@ -1,23 +1,40 @@
-<h1><%= @card.name %></h1>
+<% content_for :id, "container-cards-show" %>
+
+<section class="top">
+  <div class="content-wrapper">
+    <h1><%= @card.name %></h1>
+  </div>
+</section>
+
+<section class="two-columns">
+  <div class="left">
+    <h2><%= @card.name %></h2>
+    <p class="description"><%= @card.description %></p>
+    <p class="website">Site web <%= link_to @card.website, @card.website %></p>
+
+    <div class="redbox">
+      <h3>Contact:</h3>
+      <p><%= "#{@card.user.firstname} #{@card.user.lastname}" %></p>
+      <p><%= @card.email %></p>
+
+      <h3>Dernière mise à jour:</h3>
+      <p><%= @card.updated_at %></p>
+    </div>
+  </div>
+
+  <div class="right">
+    <h2>situation</h2>
+    <div id="map"></div>
+    <p><%= @card.street %></p>
+    <p><%= @card.location.zip %> <%= @card.location.canton.name %></p>
+
+    <h2>lieu de rencontre</h2>
+    <p><%= @card.place %></p>
+  </div>
+</section>
+
+
+
+<p>Rue: </p>
 
 <p>Type: <%= t("card.card_types.#{@card.card_type}".downcase) %></p>
-
-<p>Description: <%= @card.description %></p>
-
-<p>Email: <%= @card.email %></p>
-
-<p>Rue: <%= @card.street %></p>
-
-<p>Lieu de rencontre: <%= @card.place %></p>
-
-<p>Site web: <%= @card.website %></p>
-
-<p>Affiliation: <%= @card.affiliation %></p>
-
-<p>Canton: <%= @card.location.canton.name %></p>
-
-<p>NPA: <%= @card.location.zip %></p>
-
-<p>Personne responsable: <%= "#{@card.user.firstname} #{@card.user.lastname}" %>
-
-<p>Mise à jour le <%= @card.updated_at %>

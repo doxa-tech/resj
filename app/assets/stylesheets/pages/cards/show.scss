@@ -1,0 +1,98 @@
+@import "../../global/variables";
+
+.container-cards-show {
+  section.top {
+    background-image: image-url("cards/fond-groupe.jpg");
+    background-position: 50% 50%;
+    background-size: cover;
+
+    margin: 55px 0 0 0;
+
+    .content-wrapper {
+      max-width: $content-width;
+      padding: 0 $content-padding;
+      margin: auto;
+      padding: 150px 0 0px 40px;
+
+      h1 {
+        line-height: 1.3em;
+        font-size: 7em;
+        font-weight: 100;
+        color: #ffffff94;
+        margin: 0;
+      }
+    }
+  }
+
+  section.two-columns {
+    max-width: $content-width;
+    padding: $content-padding;
+    margin: auto;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: ceter;
+    align-items: flex-start;
+
+    color: $color-dark-grey;
+
+    padding-top: 60px;
+
+    h2 {
+      font-size: 2.1em;
+      padding: 0 0 12px 0;
+      font-weight: 100;
+      color: $color-dark-grey;
+    }
+
+    & > div:nth-child(1) {
+      flex: 3;
+      padding: 0 80px 0 0;
+
+      p.description {
+        line-height: 1.4em;
+      }
+
+      p.website {
+        color: $color-red;
+        padding: 50px 0;
+
+        a {
+          background-color: $color-red;
+          color: #fff;
+          padding: 7px 35px;
+          margin: 0 0 0 10px;
+          text-decoration: none;
+        }
+      }
+
+      div.redbox {
+        background-color: $color-red;
+        color: #fff;
+        padding: 18px 28px;
+        margin: 10px 0 0 0;
+
+        h3 {
+          font-size: 1em;
+          padding: 0 0 7px 0;
+
+          &:not(:first-of-type) {
+            padding: 20px 0 7px 0;
+          }
+        }
+
+        p {
+          padding: 0 0 5px 0;
+        }
+      }
+    }
+
+    & > div:nth-child(2) {
+      flex: 2;
+
+      h2 {
+        text-transform: uppercase;
+      }
+    }
+  }
+}
