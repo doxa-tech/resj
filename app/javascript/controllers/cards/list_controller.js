@@ -155,7 +155,10 @@ export default class extends ListController {
             'icon-image': ['concat', 'marker-rgb-', ['get', 'color']],
             'icon-size': 2,
             'icon-offset': [0, -1],
-            'icon-allow-overlap': true
+            'icon-allow-overlap': true,
+            'text-allow-overlap': true,
+            'icon-ignore-placement': true,
+            'text-ignore-placement': true
           }
         });
 
