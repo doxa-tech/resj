@@ -1,7 +1,7 @@
 import ListController from "controllers/list_controller.js"
 import mapboxgl from 'mapbox-gl';
 
-export default class extends ListController {
+export default class MapController extends ListController {
   static targets = [...ListController.targets, "itemTemplate", "name", "type",
     "place", "canton", "description", "user", "email", "link"];
 
@@ -267,7 +267,7 @@ export default class extends ListController {
     const boundingBox = this.getBoundingBox(items);
     if (boundingBox.xMin !== undefined && boundingBox.yMin !== undefined &&
       boundingBox.xMax !== undefined && boundingBox.yMax) {
-      map.fitBounds([[boundingBox.xMin, boundingBox.yMin], [boundingBox.xMax, boundingBox.yMax]]);
+      map.fitBounds([[boundingBox.xMin, boundingBox.yMin], [boundingBox.xMax, boundingBox.yMax]], { maxZoom: 13 });
     }
   }
 

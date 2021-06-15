@@ -11,7 +11,7 @@ export default class SearchController extends Controller {
         timeout = setTimeout(this.search.bind(this), 800);
       });
     });
-    console.log("hi from the search")
+
     this.filtersHolderTarget.style.display = "none";
   }
 

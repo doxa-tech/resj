@@ -24,7 +24,26 @@
 
   <div class="right">
     <h2>situation</h2>
-    <div id="map"></div>
+
+    <div data-controller="cards--show" data-target="cards--show.map" data-card="<%= @card.to_map_feature %>">
+      <div class="map-holder">
+        <div id="mapbox"></div>
+      </div>
+
+      <div class="table" data-target="cards--show.items">
+      </div>
+
+      <div style="display: none">
+        <div data-target="cards--show.numbers"></div>
+        <div data-target="cards--show.number"></div>
+        <div data-target="cards--show.numberwrapper"></div>
+        <div data-target="cards--show.numberTemplate"></div>
+        <div data-target="cards--show.previous"></div>
+        <div data-target="cards--show.next"></div>
+        <div data-target="cards--show.total"></div>
+      </div>
+    </div>
+
     <p><%= @card.street %></p>
     <p><%= @card.location.zip %> <%= @card.location.canton.name %></p>
 
