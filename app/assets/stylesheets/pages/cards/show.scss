@@ -55,7 +55,7 @@
 
       p.website {
         color: $color-red;
-        padding: 50px 0;
+        padding: 50px 0 0 0;
 
         a {
           background-color: $color-red;
@@ -70,7 +70,7 @@
         background-color: $color-red;
         color: #fff;
         padding: 18px 28px;
-        margin: 10px 0 0 0;
+        margin: 60px 0 0 0;
 
         h3 {
           font-size: 1em;
@@ -89,18 +89,25 @@
 
     & > div:nth-child(2) {
       flex: 2;
+      color: $color-red;
 
       h2 {
         text-transform: uppercase;
+        color: $color-red;
       }
 
       div.map-holder {
         position: relative;
+        padding: 40px 0;
 
         div#mapbox {
           width: 100%;
           height: 400px;
         }
+      }
+
+      h2.location {
+        padding: 40px 0 20px 0;
       }
     }
   }

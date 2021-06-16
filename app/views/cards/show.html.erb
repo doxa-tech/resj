@@ -10,7 +10,9 @@
   <div class="left">
     <h2><%= @card.name %></h2>
     <p class="description"><%= @card.description %></p>
+    <% if @card.website.present? %>
     <p class="website">Site web <%= link_to @card.website, @card.website %></p>
+    <% end %>
 
     <div class="redbox">
       <h3>Contact:</h3>
@@ -47,13 +49,7 @@
     <p><%= @card.street %></p>
     <p><%= @card.location.zip %> <%= @card.location.canton.name %></p>
 
-    <h2>lieu de rencontre</h2>
+    <h2 class="location">lieu de rencontre</h2>
     <p><%= @card.place %></p>
   </div>
 </section>
-
-
-
-<p>Rue: </p>
-
-<p>Type: <%= t("card.card_types.#{@card.card_type}".downcase) %></p>
