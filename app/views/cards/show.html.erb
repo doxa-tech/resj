@@ -1,15 +1,15 @@
 <% content_for :id, "container-cards-show" %>
 
-<section class="top">
+<section class="std-top">
   <div class="content-wrapper">
     <h1><%= @card.name %></h1>
   </div>
 </section>
 
-<section class="two-columns">
+<section class="std-container">
   <div class="left">
     <h2><%= @card.name %></h2>
-    <p class="description"><%= @card.description %></p>
+    <p class="bigger"><%= @card.description %></p>
     <% if @card.website.present? %>
     <p class="website">Site web <%= link_to @card.website, @card.website %></p>
     <% end %>

@@ -5,6 +5,7 @@ export default class SearchController extends Controller {
 
   initialize() {
     let timeout;
+
     this.inputTargets.forEach((i) => {
       i.addEventListener("input", () => {
         clearTimeout(timeout);

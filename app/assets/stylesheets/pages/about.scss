@@ -1,0 +1,20 @@
+.container-about {
+  .std-top {
+    background-image: image-url("about/fond-apropos.jpg");
+  }
+
+  .std-container {
+    .social {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      margin: 30px 0 0 0;
+
+      img {
+        height: 50px;
+        margin: 0 10px 0 0;
+      }
+    }
+  }
+}
