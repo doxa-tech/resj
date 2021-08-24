@@ -10,7 +10,7 @@ fr:
       submit: "Envoyer"
       update: "Enregistrer"
       session:
-        submit: "Se connecter"
+        submit: "Connexion"
       user:
         create: "Créer mon compte"
       orator:

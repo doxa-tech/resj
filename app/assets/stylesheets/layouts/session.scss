@@ -1,0 +1,32 @@
+@import "../global/variables";
+
+.session-layout-top {
+  width: 100%;
+
+  .logo {
+    max-width: $content-width;
+    margin: auto;
+
+    img {
+      max-width: 200px;
+      padding: 20px;
+      margin-top: 10px;
+    }
+  }
+
+  .pattern {
+    background-image: image-url("session/motif.jpg");
+    height: 60px;
+    width: 100%;
+
+    .wrapper {
+      max-width: $content-width;
+      margin: auto;
+      padding: 20px 0 0 55px;
+
+      a {
+        color: #000;
+      }
+    }
+  }
+}
