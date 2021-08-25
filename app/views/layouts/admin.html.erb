@@ -12,16 +12,22 @@
   </head>
 
   <body>
+    <div class="session-layout-top">
+      <div class="logo">
+        <%= link_to image_tag("layout/logo.png"), "/" %>
+      </div>
 
-    <%= render 'layouts/header' %>
+      <div class="pattern">
+        <div class="wrapper">
+          <a href="/">Retour</a>
+        </div>
+      </div>
+    </div>
 
     <%= render 'layouts/flash' %>
 
-    <div id="container" class="<%= yield :id %>">
+    <div class="<%= yield :id %>">
       <%= yield %>
     </div>
-
-    <%= render 'layouts/footer' %>
-
   </body>
 </html>

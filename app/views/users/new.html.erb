@@ -1,3 +1,10 @@
-<div class="signup">
-  <%= render "form", record: @user, url: users_path %>
+<% content_for :id, "container-users-new" %>
+
+<div class="session-form">
+  <div class="wrapper">
+    <div class="title">
+      <span>Création de compte</span>
+    </div>
+    <%= render "form", record: @user, url: users_path %>
+  </div>
 </div>

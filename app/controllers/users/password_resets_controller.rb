@@ -1,5 +1,7 @@
 class Users::PasswordResetsController < ApplicationController
 
+  layout "session"
+
   def new
   end
 

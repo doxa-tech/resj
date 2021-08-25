@@ -1,23 +1,33 @@
 
 <%= form_with model: record, url: url, local: true do |f| %>
 
-  <%= render "error_messages", object: f.object %>
+  <div class="row">
+    <%= f.label :firstname %>
+    <%= f.text_field :firstname %>
+  </div>
 
-  <%= f.label :firstname %>
-  <%= f.text_field :firstname %>
+  <div class="row">
+    <%= f.label :lastname %>
+    <%= f.text_field :lastname %>
+  </div>
 
-  <%= f.label :lastname %>
-  <%= f.text_field :lastname %>
+  <div class="row">
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
 
-  <%= f.label :email %>
-  <%= f.email_field :email %>
+  <div class="row">
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
 
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
+  <div class="row">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+  </div>
 
   <%= f.submit %>
+
+  <%= render "error_messages", object: f.object %>
 
 <% end %>

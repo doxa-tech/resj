@@ -3,11 +3,11 @@
     <%= hidden_field_tag :redirect_url, local_assigns[:redirect_url] if local_assigns[:redirect_url] %>
 
     <div class="row">
-      <%= f.label :email %>
+      <%= f.label :email, class: "bold" %>
       <%= f.text_field :email %>
     </div>
     <div class="row">
-      <%= f.label :password %>
+      <%= f.label :password, class: "bold" %>
       <%= f.password_field :password %>
     </div>
 
