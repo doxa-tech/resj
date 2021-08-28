@@ -1,7 +1,7 @@
 <% content_for :id, "container-home" %>
 
 <div class="cards-search" data-controller="search" data-search-list-controller="cards--list">
-  <%= form_with url: "/reseau.json", method: :get, local: true, data: { target: "search.form" } do |f| %>
+  <%= form_with url: "/cards.json", method: :get, local: true, data: { target: "search.form" } do |f| %>
 
   <section class="top">
     <div class="content-wrapper">
@@ -10,7 +10,7 @@
           <h1>RES-J Réseau évangélique suisse Jeunesse</h1>
 
           <p class="intro">
-            Le RES-J (Réseau évangélique suisee Jeunesse) est un groupe de travail du réseau évangélique suisse. Son ojectif est d'offrir une plateforme ressources pour soutenir ceux qui travaillent parmis la jeunesse chrétienne de suisse romande.
+            Le RES-J (Réseau évangélique suisse Jeunesse) est un groupe de travail du réseau évangélique suisse. Son ojectif est d'offrir une plateforme ressources pour soutenir ceux qui travaillent parmis la jeunesse chrétienne de suisse romande.
           </p>
         </div>
       </div>
