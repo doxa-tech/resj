@@ -10,7 +10,7 @@
       <a href="/faq" class="second">FAQ</a>
 
       <% if signed_in? %>
-      <%= link_to "Mon profil", root_path, class: "second" %>
+      <%= link_to "Mon profil", profile_path, class: "second" %>
       <% else %>
       <a href="/signin" class="second">Connexion</a>
       <% end %>
