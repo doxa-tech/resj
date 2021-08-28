@@ -8,7 +8,12 @@
       <a href="#" class="orator">Trouver un orateur ?</a>
       <a href="/resj" class="second">A propos</a>
       <a href="/faq" class="second">FAQ</a>
+
+      <% if signed_in? %>
+      <%= link_to "Mon profil", root_path, class: "second" %>
+      <% else %>
       <a href="/signin" class="second">Connexion</a>
+      <% end %>
     </div>
   </div>
 </div>

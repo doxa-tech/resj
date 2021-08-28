@@ -7,17 +7,17 @@ Rails.application.routes.draw do
     get page, to: "pages##{page}"
   end
 
-  get "reseau", to: "cards#index"
-
   resources :sessions, only: :create
   delete "signout", to: "sessions#destroy"
   get "signin", to: "sessions#new"
   get "signup", to: "users#new"
 
-  resources :users, except: :delete
+  resources :users, only: [:create, :edit, :update]
+  get "profile", to: "users#profile"
+
   resources :orators, only: [:index, :new, :create, :show]
 
-  resources :cards, only: [:show]
+  resources :cards, only: [:index, :show]
 
   namespace :cards do
 

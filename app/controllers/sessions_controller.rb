@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
   private
 
   def redirect_url
-    params[:redirect_url] || root_path
+    params[:redirect_url] || profile_path
   end
 
 end

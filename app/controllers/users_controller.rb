@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   layout "session"
+  
+  require_login only: [:edit, :update, :profile]
 
   def new
     @user = User.new
@@ -16,9 +18,16 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = current_user
   end
 
   def update
+    @user = current_user
+  end
+
+  def profile
+    @user = current_user
+    @cards = @user.cards
   end
 
   private
