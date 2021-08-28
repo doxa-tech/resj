@@ -59,5 +59,4 @@ function snapifyTables() {
 
 }
 
-document.addEventListener("ready", snapifyTables);
-document.addEventListener("turbolinks:load", snapifyTables);
+document.addEventListener("DOMContentLoaded", snapifyTables);
