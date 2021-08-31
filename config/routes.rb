@@ -8,12 +8,13 @@ Rails.application.routes.draw do
   end
 
   resources :sessions, only: :create
+  resources :users, only: :create
   delete "signout", to: "sessions#destroy"
   get "signin", to: "sessions#new"
   get "signup", to: "users#new"
-
-  resources :users, only: [:create, :edit, :update]
   get "profile", to: "users#profile"
+  get "profile/edit", to: "users#edit"
+  get "profile/update", to: "users#update"
 
   resources :orators, only: [:index, :new, :create, :show]
 

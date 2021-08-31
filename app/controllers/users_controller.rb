@@ -27,6 +27,7 @@ class UsersController < ApplicationController
 
   def profile
     @user = current_user
+    @orator = @user.orator
     @cards = @user.cards
   end
 
