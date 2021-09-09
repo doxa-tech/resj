@@ -1,43 +1,79 @@
-<h1>Mes informations</h1>
-<%= @user.firstname %>
-<%= @user.lastname %>
-<%= @user.email %>
-<%= @user.newsletter %>
+<% content_for :id, "container-users-profile" %>
 
-<%= link_to "Editer mes informations", profile_edit_path %>
+<div class="title green">
+  <h2>Paramètres de compte</h2>
+  <%= link_to "Editer", profile_edit_path %>
+</div>
+
+<div class="name">
+  <%= @user.firstname %>
+  <%= @user.lastname %>
+</div>
+
+<div class="item green">
+  <h3>E-Mail</h3>
+  <%= @user.email %>
+</div>
+
+<div class="item green">
+  <h3>Newsletter</h3>
+  <%= @user.newsletter %>
+</div>
 
 <% unless @orator.nil? %>
 
-<h1>Mes informations d'orateur</h1>
-<% if @orator.disabled %>
-<p>Vous n'êtes pas visible en tant qu'orateur.</p>
-<% else %>
-<p>Vous êtes visible en tant qu'orateur.</p>
-<% end %>
+<div class="title orange">
+  <h2>Paramètres d'orateur</h2>
+  <%= link_to "Editer", profile_edit_path %>
+</div>
 
-<%= @orator.description %>
-<%= @orator.street %>
-<%= @orator.location.full_name %>
-<%= @orator.phone %>
+<div class="item orange">
+  <h3>Visibilité sur la liste</h3>
+  <% if @orator.disabled %>
+  <p>Vous n'êtes pas visible en tant qu'orateur.</p>
+  <% else %>
+  <p>Vous êtes visible en tant qu'orateur.</p>
+  <% end %>
+</div>
 
-<h2>Mes disponibilités</h2>
-<% @orator.disponibilities.each do |disponibility| %>
-<%= disponibility.name %>
-<% end %>
+<div class="item orange">
+  <h3>Description</h3>
+  <%= @orator.description %>
+</div>
 
-<%= link_to "Editer mes informations", profile_edit_path %>
+<div class="item orange">
+  <h3>Adresse</h3>
+  <%= @orator.street %>
+  <%= @orator.location.full_name %>
+</div>
 
-<% end %>
+<div class="item orange">
+  <h3>Téléphone</h3>
+  <%= @orator.phone %>
+</div>
 
-<h1>Mes groupes</h1>
+<div class="item orange">
+  <h3>Disponibilités</h3>
+  <% @orator.disponibilities.each do |disponibility| %>
+  <%= disponibility.name %>
+  <% end %>
+  <% end %>
+</div>
+
+<div class="cards">
+  <h2>Mes groupes</h2>
+</div>
+
 <% @cards.each do |card| %>
-
-<%= card.name %>
-<%= link_to "Voir", users_card_path(card) %>
-<%= link_to "Editer", edit_users_card_path(card) %>
-
+<div class="card title violet">
+  <h2><%= card.name %></h2>
+  <%= link_to "Voir", users_card_path(card) %>
+  <%= link_to "Editer", edit_users_card_path(card) %>
+</div>
 <% end %>
 
-<h1>Danger</h1>
+<div class="danger">
+  <h2>Zone de danger</h2>
 
-<%= link_to "Supprimer mon compte", root_path %>
+  <%= link_to "Supprimer mon compte", root_path %>
+</div>
