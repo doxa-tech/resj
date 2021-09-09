@@ -1,0 +1,107 @@
+@import "../../global/variables";
+
+.container-orators-show {
+  .std-top {
+    background-image: image-url("orators/fond-orateur.jpg");
+  }
+
+  .std-container {
+    p.contact {
+      color: $color-orange;
+      padding: 50px 0 0 0;
+
+      a {
+        background-color: $color-orange;
+        color: #fff;
+        padding: 7px 35px;
+        margin: 0 0 0 10px;
+        text-decoration: none;
+      }
+    }
+
+    div.redbox {
+      background-color: $color-orange;
+      color: #fff;
+      padding: 18px 28px;
+      margin: 60px 0 0 0;
+
+      h3 {
+        font-size: 1em;
+        padding: 0 0 7px 0;
+
+        &:not(:first-of-type) {
+          padding: 20px 0 7px 0;
+        }
+      }
+
+      p {
+        padding: 0 0 5px 0;
+      }
+    }
+
+    & > div:nth-child(2) {
+      flex: 2;
+      color: $color-orange;
+
+      img {
+        max-width: 100%;
+        padding: 50px;
+      }
+
+      h2 {
+        text-transform: uppercase;
+        color: $color-orange;
+      }
+
+      p.canton {
+        padding: 5px 0;
+      }
+    }
+  }
+
+  div.contact {
+    padding: 30px 0;
+  }
+
+  form {
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    div.row {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+
+      p {
+        width: 150px;
+        padding: 7px 0 0 0;
+      }
+
+      input,
+      textarea {
+        flex: 1;
+        padding: 5px;
+      }
+
+      textarea {
+        height: 100px;
+      }
+    }
+
+    input[type="submit"] {
+      background-color: $color-orange;
+      color: #fff;
+      border: none;
+      padding: 7px 35px;
+      margin: 10px 0 0 10px;
+      cursor: pointer;
+      align-self: flex-end;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
