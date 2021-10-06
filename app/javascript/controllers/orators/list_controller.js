@@ -7,7 +7,7 @@ export default class extends ListController {
     let content = [];
     items.forEach((c) => {
       this.titleTarget.innerHTML = c.firstname + " " + c.lastname;
-      this.linkTarget.href = c.href
+      this.linkTarget.href = c.href;
       this.themesTarget.innerHTML = c.themes;
       content.push(this.itemTemplateTarget.outerHTML);
     });

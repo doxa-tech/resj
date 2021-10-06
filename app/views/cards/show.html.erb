@@ -11,7 +11,7 @@
     <h2><%= @card.name %></h2>
     <p class="bigger"><%= @card.description %></p>
     <% if @card.website.present? %>
-    <p class="website">Site web <%= link_to @card.website, @card.website %></p>
+    <p class="website">Site web <%= link_to @card.website, @card.website, {"target": "_blank"} %></p>
     <% end %>
 
     <div class="redbox">
@@ -20,7 +20,7 @@
       <p><%= @card.email %></p>
 
       <h3>Dernière mise à jour:</h3>
-      <p><%= @card.updated_at %></p>
+      <p><%= @card.updated_at.strftime("%d/%m/%y") %></p>
     </div>
   </div>
 

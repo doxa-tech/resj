@@ -57,17 +57,18 @@
   <% @orator.disponibilities.each do |disponibility| %>
   <%= disponibility.name %>
   <% end %>
-  <% end %>
 </div>
+
+<% end %>
 
 <div class="cards">
   <h2>Mes groupes</h2>
 </div>
 
 <% @cards.each do |card| %>
-<div class="card title violet">
+<div class="card title red">
   <h2><%= card.name %></h2>
-  <%= link_to "Voir", users_card_path(card) %>
+  <%= link_to "Voir", card_path(card) %>
   <%= link_to "Editer", edit_users_card_path(card) %>
 </div>
 <% end %>

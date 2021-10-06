@@ -9,17 +9,25 @@
     <%= javascript_pack_tag 'application' %>
     <%= javascript_pack_tag 'admin' %>
 
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.1/mapbox-gl.css" rel="stylesheet" />
   </head>
 
   <body>
-    <div class="session-layout-top">
+    <div class="admin-layout-top">
       <div class="logo">
         <%= link_to image_tag("layout/logo.png"), "/" %>
+        <div class="text">
+          <%= link_to "Déconnexion", signout_path, method: :delete %>
+        </div>
       </div>
 
       <div class="pattern">
         <div class="wrapper">
-          <a href="/">Retour</a>
+          <% if content_for?(:links) %>
+            <%= yield :links %>
+          <% else %>
+            <a href="/">Retour</a>
+          <% end %>
         </div>
       </div>
     </div>

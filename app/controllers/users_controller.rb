@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  layout "session"
+  layout "admin"
   
   require_login only: [:edit, :update, :profile]
 

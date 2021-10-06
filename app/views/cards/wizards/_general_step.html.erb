@@ -1,15 +1,25 @@
 <div class="general step" data-target="cards--form.step">
-  <p>Bienvenue dans le processus.<br>En suivant quelques étapes vous allez pouvoir enregistrer votre oeuvre jeunesse. Pour passer à l'étape suivante, il faut valider l'étape en cours.</p>
+  <div class="intro">
+    Bienvenue dans le processus. En suivant quelques étapes vous allez pouvoir enregistrer votre oeuvre jeunesse. Pour passer à l'étape suivante, il faut valider l'étape en cours.
+  </div>
 
-  <p><span class="num">1</span> Indiquez le <span class="b">nom</span> de votre groupe</p>
-  <%= f.text_field :name, placeholder: 'Nom' %>
+  <div class="row">
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: 'Nom' %>
+  </div>
 
-  <p><span class="num">2</span> Entrez une courte <span class="b">description</span>. Une bonne description améliore les résultats de recherche.</p>
-  <%= f.text_area :description, placeholder: 'Description' %>
+  <div class="row">
+    <%= f.label :description %>
+    <%= f.text_area :description, placeholder: 'Description' %>
+  </div>
 
-  <p><span class="num">3</span> Quelle <span class="b">catégorie</span> vous correspond le mieux?</p>
-  <%= f.select :card_type, options_for_enum(f.object, :card_type), { prompt: "Choisissez une catégorie" }, { class: "card_type", "data-controller": "select--simple" } %>
+  <div class="row">
+    <%= f.label :card_type %>
+    <%= f.select :card_type, options_for_enum(f.object, :card_type), { prompt: "Choisissez une catégorie" }, { class: "card_type", "data-controller": "select--simple" } %>
+  </div>
 
-  <p><span class="num">4</span> Faites-vous partie d'un <span class="b">réseau régional</span>? (optionnel)</p>
-  <%= f.collection_select :parent_ids, Card.network, :id, :name, {}, { multiple: true, "data-controller": "select--simple" } %>
+  <div class="row">
+    <%= f.label :parent_ids, "Affiliation" %>
+    <%= f.collection_select :parent_ids, Card.network, :id, :name, {}, { multiple: true, "data-controller": "select--simple" } %>
+  </div>
 </div>

@@ -15,7 +15,5 @@ json.array! @cards do |card|
 		json.href card_path(card)
 		json.place card.place
 		json.canton card.location.canton.name
-		json.user "#{card.user.firstname} #{card.user.lastname}"
-		json.email card.user.email
 	end
 end

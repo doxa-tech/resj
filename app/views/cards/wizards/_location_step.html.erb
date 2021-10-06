@@ -1,21 +1,34 @@
 <div class="location step" data-target="cards--form.step">
-  <p><span class="num">5</span> Quelle est votre <span class="b">rue</span>?</p>
-  <%= f.text_field :street, placeholder: 'Rue' %>
+  
+  <div class="row">
+    <%= f.label :street %>
+    <%= f.text_field :street, placeholder: 'Rue' %>
+  </div>
 
-  <p><span class="num">6</span> Dans quelle <span class="b">localité</span> êtes-vous?</p>
-  <%= f.collection_select :location_id, [f.object.location].compact, :id, :full_name, {}, { class: "card_location", "data-controller": "select--locations" } %>
+  <div class="row">
+    <%= f.label :location_id %>
+    <%= f.collection_select :location_id, [f.object.location].compact, :id, :full_name, {}, { class: "card_location", "data-controller": "select--locations" } %>
+  </div>
 
-  <p><span class="num">7</span> Où est votre <span class="b">lieu</span> de rencontre? (à l'église, dans la rue, en face de la gare ...) (optionnel)</p>
-  <%= f.text_field :place, placeholder: 'Lieu de rencontre (optionnel)' %>
+  <div class="row">
+    <%= f.label :place, "Lieu de rencontre" %>
+    <%= f.text_field :place, placeholder: 'Lieu de rencontre (optionnel)' %>
+  </div>
 
-  <div data-controller="cards--location">
-    <p>Latitude</p>
-    <%= f.text_field :latitude, readonly: "readonly", data: { "target" => "cards--location.latitude" } %>
-    <p>Longitude</p>
-    <%= f.text_field :longitude, readonly: "readonly", data: { "target" => "cards--location.longitude" } %>
-
-    <p><span class="num">8</span> Sur une carte, quelle est votre <span class="b">emplacement</span>? Zoomer à l'emplacement sur la carte puis clickez sur l'endroit afin de placer le marker. </p>
+  <div class="map-location" data-controller="cards--location">
+    <p class="label">Emplacement sur la carte</p>
+    <p class="hint">cliquez sur la carte pour changer l'emplacement du marqueur</p>
     <div id="mapbox" data-target="cards--location.map"></div>
+
+    <details class="vanilla">
+      <summary>Détails</summary>
+
+      <%= f.label :latitude %>
+      <%= f.text_field :latitude, readonly: "readonly", data: { "target" => "cards--location.latitude" } %>
+      
+      <%= f.label :longitude %>
+      <%= f.text_field :longitude, readonly: "readonly", data: { "target" => "cards--location.longitude" } %>
+    </details>
   </div>
 
 </div>

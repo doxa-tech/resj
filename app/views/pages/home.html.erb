@@ -21,35 +21,34 @@
 
         <div id="mapbox"></div>
 
-        <div class="filters">
-          <div class="filter-btn-holder">
+        <div class="filter-btn-holder">
             <span data-action="click->search#toggleFilters" data-target="search.filtersBtn">Filtrer</span>
-          </div>
-          <div class="filter-elements" data-target="search.filtersHolder">
-            <h5>Canton :</h5>
-            <%= f.collection_check_boxes :cantons, Canton.romand, :id, :name, {}, "data-target": "search.input" do |b| %>
-            <label class="container"><%= b.object.name %>
-              <%= b.check_box %>
-              <span class="checkmark"></span>
-            </label>
-            <% end %>
+        </div>
 
-            <h5>Tag :</h5>
-            <%= f.collection_check_boxes :tags, Tag.order("popularity desc").first(10), :id, :name, {}, "data-target": "search.input" do |b| %>
-            <label class="container"><%= b.object.name %>
-              <%= b.check_box %>
-              <span class="checkmark"></span>
-            </label>
-            <% end %>
+        <div class="filters" data-target="search.filtersHolder">
+          <h5>Canton :</h5>
+          <%= f.collection_check_boxes :cantons, Canton.romand, :id, :name, {}, "data-target": "search.input" do |b| %>
+          <label class="container"><%= b.object.name %>
+            <%= b.check_box %>
+            <span class="checkmark"></span>
+          </label>
+          <% end %>
 
-            <h5>Types :</h5>
-            <%= f.collection_check_boxes :card_types, Card.card_types, :last, :first, {}, "data-target": "search.input" do |b| %>
-            <label class="container"><%= t("card.card_types.#{b.text}") %>
-              <%= b.check_box %>
-              <span class="checkmark"></span>
-            </label>
-            <% end %>
-          </div>
+          <h5>Tag :</h5>
+          <%= f.collection_check_boxes :tags, Tag.order("popularity desc").first(10), :id, :name, {}, "data-target": "search.input" do |b| %>
+          <label class="container"><%= b.object.name %>
+            <%= b.check_box %>
+            <span class="checkmark"></span>
+          </label>
+          <% end %>
+
+          <h5>Types :</h5>
+          <%= f.collection_check_boxes :card_types, Card.card_types, :last, :first, {}, "data-target": "search.input" do |b| %>
+          <label class="container"><%= t("card.card_types.#{b.text}") %>
+            <%= b.check_box %>
+            <span class="checkmark"></span>
+          </label>
+          <% end %>
         </div>
       </div>
     </div>
@@ -58,7 +57,7 @@
   <section class="groups">
     <div class="search-row">
       <div class="form">
-        <span class="info-box-red">trouver un groupe ?</span>
+        <span id="trouver_un_groupe" class="info-box-red">trouver un groupe ?</span>
         <div class="search">
           <%= f.text_field :name, placeholder: "Nom, lieu, mot-clé", "data-target": "search.input" %>
           <label for="name">
@@ -85,7 +84,7 @@
           <div>Nom du groupe</div>
           <div>Lieu</div>
           <div>Description</div>
-          <div>Contact</div>
+          <div></div>
         </div>
       </div>
 
@@ -104,8 +103,6 @@
             <p><i data-target="cards--list.type"></i></p>
           </div>
           <div>
-            <span data-target="cards--list.user"></span><br>
-            <span data-target="cards--list.email"></span>
             <div>
               <%= link_to "#", data: { "target" => "cards--list.link"} do %>
               <svg width="100%" height="100%" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.5;">
@@ -148,7 +145,7 @@
         </div>
 
         <div class="form">
-          <span class="info-box-orange">trouver un orateur ?</span>
+          <span id="trouver_un_orateur" class="info-box-orange">trouver un orateur ?</span>
           <div class="search">
             <%= f.text_field :name, placeholder: "Nom, thèmes, mot-clé", "data-target": "search.input" %>
             <label for="name">
@@ -181,7 +178,7 @@
             <div>Nom, prénom</div>
             <div>Présentation</div>
             <div>Sujets/thèmes proposés</div>
-            <div>Contact</div>
+            <div></div>
           </div>
         </div>
 

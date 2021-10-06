@@ -75,102 +75,101 @@
         height: 600px;
       }
 
-      div.filters {
+      div.filter-btn-holder {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         position: absolute;
         top: 10px;
         right: 10px;
-        bottom: 10px;
         width: 220px;
 
-        div.filter-btn-holder {
-          display: flex;
-          justify-content: center;
-          align-items: center;
+        span {
+          width: 100%;
+          background: $color-red;
+          padding: 10px;
+          color: #fff;
+          cursor: pointer;
+          text-align: center;
+        }
+      }
 
-          span {
-            width: 100%;
-            background: $color-red;
-            padding: 10px;
-            color: #fff;
+      div.filters {
+        position: absolute;
+        top: 50px;
+        right: 10px;
+        width: 220px;
+
+        background: rgba(255, 255, 255, 0.705);
+        padding: 0 10px 10px 10px;
+        overflow: auto;
+        bottom: 60px;
+
+        .container {
+          display: block;
+          position: relative;
+          padding-left: 20px;
+          margin-bottom: 3px;
+          cursor: pointer;
+          font-size: 1em;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+
+          input {
+            position: absolute;
+            opacity: 0;
             cursor: pointer;
-            text-align: center;
+            height: 0;
+            width: 0;
+
+            &:checked ~ .checkmark {
+              background-color: #000;
+
+              &:after {
+                display: block;
+              }
+            }
+          }
+
+          .checkmark {
+            position: absolute;
+            top: 3px;
+            left: 0;
+            height: 11px;
+            width: 11px;
+            background-color: #fff;
+            border: 1px solid #000;
+            border-radius: 50%;
+
+            &:after {
+              content: "";
+              position: absolute;
+              display: none;
+
+              left: 9px;
+              top: 5px;
+              width: 5px;
+              height: 10px;
+              border: solid white;
+              border-width: 0 3px 3px 0;
+              -webkit-transform: rotate(45deg);
+              -ms-transform: rotate(45deg);
+              transform: rotate(45deg);
+            }
+          }
+
+          &:hover input ~ .checkmark {
+            background-color: $color-red;
           }
         }
 
-        div.filter-elements {
-          background: rgba(255, 255, 255, 0.705);
-          padding: 0 10px 10px 10px;
-          overflow: auto;
-          position: absolute;
-          bottom: 60px;
-          top: 40px;
-
-          .container {
-            display: block;
-            position: relative;
-            padding-left: 20px;
-            margin-bottom: 3px;
-            cursor: pointer;
-            font-size: 1em;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-
-            input {
-              position: absolute;
-              opacity: 0;
-              cursor: pointer;
-              height: 0;
-              width: 0;
-
-              &:checked ~ .checkmark {
-                background-color: #000;
-
-                &:after {
-                  display: block;
-                }
-              }
-            }
-
-            .checkmark {
-              position: absolute;
-              top: 3px;
-              left: 0;
-              height: 11px;
-              width: 11px;
-              background-color: #fff;
-              border: 1px solid #000;
-              border-radius: 50%;
-
-              &:after {
-                content: "";
-                position: absolute;
-                display: none;
-
-                left: 9px;
-                top: 5px;
-                width: 5px;
-                height: 10px;
-                border: solid white;
-                border-width: 0 3px 3px 0;
-                -webkit-transform: rotate(45deg);
-                -ms-transform: rotate(45deg);
-                transform: rotate(45deg);
-              }
-            }
-
-            &:hover input ~ .checkmark {
-              background-color: $color-red;
-            }
-          }
-
-          h5 {
-            text-transform: uppercase;
-            padding: 20px 10px 5px 10px;
-            font-size: 1em;
-            font-weight: normal;
-          }
+        h5 {
+          text-transform: uppercase;
+          padding: 20px 10px 5px 10px;
+          font-size: 1em;
+          font-weight: normal;
         }
       }
     }
@@ -297,18 +296,18 @@
 
           // description
           div:nth-child(4) {
-            flex: 1.5;
+            flex: 2.5;
 
             p {
               padding: 0 0 5px 0;
             }
           }
 
-          // contact
+          // link
           div:nth-child(5) {
-            flex: 1;
             font-weight: bold;
             position: relative;
+            width: 50px;
 
             a {
               position: absolute;
@@ -339,10 +338,14 @@
         display: flex;
         flex-direction: row;
         justify-content: center;
-        align-items: center;
+        align-items: flex-start;
         color: $color-red;
         padding: 50px 0 0 0;
         font-size: 0.8em;
+
+        button.nav {
+          height: 30px;
+        }
 
         & > button {
           background: none;
@@ -357,6 +360,7 @@
           flex-direction: row;
           justify-content: center;
           align-items: center;
+          flex-wrap: wrap;
 
           button.number-wrapper {
             display: flex;
@@ -508,14 +512,13 @@
 
           // subjects
           div:nth-child(4) {
-            flex: 1;
+            flex: 2;
             word-break: break-word;
           }
 
-          // contact
+          // link
           div:nth-child(5) {
-            flex: 1;
-            font-weight: bold;
+            width: 50px;
             position: relative;
 
             a {

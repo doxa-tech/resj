@@ -1,6 +1,8 @@
 class Cards::WizardsController < ApplicationController
   before_action :check_if_signed_in, only: [:new] # TODO: only the owner must edit the card
 
+  layout 'session'
+
   def new
     @card = current_user.cards.find_by(status: nil)
     if @card.nil?

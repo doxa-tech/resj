@@ -1,0 +1,11 @@
+production:
+  host: 
+  port:
+
+development:
+  host: elasticsearch
+  port: 9200
+
+test:
+  host: elasticsearch
+  port: 9200

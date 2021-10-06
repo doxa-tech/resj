@@ -15,6 +15,10 @@
     flex: 1;
     padding: 10px 0 0 0;
 
+    &.wrapper-bigger {
+      max-width: 620px;
+    }
+
     .title {
       text-align: center;
 
@@ -64,14 +68,17 @@
           }
         }
 
-        input {
+        input,
+        textarea,
+        div.choices__inner {
           border: none;
           background-color: scale-color($color-light-green, $lightness: 80%);
           padding: 5px 7px;
           width: 100%;
         }
 
-        & > *:nth-child(2) {
+        & > *:nth-child(2),
+        & > .choices {
           flex: 1;
 
           &.field_with_errors {

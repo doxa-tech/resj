@@ -1,40 +1,57 @@
-#container.cards-edit {
-  & > .container {
-    .step {
-      display: none;
+@import "../../../global/variables.scss";
+
+.container-cards-wizards {
+  max-width: $content-width;
+  padding: 0 $content-padding;
+  margin: auto;
+
+  div.map-location {
+    p.label {
+      padding: 10px 0 0px 0;
     }
 
-    .step.current {
-      display: block;
+    p.hint {
+      font-weight: normal;
+      font-size: 12px;
+      padding: 0 0 3px 0;
+      color: #999999;
     }
 
-    .nav {
-      display: none;
-    }
+    details {
+      font-size: 12px;
+      color: #999999;
 
-    .nav.current {
-      display: inline;
-    }
-
-    // TODO: for the test suit to pass
-    form .nav {
-      margin-top: 150px;
+      input {
+        color: #999999;
+        padding: 3px;
+      }
     }
 
     #mapbox {
       width: 100%;
-      max-width: 600px;
       height: 300px;
-      margin: auto;
     }
-    .marker {
-      background-image: url("mapbox-icon.png");
-      background-color: red;
-      background-size: cover;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      cursor: pointer;
+  }
+
+  div.buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 0 0 0;
+
+    button {
+      background: transparent;
+      border: 2px solid $color-green;
+      padding: 8px 10px;
+      margin: 5px;
+
+      &:hover {
+        color: #fff;
+        background-color: $color-green;
+        transition: all 100ms;
+        cursor: pointer;
+      }
     }
   }
 }

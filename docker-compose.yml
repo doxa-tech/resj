@@ -1,5 +1,8 @@
 
-# docker-compose exec app rake db:create
+# docker-compose build app
+# docker-compose up
+# docker-compose run --rm app bundle # Gemfile change
+# docker compose exec app rake db:create
 # https://gist.github.com/erdostom/5dd400cbba17d44b52b2f74b038fcb85
 
 version: '3.7'

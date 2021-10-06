@@ -1,16 +1,37 @@
 @import "../global/variables";
 
-.session-layout-top {
+.admin-layout-top {
   width: 100%;
 
   .logo {
     max-width: $content-width;
     margin: auto;
 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
     img {
       max-width: 200px;
       padding: 20px;
       margin-top: 10px;
+    }
+
+    .text {
+      a {
+        text-decoration: none;
+        color: #000;
+        border: 2px solid $color-green;
+        padding: 8px 10px;
+        font-size: 14px;
+
+        &:hover {
+          color: white;
+          background-color: $color-green;
+          transition: all 100ms;
+        }
+      }
     }
   }
 
@@ -28,7 +49,7 @@
         color: #000;
 
         &:not(:first-of-type) {
-          padding: 0 0 0 10px 0;
+          padding: 0 0 0 20px;
         }
       }
     }
