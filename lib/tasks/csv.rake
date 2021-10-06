@@ -24,7 +24,7 @@ namespace :csv do
 		end
 
 		# add canton coordinates
-		csv = CSV.read('public/csv/coordinates.csv','r')
+		csv = CSV.read('public/csv/coordinates.csv')
 		Location.all.each_with_index do |l, i| 
 			l.latitude = csv[i][0]
 			l.longitude = csv[i][1]

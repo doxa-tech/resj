@@ -12,9 +12,12 @@ Rails.application.routes.draw do
   delete "signout", to: "sessions#destroy"
   get "signin", to: "sessions#new"
   get "signup", to: "users#new"
+
   get "profile", to: "users#profile"
   get "profile/edit", to: "users#edit"
   get "profile/update", to: "users#update"
+  get "profile/orator/edit", to: "orators#edit"
+  get "profile/orator/update", to: "orators#update"
 
   resources :orators, only: [:index, :new, :create, :show]
 

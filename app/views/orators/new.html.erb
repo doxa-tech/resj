@@ -1,1 +1,48 @@
-<%= render "form" %>
+
+<%= form_with model: @orator, local: true do |f| %>
+
+  <%= render "error_messages", object: f.object %>
+
+  <%= f.fields_for :user do |user_f| %>
+
+    <%= user_f.label :firstname %>
+    <%= user_f.text_field :firstname %>
+
+    <%= user_f.label :lastname %>
+    <%= user_f.text_field :lastname %>
+
+    <%= user_f.label :email %>
+    <%= user_f.email_field :email %>
+
+    <%= user_f.label :password %>
+    <%= user_f.password_field :password %>
+
+    <%= user_f.label :password_confirmation %>
+    <%= user_f.password_field :password_confirmation %>
+
+  <% end %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+
+  <%= f.label :street %>
+  <%= f.text_field :street %>
+
+  <%= f.label :location_id %>
+  <%= f.collection_select :location_id, [f.object.location].compact, :id, :full_name, {}, { class: "orator_location", "data-controller": "select--locations" } %>
+
+  <%= f.label :phone %>
+  <%= f.text_field :phone %>
+  
+  <%= f.label :theme_ids %>
+  <%= f.collection_select :theme_ids, Theme.all, :id, :name, {}, { class: "orator_theme_ids", multiple: true, "data-controller": "select--simple" } %>
+
+  <%= f.label :disponibility_ids %>
+  <%= f.collection_check_boxes :disponibility_ids, Disponibility.all, :id, :name %>
+
+  <%= f.label :disponibility %>
+  <%= f.text_field :disponibility %>
+
+  <%= f.submit %>
+
+<% end %>

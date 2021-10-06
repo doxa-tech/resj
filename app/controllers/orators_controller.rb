@@ -1,4 +1,5 @@
 class OratorsController < ApplicationController
+  before_action :check_if_orator, only: [:edit, :update]
 
   def index
     respond_to do |format|
@@ -19,6 +20,12 @@ class OratorsController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def edit
+  end
+
+  def update    
   end
 
   def show
@@ -54,6 +61,13 @@ class OratorsController < ApplicationController
     attributes = [:description, :street, :location_id, :phone, :disponibility, theme_ids: [], disponibility_ids: []]
     attributes.push(user_attributes: [:firstname, :lastname, :email, :password, :password_confirmation]) unless signed_in?
     params.require(:orator).permit(attributes)
+  end
+
+  def check_if_orator
+    @orator = current_user.try(:orator)
+    if @orator.nil?
+      redirect_to profile_path, "Vous n'êtes pas autorisé" 
+    end
   end
 
 end
