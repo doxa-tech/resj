@@ -2,7 +2,7 @@
 
 <div class="container" data-controller="cards--form" data-cards--form-step="<%= params[:step] || 'general' %>">
 
-  <div class="session-form">
+  <div class="session-form session-form-violet">
     <div class="wrapper wrapper-bigger">
 
     <div class="title">
@@ -18,9 +18,9 @@
       <%= render "cards/wizards/extra_step", f: f %>
 
       <div class="buttons">
-        <button type="button" class="nav previous" data-action="cards--form#previous" data-target="cards--form.previous">Revenir en arrière</button>
-        <button type="button" class="nav next" data-action="cards--form#next" data-target="cards--form.next">Prochaine étape</button>
-        <button type="button" class="nav final" data-action="cards--form#confirmation" data-target="cards--form.confirmation">Aller à la confirmation</button>
+        <button type="button" class="submit nav previous" data-action="cards--form#previous" data-target="cards--form.previous">Revenir en arrière</button>
+        <button type="button" class="submit nav next" data-action="cards--form#next" data-target="cards--form.next">Prochaine étape</button>
+        <button type="button" class="submit nav final" data-action="cards--form#confirmation" data-target="cards--form.confirmation">Aller à la confirmation</button>
       </div>
     <% end %>
     </div>

@@ -11,7 +11,7 @@ export default class MapController extends ListController {
     const mapElement = document.getElementById('mapbox');
 
     if (!mapElement) {
-      console.error("mapbox html element not found.")
+      console.error("mapbox html element not found")
       return
     }
 

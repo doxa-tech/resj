@@ -1,5 +1,101 @@
 @import "../global/variables";
 
+.session-form-orange {
+  .wrapper {
+    .title {
+      span {
+        color: #fff;
+        background-color: $color-orange;
+      }
+    }
+
+    form {
+      .row {
+        input,
+        textarea,
+        div.choices__inner {
+          background-color: scale-color($color-orange, $lightness: 93%);
+        }
+      }
+
+      input[type="submit"],
+      button.submit {
+        border: 1px solid $color-orange;
+        color: $color-orange;
+
+        &:hover {
+          background-color: $color-orange;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+.session-form-green {
+  .wrapper {
+    .title {
+      span {
+        color: #fff;
+        background-color: $color-light-green;
+      }
+    }
+
+    form {
+      .row {
+        input,
+        textarea,
+        div.choices__inner {
+          background-color: scale-color($color-light-green, $lightness: 80%);
+        }
+      }
+
+      input[type="submit"],
+      button.submit {
+        border: 1px solid $color-light-green;
+        color: $color-light-green;
+
+        &:hover {
+          background-color: $color-light-green;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+.session-form-violet {
+  .wrapper {
+    .title {
+      span {
+        color: #fff;
+        background-color: $color-violet;
+      }
+    }
+
+    form {
+      .row {
+        input,
+        textarea,
+        div.choices__inner {
+          background-color: #f9f3f5;
+        }
+      }
+
+      input[type="submit"],
+      button.submit {
+        border: 1px solid $color-violet;
+        color: $color-violet;
+
+        &:hover {
+          background-color: $color-violet;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
 .session-form {
   display: flex;
   flex-direction: row;
@@ -23,11 +119,9 @@
       text-align: center;
 
       span {
-        background-color: $color-light-green;
         padding: 10px 20px;
         text-transform: uppercase;
         display: inline-block;
-        color: #fff;
       }
     }
 
@@ -72,7 +166,6 @@
         textarea,
         div.choices__inner {
           border: none;
-          background-color: scale-color($color-light-green, $lightness: 80%);
           padding: 5px 7px;
           width: 100%;
         }
@@ -89,20 +182,15 @@
         }
       }
 
-      input[type="submit"] {
+      input[type="submit"],
+      button.submit {
         background-color: transparent;
-        border: 1px solid $color-light-green;
-        color: $color-light-green;
         padding: 5px 7px;
-        margin: 10px 0;
+        margin-top: 10px;
+        margin-bottom: 10px;
         align-self: flex-end;
         cursor: pointer;
-
-        &:hover {
-          background-color: $color-light-green;
-          color: #fff;
-          transition: all 300ms;
-        }
+        transition: all 200ms;
       }
 
       label.remember {

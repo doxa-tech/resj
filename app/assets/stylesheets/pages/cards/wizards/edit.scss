@@ -41,17 +41,7 @@
     padding: 50px 0 0 0;
 
     button {
-      background: transparent;
-      border: 2px solid $color-green;
-      padding: 8px 10px;
       margin: 5px;
-
-      &:hover {
-        color: #fff;
-        background-color: $color-green;
-        transition: all 100ms;
-        cursor: pointer;
-      }
     }
   }
 }

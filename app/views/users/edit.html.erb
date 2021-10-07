@@ -1,5 +1,13 @@
-<h1>Mettre à jour mon compte</h1>
+<% content_for :links do %>
+  <%= link_to "Retour", profile_path %>
+<% end %>
 
-<%= link_to "Retour", profile_path %>
-
-<%= render "form", record: @user, url: profile_update_path %>
+<div class="session-form session-form-green">
+  <div class="wrapper wrapper-bigger">
+    <div class="title">
+      <span>Mettre à jour mon compte</span>
+    </div>
+    
+    <%= render "form", record: @user, url: profile_update_path %>
+  </div>
+</div>

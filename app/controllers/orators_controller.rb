@@ -1,6 +1,8 @@
 class OratorsController < ApplicationController
   before_action :check_if_orator, only: [:edit, :update]
 
+  layout "admin", only: [:edit]
+
   def index
     respond_to do |format|
 			format.json { @orators = search }
