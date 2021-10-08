@@ -21,6 +21,19 @@
       text-transform: uppercase;
     }
   }
+
+  @media only screen and (max-width: $mobile-width) {
+    margin: 0;
+
+    .content-wrapper {
+      padding: 0 $mobile-padding;
+
+      h1 {
+        color: #fff;
+        font-size: 4em;
+      }
+    }
+  }
 }
 
 .std-container {
@@ -114,6 +127,21 @@
       padding: 10px 10px;
       text-align: center;
       margin: 20px 0;
+    }
+  }
+
+  @media only screen and (max-width: $mobile-width) {
+    flex-direction: column;
+    padding: 0;
+
+    & > div:nth-child(1) {
+      padding: 20px $mobile-padding;
+      width: 100%;
+    }
+
+    & > div:nth-child(2) {
+      padding: 20px 0;
+      width: 100%;
     }
   }
 }
