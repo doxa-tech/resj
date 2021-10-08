@@ -11,6 +11,7 @@ div#application-header {
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
+    position: relative;
 
     div.left {
       position: relative;
@@ -20,10 +21,36 @@ div#application-header {
         max-width: 220px;
         position: absolute;
         top: 0px;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+    }
+
+    button.open-btn {
+      position: absolute;
+      right: 0;
+      top: 0;
+
+      text-align: right;
+      padding: 25px 40px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      display: none;
+
+      img {
+        width: 40px;
       }
     }
 
     div.right {
+      display: block;
+
+      /* hide the close button for mobile menu */
+      button {
+        display: none;
+      }
+
       a {
         font-family: asap;
         font-size: 1em;
@@ -47,6 +74,62 @@ div#application-header {
         &.second {
           color: #6e6e6e;
           padding: 0 20px;
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: $mobile-width) {
+    div.wrapper {
+      padding: 40px;
+
+      div.left {
+        img {
+          width: 75px;
+          z-index: 2;
+          top: -30px;
+          left: -8px;
+          padding: 0px;
+        }
+      }
+
+      button.open-btn {
+        display: block !important;
+      }
+
+      div.right {
+        background: #fff;
+        position: absolute;
+
+        top: 0;
+        left: 0;
+        right: 0;
+
+        display: none;
+        flex-direction: column;
+
+        a {
+          width: 100% !important;
+          margin: 0 !important;
+          padding: 20px 30px !important;
+          border-top: 1px solid #fff;
+
+          &:last-of-type {
+            padding-bottom: 30px !important;
+          }
+        }
+
+        button.close-btn {
+          text-align: right;
+          padding: 20px 40px;
+          border: none;
+          background: transparent;
+          cursor: pointer;
+          display: block !important;
+
+          img {
+            width: 40px;
+          }
         }
       }
     }
