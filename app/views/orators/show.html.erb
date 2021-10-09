@@ -8,11 +8,17 @@
 
 <section class="std-container">
   <div class="left">
-    <h2><%= "#{@orator.user.firstname} #{@orator.user.lastname}" %></h2>
-    <p class="bigger"><%= @orator.description %></p>
+
+    <div class="intro">
+      <h2><%= "#{@orator.user.firstname} #{@orator.user.lastname}" %></h2>
+      <p class="bigger"><%= @orator.description %></p>
+    </div>
+
     <p>Disponibilités: <%= @orator.disponibility %></p>
 
-    <p class="contact">Contact: <a href="#form">formulaire en bas de page</a>
+    <p class="contact"><span>Contact</span> <a href="#form">formulaire en bas de page</a>
+
+    <h2 class="subjects">Thêmes</h2>
 
     <div class="redbox">
       <h3>Thêmes d'enseignement:</h3>
@@ -49,7 +55,7 @@
   </div>
 
   <div class="right">
-    <%= image_tag "orators/Illustration-orateurs.jpg" %>
+    <p class="img"><%= image_tag "orators/Illustration-orateurs.jpg" %></p>
 
     <h2>Canton de domicile</h2>
     <p class="canton"><%= @orator.location.canton.name %></p>

@@ -19,6 +19,14 @@
       }
     }
 
+    h2.subjects {
+      /* displayed on mobile */
+      display: none;
+      text-transform: uppercase;
+      color: $color-orange;
+      padding: 30px 0 5px 0;
+    }
+
     div.redbox {
       background-color: $color-orange;
       color: #fff;
@@ -65,5 +73,50 @@
 
   form#form {
     padding: 10px 0;
+  }
+
+  @media only screen and (max-width: $mobile-width) {
+    .std-container {
+      & > div:nth-child(1) {
+        p.contact {
+          display: flex;
+          flex-direction: column;
+          margin: 0;
+
+          span {
+            text-transform: uppercase;
+            font-size: 34px;
+          }
+
+          a {
+            margin: 20px 0px 10px 0;
+            text-align: center;
+            padding: 20px;
+          }
+        }
+
+        h2.subjects {
+          display: block;
+        }
+
+        div.redbox {
+          margin: 10px 0 0 0;
+        }
+      }
+
+      & > div:nth-child(2) {
+        padding: 0 $mobile-padding 50px $mobile-padding;
+
+        p.img {
+          text-align: center;
+        }
+
+        img {
+          width: 400px;
+          text-align: center;
+          padding: $mobile-padding;
+        }
+      }
+    }
   }
 }

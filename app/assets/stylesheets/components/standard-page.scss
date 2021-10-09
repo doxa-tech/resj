@@ -19,6 +19,7 @@
       color: #ffffff94;
       margin: 0;
       text-transform: uppercase;
+      word-wrap: anywhere;
     }
   }
 
@@ -30,7 +31,7 @@
 
       h1 {
         color: #fff;
-        font-size: 4em;
+        font-size: 3em;
       }
     }
   }
@@ -137,6 +138,10 @@
     & > div:nth-child(1) {
       padding: 20px $mobile-padding;
       width: 100%;
+
+      div.intro {
+        padding: 20px 40px 0 40px;
+      }
     }
 
     & > div:nth-child(2) {
