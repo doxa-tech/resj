@@ -15,9 +15,9 @@ Rails.application.routes.draw do
 
   get "profile", to: "users#profile"
   get "profile/edit", to: "users#edit"
-  get "profile/update", to: "users#update"
+  patch "profile/update", to: "users#update"
   get "profile/orator/edit", to: "orators#edit"
-  get "profile/orator/update", to: "orators#update"
+  patch "profile/orator/update", to: "orators#update"
 
   resources :orators, only: [:index, :new, :create, :show]
 
