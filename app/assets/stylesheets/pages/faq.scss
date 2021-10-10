@@ -1,5 +1,15 @@
+@import "../global/variables";
+
 .container-faq {
   .std-top {
     background-image: image-url("faq/fond-faq.jpg");
+  }
+
+  @media only screen and (max-width: $mobile-width) {
+    .std-container {
+      & > div:nth-child(2) {
+        padding: 20px $mobile-padding;
+      }
+    }
   }
 }

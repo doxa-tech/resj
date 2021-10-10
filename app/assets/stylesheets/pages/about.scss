@@ -1,3 +1,5 @@
+@import "../global/variables";
+
 .container-about {
   .std-top {
     background-image: image-url("about/fond-apropos.jpg");
@@ -14,6 +16,14 @@
       img {
         height: 50px;
         margin: 0 10px 0 0;
+      }
+    }
+  }
+
+  @media only screen and (max-width: $mobile-width) {
+    .std-container {
+      & > div:nth-child(2) {
+        display: none;
       }
     }
   }
