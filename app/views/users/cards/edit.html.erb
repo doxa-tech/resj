@@ -8,7 +8,7 @@
 <%= form_with model: [:users, @card] do |f| %>
 <%= render "error_messages", object: f.object %>
 
-<section class="std-container">
+<section class="std-container top-container">
   <div class="left">
     <div class="title red">
       <h2>Editer le groupe:</h2>
@@ -17,8 +17,8 @@
 
     <div class="date">
       <p>
-        Créé le <%= @card.created_at.strftime("%d/%m/%y")   %>
-        Dernière modification le <%= @card.updated_at.strftime("%d/%m/%y") %>
+        <span>Créé le <%= @card.created_at.strftime("%d/%m/%y") %></span>
+        <span>Dernière modification le <%= @card.updated_at.strftime("%d/%m/%y") %></span>
       </p>
     </div>
   </div>
