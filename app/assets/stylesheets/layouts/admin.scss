@@ -19,6 +19,8 @@
     }
 
     .text {
+      padding: 0 20px 0 0;
+
       a {
         text-decoration: none;
         color: #000;
@@ -37,20 +39,37 @@
 
   .pattern {
     background-image: image-url("session/motif.jpg");
-    height: 60px;
+    min-height: 60px;
     width: 100%;
 
     .wrapper {
       max-width: $content-width;
       margin: auto;
-      padding: 20px 0 0 55px;
+      padding: 20px 0 20px 55px;
+      display: flex;
+      flex-wrap: wrap;
 
       a {
         color: #000;
 
-        &:not(:first-of-type) {
-          padding: 0 0 0 20px;
+        &:not(:last-of-type) {
+          padding: 0 20px 0 0;
         }
+      }
+    }
+  }
+
+  @media only screen and (max-width: $mobile-width) {
+    .logo {
+      img {
+        max-width: 100%;
+        width: 75px;
+        padding: 0px;
+        margin: 8px 8px 8px $mobile-padding;
+      }
+
+      .text {
+        padding: 0 $mobile-padding 0 0;
       }
     }
   }

@@ -123,4 +123,21 @@
       padding: 10px 0;
     }
   }
+
+  @media only screen and (max-width: $mobile-width) {
+    .title {
+      flex-direction: column;
+      align-items: flex-start;
+
+      a {
+        margin: 20px 0 0 0;
+      }
+    }
+
+    div.card {
+      div.links {
+        margin: 15px 0 22px 0;
+      }
+    }
+  }
 }

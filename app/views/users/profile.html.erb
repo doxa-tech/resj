@@ -68,8 +68,10 @@
 <% @cards.each do |card| %>
 <div class="card title red">
   <h2><%= card.name %></h2>
-  <%= link_to "Voir", card_path(card) %>
-  <%= link_to "Editer", edit_users_card_path(card) %>
+  <div class="links">
+    <%= link_to "Voir", card_path(card) %>
+    <%= link_to "Editer", edit_users_card_path(card) %>
+  </div>
 </div>
 <% end %>
 

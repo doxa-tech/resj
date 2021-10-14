@@ -288,4 +288,38 @@
       }
     }
   }
+
+  @media only screen and (max-width: $mobile-width) {
+    div.wrapper {
+      form {
+        padding-left: $mobile-padding;
+        padding-right: $mobile-padding;
+
+        div.row {
+          flex-direction: column;
+          align-items: flex-start;
+          margin: 15px 0;
+
+          input,
+          textarea,
+          div.choices__inner {
+            padding: 12px;
+          }
+
+          & > *:nth-child(1) {
+            padding: 0 0 5px 0;
+          }
+
+          & > .choices {
+            width: 100%;
+          }
+        }
+
+        input[type="submit"],
+        button.submit {
+          align-self: center;
+        }
+      }
+    }
+  }
 }
