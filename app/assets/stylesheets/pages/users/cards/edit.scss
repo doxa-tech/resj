@@ -147,6 +147,8 @@
   }
 
   @media only screen and (max-width: $mobile-width) {
+    padding: 0;
+
     section.top-container {
       div.left {
         div.title {
@@ -196,6 +198,34 @@
       div.right {
         div.submit {
           justify-content: center;
+        }
+      }
+    }
+
+    section.content-container {
+      div.left {
+        padding: 0 $mobile-padding;
+      }
+
+      div.right {
+        padding: 0 0 0 0;
+
+        p.title {
+          padding: 0 $mobile-padding;
+        }
+        p.hint {
+          padding: 5px $mobile-padding 10px $mobile-padding;
+        }
+        details {
+          padding: 3px $mobile-padding 0 $mobile-padding;
+        }
+
+        div.map-location {
+          padding: 0 0 30px 0;
+        }
+
+        div.contact {
+          padding: $mobile-padding;
         }
       }
     }
