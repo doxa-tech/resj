@@ -23,7 +23,7 @@
 
   .wrapper {
     max-width: $content-width;
-    padding: $content-padding;
+    padding: 7px $content-padding;
     margin: auto;
     text-align: center;
 
@@ -37,8 +37,8 @@
     }
 
     svg {
-      width: 30px;
-      height: 30px;
+      width: 15px;
+      height: 15px;
       stroke: #fff;
       flex-shrink: 0;
       cursor: pointer;
