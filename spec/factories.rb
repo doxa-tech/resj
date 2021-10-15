@@ -6,6 +6,7 @@ FactoryBot.define do
     email { "#{firstname.downcase}@#{lastname.downcase}.com" }
     password { "choux" }
     password_confirmation { "choux" }
+    reset_token { "xxx" }
   end 
 
   factory :orator do

@@ -1,1 +1,9 @@
-<%= link_to "Confirmer mon compte", edit_users_verification_url(@user.verify_token) %>
+<p>Pour confirmer votre commpte veuillez suivre le lien suivant:</p>
+<%= render "button_center" do %>
+  <%= link_to "Confirmer mon compte", edit_users_verification_url(@user.verify_token), "_target"=>"_blank" %>
+<% end %>
+<p>Vous recevez cet email car un nouveau compte associé à cet email à été créé sur reseaujeunesse.ch.
+Vous pouvez ignorer cet email si vous n'êtes pas à l'origine de la demande.</p>
+<p>Si le bouton ne fonctionne pas, copier/coller le lien suivant dans un navigateur:<br>
+<%= link_to edit_users_verification_url(@user.verify_token), edit_users_verification_url(@user.verify_token), "_target"=>"_blank" %>
+</p>
