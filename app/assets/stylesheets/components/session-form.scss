@@ -291,6 +291,12 @@
 
   @media only screen and (max-width: $mobile-width) {
     div.wrapper {
+      .title {
+        span {
+          width: 100%;
+        }
+      }
+
       form {
         padding-left: $mobile-padding;
         padding-right: $mobile-padding;

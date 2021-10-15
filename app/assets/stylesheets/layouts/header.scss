@@ -57,7 +57,8 @@ div#application-header {
         text-decoration: none;
 
         &.group,
-        &.orator {
+        &.orator,
+        &.second {
           padding: 10px 10px;
           color: #fff;
         }
@@ -73,7 +74,11 @@ div#application-header {
 
         &.second {
           color: #6e6e6e;
-          padding: 0 20px;
+          margin: 0 5px;
+
+          &:last-of-type {
+            margin-right: 20px;
+          }
         }
       }
     }
