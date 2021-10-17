@@ -1,5 +1,5 @@
 class Cards::WizardsController < ApplicationController
-  before_action :check_if_signed_in, only: [:new] # TODO: only the owner must edit the card
+  require_login only: [:new] # TODO: only the owner must edit the card
 
   layout 'admin'
 

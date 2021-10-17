@@ -1,5 +1,5 @@
 class Users::CardsController < ApplicationController
-  before_action :check_if_signed_in
+  require_login
   layout "admin"
 
   def show

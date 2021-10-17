@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
 
+  before_action :require_loggout, only: [:new, :create]
+
   layout "admin"
 
   def new
@@ -17,6 +19,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    sign_out
+		redirect_to root_path, success: "Tu es déconnecté"
   end
 
   private
