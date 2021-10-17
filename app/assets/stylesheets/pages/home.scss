@@ -632,6 +632,15 @@
         background: #fff;
         padding: 40px 0 0 0;
 
+        .map-holder {
+          padding: 0 $mobile-padding 0 0;
+
+          div.filter-btn-holder,
+          div.filters {
+            right: $mobile-padding + 10px;
+          }
+        }
+
         span.info-box-red {
           color: $color-red;
           background: transparent;
