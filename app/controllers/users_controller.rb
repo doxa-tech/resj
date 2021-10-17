@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   layout "admin"
   
   require_login only: [:edit, :update, :profile]
+  before_action :require_loggout, only: [:new]
 
   def new
     @user = User.new
@@ -23,6 +24,12 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
+		if @user.update_with_password(params[:user][:current_password], user_params)
+			sign_in(@user)
+			redirect_to profile_path, success: "Tes informations ont été mises à jour"
+		else
+			render 'edit'
+		end
   end
 
   def profile

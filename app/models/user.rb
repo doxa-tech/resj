@@ -17,6 +17,18 @@ class User < ApplicationRecord
   # password reset
   validates :password, presence: true, on: :reset
 
+  def update_with_password(current_password, params)
+    authenticated = authenticate(current_password)
+    assign_attributes(params)
+    if valid? && authenticated
+      save
+      true
+    else
+      errors.add(:current_password, "ne correspond pas") unless authenticated
+      false
+    end
+  end
+
   private
 
   def create_remember_token

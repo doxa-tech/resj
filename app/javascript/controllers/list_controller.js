@@ -49,7 +49,7 @@ export default class ListController extends Controller {
   }
 
   go(event) {
-    this.currentPage = event.target.innerHTML;;
+    this.currentPage = event.target.innerHTML;
     this.update();
   }
 

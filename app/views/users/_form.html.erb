@@ -1,6 +1,13 @@
 
 <%= form_with model: record, url: url, local: true do |f| %>
 
+  <% if record.persisted? %>
+  <div class="row">
+    <%= f.label :current_password %>
+    <%= f.password_field :current_password, placeholder: "Remplis avec ton mot de passe actuel" %>
+  </div>
+  <% end %>
+
   <div class="row">
     <%= f.label :firstname %>
     <%= f.text_field :firstname %>
@@ -18,7 +25,7 @@
 
   <div class="row">
     <%= f.label :password %>
-    <%= f.password_field :password %>
+    <%= f.password_field :password, placeholder: "Laisse blanc pour ne rien changer" %>
   </div>
 
   <div class="row">

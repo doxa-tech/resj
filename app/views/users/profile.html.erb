@@ -17,7 +17,7 @@
 
 <div class="item green">
   <h3>Newsletter</h3>
-  <%= @user.newsletter %>
+  <%= t("user.newsletter.#{@user.newsletter}") %>
 </div>
 
 <% unless @orator.nil? %>
