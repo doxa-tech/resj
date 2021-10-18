@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 			sign_in(@user)
 			redirect_to profile_path, success: "Tes informations ont été mises à jour"
 		else
-			render 'edit'
+			render "edit"
 		end
   end
 

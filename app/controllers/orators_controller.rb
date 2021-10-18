@@ -2,7 +2,7 @@ class OratorsController < ApplicationController
   before_action :check_if_not_orator, only: [:new, :create]
   before_action :check_if_orator, only: [:edit, :update, :update_visibility]
 
-  layout "admin", only: [:edit, :new]
+  layout "admin", only: [:edit, :update, :new, :create]
 
   def index
     respond_to do |format|
@@ -21,7 +21,7 @@ class OratorsController < ApplicationController
     if @orator.save
       redirect_to root_path, success: "Bienvenue dans le réseau des orateurs"
     else
-      render 'new'
+      render "new"
     end
   end
 
@@ -29,6 +29,11 @@ class OratorsController < ApplicationController
   end
 
   def update    
+    if @orator.update(orator_params)
+      redirect_to profile_path, success: "Tes informations ont été mises à jour"
+    else
+      render "edit"
+    end
   end
 
   def show
