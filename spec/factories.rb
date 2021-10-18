@@ -13,7 +13,6 @@ FactoryBot.define do
     user 
     location
     street { "Route du moulin 12" }
-    phone { "+41797891011" }
     description { "A votre service !" }
   end
 

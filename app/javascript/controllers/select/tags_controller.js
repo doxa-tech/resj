@@ -8,6 +8,7 @@ export default class extends Controller {
     new Choices(this.element, {
       maxItemCount: 5,
       customAddItemText: "Tag de 3 lettres minimum",
+      noResultsText: 'Aucun résultat',
       addItemText: (value) => {
         return `Appuyer sur Enter pour ajouter <b>"${value}"</b>`;
       },

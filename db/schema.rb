@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_09_151026) do
+ActiveRecord::Schema.define(version: 2021_10_18_194814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,19 +115,6 @@ ActiveRecord::Schema.define(version: 2019_09_09_151026) do
     t.index ["user_id"], name: "index_cards_on_user_id"
   end
 
-  create_table "disponibilities", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "disponibilities_orators", force: :cascade do |t|
-    t.bigint "orator_id"
-    t.bigint "disponibility_id"
-    t.index ["disponibility_id"], name: "index_disponibilities_orators_on_disponibility_id"
-    t.index ["orator_id"], name: "index_disponibilities_orators_on_orator_id"
-  end
-
   create_table "locations", force: :cascade do |t|
     t.integer "zip"
     t.string "official_name"
@@ -149,7 +136,6 @@ ActiveRecord::Schema.define(version: 2019_09_09_151026) do
     t.boolean "disabled", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "phone"
     t.index ["location_id"], name: "index_orators_on_location_id"
     t.index ["user_id"], name: "index_orators_on_user_id"
   end

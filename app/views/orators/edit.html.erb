@@ -28,21 +28,11 @@
         <%= f.collection_select :location_id, [f.object.location].compact, :id, :full_name, {}, { class: "orator_location", "data-controller": "select--locations" } %>
       </div>
 
-      <div class="row">
-        <%= f.label :phone %>
-        <%= f.text_field :phone %>
-      </div>
-
       <div class="row">  
         <%= f.label :theme_ids %>
         <%= f.collection_select :theme_ids, Theme.all, :id, :name, {}, { class: "orator_theme_ids", multiple: true, "data-controller": "select--simple" } %>
       </div>
-
-      <div class="row">
-        <%= f.label :disponibility_ids %>
-        <%= f.collection_check_boxes :disponibility_ids, Disponibility.all, :id, :name %>
-      </div>
-
+      
       <div class="row">
         <%= f.label :disponibility %>
         <%= f.text_field :disponibility %>

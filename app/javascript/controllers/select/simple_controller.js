@@ -8,6 +8,7 @@ export default class extends Controller {
       searchEnabled: false,
       placeholderValue: "Sélectionner",
       noChoicesText: "Plus d'option disponible",
+      noResultsText: 'Aucun résultat',
       itemSelectText: "Cliquez pour séléectionner",
       classNames: {
         containerOuter: "choices " + this.element.className

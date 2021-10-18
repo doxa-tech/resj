@@ -48,15 +48,8 @@
 </div>
 
 <div class="item orange">
-  <h3>Téléphone</h3>
-  <%= @orator.phone %>
-</div>
-
-<div class="item orange">
   <h3>Disponibilités</h3>
-  <% @orator.disponibilities.each do |disponibility| %>
-  <%= disponibility.name %>
-  <% end %>
+  <% @orator.disponibility %>
 </div>
 
 <% end %>

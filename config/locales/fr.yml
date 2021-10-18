@@ -30,13 +30,13 @@ fr:
     city: "Ville"
     street: "Rue"
     location: "Localité"
+    location_id: "Localité"
     country: "Pays"
     password: "Mot de passe"
     password_confirmation: "Confirmation"
     current_password: "Mot de passe actuel"
     created_at: "Créé le"
     updated_at: "Modifié le"
-    phone: "Téléphone"
   activerecord:
     attributes:
       card:

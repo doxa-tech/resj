@@ -4,7 +4,6 @@ When("I successfully complete the orator form") do
   choiceselect "Identité", from: "orator_theme_ids"
   fill_in "Description", with: "Je suis un bon orateur."
   fill_in "Disponibilités spéciales", with: "Hors vacances scolaires"
-  fill_in "Téléphone", with: "+41291112233"
   find("label[for='orator_theme_ids']").click # TODO: remove if the design fixes the problem
   click_button "Envoyer"
 end

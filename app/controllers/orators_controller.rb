@@ -1,4 +1,5 @@
 class OratorsController < ApplicationController
+  before_action :check_if_not_orator, only: [:new, :create]
   before_action :check_if_orator, only: [:edit, :update]
 
   layout "admin", only: [:edit, :new]
@@ -40,7 +41,7 @@ class OratorsController < ApplicationController
     clean(params)
     orators = Orator.all
     if params[:name].present?
-      orators = orators.where("firstname ilike ?", "%#{params[:name]}%")
+      orators = orators.where("lastname ilike ?", "%#{params[:name]}%")
     end
     if params[:cantons].present?
       orators = orators.joins(:location).where(locations: { canton_id: params[:cantons] })
@@ -60,7 +61,7 @@ class OratorsController < ApplicationController
   end
 
   def orator_params
-    attributes = [:description, :street, :location_id, :phone, :disponibility, theme_ids: [], disponibility_ids: []]
+    attributes = [:description, :street, :location_id, :disponibility, theme_ids: []]
     attributes.push(user_attributes: [:firstname, :lastname, :email, :password, :password_confirmation]) unless signed_in?
     params.require(:orator).permit(attributes)
   end
@@ -68,7 +69,14 @@ class OratorsController < ApplicationController
   def check_if_orator
     @orator = current_user.try(:orator)
     if @orator.nil?
-      redirect_to profile_path, "Vous n'êtes pas autorisé" 
+      redirect_to profile_path, error: "Vous n'êtes pas autorisé" 
+    end
+  end
+
+  def check_if_not_orator
+    @orator = current_user.try(:orator)
+    unless @orator.nil?
+      redirect_to profile_path, error: "Vous n'êtes pas autorisé" 
     end
   end
 
