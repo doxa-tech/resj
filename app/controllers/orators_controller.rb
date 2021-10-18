@@ -1,6 +1,6 @@
 class OratorsController < ApplicationController
   before_action :check_if_not_orator, only: [:new, :create]
-  before_action :check_if_orator, only: [:edit, :update]
+  before_action :check_if_orator, only: [:edit, :update, :update_visibility]
 
   layout "admin", only: [:edit, :new]
 
@@ -33,6 +33,11 @@ class OratorsController < ApplicationController
 
   def show
     @orator = Orator.find(params[:id])
+  end
+
+  def update_visibility
+    @orator.update_attribute(:disabled, !@orator.disabled)
+    redirect_to profile_path, success: "Ta visibilité a été changée"
   end
 
   private

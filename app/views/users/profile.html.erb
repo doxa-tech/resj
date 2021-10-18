@@ -31,8 +31,10 @@
   <h3>Visibilité sur la liste</h3>
   <% if @orator.disabled %>
   <p>Vous n'êtes pas visible en tant qu'orateur.</p>
+  <%= link_to "Devenir visible", profile_orator_update_visibility_path, method: :patch %>
   <% else %>
   <p>Vous êtes visible en tant qu'orateur.</p>
+  <%= link_to "Se rendre invisible", profile_orator_update_visibility_path, method: :patch %>
   <% end %>
 </div>
 
