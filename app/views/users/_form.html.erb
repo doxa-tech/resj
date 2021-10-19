@@ -25,7 +25,7 @@
 
   <div class="row">
     <%= f.label :password %>
-    <%= f.password_field :password, placeholder: "Laisse blanc pour ne rien changer" %>
+    <%= f.password_field :password, placeholder: ("Laisse blanc pour ne rien changer" if record.persisted?) %>
   </div>
 
   <div class="row">

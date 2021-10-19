@@ -9,10 +9,10 @@ class Card < ApplicationRecord
   belongs_to :location, optional: true # validation made manually according to the step
   belongs_to :user
 
-  has_many :taggings
+  has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
 
-  has_many :card_parents
+  has_many :card_parents, dependent: :destroy
   has_many :parents, through: :card_parents
 
   after_save :assign_tags
@@ -75,7 +75,7 @@ class Card < ApplicationRecord
   private
 
   def assign_tags
-    # TODO: popularity is increased every time the card is updated
+    # popularity is increased every time the card is updated
     self.tags = tag_names.split(',').map do |tag|
       tag = tag.strip.downcase
       tag = Tag.where(name: tag).first_or_create!

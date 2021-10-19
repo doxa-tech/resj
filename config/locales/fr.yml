@@ -42,6 +42,7 @@ fr:
       card:
         name: "Nom du groupe"
         card_type: "Catégorie"
+        parent_ids: "Association à un réseau régional"
       orator:
         disponibility: "Disponibilités spéciales"
         disponibility_ids: "Disponibilités"

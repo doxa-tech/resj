@@ -46,7 +46,7 @@
     </div>
 
     <div class="field">
-      <%= f.label :parent_ids, "Association à un réseau régional" %>
+      <%= f.label :parent_ids %>
       <%= f.collection_select :parent_ids, Card.network, :id, :name, {}, { multiple: true, "data-controller": "select--simple" } %>
     </div>
     
