@@ -56,6 +56,7 @@
 
 <% end %>
 
+<% if @cards.any? %>
 <div class="cards">
   <h2>Mes groupes</h2>
 </div>
@@ -68,6 +69,8 @@
     <%= link_to "Editer", edit_users_card_path(card) %>
   </div>
 </div>
+<% end %>
+
 <% end %>
 
 <div class="danger">
