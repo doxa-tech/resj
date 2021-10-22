@@ -1,7 +1,7 @@
 <div data-controller="flash" id="application-flash">
   <% if flash.any? %>
     <% flash.each do |key, value| %>
-      <div id="flash", class="flash-<%= key %>" data-target="flash.element">
+      <div id="flash" class="flash-<%= key %>" data-target="flash.element">
         <div class="wrapper">
           <span class="flash-content"><%= value.html_safe %></span>
         

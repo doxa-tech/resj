@@ -12,7 +12,7 @@ Feature: Confirm the card
     Given I have a complete card
     When I visit the card confirmation page
     And I click the link "Confirmer"
-    Then I should see a flash with "Vous êtes entré dans le réseau avec succès ! Votre groupe n'apparaît pas directement sur la carte car elle doit d'abord être validée."
+    Then I should see a flash with "Vous êtes entré dans le réseau avec succès ! Votre groupe n'apparaît pas directement sur la carte car il doit d'abord être validé."
 
   Scenario: I try to confirm an incomplete card
     When I visit "/cards/wizards/new" 

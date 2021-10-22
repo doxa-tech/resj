@@ -5,7 +5,7 @@
   <%= link_to "Voir le groupe", card_path(@card) %>
 <% end %>
 
-<%= form_with model: [:users, @card] do |f| %>
+<%= form_with model: [:users, @card], local: true do |f| %>
 <%= render "error_messages", object: f.object %>
 
 <section class="std-container top-container">

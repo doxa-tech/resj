@@ -13,7 +13,7 @@ Feature: Sign in or up before creating a card
   Scenario: I am not able to sign in
     Given I am a confirmed user
     When I visit "cards/wizards/new"
-    And I click the button "Se connecter"
+    And I click the button "Connexion"
     Then I should see a flash with "Nom d'utilisateur et/ou mot de passe incorrect(s)"
 
   Scenario: I successfully complete the sign up form

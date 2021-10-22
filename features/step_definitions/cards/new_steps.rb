@@ -9,8 +9,7 @@ When("I complete the second step and submit it") do
   fill_in "card_street", with: "Route du verdel 8"
 	remote_choiceselect "Bulle", from: "card_location"
 	fill_in "card_place", with: "A l'église"
-	find_field('card_latitude').execute_script("this.value = 46")
-	find_field('card_longitude').execute_script("this.value = 7")
+	find("#mapbox").click()
 	click_button "Prochaine étape"
 end
 
@@ -19,6 +18,7 @@ When("I complete the third step and submit it") do
   fill_in "card_website", with: "waykup.ch"
 	fill_in "card_affiliation", with: "EEbulle"
 	fill_choiceselect "card_tag_names", with: "camp"
+	find("label[for=card_tag_names]").click()
 	click_button "Aller à la confirmation"
 end
 

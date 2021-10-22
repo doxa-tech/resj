@@ -8,6 +8,7 @@ module Cards
 
       it "updates the card status to pending" do
         @card = create(:card, status: nil)
+        request.cookies[:remember_token] = @card.user.remember_token
         patch :confirm, params: { id: @card.id }
         @card.reload
         expect(@card.status).to eq "pending"
