@@ -30,7 +30,7 @@ class Cards::WizardsController < ApplicationController
     @card = Card.find(params[:id])
     if @card.valid?
       @card.update_attribute(:status, :pending)
-      redirect_to root_path, success: "Vous êtes entré dans le réseau avec succès ! Votre groupe n'apparaît pas directement sur la carte car elle doit d'abord être validée."
+      redirect_to root_path, success: "Vous êtes entré dans le réseau avec succès ! Votre groupe n'apparaît pas directement sur la carte car il doit d'abord être validé."
     else
       render 'confirmation'
     end

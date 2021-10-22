@@ -42,6 +42,21 @@ Rails.application.configure do
 
   # Email settings
   config.action_mailer.default_url_options = { :host => "localhost:3000" }
+  # It uses a sandbox configuration on mailgun. Each recipients must be allowed
+  # from the mailgun admin panel.
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default :charset => "utf-8"
+  config.action_mailer.smtp_settings = {
+    :user_name => Rails.application.credentials.development[:mailer][:user_name],
+    :password  => Rails.application.credentials.development[:mailer][:password],
+    :domain => Rails.application.credentials.development[:mailer][:domain],
+    :address   => Rails.application.credentials.development[:mailer][:address],
+    :port      => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true
