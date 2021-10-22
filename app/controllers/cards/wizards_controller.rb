@@ -1,5 +1,5 @@
 class Cards::WizardsController < ApplicationController
-  require_login only: [:new] # TODO: only the owner must edit the card
+  before_action :check_if_signed_in
 
   layout 'admin'
 
@@ -13,21 +13,21 @@ class Cards::WizardsController < ApplicationController
   end
 
   def edit
-    @card = Card.find(params[:id])
+    @card = current_user.cards.find(params[:id])
   end
 
   def update
-    @card = Card.find(params[:id])
+    @card = current_user.cards.find(params[:id])
     @card.update(card_params)
     render json: @card.errors.full_messages
   end
   
   def confirmation
-    @card = Card.find(params[:id])
+    @card = current_user.cards.find(params[:id])
   end
 
   def confirm
-    @card = Card.find(params[:id])
+    @card = current_user.cards.find(params[:id])
     if @card.valid?
       @card.update_attribute(:status, :pending)
       redirect_to root_path, success: "Vous êtes entré dans le réseau avec succès ! Votre groupe n'apparaît pas directement sur la carte car il doit d'abord être validé."
