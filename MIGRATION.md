@@ -8,6 +8,10 @@
 ## Card
 * password_digest removed
 
+## Authorization
+* remove the users that are groups for the permission system
+* remove unnecessary tables
+
 ## Install mapbox
 
 ```bash

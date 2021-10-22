@@ -1,0 +1,21 @@
+<%= form_with model: Contact.new, local: true, url: url, id: "form" do |f| %>
+
+  <div class="row">
+    <p>Ton message</p>
+    <%= f.text_field :message, required: true %>
+  </div>
+
+  <div class="row">
+    <p>Ton email</p>
+    <%= f.email_field :email, required: true %>
+  </div>
+
+  <div class="row">
+    <p>Combien font 2+2?</p>
+    <%= f.number_field :verification, required: true %>
+    <br>
+  </div>
+
+  <%= f.submit "Envoyer" %>
+
+<% end %>

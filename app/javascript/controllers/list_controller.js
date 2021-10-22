@@ -6,23 +6,32 @@ export default class ListController extends Controller {
   items;
 
   updateItems(items) {
-    this.items = items;
+    if (items.length < 10) {
+      this.items = []
+    } else { 
+      this.items = items;
+    }
     this.update();
   }
 
   update() {
-    const start = (this.currentPage - 1) * this.itemPerPage;
-    let items = this.items.slice(start, start + this.itemPerPage);
-    const updatedList = this.updateList(items);
     this.itemsTarget.innerHTML = "";
-    let content = "";
-    for (let i = 0; i < updatedList.length; i++) {
-      content += updatedList[i];
+    let content = ""
+    if (this.items.length == 0) {
+      content = "Bientôt disponible, la liste est en train de se remplir..."
+    } else {
+      const start = (this.currentPage - 1) * this.itemPerPage;
+      let items = this.items.slice(start, start + this.itemPerPage);
+      const updatedList = this.updateList(items);
+      for (let i in updatedList) {
+        content += updatedList[i];
+      }
     }
     this.itemsTarget.innerHTML = content;
     this.updateMap(this.items);
     this.updatePagination();
     this.totalTarget.innerHTML = this.items.length;
+    
   }
 
   updatePagination() {
