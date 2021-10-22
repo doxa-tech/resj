@@ -26,8 +26,7 @@ class Card < ApplicationRecord
     c.validates :street, presence: true
     c.validates :location, presence: true
     c.validates :place, length: { maximum: 60 }
-    c.validates :latitude, presence: { message: "Veuillez spécifier votre emplacement sur la carte" }
-    c.validates :longitude, presence: { message: "Veuillez spécifier votre emplacement sur la carte" }
+    c.validate :coordinates_are_both_set
   end
   with_options if: Proc.new { |c| c.current_step?("extra")} do |c|
     c.validates :website, length: { maximum: 60 }
@@ -41,6 +40,12 @@ class Card < ApplicationRecord
 
   def current_step?(step)
     current_step.nil? || current_step == step
+  end
+
+  def coordinates_are_both_set
+      if latitude.nil? || longitude.nil? 
+        errors.add(:base, "Veuillez spécifier votre emplacement sur la carte")
+      end
   end
 
   def color
