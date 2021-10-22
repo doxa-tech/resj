@@ -2,14 +2,14 @@ Given("I am a visitor") do
 end
 
 Given("I am a confirmed user") do
-  @user = create(:user)
+  @user = create(:user, confirmed: true)
 end
 
 Given("I am signed in") do
   visit signin_path
   fill_in "Email", with: "john@smith.com"
   fill_in "Mot de passe", with: "choux"
-  click_button "Se connecter"
+  click_button "Connexion"
 end
 
 When("I visit {string}") do |path|

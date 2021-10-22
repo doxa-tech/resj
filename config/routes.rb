@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
   post "contact/orator/:uuid", to: "contact#orator", as: :contact_orator
 
-  resources :orators, only: [:index, :new, :create, :show]
+  resources :orators, only: [:index, :new, :create, :show, :destroy]
 
   resources :cards, only: [:index, :show]
 

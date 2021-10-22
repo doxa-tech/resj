@@ -4,5 +4,5 @@ end
 
 When("I update the card's name with {string}") do |name|
   fill_in "Nom du groupe", with: name
-  click_button "Enregistrer"
+  click_button "Sauvegarder et mettre à jour"
 end

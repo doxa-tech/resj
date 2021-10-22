@@ -18,6 +18,6 @@ Then("I should be able to sign in with my new password") do
   visit signin_path
   fill_in "Email", with: "john@smith.com"
   fill_in "Mot de passe", with: "tomates"
-  click_button "Se connecter"
+  click_button "Connexion"
   expect(find '#flash').to have_content "Connexion réussie"
 end
