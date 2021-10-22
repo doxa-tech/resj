@@ -18,10 +18,10 @@
 
     <p class="contact"><span>Contact</span> <a href="#form">formulaire en bas de page</a>
 
-    <h2 class="subjects">Thêmes</h2>
+    <h2 class="subjects">Thèmes</h2>
 
     <div class="redbox">
-      <h3>Thêmes d'enseignement:</h3>
+      <h3>Thèmes d'enseignement:</h3>
       <% @orator.themes.each do |theme| %>
         <p><%= theme.name %></p>
       <% end %>
@@ -34,22 +34,7 @@
           <p>Merci de n'utiliser ce service seulement si tu recherche un orateur pour une soirée / événement. Si tu as déjà envoyé un message mais que tu n'as pas reçus de réponse ne renvois pas un message tout de suite mais attend quelques semaines.
         </div>
         
-        <form id="form">
-          <div class="row">
-            <p>Ton message</p>
-            <textarea></textarea><br>
-          </div>
-          <div class="row">
-            <p>Ton email</p>
-            <input type="email"><br>
-          </div>
-          <div class="row">
-            <p>Combien font 2+2?</p>
-            <input type="text"><br>
-          </div>
-
-          <input type="submit" value="Envoyer un message"/>
-        </form>
+        <%= render "contact/form", url: contact_orator_path(@orator.user.uuid) %>
       </div>
     </div>
   </div>

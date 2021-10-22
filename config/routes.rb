@@ -18,7 +18,9 @@ Rails.application.routes.draw do
   patch "profile/update", to: "users#update"
   get "profile/orator/edit", to: "orators#edit"
   patch "profile/orator/update", to: "orators#update"
-  patch"profile/orator/update_visibility", to: "orators#update_visibility"
+  patch "profile/orator/update_visibility", to: "orators#update_visibility"
+
+  post "contact/orator/:uuid", to: "contact#orator", as: :contact_orator
 
   resources :orators, only: [:index, :new, :create, :show]
 
