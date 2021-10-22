@@ -1,0 +1,19 @@
+
+<h2>Bonjour</h2>
+
+<p>Vous avez actuellement un compte orateur sur Réseau Jeunesse.</p>
+<% if @orator.disabled %>
+
+<p>Votre profil est actuellement en mode invisible. Vous n'apparaissez pas dans la liste et vous ne pouvez pas être contacté.</p>
+<%= link_to "Voir mon profil", profile_path %>
+<%= link_to "Devenir visible", profile_orator_update_visibility_path(@orator), method: :patch %>
+<%= link_to "Supprimer mon profil", orator_path(@orator), method: :delete %>
+
+<% else %>
+
+<p>Votre profil est actuellement visible sur le site et vous pouvez être contacté.</p>
+<%= link_to "Voir mon profil", profile_path %>
+<%= link_to "Devenir invisible", profile_orator_update_visibility_path(@orator), method: :patch %>
+<%= link_to "Supprimer mon profil", orator_path(@orator), method: :delete %>
+
+<% end %>

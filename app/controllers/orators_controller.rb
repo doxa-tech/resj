@@ -1,6 +1,6 @@
 class OratorsController < ApplicationController
   before_action :check_if_not_orator, only: [:new, :create]
-  before_action :check_if_orator, only: [:edit, :update, :update_visibility]
+  before_action :check_if_orator, only: [:edit, :update, :destroy, :update_visibility]
 
   layout "admin", only: [:edit, :update, :new, :create]
 
@@ -30,7 +30,7 @@ class OratorsController < ApplicationController
 
   def update    
     if @orator.update(orator_params)
-      redirect_to profile_path, success: "Tes informations ont été mises à jour"
+      redirect_to profile_path, success: "Vos informations ont été mises à jour"
     else
       render "edit"
     end
@@ -38,6 +38,11 @@ class OratorsController < ApplicationController
 
   def show
     @orator = Orator.find(params[:id])
+  end
+
+  def destroy
+    @orator.destroy
+    redirect_to profile_path, success: "Votre compte orateur a été supprimé"
   end
 
   def update_visibility
