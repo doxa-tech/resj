@@ -1,2 +1,15 @@
-<p><%= @contact.email %></p>
-<p><%= @contact.message %></p>
+<h1>Quelqu'un vous a contacté</h1>
+
+<p>L'utilisateur <a href="mailto:<%= @contact.email %>"><%= @contact.email %></a> vous a laissé le message suivant:</p>
+
+<hr/>
+
+<p class="quote"><%= @contact.message %></p>
+
+<hr/>
+
+<p>Vous pouvez répondre à cet utilisateur en répondant simplement à cet email.
+Notez que si vous répondez l'utilisateur aura connaissance de votre adresse email.</p>
+
+<p>Vous pouvez nous signaler tout comportement déplacé ou nous faire part de vos
+remarques à <a href="mailto:info@resj.ch">info@resj.ch</a>.</p>
