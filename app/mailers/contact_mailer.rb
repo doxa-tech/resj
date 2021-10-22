@@ -2,7 +2,10 @@ class ContactMailer < ApplicationMailer
 
   def orator(contact)
     @contact = contact
-    mail(to: contact.destination, subject: "Un utilisateur t'a contacté sur Réseau Jeunesse !")
+    mail(
+      to: contact.destination, 
+      reply_to: contact.email,
+      subject: "Un utilisateur t'a contacté sur Réseau Jeunesse !")
   end
 
   def confirmation(contact)

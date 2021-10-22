@@ -38,6 +38,13 @@
       a {
         color: $color-light-green;
         border-color: $color-light-green;
+
+        transition: all 200ms;
+
+        &:hover {
+          color: #fff;
+          background-color: $color-light-green;
+        }
       }
     }
 
@@ -50,6 +57,13 @@
       a {
         color: $color-orange;
         border-color: $color-orange;
+
+        transition: all 200ms;
+
+        &:hover {
+          color: #fff;
+          background-color: $color-orange;
+        }
       }
     }
 
@@ -62,6 +76,13 @@
       a {
         color: $color-red;
         border-color: $color-red;
+
+        transition: all 200ms;
+
+        &:hover {
+          color: #fff;
+          background-color: $color-orange;
+        }
       }
     }
   }
@@ -95,6 +116,23 @@
     &.orange {
       h3 {
         color: $color-orange;
+      }
+    }
+  }
+
+  div.orator-visibility {
+    a {
+      text-decoration: none;
+      color: $color-orange;
+      border: 1px solid $color-orange;
+      padding: 3px 5px;
+      font-size: 0.9em;
+      margin: 0 0 0 5px;
+      transition: all 200ms;
+
+      &:hover {
+        color: #fff;
+        background-color: $color-orange;
       }
     }
   }
