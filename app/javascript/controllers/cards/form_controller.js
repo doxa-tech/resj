@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class CardsForm extends Controller {
-  static targets = [ "form", "step", "previous", "next", "confirmation", "error" ]
+  static targets = ["form", "step", "previous", "next", "confirmation", "error", "timeline"]
   static steps = ["general", "location", "extra"]
 
   initialize() {
@@ -20,6 +20,13 @@ export default class CardsForm extends Controller {
       e.classList.toggle("current", i == this.stepIndex)
     });
     this.showCurrentNav();
+
+    // update the timeline buttons
+    this.timelineTarget.querySelectorAll("button").forEach((e, i) => {
+      e.classList.remove("current")
+    });
+    const currentButton = this.timelineTarget.querySelector(`[data-destination-index="${this.stepIndex}"]`);
+    currentButton.classList.add("current")
   }
 
   showCurrentNav() {
@@ -51,7 +58,14 @@ export default class CardsForm extends Controller {
 
   confirmation() {
     this.update(() => {
-      Turbolinks.visit(window.location.pathname.replace("edit", "confirmation"));
+      window.location = window.location.pathname.replace("edit", "confirmation");
+    });
+  }
+
+  changeStep(event) {
+    this.update(() => {
+      this.stepIndex = event.target.dataset.destinationIndex;
+      this.showCurrentStep();
     });
   }
 
@@ -83,7 +97,7 @@ export default class CardsForm extends Controller {
     const formData = new FormData(this.formTarget);
     formData.append("card[current_step]", this.data.get("step"));
     try {
-      const res = await fetch(this.formTarget.getAttribute("action"), { method: "PATCH", body: formData});
+      const res = await fetch(this.formTarget.getAttribute("action"), { method: "PATCH", body: formData });
       if (res.status === 200) {
         const errors = await res.json();
         if (errors.length === 0) {
@@ -98,6 +112,6 @@ export default class CardsForm extends Controller {
       }
     } catch (e) {
       console.log(e);
-    } 
+    }
   }
 }

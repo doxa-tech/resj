@@ -1,4 +1,4 @@
-<% content_for :id, "container-cards-wizards" %>
+<% content_for :id, "container-cards-wizards-edit" %>
 
 <div class="container" data-controller="cards--form" data-cards--form-step="<%= params[:step] || 'general' %>">
 
@@ -7,6 +7,13 @@
 
     <div class="title">
       <span>Création d'un nouveau groupe</span>
+    </div>
+
+    <div class="timeline" data-target="cards--form.timeline">
+      <button type="button" data-action="cards--form#changeStep" data-destination-index="0">Informations générale</button>
+      <button type="button" data-action="cards--form#changeStep" data-destination-index="1">Localisation</button>
+      <button type="button" data-action="cards--form#changeStep" data-destination-index="2">Information supplémentaires</button>
+      <button type="button" data-action="cards--form#confirmation" data-target="cards--form.confirmation">Confirmation</button>
     </div>
     
     <%= form_with model: @card, url: cards_wizard_path, data: { target: "cards--form.form" } do |f| %>

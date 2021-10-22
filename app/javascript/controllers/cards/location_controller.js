@@ -15,16 +15,16 @@ export default class LocationController extends Controller {
     mapboxgl.accessToken = 'pk.eyJ1IjoibmtjciIsImEiOiI4UnhLZEx3In0.bakfmpx2lREiNbHn0lWq9Q';
     var zoom = 0;
     if (window.innerWidth < 626) {
-      zoom = 9;
+      zoom = 7;
     } else {
-      zoom = 10;
+      zoom = 8;
     }
 
     const map = new mapboxgl.Map({
       container: 'mapbox',
       style: 'mapbox://styles/nkcr/ck4vla6vz2ir81cnya5cl6uog',
-      minZoom: 7,
-      center: [7.1960, 46.6221],
+      minZoom: 6,
+      center: [6.637289636687626, 46.60327680658895],
       zoom: zoom,
       scrollZoom: false,
     });
@@ -74,19 +74,16 @@ export default class LocationController extends Controller {
     const latTarget = this.latitudeTarget;
     const lngTarget = this.longitudeTarget;
 
+    const lat = parseFloat(latTarget.value);
+    const lng = parseFloat(lngTarget.value);
+
     map.on('load', () => {
 
       map.addSource('items', {
         type: "geojson",
         data: {
           "type": "FeatureCollection",
-          "features": [{
-            "type": "Feature",
-            "geometry": {
-              "type": "Point",
-              "coordinates": [lngTarget.value, latTarget.value]
-            },
-          }]
+          "features": []
         },
       });
 
@@ -107,7 +104,23 @@ export default class LocationController extends Controller {
         }
       });
 
-      map.flyTo({ center: [lngTarget.value, latTarget.value] });
+      if (!Number.isNaN(lat) && !Number.isNaN(lng)) {
+        const feature = {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              lng, lat
+            ]
+          },
+          "properties": {
+            "color": "0,0,0"
+          }
+        }
+
+        console.log("start set map", lng, lat)
+        this.setMap(feature);
+      }
     });
 
     map.on('click', (e) => {
@@ -127,17 +140,19 @@ export default class LocationController extends Controller {
         }
       }
 
-      this.setMap([feature]);
+      this.setMap(feature);
     });
   }
 
-  setMap(items) {
-    console.log("set map", items)
+  setMap(feature) {
     let map = this.map;
+    console.log("set map", feature)
     map.getSource('items').setData({
       "type": "FeatureCollection",
-      "features": items
+      "features": [feature]
     });
+    map.flyTo({ center: feature.geometry.coordinates });
+    // map.flyTo({ center: [feature.coordinates[0], feature.coordinates[1]] });
   }
 
 }

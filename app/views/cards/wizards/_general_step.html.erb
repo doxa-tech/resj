@@ -4,17 +4,17 @@
   </div>
 
   <div class="row">
-    <%= f.label :name %>
+    <%= f.label :name, "Nom du groupe *" %>
     <%= f.text_field :name, placeholder: 'Nom' %>
   </div>
 
   <div class="row">
-    <%= f.label :description %>
+    <%= f.label :description, "Description *" %>
     <%= f.text_area :description, placeholder: 'Description' %>
   </div>
 
   <div class="row">
-    <%= f.label :card_type %>
+    <%= f.label :card_type, "Catégorie *" %>
     <%= f.select :card_type, options_for_enum(f.object, :card_type), { prompt: "Choisissez une catégorie" }, { class: "card_type", "data-controller": "select--simple" } %>
   </div>
 

@@ -1,27 +1,93 @@
-<div>
+<% content_for :id, "container-cards-wizards-confirmation" %>
 
-  <%= render 'error_messages', object: @card %>
+<div class="container">
 
-  <p>Général</p>
+  <div class="session-form session-form-violet">
+    <div class="wrapper wrapper-bigger">
 
-  <p>Nom</p><p><%= @card.name %></p>
-  <p>Description</p><p><%= @card.description %></p>
-  <p>Catégorie</p><p><%= t "card.card_types.#{@card.card_type}" %></p>
-  <p>Réseau régional</p><p><%= @card.parents.map(&:name).join(", ") %></p>
+      <div class="title">
+        <span>Confirmation d'un nouveau groupe</span>
+      </div>
 
-  <p>Lieu</p>
+      <div class="timeline">
+        <%= link_to "Informations générales", edit_cards_wizard_path(@card, step: "general") %>
+        <%= link_to "Localisation", edit_cards_wizard_path(@card, step: "location") %>
+        <%= link_to "Informations complémentaire", edit_cards_wizard_path(@card, step: "extra") %>
+        <%= link_to "Confirmation", confirmation_cards_wizard_path(@card) %>
+      </div>
 
-  <p>Adresse</p><p><%= @card.street %></p>
-  <p>Ville</p><p><%= @card.location.official_name if @card.location %></p>
-  <p>Lieu de rencontre</p><p><%= @card.place %></p>
+      <div class="fake-form">
 
-  <p>Extra</p>
+        <%= render 'error_messages', object: @card %>
 
-  <p>Email de contact</p><p><%= @card.email %></p>
-  <p>Site web</p><p><%= @card.website %></p>
-  <p>Affiliations</p><p><%= @card.affiliation %></p>
-  <p>Tags</p><p><%= @card.tag_names %></p>
+        <h3>Général</h3>
 
-  <%= link_to "Confirmer", confirm_cards_wizard_path(@card), method: :patch %>
+        <div class="row">
+          <p>Nom</p>
+          <p class="input"><%= @card.name %></p>
+        </div>
 
+        <div class="row">
+          <p>Description</p>
+          <p class="input"><%= @card.description %></p>
+        </div>
+
+        <div class="row">
+          <p>Catégorie</p>
+          <p class="input"><%= t "card.card_types.#{@card.card_type}" %></p>
+        </div>
+
+        <div class="row">
+          <p>Réseau régional</p>
+          <p class="input"><%= @card.parents.map(&:name).join(", ") %></p>
+        </div>
+
+        <h3>Lieu</h3>
+
+        <div class="row">
+          <p>Adresse</p>
+          <p class="input"><%= @card.street %></p>
+        </div>
+
+        <div class="row">
+          <p>Ville</p>
+          <p class="input"><%= @card.location.official_name if @card.location %></p>
+        </div>
+
+        <div class="row">
+          <p>Lieu de rencontre</p>
+          <p class="input"><%= @card.place %></p>
+        </div>
+
+        <h3>Extra</h3>
+
+        <div class="row">
+          <p>Email de contact</p>
+          <p class="input"><%= @card.email %></p>
+        </div>
+          
+        <div class="row">
+          <p>Site web</p>
+          <p class="input"><%= @card.website %></p>
+        </div>
+          
+        <div class="row">
+          <p>Affiliations</p>
+          <p class="input"><%= @card.affiliation %></p>
+        </div>
+          
+        <div class="row">
+          <p>Tags</p>
+          <p class="input"><%= @card.tag_names %></p>
+        </div>
+      </div>
+
+      <div class="intro">
+        Une fois la création confirmée un email de confirmation sera envoyé à votre adresse. Notre équipe procèdera ensuite à une validation et vous recevrez un second email une fois la validation passée.
+      </div>
+
+      <%= link_to "Confirmer", confirm_cards_wizard_path(@card), method: :patch, class: "confirm" %>
+
+    </div>
+  </div>
 </div>

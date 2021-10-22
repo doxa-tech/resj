@@ -1,9 +1,17 @@
 @import "../../../global/variables.scss";
 
-.container-cards-wizards {
+.container-cards-wizards-edit {
   max-width: $content-width;
   padding: 0 $content-padding;
   margin: auto;
+
+  .step {
+    overflow: hidden;
+  }
+
+  .step:not(.current) {
+    height: 0;
+  }
 
   div.map-location {
     p.label {
@@ -33,6 +41,32 @@
     }
   }
 
+  .timeline {
+    font-size: 12px;
+    padding: 30px 0 0 0;
+
+    button {
+      text-decoration: none;
+      background: none;
+      border: none;
+      color: rgb(34, 34, 34);
+      cursor: pointer;
+
+      &:not(:first-of-type) {
+        padding-left: 10px;
+
+        &:before {
+          content: ">";
+          padding-right: 10px;
+        }
+      }
+
+      &.current {
+        font-weight: bold;
+      }
+    }
+  }
+
   div.buttons {
     display: flex;
     flex-direction: row;
@@ -42,6 +76,10 @@
 
     button {
       margin: 5px;
+
+      &:not(.current) {
+        display: none;
+      }
     }
   }
 
