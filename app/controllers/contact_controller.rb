@@ -2,7 +2,7 @@ class ContactController < ApplicationController
 
   def orator
     user = User.find_by_uuid(params[:uuid])
-    orator = user.orator
+    orator = user.try(:orator)
     unless orator.nil?
       contact = Contact.new(contact_params)
       contact.destination = user.email

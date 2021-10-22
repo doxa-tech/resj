@@ -52,7 +52,7 @@ class UsersController < ApplicationController
 		@user = User.find_by_uuid(params[:id])
 		# re-sends confirmation email
 		UserMailer.confirmation(@user).deliver_now
-		redirect_to root_path, success: "Un nouvel email a été envoyé."
+		redirect_to root_path, success: "Un nouvel email a été envoyé"
 	end
 
   private
