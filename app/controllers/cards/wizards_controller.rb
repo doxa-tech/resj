@@ -7,6 +7,7 @@ class Cards::WizardsController < ApplicationController
     @card = current_user.cards.find_by(status: nil)
     if @card.nil?
       @card = current_user.cards.new
+      @card.status = :incomplete
       @card.save!(validate: false) # TODO: validate: false may not be necessary later
     end
     redirect_to edit_cards_wizard_path(@card)
