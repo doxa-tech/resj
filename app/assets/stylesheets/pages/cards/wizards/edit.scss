@@ -5,11 +5,22 @@
   padding: 0 $content-padding;
   margin: auto;
 
-  .step {
+  // For the location container we can't use `display: none` because the map
+  // needs to know the width. This is why we use the height+overflow
+  // combination.
+  .step:not(.current, .location) {
+    display: none;
+  }
+
+  .step.current:not(.location) {
+    display: block;
+  }
+
+  .step.location {
     overflow: hidden;
   }
 
-  .step:not(.current) {
+  .step.location:not(.current) {
     height: 0;
   }
 

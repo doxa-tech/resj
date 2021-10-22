@@ -13,7 +13,7 @@
       <button type="button" data-action="cards--form#changeStep" data-destination-index="0">Informations générale</button>
       <button type="button" data-action="cards--form#changeStep" data-destination-index="1">Localisation</button>
       <button type="button" data-action="cards--form#changeStep" data-destination-index="2">Information supplémentaires</button>
-      <button type="button" data-action="cards--form#confirmation" data-target="cards--form.confirmation">Confirmation</button>
+      <button type="button" data-action="cards--form#confirmation">Confirmation</button>
     </div>
     
     <%= form_with model: @card, url: cards_wizard_path, data: { target: "cards--form.form" } do |f| %>
