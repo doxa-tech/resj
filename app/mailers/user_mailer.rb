@@ -1,7 +1,7 @@
 class UserMailer < ApplicationMailer
 
   def confirmation(user)
-    @user = user
+    @url = confirmation_users_url(token: user.remember_token)
     mail(to: user.email, subject: "Confirmation de votre email sur reseaujeunesse.ch")
   end
 

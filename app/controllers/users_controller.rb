@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 		if @user.save
-      # UserMailer.confirmation(@user).deliver_now TODO
+      UserMailer.confirmation(@user).deliver_now
 			redirect_to root_path, success: "Ton compte Reseau Jeunesse a été créé !"
 		else
 			render 'new'
@@ -37,6 +37,23 @@ class UsersController < ApplicationController
     @orator = @user.orator
     @cards = @user.cards
   end
+
+  def confirmation
+		if @user = User.find_by_remember_token(params[:token])
+			@user.update_attribute(:confirmed, true)
+			sign_in(@user)
+			redirect_to profile_path, success: "Ton compte est validé. Tu es maintenant connecté !"
+		else
+			redirect_to root_path, error: "Le lien est invalide."
+		end
+	end
+
+  def resend_confirmation
+		@user = User.find_by_uuid(params[:id])
+		# re-sends confirmation email
+		UserMailer.confirmation(@user).deliver_now
+		redirect_to root_path, success: "Un nouvel email a été envoyé."
+	end
 
   private
 

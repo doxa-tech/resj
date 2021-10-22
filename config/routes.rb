@@ -7,8 +7,13 @@ Rails.application.routes.draw do
     get page, to: "pages##{page}"
   end
 
+  
+  resources :users, only: :create do
+    get "confirmation", on: :collection
+    post "resend_confirmation", on: :member 
+  end
+
   resources :sessions, only: :create
-  resources :users, only: :create
   delete "signout", to: "sessions#destroy"
   get "signin", to: "sessions#new"
   get "signup", to: "users#new"

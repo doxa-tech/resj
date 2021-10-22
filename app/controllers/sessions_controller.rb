@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
   before_action :require_loggout, only: [:new, :create]
+  before_action :require_confirmed, only: [:create]
 
   layout "admin"
 
@@ -25,8 +26,18 @@ class SessionsController < ApplicationController
 
   private
 
+  def require_confirmed
+		if user && !user.confirmed
+		  redirect_to root_path, error: render_to_string("application/unconfirmed", layout: false)
+		end
+	end
+
   def redirect_url
     params[:redirect_url] || profile_path
+  end
+
+  def user
+    @user ||= User.where("lower(email) = ?", params[:session][:email].strip.downcase).first
   end
 
 end
