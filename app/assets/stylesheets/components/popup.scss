@@ -1,0 +1,40 @@
+div.standard-popup {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.863);
+  z-index: 999;
+
+  div.content {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    padding: 30px 50px 20px 50px;
+    background-color: #fff;
+    border-radius: 10px;
+    max-width: 500px;
+
+    .buttons {
+      text-align: center;
+      padding: 15px 0 0 0;
+
+      button {
+        border: 1px solid black;
+        padding: 5px 10px;
+        margin: 10px;
+        background-color: transparent;
+        cursor: pointer;
+        transition: all 200ms;
+
+        &:hover {
+          background-color: black;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
