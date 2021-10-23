@@ -3,6 +3,15 @@ import ListController from "controllers/list_controller.js"
 export default class extends ListController {
   static targets = [...ListController.targets, "itemTemplate", "title", "themes", "link"];
 
+  updateItems(items) {
+    if (items.length < 10) {
+      this.items = []
+    } else { 
+      this.items = items;
+    }
+    this.update();
+  }
+
   updateList(items) {
     let content = [];
     items.forEach((c) => {
@@ -15,7 +24,7 @@ export default class extends ListController {
   }
 
   updateMap() {
-    // TODO
+    // Orators implements no map
   }
 
   get itemPerPage() {

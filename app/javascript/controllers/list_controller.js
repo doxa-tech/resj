@@ -6,11 +6,7 @@ export default class ListController extends Controller {
   items;
 
   updateItems(items) {
-    if (items.length < 10) {
-      this.items = []
-    } else { 
-      this.items = items;
-    }
+    this.items = items;
     this.update();
   }
 
