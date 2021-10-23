@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   namespace :cards do
 
     resources :users, only: [:new, :create]
+    resources :sessions, only: [:create]
 
     resources :wizards, only: [:new, :edit, :update] do
       member do
