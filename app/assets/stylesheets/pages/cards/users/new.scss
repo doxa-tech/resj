@@ -1,0 +1,19 @@
+@import "../../../global/variables";
+
+.container-cards-users-new {
+  h2 {
+    padding: 20px 0 0 0;
+    font-size: 20px;
+  }
+
+  p.intro {
+    padding-top: 50px !important;
+    padding-bottom: 50px !important;
+  }
+
+  @media only screen and (max-width: $mobile-width) {
+    h2 {
+      padding-left: $mobile-padding;
+    }
+  }
+}

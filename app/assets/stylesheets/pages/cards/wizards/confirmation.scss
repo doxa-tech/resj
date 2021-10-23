@@ -28,26 +28,47 @@
     }
   }
 
-  a.confirm {
-    background-color: transparent;
-    padding: 5px 7px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    align-self: flex-end;
-    cursor: pointer;
-    transition: all 200ms;
-    border: 1px solid $color-violet;
-    color: $color-violet;
-    text-decoration: none;
+  div.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 
-    &:hover {
-      background-color: $color-violet;
-      color: #fff;
+    a.confirm {
+      background-color: transparent;
+      padding: 5px 7px;
+      margin: 10px;
+      align-self: flex-end;
+      cursor: pointer;
+      transition: all 200ms;
+      border: 1px solid $color-violet;
+      color: $color-violet;
+      text-decoration: none;
+
+      &:hover {
+        background-color: $color-violet;
+        color: #fff;
+      }
     }
   }
 
   p.input {
     background-color: #f4f4f4 !important;
     color: #7a7a7a;
+  }
+
+  @media only screen and (max-width: $mobile-width) {
+    a.confirm {
+      margin: 0 $mobile-padding 0 0;
+    }
+
+    .fake-form {
+      padding-top: 0px !important;
+      padding-bottom: 0px !important;
+    }
+
+    .timeline {
+      display: none;
+    }
   }
 }

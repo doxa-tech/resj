@@ -1,5 +1,9 @@
 <% content_for :id, "container-cards-wizards-edit" %>
 
+<% content_for :links do %>
+  <%= link_to "Annuler", root_path %>
+<% end %>
+
 <div class="container" data-controller="cards--form" data-cards--form-step="<%= params[:step] || 'general' %>">
 
   <div class="session-form session-form-violet">

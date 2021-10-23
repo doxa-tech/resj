@@ -1,5 +1,9 @@
 <% content_for :id, "container-cards-wizards-confirmation" %>
 
+<% content_for :links do %>
+  <%= link_to "Retour à l'édition", edit_cards_wizard_path(@card, step: "general") %>
+<% end %>
+
 <div class="container">
 
   <div class="session-form session-form-violet">
@@ -89,8 +93,10 @@
         sera visible sur le site à partir de ce moment.
       </div>
 
-      <%= link_to "Confirmer", confirm_cards_wizard_path(@card), method: :patch, class: "confirm" %>
-
+      <div class="buttons">
+        <%= link_to "Editer", edit_cards_wizard_path(@card, step: "general"), class: "confirm" %>
+        <%= link_to "Confirmer", confirm_cards_wizard_path(@card), method: :patch, class: "confirm" %>
+      </div>
     </div>
   </div>
 </div>
