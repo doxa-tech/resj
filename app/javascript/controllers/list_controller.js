@@ -14,7 +14,7 @@ export default class ListController extends Controller {
     this.itemsTarget.innerHTML = "";
     let content = ""
     if (this.items.length == 0) {
-      content = "Bientôt disponible, la liste est en train de se remplir..."
+      content = `<div class="soon">Bientôt disponible, la liste est en train de se remplir...</div>`
     } else {
       const start = (this.currentPage - 1) * this.itemPerPage;
       let items = this.items.slice(start, start + this.itemPerPage);
@@ -27,7 +27,7 @@ export default class ListController extends Controller {
     this.updateMap(this.items);
     this.updatePagination();
     this.totalTarget.innerHTML = this.items.length;
-    
+
   }
 
   updatePagination() {
