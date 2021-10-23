@@ -97,6 +97,21 @@
         /* you can style it however you want, use background-image for example */
         left: -50px;
       }
+
+      &.focus {
+        animation-delay: 500ms;
+        animation-name: bg-fade;
+        animation-duration: 3s;
+      }
+
+      @keyframes bg-fade {
+        from {
+          background-color: #fccb6f;
+        }
+        to {
+          background-color: #fff;
+        }
+      }
     }
 
     p {
