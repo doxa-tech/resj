@@ -74,7 +74,7 @@
 <div class="danger">
   <h2>Zone de danger</h2>
 
-  <%= link_to_with_confirmation "supprimer votre compte", root_path, method: :delete do %>
+  <%= link_to_with_confirmation "supprimer votre compte", user_path(@user), method: :delete do %>
     <%= button_tag "Supprimer mon compte" %>
   <% end %>
 </div>

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   
-  resources :users, only: :create do
+  resources :users, only: [:create, :destroy] do
     get "confirmation", on: :collection
     post "resend_confirmation", on: :member 
   end

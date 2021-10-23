@@ -6,6 +6,6 @@
 <p>Votre profil est actuellement en mode invisible. Vous n'apparaissez pas dans la liste et vous ne pouvez pas être contacté.</p>
 <%= link_to "Voir mon profil", profile_path %>
 <%= link_to "Devenir visible", profile_orator_update_visibility_path(@orator), method: :patch %>
-<%= link_to_with_confirmation "supprimer votre profil", root_path, method: :delete do %>
+<%= link_to_with_confirmation "supprimer votre profil", orator_path(@orator), method: :delete do %>
   <%= button_tag "Supprimer mon profil" %>
 <% end %>

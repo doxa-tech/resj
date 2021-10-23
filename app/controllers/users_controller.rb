@@ -32,6 +32,12 @@ class UsersController < ApplicationController
 		end
   end
 
+  def destroy
+    @user = current_user
+    @user.destroy
+    redirect_to root_path, success: "Ton compte a été supprimé"
+  end
+
   def profile
     @user = current_user
     @orator = @user.orator
