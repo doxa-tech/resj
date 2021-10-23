@@ -8,6 +8,11 @@ div.standard-popup {
   background-color: rgba(0, 0, 0, 0.863);
   z-index: 999;
 
+  display: none;
+  &.active {
+    display: block;
+  }
+
   div.content {
     position: absolute;
     left: 50%;
@@ -22,13 +27,15 @@ div.standard-popup {
       text-align: center;
       padding: 15px 0 0 0;
 
-      button {
+      a, button {
         border: 1px solid black;
         padding: 5px 10px;
         margin: 10px;
         background-color: transparent;
         cursor: pointer;
         transition: all 200ms;
+        text-decoration: none;
+        color: black;
 
         &:hover {
           background-color: black;

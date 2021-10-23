@@ -74,16 +74,7 @@
 <div class="danger">
   <h2>Zone de danger</h2>
 
-  <%= link_to "Supprimer mon compte", root_path %>
-</div>
-
-<div class="standard-popup">
-  <div class="content">
-    <p>Are you sure you wan to do that?</p>
-    
-    <div class="buttons">
-      <button class="cancel">Cancel</button>
-      <button class="confirm">Yes</button>
-    </div>
-  </div>
+  <%= link_to_with_confirmation "supprimer votre compte", root_path, method: :delete do %>
+    <%= button_tag "Supprimer mon compte" %>
+  <% end %>
 </div>
