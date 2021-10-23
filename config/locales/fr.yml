@@ -20,6 +20,13 @@ fr:
         email: "Email"
         password: "Mot de passe"
         remember_me: "Rester connecté"
+  errors:
+    format: "Le champ <i>%{attribute}</i> %{message}"
+    messages:
+      required: "doit être rempli"
+      accepted: "doit être accepté"
+      blank: "doit être rempli"
+      empty: "doit être rempli"
   attributes:
     name: "Nom"
     email: "Email"
