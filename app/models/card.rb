@@ -15,6 +15,8 @@ class Card < ApplicationRecord
   has_many :card_parents, dependent: :destroy
   has_many :parents, through: :card_parents
 
+  scope :online, -> { where(status: :online) }
+
   after_save :assign_tags
 
   with_options if: Proc.new { |c| c.current_step?("general")} do |c|

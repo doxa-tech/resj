@@ -14,7 +14,7 @@ class CardsController < ApplicationController
 
   def search
     clean(params)
-    cards = Card.all
+    cards = Card.online
     if params[:name].present?
       cards = cards.where("name ilike ?", "%#{params[:name]}%")
     end
