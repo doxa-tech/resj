@@ -1,11 +1,23 @@
+<% content_for :id, "orator-update-profile" %>
 
-<h2>Bonjour</h2>
+<section class="content-wrapper">
+  <h2>Bonjour <%= "#{@orator.user.firstname} #{@orator.user.lastname}" %></h2>
 
-<p>Vous avez actuellement un compte orateur sur Réseau Jeunesse.</p>
+  <p>Vous avez actuellement un compte orateur sur Réseau Jeunesse.</p>
 
-<p>Votre profil est actuellement en mode invisible. Vous n'apparaissez pas dans la liste et vous ne pouvez pas être contacté.</p>
-<%= link_to "Voir mon profil", profile_path %>
-<%= link_to "Devenir visible", profile_orator_update_visibility_path(@orator), method: :patch %>
-<%= link_to_with_confirmation "supprimer votre profil", orator_path(@orator), method: :delete do %>
-  <%= button_tag "Supprimer mon profil" %>
-<% end %>
+  <p>Jusqu'à maintenant les profils orateur n'étaient visibles que pour les utilisateurs enregistrés du site.</p>
+  <p>Dans l'optique de servir encore mieux les leaders jeunesse de suisse romande la consultation des profils orateurs sera dorénavant publique.</p>
+  <p>Afin de vous laisser le choix, votre profil a été changé en mode invisible: vous n'apparaissez pas dans la liste publique et ne pouvez par conséquent pas être contacté.</p>
+  <p>Nous vous encourageons à vous rendre visible au moyen du bouton ci-dessous. Vous pouvez également supprimer ou éditer votre compte.</p>
+  <p>Notez que si vous choisissez de devenir visible votre adresse email ne sera pas exposée publiquement.</p>
+  
+  <div class="links">
+    <%= link_to "Voir mon profil", profile_path %>
+    <%= link_to_with_confirmation "Êtes-vous sûr de vouloir supprimer votre profil ?", orator_path(@orator), method: :delete do %>
+      <%= button_tag "Supprimer mon profil" %>
+    <% end %>
+    <%= link_to_with_confirmation "Merci d'avoir changé votre visibilité, aucune autre action n'est requise de votre part. Vous allez être redirigé sur votre profil. Pour continuer, cliquez sur 'Confirmer'.", profile_orator_update_visibility_path(@orator), method: :patch, class: "bold" do %>
+      <%= button_tag "Devenir visible", class: "bold" %>
+    <% end %>
+  </div>
+</section>

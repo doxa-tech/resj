@@ -1,3 +1,5 @@
+@import "../global/variables";
+
 div.standard-popup {
   position: fixed;
   top: 0;
@@ -27,7 +29,8 @@ div.standard-popup {
       text-align: center;
       padding: 15px 0 0 0;
 
-      a, button {
+      a,
+      button {
         border: 1px solid black;
         padding: 5px 10px;
         margin: 10px;
@@ -42,6 +45,17 @@ div.standard-popup {
           color: #fff;
         }
       }
+    }
+  }
+
+  @media only screen and (max-width: $mobile-width) {
+    div.content {
+      left: 10px;
+      right: 10px;
+      transform: translate(0, -50%);
+      max-width: initial;
+
+      padding: 20px 30px 10px 30px;
     }
   }
 }
