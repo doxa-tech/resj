@@ -157,8 +157,34 @@
       margin: 0 0 10px 0;
     }
 
-    a {
-      padding: 10px 0;
+    div.links {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      & > div {
+        margin-top: 5px;
+
+        &:not(:last-of-type) {
+          margin-right: 5px;
+        }
+      }
+
+      button {
+        text-decoration: none;
+        color: black;
+        border: 1px solid black;
+        padding: 5px 8px;
+        font-size: 0.9em;
+        transition: all 200ms;
+        background: transparent;
+        cursor: pointer;
+
+        &:hover {
+          color: #fff;
+          background-color: black;
+        }
+      }
     }
   }
 
