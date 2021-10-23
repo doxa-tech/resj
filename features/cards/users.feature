@@ -21,7 +21,7 @@ Feature: Sign in or up before creating a card
     When I visit "cards/wizards/new"
     And I successfully complete the signup form
     Then I should see the card wizard
-    # And "john@smith.com" should receive an email # TODO
+    And "john@smith.com" should receive an email
 
   Scenario: I miscomplete the sign up form
     Given I am a visitor
