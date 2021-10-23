@@ -6,7 +6,6 @@
 <% end %>
 
 <%= form_with model: [:users, @card], local: true do |f| %>
-<%= render "error_messages", object: f.object %>
 
 <section class="std-container top-container">
   <div class="left">
@@ -26,6 +25,8 @@
   <div class="right">
   </div>
 </section>
+
+<%= render "error_messages", object: f.object %>
 
 <section class="std-container content-container">
 
