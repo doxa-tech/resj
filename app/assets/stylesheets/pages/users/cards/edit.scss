@@ -38,6 +38,29 @@
     }
   }
 
+  .field_with_errors {
+    input,
+    textarea {
+      width: 100%;
+      background-color: #ffdcd6 !important;
+    }
+  }
+
+  div#error {
+    color: #ff4a0d;
+    padding: 30px;
+
+    p.title {
+      font-weight: bold;
+      padding: 0 0 10px 0;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 5px;
+    }
+  }
+
   div.date {
     color: #999999;
     padding: 0 0 20px 0;
