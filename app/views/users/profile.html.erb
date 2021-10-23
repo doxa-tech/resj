@@ -79,8 +79,10 @@
       <%= button_tag "Supprimer mon compte" %>
     <% end %>
 
+    <% unless @orator.nil? %>
     <%= link_to_with_confirmation "Êtes-vous sûr de vouloir supprimer votre profil orateur ?", orator_path(@orator), method: :delete do %>
       <%= button_tag "Supprimer mon profil orateur" %>
+    <% end %>
     <% end %>
   </div>
 </div>
