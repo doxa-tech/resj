@@ -9,7 +9,7 @@ class Users::CardsController < ApplicationController
   def update
     @card = card
     if @card.update(card_params)
-      redirect_to users_card_path(@card), success: "Ton groupe est à jour"
+      redirect_to edit_users_card_path(@card), success: "Ton groupe est à jour"
     else
       render 'edit'
     end
