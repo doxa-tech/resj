@@ -4,6 +4,7 @@
 ## User
 * user_type removed
 * add newsletter (boolean)
+* rename uid to uuid
 
 ## Card
 * password_digest removed

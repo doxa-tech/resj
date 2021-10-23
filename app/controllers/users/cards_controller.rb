@@ -2,10 +2,6 @@ class Users::CardsController < ApplicationController
   require_login
   layout "admin"
 
-  def show
-    @card = card
-  end
-
   def edit
     @card = card
   end

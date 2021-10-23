@@ -1,0 +1,24 @@
+<h1>Tu as inscrit un groupe sur Réseau Jeunesse</h1>
+<p>Merci de rejoindre le réseau !</p>
+
+<p>
+Voici un résumé de ton groupe. Il n'apparait pas encore sur le site car il est en cours de validation. 
+Tu recevras un email quand ton groupe sera accepté.
+</p>
+
+<h3>Général</h3>
+<p>Nom: <%= @card.name %></p>
+<p>Description: <%= @card.description %></p>
+<p>Catégorie: <%= t "card.card_types.#{@card.card_type}" %></p>
+<p>Réseau régional: <%= @card.parents.map(&:name).join(", ") %></p>
+      
+<h3>Lieu</h3>
+<p>Adresse: <%= @card.street %></p>
+<p>Ville: <%= @card.location.official_name %></p>
+<p>Lieu de rencontre: <%= @card.place %></p>
+      
+<h3>Extra</h3>
+<p>Email de contact: <%= @card.email %></p>
+<p>Site web: <%= @card.website %></p>
+<p>Affiliations: <%= @card.affiliation %></p>
+<p>Tags: <%= @card.tag_names %></p>

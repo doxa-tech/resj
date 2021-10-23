@@ -9,7 +9,7 @@ Feature: create an account
     When I visit "signup"
     And I successfully complete the signup form
     Then I should see "Ton compte Reseau Jeunesse a été créé !"
-    # And "john@smith.com" should receive an email # TODO
+    And "john@smith.com" should receive an email
 
   Scenario: I miscomplete the sign up form
     Given I am a visitor
