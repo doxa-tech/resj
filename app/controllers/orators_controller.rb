@@ -22,6 +22,7 @@ class OratorsController < ApplicationController
     @orator.user = current_user if signed_in?
     if @orator.save
       UserMailer.confirmation(@orator.user).deliver_now unless signed_in?
+      UserMailer.orator(@orator.user).deliver_now
       redirect_to root_path, success: "Bienvenue dans le réseau des orateurs"
     else
       render "new"

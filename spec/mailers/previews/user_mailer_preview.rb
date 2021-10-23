@@ -11,4 +11,9 @@ class UserMailerPreview < ActionMailer::Preview
     user = FactoryBot.build(:user)
     UserMailer.password_reset(user)
   end
+
+  def orator
+    user = FactoryBot.build(:user)
+    UserMailer.orator(user)
+  end
 end

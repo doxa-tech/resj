@@ -11,7 +11,7 @@ Feature: I sign up to become an orator
     When I visit the page to create an orator profile with the right token
     And I successfully complete the orator form
     Then I should see a flash with "Bienvenue dans le réseau des orateurs"
-    # And "john@smith.com" should receive an email # TODO
+    And "john@smith.com" should receive an email
 
   Scenario: I miscomplete the form to sign up as an user
     Given I am a confirmed user
@@ -26,7 +26,7 @@ Feature: I sign up to become an orator
     When I visit the page to create an orator profile with the right token
     And I successfully complete the orator form for a visitor
     Then I should see a flash with "Bienvenue dans le réseau des orateurs"
-    And "john@smith.com" should receive 1 email
+    And "john@smith.com" should receive 2 emails
 
   Scenario: I miscomplete the form to sign up as a visitor
     Given I am a visitor

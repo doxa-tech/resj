@@ -9,4 +9,9 @@ class UserMailer < ApplicationMailer
     @user = user
     mail(to: user.email, subject: "Réinitialisation de votre mot de passe reseaujeunesse.ch")
   end
+
+  def orator(user)
+    @user = user
+    mail(to: user.email, subject: "Vous êtes désormais un orateur sur Réseau Jeunesse")
+  end
 end
