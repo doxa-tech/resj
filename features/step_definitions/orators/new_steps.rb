@@ -1,3 +1,9 @@
+When("I visit the page to create an orator profile with the right token") do
+  permission = create(:permission, element_name: "orators", create_right: true)
+  token = create(:token, permission: permission)
+  visit "/orators/new?token=#{token.token}"
+end
+
 When("I successfully complete the orator form") do
   fill_in "Rue", with: "Route du moulin 13"
   remote_choiceselect "Bulle", from: "orator_location"

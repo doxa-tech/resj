@@ -1,4 +1,6 @@
 class OratorsController < ApplicationController
+  load_and_authorize only: [:new, :create]
+
   before_action :check_if_not_orator, only: [:new, :create]
   before_action :check_if_orator, only: [:edit, :update, :destroy, :update_visibility]
 
@@ -17,7 +19,7 @@ class OratorsController < ApplicationController
 
   def create
     @orator = Orator.new(orator_params)
-    @orator.user = current_user if current_user
+    @orator.user = current_user if signed_in?
     if @orator.save
       redirect_to root_path, success: "Bienvenue dans le réseau des orateurs"
     else
@@ -91,7 +93,7 @@ class OratorsController < ApplicationController
   def check_if_not_orator
     @orator = current_user.try(:orator)
     unless @orator.nil?
-      redirect_to profile_path, error: "Vous n'êtes pas autorisé" 
+      redirect_to profile_path, error: "Vous êtes déjà un orateur" 
     end
   end
 

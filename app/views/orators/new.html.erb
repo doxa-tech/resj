@@ -5,10 +5,10 @@
 <div class="session-form session-form-orange">
   <div class="wrapper wrapper-bigger">
     <div class="title">
-      <span>Inscription en tant qu'orateur d'orateur</span>
+      <span>Inscription en tant qu'orateur</span>
     </div>
 
-<%= form_with model: @orator, local: true do |f| %>
+<%= form_with model: @orator, url: orators_path(token: params[:token]), local: true do |f| %>
 
   <%= render "error_messages", object: f.object %>
 

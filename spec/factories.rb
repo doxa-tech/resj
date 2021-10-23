@@ -46,4 +46,32 @@ FactoryBot.define do
     abbreviation { "FR" }
   end
 
+  factory :permission, class: "Adeia::Permission" do
+    transient do
+      element_name { "admin/users" }
+    end
+    
+    owner { create(:group) }
+    permission_type { :all_entries }
+    element { create(:element, name: element_name) }
+    read_right { true }
+    create_right { false }
+    update_right { false }
+    destroy_right { false }
+  end
+
+  factory :group, class: "Adeia::Group" do
+    name { "token" }
+  end
+
+  factory :element, class: "Adeia::Element" do
+    name { "admin/users" }
+  end
+
+  factory :token, class: "Adeia::Token" do
+    permission
+    is_valid { true }
+    exp_at { 1.year.from_now }
+  end
+
 end
