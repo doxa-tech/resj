@@ -147,6 +147,7 @@
 
       div#error {
         color: #ff4a0d;
+        padding: 20px 0 0 0;
 
         p.title {
           font-weight: bold;
@@ -186,6 +187,7 @@
         & > *:nth-child(2),
         & > .choices {
           flex: 1;
+          width: 100%;
 
           &.field_with_errors {
             input {

@@ -1,4 +1,5 @@
 class Cards::UsersController < ApplicationController
+  layout "admin"
 
   def new
     @user = User.new

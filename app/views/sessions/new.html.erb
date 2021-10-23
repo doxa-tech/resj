@@ -6,5 +6,15 @@
       <span>Connection à mon compte</span>
     </div>
     <%= render "form" %>
+
+    <div class="links">
+      <p class="forget">
+        <%= link_to "Mot de passe oublié? ", new_users_password_reset_path %>
+      </p>
+
+      <p class="signup">
+        <%= link_to "Pas encore de compte ?", signup_path %>
+      </p>
+    </div>
   </div>
 </div>
