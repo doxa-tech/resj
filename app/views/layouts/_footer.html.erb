@@ -1,37 +1,33 @@
-<footer>
-	<p class="social">
-		<a href="https://www.facebook.com/reseaujeunesse.ch" target="_blank"><span class="fi-social-facebook"></span></a>
-		<a href="https://twitter.com/ReseauJeunesse" target="_blank"><span class="fi-social-twitter"></span></a>
-		<a href="http://instagram.com/reseaujeunesse" target="_blank"><span class="fi-social-instagram"></span></a>
-	</p>
-	<div class="img">
-		<%= image_tag image_url "layout/logo-footer.png" %><br><br>
-		<a href="http://www.evangelique.ch/" target="_blank"><%= image_tag image_url "layout/RES.png" %></a>
-	</div>
-	<div class="block a">
-		<p>
-			RES-J <br>Réseau Evangélique Suisse (RES) - Jeunesse
-		</p>
-		<p>
-			<% if current_user.nil? %>
-				<%= link_to "Connexion", connexion_path %> &nbsp; | &nbsp;
-			<% else %>
-				<%= link_to 'Profile', profile_path %> &nbsp; | &nbsp;
-				<%= link_to "Déconnexion", signout_path, method: :delete %> &nbsp; | &nbsp;
-			<% end %>
-			<%= link_to 'Contact', contact_path %> 
-		</p>
-	</div>
-	<div class="block b">
-		Le réseau a aussi besoin de vous !<br>
-		<%=link_to "Soutenir", soutien_path %><br>
-	</div>
-	<div class="end">
-		<%= link_to 'Mentions légales', privacy_path %> 
-		<%= link_to 'Développeur', developer_path %> 
-		<%= link_to 'Aide', help_categories_path %>
-	</div>
-	<div class="rails">
-		<a href="http://rubyonrails.org/" target="_blank"></a>
-	</div>
-</footer>
+<div id="application-footer">
+  <div class="content-wrap">
+    <div>
+      <p class="title">contact</p>
+      <p>info@resj.ch</p>
+      <p>
+        Mention: Réseau Jeunesse<br>
+        Réseau évangélique Suisse (RES)<br>
+        Case postale 23<br>
+        1211 Genève
+      </p>
+    </div>
+
+    <div>
+      <p class="title">Réseaux Sociaux</p>
+      <div class="social">
+        <%= image_tag "layout/social-media-fb.png" %>
+        <%= image_tag "layout/social-media-twitter.png" %>
+        <%= image_tag "layout/social-media-insta.png" %>
+      </div>
+      <p><a href="#">Mentions légales</a></p>
+    </div>
+
+    <div>
+      <%= image_tag "layout/logo-res.png" %>
+    </div>
+  </div>
+</div>
+
+<div id="application-footer-second">
+  <p>Réalisation par Noémien & Keran Kocher - <a href="https://github.com/doxa-tech/resj" target="_blank">GitHub</a></p>
+  <p>Design par <a href="http://www.cosycom.ch/" target="_blank">Cosycon</a></p>
+</div>

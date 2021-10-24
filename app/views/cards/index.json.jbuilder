@@ -1,14 +1,19 @@
 json.array! @cards do |card|
-	json.id card.id
-	json.name card.name
-	json.description card.description
-	json.latitude card.latitude
-	json.longitude card.longitude
-	json.card_type do
-		json.name card.card_type.name
+	json.type "feature"
+	json.geometry do
+		json.type "point"
+		json.coordinates do
+			json.array! [card.longitude, card.latitude]
+		end
 	end
-	json.is_network card.network?
-	json.map_point_icon asset_path("map/images/marker-icon-#{type_color(card.card_type.name)}.png")
-	json.network_members_coords card.network_members_coords
-	json.map_marker_color type_color(card.card_type.name)
+	json.properties do
+		json.id card.id
+		json.name card.name
+		json.type t("card.card_types.#{card.card_type}")
+		json.description card.description.truncate(180)
+		json.color card.color
+		json.href card_path(card)
+		json.place card.place
+		json.canton card.location.canton.name
+	end
 end

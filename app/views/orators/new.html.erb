@@ -1,26 +1,74 @@
-<% content_for :id, 'orators-form' %>
+<% content_for :links do %>
+  <%= link_to "Accueil", root_path %>
+<% end %>
 
-<div class="top">
-	<h1>Enregistrement d'un orateur</h1>
-</div>
+<div class="session-form session-form-orange">
+  <div class="wrapper wrapper-bigger">
+    <div class="title">
+      <span>Inscription en tant qu'orateur</span>
+    </div>
 
-<h2>Magnifique de pouvoir compter sur vous!</h2>
+<%= form_with model: @orator, url: orators_path(token: params[:token]), local: true do |f| %>
 
-<div class="intro">
-	<div class="visu">
-		<i class="fi-bookmark"></i>
-	</div>
-	<div class="text">
-		<p> Bonjour, nous sommes heureux de pouvoir compter sur vous pour soutenir la jeunesse de suisse-romande au travers de vos compétences ! Voici un rapide formulaire qui vous permettra de vous enregistrer. Après création, vous disposerez de votre propre compte sur le site vous permettant de maintenir vos informations à jour. <br> Après l'enregistrement, vous recevrez un email de confirmation.</p>
-		<p><b>Note: </b>si vous avez déjà un compte, il faut <a href="/connexion"><b>vous connecter</b></a> d'abord.</p>
-	</div>
-	<div id="clear"></div>
-</div>
+  <%= render "error_messages", object: f.object %>
 
-<div class="form">
-	<% if @user.new_record? %>
-		<%= render 'new_form' %>
-	<% else %>
-		<%= render 'edit_form' %>
-	<% end %>
+  <%= f.fields_for :user do |user_f| %>
+
+    <div class="row">
+      <%= user_f.label :firstname %>
+      <%= user_f.text_field :firstname %>
+    </div>
+
+    <div class="row">
+      <%= user_f.label :lastname %>
+      <%= user_f.text_field :lastname %>
+    </div>
+
+    <div class="row">
+      <%= user_f.label :email %>
+      <%= user_f.email_field :email %>
+    </div>
+
+    <div class="row">
+      <%= user_f.label :password %>
+      <%= user_f.password_field :password %>
+    </div>
+
+    <div class="row">
+      <%= user_f.label :password_confirmation %>
+      <%= user_f.password_field :password_confirmation %>
+    </div>
+
+  <% end %>
+
+  <div class="row">
+    <%= f.label :description %>
+    <%= f.text_area :description, "rows": 10, placeholder: "Parlez-nous de vous..." %>
+  </div>
+
+  <div class="row">
+    <%= f.label :street %>
+    <%= f.text_field :street %>
+  </div>
+
+  <div class="row">
+    <%= f.label :location_id %>
+    <%= f.collection_select :location_id, [f.object.location].compact, :id, :full_name, {}, { class: "orator_location", "data-controller": "select--locations" } %>
+  </div>
+
+  <div class="row">
+    <%= f.label :theme_ids %>
+    <%= f.collection_select :theme_ids, Theme.all, :id, :name, {}, { class: "orator_theme_ids", multiple: true, "data-controller": "select--simple" } %>
+  </div>
+
+  <div class="row">
+    <%= f.label :disponibility %>
+    <%= f.text_field :disponibility %>
+  </div>
+
+  <%= f.submit %>
+
+<% end %>
+
+  </div>
 </div>

@@ -1,37 +1,18 @@
-Given /^I am signed in$/ do 
-	visit '/connexion'
-	fill_in 'session_email', with: "john@smith.com"
-	fill_in 'session_password', with: "12341"
-	click_button "Connexion"
+When("I sign in") do
+  within ".cb-signin" do
+    fill_in "Email", with: "john@smith.com"
+    fill_in "Mot de passe", with: "choux"
+    click_button "Connexion"
+  end
 end
 
-Given /^I am signed in as the card owner$/ do
-	visit '/connexion'
-	fill_in 'session_email', with: "bill@gates.com"
-	fill_in 'session_password', with: "12341"
-	click_button "Connexion"
-end
-
-Given /^(?:I am|there is) a confirmed user$/ do
-	@user = create(:user)
-end
-
-Given /^I am a orator$/ do
-	@user = create(:orator).user
-end
-
-When /^I sign out$/ do
-	find_link('Déconnexion', match: :first).click
-end
-
-When /^I sign in with "(.*?)" and "(.*?)"$/ do |email, password|
-	visit "/connexion"
-	fill_in 'session_email', with: email
-	fill_in 'session_password', with: password
-	click_button "Connexion"
-end
-
-Then /^I should be able to login with my new password$/ do
-	step 'I sign in with "john@smith.com" and "poney"'
-	step 'I should see a flash with "Connecté avec succès"'
+When("I successfully complete the signup form") do
+	within ".cb-signup" do
+		fill_in "Prénom", with: "John"
+		fill_in "Nom", with: "Smith"
+		fill_in "Email", with: "john@smith.com"
+		fill_in "Mot de passe", with: "choux"
+		fill_in "Confirmation", with: "choux"
+		click_button "Créer mon compte"
+	end
 end

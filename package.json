@@ -1,0 +1,16 @@
+{
+  "name": "resj",
+  "private": true,
+  "dependencies": {
+    "@rails/activestorage": "^6.0.0",
+    "@rails/ujs": "^6.0.0",
+    "@rails/webpacker": "^5.4.0",
+    "choices.js": "^9.0.0",
+    "mapbox-gl": "^1.13.1",
+    "stimulus": "^1.1.1"
+  },
+  "version": "0.2.0",
+  "devDependencies": {
+    "webpack-dev-server": "^3.2.1"
+  }
+}

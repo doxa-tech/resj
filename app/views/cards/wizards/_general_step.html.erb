@@ -1,44 +1,25 @@
-<%= render layout: 'form' do |f| %>
+<div class="general step" data-target="cards--form.step">
+  <div class="intro">
+    Bienvenue dans le processus. En suivant quelques étapes vous allez pouvoir enregistrer votre oeuvre jeunesse. Pour passer à l'étape suivante, il faut valider l'étape en cours.
+  </div>
 
-	<div class="welcome">
-		<div class="txt">
-			<p> Bienvenue dans le processus.<br> En suivant quelques étatpes vous allez pouvoir enregistrer votre oeuvre jeunesse. Pour passer à l'étape suivante, il faut valider l'étape en cours.</p>
-		</div>
-	</div>
-	
-	<div class="block">
-		<div class="label">
-			<p><span class="num">1</span> Indiquez le <span class="b">nom</span> de votre groupe</p>
-		</div>
-		<!-- 	<%= f.label :name %> -->
-		<%= f.text_field :name, placeholder: 'Nom' %>
-	</div>
-	
-	<div class="block">
-		<div class="label">
-			<p><span class="num">2</span> Entrez une courte <span class="b">description</span>. Une bonne description améliore les résultats de recherche.</p>
-		</div>
-		<!-- 	<%= f.label :description %> -->	
-		<%= f.text_area :description, placeholder: 'Description' %>
-	</div>
+  <div class="row">
+    <%= f.label :name, "Nom du groupe *" %>
+    <%= f.text_field :name, placeholder: 'Nom' %>
+  </div>
 
-	<div class="block">
-		<!-- 	<%= f.label :card_type_id %> -->
-		<div class="label">
-			<p><span class="num">3</span> Quelle <span class="b">catégorie</span> vous correspond le mieux?</p>
-		</div>
-		<%= f.collection_select :card_type_id, CardType.all, :id, :name, {include_blank: "Catégorie"}, {class: "selectize"} %>
-	</div>
+  <div class="row">
+    <%= f.label :description, "Description *" %>
+    <%= f.text_area :description, placeholder: 'Description' %>
+  </div>
 
-	<div class="block">
-		<div class="label">
-			<p>
-				<span class="num">4</span>Faites-vous partie d'un <span class="b">réseau régional</span>? (optionnel)
-			</p>
-		</div>
-		<%= f.collection_select :parent_ids, Card.regional, :id, :name, {include_blank: "Sélectionnez des réseaux"}, {class: "selectize-cards", multiple: true} %>
-	</div>
+  <div class="row">
+    <%= f.label :card_type, "Catégorie *" %>
+    <%= f.select :card_type, options_for_enum(f.object, :card_type), { prompt: "Choisissez une catégorie" }, { class: "card_type", "data-controller": "select--simple" } %>
+  </div>
 
-
-<% end %>
-
+  <div class="row">
+    <%= f.label :parent_ids, "Affiliation" %>
+    <%= f.collection_select :parent_ids, Card.network, :id, :name, {}, { multiple: true, "data-controller": "select--simple" } %>
+  </div>
+</div>

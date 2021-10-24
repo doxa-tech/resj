@@ -1,9 +1,0 @@
-<% if object.any? %>
-	<div id="notice">
-		<ul>
-			<% object.each do |msg| %>
-			 <li><%= msg.encode("UTF-8") %></li>
-			<% end %>
-		</ul>
-	</div>
-<% end %>

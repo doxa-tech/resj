@@ -1,81 +1,73 @@
-class UsersController < BaseController
-	before_action :connected?, only: [:profile, :edit, :update, :avatar, :avatar_update, :my_cards]
-	after_action -> { track_activity(@user) }, only: [:create, :update, :confirmation]
-	layout 'admin'
+class UsersController < ApplicationController
+  layout "admin"
+  
+  require_login only: [:edit, :update, :profile]
+  before_action :require_loggout, only: [:new]
 
-	def new
-		@user = User.new
-		render layout: 'application'
-	end
+  def new
+    @user = User.new
+  end
 
-	def create
-		@user = User.new(user_params)
-		@user.user_type = UserType.find_by_name('user')
+  def create
+    @user = User.new(user_params)
 		if @user.save
-			# sends validation link
-			UserMailer.confirmation(@user).deliver_now
-			redirect_to root_path, success: t('user.create.success')
+      UserMailer.confirmation(@user).deliver_now
+			redirect_to root_path, success: "Ton compte Reseau Jeunesse a été créé !"
 		else
-			render 'new', layout: 'application'
+			render 'new'
 		end
-	end
+  end
 
-	def edit
-		@user = current_user
-	end
+  def edit
+    @user = current_user
+  end
 
-	def avatar
-		@user = current_user
-	end
-
-	def update
-		@user = current_user
-		if @user.update_with_password(user_params)
+  def update
+    @user = current_user
+		if @user.update_with_password(params[:user][:current_password], user_params)
 			sign_in(@user)
-			redirect_to user_edit_path, success: t('user.edit.success')
+			redirect_to profile_path, success: "Tes informations ont été mises à jour"
 		else
-			render 'edit'
+			render "edit"
 		end
-	end
+  end
 
-	def avatar_update
-		@user = current_user
-		if @user.update_with_password(avatar_params)
-			sign_in(@user)
-			redirect_to user_avatar_path, success: t('user.edit.success')
-		else
-			render 'avatar'
-		end
-	end
+  def destroy
+    @user = current_user
+    @user.destroy
+    redirect_to root_path, success: "Ton compte a été supprimé"
+  end
 
-	def confirmation
-		if @user = User.users.find_by_remember_token(params[:token])
+  def profile
+    @user = current_user
+    @orator = @user.orator
+    @cards = @user.cards
+  end
+
+  def confirmation
+		if @user = User.find_by_remember_token(params[:token])
 			@user.update_attribute(:confirmed, true)
 			sign_in(@user)
-			redirect_to profile_path, success: "Compte confirmé. Vous êtes maintenant connecté !"
+			redirect_to profile_path, success: "Ton compte est validé. Tu es maintenant connecté !"
 		else
-			redirect_to root_path, error: "Lien invalide"
+			redirect_to root_path, error: "Le lien est invalide."
 		end
 	end
 
-	def resend_mail
-		@user = User.find(params[:id])
-		# re-sends confirmation email
-		UserMailer.confirmation(@user).deliver_now
-		redirect_to root_path, success: "Un nouveau email a été envoyé à votre adresse."
+  def resend_confirmation
+		if @user = User.find_by_uuid(params[:id])
+      # re-sends confirmation email
+      UserMailer.confirmation(@user).deliver_now
+      redirect_to root_path, success: "Un nouvel email a été envoyé"
+    else
+      redirect_to root_path, error: "Le lien est invalide."
+    end
 	end
 
-	# Main page of the user's profile
-	def profile
-	end
+  private
 
-	private
+  def user_params
+    params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation)
+  end
 
-	def user_params
-		params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation, :current_password)
-	end
-
-	def avatar_params
-		params.require(:user).permit(:gravatar_email, :gravatar, :avatar, :current_password)
-	end
 end

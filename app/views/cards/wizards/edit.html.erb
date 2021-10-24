@@ -1,0 +1,39 @@
+<% content_for :id, "container-cards-wizards-edit" %>
+
+<% content_for :links do %>
+  <%= link_to "Annuler", root_path %>
+<% end %>
+
+<div class="container" data-controller="cards--form" data-cards--form-step="<%= params[:step] || 'general' %>">
+
+  <div class="session-form session-form-violet">
+    <div class="wrapper wrapper-bigger">
+
+    <div class="title">
+      <span>Création d'un nouveau groupe</span>
+    </div>
+
+    <div class="timeline" data-target="cards--form.timeline">
+      <button type="button" data-action="cards--form#changeStep" data-destination-index="0">Informations générale</button>
+      <button type="button" data-action="cards--form#changeStep" data-destination-index="1">Localisation</button>
+      <button type="button" data-action="cards--form#changeStep" data-destination-index="2">Information supplémentaires</button>
+      <button type="button" data-action="cards--form#confirmation">Confirmation</button>
+    </div>
+    
+    <%= form_with model: @card, url: cards_wizard_path, data: { target: "cards--form.form" } do |f| %>
+
+      <div id="error" data-target="cards--form.error"></div>
+
+      <%= render "cards/wizards/general_step", f: f %>
+      <%= render "cards/wizards/location_step", f: f %>
+      <%= render "cards/wizards/extra_step", f: f %>
+
+      <div class="buttons">
+        <button type="button" class="submit nav previous" data-action="cards--form#previous" data-target="cards--form.previous">Revenir en arrière</button>
+        <button type="button" class="submit nav next" data-action="cards--form#next" data-target="cards--form.next">Prochaine étape</button>
+        <button type="button" class="submit nav final" data-action="cards--form#confirmation" data-target="cards--form.confirmation">Aller à la confirmation</button>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>

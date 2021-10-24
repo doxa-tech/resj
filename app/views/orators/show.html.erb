@@ -1,42 +1,48 @@
-<% content_for :id, 'orator-show' %>
+<% content_for :id, "container-orators-show" %>
 
-<div class="top">
-	<h1>Orateur <%= @orator.firstname %></h1>
-</div>
+<section class="std-top">
+  <div class="content-wrapper">
+    <h1><%= "#{@orator.user.firstname} #{@orator.user.lastname}" %></h1>
+  </div>
+</section>
 
-<div class="row">
-	<div class="left">
+<section class="std-container">
+  <div class="left">
 
-		<div class="description"><%= simple_format @orator.description %></div>
+    <div class="intro">
+      <h2><%= "#{@orator.user.firstname} #{@orator.user.lastname}" %></h2>
+      <p class="bigger"><%= @orator.description %></p>
+    </div>
 
-		<div class="location">
-			<i class="fi-marker"></i>
-			<div class="txt">
-				<p><%= @orator.street %></p>
-				<p><%= @orator.location.npa %> <%= @orator.location.official_name %></p>
-			</div>
-		</div>
-		<div class="contact">
-			<i class="fi-mail"></i>
-			<p><%= @orator.user.email if @orator.user.email.present? or ' - ' %>-</p>
-		</div>
-		<div class="website">
-			<i class="fi-web"></i>
-			<p><%= @orator.phone or ' - ' %></p>
-		</div>
-	</div>
-	<div class="right">
-		<div id="map-canvas"></div>
-	</div>
-</div>
+    <p>Disponibilités: <%= @orator.disponibility %></p>
 
-<div id="clear"></div>
+    <p class="contact"><span>Contact</span> <a href="#form">formulaire en bas de page</a>
 
-<div class="themes">
-	<h3>Thèmes</h3>
-	<div class="tags">
-		<% @orator.themes.each do |theme| %>
-	    <div class="tag"><%= theme.name %></div>
-		<% end %>
-	</div>
-</div>
+    <h2 class="subjects">Thèmes</h2>
+
+    <div class="redbox">
+      <h3>Thèmes d'enseignement:</h3>
+      <% @orator.themes.each do |theme| %>
+        <p><%= theme.name %></p>
+      <% end %>
+    </div>
+
+    <div class="session-form session-form-orange">
+      <div class="wrapper wrapper-full">
+        <div class="contact">
+          <p><b>Contacter cet orateur</b></p>
+          <p>Merci de n'utiliser ce service seulement si tu recherche un orateur pour une soirée / événement. Si tu as déjà envoyé un message mais que tu n'as pas reçus de réponse ne renvois pas un message tout de suite mais attend quelques semaines.
+        </div>
+        
+        <%= render "contact/form", url: contact_orator_path(@orator.user.uuid) %>
+      </div>
+    </div>
+  </div>
+
+  <div class="right">
+    <p class="img"><%= image_tag "orators/Illustration-orateurs.jpg" %></p>
+
+    <h2>Canton de domicile</h2>
+    <p class="canton"><%= @orator.location.canton.name %></p>
+  </div>
+</section>

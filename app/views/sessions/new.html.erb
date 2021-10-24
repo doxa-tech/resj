@@ -1,9 +1,20 @@
-<% content_for :id, 'connexion' %>
+<% content_for :id, "container-signin" %>
 
-<div class="top">
-	<h1>Connexion</h1>
+<div class="session-form session-form-green cb-signin">
+  <div class="wrapper">
+    <div class="title">
+      <span>Connection à mon compte</span>
+    </div>
+    <%= render "form", url: sessions_path %>
+
+    <div class="links">
+      <p class="forget">
+        <%= link_to "Mot de passe oublié? ", new_users_password_reset_path %>
+      </p>
+
+      <p class="signup">
+        <%= link_to "Pas encore de compte ?", signup_path %>
+      </p>
+    </div>
+  </div>
 </div>
-
-<%= form_for :session, url: sessions_path do |f| %>
-	<%= render 'form', f: f %>
-<% end %>

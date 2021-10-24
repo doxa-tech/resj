@@ -1,3 +1,68 @@
-<% content_for :id, 'resj' %>
+<% content_for :id, "container-about" %>
 
-<%= raw @page.content %>
+<section class="std-top">
+  <div class="content-wrapper">
+    <h1>A propos</h1>
+  </div>
+</section>
+
+<section class="std-container">
+  <div class="left">
+    <h2>Qu'est-ce que le RES-J ?</h2>
+    <p class="bigger">
+      Le RES-J (Réseau Évangélique Suisse Jeunesse) est un groupe de travail du réseau évangélique suisse. Son objectif est d’offrir une plate-forme ressources pour soutenir ceux qui travaillent parmi la jeunesse chrétienne de suisse romande.
+    </p>
+
+    <details>
+      <summary><h2>Notre vision</h2></summary>
+      <p>
+        <ul>
+          <li>Etre une plateforme « ressource » qui soutient ceux qui travaillent directement parmi la jeunesse de Suisse romande. Par jeunesse, nous comprenons les 13 et 25 ans.</li>
+          <li>Etre une plateforme qui vit et stimule l'unité parmi les leaders dans la jeunesse de Suisse romande.</li>
+          <li>Etre une plateforme pertinente et compétente, une voix en faveur de la jeunesse dans toutes les sphères publiques.</li>
+        </ul>
+      </p>
+    </details>
+
+    <details>
+      <summary><h2>Notre mission</h2></summary>
+      <p>
+        <ul>
+          <li>Interpeller et encourager les leaders concernant les questions liées à la jeunesse de Suisse romande.</li>
+          <li>Se tenir informé et aider à faire connaître les nombreuses ressources existantes au niveau de la jeunesse.</li>
+          <li>Mettre les jeunes en lien avec des personnes et des œuvres pouvant répondre à leurs besoins.</li>
+          <li>Prendre parfois position sur des sujets d'actualités importants pour la jeunesse de Suisse romande.</li>
+        </ul>
+      </p>
+    </details>
+
+    <details>
+      <summary><h2>Nos fondements</h2></summary>
+      <p>
+        <ul>
+          <li>Notre confession de foi est celle du RES.</li>
+          <li>Notre diversité confessionnelle correspond à celle du RES.</li>
+        </ul>
+      </p>
+    </details>
+  </div>
+
+  <div class="right">
+    <h2>Contact</h2>
+
+    <a class="violet" href="mailto:info@resj.ch">info@resj.ch</a>
+
+    <p>
+      Mention: Réseau Jeunesse<br>
+      Réseau évangélique Suisse (RES)<br>
+      Case postale 23<br>
+      1211 Genève 8
+    </p>
+
+    <div class="social">
+      <%= image_tag "layout/social-media-fb.png" %>
+      <%= image_tag "layout/social-media-twitter.png" %>
+      <%= image_tag "layout/social-media-insta.png" %>
+    </div>
+  </div>
+</section>

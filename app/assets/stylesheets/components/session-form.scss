@@ -1,0 +1,343 @@
+@import "../global/variables";
+
+.session-form-orange {
+  .wrapper {
+    .title {
+      span {
+        color: #fff;
+        background-color: $color-orange;
+      }
+    }
+
+    form,
+    .fake-form {
+      .row {
+        input,
+        textarea,
+        div.choices__inner,
+        p.input {
+          background-color: scale-color($color-orange, $lightness: 93%);
+        }
+      }
+
+      input[type="submit"],
+      button.submit {
+        border: 1px solid $color-orange;
+        color: $color-orange;
+
+        &:hover {
+          background-color: $color-orange;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+.session-form-green {
+  .wrapper {
+    .title {
+      span {
+        color: #fff;
+        background-color: $color-light-green;
+      }
+    }
+
+    form,
+    .fake-form {
+      .row {
+        input,
+        textarea,
+        div.choices__inner,
+        p.input {
+          background-color: scale-color($color-light-green, $lightness: 80%);
+        }
+      }
+
+      input[type="submit"],
+      button.submit {
+        border: 1px solid $color-light-green;
+        color: $color-light-green;
+
+        &:hover {
+          background-color: $color-light-green;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+.session-form-violet {
+  .wrapper {
+    .title {
+      span {
+        color: #fff;
+        background-color: $color-violet;
+      }
+    }
+
+    form,
+    .fake-form {
+      .row {
+        input,
+        textarea,
+        div.choices__inner,
+        p.input {
+          background-color: #f9f3f5;
+        }
+      }
+
+      input[type="submit"],
+      button.submit {
+        border: 1px solid $color-violet;
+        color: $color-violet;
+
+        &:hover {
+          background-color: $color-violet;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+.session-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 10px 0 50px 0;
+  position: relative;
+
+  .wrapper {
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    padding: 10px 0 0 0;
+
+    &.wrapper-bigger {
+      max-width: 620px;
+    }
+
+    &.wrapper-full {
+      max-width: 100%;
+    }
+
+    .title {
+      text-align: center;
+
+      span {
+        padding: 10px 20px;
+        text-transform: uppercase;
+        display: inline-block;
+      }
+    }
+
+    .intro {
+      padding: 20px;
+    }
+
+    form,
+    .fake-form {
+      padding: 50px 0;
+      display: flex;
+      flex-direction: column;
+
+      div#error {
+        color: #ff4a0d;
+        padding: 20px 0 0 0;
+
+        p.title {
+          font-weight: bold;
+          padding: 0 0 10px 0;
+        }
+
+        ul {
+          list-style-type: none;
+          padding: 5px;
+        }
+      }
+
+      .row {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 5px 0;
+
+        & > *:nth-child(1) {
+          width: 180px;
+
+          &.bold {
+            font-weight: bold;
+          }
+        }
+
+        input,
+        textarea,
+        div.choices__inner,
+        p.input {
+          border: none;
+          padding: 5px 7px;
+          width: 100%;
+        }
+
+        & > *:nth-child(2),
+        & > .choices {
+          flex: 1;
+          width: 100%;
+
+          &.field_with_errors {
+            input {
+              background-color: #ffdcd6;
+            }
+          }
+        }
+      }
+
+      input[type="submit"],
+      button.submit {
+        background-color: transparent;
+        padding: 5px 7px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        align-self: flex-end;
+        cursor: pointer;
+        transition: all 200ms;
+      }
+
+      label.remember {
+        width: 200px;
+        align-self: center;
+
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        span {
+          margin-top: -3px;
+        }
+
+        input {
+          position: absolute;
+          opacity: 0;
+          cursor: pointer;
+          height: 0;
+          width: 0;
+        }
+
+        input:checked ~ .checkmark {
+          background-color: $color-light-green;
+        }
+
+        input:checked ~ .checkmark:after {
+          display: block;
+        }
+
+        .checkmark {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 25px;
+          width: 25px;
+          background-color: $color-light-green;
+
+          &:after {
+            content: "";
+            position: absolute;
+            display: none;
+
+            left: 9px;
+            top: 5px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+          }
+        }
+
+        &:hover input ~ .checkmark {
+          background-color: $color-light-green;
+        }
+      }
+    }
+
+    .links {
+      text-align: center;
+
+      p {
+        padding: 7px 0;
+
+        &.forget {
+          a {
+            color: #000;
+            text-decoration: underline;
+            font-size: 14px;
+          }
+        }
+
+        &.signup {
+          a {
+            color: #000;
+            text-decoration: underline;
+            font-size: 14px;
+            border: 1px solid #000;
+            padding: 5px 7px;
+          }
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: $mobile-width) {
+    div.wrapper {
+      .title {
+        span {
+          width: 100%;
+        }
+      }
+
+      form,
+      .fake-form {
+        padding-left: $mobile-padding;
+        padding-right: $mobile-padding;
+
+        div.row {
+          flex-direction: column;
+          align-items: flex-start;
+          margin: 15px 0;
+
+          input,
+          textarea,
+          div.choices__inner {
+            padding: 12px;
+          }
+
+          & > *:nth-child(1) {
+            padding: 0 0 5px 0;
+          }
+
+          & > .choices {
+            width: 100%;
+          }
+        }
+
+        input[type="submit"],
+        button.submit {
+          align-self: center;
+        }
+      }
+    }
+  }
+}

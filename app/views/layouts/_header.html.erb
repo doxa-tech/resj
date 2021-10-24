@@ -1,14 +1,28 @@
-<header>
-	<div class="logo"><%= link_to '', root_path %></div>
-	<nav>
-		<div class="normal">
-			<ul>
-				<li class="first"><%= link_to t('layout.header.home'), root_path %></li>
-				<li><%= link_to t('layout.header.reseau'), reseau_path %></li>
-				<li><%= link_to t('layout.header.resources'), resources_path %></li>
-				<li><%= link_to t('layout.header.resj'), resj_path %></li>
-				<span class="profile"><%= render 'layouts/profile' %></span>
-			</ul>
-		</div>
-	</nav>
-</header>
+<div id="application-header" data-controller="header">
+  <div class="wrapper">
+    <div class="left">
+      <%= link_to image_tag("layout/logo.png"), "/" %>
+    </div>
+
+    <button class="open-btn" data-target="header.open" data-action="click->header#open">
+      <%= image_tag "layout/menu-open.png" %>
+    </button>
+
+    <div class="right" data-target="header.container">
+      <button class="close-btn" data-target="header.close" data-action="click->header#close">
+        <%= image_tag "layout/menu-close.png" %>
+      </button>
+
+      <a href="/#trouver_un_groupe" class="group">Trouver un groupe ?</a>
+      <a href="/#trouver_un_orateur" class="orator">Trouver un orateur ?</a>
+      <a href="/resj" class="second">A propos</a>
+      <a href="/faq" class="second">FAQ</a>
+
+      <% if signed_in? %>
+      <%= link_to "Mon profil", profile_path, class: "second" %>
+      <% else %>
+      <a href="/signin" class="second">Connexion</a>
+      <% end %>
+    </div>
+  </div>
+</div>

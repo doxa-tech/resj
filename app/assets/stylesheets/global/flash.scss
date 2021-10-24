@@ -1,0 +1,57 @@
+@import "./variables.scss";
+
+#flash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+
+  &.flash-error {
+    background-color: #f27c37;
+  }
+
+  &.flash-notice {
+    background-color: #202121;
+    color: #fff;
+  }
+
+  &.flash-success {
+    background-color: #202121;
+    color: #fff;
+  }
+
+  .wrapper {
+    max-width: $content-width;
+    padding: 10px $content-padding;
+    margin: auto;
+    text-align: center;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    .flash-content {
+      padding: 0 20px 0 0;
+    }
+
+    svg {
+      width: 15px;
+      height: 15px;
+      stroke: #fff;
+      flex-shrink: 0;
+      cursor: pointer;
+      transition: all 200ms;
+
+      path {
+        stroke-width: 5px;
+        fill: none;
+      }
+
+      &:hover path {
+        stroke-width: 8px;
+      }
+    }
+  }
+}

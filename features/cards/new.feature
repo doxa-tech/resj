@@ -1,70 +1,39 @@
-@javascript @location @card_types
 Feature: Create a new card
 
-	So that I register my group on the website
-	As a vistor
-	I want to create a new group
+  So that my card is registered
+  As a user
+  I want to create a new card
 
-	Background:
-		Given I am a visitor
+  Background:
+    Given I am a confirmed user
+    And I am signed in
 
-	@validator @ownerships @statuses
-	Scenario: Valid form submission
-		When I visit "/cards/wizards/new"
-		And I complete the first step and submit it
+  @locations @javascript
+  Scenario: I successfully complete all steps
+    When I visit "/cards/wizards/new"
+    And I complete the first step and submit it
 		And I complete the second step and submit it
 		And I complete the third step and submit it
-		And I complete the fourth step and submit it
-		And I submit the card new form
-		Then I should see a flash with "Vous êtes entré dans le réseau avec succès !"
+    Then I should see the confirmation with card's information
 
-	Scenario: Invalid first step submission
+  @javascript
+  Scenario: Invalid first step submission
 		When I visit "/cards/wizards/new"
-		And I click to go to the location step
+		And I click the button "Prochaine étape"
 		Then I should see errors for the fields "Nom, Description, Catégorie"
 
-	Scenario: Invalid second step submission
+  @javascript
+  Scenario: Invalid second step submission
 		When I visit "/cards/wizards/new"
 		And I complete the first step and submit it
-		And I click to go to the team step
+		And I click the button "Prochaine étape"
 		Then I should see errors for the fields "Rue, Localité"
 
-	Scenario: Invalid third step submission
+  @locations @javascript
+  Scenario: Invalid third step submission
 		When I visit "/cards/wizards/new"
 		And I complete the first step and submit it
 		And I complete the second step and submit it
-		And I click to go to the extra step
-		Then I should see errors for the fields "Responsables"
-
-	Scenario: Invalid fourth step submission
-		When I visit "/cards/wizards/new"
-		And I complete the first step and submit it
-		And I complete the second step and submit it
-		And I complete the third step and submit it
-		And I click to go to the final step
-		Then I should see the final step
-
-	Scenario: Invalid form submission
-		When I visit "/cards/wizards/new"
-		And I complete the first step
-		And I click the button "aller à la fin"
-		And I submit the card new form
-		Then I should see errors for the fields "Rue, Localité, Responsables"
-
-	Scenario: See a summary in the final step
-		When I visit "/cards/wizards/new"
-		And I complete the first step and submit it
-		And I complete the second step and submit it
-		And I complete the third step and submit it
-		And I complete the fourth step and submit it
-		Then I should see a summary of my card
-
-	Scenario: Edit a field after beeing in the final step
-		When I visit "/cards/wizards/new"
-		And I complete the first step and submit it
-		And I complete the second step and submit it
-		And I complete the third step and submit it
-		And I complete the fourth step and submit it
-		When I go back to the first step, edit the name and go to the final step
-		Then I should see the updated attribute
-
+    And I fill in an invalid email for the card
+		And I click the button "Aller à la confirmation"
+    Then I should see errors for the fields "Email"

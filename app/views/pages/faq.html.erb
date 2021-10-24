@@ -1,0 +1,50 @@
+<% content_for :id, "container-faq" %>
+
+<section class="std-top">
+  <div class="content-wrapper">
+    <h1>FAQ</h1>
+  </div>
+</section>
+
+<section class="std-container" data-controller="faq">
+  <div class="left">
+    <details>
+      <summary><h2>Comment créer un groupe?</h2></summary>
+      <p class="bigger">
+        Le lien pour créer un groupe se trouve sur la page d'accueil du site, ou alors directement à cette adresse: <%= link_to "Inscrire un groupe", new_cards_wizard_path, :class => "subscribe" %>.
+      </p>
+
+      <p>
+        Les groupes sont validés avant d'être visible sur le site. Une fois le formulaire de création remplis et envoyé, un mail de confirmation est envoyé. Notre équipe va procéder à une validation et un second mail sera envoyé une fois le groupe validé.
+      </p>
+    </details>
+
+    <details>
+      <summary><h2>Comment mettre à jour un groupe?</h2></summary>
+      <p class="bigger">
+        Seul le créateur du groupe peut procéder à une mise à jour des informations.
+      </p>
+      <p>
+        Pour mettre à jour le groupe il faudra te connecter sur le site. Une fois connecté, la page de profil contiendra la liste des groupes que tu peux modifier.
+      </p>
+    </details>
+
+    <details id="become_orator">
+      <summary><h2>Comment devenir un orateur?</h2></summary>
+      <p class="bigger">
+        Pour devenir un orateur contacte-nous à l'adresse <a href="mailto:info@resj.ch?subject=Demande pour orateur">info@resj.ch</a>.
+      </p>
+      <p>
+        Les demandes pour devenir orateur sont traitées manuellement. Une fois la demande acceptée tu recevras un lien pour te créer un compte orateur.
+      </p>
+    </details>
+  </div>
+
+  <div class="right">
+    <h2>Une question?</h2>
+
+    <p>Si vous avez une autre question, vous pouvez nous écrire un mail à:</p>
+
+    <a class="violet" href="mailto:info@resj.ch">info@resj.ch</a>
+  </div>
+</section>

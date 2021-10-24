@@ -1,106 +1,66 @@
 source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+
+ruby '>= 2.5.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.0'
-
-# Use postgres as the database for Active Record
-gem 'pg'
-
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier'
-
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
-gem 'jquery-ui-rails'
-# add the jquery plugin selectize.js
-gem 'selectize-rails'
-# Jquery select plugin
-gem 'multi-select-rails'
-# Coffee script
-gem 'coffee-rails'
+gem 'rails', '~> 6.0.0.rc2'
+# Use postgresql as the database for Active Record
+gem 'pg', '>= 0.18', '< 2.0'
+# Use Puma as the app server
+gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0.0'
-# Mapbox
-gem 'mapbox-rails', '~> 2.3.0'
-# AngularJS
-gem 'angularjs-rails', '~> 1.6.8'
-
-
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks', '~> 5.1.0'
-
+gem 'sassc-rails', '~> 2.0'
+# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
+gem 'webpacker', '>= 4.0.7'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder'
+gem 'jbuilder', '~> 2.5'
+# Use Redis adapter to run Action Cable in production
+# gem 'redis', '~> 4.0'
+# Use Active Model has_secure_password
+gem 'bcrypt', '~> 3.1.7'
 
-# Use ActiveModel has_secure_password
-gem 'bcrypt'
+# Authorization
+gem 'adeia'
 
-# Use puma as the app server
-gem 'puma', '~> 4.3'
+# Display DB tables
+gem 'snaptable', '~> 3.0'
 
-group :development do
+# Pagination
+gem 'will_paginate', '~> 3.1.0'
 
-    # Use Capistrano for deployment
-  gem 'capistrano', '3.6.1'
+# Common translations
+gem 'rails-i18n'
 
-  gem 'capistrano-maintenance', require: false
+# Use Active Storage variant
+# gem 'image_processing', '~> 1.2'
 
-  gem 'capistrano-server', git: 'https://github.com/JS-Tech/capistrano-server'
-
-  # rails specific capistrano funcitons
-  gem 'capistrano-rails'
-
-  # integrate bundler with capistrano
-  gem 'capistrano-bundler'
-
-  # if you are using RBENV
-  gem 'capistrano-rvm'
-
-    # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console'
-  gem 'listen'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen'
-end
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
-
-# pagination
-gem 'will_paginate'
-
-# search
-gem 'elasticsearch-model', '~> 5.0.0'
-gem 'elasticsearch-rails', '~> 5.0.0'
-
-# image & video uploader
-gem 'carrierwave', '~> 2.1.0'
-gem 'carrierwave-i18n'
-gem 'carrierwave-processing'
-
-# google cloud adapter
-gem 'fog-google', '~> 1.11'
-
-# image manipulating
-gem 'mini_magick'
-
-gem 'activerecord-session_store'
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.4.1', require: false
 
 group :development, :test do
-	gem 'rspec-rails'
-	gem 'cucumber-rails', require: false
-	gem 'database_cleaner'
-	gem 'selenium-webdriver'
-	gem 'factory_bot_rails', '~> 5.2'
-	gem 'email_spec'
-	gem 'faker'
-	gem 'timecop'
-  gem 'rails-controller-testing'
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
+  gem 'rspec-rails', '~> 3.8'
 end
 
-# HTML tables
-gem 'snaptable', '~> 2.0.5'
+group :development do
+  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
+  gem 'web-console', '>= 3.3.0'
+  gem 'listen', '>= 3.0.5', '< 3.2'
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
+end
 
-# use mailgun api
-gem 'mailgun'
+group :test do
+  # Adds support for Capybara system testing and selenium driver
+  gem 'capybara', '>= 2.15'
+  gem 'selenium-webdriver'
+  gem 'cucumber-rails', require: false
+  # database_cleaner is not required, but highly recommended
+  gem 'database_cleaner'
+  gem 'factory_bot_rails'
+  gem 'email_spec'
+end

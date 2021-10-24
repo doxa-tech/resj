@@ -1,0 +1,45 @@
+<% content_for :links do %>
+  <%= link_to "Retour", profile_path %>
+  <%= link_to "Voir mon profil publique", orator_path(@orator) %>
+<% end %>
+
+<div class="session-form session-form-orange">
+  <div class="wrapper wrapper-bigger">
+    <div class="title">
+      <span>Mettre à jour mes informations d'orateur</span>
+    </div>
+
+    <%= form_with model: @orator, local: true, url: profile_orator_update_path do |f| %>
+
+      <%= render "error_messages", object: f.object %>
+
+      <div class="row">
+        <%= f.label :description %>
+        <%= f.text_area :description %>
+      </div>
+
+      <div class="row">
+        <%= f.label :street %>
+        <%= f.text_field :street %>
+      </div>
+
+      <div class="row">
+        <%= f.label :location_id %>
+        <%= f.collection_select :location_id, [f.object.location].compact, :id, :full_name, {}, { class: "orator_location", "data-controller": "select--locations" } %>
+      </div>
+
+      <div class="row">  
+        <%= f.label :theme_ids %>
+        <%= f.collection_select :theme_ids, Theme.all, :id, :name, {}, { class: "orator_theme_ids", multiple: true, "data-controller": "select--simple" } %>
+      </div>
+      
+      <div class="row">
+        <%= f.label :disponibility %>
+        <%= f.text_field :disponibility %>
+      </div>
+
+      <%= f.submit %>
+
+    <% end %>
+  </div>
+</div>

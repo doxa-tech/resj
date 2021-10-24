@@ -1,3 +1,43 @@
-<h1><%=t 'card.admin.edit.title' %></h1>
+<h1>Modifier un groupe</h1>
 
-<%= render 'form' %>
+<%= form_with model: [:admin, @card], local: true do |f| %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+
+  <%= f.label :card_type %>
+  <%= f.select :card_type, options_for_enum(f.object, :card_type), { prompt: "Choisissez une catégorie" }, { class: "card_type", "data-controller": "select--simple" } %>
+
+  <%= f.label :parent_ids %>
+  <%= f.collection_select :parent_ids, Card.network, :id, :name, {}, { multiple: true, "data-controller": "select--simple" } %>
+
+  <%= f.label :street %>
+  <%= f.text_field :street %>
+
+  <%= f.label :location_id %>
+  <%= f.collection_select :location_id, [f.object.location].compact, :id, :full_name, {}, { class: "card_location", "data-controller": "select--locations" } %>
+
+  <%= f.label :latitude %>
+  <%= f.text_field :latitude %>
+  
+  <%= f.label :longitude %>
+  <%= f.text_field :longitude %>
+
+  <%= f.label :affiliation %>
+  <%= f.text_area :affiliation %>
+
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+
+  <%= f.label :website %>
+  <%= f.text_field :website %>
+
+  <%= f.label :place %>
+  <%= f.text_field :place %>
+
+  <%= f.submit %>
+
+<% end %>

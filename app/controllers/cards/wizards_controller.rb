@@ -1,53 +1,55 @@
-class Cards::WizardsController < BaseController
-	after_action -> { track_activity(@card) }, only: [:create]
+class Cards::WizardsController < ApplicationController
+  before_action :check_if_signed_in
 
-	def new
-		session[:card_params] ||= {}
-		@card = Card.new(session[:card_params])
-		@card.current_step ||= @card.steps.first
-		js true, step: @card.current_step 
-	end
+  layout 'admin'
 
-	# Change wizard steps
-	def change
-		if !session[:card_params].nil?
-			# fusion between session and form (POST) params
-			session[:card_params].deep_merge!(card_params)
-			@card = Card.new(session[:card_params])
-			if @card.steps.include?(step = params[:step].keys.first) && (@card.current_step == "final" || @card.valid?)
-				# update the step
-				@card.current_step = step
-				session[:card_params]["current_step"] = @card.current_step
-			end
-		else
-			render js: "location.reload();"
-		end
-	end
-
-	def create
-		@card = Card.new(session[:card_params])
-		@card.status = Status.find_by_name("En cours de validation")
-		owner = @card.responsables.select{ |r| r.is_contact == "true"}.first
-		if @card.save
-			@card.owner = owner
-			# for validator
-			CardMailer.admin_created(validator_emails, @card).deliver_now
-			session.delete(:card_params)
-			flash[:success] = "Vous êtes entré dans le réseau avec succès ! Votre groupe n'apparaît pas directement sur la carte car elle doit d'abord être validée."
-			render 'redirect', locals: { path: "/reseau" }
-		else
-			render 'error'
-		end
-	end
-
-	private
-
-	def validator_emails
-  	@validator_emails ||= User.joins(:ownerships, ownerships: [:element]).where(elements: {name: 'admin/card_statuses'}, ownerships: {right_update: true}).pluck(:email)
+  def new
+    @card = current_user.cards.find_by(status: nil)
+    if @card.nil?
+      @card = current_user.cards.new
+      @card.status = :incomplete
+      @card.save!(validate: false) # TODO: validate: false may not be necessary later
+    end
+    redirect_to edit_cards_wizard_path(@card)
   end
 
+  def edit
+    @card = current_user.cards.find(params[:id])
+  end
+
+  def update
+    @card = current_user.cards.find(params[:id])
+    @card.update(card_params)
+    render json: @card.errors.full_messages
+  end
+  
+  def confirmation
+    @card = current_user.cards.find(params[:id])
+  end
+
+  def confirm
+    @card = current_user.cards.find(params[:id])
+    if @card.valid?
+      @card.update_attribute(:status, :pending)
+      CardMailer.submit(@card).deliver_now
+      Admin::CardMailer.submit(@card).deliver_now
+      redirect_to root_path, success: "Vous êtes entré dans le réseau avec succès ! Votre groupe n'apparaît pas directement sur la carte car il doit d'abord être validé."
+    else
+      render 'confirmation'
+    end
+  end
+
+  private
+
   def card_params
-  	params.require(:card).permit(:name, :description, :street, :location_id, :email, :place, :latitude, :longitude, :website, :password_digest, :card_type_id, :affiliation, :tag_names, :current_step, { parent_ids: [] }, responsables_attributes: [:id, :firstname, :lastname, :email, :_destroy, :is_contact])
+    params.require(:card).permit(:name, :description, :card_type, :street, :place, :location_id,
+      :latitude, :longitude, :email, :website, :affiliation, :tag_names, :current_step, parent_ids: [])
+  end
+
+  def check_if_signed_in
+    if current_user.nil?
+      redirect_to new_cards_user_path
+    end
   end
 
 end

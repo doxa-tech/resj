@@ -1,92 +1,221 @@
-<% content_for :id, 'home' %>
+<% content_for :id, "container-home" %>
 
-<% content_for :content_banner do %>
-	<div class="content_banner">
-		<div class="marketing">
-			<h2>Inscrivez dès maintenant votre groupe, oeuvre ou réseau !</h2>
-			<div class="btn">
-				<%= link_to "Inscrire", new_cards_wizard_path %></p>
-			</div>
-		</div>
-		<div class="video">
-			<div id="player"></div>
-			<a class="download" href="http://storage.googleapis.com/reseaujeunesse-ch/my-assets/videos/ReseauJeunesse.mp4.zip">Télécharger la vidéo</a>
-		</div>
-	</div>
-<% end %>
+<div class="cards-search" data-controller="search" data-search-list-controller="cards--list">
+  <%= form_with url: "/cards.json", method: :get, data: { target: "search.form" } do |f| %>
 
-<div class="new">
-	<div class="_title-large">
-		<div class="wrapper">
-			<h2>Dernières publications</h2>
-			<span>Découvrez des ressources et plein de contenu spécialement pour vous <%= link_to 'ressources', resources_path %></span>
-			<div class="clear"></div>
-		</div>
-	</div>
-	<% if @article %>
-	<div class="block left">
-		<article class="wrapper article">
-			<div class="type">Article <i class="fi-clipboard-notes"></i></div>
-			<div class="graphic">
-				<%= image_tag image_url @article.image.mid %>
-			</div>
-			<div class="text">
-				<h3><%= link_to @article.title, article_path(@article) %></h3>
-				<div class="content">
-					<p>
-						<%= truncate(sanitize(@article.content, tags: Article::ALLOWED_TAGS), length: 500, omission: " ... %s", escape: false) % link_to('lire la suite', article_path(@article)) %>
-					</p>
-				</div>
-			</div>
-			<div class="clear"></div>
-		</article>
-	</div>
-	<% end %>
-	<div class="block right">
-		<div class="wrapper">
-			<div class="type"><i class="fi-battery-full"></i></div>
-			<div class="text full">
-				<h3>Activité du site</h3>
-				<div class="content">
-					<div class="charts">
-						<div class="chart">
-							<%= link_to "", reseau_path, class: "link" %>
-							<div class="easy-chart" data-value="<%= @card_count %>" data-percent="<%= [@card_count*100/150,1].max %>" ><span></span></div>
-							<div class="label">Groupes, oeuvres ou réseaux</div>
-						</div>
-						<div class="chart">
-							<%= link_to "", orators_path, class: "link" %>
-							<div class="easy-chart" data-value="<%= @orator_count %>" data-percent="<%= @orator_count %>" ><span></span></div>
-							<div class="label">Orateurs</div>
-						</div>
-						<div class="chart">
-							<%= link_to "", documents_path, class: "link" %>
-							<div class="easy-chart" data-value="<%= @doc_count %>" data-percent="<%= @doc_count %>" ><span></span></div>
-							<div class="label">Documents</div>
-						</div>
-						<div class="chart">
-							<%= link_to "", profile_path, class: "link" %>
-							<div class="easy-chart" data-value="<%= @user_count %>" data-percent="<%= [@user_count*100/250,1].max %>" ><span></span></div>
-							<div class="label">Utilisateurs</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="clear"></div>
-		</div>
-	</div>
-	<div class="clear"></div>
+  <section class="top">
+    <div class="content-wrapper text-intro">
+      <div class="text-intro-container">
+        <div class="text-intro-wrapper">
+          <h1>RES-J Réseau évangélique suisse Jeunesse</h1>
+
+          <p class="intro">
+            Le RES-J (Réseau évangélique suisse Jeunesse) est un groupe de travail du réseau évangélique suisse. Son ojectif est d'offrir une <span class="mobile-bold">plate-forme ressources</span> pour soutenir ceux qui travaillent parmis la jeunesse chrétienne de suisse romande.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-wrapper map">
+      <span class="info-box-red">trouver un groupe ?</span>
+
+      <div class="map-holder">
+
+        <div id="mapbox"></div>
+
+        <div class="filter-btn-holder">
+            <span data-action="click->search#toggleFilters" data-target="search.filtersBtn">Filtrer</span>
+        </div>
+
+        <div class="filters" data-target="search.filtersHolder">
+          <h5>Canton :</h5>
+          <%= f.collection_check_boxes :cantons, Canton.romand, :id, :name, {}, "data-target": "search.input" do |b| %>
+          <label class="container"><%= b.object.name %>
+            <%= b.check_box %>
+            <span class="checkmark"></span>
+          </label>
+          <% end %>
+
+          <h5>Tag :</h5>
+          <%= f.collection_check_boxes :tags, Tag.order("popularity desc").first(10), :id, :name, {}, "data-target": "search.input" do |b| %>
+          <label class="container"><%= b.object.name %>
+            <%= b.check_box %>
+            <span class="checkmark"></span>
+          </label>
+          <% end %>
+
+          <h5>Types :</h5>
+          <%= f.collection_check_boxes :card_types, Card.card_types, :last, :first, {}, "data-target": "search.input" do |b| %>
+          <label class="container"><%= t("card.card_types.#{b.text}") %>
+            <%= b.check_box %>
+            <span class="checkmark"></span>
+          </label>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="groups">
+    <div class="search-row">
+      <div class="form">
+        <span id="trouver_un_groupe" class="info-box-red">trouver un groupe ?</span>
+        <div class="search">
+          <%= f.text_field :name, placeholder: "Nom, lieu, mot-clé", "data-target": "search.input" %>
+          <label for="name">
+            <svg width="100%" height="100%" viewBox="0 0 50 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+              <path d="M24.895,24.618C20.114,29.587 12.327,30.561 6.411,26.578C-0.229,22.108 -1.998,13.086 2.46,6.428C6.918,-0.23 15.915,-2.004 22.555,2.467C28.472,6.45 30.521,14.046 27.744,20.363L49.147,34.773L46.298,39.028L24.895,24.618Z" />
+            </svg>
+          </label>
+        </div>
+      </div>
+      <div class="img">
+        <%= image_tag "home/Illustration-groupes.jpg" %>
+      </div>
+    </div>
+
+    <div class="cards-list" data-target="search.list" data-cards--list-page="1" data-controller="cards--list">
+      <div class="group-title">
+        <span class="info-box-red-lower">Les groupes (<span data-target="cards--list.total"></span>)</span>
+        <%= link_to "+ Inscrire un groupe", new_cards_wizard_path, :class => "subscribe" %>
+      </div>
+
+      <div class="table">
+        <div class="row header">
+          <div>Logo</div>
+          <div>Nom du groupe</div>
+          <div>Lieu</div>
+          <div>Description</div>
+          <div></div>
+        </div>
+      </div>
+
+      <div hidden class="table">
+        <div hidden class="row" data-target="cards--list.itemTemplate">
+          <div>
+            <%= image_tag "cards/default-avatar.png" %>
+          </div>
+          <div data-target="cards--list.name"></div>
+          <div>
+            <span data-target="cards--list.place"></span><br>
+            <span data-target="cards--list.canton"></span>
+          </div>
+          <div>
+            <p data-target="cards--list.description"></p>
+            <p><i data-target="cards--list.type"></i></p>
+          </div>
+          <div>
+            <div>
+              <%= link_to "#", data: { "target" => "cards--list.link"} do %>
+              <svg width="100%" height="100%" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.5;">
+                <path d="M50,30L50,70" style="fill:none;stroke-width:5px;" />
+                <path d="M30,50L70,50" style="fill:none;stroke-width:5px;" />
+              </svg>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="table" data-target="cards--list.items">
+      </div>
+      <div class="pagination">
+        <button type="button" class="nav" data-target="cards--list.previous" data-action="cards--list#previous">&#60;&#60;</button>
+        <div hidden data-target="cards--list.numberTemplate">
+          <button type="button" class="number-wrapper" data-target="cards--list.number" data-action="cards--list#go"></button>
+        </div>
+        <div class="numbers" data-target="cards--list.numbers">
+        </div>
+        <button type="button" class="nav" data-target="cards--list.next" data-action="cards--list#next">&#62;&#62;</button>
+      </div>
+    </div>
+  </section>
+
+  <% end %>
 </div>
 
-<div class="map">
+<section class="orator">
+  <div class="orators-index">
 
-	<div class="_title-large">
-		<div class="wrapper">
-			<h2>Le réseau</h2>
-			<span>Vous cherchez un groupe, une oeuvre ou un réseau ? Rendez-vous sur <%= link_to 'réseau', reseau_path %></span>
-			<div class="clear"></div>
-		</div>
-	</div>
-	<div id='map'></div>
-	<div id="clear_map"></div>
-</div>
+    <div class="orators-search" data-controller="search" data-search-list-controller="orators--list">
+      <%= form_with url: "/orators.json", method: :get, local: true, data: { target: "search.form" } do |f| %>
+
+      <div class="search-row">
+        <div class="img">
+          <%= image_tag "home/Illustration-orateurs.jpg" %>
+        </div>
+
+        <div class="form">
+          <span id="trouver_un_orateur" class="info-box-orange">trouver un orateur ?</span>
+          <div class="search">
+            <%= f.text_field :name, placeholder: "Nom, thèmes, mot-clé", "data-target": "search.input" %>
+            <label for="name">
+              <svg width="100%" height="100%" viewBox="0 0 50 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+                <path d="M24.895,24.618C20.114,29.587 12.327,30.561 6.411,26.578C-0.229,22.108 -1.998,13.086 2.46,6.428C6.918,-0.23 15.915,-2.004 22.555,2.467C28.472,6.45 30.521,14.046 27.744,20.363L49.147,34.773L46.298,39.028L24.895,24.618Z" />
+              </svg>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter-btn-holder">
+        <span data-action="click->search#toggleFilters" data-target="search.filtersBtn">Filtres</span>
+      </div>
+      <div data-target="search.filtersHolder">
+        <%= f.collection_check_boxes :cantons, Canton.all, :id, :name, {}, "data-target": "search.input" %>
+        <%= f.collection_check_boxes :themes, Theme.all, :id, :name, {}, "data-target": "search.input" %>
+      </div>
+      <% end %>
+
+      <div class="orators-list" data-target="search.list" data-orators--list-page="1" data-controller="orators--list">
+        <div class="orator-title">
+          <span class="info-box-orange-lower">Les orateurs (<span data-target="orators--list.total"></span>)</span>
+          <%= link_to "+ Inscrire un orateur", "/faq#become_orator", :class => "subscribe" %>
+        </div>
+
+        <div class="table">
+          <div class="row header">
+            <div>Photo</div>
+            <div>Nom, prénom</div>
+            <div>Présentation</div>
+            <div>Sujets/thèmes proposés</div>
+            <div></div>
+          </div>
+        </div>
+
+        <div hidden class="table">
+          <div class="row" data-target="orators--list.itemTemplate">
+            <div>
+              <%= image_tag "orators/default-avatar.png" %>
+            </div>
+            <div data-target="orators--list.title"></div>
+            <div></div>
+            <div data-target="orators--list.themes"></div>
+            <div>
+              <div>
+                <%= link_to "#", data: { "target" => "orators--list.link"} do %>
+                <svg width="100%" height="100%" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.5;">
+                  <path d="M50,30L50,70" style="fill:none;stroke-width:5px;" />
+                  <path d="M30,50L70,50" style="fill:none;stroke-width:5px;" />
+                </svg>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="table" data-target="orators--list.items">
+        </div>
+
+        <div class="pagination">
+          <button type="button" class="nav" data-target="orators--list.previous" data-action="orators--list#previous">&#60;&#60;</button>
+          <div hidden data-target="orators--list.numberTemplate">
+            <button type="button" class="number-wrapper" data-target="orators--list.number" data-action="orators--list#go"></button>
+          </div>
+          <div class="numbers" data-target="orators--list.numbers">
+          </div>
+          <button type="button" class="nav" data-target="orators--list.next" data-action="orators--list#next">&#62;&#62;</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

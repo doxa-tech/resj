@@ -1,66 +1,102 @@
-class OratorsController < BaseController
-	before_action :authorize_create, only: [:new, :create]
-	before_action :authorize_resource, only: [:index, :show]
-	before_action :disabled?, only: [:show]
-	before_action :orator?, only: [:new, :create]
-	after_action -> { track_activity(@user) }, only: [:create, :update]
+class OratorsController < ApplicationController
+  load_and_authorize only: [:new, :create]
 
-	def index
-		js true
-		respond_to do |format|
-			format.html
-			format.json do
-				@orators = Orator.search(params).includes(:user, :themes, location: :canton)
-				@grouped = @orators.group_by{ |a| a.location}
-			end
+  before_action :check_if_not_orator, only: [:new, :create]
+  before_action :check_if_orator, only: [:edit, :update, :destroy, :update_visibility]
+
+  layout "admin", only: [:edit, :update, :new, :create]
+
+  def index
+    respond_to do |format|
+			format.json { @orators = search }
 		end
-	end
+  end
 
-	def show
-		js true, lat: @orator.location.latitude, lng: @orator.location.longitude
-	end
+  def new
+    @orator = Orator.new
+    @orator.user = User.new unless signed_in?
+  end
 
-	def new
-		@user = current_user || User.new
-		@user.build_orator
-	end
+  def create
+    @orator = Orator.new(orator_params)
+    @orator.user = current_user if signed_in?
+    if @orator.save
+      UserMailer.confirmation(@orator.user).deliver_now unless signed_in?
+      UserMailer.orator(@orator.user).deliver_now
+      redirect_to root_path, success: "Bienvenue dans le réseau des orateurs"
+    else
+      render "new"
+    end
+  end
 
-	def create
-		@user = User.new(orator_params)
-		@user.user_type = UserType.find_by_name('user')
-		@user.confirmed = true
-		if @user.save
-			sign_in(@user)
-			OratorMailer.orator_created(@user).deliver_now
-			Parent.create(user: @user, parent: User.find_by_firstname('g_orator'))
-			redirect_to root_path, success: render_message('orator_created')
-		else
-			render 'new'
-		end
-	end
+  def edit
+  end
 
-	def update
-		@user = current_user
-		if @user.update_with_password(orator_params)
-			sign_in(@user)
-			redirect_to user_edit_path, success: t('orator.edit.success')
-		else
-			render 'users/edit', layout: 'admin'
-		end
-	end
+  def update    
+    if @orator.update(orator_params)
+      redirect_to profile_path, success: "Vos informations ont été mises à jour"
+    else
+      render "edit"
+    end
+  end
 
-	private
+  def show
+    @orator = Orator.find(params[:id])
+  end
 
-	def orator_params
-		params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation, :current_password, orator_attributes: [:id, :street, :location_id, :phone, :disponibility, :description, :disabled, { :theme_ids =>[] } , { :disponibility_ids => [] } ])
-	end
+  def destroy
+    @orator.destroy
+    redirect_to profile_path, success: "Votre compte orateur a été supprimé"
+  end
 
-	def disabled?
-		@orator = Orator.find(params[:id])
-		redirect_to orators_path, error: "Cette orateur n'est plus disponible pour le moment." if @orator.disabled
-	end
+  def update_visibility
+    @orator.update_attribute(:disabled, !@orator.disabled)
+    redirect_to profile_path, success: "Ta visibilité a été changée"
+  end
 
-	def orator?
-		redirect_to root_path, error: "Vous êtes déjà un orateur." if current_user && !current_user.orator.nil?
-	end
+  private
+
+  def search
+    clean(params)
+    orators = Orator.active
+    if params[:name].present?
+      orators = orators.where("lastname ilike ?", "%#{params[:name]}%")
+    end
+    if params[:cantons].present?
+      orators = orators.joins(:location).where(locations: { canton_id: params[:cantons] })
+    end
+    if params[:themes].present?
+      orators = orators.joins(:orator_themes).where(orator_themes: { theme_id: params[:tags] })
+    end
+    return orators
+  end
+
+  def clean(params)
+    # reject empty strings and convert values to an integer ("string".to_i returns 0)
+    [params[:cantons], params[:themes]].compact.each do |p| 
+      p.reject! { |c| c.empty? }
+      p.map! { |c| c.to_i }
+    end
+  end
+
+  def orator_params
+    attributes = [:description, :street, :location_id, :disponibility, theme_ids: []]
+    attributes.push(user_attributes: [:firstname, :lastname, :email, :password, :password_confirmation]) unless signed_in?
+    params.require(:orator).permit(attributes)
+  end
+
+  def check_if_orator
+    @orator = current_user.try(:orator)
+    if @orator.nil?
+      redirect_to profile_path, error: "Vous n'êtes pas autorisé" 
+    end
+  end
+
+  def check_if_not_orator
+    @orator = current_user.try(:orator)
+    unless @orator.nil?
+      redirect_to profile_path, error: "Vous êtes déjà un orateur" 
+    end
+  end
+
 end

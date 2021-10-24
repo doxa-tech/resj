@@ -1,40 +1,25 @@
-class PagesController < BaseController
+class PagesController < ApplicationController
 
-	def home
-		js true
-		@page = Page.find_by_name('home')
-		@article = Article.published.last(10).sample
-		@card_count = Card.active.count
-		@orator_count = Orator.count
-		@doc_count = Document.count
-		@user_count = User.users.count
-	end
+  layout "admin", only: :orator_update_profile
 
-	def resj
-		@page = Page.find_by_name('resj')
-	end
+  def home
+  end
 
-	def contact
-		@page = Page.find_by_name('contact')
-	end
+  def resj
+  end
 
-	def resources
-		js true
-		@page = Page.find_by_name('resources')
-		@article = Article.published.last
-		@subjects = Subject.order("updated_at DESC").first(4)
-	end
+  def faq
+  end
 
-	def soutien
-		@page = Page.find_by_name('help')
-	end
+  # temporary page for orators to update or remove their profile.
+  def orator_update_profile
+    user = User.find_by_remember_token(params[:remember_token])
+    @orator = user.try(:orator)
+    unless @orator.nil?
+      sign_in(user)
+    else
+      raise Adeia::AccessDenied
+    end
+  end
 
-	def privacy
-		@page = Page.find_by_name('privacy')
-	end
-
-	def developer
-		@page = Page.find_by_name('developer')
-	end
-	
 end

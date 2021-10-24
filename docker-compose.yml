@@ -1,40 +1,97 @@
-version: "3.8"
+
+# docker-compose build app
+# docker-compose up
+# docker-compose run --rm app bundle # Gemfile change
+# docker compose exec app rake db:create
+# docker compose exec -e EDITOR=vi app rails credentials:edit
+# https://gist.github.com/erdostom/5dd400cbba17d44b52b2f74b038fcb85
+
+version: '3.7'
+
 services:
-  db:
-    image: postgres
-    volumes:
-      - ./tmp/db:/var/lib/postgresql/data
+  app:
+    image: nkcr/resj:v1
+    build:
+      context: .
+    command: ["spring", "server"]
     environment:
-      POSTGRES_PASSWORD: password
+      - POSTGRES_HOST=pg
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+      - RAILS_ENV=development
+    volumes:
+      - ./:/usr/src/app
+      - gems:/usr/local/bundle
+      - node-modules:/usr/src/app/node_modules
+      - ${HOME}/.irbrc:/root/.irbrc
+      - ${HOME}/.irb-history:/root/.irb-history
+
   web:
-    build: .
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    image: nkcr/resj:v1
+    command: ["bundle", "exec", "rails", "s", "-b", "0.0.0.0"]
+    environment:
+      - POSTGRES_HOST=pg
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+      - RAILS_ENV=development
     volumes:
-      - .:/myapp
+      - ./:/usr/src/app
+      - gems:/usr/local/bundle
+      - node-modules:/usr/src/app/node_modules
     ports:
-      - "3000:3000"
-    depends_on:
-      - db
-      - elasticsearch
-    environment:
-      ELASTICSEARCH_URL: elasticsearch
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:5.3.0
-    environment:
-      - bootstrap.memory_lock=true
-      - xpack.security.enabled=false
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-      - "http.host=0.0.0.0"
-      - "transport.host=127.0.0.1"
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-      nofile:
-        soft: 65536
-        hard: 65536
-    mem_limit: 1g
-    cap_add:
-      - IPC_LOCK
+      - 3000:3000
+
+  pg:
+    image: postgres:11.2-alpine
     volumes:
-      - ./tmp/elasticsearch/data:/usr/share/elasticsearch/data
+      - ./data/postgresql:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+
+  webpacker:
+    image: nkcr/resj:v1
+    command: ./bin/webpack-dev-server --color
+    volumes:
+      - ./:/usr/src/app
+      - gems:/usr/local/bundle
+      - node-modules:/usr/src/app/node_modules
+    ports:
+      - 3035:3035
+
+
+volumes:
+  gems:
+  node-modules:
+
+# version: '3.0'
+# services:
+#   db:
+#     image: postgres:10
+#     ports:
+#       - 5432:5432
+#     environment:
+#       POSTGRES_PASSWORD: ${DB_USER_PASSWORD}
+
+#   webpacker:
+#     image: nkcr/resj:v1
+#     command: ["./scripts/start_webpack_dev.sh"]
+#     volumes:
+#       - .:/opt/dockerrailsdemo:cached
+#     ports:
+#       - 3035:3035
+
+#   web:
+#     image: nkcr/resj:v1
+#     build:
+#       context: .
+#       args:
+#         precompileassets: 'not'
+#     links:
+#       - db
+#       - webpacker
+#     ports:
+#       - 3000:3000
+#     command: ["./scripts/wait-for-it.sh", "db:5432", "--", "./scripts/start_rails.sh"]
+#     volumes:
+#       - .:/opt/dockerrailsdemo:cached

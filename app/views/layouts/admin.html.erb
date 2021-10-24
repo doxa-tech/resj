@@ -1,43 +1,48 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Resj</title>
-  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "admin", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-  <%= render 'layouts/favicon' %>
-</head>
-<body>
+  <head>
+    <title>Réseau Jeunesse</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-  <%= render "layouts/js_params" %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <%= content_tag :div, ng_controller do %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_pack_tag 'application' %>
+    <%= javascript_pack_tag 'admin' %>
 
-    <%= render 'layouts/flash' %>
+    <%= render 'layouts/favicon' %>
 
-    <div id="wrapper">
-      
-      <%= render 'layouts/header' %>
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.1/mapbox-gl.css" rel="stylesheet" />
+  </head>
 
-      <div id="admin">
-
-      	<%= render 'layouts/admin_top_header' %>
-      	<%= render 'layouts/admin_header' %>
-
-      	<div id="admin_content" <%= "class=#{yield(:id)}" if yield(:id).presence %>>
-      		<%= yield %>
-      	</div>
-
+  <body>
+    <div class="admin-layout-top">
+      <div class="logo">
+        <%= link_to image_tag("layout/logo.png"), "/" %>
+        <div class="text">
+          <% if signed_in? %>
+            <%= link_to "#{current_user.firstname} #{current_user.lastname}", profile_path %>
+            <%= link_to "Déconnexion", signout_path, method: :delete %>
+          <% end %>
+        </div>
       </div>
-      
-      <div id="footer">
-        <%= render 'layouts/footer' %>
+
+      <div class="pattern">
+        <div class="wrapper">
+          <% if content_for?(:links) %>
+            <%= yield :links %>
+          <% else %>
+            <a href="/">Retour</a>
+          <% end %>
+        </div>
       </div>
     </div>
 
-  <% end %>
+    <%= render 'layouts/flash' %>
 
-  <%= render 'layouts/ajax_loader' %>
-</body>
+    <div class="<%= yield :id %>">
+      <%= yield %>
+    </div>
+  </body>
 </html>

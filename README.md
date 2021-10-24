@@ -2,16 +2,3 @@
 [![Code Climate](https://codeclimate.com/github/JS-Tech/resj/badges/gpa.svg)](https://codeclimate.com/github/JS-Tech/resj)
 
 Réseau jeunesse, ministère évangélique du Réseau évangélique suisse, http://reseaujeunesse.ch
-
-### Elasticsearch (1.6.2)
-
-```
-rake elasticsearch:import:all FORCE=true
-```
-
-### Run tests
-
-```
-$ rake cucumber
-$ rspec
-```

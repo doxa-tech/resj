@@ -1,8 +1,9 @@
-<% to_layout("Votre sompte sur réseau jeunesse", "Vous avez besoin de confirmer votre adresse email") %>
-
-<p>Bonjour <%= @name %>,</p>
-<p>Pour finaliser votre inscription, vous devez confirmer votre adresse email en cliquant sur ce lien:<br>
-<%= link_to "activer", @url %></p>
-<p>Si vous n'êtes pas à l'origine de cette action, vous pouvez ignorer cet email.</p>
-<p>Si vous avez des questions ou remarques, n'hésitez pas à répondre à cet email.</p>
-<p>A bientôt sur le réseau !</p>
+<p>Pour confirmer votre compte veuillez suivre le lien suivant:</p>
+<%= render "mailers/button_center" do %>
+  <%= link_to "Confirmer mon compte", @url, "_target"=>"_blank" %>
+<% end %>
+<p>Vous recevez cet email car un nouveau compte associé à cet email à été créé sur reseaujeunesse.ch.
+Vous pouvez ignorer cet email si vous n'êtes pas à l'origine de la demande.</p>
+<p>Si le bouton ne fonctionne pas, copier/coller le lien suivant dans un navigateur:<br>
+<%= link_to @url, @url, "_target"=>"_blank" %>
+</p>

@@ -1,5 +1,7 @@
 class Canton < ApplicationRecord
-	has_many :locations
 
-  after_update { self.locations.each { |l| l.cards.each(&:touch) } }
+  has_many :locations
+
+  scope :romand, -> { where(name: ["Vaud", "Fribourg", "Genève", "Neuchâtel", "Berne"])}
+
 end

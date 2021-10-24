@@ -1,0 +1,119 @@
+<% content_for :id, "container-users-cards-edit" %>
+
+<% content_for :links do %>
+  <a href="/profile">Retour</a>
+  <%= link_to "Voir le groupe", card_path(@card) %>
+<% end %>
+
+<%= form_with model: [:users, @card], local: true do |f| %>
+
+<section class="std-container top-container">
+  <div class="left">
+    <div class="title red">
+      <h2>Editer le groupe:</h2>
+      <span><%= @card.name %></span>
+    </div>
+
+    <div class="date">
+      <p>
+        <span>Créé le <%= @card.created_at.strftime("%d/%m/%y") %></span>
+        <span>Dernière modification le <%= @card.updated_at.strftime("%d/%m/%y") %></span>
+      </p>
+    </div>
+  </div>
+  
+  <div class="right">
+  </div>
+</section>
+
+<%= render "error_messages", object: f.object %>
+
+<section class="std-container content-container">
+
+  <div class="left">
+    <div class="field name">
+      <%= f.label :name, "Titre - Nom du groupe" %>
+      <%= f.text_field :name, placeholder: 'Nom' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :description, "Présentation" %>
+      <%= f.text_area :description, placeholder: 'Description', "rows": 10 %>
+    </div>
+
+    <div class="field">
+      <%= f.label :card_type, "Type de groupe" %>
+      <%= f.select :card_type, options_for_enum(f.object, :card_type), { prompt: "Choisissez une catégorie" }, { class: "card_type", "data-controller": "select--simple" } %>
+    </div>
+
+    <div class="field">
+      <%= f.label :parent_ids %>
+      <%= f.collection_select :parent_ids, Card.network, :id, :name, {}, { multiple: true, "data-controller": "select--simple" } %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :street, "Rue" %>
+      <%= f.text_field :street, placeholder: 'Rue' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :location_id, "Canton" %>
+      <%= f.collection_select :location_id, [f.object.location].compact, :id, :full_name, {}, { class: "card_location", "data-controller": "select--locations" } %>
+    </div>
+
+    <div class="field">
+      <%= f.label :affiliation %>
+      <%= f.text_area :affiliation, placeholder: 'Eglise évangélique de ... (optionnel)' %>
+    </div>
+
+  </div>
+
+  <div class="right">
+    <div class="map-location" data-controller="cards--location">
+      <p class="title">Emplacement sur la carte</p>
+      <p class="hint">cliquez dessus pour changer l'emplacement du marqueur</p>
+      <div id="mapbox" data-target="cards--location.map"></div>
+
+      <details class="vanilla">
+        <summary>Détails</summary>
+
+        <%= f.label :latitude %>
+        <%= f.text_field :latitude, readonly: "readonly", data: { "target" => "cards--location.latitude" } %>
+        
+        <%= f.label :longitude %>
+        <%= f.text_field :longitude, readonly: "readonly", data: { "target" => "cards--location.longitude" } %>
+      </details>
+    </div>
+
+    <div class="contact">
+      <h3>Contact</h3>
+
+      <div class="field">
+        <%= f.label :email, "Email public de contact" %>
+        <%= f.text_field :email, placeholder: "contact@mail.ch" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :website %>
+        <%= f.text_field :website, placeholder: "http://mon-groupe.ch (optionnel)" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :place, "Lieu de rencontre" %>
+        <%= f.text_field :place, placeholder: 'Lieu de rencontre (optionnel)' %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="std-container submit-container">
+  <div class="left"></div>
+  <div class="right">
+    <div class="submit">
+      <%= f.submit "Sauvegarder et mettre à jour" %>
+    </div>
+  </div>
+</section>
+
+<!-- end form -->
+<% end %>

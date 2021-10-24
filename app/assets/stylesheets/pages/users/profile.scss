@@ -1,0 +1,207 @@
+@import "../../global/variables";
+
+.container-users-profile {
+  max-width: $content-width;
+  padding: 0 $content-padding;
+  margin: auto;
+
+  .title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 50px 0 30px 0;
+
+    h2 {
+      text-transform: uppercase;
+      padding: 4px 10px;
+      margin: 0 20px 0 0;
+      font-weight: normal;
+    }
+
+    a {
+      border-width: 1px;
+      border-style: solid;
+      text-decoration: none;
+      padding: 4px 10px;
+
+      &:not(:first-of-type) {
+        margin: 0 0 0 5px;
+      }
+    }
+
+    &.green {
+      h2 {
+        color: #fff;
+        background: $color-light-green;
+      }
+
+      a {
+        color: $color-light-green;
+        border-color: $color-light-green;
+
+        transition: all 200ms;
+
+        &:hover {
+          color: #fff;
+          background-color: $color-light-green;
+        }
+      }
+    }
+
+    &.orange {
+      h2 {
+        color: #fff;
+        background: $color-orange;
+      }
+
+      a {
+        color: $color-orange;
+        border-color: $color-orange;
+
+        transition: all 200ms;
+
+        &:hover {
+          color: #fff;
+          background-color: $color-orange;
+        }
+      }
+    }
+
+    &.red {
+      h2 {
+        color: #fff;
+        background: $color-red;
+      }
+
+      a {
+        color: $color-red;
+        border-color: $color-red;
+
+        transition: all 200ms;
+
+        &:hover {
+          color: #fff;
+          background-color: $color-orange;
+        }
+      }
+    }
+  }
+
+  div.name {
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 0 0 20px 0;
+  }
+
+  div.item {
+    padding: 10px 0;
+
+    h3 {
+      font-weight: 100;
+      font-size: 1em;
+    }
+
+    &.green {
+      h3 {
+        color: $color-light-green;
+      }
+    }
+
+    &.violet {
+      h3 {
+        color: $color-violet;
+      }
+    }
+
+    &.orange {
+      h3 {
+        color: $color-orange;
+      }
+    }
+  }
+
+  div.orator-visibility {
+    a {
+      text-decoration: none;
+      color: $color-orange;
+      border: 1px solid $color-orange;
+      padding: 3px 5px;
+      font-size: 0.9em;
+      margin: 0 0 0 5px;
+      transition: all 200ms;
+
+      &:hover {
+        color: #fff;
+        background-color: $color-orange;
+      }
+    }
+  }
+
+  div.cards {
+    color: $color-violet;
+    padding: 50px 0 20px 0;
+  }
+
+  div.card {
+    &.title {
+      padding: 7px 0;
+    }
+  }
+
+  div.danger {
+    padding: 120px 0 20px 0;
+
+    h2 {
+      font-weight: 1.1em;
+      font-weight: normal;
+      margin: 0 0 10px 0;
+    }
+
+    div.links {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      & > div {
+        margin-top: 5px;
+
+        &:not(:last-of-type) {
+          margin-right: 5px;
+        }
+      }
+
+      button {
+        text-decoration: none;
+        color: black;
+        border: 1px solid black;
+        padding: 5px 8px;
+        font-size: 0.9em;
+        transition: all 200ms;
+        background: transparent;
+        cursor: pointer;
+
+        &:hover {
+          color: #fff;
+          background-color: black;
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: $mobile-width) {
+    .title {
+      flex-direction: column;
+      align-items: flex-start;
+
+      a {
+        margin: 20px 0 0 0;
+      }
+    }
+
+    div.card {
+      div.links {
+        margin: 15px 0 22px 0;
+      }
+    }
+  }
+}

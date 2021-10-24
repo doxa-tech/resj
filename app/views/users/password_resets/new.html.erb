@@ -1,0 +1,24 @@
+<% content_for :id, "container-users-password-new" %>
+
+<div class="session-form session-form-green">
+  <div class="wrapper">
+    <div class="title">
+      <span>Réinitialiser son mot de passe</span>
+    </div>
+
+    <%= form_tag users_password_resets_path, :method => :post do %>
+
+      <div class="row">
+        <%= label_tag :email %>
+        <%= text_field_tag :email %>
+      </div>
+
+      <%= submit_tag "Réinitialiser son mot de passe" %>
+
+    <% end %>
+  
+    <p class="intro">
+      Mot de passe oublié ? Rentrez simplement votre email et vous recevrez un message pour obtenir un nouveau mot de passe.
+    </p>
+  </div>
+</div>

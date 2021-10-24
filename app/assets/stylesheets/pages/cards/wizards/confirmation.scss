@@ -1,0 +1,74 @@
+@import "../../../global/variables.scss";
+
+.container-cards-wizards-confirmation {
+  h3 {
+    padding: 20px 0 10px 0;
+  }
+
+  .timeline {
+    font-size: 12px;
+    padding: 30px 0 0 0;
+
+    a {
+      text-decoration: none;
+      color: rgb(34, 34, 34);
+
+      &:not(:first-of-type) {
+        padding-left: 10px;
+
+        &:before {
+          content: ">";
+          padding-right: 10px;
+        }
+      }
+
+      &:last-of-type {
+        font-weight: bold;
+      }
+    }
+  }
+
+  div.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    a.confirm {
+      background-color: transparent;
+      padding: 5px 7px;
+      margin: 10px;
+      align-self: flex-end;
+      cursor: pointer;
+      transition: all 200ms;
+      border: 1px solid $color-violet;
+      color: $color-violet;
+      text-decoration: none;
+
+      &:hover {
+        background-color: $color-violet;
+        color: #fff;
+      }
+    }
+  }
+
+  p.input {
+    background-color: #f4f4f4 !important;
+    color: #7a7a7a;
+  }
+
+  @media only screen and (max-width: $mobile-width) {
+    a.confirm {
+      margin: 0 $mobile-padding 0 0;
+    }
+
+    .fake-form {
+      padding-top: 0px !important;
+      padding-bottom: 0px !important;
+    }
+
+    .timeline {
+      display: none;
+    }
+  }
+}

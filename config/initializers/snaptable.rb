@@ -1,1 +1,2 @@
-Snaptable.use_permission = false
+# use Adeia permission gem
+Snaptable.use_permission = true

@@ -1,12 +1,10 @@
-<% content_for :id, 'user-new' %>
+<% content_for :id, "container-users-new" %>
 
-<div class="top">
-	<h1>S'enregistrer sur Réseau Jeunesse</h1>
-</div>
-
-<div class="form">
-	<%= form_for @user, url: users_path do |f| %>
-		<%= render 'new_form', f: f %>
-		<%= f.submit %>
-	<% end %>
+<div class="session-form session-form-green cb-signup">
+  <div class="wrapper">
+    <div class="title">
+      <span>Création de compte</span>
+    </div>
+    <%= render "form", record: @user, url: users_path %>
+  </div>
 </div>

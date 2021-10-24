@@ -1,0 +1,48 @@
+@import "../global/variables";
+
+.orator-update-profile {
+  section.content-wrapper {
+    max-width: 600px;
+    padding: 50px $content-padding;
+    margin: auto;
+
+    h2 {
+      padding: 0 0 20px 0;
+    }
+
+    p {
+      padding: 5px 0;
+    }
+
+    .links {
+      padding: 30px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      a,
+      button {
+        text-decoration: none;
+        color: $color-orange;
+        border: 1px solid $color-orange;
+        padding: 5px 8px;
+        font-size: 0.9em;
+        margin: 5px 0 0 5px;
+        transition: all 200ms;
+        background-color: transparent;
+        cursor: pointer;
+
+        &.bold {
+          font-weight: bold;
+        }
+
+        &:hover {
+          color: #fff;
+          background-color: $color-orange;
+        }
+      }
+    }
+  }
+}
