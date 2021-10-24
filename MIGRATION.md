@@ -129,3 +129,10 @@ re-order the dump:
 
 locations > cards > card_parents > tags > taggings
 users > orators
+
+## After migration
+* reset remember token
+* remove unconfirmed account
+* update orators to be invisible
+* add adeia elements and a superadmin
+* update status (-5) and card_type (-1)
