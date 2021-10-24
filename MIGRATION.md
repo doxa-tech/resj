@@ -8,10 +8,52 @@
 
 ## Card
 * password_digest removed
+* card_type_id -> card_type
+* status_id -> status
+* affiliation text -> string
+
+* verify that card type/status match
+
+## Orator
+* remove phone
+  
+* rename orator_themes -> orators_themes
 
 ## Authorization
 * remove the users that are groups for the permission system
 * remove unnecessary tables
+
+## Drop table
+* access_tokens
+* actions
+* activities
+* affiliations
+* article_themes
+* articles
+* card_affiliations
+* card_responsables
+* card_types
+* card_users
+* connections
+* disponibilities
+* documents
+* elements
+* help_categories
+* help_pages
+* newsletters
+* orator_disponibilities
+* ownership_actions
+* ownership_types
+* ownerships
+* pages
+* parents
+* responsables
+* sessions
+* statuses
+* subject_themes
+* subjects
+* user_newsletters
+* user_types
 
 ## Install mapbox
 
@@ -38,44 +80,44 @@ psql
 > \c resj_production
 > alter table locations rename column npa to zip;
 > alter table users drop column user_type_id;
-> alter table users drop column uid;
-> drop table user_types;
+> alter table users rename column uid to uuid;
 > alter table cards drop column password_digest;
 > alter table cards rename column card_type_id to card_type;
 > alter table cards rename column status_id to status;
-> drop table access_tokens;
-> drop table activities;
-> drop table affiliations;
-> drop table card_affiliations;
-> drop table articles;
-> drop table article_themes;
-> drop table card_responsables;
-> drop table card_types;
-> drop table card_users;
-> drop table connections;
-> drop table documents;
-> drop table elements;
-> drop table help_categories;
-> drop table help_pages;
-> drop table newsletters;
-> alter table orator_disponibilities rename to disponibilities_orators;
-> alter table disponibilities_orators drop column created_at, drop column updated_at;
 > alter table orator_themes rename to orators_themes;
-> alter table orators_themes drop column created_at, drop column updated_at;
-> alter table orator_disponibilities_id_seq rename to disponibilities_orators_id_seq;
 > alter table orator_themes_id_seq rename to orators_themes_id_seq;
-> drop table ownership_types;
-> drop table ownership_actions;
-> drop table actions;
-> drop table ownerships;
-> drop table pages;
-> drop table parents;
-> drop table responsables;
-> drop table sessions;
-> drop table statuses;
-> drop table subject_themes;
-> drop table subjects;
-> drop table user_newsletters;
+> alter table orators_themes drop column created_at, drop column updated_at;
+> alter table orators drop column phone;
+> drop table access_tokens
+> drop table actions
+> drop table activities
+> drop table affiliations
+> drop table article_themes
+> drop table articles
+> drop table card_affiliations
+> drop table card_responsables
+> drop table card_types
+> drop table card_users
+> drop table connections
+> drop table disponibilities
+> drop table documents
+> drop table elements
+> drop table help_categories
+> drop table help_pages
+> drop table newsletters
+> drop table orator_disponibilities
+> drop table ownership_actions
+> drop table ownership_types
+> drop table ownerships
+> drop table pages
+> drop table parents
+> drop table responsables
+> drop table sessions
+> drop table statuses
+> drop table subject_themes
+> drop table subjects
+> drop table user_newsletters
+> drop table user_types
 > drop table schema_migrations;
 > delete from taggings where card_id = 19 or card_id = 156;
 > \q
