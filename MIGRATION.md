@@ -24,7 +24,9 @@ docker-compose exec app yarn add mapbox-gl
 pg_dump resj_production > dump.sql
 > use pg_dump -a for data only
 
-docker run --name some-postgres -e POSTGRES_PASSWORD= -e POSTGRES_USER=postgres -v /Users/nkcr/Desktop/migration/data/data:/var/lib/postgresql/data postgres:11
+docker run --name some-postgres -e POSTGRES_PASSWORD=1234 -e POSTGRES_USER=postgres -v /Users/nkcr/Desktop/migration/data/data:/var/lib/postgresql/data postgres:13.4
+
+docker run run -it 29032fb58697 bash
 
 su - postgres
 createuser --interactive --pwprompt
