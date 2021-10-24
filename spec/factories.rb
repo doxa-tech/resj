@@ -7,6 +7,7 @@ FactoryBot.define do
     password { "choux" }
     password_confirmation { "choux" }
     reset_token { "xxx" }
+    remember_token { "xxx" }
   end
 
   factory :orator do

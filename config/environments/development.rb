@@ -41,7 +41,8 @@ Rails.application.configure do
   config.assets.debug = true
 
   # Email settings
-  config.action_mailer.default_url_options = { :host => "localhost:3000" }
+  config.action_mailer.default_url_options = { :host => "http://localhost:3000" }
+  config.action_mailer.asset_host = "http://localhost:3000"
   # It uses a sandbox configuration on mailgun. Each recipients must be allowed
   # from the mailgun admin panel.
   config.action_mailer.delivery_method = :smtp
