@@ -4,7 +4,7 @@ class Card < ApplicationRecord
   attr_accessor :current_step
 
   enum card_type: [:youth, :adult, :activist, :organization, :network, :training]
-  enum status: [:online, :pending, :incomplete, :change]
+  enum status: [:pending, :online, :incomplete, :change]
 
   belongs_to :location, optional: true # validation made manually according to the step
   belongs_to :user
