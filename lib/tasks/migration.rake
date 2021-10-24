@@ -44,17 +44,15 @@ namespace :migration do
         status = card.read_attribute_before_type_cast(:status)
         card_type = card.read_attribute_before_type_cast(:card_type)
 
-        print "card:  #{status} - #{card_type}\n"
-
         card.update_attribute(:status, status - 5)
         card.update_attribute(:card_type, card_type - 1)
       end
-    end
-    print "Done !\n"
+      print "Done !\n"
 
-    print "Remove cards...\n"
-    Card.where.not(status: :online).destroy_all
-    print "Done !\n"
+      print "Remove cards...\n"
+      Card.where.not(status: :online).destroy_all
+      print "Done !\n"
+    end
   end
 
 end

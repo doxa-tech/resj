@@ -1,5 +1,7 @@
 class Orator < ApplicationRecord
 
+  scope :active, -> { where(disabled: false) }
+
   belongs_to :user
   belongs_to :location
 

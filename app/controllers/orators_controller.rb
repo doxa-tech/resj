@@ -58,7 +58,7 @@ class OratorsController < ApplicationController
 
   def search
     clean(params)
-    orators = Orator.all
+    orators = Orator.active
     if params[:name].present?
       orators = orators.where("lastname ilike ?", "%#{params[:name]}%")
     end
