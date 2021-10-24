@@ -1,3 +1,5 @@
+<% content_for :prehead, "Confirmation du votre compte Réseau Jeunesse" %>
+
 <p>Pour confirmer votre compte veuillez suivre le lien suivant:</p>
 <%= render "mailers/button_center" do %>
   <%= link_to "Confirmer mon compte", @url, "_target"=>"_blank" %>
