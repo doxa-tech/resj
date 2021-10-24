@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many :cards
-  has_one :orator
+  has_one :orator, dependent: :destroy
 
   before_save :create_remember_token
   before_create :create_uuid
