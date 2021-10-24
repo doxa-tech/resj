@@ -44,8 +44,6 @@ namespace :migration do
         status = card.read_attribute_before_type_cast(:status)
         card_type = card.read_attribute_before_type_cast(:card_type)
 
-        print "card:  #{status} - #{card_type}\n"
-
         card.update_attribute(:status, status - 5)
         card.update_attribute(:card_type, card_type - 1)
       end
