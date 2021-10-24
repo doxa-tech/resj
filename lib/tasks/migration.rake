@@ -47,12 +47,12 @@ namespace :migration do
         card.update_attribute(:status, status - 5)
         card.update_attribute(:card_type, card_type - 1)
       end
-    end
-    print "Done !\n"
+      print "Done !\n"
 
-    print "Remove cards...\n"
-    Card.where.not(status: :online).destroy_all
-    print "Done !\n"
+      print "Remove cards...\n"
+      Card.where.not(status: :online).destroy_all
+      print "Done !\n"
+    end
   end
 
 end
