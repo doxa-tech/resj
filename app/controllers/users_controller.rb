@@ -55,10 +55,13 @@ class UsersController < ApplicationController
 	end
 
   def resend_confirmation
-		@user = User.find_by_uuid(params[:id])
-		# re-sends confirmation email
-		UserMailer.confirmation(@user).deliver_now
-		redirect_to root_path, success: "Un nouvel email a été envoyé"
+		if @user = User.find_by_uuid(params[:id])
+      # re-sends confirmation email
+      UserMailer.confirmation(@user).deliver_now
+      redirect_to root_path, success: "Un nouvel email a été envoyé"
+    else
+      redirect_to root_path, error: "Le lien est invalide."
+    end
 	end
 
   private
