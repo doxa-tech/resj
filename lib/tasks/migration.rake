@@ -30,8 +30,8 @@ namespace :migration do
   task cards: :environment do
     print "Update card type and status...\n"
     Card.all.each do |card|
-      card.update_attribute(:status, card.status - 5)
-      card.update_attribute(:card_type, card.card_type - 1)
+      card.update_attribute(:status, Card.statuses[card.status] - 5) unless card.status.nil?
+      card.update_attribute(:card_type, Card.card_types[card.card_type] - 1) unless card.card_type.nil?
     end
     print "Done !\n"
 
