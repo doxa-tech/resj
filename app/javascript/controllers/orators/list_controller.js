@@ -6,7 +6,7 @@ export default class extends ListController {
   updateItems(items) {
     if (items.length < 10) {
       this.items = []
-    } else { 
+    } else {
       this.items = items;
     }
     this.update();
@@ -17,7 +17,7 @@ export default class extends ListController {
     items.forEach((c) => {
       this.titleTarget.innerHTML = c.firstname + " " + c.lastname;
       this.linkTarget.href = c.href;
-      this.themesTarget.innerHTML = c.themes;
+      this.themesTarget.innerHTML = c.themes.map(x => `<span>${x}</span>`).join("");
       content.push(this.itemTemplateTarget.outerHTML);
     });
     return content;
