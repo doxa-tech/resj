@@ -55,4 +55,16 @@ namespace :migration do
     end
   end
 
+  desc "Send migration message to orators"
+  task orators_email: :environment do
+    Orator.all.each do |orator|
+      OratorMailer.migration(orator).deliver_now
+    end
+    # for testing an individual orator:
+    # orator = Orator.find(36)
+    # mail = OratorMailer.migration(orator)
+    # print "mail: #{mail}\n"
+    # mail.deliver_now
+  end
+
 end
