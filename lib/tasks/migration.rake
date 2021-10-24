@@ -6,13 +6,25 @@ namespace :migration do
     User.where(remember_token: nil).destroy_all
     print "Done !\n"
 
-    print "Removing unconfirmed account\n"
-    User.where(confirmed: false).destroy_all
+    print "Removing unconfirmed account that don't have a card\n"
+    ActiveRecord::Base.transaction do
+      User.all.each do |u|
+        if !u.confirmed
+          u.destroy! unless u.cards.any?
+        end
+      end
+    end
     print "Done !\n"
 
     print "Resetting remember token...\n"
-    User.all.each do |u|
-      u.save!
+    ActiveRecord::Base.transaction do
+      User.all.each do |u|
+        if !u.save
+          print "Destroy invalid user\n"
+          u.cards.destroy_all
+          u.destroy!
+        end
+      end
     end
     print "Done !\n"
 	end
@@ -20,18 +32,23 @@ namespace :migration do
   desc "Make orators invisible"
   task orators: :environment do
     print "Making orators invisible...\n"
-    Orator.all.each do |u|
-      u.update_attribute(:disabled, true)
-    end
+    Orator.update_all(disabled: true)
     print "Done !\n"
   end
 
   desc "Update cards"
   task cards: :environment do
     print "Update card type and status...\n"
-    Card.all.each do |card|
-      card.update_attribute(:status, Card.statuses[card.status] - 5) unless card.status.nil?
-      card.update_attribute(:card_type, Card.card_types[card.card_type] - 1) unless card.card_type.nil?
+    ActiveRecord::Base.transaction do
+      Card.all.each do |card|
+        status = card.read_attribute_before_type_cast(:status)
+        card_type = card.read_attribute_before_type_cast(:card_type)
+
+        print "card:  #{status} - #{card_type}\n"
+
+        card.update_attribute(:status, status - 5)
+        card.update_attribute(:card_type, card_type - 1)
+      end
     end
     print "Done !\n"
 
