@@ -14,7 +14,7 @@ export default class ListController extends Controller {
     this.itemsTarget.innerHTML = "";
     let content = ""
     if (this.items.length == 0) {
-      content = `<div class="soon">Bientôt disponible, la liste est en train de se remplir...</div>`
+      content = this.notFoundMessage
     } else {
       const start = (this.currentPage - 1) * this.itemPerPage;
       let items = this.items.slice(start, start + this.itemPerPage);
@@ -27,7 +27,6 @@ export default class ListController extends Controller {
     this.updateMap(this.items);
     this.updatePagination();
     this.totalTarget.innerHTML = this.items.length;
-
   }
 
   updatePagination() {
@@ -83,6 +82,10 @@ export default class ListController extends Controller {
 
   get itemPerPage() {
     throw "Getter #itemPerPage must be defined in the child class"
+  }
+
+  get notFoundMessage() {
+    return `<div class="soon">Aucun résultat</div>`
   }
 
 }

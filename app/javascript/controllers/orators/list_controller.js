@@ -31,4 +31,8 @@ export default class extends ListController {
     return 4;
   }
 
+  get notFoundMessage() {
+    return `<div class="soon">Bientôt disponible, la liste est en train de se remplir...</div>`
+  }
+
 }
