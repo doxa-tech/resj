@@ -90,36 +90,36 @@ psql
 > alter table orator_themes_id_seq rename to orators_themes_id_seq;
 > alter table orators_themes drop column created_at, drop column updated_at;
 > alter table orators drop column phone;
-> drop table access_tokens
-> drop table actions
-> drop table activities
-> drop table affiliations
-> drop table article_themes
-> drop table articles
-> drop table card_affiliations
-> drop table card_responsables
-> drop table card_types
-> drop table card_users
-> drop table connections
-> drop table disponibilities
-> drop table documents
-> drop table elements
-> drop table help_categories
-> drop table help_pages
-> drop table newsletters
-> drop table orator_disponibilities
-> drop table ownership_actions
-> drop table ownership_types
-> drop table ownerships
-> drop table pages
-> drop table parents
-> drop table responsables
-> drop table sessions
-> drop table statuses
-> drop table subject_themes
-> drop table subjects
-> drop table user_newsletters
-> drop table user_types
+> drop table access_tokens;
+> drop table actions;
+> drop table activities;
+> drop table affiliations;
+> drop table article_themes;
+> drop table articles;
+> drop table card_affiliations;
+> drop table card_responsables;
+> drop table card_types;
+> drop table card_users;
+> drop table connections;
+> drop table disponibilities;
+> drop table documents;
+> drop table elements;
+> drop table help_categories;
+> drop table help_pages;
+> drop table newsletters;
+> drop table orator_disponibilities;
+> drop table ownership_actions;
+> drop table ownership_types;
+> drop table ownerships;
+> drop table pages;
+> drop table parents;
+> drop table responsables;
+> drop table sessions;
+> drop table statuses;
+> drop table subject_themes;
+> drop table subjects;
+> drop table user_newsletters;
+> drop table user_types;
 > drop table schema_migrations;
 > delete from taggings where card_id = 19 or card_id = 156;
 > \q
