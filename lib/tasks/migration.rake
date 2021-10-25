@@ -55,6 +55,15 @@ namespace :migration do
     end
   end
 
+  desc "Generate uuid on users"
+  task users_uuid: :environment do
+    print "Generating uuid...\n"
+    User.all.each do |user|
+      user.update_attribute(:uuid, SecureRandom.uuid)
+    end
+    print "Done !\n"
+  end
+
   desc "Send migration message to orators"
   task orators_email: :environment do
     Orator.all.each do |orator|
