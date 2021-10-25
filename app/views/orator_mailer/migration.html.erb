@@ -1,0 +1,23 @@
+<h1>Votre profil orateur sur Réseau Jeunesse</h1>
+
+<p>Bonjour <%= "#{@orator.user.firstname} #{@orator.user.lastname}" %>,</p>
+
+<p>Vous avez actuellement un compte orateur sur <a href="https://reseaujeunesse.ch">Réseau Jeunesse</a> et nous sommes ravis de vous informer que le site a été mis à jour.</p>
+
+<p>Jusqu'à maintenant la liste des orateurs, dont vous faite partie, n'était visible que pour les utilisateurs enregistrés du site.</p>
+
+<p>Dans l'optique d'améliorer notre service envers les leaders jeunesse de Suisse romande, <b>la liste est dorénavant publique</b>.</p>
+
+<p>Afin de vous laisser le choix, votre profil a été mis en mode invisible : vous n'apparaissez pas dans la liste publique et ne pouvez par conséquent pas être contacté par des leaders jeunesses ayant besoin de vos précieuse compétences.</p>
+
+<p>Nous vous avons préparé une page spéciale où vous pouvez simplement <b>accepter de rendre votre profil public</b>, et, si nécessaire, le mettre à jour. Si vous ne le faite pas, vous n'apparaîtrez pas sur la liste des orateurs, visible sur la <a href="https://reseaujeunesse.ch">page d'accueil du site</a>. Voici le lien pour rendre votre profil public :</p>
+
+<%= render "mailers/button_center" do %>
+  <%= link_to "Aller sur la page spéciale", @url, target: "_blank" %>
+<% end %>
+
+<p>Notez que le profil public <b>n'inclut pas</b> d'informations personnelles telles que votre email, adresse, et numéro de téléphone.</p>
+
+<p>Nous vous remercions pour votre précieux engagement vis-à-vis de la jeunesse en Suisse romande.</p>
+
+<p>En cas de question ou remarque nous nous tenons à votre disposition à l'adresse <a href="mailto:info@resj.ch">info@resj.ch</a>.</p>
