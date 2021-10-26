@@ -30,7 +30,7 @@ class Card < ApplicationRecord
   end
   with_options if: Proc.new { |c| c.current_step?("extra")} do |c|
     c.validates :website, length: { maximum: 60 }
-    c.validates :email, length: { maximum: 60 },  format: { with: /@/ }, allow_blank: true
+    c.validates :email, length: { maximum: 60 },  format: { with: /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,}\z/ }, allow_blank: true
     c.validates :affiliation, length: { maximum: 60 }
   end
 
