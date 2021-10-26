@@ -10,5 +10,5 @@ Feature: delete an account
     And I am signed in
     When I visit "/profile"
     When I click the button "Supprimer mon compte"
-    And I click the link "Confirmer"
+    And I click the button "Confirmer"
     Then I should see a flash with "Ton compte a été supprimé"

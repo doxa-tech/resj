@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   
   resources :users, only: [:create, :destroy] do
     get "confirmation", on: :collection
-    post "resend_confirmation", on: :member 
+    post "resend_confirmation", on: :member
   end
 
   resources :sessions, only: :create
@@ -48,7 +48,9 @@ Rails.application.routes.draw do
   namespace :users do
 
     resources :password_resets, only: [:new, :create, :edit, :update]
-    resources :cards, only: [:edit, :update]
+    resources :cards, only: [:edit, :update] do
+      post "transfer", on: :member
+    end
 
   end
 

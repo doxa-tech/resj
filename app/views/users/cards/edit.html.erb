@@ -115,5 +115,13 @@
   </div>
 </section>
 
+ <%= button_to_confirmation "Transférer", form: { url: transfer_users_card_path(@card) } do %>
+
+  <p>Indiquer l'email d'un utilisateur enregistré sur Réseau jeunesse:</p>
+
+  <%= label_tag :email %>
+  <%= email_field_tag :email %>
+<% end %>
+
 <!-- end form -->
 <% end %>

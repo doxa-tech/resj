@@ -14,11 +14,11 @@
   
   <div class="links">
     <%= link_to "Voir mon profil", profile_path %>
-    <%= link_to_with_confirmation "Êtes-vous sûr de vouloir supprimer votre profil ?", orator_path(@orator), method: :delete do %>
-      <%= button_tag "Supprimer mon profil" %>
+    <%= button_to_confirmation "Supprimer mon profil orateur", form: { url: orator_path(@orator), method: :delete } do %>
+      <p>Êtes-vous sûr de vouloir supprimer votre profil orateur ?</p>
     <% end %>
-    <%= link_to_with_confirmation "Merci d'avoir changé votre visibilité, aucune autre action n'est requise de votre part. Vous allez être redirigé sur votre profil. Pour continuer, cliquez sur 'Confirmer'.", profile_orator_update_visibility_path(@orator), method: :patch, class: "bold" do %>
-      <%= button_tag "Devenir visible", class: "bold" %>
+    <%= button_to_confirmation "Devenir visible", form: { url: profile_orator_update_visibility_path(@orator), method: :patch }, button_options: { class: "bold" } do %>
+      <p>Merci d'avoir changé votre visibilité, aucune autre action n'est requise de votre part. Vous allez être redirigé sur votre profil. Pour continuer, cliquez sur 'Confirmer'.</p>
     <% end %>
   </div>
 </section>
