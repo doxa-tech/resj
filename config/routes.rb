@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     get page, to: "pages##{page}"
   end
 
+  %w(404 422 500 503).each do |code|
+    get code, :to => "pages#error", :code => code
+  end
+
   
   resources :users, only: [:create, :destroy] do
     get "confirmation", on: :collection
