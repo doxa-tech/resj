@@ -5,6 +5,7 @@
 # files.
 
 require 'cucumber/rails'
+require 'email_spec'
 require 'email_spec/cucumber'
 
 # Capybara defaults to CSS3 selectors rather than XPath.
