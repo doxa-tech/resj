@@ -11,11 +11,6 @@ class PagesController < ApplicationController
   def faq
   end
 
-  def error
-    status = params[:code] || 500
-    render status.to_s, status: status, layout: "admin"
-  end
-
   # temporary page for orators to update or remove their profile.
   def orator_update_profile
     user = User.find_by_remember_token(params[:remember_token])
