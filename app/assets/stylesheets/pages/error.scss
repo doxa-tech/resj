@@ -1,0 +1,17 @@
+div.container-error {
+  max-width: 500px;
+  padding: 20px;
+  margin: auto;
+  padding-top: 50px;
+
+  p.info {
+    font-size: 1.2em;
+    padding: 20px 0 100px 0;
+    color: rgb(82, 82, 82);
+  }
+
+  p.code {
+    font-family: "Courier New", Courier, monospace;
+    color: rgb(177, 177, 177);
+  }
+}
