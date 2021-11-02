@@ -22,7 +22,7 @@ class Users::CardsController < ApplicationController
       card.update_attribute(:user, user)
       redirect_to profile_path, error: "Ton groupe a été transféré à l'utilisateur demandé"
     else
-      redirect_to profile_path, error: "Aucun utilisateur avec cette email n'a été trouvé"
+      redirect_to edit_users_card_path, error: "Aucun utilisateur avec cette email n'a été trouvé"
     end
   end
 
