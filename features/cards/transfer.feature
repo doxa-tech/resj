@@ -16,6 +16,8 @@ Feature: Transfer a card to another user
     When I enter the email of another user
     And I click the button "Confirmer"
     Then I should see a flash with "Ton groupe a été transféré à l'utilisateur demandé"
+    And "john@smith.com" should receive an email
+    And "another@bar.com" should receive an email
 
   @javascript
   Scenario: I transfer the card an user that does not exist

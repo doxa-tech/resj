@@ -19,7 +19,10 @@ class Users::CardsController < ApplicationController
   def transfer
     user = User.find_by_email(params[:email])
     unless user.nil?
+      old_user = card.user
       card.update_attribute(:user, user)
+      CardMailer.received(card, user).deliver_now
+      CardMailer.transfered(card, old_user).deliver_now
       redirect_to profile_path, error: "Ton groupe a été transféré à l'utilisateur demandé"
     else
       redirect_to edit_users_card_path, error: "Aucun utilisateur avec cette email n'a été trouvé"
