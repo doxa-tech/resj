@@ -25,5 +25,5 @@ Feature: Transfer a card to another user
     And I click the button "Transférer le groupe"
     When I enter the email that does not exist
     And I click the button "Confirmer"
-    Then I should see a flash with "Aucun utilisateur avec cette email n'a été trouvé"
+    Then I should see a flash with "Aucun utilisateur avec l'email nil@bar.com n'a été trouvé"
      
