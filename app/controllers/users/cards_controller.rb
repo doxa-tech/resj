@@ -23,7 +23,7 @@ class Users::CardsController < ApplicationController
       card.update_attribute(:user, user)
       CardMailer.received(card, user).deliver_now
       CardMailer.transfered(card, old_user).deliver_now
-      redirect_to profile_path, error: "Ton groupe a été transféré à l'utilisateur demandé"
+      redirect_to profile_path, success: "Ton groupe a été transféré à l'utilisateur demandé"
     else
       redirect_to edit_users_card_path, error: "Aucun utilisateur avec l'email #{params[:email]} n'a été trouvé. Sois sûr que la personne ait déjà créé un compte sur le site avant de transférer le groupe."
     end

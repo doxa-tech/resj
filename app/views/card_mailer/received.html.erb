@@ -1,4 +1,4 @@
 <h1>Tu as reçu la responsabilité d'un groupe sur Réseau Jeunesse</h1>
 
-<p>Tu as reçu le groupe <%= @card.name %> de la part de l'utilisateur <%= @user.firstname %> <%= @user.lastname %>.</p>
-<p>Tu peux dès à présent te connecter sur <a href="https://reseaujeunesse.ch" target="_blank">reseaujeunesse.ch</a> pour voir le groupe et le mettre à jour.</p>
+<p>L'utilisateur <b><%= @user.firstname %> <%= @user.lastname %></b> ta transéré la gestion du groupe <%= link_to @card.name, card_url(@card), target: "_blank" %> sur Réseau Jeunesse.</p>
+<p>Tu peux dès à présent gérer le groupe à partir de ton compte Réseau Jeunesse: <%= link_to edit_users_card_url(@card), edit_users_card_url(@card), target: "_blank" %>.</p>
