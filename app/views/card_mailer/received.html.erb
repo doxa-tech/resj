@@ -1,4 +1,4 @@
 <h1>Tu as reçu la responsabilité d'un groupe sur Réseau Jeunesse</h1>
 
-<p>L'utilisateur <b><%= @user.firstname %> <%= @user.lastname %></b> ta transéré la gestion du groupe <%= link_to @card.name, card_url(@card), target: "_blank" %> sur Réseau Jeunesse.</p>
+<p>L'utilisateur <b><%= @user.firstname %> <%= @user.lastname %></b> t'a transéré la gestion du groupe <%= link_to @card.name, card_url(@card), target: "_blank" %> sur Réseau Jeunesse.</p>
 <p>Tu peux dès à présent gérer le groupe à partir de ton compte Réseau Jeunesse: <%= link_to edit_users_card_url(@card), edit_users_card_url(@card), target: "_blank" %>.</p>
