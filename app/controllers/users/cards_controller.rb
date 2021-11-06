@@ -18,7 +18,7 @@ class Users::CardsController < ApplicationController
   # transfer a card to a new user
   def transfer
     user = User.find_by_email(params[:email])
-    unless user.nil?
+    unless user.nil? || user == card.user
       old_user = card.user
       card.update_attribute(:user, user)
       CardMailer.received(card, user).deliver_now
