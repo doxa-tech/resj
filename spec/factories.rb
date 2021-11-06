@@ -11,7 +11,7 @@ FactoryBot.define do
   end
 
   factory :orator do
-    user 
+    association :user, confirmed: true
     location
     street { "Route du moulin 12" }
     description { "A votre service !" }

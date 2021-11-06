@@ -1,0 +1,5 @@
+<h1>Tu as transféré ton groupe</h1>
+
+<p>
+Le groupe <%= link_to @card.name, card_url(@card), target: "_blank" %> a été transféré à l'utilisateur <b><%= @user.firstname %> <%= @user.lastname %></b> (<%= @user.email %>).
+</p>

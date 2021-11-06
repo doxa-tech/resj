@@ -10,8 +10,8 @@ module ApplicationHelper
       record.send(enum))
   end
 
-  def link_to_with_confirmation(text, url, **args)
-    render "confirmation", url: url, action_text: text, args: args do
+  def button_to_confirmation(text, form: {}, button_options: {})
+    render "application/popup/form", text: text, form: form, button_options: button_options do
       yield
     end
   end
