@@ -5,14 +5,24 @@
   <%= link_to "Voir le groupe", card_path(@card) %>
 <% end %>
 
-<%= form_with model: [:users, @card], local: true do |f| %>
-
 <section class="std-container top-container">
   <div class="left">
     <div class="title red">
       <h2>Editer le groupe:</h2>
       <span><%= @card.name %></span>
     </div>
+
+    <!-- contain another form, which means it cannot be nested in the card's edit form -->
+    <%= button_to_confirmation "Transférer le groupe", form: { url: transfer_users_card_path(@card) }, button_options: {class: "transfer-button"} do %>
+
+      <p>Tu peux transférer la responsabilité du groupe à un autre utilisateur. Avant cela sois sûr que la personne à qui tu veux transférer la responsabilité du groupe a créé un compte sur le site. Sinon, demande-lui d'abord de s'inscrire avec ce lien: <%= link_to signup_url, signup_url %></p>
+      <p>Indique l'email d'un utilisateur enregistré sur Réseau jeunesse:</p>
+
+      <div class="form-row">
+        <%= label_tag :email %>
+        <%= email_field_tag :email, nil, placeholder: "email@exemple.com" %>
+      </div>
+    <% end %>
 
     <div class="date">
       <p>
@@ -25,6 +35,8 @@
   <div class="right">
   </div>
 </section>
+
+<%= form_with model: [:users, @card], local: true do |f| %>
 
 <%= render "error_messages", object: f.object %>
 
@@ -116,14 +128,4 @@
 </section>
 
 <!-- end form -->
-<% end %>
-
-<!-- contain another form, which means it cannot be nested in the card's edit form -->
-<%= button_to_confirmation "Transférer le groupe", form: { url: transfer_users_card_path(@card) } do %>
-
-  <p>Tu peux transférer la responsabilité du groupe à un autre utilisateur. Avant cela sois sûr que la personne à qui tu veux transférer la responsabilité du groupe a créé un compte sur le site. Sinon, demande-lui d'abord de s'inscrire avec ce lien: <%= link_to signup_path, signup_path %></p>
-  <p>Indique l'email d'un utilisateur enregistré sur Réseau jeunesse:</p>
-
-  <%= label_tag :email %>
-  <%= email_field_tag :email %>
 <% end %>
