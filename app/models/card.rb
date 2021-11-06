@@ -16,6 +16,7 @@ class Card < ApplicationRecord
   has_many :parents, through: :card_parents
 
   after_save :assign_tags
+  before_create :set_last_updated
 
   with_options if: Proc.new { |c| c.current_step?("general")} do |c|
     c.validates :name, presence: true, length: { maximum: 30 }, uniqueness: { case_sensitive: false }
@@ -78,6 +79,10 @@ class Card < ApplicationRecord
   end
 
   private
+
+  def set_last_updated
+    self.last_updated = Time.current
+  end
 
   def assign_tags
     # popularity is increased every time the card is updated
