@@ -1,3 +1,5 @@
+require 'csv'
+
 namespace :migration do
 
 	desc "Update users"
@@ -74,6 +76,20 @@ namespace :migration do
     # mail = OratorMailer.migration(orator)
     # print "mail: #{mail}\n"
     # mail.deliver_now
+  end
+
+  desc "Set the new last_update based on the updated_at before the migration"
+  task cards_last_update: :environment do
+    CSV.foreach("#{Rails.root}/lib/tasks/cards_updated_at.csv", :headers => true) do |row|
+        card = Card.find_by("id = ?", row[0])
+        if card
+          # date is of type:
+          # 2014-10-01 18:24:24.626014
+          last_update = DateTime.strptime(row[1], '%Y-%m-%d %H:%M:%S')
+          card.last_update = last_update
+          print "Card #{card.id} updated with #{last_update.to_s}\n"
+        end
+    end
   end
 
 end
