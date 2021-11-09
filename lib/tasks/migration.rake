@@ -86,7 +86,7 @@ namespace :migration do
           # date is of type:
           # 2014-10-01 18:24:24.626014
           last_update = DateTime.strptime(row[1], '%Y-%m-%d %H:%M:%S')
-          card.last_update = last_update
+          card.last_updated = last_update
           print "Card #{card.id} updated with #{last_update.to_s}\n"
         end
     end
