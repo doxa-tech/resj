@@ -10,7 +10,7 @@ on:
 jobs:
 
   cucumber:
-    timeout-minutes: 10
+    timeout-minutes: 20
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -20,11 +20,13 @@ jobs:
   rspec-test:
     name: RSpec
     runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: test
     steps:
       - uses: actions/checkout@v1
-      - uses: actions/setup-ruby@v1
+      - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.6.3
+          ruby-version: 2.6
       - name: Install postgres client
         run: sudo apt-get install libpq-dev
       - name: Install dependencies
