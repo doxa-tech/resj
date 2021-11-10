@@ -5,8 +5,8 @@ services:
   test-cucumber:
     build:
       context: .
-    command: > #["sleep", "60", "&&", "bundle", "exec", "rake", "cucumber"]
-      bash -c "sleep 30 &&
+    command: >
+      bash -c "while !</dev/tcp/pg/5432; do sleep 1; done;
       bundle exec rake db:setup &&
       bundle exec rake db:test:prepare &&
       bundle exec rake cucumber"
