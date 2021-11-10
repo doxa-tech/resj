@@ -1,0 +1,39 @@
+version: '3.7'
+
+services:
+
+  test-cucumber:
+    build:
+      context: .
+    command: > #["sleep", "60", "&&", "bundle", "exec", "rake", "cucumber"]
+      bash -c "sleep 30 &&
+      bundle exec rake db:setup &&
+      bundle exec rake db:test:prepare &&
+      bundle exec rake cucumber"
+    environment:
+      - POSTGRES_HOST=pg
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+      - RAILS_ENV=test
+      - SELENIUM_HOST=selenium
+    volumes:
+      - ./:/usr/src/app
+      - gems:/usr/local/bundle
+      - node-modules:/usr/src/app/node_modules
+    depends_on:
+      - selenium
+      - pg
+
+  pg:
+    image: postgres:11.2-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+
+  selenium:
+    image: selenium/standalone-chrome:94.0.4606.61
+    shm_size: '2gb'
+
+volumes:
+  gems:
+  node-modules:

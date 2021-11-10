@@ -1,0 +1,38 @@
+name: cucumber
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  workflow_dispatch:
+
+jobs:
+  cucumber:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run docker compose
+        run: docker-compose -f docker-compose-cucumber.yml up --abort-on-container-exit --exit-code-from test-cucumber
+  rspec-test:
+    name: RSpec
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.6.3
+      - name: Install postgres client
+        run: sudo apt-get install libpq-dev
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundler install
+      - name: Create database
+        run: |
+          bundle exec rake db:setup
+          bundle exec rake db:test:prepare
+      - name: Run tests
+        run: bundler exec rake
