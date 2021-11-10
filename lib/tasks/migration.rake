@@ -81,7 +81,7 @@ namespace :migration do
   desc "Set the new last_update based on the updated_at before the migration"
   task cards_last_update: :environment do
     CSV.foreach("#{Rails.root}/lib/tasks/cards_updated_at.csv", :headers => true) do |row|
-        card = Card.find_by("id = ?", row[0])
+        card = Card.find_by(id: row[0])
         if card
           # date is of type:
           # 2014-10-01 18:24:24.626014
