@@ -8,6 +8,7 @@ class Users::CardsController < ApplicationController
 
   def update
     @card = card
+    @card.last_updated = Time.current
     if @card.update(card_params)
       redirect_to edit_users_card_path(@card), success: "Ton groupe a été mis à jour"
     else
