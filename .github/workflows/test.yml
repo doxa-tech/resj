@@ -12,18 +12,56 @@ jobs:
   cucumber:
     timeout-minutes: 20
     runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: test
+      POSTGRES_HOST: localhost
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+      SELENIUM_HOST: localhost
+
+    services:
+      pg:
+        image: postgres:11
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: secret
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports: ["5432:5432"]
+      selenium:
+        image: selenium/standalone-chrome:94.0.4606.61
+        ports: ["4444:4444"]
+
     steps:
-      - uses: actions/checkout@v2
-      - name: Run docker compose
-        run: docker-compose -f docker-compose-cucumber.yml up --abort-on-container-exit --exit-code-from test-cucumber
+      - uses: actions/checkout@v1
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6.3
+          bundler-cache: true
+      - name: Install dependencies
+        run: |
+          sudo apt-get -yqq install libpq-dev build-essential libcurl4-openssl-dev nodejs yarn
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+          yarn install
+      - name: Create database
+        run: |
+          bundle exec rake db:setup
+          bundle exec rake db:test:prepare
+      - name: Run tests
+        run: bundle exec rake cucumber
   
   rspec-test:
     name: RSpec
     runs-on: ubuntu-latest
-    container: ruby:2.6.3-alpine
     env:
       RAILS_ENV: test
-      POSTGRES_HOST: pg
+      POSTGRES_HOST: localhost
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: secret
 
@@ -39,14 +77,20 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-      selenium:
-        image: selenium/standalone-chrome:94.0.4606.61
+        ports: ["5432:5432"]
+      # selenium:
+      #   image: selenium/standalone-chrome:94.0.4606.61
       
     steps:
       - uses: actions/checkout@v1
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6.3
+          bundler-cache: true
       - name: Install dependencies
         run: |
-          apk add --update --no-cache bash build-base nodejs sqlite-dev tzdata postgresql-dev yarn
+          sudo apt-get -yqq install libpq-dev build-essential libcurl4-openssl-dev nodejs yarn
           gem install bundler
           bundle install --jobs 4 --retry 3
           yarn install

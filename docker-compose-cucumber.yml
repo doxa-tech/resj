@@ -1,3 +1,6 @@
+# Use this docker-compose to run cucumber:
+# docker-compose -f docker-compose-test.yml up --abort-on-container-exit --exit-code-from test-cucumber    
+
 version: '3.7'
 
 services:
