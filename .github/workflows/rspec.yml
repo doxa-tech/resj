@@ -1,0 +1,51 @@
+name: RSpec
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  rspec-test:
+    name: RSpec
+    runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: test
+      POSTGRES_HOST: localhost
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+
+    services:
+      pg:
+        image: postgres:11
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: secret
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports: ["5432:5432"]
+      # selenium:
+      #   image: selenium/standalone-chrome:94.0.4606.61
+      
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6.3
+          bundler-cache: true
+      - name: Install dependencies
+        run: |
+          sudo apt-get -yqq install libpq-dev build-essential libcurl4-openssl-dev nodejs yarn
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+          yarn install
+      - name: Create database
+        run: |
+          bundle exec rake db:setup
+          bundle exec rake db:test:prepare
+      - name: Run tests
+        run: bundle exec rake spec
