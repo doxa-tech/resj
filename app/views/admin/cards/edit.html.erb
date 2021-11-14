@@ -12,8 +12,8 @@
     </div>
 
     <div class="special-actions">
-      <p>Statut: <%= @card.status %></p>
-      <%= form_with do |f| %>
+      <p>Statut: <%= t("card.statuses." + @card.status) %></p>
+      <%= form_with url: status_admin_card_path(@card), local: true, method: :post do |f| %>
         <% if @card.pending? %>
           <%= f.submit "Valider" %>
         <% else %>

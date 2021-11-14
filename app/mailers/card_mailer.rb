@@ -17,4 +17,16 @@ class CardMailer < ApplicationMailer
     mail(to: user.email, subject: "Tu as reçu la responsablité d'un groupe")
   end
 
+  def online(card, message)
+    @card = card
+    @message = message
+    mail(to: card.user.email, subject: "Ton groupe sur Réseau Jeunesse a été mis en ligne !")
+  end
+
+  def offline(card, message)
+    @card = card
+    @message = message
+    mail(to: card.user.email, subject: "Ton groupe sur Réseau Jeunesse a été mis hors-ligne !")
+  end
+
 end

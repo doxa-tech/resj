@@ -1,0 +1,8 @@
+<h1>Ton groupe <%= @card.name %> est maintenant en ligne</h1>
+
+<p>Ton groupe est maintenant visible sur le site <a href="https://reseaujeunesse.ch">Réseau Jeunesse</a>.</p>
+
+<% if @message.present? %>
+<p>Un message a été transmis avec la mise en ligne:</p>
+<p><%= @message %></p>
+<% end %>

@@ -20,4 +20,14 @@ class CardMailerPreview < ActionMailer::Preview
     CardMailer.received(card, card.user)
   end
 
+  def online
+    card = FactoryBot.build(:card)
+    CardMailer.online(card, "Le groupe est complet !")
+  end
+
+  def offline
+    card = FactoryBot.build(:card)
+    CardMailer.offline(card, "Il manque une description complète")
+  end
+
 end
