@@ -59,7 +59,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
 
-    resources :cards, only: [:index, :edit, :update, :destroy]
+    resources :cards, only: [:index, :edit, :update, :destroy] do
+      post "status", on: :member
+    end
 
   end
 

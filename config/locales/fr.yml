@@ -62,6 +62,11 @@ fr:
       organization: "Oeuvre jeunesse"
       network: "Réseau régional"
       training: "Formation"
+    statuses:
+      pending: "Hors-ligne"
+      online: "En ligne"
+      incomplete: "En cours"
+      change: "Changement"
   user:
     newsletter:
       true: "Activé"

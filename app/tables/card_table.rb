@@ -1,7 +1,7 @@
 class CardTable < BaseTable
 
   def attributes
-    [:id, :name, :description, :card_type, :street, { location: :official_name }, :place, :email, :website, :affiliation, :created_at, :updated_at]
+    [:id, :status, :name, :description, :card_type, :street, { location: :official_name }, :place, :email, :website, :affiliation, :created_at, :updated_at]
   end
 
   def model
