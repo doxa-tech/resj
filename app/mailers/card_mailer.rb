@@ -20,7 +20,7 @@ class CardMailer < ApplicationMailer
   def online(card, message)
     @card = card
     @message = message
-    mail(to: card.user.email, subject: "Ton groupe sur Réseau Jeunesse est désormait en ligne !")
+    mail(to: card.user.email, subject: "Ton groupe sur Réseau Jeunesse est désormais en ligne !")
   end
 
   def offline(card, message)
