@@ -1,43 +1,104 @@
-<h1>Modifier un groupe</h1>
-
-<%= form_with model: [:admin, @card], local: true do |f| %>
-
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-
-  <%= f.label :description %>
-  <%= f.text_area :description %>
-
-  <%= f.label :card_type %>
-  <%= f.select :card_type, options_for_enum(f.object, :card_type), { prompt: "Choisissez une catégorie" }, { class: "card_type", "data-controller": "select--simple" } %>
-
-  <%= f.label :parent_ids %>
-  <%= f.collection_select :parent_ids, Card.network, :id, :name, {}, { multiple: true, "data-controller": "select--simple" } %>
-
-  <%= f.label :street %>
-  <%= f.text_field :street %>
-
-  <%= f.label :location_id %>
-  <%= f.collection_select :location_id, [f.object.location].compact, :id, :full_name, {}, { class: "card_location", "data-controller": "select--locations" } %>
-
-  <%= f.label :latitude %>
-  <%= f.text_field :latitude %>
-  
-  <%= f.label :longitude %>
-  <%= f.text_field :longitude %>
-
-  <%= f.label :affiliation %>
-  <%= f.text_area :affiliation %>
-
-  <%= f.label :email %>
-  <%= f.text_field :email %>
-
-  <%= f.label :website %>
-  <%= f.text_field :website %>
-
-  <%= f.label :place %>
-  <%= f.text_field :place %>
-
-  <%= f.submit %>
-
+<% content_for :links do %>
+  <%= link_to "Retour", admin_cards_path %>
+  <%= link_to "Voir la carte", card_path(@card) %>
 <% end %>
+
+<% content_for :id, "container-admin-cards-edit" %>
+
+<div class="session-form session-form-violet">
+  <div class="wrapper">
+    <div class="title">
+      <span>Modifier un groupe</span>
+    </div>
+
+    <div class="special-actions">
+      <p>Statut: <%= @card.status %></p>
+      <%= form_with do |f| %>
+        <% if @card.pending? %>
+          <%= f.submit "Valider" %>
+        <% else %>
+          <%= f.submit "Mettre hors ligne" %>
+        <% end %>
+        <details class="status-message">
+          <summary>Ajouter un message</summary>
+          <div class="row">
+            <%= f.label "Message" %>
+            <%= f.text_area :message, rows: "3" %>
+          </div>
+        </details>
+      <% end %>
+    </div>
+
+    <%= form_with model: [:admin, @card], local: true do |f| %>
+
+      <div class="row">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
+
+      <div class="row">
+        <%= f.label :description %>
+        <%= f.text_area :description %>
+      </div>
+
+      <div class="row">
+        <%= f.label :card_type %>
+        <%= f.select :card_type, options_for_enum(f.object, :card_type), { prompt: "Choisissez une catégorie" }, { class: "card_type", "data-controller": "select--simple" } %>
+      </div>
+
+      <div class="row">
+        <%= f.label :parent_ids %>
+        <%= f.collection_select :parent_ids, Card.network, :id, :name, {}, { multiple: true, "data-controller": "select--simple" } %>
+      </div>
+
+      <div class="row">
+        <%= f.label :street %>
+        <%= f.text_field :street %>
+      </div>
+
+      <div class="row">
+        <%= f.label :location_id %>
+        <%= f.collection_select :location_id, [f.object.location].compact, :id, :full_name, {}, { class: "card_location", "data-controller": "select--locations" } %>
+      </div>
+
+      <div class="map-location" data-controller="cards--location">
+        <p class="title">Emplacement sur la carte</p>
+        <p class="hint">cliquez dessus pour changer l'emplacement du marqueur</p>
+        <div id="mapbox" data-target="cards--location.map"></div>
+
+        <details class="vanilla">
+          <summary>Détails</summary>
+
+          <%= f.label :latitude %>
+          <%= f.text_field :latitude, data: { "target" => "cards--location.latitude" } %>
+          
+          <%= f.label :longitude %>
+          <%= f.text_field :longitude, data: { "target" => "cards--location.longitude" } %>
+        </details>
+      </div>
+
+      <div class="row">
+        <%= f.label :affiliation %>
+        <%= f.text_area :affiliation %>
+      </div>
+
+      <div class="row">
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+      </div>
+
+      <div class="row">
+        <%= f.label :website %>
+        <%= f.text_field :website %>
+      </div>
+
+      <div class="row">
+        <%= f.label :place %>
+        <%= f.text_field :place %>
+      </div>
+
+      <%= f.submit %>
+
+    <% end %>
+  </div>
+</div>

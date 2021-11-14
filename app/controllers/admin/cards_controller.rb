@@ -2,7 +2,7 @@ class Admin::CardsController < Admin::BaseController
   load_and_authorize
 
   def index
-    @table = CardTable.new(self, @cards, search: true)
+    @table = CardTable.new(self, @cards.where.not(status: "incomplete"), search: true)
   end
 
   def edit
