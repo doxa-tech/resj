@@ -29,6 +29,10 @@ class User < ApplicationRecord
     end
   end
 
+  def name
+    "#{firstname} #{lastname}"
+  end
+
   private
 
   def create_remember_token
