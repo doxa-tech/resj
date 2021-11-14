@@ -1,8 +1,13 @@
 <h1>Ton groupe <%= @card.name %> est maintenant en ligne</h1>
 
-<p>Ton groupe est maintenant visible sur le site <a href="https://reseaujeunesse.ch">Réseau Jeunesse</a>.</p>
+<p>Félicitation, ton groupe <b><%= @card.name %></b> est maintenant visible sur <%= link_to "reseaujeunesse.ch", card_url(@card), target: "_blank" %>.</p>
 
 <% if @message.present? %>
-<p>Un message a été transmis avec la mise en ligne:</p>
-<p><%= @message %></p>
+<p>Le message suivant t'a été transmis avec la mise en ligne:</p>
+<p><i><%= @message %></i></p>
 <% end %>
+
+<p>Tu peux mettre à jour en tout temps les informations de ton groupe à partir de 
+<%= link_to "ton compte", profile_url, target: "_blank" %> sur le site. Afin de garantir des 
+informations à jour, tu recevra tous les 6 mois une invitation à contrôller et mettre 
+à jour si nécessaire les informations du groupe.</p>

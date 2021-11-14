@@ -1,10 +1,10 @@
-<h1>Ton groupe <%= @card.name %> a été mis hors-ligne</h1>
+<h1>Ton groupe <%= @card.name %> n'est plus en ligne</h1>
 
-<p>Ton groupe n'est plus visible sur le site <a href="https://reseaujeunesse.ch">Réseau Jeunesse</a>.</p>
+<p>Ton groupe <b><%= @card.name %></b> n'est dorénavant plus visible sur le site <%= link_to "Réseau Jeunesse", root_url, target: "_blank" %>.</p>
 
 <% if @message.present? %>
 <p>Les raisons suivantes ont été données:</p>
-<p><%= @message %></p>
+<p><i><%= @message %></i></p>
 <% end %>
 
 <p>En cas de question ou remarque nous nous tenons à ta disposition à l'adresse <a href="mailto:info@resj.ch">info@resj.ch</a>.</p>
