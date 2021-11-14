@@ -26,7 +26,7 @@ class CardMailer < ApplicationMailer
   def offline(card, message)
     @card = card
     @message = message
-    mail(to: card.user.email, subject: "Ton groupe sur Réseau Jeunesse n'est désormait plus visible !")
+    mail(to: card.user.email, subject: "Ton groupe sur Réseau Jeunesse n'est désormais plus visible !")
   end
 
 end
