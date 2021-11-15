@@ -33,21 +33,21 @@
   <div class="right">
     <h2>situation</h2>
 
-    <div data-controller="cards--show" data-target="cards--show.map" data-card="<%= @card.to_map_feature %>">
+    <div data-controller="cards--show" data-cards--show-target="map" data-card="<%= @card.to_map_feature %>">
       <div class="map-holder">
         <div id="mapbox"></div>
 
-        <div class="table" data-target="cards--show.items">
+        <div class="table" data-cards--show-target="items">
         </div>
 
         <div style="display: none">
-          <div data-target="cards--show.numbers"></div>
-          <div data-target="cards--show.number"></div>
-          <div data-target="cards--show.numberwrapper"></div>
-          <div data-target="cards--show.numberTemplate"></div>
-          <div data-target="cards--show.previous"></div>
-          <div data-target="cards--show.next"></div>
-          <div data-target="cards--show.total"></div>
+          <div data-cards--show-target="numbers"></div>
+          <div data-cards--show-target="number"></div>
+          <div data-cards--show-target="numberwrapper"></div>
+          <div data-cards--show-target="numberTemplate"></div>
+          <div data-cards--show-target="previous"></div>
+          <div data-cards--show-target="next"></div>
+          <div data-cards--show-target="total"></div>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-<div class="location step" data-target="cards--form.step">
+<div class="location step" data-cards--form-target="step">
   
   <div class="row">
     <%= f.label :street %>
@@ -18,16 +18,16 @@
   <div class="map-location" data-controller="cards--location">
     <p class="label">Emplacement sur la carte</p>
     <p class="hint">cliquez sur la carte pour changer l'emplacement du marqueur</p>
-    <div id="mapbox" data-target="cards--location.map"></div>
+    <div id="mapbox" data-cards--location-target="map"></div>
 
     <details class="vanilla">
       <summary>Détails</summary>
 
       <%= f.label :latitude %>
-      <%= f.text_field :latitude, readonly: "readonly", data: { "target" => "cards--location.latitude" } %>
+      <%= f.text_field :latitude, readonly: "readonly", data: { "cards--location-target" => "latitude" } %>
       
       <%= f.label :longitude %>
-      <%= f.text_field :longitude, readonly: "readonly", data: { "target" => "cards--location.longitude" } %>
+      <%= f.text_field :longitude, readonly: "readonly", data: { "cards--location-target" => "longitude" } %>
     </details>
   </div>
 

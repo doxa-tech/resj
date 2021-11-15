@@ -1,7 +1,7 @@
 <% content_for :id, "container-home" %>
 
 <div class="cards-search" data-controller="search" data-search-list-controller="cards--list">
-  <%= form_with url: "/cards.json", method: :get, data: { target: "search.form" } do |f| %>
+  <%= form_with url: "/cards.json", method: :get, data: { "search-target" => "form" } do |f| %>
 
   <section class="top">
     <div class="content-wrapper text-intro">
@@ -24,12 +24,12 @@
         <div id="mapbox"></div>
 
         <div class="filter-btn-holder">
-            <span data-action="click->search#toggleFilters" data-target="search.filtersBtn">Filtrer</span>
+            <span data-action="click->search#toggleFilters" data-search-target="filtersBtn">Filtrer</span>
         </div>
 
-        <div class="filters" data-target="search.filtersHolder">
+        <div class="filters" data-search-target="filtersHolder">
           <h5>Canton :</h5>
-          <%= f.collection_check_boxes :cantons, Canton.romand, :id, :name, {}, "data-target": "search.input" do |b| %>
+          <%= f.collection_check_boxes :cantons, Canton.romand, :id, :name, {}, "data-search-target" => "input" do |b| %>
           <label class="container"><%= b.object.name %>
             <%= b.check_box %>
             <span class="checkmark"></span>
@@ -37,7 +37,7 @@
           <% end %>
 
           <h5>Tag :</h5>
-          <%= f.collection_check_boxes :tags, Tag.order("popularity desc").first(10), :id, :name, {}, "data-target": "search.input" do |b| %>
+          <%= f.collection_check_boxes :tags, Tag.order("popularity desc").first(10), :id, :name, {}, "data-search-target" => "input" do |b| %>
           <label class="container"><%= b.object.name %>
             <%= b.check_box %>
             <span class="checkmark"></span>
@@ -45,7 +45,7 @@
           <% end %>
 
           <h5>Types :</h5>
-          <%= f.collection_check_boxes :card_types, Card.card_types, :last, :first, {}, "data-target": "search.input" do |b| %>
+          <%= f.collection_check_boxes :card_types, Card.card_types, :last, :first, {}, "data-search-target" => "input" do |b| %>
           <label class="container"><%= t("card.card_types.#{b.text}") %>
             <%= b.check_box %>
             <span class="checkmark"></span>
@@ -61,7 +61,7 @@
       <div class="form">
         <span id="trouver_un_groupe" class="info-box-red">trouver un groupe ?</span>
         <div class="search">
-          <%= f.text_field :name, placeholder: "Nom, lieu, mot-clé", "data-target": "search.input" %>
+          <%= f.text_field :name, placeholder: "Nom, lieu, mot-clé", "data-search-target" => "input" %>
           <label for="name">
             <svg width="100%" height="100%" viewBox="0 0 50 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
               <path d="M24.895,24.618C20.114,29.587 12.327,30.561 6.411,26.578C-0.229,22.108 -1.998,13.086 2.46,6.428C6.918,-0.23 15.915,-2.004 22.555,2.467C28.472,6.45 30.521,14.046 27.744,20.363L49.147,34.773L46.298,39.028L24.895,24.618Z" />
@@ -74,10 +74,10 @@
       </div>
     </div>
 
-    <div class="cards-list" data-target="search.list" data-cards--list-page="1" data-controller="cards--list">
+    <div class="cards-list" data-search-target="list" data-cards--list-page="1" data-controller="cards--list">
       <div class="group-title">
-        <span class="info-box-red-lower">Les groupes (<span data-target="cards--list.total"></span>)</span>
-        <%= link_to "+ Inscrire un groupe", new_cards_wizard_path, :class => "subscribe" %>
+        <span class="info-box-red-lower">Les groupes (<span data-cards--list-target="total"></span>)</span>
+        <%= link_to "+ Inscrire un groupe", new_cards_wizard_path, class: "subscribe" %>
       </div>
 
       <div class="table">
@@ -91,22 +91,22 @@
       </div>
 
       <div hidden class="table">
-        <div hidden class="row" data-target="cards--list.itemTemplate">
+        <div hidden class="row" data-cards--list-target="itemTemplate">
           <div>
             <%= image_tag "cards/default-avatar.png" %>
           </div>
-          <div data-target="cards--list.name"></div>
+          <div data-cards--list-target="name"></div>
           <div>
-            <span data-target="cards--list.place"></span><br>
-            <span data-target="cards--list.canton"></span>
+            <span data-cards--list-target="place"></span><br>
+            <span data-cards--list-target="canton"></span>
           </div>
           <div>
-            <p data-target="cards--list.description"></p>
-            <p><i data-target="cards--list.type"></i></p>
+            <p data-cards--list-target="description"></p>
+            <p><i data-cards--list-target="type"></i></p>
           </div>
           <div>
             <div>
-              <%= link_to "#", data: { "target" => "cards--list.link"} do %>
+              <%= link_to "#", data: { "cards--list-target" => "link"} do %>
               <svg width="100%" height="100%" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.5;">
                 <path d="M50,30L50,70" style="fill:none;stroke-width:5px;" />
                 <path d="M30,50L70,50" style="fill:none;stroke-width:5px;" />
@@ -116,16 +116,16 @@
           </div>
         </div>
       </div>
-      <div class="table" data-target="cards--list.items">
+      <div class="table" data-cards--list-target="items">
       </div>
       <div class="pagination">
-        <button type="button" class="nav" data-target="cards--list.previous" data-action="cards--list#previous">&#60;&#60;</button>
-        <div hidden data-target="cards--list.numberTemplate">
-          <button type="button" class="number-wrapper" data-target="cards--list.number" data-action="cards--list#go"></button>
+        <button type="button" class="nav" data-cards--list-target="previous" data-action="cards--list#previous">&#60;&#60;</button>
+        <div hidden data-cards--list-target="numberTemplate">
+          <button type="button" class="number-wrapper" data-cards--list-target="number" data-action="cards--list#go"></button>
         </div>
-        <div class="numbers" data-target="cards--list.numbers">
+        <div class="numbers" data-cards--list-target="numbers">
         </div>
-        <button type="button" class="nav" data-target="cards--list.next" data-action="cards--list#next">&#62;&#62;</button>
+        <button type="button" class="nav" data-cards--list-target="next" data-action="cards--list#next">&#62;&#62;</button>
       </div>
     </div>
   </section>
@@ -137,7 +137,7 @@
   <div class="orators-index">
 
     <div class="orators-search" data-controller="search" data-search-list-controller="orators--list">
-      <%= form_with url: "/orators.json", method: :get, local: true, data: { target: "search.form" } do |f| %>
+      <%= form_with url: "/orators.json", method: :get, local: true, data: { "search-target" => "form" } do |f| %>
 
       <div class="search-row">
         <div class="img">
@@ -147,7 +147,7 @@
         <div class="form">
           <span id="trouver_un_orateur" class="info-box-orange">trouver un orateur ?</span>
           <div class="search">
-            <%= f.text_field :name, placeholder: "Nom, thèmes, mot-clé", "data-target": "search.input" %>
+            <%= f.text_field :name, placeholder: "Nom, thèmes, mot-clé", "data-search-target" => "input" %>
             <label for="name">
               <svg width="100%" height="100%" viewBox="0 0 50 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
                 <path d="M24.895,24.618C20.114,29.587 12.327,30.561 6.411,26.578C-0.229,22.108 -1.998,13.086 2.46,6.428C6.918,-0.23 15.915,-2.004 22.555,2.467C28.472,6.45 30.521,14.046 27.744,20.363L49.147,34.773L46.298,39.028L24.895,24.618Z" />
@@ -158,18 +158,18 @@
       </div>
 
       <div class="filter-btn-holder">
-        <span data-action="click->search#toggleFilters" data-target="search.filtersBtn">Filtres</span>
+        <span data-action="click->search#toggleFilters" data-search-target="filtersBtn">Filtres</span>
       </div>
-      <div data-target="search.filtersHolder">
-        <%= f.collection_check_boxes :cantons, Canton.all, :id, :name, {}, "data-target": "search.input" %>
-        <%= f.collection_check_boxes :themes, Theme.all, :id, :name, {}, "data-target": "search.input" %>
+      <div data-search-target="filtersHolder">
+        <%= f.collection_check_boxes :cantons, Canton.all, :id, :name, {}, "data-search-target" => "input" %>
+        <%= f.collection_check_boxes :themes, Theme.all, :id, :name, {}, "data-search-target" => "input" %>
       </div>
       <% end %>
 
-      <div class="orators-list" data-target="search.list" data-orators--list-page="1" data-controller="orators--list">
+      <div class="orators-list" data-search-target="list" data-orators--list-page="1" data-controller="orators--list">
         <div class="orator-title">
-          <span class="info-box-orange-lower">Les orateurs (<span data-target="orators--list.total"></span>)</span>
-          <%= link_to "+ Inscrire un orateur", "/faq#become_orator", :class => "subscribe" %>
+          <span class="info-box-orange-lower">Les orateurs (<span data-orators--list-target="total"></span>)</span>
+          <%= link_to "+ Inscrire un orateur", "/faq#become_orator", class: "subscribe" %>
         </div>
 
         <div class="table">
@@ -183,16 +183,16 @@
         </div>
 
         <div hidden class="table">
-          <div class="row" data-target="orators--list.itemTemplate">
+          <div class="row" data-orators--list-target="itemTemplate">
             <div>
               <%= image_tag "orators/default-avatar.png" %>
             </div>
-            <div data-target="orators--list.title"></div>
+            <div data-orators--list-target="title"></div>
             <div></div>
-            <div data-target="orators--list.themes"></div>
+            <div data-orators--list-target="themes"></div>
             <div>
               <div>
-                <%= link_to "#", data: { "target" => "orators--list.link"} do %>
+                <%= link_to "#", data: { "orators--list-target" => "link"} do %>
                 <svg width="100%" height="100%" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.5;">
                   <path d="M50,30L50,70" style="fill:none;stroke-width:5px;" />
                   <path d="M30,50L70,50" style="fill:none;stroke-width:5px;" />
@@ -202,17 +202,17 @@
             </div>
           </div>
         </div>
-        <div class="table" data-target="orators--list.items">
+        <div class="table" data-orators--list-target="items">
         </div>
 
         <div class="pagination">
-          <button type="button" class="nav" data-target="orators--list.previous" data-action="orators--list#previous">&#60;&#60;</button>
-          <div hidden data-target="orators--list.numberTemplate">
-            <button type="button" class="number-wrapper" data-target="orators--list.number" data-action="orators--list#go"></button>
+          <button type="button" class="nav" data-orators--list-target="previous" data-action="orators--list#previous">&#60;&#60;</button>
+          <div hidden data-orators--list-target="numberTemplate">
+            <button type="button" class="number-wrapper" data-orators--list-target="number" data-action="orators--list#go"></button>
           </div>
-          <div class="numbers" data-target="orators--list.numbers">
+          <div class="numbers" data-orators--list-target="numbers">
           </div>
-          <button type="button" class="nav" data-target="orators--list.next" data-action="orators--list#next">&#62;&#62;</button>
+          <button type="button" class="nav" data-orators--list-target="next" data-action="orators--list#next">&#62;&#62;</button>
         </div>
       </div>
 

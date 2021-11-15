@@ -13,25 +13,25 @@
       <span>Création d'un nouveau groupe</span>
     </div>
 
-    <div class="timeline" data-target="cards--form.timeline">
+    <div class="timeline" data-cards--form-target="timeline">
       <button type="button" data-action="cards--form#changeStep" data-destination-index="0">Informations générale</button>
       <button type="button" data-action="cards--form#changeStep" data-destination-index="1">Localisation</button>
       <button type="button" data-action="cards--form#changeStep" data-destination-index="2">Information supplémentaires</button>
       <button type="button" data-action="cards--form#confirmation">Confirmation</button>
     </div>
     
-    <%= form_with model: @card, url: cards_wizard_path, data: { target: "cards--form.form" } do |f| %>
+    <%= form_with model: @card, url: cards_wizard_path, data: { "cards--form-target" => "form" } do |f| %>
 
-      <div id="error" data-target="cards--form.error"></div>
+      <div id="error" data-cards--form-target="error"></div>
 
       <%= render "cards/wizards/general_step", f: f %>
       <%= render "cards/wizards/location_step", f: f %>
       <%= render "cards/wizards/extra_step", f: f %>
 
       <div class="buttons">
-        <button type="button" class="submit nav previous" data-action="cards--form#previous" data-target="cards--form.previous">Revenir en arrière</button>
-        <button type="button" class="submit nav next" data-action="cards--form#next" data-target="cards--form.next">Prochaine étape</button>
-        <button type="button" class="submit nav final" data-action="cards--form#confirmation" data-target="cards--form.confirmation">Aller à la confirmation</button>
+        <button type="button" class="submit nav previous" data-action="cards--form#previous" data-cards--form-target="previous">Revenir en arrière</button>
+        <button type="button" class="submit nav next" data-action="cards--form#next" data-cards--form-target="next">Prochaine étape</button>
+        <button type="button" class="submit nav final" data-action="cards--form#confirmation" data-cards--form-target="confirmation">Aller à la confirmation</button>
       </div>
     <% end %>
     </div>

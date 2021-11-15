@@ -6,11 +6,11 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "^5.4.0",
     "choices.js": "^9.0.0",
-    "mapbox-gl": "^1.13.1",
-    "stimulus": "^1.1.1"
+    "mapbox-gl": "^2.6",
+    "stimulus": "^3.0"
   },
   "version": "0.2.0",
   "devDependencies": {
-    "webpack-dev-server": "^3.2.1"
+    "webpack-dev-server": "^4.5"
   }
 }
