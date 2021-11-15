@@ -117,8 +117,6 @@ export default class LocationController extends Controller {
             "color": "0,0,0"
           }
         }
-
-        console.log("start set map", lng, lat)
         this.setMap(feature);
       }
     });
@@ -146,7 +144,6 @@ export default class LocationController extends Controller {
 
   setMap(feature) {
     let map = this.map;
-    console.log("set map", feature)
     map.getSource('items').setData({
       "type": "FeatureCollection",
       "features": [feature]
