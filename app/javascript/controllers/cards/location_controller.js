@@ -1,5 +1,5 @@
 import { Controller } from "stimulus"
-import mapboxgl from 'mapbox-gl';
+import mapboxgl from '!mapbox-gl';
 
 export default class LocationController extends Controller {
   static targets = ["latitude", "longitude", "map"];
