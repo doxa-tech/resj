@@ -7,7 +7,7 @@ module Users
     describe "#transfer" do
 
       it "transfers the card to another user" do
-        @card = create(:card, status: nil)
+        @card = create(:card)
         request.cookies[:remember_token] = @card.user.remember_token
         email = "another@bar.com"
         @another_user = create(:user, email: email, confirmed: true)
@@ -17,7 +17,7 @@ module Users
       end
 
       it "does not transfer the card" do
-        @card = create(:card, status: nil)
+        @card = create(:card)
         @user = @card.user
         request.cookies[:remember_token] = @user.remember_token
         post :transfer, params: { id: @card.id, email: "nil@bar.com" }

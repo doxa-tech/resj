@@ -8,8 +8,9 @@ Feature: Confirm the card
     Given I am a confirmed user
     And I am signed in
 
+  @javascript @locations
   Scenario: I successfully confirm the card
-    Given I have a complete card
+    Given I have an incomplete card
     When I visit the card confirmation page
     And I click the link "Confirmer"
     Then I should see a flash with "Vous êtes entré dans le réseau avec succès ! Votre groupe n'apparaît pas directement sur la carte car il doit d'abord être validé."
