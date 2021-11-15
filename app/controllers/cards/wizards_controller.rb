@@ -4,7 +4,8 @@ class Cards::WizardsController < ApplicationController
   layout 'admin'
 
   def new
-    @card = current_user.cards.find_by(status: nil)
+    # first match (rewhere is need because of default scope)
+    @card = Card.rewhere(status: :incomplete, user: current_user).first
     if @card.nil?
       @card = current_user.cards.new
       @card.status = :incomplete
@@ -14,21 +15,21 @@ class Cards::WizardsController < ApplicationController
   end
 
   def edit
-    @card = current_user.cards.find(params[:id])
+    @card = find_incomplete_card(params[:id])
   end
 
   def update
-    @card = current_user.cards.find(params[:id])
+    @card = find_incomplete_card(params[:id])
     @card.update(card_params)
     render json: @card.errors.full_messages
   end
   
   def confirmation
-    @card = current_user.cards.find(params[:id])
+    @card = find_incomplete_card(params[:id])
   end
 
   def confirm
-    @card = current_user.cards.find(params[:id])
+    @card = find_incomplete_card(params[:id])
     if @card.valid?
       @card.update_attribute(:status, :pending)
       CardMailer.submit(@card).deliver_now
@@ -44,6 +45,10 @@ class Cards::WizardsController < ApplicationController
   def card_params
     params.require(:card).permit(:name, :description, :card_type, :street, :place, :location_id,
       :latitude, :longitude, :email, :website, :affiliation, :tag_names, :current_step, parent_ids: [])
+  end
+
+  def find_incomplete_card(id)
+    Card.rewhere(id: id, status: :incomplete, user: current_user).first
   end
 
   def check_if_signed_in
