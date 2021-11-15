@@ -4,13 +4,15 @@
   "dependencies": {
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
-    "@rails/webpacker": "^5.4.0",
+    "@rails/webpacker": "5.4.3",
     "choices.js": "^9.0.0",
     "mapbox-gl": "^2.6",
-    "stimulus": "^3.0"
+    "stimulus": "^3.0",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12"
   },
   "version": "0.2.0",
   "devDependencies": {
-    "webpack-dev-server": "^4.5"
+    "webpack-dev-server": "^4.5.0"
   }
 }
