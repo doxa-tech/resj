@@ -30,7 +30,7 @@ class Admin::CardsController < Admin::BaseController
       redirect_to edit_admin_card_path(@card), success: "Le groupe a été mis en ligne"
     else
       @card.update_attribute(:status, :pending)
-      CardMailer.online(@card, params[:message]).deliver_now
+      CardMailer.offline(@card, params[:message]).deliver_now
       redirect_to edit_admin_card_path(@card), success: "Le groupe a été mis hors-ligne"
     end
   end
