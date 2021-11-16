@@ -78,6 +78,18 @@ namespace :migration do
     # mail.deliver_now
   end
 
+  desc "Send migration message to card users"
+  task users_email: :environment do
+    User.all.each do |user|
+      if user.cards
+        CardMailer.migration(user).deliver_now
+      end
+    end
+    # for testing an individual user:
+    # user = User.find(31)
+    # CardMailer.migration(user).deliver_now
+  end
+
   desc "Set the new last_update based on the updated_at before the migration"
   task cards_last_update: :environment do
     CSV.foreach("#{Rails.root}/lib/tasks/cards_updated_at.csv", :headers => true) do |row|
