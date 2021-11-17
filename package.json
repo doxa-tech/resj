@@ -5,16 +5,16 @@
   "dependencies": {
     "choices.js": "^9.0.0",
     "mapbox-gl": "^2.6",
-    "stimulus": "^3.0"
-  },
-  "devDependencies": {
+    "stimulus": "^3.0",
     "@babel/plugin-proposal-private-methods": "^7.16.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.4.3",
     "webpack": "^4.46.0",
     "webpack-cli": "^4.3.1",
-    "@webpack-cli/serve": "^1.6.0",
+    "@webpack-cli/serve": "^1.6.0"
+  },
+  "devDependencies": {
     "webpack-dev-server": "^4.5.0"
   }
 }
