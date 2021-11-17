@@ -64,16 +64,16 @@
       <div class="map-location" data-controller="cards--location">
         <p class="title">Emplacement sur la carte</p>
         <p class="hint">cliquez dessus pour changer l'emplacement du marqueur</p>
-        <div id="mapbox" data-target="cards--location.map"></div>
+        <div id="mapbox" data-cards--location-target="map"></div>
 
         <details class="vanilla">
           <summary>Détails</summary>
 
           <%= f.label :latitude %>
-          <%= f.text_field :latitude, data: { "target" => "cards--location.latitude" } %>
+          <%= f.text_field :latitude, data: { "cards--location-target" => "latitude" } %>
           
           <%= f.label :longitude %>
-          <%= f.text_field :longitude, data: { "target" => "cards--location.longitude" } %>
+          <%= f.text_field :longitude, data: { "cards--location-target" => "longitude" } %>
         </details>
       </div>
 
