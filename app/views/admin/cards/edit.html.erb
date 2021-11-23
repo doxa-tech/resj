@@ -5,12 +5,11 @@
 
 <% content_for :id, "container-admin-cards-edit" %>
 
+<% content_for :title, "Modifier un groupe" %>
+
 <div class="session-form session-form-violet">
   <div class="wrapper">
-    <div class="title">
-      <span>Modifier un groupe</span>
-    </div>
-
+  
     <div class="special-actions">
       <p>Statut: <%= t("card.statuses." + @card.status) %></p>
       <%= form_with url: status_admin_card_path(@card), local: true, method: :post do |f| %>
