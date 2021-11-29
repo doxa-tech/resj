@@ -73,11 +73,12 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default :charset => "utf-8"
+
   config.action_mailer.smtp_settings = {
-    :user_name => Rails.application.credentials.production[:mailer][:user_name],
-    :password  => Rails.application.credentials.production[:mailer][:password],
-    :domain => Rails.application.credentials.production[:mailer][:domain],
-    :address   => Rails.application.credentials.production[:mailer][:address],
+    :user_name => Rails.application.credentials.production.dig(:mailer, :user_name),
+    :password  => Rails.application.credentials.production.dig(:mailer, :password),
+    :domain => Rails.application.credentials.production.dig(:mailer, :domain),
+    :address   => Rails.application.credentials.production.dig(:mailer, :address),
     :port      => 587,
     :authentication => :plain,
     :enable_starttls_auto => true
