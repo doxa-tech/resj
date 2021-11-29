@@ -15,6 +15,7 @@ test: &test
   database: resj_test
 
 production:
+  <<: *default
   database: rails_production
   host: <%= ENV['POSTGRES_HOST'] %>
   port: <%= ENV['POSTGRES_PORT'] %>
