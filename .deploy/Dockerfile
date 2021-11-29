@@ -29,8 +29,10 @@ RUN git checkout ci/custom-docker
 # logging  mode (-l) is need for rvm
 ENV BUNDLE_WITHOUT=${bundle_without}
 ENV BUNDLE_DEPLOYMENT=true
-RUN /bin/bash -l -c bundle install
-RUN /bin/bash -l -c bundle exec rake db:prepare
-RUN /bin/bash -l -c bundle exec rake assets:precompile
+RUN ["/bin/bash", "-l", "-c", "bundle install"]
+RUN --mount=type=secret,id=master_key RAILS_MASTER_KEY=$(cat /run/secrets/master_key) /bin/bash -l -c "rake assets:precompile"
 
 WORKDIR /
+COPY ./entrypoint.sh /
+ENTRYPOINT ["/bin/bash", "-l"]
+CMD ["entrypoint.sh"]
