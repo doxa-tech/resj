@@ -23,7 +23,7 @@ WORKDIR ${WEBROOT}
 RUN rm -rf ROOT
 RUN git clone https://github.com/doxa-tech/resj.git ROOT
 WORKDIR ${WEBROOT}/ROOT
-RUN git checkout deploy
+RUN git checkout ci/custom-docker
 
 # Bundle the application
 # logging  mode (-l) is need for rvm
