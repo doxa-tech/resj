@@ -36,9 +36,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .deploy/
-          secrets: |
-            id=master_key
-            "env=${{ secrets.RAILS_MASTER_KEY }}"
+          secrets: master_key=${{ secrets.RAILS_MASTER_KEY }}
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
