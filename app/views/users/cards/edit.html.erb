@@ -60,7 +60,7 @@
 
     <div class="field">
       <%= f.label :parent_ids %>
-      <%= f.collection_select :parent_ids, Card.network, :id, :name, {}, { multiple: true, "data-controller": "select--simple" } %>
+      <%= f.collection_select :parent_ids, Card.active_networks, :id, :name, {}, { multiple: true, "data-controller": "select--simple" } %>
     </div>
     
     <div class="field">

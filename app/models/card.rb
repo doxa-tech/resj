@@ -3,6 +3,10 @@ class Card < ApplicationRecord
   attr_writer :tag_names
   attr_accessor :current_step
 
+  default_scope -> { where.not(status: :incomplete) }
+  scope :with_incomplete, -> { rewhere(status: :incomplete) }
+  scope :active_networks, -> { where(status: :online, card_type: :network) }
+
   enum card_type: [:youth, :adult, :activist, :organization, :network, :training]
   enum status: [:pending, :online, :incomplete, :change]
 
@@ -44,9 +48,9 @@ class Card < ApplicationRecord
   end
 
   def coordinates_are_both_set
-      if latitude.nil? || longitude.nil? 
-        errors.add(:base, "Veuillez spécifier votre emplacement sur la carte")
-      end
+    if latitude.nil? || longitude.nil? 
+      errors.add(:base, "Veuillez spécifier votre emplacement sur la carte")
+    end
   end
 
   def color
