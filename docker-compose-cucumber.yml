@@ -1,0 +1,45 @@
+# Use this docker-compose to run cucumber:
+# docker-compose -f docker-compose-cucumber.yml up --abort-on-container-exit --exit-code-from test-cucumber    
+
+version: '3.7'
+
+services:
+
+  test-cucumber:
+    build:
+      context: .
+    command: >
+      bash -c "bundle exec rake db:setup && bundle exec rake db:test:prepare
+      && bundle exec rake cucumber"
+    environment:
+      - POSTGRES_HOST=pg
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+      - RAILS_ENV=test
+      - SELENIUM_HOST=selenium
+    volumes:
+      - ./:/usr/src/app
+      - gems:/usr/local/bundle
+      - node-modules:/usr/src/app/node_modules
+    depends_on:
+      - selenium
+      - pg
+
+  pg:
+    image: postgres:11.2-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+    healthcheck:
+      test: /usr/bin/pg_isready
+      interval: 5s
+      timeout: 10s
+      retries: 120
+
+  selenium:
+    image: selenium/standalone-chrome:94.0.4606.61
+    shm_size: '2gb'
+
+volumes:
+  gems: null
+  node-modules: null
