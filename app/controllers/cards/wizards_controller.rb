@@ -4,8 +4,7 @@ class Cards::WizardsController < ApplicationController
   layout 'admin'
 
   def new
-    # first match (rewhere is need because of default scope)
-    @card = Card.rewhere(status: :incomplete, user: current_user).first
+    @card = Card.with_incomplete.where(user: current_user).first
     if @card.nil?
       @card = current_user.cards.new
       @card.status = :incomplete
@@ -48,7 +47,7 @@ class Cards::WizardsController < ApplicationController
   end
 
   def find_incomplete_card(id)
-    Card.rewhere(id: id, status: :incomplete, user: current_user).first
+    Card.with_incomplete.where(id: id, user: current_user).first
   end
 
   def check_if_signed_in

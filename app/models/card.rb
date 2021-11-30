@@ -4,6 +4,7 @@ class Card < ApplicationRecord
   attr_accessor :current_step
 
   default_scope -> { where.not(status: :incomplete) }
+  scope :with_incomplete, -> { rewhere(status: :incomplete) }
   scope :active_networks, -> { where(status: :online, card_type: :network) }
 
   enum card_type: [:youth, :adult, :activist, :organization, :network, :training]
