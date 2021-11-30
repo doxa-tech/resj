@@ -71,6 +71,16 @@
 
 <% end %>
 
+<% if current_user.belongs_to?(:superadmin) || current_user.belongs_to?(:admin) %>
+<div class="administration">
+  <h2>Administration</h2>
+
+  <div class="links">
+    <%= link_to "Groupes", admin_cards_path %>
+  </div>
+</div>
+<% end %>
+
 <div class="danger">
   <h2>Zone de danger</h2>
 
