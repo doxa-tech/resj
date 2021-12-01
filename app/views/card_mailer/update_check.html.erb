@@ -1,0 +1,31 @@
+<h1>Ton groupe <%= @card.name %> est-il encore à jour ?</h1>
+
+<p>Voila <b><%= time_ago_in_words(@card.last_updated) %></b> que ton groupe sur Réseau Jeunesse n'a pas été mis à jour.
+<% if @count >= 4 %>
+<b>Ton groupe est maintenant désactivé, il faut impérativement le vérifier et/ou le mettre à jour</b>.
+<% end %>
+</p>
+
+<p>Afin de garder des groupes à jour nous te demandons de vérifier et mettre à jour si nécessaire les informations de ton groupe. 
+Cette étape est nécessaire pour garder ton groupe sur le site.</p>
+
+<%= render "mailers/button_center" do %>
+  <%= link_to "Confirmer / Mettre à jour mon groupe", edit_users_card_url(@card, confirm:true), "_target"=>"_blank" %>
+<% end %>
+
+<p>Tu peux mettre à jour en tout temps les informations de ton groupe à partir de 
+<%= link_to "ton compte", profile_url, target: "_blank" %> sur le site. Afin de garantir des 
+informations à jour, tu recevra tous les 6 mois une invitation à contrôler et mettre 
+à jour les informations de ton groupe si nécessaire.</p>
+
+<% if @count == 1 %>
+  <p>Ceci est le premier rappel.</p>
+<% elsif @count > 1 && @count <= 2 %>
+  <p>Ceci est le <%= @count %>e rappel.</p>
+<% elsif @count == 3 %>
+  <p>Ceci est le <%= @count %>e rappel.<br><b>Attention: le groupe sera désactivé dans 2 semaines si il n'est pas mis à jour</b>.</p>
+<% elsif @count >= 4 %>
+  <p>Ceci est le <%= @count %>e rappel. <b>Nous nous réservons le droit de supprimer ton groupe si aucune action n'est entreprise</b>.</p>
+<% end %>
+
+<p>Tu peux en savoir plus sur notre politque de mise à jour des groupe <a href="https://reseaujeunesse.ch/faq#update_groups" target="_blank">via notre FAQ</a>.</p>

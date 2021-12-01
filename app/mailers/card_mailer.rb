@@ -29,4 +29,12 @@ class CardMailer < ApplicationMailer
     mail(to: card.user.email, subject: "Ton groupe sur Réseau Jeunesse n'est désormais plus visible !")
   end
 
+  # count indicates the number of reminder sent. 0 is the first "normal" request.
+  # After the 4th reminder the group is marked as "Deactivated".
+  def update_check(card, count)
+    @card = card
+    @count = count
+    mail(to: card.user.email, subject: "Vérifie ton groupe sur Réseau Jeunesse")
+  end
+
 end

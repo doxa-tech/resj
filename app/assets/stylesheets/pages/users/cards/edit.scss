@@ -5,6 +5,12 @@
   padding: 0 $content-padding;
   margin: auto;
 
+  .standard-popup {
+    p {
+      padding: 5px 0;
+    }
+  }
+
   section.top-container {
     .title {
       display: flex;

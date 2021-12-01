@@ -32,4 +32,10 @@ class CardMailerPreview < ActionMailer::Preview
     CardMailer.offline(card, "Il manque une description complète")
   end
 
+  def update_check
+    card = FactoryBot.build(:card)
+    card.id = 1
+    card.last_updated = Time.now - 6.month
+    CardMailer.update_check(card, 7)
+  end
 end
