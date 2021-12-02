@@ -1,37 +1,48 @@
-ARG ruby_version=2.7.3
-ARG nginx_version=1.20.1
+# https://github.com/phusion/passenger-docker
+# Phusion Passenger with Nginx, support for Ruby/NodeJS
+FROM phusion/passenger-customizable:latest
 
-# Install Ruby, NGINX and Passenger
-FROM jelastic/nginxruby:${nginx_version}-ruby-${ruby_version}
+ENV BUNDLE_WITHOUT=development:test
+ENV BUNDLE_DEPLOYMENT=true
+ENV RAILS_ENV=production
 
-ARG node_version=16
-ARG context=production
-ARG bundle_without=development:test
+# Update the system
+RUN apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confold"
 
-# Install NodeJS, NPM and Yarn
-RUN curl –sL https://rpm.nodesource.com/setup_${node_version}.x | bash -
-RUN yum -y install nodejs
-RUN curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo
-RUN yum -y install yarn
+# Enable NodeJS and Ruby
+RUN /pd_build/ruby-2.7.*.sh
+RUN /pd_build/nodejs.sh
+RUN npm install -g yarn
 
-# Set the context
-ENV RAILS_ENV=${context}
-RUN echo "rails_env ${context};" > /etc/nginx/ruby.env
+# Clean up APT when done.
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Set the correct timezone
+ENV TZ=Europe/Zurich
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+# Ruby 2.7.4
+RUN bash -lc 'rvm --default use ruby-2.7.4'
+
+# Activate Nginx
+RUN rm -f /etc/service/nginx/down
+# Load the configuration
+RUN rm /etc/nginx/sites-enabled/default
+ADD resj.conf /etc/nginx/sites-enabled/resj.conf
+
+# Rails migrations script
+COPY --chmod=0755 migrations.sh /etc/my_init.d/40_migrations.sh
 
 # Clone the application
-WORKDIR ${WEBROOT}
-RUN rm -rf ROOT
-RUN git clone https://github.com/doxa-tech/resj.git ROOT
-WORKDIR ${WEBROOT}/ROOT
+USER app
+WORKDIR /home/app
+RUN git clone https://github.com/doxa-tech/resj.git
 
-# Bundle the application
-# logging  mode (-l) is need for rvm
-ENV BUNDLE_WITHOUT=${bundle_without}
-ENV BUNDLE_DEPLOYMENT=true
-RUN ["/bin/bash", "-l", "-c", "bundle install"]
-RUN --mount=type=secret,id=master_key RAILS_MASTER_KEY=$(cat /run/secrets/master_key) /bin/bash -l -c "rake assets:precompile"
+# Prepare the application
+WORKDIR /home/app/resj
+RUN bundle install
+RUN --mount=type=secret,id=master_key,uid=9999 RAILS_MASTER_KEY=$(cat /run/secrets/master_key) bundle exec rake assets:precompile
 
-WORKDIR /
-COPY ./entrypoint.sh /
-ENTRYPOINT ["/bin/bash", "-l"]
-CMD ["entrypoint.sh"]
+# baseimage-docker's init process
+USER root
+CMD ["/sbin/my_init"]
