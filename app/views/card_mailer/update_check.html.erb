@@ -1,7 +1,7 @@
 <h1>Ton groupe <%= @card.name %> est-il encore à jour ?</h1>
 
 <p>Voila <b><%= time_ago_in_words(@card.last_updated) %></b> que ton groupe sur Réseau Jeunesse n'a pas été mis à jour.
-<% if @count >= 4 %>
+<% if @step >= 4 %>
 <b>Ton groupe est maintenant désactivé, il faut impérativement le vérifier et/ou le mettre à jour</b>.
 <% end %>
 </p>
@@ -18,14 +18,14 @@ Cette étape est nécessaire pour garder ton groupe sur le site.</p>
 informations à jour, tu recevra tous les 6 mois une invitation à contrôler et mettre 
 à jour les informations de ton groupe si nécessaire.</p>
 
-<% if @count == 1 %>
+<% if @step == 1 %>
   <p>Ceci est le premier rappel.</p>
-<% elsif @count > 1 && @count <= 2 %>
-  <p>Ceci est le <%= @count %>e rappel.</p>
-<% elsif @count == 3 %>
-  <p>Ceci est le <%= @count %>e rappel.<br><b>Attention: le groupe sera désactivé dans 2 semaines si il n'est pas mis à jour</b>.</p>
-<% elsif @count >= 4 %>
-  <p>Ceci est le <%= @count %>e rappel. <b>Nous nous réservons le droit de supprimer ton groupe si aucune action n'est entreprise</b>.</p>
+<% elsif @step > 1 && @step <= 2 %>
+  <p>Ceci est le <%= @step %>e rappel.</p>
+<% elsif @step == 3 %>
+  <p>Ceci est le <%= @step %>e rappel.<br><b>Attention: le groupe sera désactivé dans 2 semaines si il n'est pas mis à jour</b>.</p>
+<% elsif @step >= 4 %>
+  <p>Ceci est le <%= @step %>e rappel. <b>Nous nous réservons le droit de supprimer ton groupe si aucune action n'est entreprise</b>.</p>
 <% end %>
 
 <p>Tu peux en savoir plus sur notre politque de mise à jour des groupe <a href="https://reseaujeunesse.ch/faq#update_groups" target="_blank">via notre FAQ</a>.</p>
