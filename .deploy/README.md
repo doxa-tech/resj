@@ -6,7 +6,7 @@ This guide contains instruction to deploy the web application on a Jelastic Clou
 
 The application is run in a docker container built using `.deploy/Dockerfile`.
 
-The container is based on a Jelastic image with Nginx and Phusion Passenger. The image pulls the application code, bundles and resolves the Javascript dependencies (node, yarn and packages). Finally, the startup script runs the migration and starts Nginx.
+The container is based on the customizable Phusion Passenger image. The image let us install a specific Ruby version, NodeJS and Yarn. It also uses Nginx as a reverse proxy. The image pulls the application code, bundles and resolves the Javascript dependencies (node, yarn and packages). Finally, one startup script runs the database migrations. The `jelastic` script is meant to ensure the compatibility when deploying in the Jelastic Cloud. For example, Cron service is run by the image (custom init system) and by Jelastic (systemd), hence the script disables the service in Jelastic.
 
 Build the container with: 
 ```
@@ -16,7 +16,7 @@ The environment variable `RAILS_MASTER_KEY` must be set with corresponding value
 
 To run the container:
 ```
-docker run -e RAILS_MASTER_KEY=secret resj 
+docker run -d -e RAILS_MASTER_KEY=secret resj 
 ```
 
 On the Jelastic dashboard, simply load the custom image and set the following environment variables:
