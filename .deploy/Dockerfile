@@ -44,7 +44,6 @@ RUN git clone https://github.com/doxa-tech/resj.git
 
 # Prepare the application
 WORKDIR /home/app/resj
-RUN git checkout ci/custom-docker-v2
 RUN bundle install
 RUN --mount=type=secret,id=master_key,uid=9999 RAILS_MASTER_KEY=$(cat /run/secrets/master_key) bundle exec rake assets:precompile
 
