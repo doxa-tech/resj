@@ -8,6 +8,5 @@ if [[ -z "${RAILS_MASTER_KEY}" ]]; then
 fi 
 
 echo "Running migrations..."
-su - app -c "cd /home/app/resj && RAILS_MASTER_KEY=$RAILS_MASTER_KEY RAILS_ENV=$RAILS_ENV bundle exec rake db:prepare"
-
+setuser app bundle exec rake db:prepare
 exit 0

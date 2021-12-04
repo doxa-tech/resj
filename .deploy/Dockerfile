@@ -5,7 +5,6 @@ FROM phusion/passenger-customizable:latest
 ENV BUNDLE_WITHOUT=development:test
 ENV BUNDLE_DEPLOYMENT=true
 ENV RAILS_ENV=production
-ENV HOME /home/app
 
 # Update the system
 RUN apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confold"
@@ -25,16 +24,18 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 # Ruby 2.7.4
 RUN bash -lc 'rvm --default use ruby-2.7.4'
 
-# Disable Jelastic services
-COPY --chmod=0755 jelastic.sh /etc/my_init.d/01_jelastic.sh
-# Rails migrations are run on startup
-COPY --chmod=0755 migrations.sh /etc/my_init.d/40_migrations.sh
-
-# Activate Nginx
+# Activate Nginx (and disable the systemd service)
 RUN rm -f /etc/service/nginx/down
+RUN rm /etc/systemd/system/multi-user.target.wants/nginx.service
 # Load the configuration
 RUN rm /etc/nginx/sites-enabled/default
 ADD resj.conf /etc/nginx/sites-enabled/resj.conf
+
+# Disable cron service because it is provided by Jelastic
+RUN touch /etc/service/cron/down
+
+# Rails migrations are run on startup
+COPY --chmod=0755 migrations.sh /etc/my_init.d/40_migrations.sh
 
 # Clone the application
 USER app
