@@ -6,7 +6,7 @@
 
 <p>Nous sommes heureux de te présenter la nouvelle version du site, qui a toujours le même objectif: <i>offrir une plate-forme ressources pour soutenir ceux qui travaillent parmi la jeunesse chrétienne de suisse romande</i>.</p>
 
-<p>Parmis les changements tu trouveras une nouvelle liste d'orateurs pour tes soirées et événements, visible sur la page d'accueil. Nous allons également mettre l'accent sur une mise à jour régulière des groupes, chose pour l'aquelle nous avons besoin de ta contribution.</p>
+<p>Parmi les changements tu trouveras une nouvelle liste d'orateurs pour tes soirées et événements, visible sur la page d'accueil. Nous allons également mettre l'accent sur une mise à jour régulière des groupes, chose pour laquelle nous avons besoin de ta contribution.</p>
 
 <p>Tu es actuellement administrateur <%= plural ? "des groupes" : "du groupe" %> <%= @user.cards.map{|card| link_to(card.name, card_url(card)) }.join(", ").html_safe %>. Nous t'invitons dès maintenant à <%= link_to "te connecter sur le site", profile_url, target: "_blank" %> et vérifier les informations <%= plural ? "des groupes" : "du groupe" %>.</p>
 
