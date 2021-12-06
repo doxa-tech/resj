@@ -1,8 +1,10 @@
 <% content_for :links do %>
   <%= link_to "Retour", profile_path %>
+  
   <% if !@orator.disabled %>
     <%= link_to "Voir mon profil publique", orator_path(@orator) %>
   <% end %>
+  
 <% end %>
 
 <div class="session-form session-form-orange">
