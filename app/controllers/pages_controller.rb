@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
 
-  layout "admin", only: :orator_update_profile
+  layout "admin", only: [:orator_update_profile, :legal]
 
   def home
   end
@@ -9,6 +9,9 @@ class PagesController < ApplicationController
   end
 
   def faq
+  end
+
+  def legal
   end
 
   # temporary page for orators to update or remove their profile.
