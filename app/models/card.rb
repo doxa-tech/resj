@@ -3,6 +3,10 @@ class Card < ApplicationRecord
   attr_writer :tag_names
   attr_accessor :current_step
 
+  default_scope -> { where.not(status: :incomplete) }
+  scope :with_incomplete, -> { rewhere(status: :incomplete) }
+  scope :active_networks, -> { where(status: :online, card_type: :network) }
+
   enum card_type: [:youth, :adult, :activist, :organization, :network, :training]
   enum status: [:pending, :online, :incomplete, :change]
 
@@ -16,6 +20,7 @@ class Card < ApplicationRecord
   has_many :parents, through: :card_parents
 
   after_save :assign_tags
+  before_create :set_last_updated
 
   with_options if: Proc.new { |c| c.current_step?("general")} do |c|
     c.validates :name, presence: true, length: { maximum: 30 }, uniqueness: { case_sensitive: false }
@@ -30,7 +35,7 @@ class Card < ApplicationRecord
   end
   with_options if: Proc.new { |c| c.current_step?("extra")} do |c|
     c.validates :website, length: { maximum: 60 }
-    c.validates :email, length: { maximum: 60 },  format: { with: /@/ }, allow_blank: true
+    c.validates :email, length: { maximum: 60 },  format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }, allow_blank: true
     c.validates :affiliation, length: { maximum: 60 }
   end
 
@@ -43,9 +48,9 @@ class Card < ApplicationRecord
   end
 
   def coordinates_are_both_set
-      if latitude.nil? || longitude.nil? 
-        errors.add(:base, "Veuillez spécifier votre emplacement sur la carte")
-      end
+    if latitude.nil? || longitude.nil? 
+      errors.add(:base, "Veuillez spécifier votre emplacement sur la carte")
+    end
   end
 
   def color
@@ -78,6 +83,10 @@ class Card < ApplicationRecord
   end
 
   private
+
+  def set_last_updated
+    self.last_updated = Time.current
+  end
 
   def assign_tags
     # popularity is increased every time the card is updated

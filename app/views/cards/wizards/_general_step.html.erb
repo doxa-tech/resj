@@ -1,4 +1,4 @@
-<div class="general step" data-target="cards--form.step">
+<div class="general step" data-cards--form-target="step">
   <div class="intro">
     Bienvenue dans le processus. En suivant quelques étapes vous allez pouvoir enregistrer votre oeuvre jeunesse. Pour passer à l'étape suivante, il faut valider l'étape en cours.
   </div>
@@ -20,6 +20,6 @@
 
   <div class="row">
     <%= f.label :parent_ids, "Affiliation" %>
-    <%= f.collection_select :parent_ids, Card.network, :id, :name, {}, { multiple: true, "data-controller": "select--simple" } %>
+    <%= f.collection_select :parent_ids, Card.active_networks, :id, :name, {}, { multiple: true, "data-controller": "select--simple" } %>
   </div>
 </div>

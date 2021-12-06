@@ -42,6 +42,10 @@ export default class CardsForm extends Controller {
     });
   }
 
+  clearErrors() {
+    this.errorTarget.innerHTML = "";
+  }
+
   next() {
     if (this.stepIndex >= CardsForm.steps.length - 1) throw "Can not go further";
     this.update(() => {
@@ -101,6 +105,7 @@ export default class CardsForm extends Controller {
       if (res.status === 200) {
         const errors = await res.json();
         if (errors.length === 0) {
+          this.clearErrors();
           return true;
         } else {
           this.showErrors(errors);

@@ -1,5 +1,5 @@
 import ListController from "controllers/list_controller.js"
-import mapboxgl from 'mapbox-gl';
+import mapboxgl from '!mapbox-gl';
 
 export default class MapController extends ListController {
   static targets = [...ListController.targets, "itemTemplate", "name", "type",

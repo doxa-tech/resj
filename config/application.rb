@@ -28,5 +28,7 @@ module Resj
     config.time_zone = 'Bern'
     config.i18n.available_locales = :fr
 
+    # custom error pages
+    config.exceptions_app = self.routes
   end
 end

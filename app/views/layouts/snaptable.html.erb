@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Réseau Jeunesse</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_pack_tag 'application' %>
+    <%= javascript_pack_tag 'admin' %>
+
+    <%= render 'layouts/favicon' %>
+
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.1/mapbox-gl.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="snaptable-layout-top">
+      <div class="logo">
+        <%= link_to image_tag("layout/logo.png"), "/" %>
+        <div class="links">
+          <% if content_for?(:links) %>
+            <%= yield :links %>
+          <% else %>
+            <%= link_to "Retour", profile_path %>
+          <% end %>
+        </div>
+        <div class="text">
+          <% if signed_in? %>
+            <%= link_to "#{current_user.firstname} #{current_user.lastname}", profile_path %>
+            <%= link_to "Déconnexion", signout_path, method: :delete %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="pattern">
+        <div class="wrapper">
+          <h1><%= yield :title %></h1>
+        </div>
+      </div>
+    </div>
+
+    <%= render 'layouts/flash' %>
+
+    <div class="<%= yield :id %>">
+      <%= yield %>
+    </div>
+  </body>
+</html>

@@ -1,5 +1,3 @@
-import { Controller } from "stimulus"
-import mapboxgl from 'mapbox-gl';
 import MapController from "./list_controller";
 
 export default class ShowMap extends MapController {

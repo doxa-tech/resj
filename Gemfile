@@ -21,10 +21,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 
 # Authorization
-gem 'adeia'
+gem 'adeia', '~> 1.0'
 
 # Display DB tables
-gem 'snaptable', '~> 3.0'
+gem 'snaptable', '~> 4.0'
 
 # Pagination
 gem 'will_paginate', '~> 3.0'

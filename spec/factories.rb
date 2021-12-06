@@ -11,7 +11,7 @@ FactoryBot.define do
   end
 
   factory :orator do
-    user factory: :user, confirmed: true
+    association :user, confirmed: true
     location
     street { "Route du moulin 12" }
     description { "A votre service !" }
@@ -27,10 +27,7 @@ FactoryBot.define do
     user
     location { Location.find_by_official_name("Bulle") || create(:location) }
     card_type { :youth }
-
-    factory :active_card do
-      status { :online }
-    end
+    status { :online }
   end
 
   factory :location do

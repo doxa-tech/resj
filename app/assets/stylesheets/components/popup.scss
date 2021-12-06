@@ -46,6 +46,27 @@ div.standard-popup {
         }
       }
     }
+
+    div.form-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 10px 0;
+
+      label {
+        padding: 5px 5px 5px 0;
+
+        &::after {
+          content: ":";
+        }
+      }
+
+      input {
+        flex: 1;
+        padding: 6px;
+        width: 100%;
+      }
+    }
   }
 
   @media only screen and (max-width: $mobile-width) {
@@ -56,6 +77,11 @@ div.standard-popup {
       max-width: initial;
 
       padding: 20px 30px 10px 30px;
+
+      div.form-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   }
 }

@@ -57,11 +57,34 @@ end
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
-Capybara.javascript_driver = :selenium_chrome_headless
+if ENV["SELENIUM_HOST"]
+  Capybara.register_driver :remote_selenium_headless do |app|
+    client = Selenium::WebDriver::Remote::Http::Default.new
+    client.read_timeout = 120 # seconds
+
+    options = Selenium::WebDriver::Chrome::Options.new
+    options.add_argument("--headless")
+    options.add_argument("--window-size=1400,1400")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+
+    Capybara::Selenium::Driver.new(
+      app,
+      browser: :chrome,
+      url: "http://#{ENV["SELENIUM_HOST"]}:4444/wd/hub",
+      options: options,
+      http_client: client,
+    )
+  end
+
+  Capybara.javascript_driver = :remote_selenium_headless
+else
+  Capybara.javascript_driver = :selenium_chrome_headless
+end
 
 Capybara.server_port = 3005
-
-Capybara.server = :puma, { Silent: true } 
+Capybara.server = :puma, { Silent: true }
+Capybara.server_host = IPSocket.getaddress(Socket.gethostname)
 
 # Factory bot
 World(FactoryBot::Syntax::Methods)

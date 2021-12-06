@@ -1,4 +1,4 @@
-FROM ruby:2.6.3-alpine
+FROM ruby:2.7-alpine3.14
 
 RUN apk add --update --no-cache bash build-base nodejs sqlite-dev tzdata postgresql-dev yarn
 

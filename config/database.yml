@@ -10,14 +10,17 @@ development:
   <<: *default
   database: resj_development
 
-  
 test: &test
   <<: *default
   database: resj_test
 
 production:
   <<: *default
-  database: resj_production
+  database: rails_production
+  host: <%= ENV['POSTGRES_HOST'] %>
+  port: <%= ENV['POSTGRES_PORT'] %>
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
 
 cucumber:
   <<: *test

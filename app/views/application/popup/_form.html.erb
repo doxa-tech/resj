@@ -1,0 +1,23 @@
+
+<div data-controller="popup">
+
+  <span data-action="click->popup#display">
+    <%= button_tag text, **button_options, type: "button" %>
+  </span>
+
+  <div class="standard-popup" data-popup-target="content">
+    <div class="content">
+      
+      <%= form_with local: true, **form do %>
+
+      <%= yield %>
+      
+      <div class="buttons">
+        <button class="cancel" type="button" data-action="popup#close">Annuler</button>
+        <button class="confirm" type="submit">Confirmer</button>
+      </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>
