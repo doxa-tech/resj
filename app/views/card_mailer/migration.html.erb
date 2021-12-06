@@ -10,7 +10,7 @@
 
 <p>Tu es actuellement administrateur <%= plural ? "des groupes" : "du groupe" %> <%= @user.cards.map{|card| link_to(card.name, card_url(card)) }.join(", ").html_safe %>. Nous t'invitons dès maintenant à <%= link_to "te connecter sur le site", profile_url, target: "_blank" %> et vérifier les informations <%= plural ? "des groupes" : "du groupe" %>.</p>
 
-<p>Tu n'est plus responsable <%= plural ? "d'un" : "du" %> groupe ? Alors tu as la possibilité de transférer le groupe à quelqu'un d'autre. Cette fonctionalité est disponible sur la page d'édition du groupe, bouton "Transférer le groupe". En faisant cela tu permet au nouveau responsable de maintenir le groupe à jour.</p>
+<p>Tu n'es plus responsable <%= plural ? "d'un" : "du" %> groupe ? Alors tu as la possibilité de transférer le groupe à quelqu'un d'autre. Cette fonctionnalité est disponible sur la page d'édition du groupe, bouton "Transférer le groupe". En le faisant, tu permets au nouveau responsable de maintenir le groupe à jour.</p>
 
 <p>Avec la nouvelle version du site il sera nécessaire de mettre à jour, ou juste valider, périodiquement (tous les 6 mois) que les information du groupe sont à jour. Faute de quoi le groupe ne sera plus visible sur le site. Cette demande parviendra par email.</p>
 
