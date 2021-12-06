@@ -5,6 +5,7 @@ FROM phusion/passenger-customizable:latest
 ENV BUNDLE_WITHOUT=development:test
 ENV BUNDLE_DEPLOYMENT=true
 ENV RAILS_ENV=production
+RUN export SITE_VERSION=`cat VERSION || echo "v0.0.0"`
 
 # Update the system
 RUN apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confold"

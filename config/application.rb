@@ -30,5 +30,7 @@ module Resj
 
     # custom error pages
     config.exceptions_app = self.routes
+
+    config.site_version = ENV['SITE_VERSION'] || "v0.0.0"
   end
 end

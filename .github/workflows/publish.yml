@@ -32,6 +32,9 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
+      - name: Add version file
+        run: echo ${{ steps.meta.outputs.version }} > .deploy/VERSION
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
