@@ -40,3 +40,12 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Redeploy container on Jelastic
+        run: |
+          curl  -X POST -d envName=webapps \
+            -d session=${{ secrets.JELASTIC_SESSION }} \
+            -d tag=${{ steps.meta.outputs.version }} \
+            -d nodeId=${{ secrets.JELASTIC_NODE_ID }} \
+            -d useExistingVolumes=false \
+            https://app.jpc.infomaniak.com/1.0/environment/control/rest/redeploycontainerbyid
