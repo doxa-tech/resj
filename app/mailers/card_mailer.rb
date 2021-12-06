@@ -29,4 +29,9 @@ class CardMailer < ApplicationMailer
     mail(to: card.user.email, subject: "Ton groupe sur Réseau Jeunesse n'est désormais plus visible !")
   end
 
+  def migration(user)
+    @user = user
+    mail(to: user.email, subject: "Du nouveau sur Réseau Jeunesse")
+  end
+
 end

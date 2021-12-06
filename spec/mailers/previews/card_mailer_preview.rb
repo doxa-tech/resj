@@ -32,4 +32,9 @@ class CardMailerPreview < ActionMailer::Preview
     CardMailer.offline(card, "Il manque une description complète")
   end
 
+  def migration
+    user = FactoryBot.build(:user)
+    CardMailer.migration(user)
+  end
+
 end

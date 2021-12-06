@@ -1,0 +1,19 @@
+<% plural = @user.cards.length > 1 %>
+
+<h1>Le site Réseau Jeunesse a fait peau neuve</h1>
+
+<p><%= link_to "Réseau Jeunesse", root_url, target: "_blank" %> a soufflé sa 6e bougie 🎂, et il était temps de remettre un coup de peinture !</p>
+
+<p>Nous sommes heureux de te présenter la nouvelle version du site, qui a toujours le même objectif: <i>offrir une plate-forme ressources pour soutenir ceux qui travaillent parmi la jeunesse chrétienne de suisse romande</i>.</p>
+
+<p>Parmi les changements tu trouveras une nouvelle liste d'orateurs pour tes soirées et événements, visible sur la page d'accueil. Nous allons également mettre l'accent sur une mise à jour régulière des groupes, chose pour laquelle nous avons besoin de ta contribution.</p>
+
+<p>Tu es actuellement administrateur <%= plural ? "des groupes" : "du groupe" %> <%= @user.cards.map{|card| link_to(card.name, card_url(card)) }.join(", ").html_safe %>. Nous t'invitons dès maintenant à <%= link_to "te connecter sur le site", profile_url, target: "_blank" %> et vérifier les informations <%= plural ? "des groupes" : "du groupe" %>.</p>
+
+<p>Tu n'es plus responsable <%= plural ? "d'un" : "du" %> groupe ? Alors tu as la possibilité de transférer le groupe à quelqu'un d'autre. Cette fonctionnalité est disponible sur la page d'édition du groupe, bouton "Transférer le groupe". En le faisant, tu permets au nouveau responsable de maintenir le groupe à jour.</p>
+
+<p>Avec la nouvelle version du site, il sera nécessaire de périodiquement (tous les 6 mois) valider et mettre à jour si nécessaire ton groupe afin que ses information soient justes. Faute de quoi le groupe ne sera plus visible sur le site. Cette demande parviendra par email.</p>
+
+<p>Nous te remercions pour ton précieux engagement vis-à-vis de la jeunesse en Suisse romande.</p>
+
+<p>En cas de question ou remarque nous nous tenons à ta disposition à l'adresse <a href="mailto:info@resj.ch">info@resj.ch</a>.</p>
