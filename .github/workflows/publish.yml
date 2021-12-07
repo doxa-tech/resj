@@ -1,4 +1,4 @@
-name: Create and publish the deploy Docker image
+name: Build and push
 
 on:
   release:
@@ -32,9 +32,6 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
-      - name: Add version file
-        run: echo ${{ steps.meta.outputs.version }} > .deploy/VERSION
-
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
@@ -43,6 +40,11 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            site_version=${{ steps.meta.outputs.version }}
+            site_build_hash=$(git rev-parse --short "$GITHUB_SHA")
+            site_build_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"
+            site_build_time="$(date +'%d/%m/%y %H:%M')"
 
       - name: Redeploy container on Jelastic
         run: |

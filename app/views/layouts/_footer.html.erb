@@ -25,10 +25,25 @@
       <%= image_tag "layout/logo-res.png" %>
     </div>
   </div>
+
+  <p class="data">
+    <svg width="100%" height="100%" viewBox="0 0 768 797" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+        <g transform="matrix(1,0,0,1,-1500.38,-565.579)">
+            <path d="M1793.38,1350.19C1808.44,1359.33 1920.53,1304.67 1937.8,1296.16C1957.22,1286.59 1926.09,837.11 1940.63,832.934C1960.39,827.259 2253.85,842.806 2263.34,827.029C2271.56,813.347 2267.39,775.068 2263.83,774.14C2242.98,768.708 2237.86,779.857 2231.91,767.097C2225.86,754.109 2173.85,680.949 2090.07,621.115C2016.04,568.236 1813.72,517.733 1634.64,647.871C1563.48,699.587 1548.53,765.142 1536.06,773.114C1523.59,781.085 1501.61,768.962 1501.61,781.226C1501.61,793.49 1496.5,824.621 1507.12,830.38C1518.62,836.614 1822.37,832.657 1826.19,834.02C1836.79,837.81 1836.74,1071.09 1831.02,1081.31C1825.29,1091.53 1803.99,1099.42 1795.41,1106.17C1786.83,1112.91 1778.51,1341.16 1793.38,1350.19ZM1650.51,767.929C1639.79,781.687 1835.75,777.737 1837.22,769.1C1838.68,760.463 1843.78,660.754 1833.02,660.647C1767.03,659.995 1719.91,678.85 1650.51,767.929ZM1942.94,660.803C1930.49,659.89 1929.76,769.848 1944.59,772.293C1959.42,774.737 2126.47,779.318 2120.43,768.074C2114.41,756.829 2067.39,669.915 1942.94,660.803Z" style="fill:rgb(228,30,37);"/>
+        </g>
+    </svg>
+    Le site et les données sont stockés uniquement en Suisse
+  </p>
 </div>
 
 <div id="application-footer-second">
   <p>Réalisation par Noémien & Keran Kocher - <a href="https://github.com/doxa-tech/resj" target="_blank">GitHub</a></p>
   <p>Design par <a href="http://www.cosycom.ch/" target="_blank">Cosycon</a></p>
-  <p class="version">version <%= link_to Rails.configuration.site_version, "https://github.com/doxa-tech/resj/releases", target: "_blank" %>
+  <details class="version">
+    <summary>
+      <%= Rails.configuration.site_version %>
+    </summary>
+    
+    <p>Build n°<%= link_to Rails.configuration.site_build_hash, Rails.configuration.site_build_url, target: "_blank" %> (<%= Rails.configuration.site_build_time %>)</p>
+    <p><%= link_to "releases", "https://github.com/doxa-tech/resj/releases", target: "_blank" %></p>
 </div>
