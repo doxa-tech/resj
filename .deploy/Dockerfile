@@ -33,7 +33,7 @@ ENV TZ=Europe/Zurich
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Ruby 2.7.4
-RUN bash -lc 'rvm --default use ruby-2.7.4'
+RUN bash -lc 'rvm --default use ruby-2.7.5'
 
 # Activate Nginx (and disable the systemd service)
 RUN rm -f /etc/service/nginx/down
