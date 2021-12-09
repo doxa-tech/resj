@@ -6,6 +6,17 @@ ENV BUNDLE_WITHOUT=development:test
 ENV BUNDLE_DEPLOYMENT=true
 ENV RAILS_ENV=production
 
+# Runtime variable that we find interesting to have
+ARG site_version=0.0.0
+ARG site_build_hash=xxx
+ARG site_build_url=#
+ARG site_build_time="1/1/1970 00:00"
+
+ENV SITE_VERSION ${site_version}
+ENV SITE_BUILD_HASH ${site_build_hash}
+ENV SITE_BUILD_URL ${site_build_url}
+ENV SITE_BUILD_TIME ${site_build_time}
+
 # Update the system
 RUN apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confold"
 

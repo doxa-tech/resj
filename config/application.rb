@@ -30,5 +30,10 @@ module Resj
 
     # custom error pages
     config.exceptions_app = self.routes
+
+    config.site_version = ENV['SITE_VERSION'] || "v0.0.0"
+    config.site_build_hash = ENV['SITE_BUILD_HASH'] || "xxx"
+    config.site_build_url = ENV['SITE_BUILD_URL'] || "#"
+    config.site_build_time = ENV['SITE_BUILD_TIME'] || "1/1/70 00:00"
   end
 end
