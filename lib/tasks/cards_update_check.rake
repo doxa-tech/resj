@@ -45,6 +45,8 @@ namespace :cards_update do
         # => To be implemented in model
         #card.deactivated = true
         #card.save
+
+        Admin::CardMailer.deactivated(card).deliver_now
       end
 
       if step != -1
