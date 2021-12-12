@@ -8,7 +8,7 @@ div#application-footer {
   div.content-wrap {
     margin: auto;
     max-width: $content-width;
-    padding: 50px $content-padding 50px $content-padding;
+    padding: 50px $content-padding 30px $content-padding;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -62,6 +62,19 @@ div#application-footer {
     }
   }
 
+  .data {
+    color: $color-dark-grey;
+    text-align: center;
+    padding: 20px 20px;
+    font-size: 0.8em;
+
+    svg {
+      max-width: 40px;
+      vertical-align: middle;
+      padding: 0 10px 0 0;
+    }
+  }
+
   @media only screen and (max-width: $mobile-width) {
     div.content-wrap {
       flex-direction: column;
@@ -76,10 +89,39 @@ div#application-footer {
 div#application-footer-second {
   text-align: center;
   font-size: 0.8em;
-  padding: 20px;
+  padding: 20px 20px 10px 20px;
 
   a {
     text-decoration: underline;
-    color: #aaa;
+    color: rgb(199, 199, 199);
+  }
+
+  details.version {
+    color: rgb(197, 197, 197);
+    padding-top: 15px;
+    cursor: pointer;
+
+    summary {
+      padding: 0 0 5px 0;
+      list-style: none;
+
+      &::marker,
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      &:focus {
+        outline: 0;
+      }
+    }
+
+    p {
+      padding: 2px 0;
+    }
+
+    a {
+      text-decoration: underline;
+      color: inherit;
+    }
   }
 }

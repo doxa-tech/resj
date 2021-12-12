@@ -59,6 +59,9 @@ Cucumber::Rails::Database.javascript_strategy = :truncation
 
 if ENV["SELENIUM_HOST"]
   Capybara.register_driver :remote_selenium_headless do |app|
+    client = Selenium::WebDriver::Remote::Http::Default.new
+    client.read_timeout = 120 # seconds
+
     options = Selenium::WebDriver::Chrome::Options.new
     options.add_argument("--headless")
     options.add_argument("--window-size=1400,1400")
@@ -70,6 +73,7 @@ if ENV["SELENIUM_HOST"]
       browser: :chrome,
       url: "http://#{ENV["SELENIUM_HOST"]}:4444/wd/hub",
       options: options,
+      http_client: client,
     )
   end
 

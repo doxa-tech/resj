@@ -38,4 +38,10 @@ class CardMailerPreview < ActionMailer::Preview
     card.last_updated = Time.now - 6.month
     CardMailer.update_check(card, 7)
   end
+  
+  def migration
+    user = FactoryBot.build(:user)
+    CardMailer.migration(user)
+  end
+
 end

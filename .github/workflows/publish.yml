@@ -1,4 +1,4 @@
-name: Create and publish the deploy Docker image
+name: Build and push
 
 on:
   release:
@@ -32,6 +32,13 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
+      - name: Get build args
+        id: bargs
+        run: |
+          echo "::set-output name=shortsha::$(git rev-parse --short ${GITHUB_SHA})"
+          echo "::set-output name=buildurl::${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"
+          echo "::set-output name=date::$(date +'%d/%m/%y %H:%M')"
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
@@ -40,3 +47,17 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            site_version=${{ steps.meta.outputs.version }}
+            site_build_hash=${{ steps.bargs.outputs.shortsha }}
+            site_build_url=${{ steps.bargs.outputs.buildurl }}
+            site_build_time=${{ steps.bargs.outputs.date }}
+
+      - name: Redeploy container on Jelastic
+        run: |
+          curl  -X POST -d envName=webapps \
+            -d session=${{ secrets.JELASTIC_SESSION }} \
+            -d tag=${{ steps.meta.outputs.version }} \
+            -d nodeId=${{ secrets.JELASTIC_NODE_ID }} \
+            -d useExistingVolumes=false \
+            https://app.jpc.infomaniak.com/1.0/environment/control/rest/redeploycontainerbyid

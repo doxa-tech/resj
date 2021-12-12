@@ -36,5 +36,10 @@ class CardMailer < ApplicationMailer
     @step = step
     mail(to: card.user.email, subject: "Vérifie ton groupe sur Réseau Jeunesse")
   end
+  
+  def migration(user)
+    @user = user
+    mail(to: user.email, subject: "Du nouveau sur Réseau Jeunesse")
+  end
 
 end

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
 
-  %w(resj faq orator_update_profile).each do |page|
+  %w(resj faq orator_update_profile legal).each do |page|
     get page, to: "pages##{page}"
   end
 
