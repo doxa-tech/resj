@@ -31,7 +31,11 @@ ENV BUNDLE_DEPLOYMENT=true
 RUN ["/bin/bash", "-l", "-c", "bundle install"]
 RUN --mount=type=secret,id=master_key RAILS_MASTER_KEY=$(cat /run/secrets/master_key) /bin/bash -l -c "rake assets:precompile"
 
+# run the cards update check daily
+COPY ./cards-check /etc/cron.daily/
+
 WORKDIR /
 COPY ./entrypoint.sh /
+
 ENTRYPOINT ["/bin/bash", "-l"]
 CMD ["entrypoint.sh"]

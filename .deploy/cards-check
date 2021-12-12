@@ -1,0 +1,5 @@
+#!/bin/sh
+
+set -e
+
+setuser app bundle exec rake cards_update:check
