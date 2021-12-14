@@ -21,7 +21,7 @@ Cette étape est nécessaire pour garder ton groupe sur le site.</p>
 <% elsif @step > 1 && @step <= 2 %>
   <p>Ceci est le <%= @step %>e rappel.</p>
 <% elsif @step == 3 %>
-  <p>Ceci est le <%= @step %>e rappel.<br><b>Attention: le groupe sera désactivé dans 2 semaines si il n'est pas mis à jour</b>.</p>
+  <p>Ceci est le <%= @step %>e rappel.<br><b>Attention: le groupe sera désactivé dans 2 semaines s'il n'est pas mis à jour</b>.</p>
 <% elsif @step >= 4 %>
   <p>Ceci est le <%= @step %>e rappel. <b>Nous nous réservons le droit de supprimer ton groupe si aucune action n'est entreprise</b>.</p>
 <% end %>
