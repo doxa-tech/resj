@@ -13,10 +13,8 @@ Cette étape est nécessaire pour garder ton groupe sur le site.</p>
   <%= link_to "Confirmer / Mettre à jour mon groupe", edit_users_card_url(@card, confirm:true), "_target"=>"_blank" %>
 <% end %>
 
-<p>Tu peux mettre à jour en tout temps les informations de ton groupe à partir de 
-<%= link_to "ton compte", profile_url, target: "_blank" %> sur le site. Afin de garantir des 
-informations à jour, tu recevra tous les 6 mois une invitation à contrôler et mettre 
-à jour les informations de ton groupe si nécessaire.</p>
+<p>Tu peux changer en tout temps les informations de ton groupe à partir de 
+<%= link_to "ton compte", profile_url, target: "_blank" %> sur le site. Tu recevras tous les 6 mois une invitation à contrôler les informations de ton groupe.</p>
 
 <% if @step == 1 %>
   <p>Ceci est le premier rappel.</p>
