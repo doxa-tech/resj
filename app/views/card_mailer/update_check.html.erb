@@ -1,6 +1,6 @@
 <h1>Ton groupe <%= @card.name %> est-il encore à jour ?</h1>
 
-<p>Voila <b><%= time_ago_in_words(@card.last_updated) %></b> que ton groupe sur Réseau Jeunesse n'a pas été mis à jour.
+<p>Voilà <b><%= time_ago_in_words(@card.last_updated) %></b> que ton groupe sur Réseau Jeunesse n'a pas été mis à jour.
 <% if @step >= 4 %>
 <b>Ton groupe est maintenant désactivé, il faut impérativement le vérifier et/ou le mettre à jour</b>.
 <% end %>
