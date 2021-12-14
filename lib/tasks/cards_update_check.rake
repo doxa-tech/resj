@@ -22,20 +22,9 @@ namespace :cards_update do
 
       days_from_update = (Time.now.to_date - base).to_i
 
-      step = case days_from_update
-      when 180
-        0
-      when 180 + 14
-        1
-      when 180 +14*2
-        2
-      when 180 +14*3
-        3
-      when 180 +14*4
-        4
-      else
-        -1
-      end
+      days2step = {180 => 0, 180+14 => 1, 180+14*2 => 2, 180+14*3 => 3, 180+14*4 => 4}
+
+      step = days2step[days_from_update] || -1
 
       if step == -1 && days_from_update > 180 + 14*4 && (days_from_update - (180 + 14*4)) % 60 == 0
         step = (days_from_update - (180 + 14*4)) / 60
