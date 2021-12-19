@@ -9,6 +9,7 @@ class Card < ApplicationRecord
 
   enum card_type: [:youth, :adult, :activist, :organization, :network, :training]
   enum status: [:pending, :online, :incomplete, :change]
+  enum validity: [:correct, :outdated, :disabled]
 
   belongs_to :location, optional: true # validation made manually according to the step
   belongs_to :user
