@@ -32,13 +32,14 @@ namespace :cards_update do
 
       if step == 4
         # => To be implemented in model
-        #card.deactivated = true
-        #card.save
+        card.update_attribute(:validity, :disabled)
 
         Admin::CardMailer.deactivated(card).deliver_now
       end
 
       if step != -1
+        card.update_attribute(:validity, :outdated) if step < 4
+
         CardMailer.update_check(card, step).deliver_now
       end
     end
