@@ -28,6 +28,7 @@ FactoryBot.define do
     location { Location.find_by_official_name("Bulle") || create(:location) }
     card_type { :youth }
     status { :online }
+    validity { :correct }
   end
 
   factory :location do

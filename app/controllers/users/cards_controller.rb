@@ -10,10 +10,11 @@ class Users::CardsController < ApplicationController
   def update
     @card = card
     @card.assign_attributes(card_params)
-    was_outdated = @card.outdated?
+    was_outdated = !@card.correct?
     if @card.valid?
       @card.last_updated = Time.current
       @card.validity = :correct
+      @card.save
       redirect_to edit_users_card_path(@card, confirmed: was_outdated), success: "Ton groupe a été mis à jour"
     else
       render 'edit'

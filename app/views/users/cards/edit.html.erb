@@ -5,9 +5,9 @@
   <%= link_to "Voir le groupe", card_path(@card) %>
 <% end %>
 
-<%= render "outdated" if @card.outdated? %>
+<%= render "outdated" if !@card.correct? %>
 
-<%= render "updated" if @confirmed %>
+<%= render "confirmed" if @confirmed %>
   
 <section class="std-container top-container">
   <div class="left">

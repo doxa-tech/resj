@@ -2,6 +2,10 @@ Given("I have a complete card") do
   @card = create(:card, user: @user)
 end
 
+Given('I have a outdated card') do
+  @card = create(:card, user: @user, validity: :outdated)
+end
+
 Given("I have an incomplete card") do
   visit "/cards/wizards/new"
   step "I complete the first step and submit it"
