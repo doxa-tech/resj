@@ -2,8 +2,8 @@ Given("I have a complete card") do
   @card = create(:card, user: @user)
 end
 
-Given('I have a outdated card') do
-  @card = create(:card, user: @user, validity: :outdated)
+Given('I have a card that must be confirmed') do
+  @card = create(:card, user: @user, validity: :solicited)
 end
 
 Given("I have an incomplete card") do
