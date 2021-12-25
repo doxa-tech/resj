@@ -38,7 +38,7 @@ namespace :cards_update do
       end
 
       if step != -1
-        card.update_attribute(:validity, :outdated) if step < 4
+        card.update_attribute(:validity, :outdated) if step < 4 && !@card.outdated
 
         CardMailer.update_check(card, step).deliver_now
       end
