@@ -3,26 +3,20 @@ class Users::CardsController < ApplicationController
   layout "admin"
 
   def edit
-    @confirm = params[:confirm]
-    @confirmed = params[:confirmed]
-
+    @confirmed = params[:confirmed] == "true"
     @card = card
   end
 
   def update
     @card = card
-    @card.last_updated = Time.current
-
-    if @card.update(card_params)
-      if params[:confirmed]
-        redirect_to edit_users_card_path(@card, confirmed:true), success: "Ton groupe a été mis à jour"
-      else
-        redirect_to edit_users_card_path(@card), success: "Ton groupe a été mis à jour"
-      end
+    @card.assign_attributes(card_params)
+    was_outdated = !@card.maintained?
+    if @card.valid?
+      @card.last_updated = Time.current
+      @card.validity = :maintained
+      @card.save
+      redirect_to edit_users_card_path(@card, confirmed: was_outdated), success: "Ton groupe a été mis à jour"
     else
-      if params[:confirmed]
-        @confirming = true
-      end
       render 'edit'
     end
   end
