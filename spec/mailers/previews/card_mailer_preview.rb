@@ -35,7 +35,7 @@ class CardMailerPreview < ActionMailer::Preview
   def update_check
     card = FactoryBot.build(:card)
     card.id = 1
-    card.last_updated = Time.now - 6.month
+    card.last_updated = Time.current - 6.month
     CardMailer.update_check(card, 7)
   end
   
