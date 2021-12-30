@@ -58,6 +58,9 @@ WORKDIR /home/app/resj
 RUN bundle install
 RUN --mount=type=secret,id=master_key,uid=9999 RAILS_MASTER_KEY=$(cat /run/secrets/master_key) bundle exec rake assets:precompile
 
+# run the cards update check daily
+COPY --chmod=0755 cards-check.sh /etc/cron.daily/
+
 USER root
 # baseimage-docker's init process
 CMD ["/sbin/my_init"]

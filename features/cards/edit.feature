@@ -1,4 +1,4 @@
-Feature: update a card
+Feature: Update a card
 
   So that the card's information are update
   as the owner
@@ -13,6 +13,7 @@ Feature: update a card
     When I visit the card's update page
     And I update the card's name with "Spacestation"
     Then I should see "Spacestation"
+    And I should not see "Merci d'avoir confirmé ton groupe"
 
   Scenario: I update the card with an error
     When I visit the card's update page

@@ -9,4 +9,10 @@ class Admin::CardMailerPreview < ActionMailer::Preview
     Admin::CardMailer.submit(card)
   end
 
+  def deactivated
+    card = FactoryBot.build(:card)
+    card.id = 1
+    Admin::CardMailer.deactivated(card)
+  end
+
 end
