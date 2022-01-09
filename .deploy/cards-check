@@ -6,3 +6,6 @@
 set -e
 
 setuser app bundle exec rake cards_update:check
+
+# logs a message with the standard logger utility
+logger cards-check script executed
