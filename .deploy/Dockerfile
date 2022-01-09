@@ -45,6 +45,10 @@ ADD resj.conf /etc/nginx/sites-enabled/resj.conf
 # Disable cron service because it is provided by Jelastic
 RUN touch /etc/service/cron/down
 
+# Disable syslog-ng in favor of rsyslog provided by Jelastic
+RUN rm /etc/systemd/system/multi-user.target.wants/syslog-ng.service
+RUN rm /etc/logrotate.d/syslog-ng
+
 # Rails migrations are run on startup
 COPY --chmod=0755 migrations.sh /etc/my_init.d/40_migrations.sh
 
