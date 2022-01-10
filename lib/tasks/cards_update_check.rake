@@ -18,7 +18,7 @@ namespace :cards_update do
       # to be fair we cap the last_updated to the release of V2 - 6 months to be
       # adjusted so that when we release the task we quickly get 180 days. To be
       # removed once all cards have received their warnings.
-      release = Date.strptime("14/7/2021", "%d/%m/%Y")
+      release = Date.strptime("15/7/2021", "%d/%m/%Y")
 
       if Rails.env == "test"
         release = Date.strptime("1/1/1970", "%d/%m/%Y")
