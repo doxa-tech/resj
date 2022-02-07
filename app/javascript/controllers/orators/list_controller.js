@@ -4,7 +4,7 @@ export default class extends ListController {
   static targets = [...ListController.targets, "itemTemplate", "title", "themes", "link"];
 
   updateItems(items) {
-    if (items.length < 10) {
+    if (items.length < 0) {
       this.items = []
     } else {
       this.items = items;
@@ -15,7 +15,7 @@ export default class extends ListController {
   updateList(items) {
     let content = [];
     items.forEach((c) => {
-      this.titleTarget.innerHTML = c.firstname + " " + c.lastname;
+      this.titleTarget.innerHTML = `<a href="${c.href}">${c.firstname} ${c.lastname}</a>`;
       this.linkTarget.href = c.href;
       this.themesTarget.innerHTML = c.themes.map(x => `<span>${x}</span>`).join("");
       content.push(this.itemTemplateTarget.outerHTML);
