@@ -54,7 +54,7 @@
 
     <div class="location-info">
       <p><%= @card.street %></p>
-      <p><%= @card.location.zip %> <%= @card.location.canton.name %></p>
+      <p><%= @card.location.zip %> <%= @card.location.official_name %> (<%= @card.location.canton.name %>)</p>
 
       <% if @card.place.present? %>
         <h2 class="location">lieu de rencontre</h2>
