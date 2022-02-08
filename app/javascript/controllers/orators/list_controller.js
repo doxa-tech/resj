@@ -15,7 +15,7 @@ export default class extends ListController {
   updateList(items) {
     let content = [];
     items.forEach((c) => {
-      this.titleTarget.innerHTML = c.firstname + " " + c.lastname;
+      this.titleTarget.innerHTML = `<a href="${c.href}">${c.firstname} ${c.lastname}</a>`;
       this.linkTarget.href = c.href;
       this.themesTarget.innerHTML = c.themes.map(x => `<span>${x}</span>`).join("");
       content.push(this.itemTemplateTarget.outerHTML);

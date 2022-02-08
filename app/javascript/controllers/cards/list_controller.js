@@ -217,7 +217,7 @@ export default class MapController extends ListController {
     let content = [];
 
     items.forEach((c) => {
-      this.nameTarget.innerHTML = c.properties.name;
+      this.nameTarget.innerHTML = `<a href="${c.properties.href}">${c.properties.name}</a>`;
       this.typeTarget.innerHTML = c.properties.type;
       this.placeTarget.innerHTML = c.properties.place;
       this.cantonTarget.innerHTML = c.properties.canton;

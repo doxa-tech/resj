@@ -296,6 +296,11 @@
           & > div:nth-child(2) {
             flex: 1;
             font-weight: bold;
+
+            a {
+              text-decoration: none;
+              color: inherit;
+            }
           }
 
           // place
@@ -517,6 +522,11 @@
           & > div:nth-child(2) {
             flex: 1;
             font-weight: bold;
+
+            a {
+              text-decoration: none;
+              color: inherit;
+            }
           }
 
           // presentation
