@@ -4,7 +4,7 @@ export default class extends ListController {
   static targets = [...ListController.targets, "itemTemplate", "title", "themes", "link"];
 
   updateItems(items) {
-    if (items.length < 0) {
+    if (items.length < 10) {
       this.items = []
     } else {
       this.items = items;
