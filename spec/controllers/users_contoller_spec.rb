@@ -14,4 +14,15 @@ RSpec.describe UsersController, type: :controller do
 
   end
 
+  describe "#confirmation" do
+
+    it "it confirms the user" do
+      @user = create(:user, confirmed: false)
+      get :confirmation, params: { token: @user.remember_token }
+      @user.reload
+      expect(@user.confirmed).to be true
+    end
+
+  end
+
 end

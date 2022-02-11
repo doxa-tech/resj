@@ -9,3 +9,8 @@ end
 When('I visit the page to update my orator profile') do
   visit "/profile/orator/edit"
 end
+
+When('I update my description with {string}') do |string|
+  fill_in "Description", with: string
+  click_button "Enregistrer"
+end
