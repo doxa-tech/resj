@@ -3,7 +3,7 @@ class ContactController < ApplicationController
   def orator
     user = User.find_by_uuid(params[:uuid])
     orator = user.try(:orator)
-    unless orator.nil?
+    unless orator.nil? || orator.disabled
       contact = Contact.new(contact_params)
       contact.destination = user.email
       if contact.valid?
@@ -21,6 +21,5 @@ class ContactController < ApplicationController
   def contact_params
     params.require(:contact).permit(:email, :message, :verification)
   end
-
 
 end

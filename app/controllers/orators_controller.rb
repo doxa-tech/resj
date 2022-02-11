@@ -41,7 +41,7 @@ class OratorsController < ApplicationController
   end
 
   def show
-    @orator = Orator.find(params[:id])
+    @orator = Orator.active.find(params[:id])
   end
 
   def destroy
