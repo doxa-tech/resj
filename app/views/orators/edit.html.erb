@@ -13,7 +13,7 @@
       <span>Mettre à jour mes informations d'orateur</span>
     </div>
 
-    <%= form_with model: @orator, local: true, url: profile_orator_update_path do |f| %>
+    <%= form_with model: @orator, local: true, url: orator_update_path do |f| %>
 
       <%= render "error_messages", object: f.object %>
 
