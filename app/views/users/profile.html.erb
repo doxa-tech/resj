@@ -24,15 +24,15 @@
 
 <div class="title orange">
   <h2>Paramètres d'orateur</h2>
-  <%= link_to "Editer", profile_orator_edit_path %>
+  <%= link_to "Editer", orator_edit_path %>
 </div>
 
 <div class="item orange orator-visibility">
   <h3>Visibilité sur la liste</h3>
   <% if @orator.disabled %>
-  <p>Vous n'êtes pas visible en tant qu'orateur <%= link_to "Devenir visible", profile_orator_update_visibility_path, method: :patch %></p>
+  <p>Vous n'êtes pas visible en tant qu'orateur <%= link_to "Devenir visible", orator_update_visibility_path, method: :patch %></p>
   <% else %>
-  <p>Vous êtes visible en tant qu'orateur <%= link_to "Se rendre invisible", profile_orator_update_visibility_path, method: :patch %></p>
+  <p>Vous êtes visible en tant qu'orateur <%= link_to "Se rendre invisible", orator_update_visibility_path, method: :patch %></p>
   <% end %>
 </div>
 
@@ -85,12 +85,12 @@
   <h2>Zone de danger</h2>
 
   <div class="links">
-    <%= button_to_confirmation "Supprimer mon compte", form: { url: user_path(@user), method: :delete } do %>
+    <%= button_to_confirmation "Supprimer mon compte", form: { url: profile_delete_path(@user), method: :delete } do %>
       <p>Êtes-vous sûr de vouloir supprimer votre compte ?</p>
     <% end %>
 
     <% unless @orator.nil? %>
-    <%= button_to_confirmation "Supprimer mon profil orateur", form: { url: orator_path(@orator), method: :delete } do %>
+    <%= button_to_confirmation "Supprimer mon profil orateur", form: { url: orator_delete_path(@orator), method: :delete } do %>
       <p>Êtes-vous sûr de vouloir supprimer votre profil orateur ?</p>
     <% end %>
 
