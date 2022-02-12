@@ -1,7 +1,7 @@
 class ContactController < ApplicationController
 
   def orator
-    @orator = Orator.find(params[:id])
+    @orator = Orator.active.find(params[:id])
     @contact = Contact.new(contact_params)
     @contact.destination = @orator.user.email
     if @contact.valid?

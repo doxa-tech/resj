@@ -6,8 +6,9 @@ RSpec.describe ContactController, type: :controller do
 
     it "should not send a message to an invisible orator" do
       @orator = create(:orator, disabled: true)
-      post :orator, params: { uuid: @orator.user.uuid }
-      expect(flash[:error]).to eq "Des champs sont invalides"
+      expect{ 
+        post :orator, params: { id: @orator.id }
+      }.to raise_error ActiveRecord::RecordNotFound
     end
 
   end
