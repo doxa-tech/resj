@@ -1,7 +1,7 @@
 Feature: edit an account
 
   So that I can update my information
-  As an user
+  As a user
   I want to edit my profile
 
   Background:
