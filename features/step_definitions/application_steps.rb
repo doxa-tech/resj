@@ -5,6 +5,12 @@ Given("I am a confirmed user") do
   @user = create(:user, confirmed: true)
 end
 
+Given('I am an unconfirmed user') do
+  @user = create(:user, confirmed: false)
+end
+
+
+
 Given("I am signed in") do
   visit signin_path
   fill_in "Email", with: "john@smith.com"
