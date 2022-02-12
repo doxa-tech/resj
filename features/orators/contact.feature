@@ -15,4 +15,4 @@ Feature: contact an orator
     Given there is a visible orator
     When I visit the orator's page
     And I complete the contact form with a wrong verification
-    Then I should see a flash with "Des champs sont invalides"
+    Then I should see errors for the fields "vérification"

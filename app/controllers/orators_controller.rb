@@ -42,6 +42,7 @@ class OratorsController < ApplicationController
 
   def show
     @orator = Orator.active.find(params[:id])
+    @contact = Contact.new
   end
 
   def destroy

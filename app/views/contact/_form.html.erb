@@ -1,4 +1,6 @@
-<%= form_with model: Contact.new, local: true, url: url, id: "form" do |f| %>
+<%= form_with model: contact, local: true, url: url, id: "form" do |f| %>
+
+  <%= render "error_messages", object: f.object %>
 
   <div class="row">
     <%= f.label :message, "Ton message" %>
