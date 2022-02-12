@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   layout "admin"
   
-  require_login only: [:edit, :update, :profile]
-  before_action :require_loggout, only: [:new]
+  require_login only: [:edit, :update, :profile, :destroy]
+  before_action :require_loggout, only: [:new, :create]
 
   def new
     @user = User.new
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 		if @user.save
       UserMailer.confirmation(@user).deliver_now
-			redirect_to root_path, success: "Ton compte Reseau Jeunesse a été créé !"
+			redirect_to root_path, success: "Ton compte Réseau Jeunesse a été créé !"
 		else
 			render 'new'
 		end
