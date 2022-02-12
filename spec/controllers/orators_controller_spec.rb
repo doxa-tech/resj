@@ -16,7 +16,7 @@ RSpec.describe OratorsController, type: :controller do
 
     it "should not be an orator" do
       sign_in_orator
-      post :create, params: { token: create_orator_token }
+      get :create, params: { token: create_orator_token }
       expect(flash[:error]).to eq "Vous êtes déjà un orateur" 
     end
 
