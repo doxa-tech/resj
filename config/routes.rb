@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     get "confirmation", on: :collection
     post "resend_confirmation", on: :member
   end
-
+  
   scope '/profile', as: :profile do
 
     get "/", to: "users#profile"
@@ -44,7 +44,7 @@ Rails.application.routes.draw do
 
   end
   
-  post "contact/orator/:uuid", to: "contact#orator", as: :contact_orator
+  post "contact/orator/:id", to: "contact#orator", as: :contact_orator
   
   resources :cards, only: [:index, :show]
 

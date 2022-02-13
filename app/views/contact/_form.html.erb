@@ -1,17 +1,19 @@
-<%= form_with model: Contact.new, local: true, url: url, id: "form" do |f| %>
+<%= form_with model: contact, local: true, url: url, id: "form" do |f| %>
+
+  <%= render "error_messages", object: f.object %>
 
   <div class="row">
-    <p>Ton message</p>
+    <%= f.label :message, "Ton message" %>
     <%= f.text_field :message, required: true %>
   </div>
 
   <div class="row">
-    <p>Ton email</p>
+    <%= f.label :email, "Ton email" %>
     <%= f.email_field :email, required: true %>
   </div>
 
   <div class="row">
-    <p>Combien font 2+2?</p>
+    <%= f.label :verification, "Combien font 2+2?" %>
     <%= f.number_field :verification, required: true %>
     <br>
   </div>

@@ -31,10 +31,10 @@
       <div class="wrapper wrapper-full">
         <div class="contact">
           <p><b>Contacter cet orateur</b></p>
-          <p>Merci de n'utiliser ce service seulement si tu recherche un orateur pour une soirée / événement. Si tu as déjà envoyé un message mais que tu n'as pas reçus de réponse ne renvois pas un message tout de suite mais attend quelques semaines.
+          <p>Merci de n'utiliser ce service seulement si tu recherches un orateur pour une soirée / événement. Si tu as déjà envoyé un message mais que tu n'as pas reçu de réponse, ne renvoie pas un message tout de suite mais attend quelques semaines.
         </div>
         
-        <%= render "contact/form", url: contact_orator_path(@orator.user.uuid) %>
+        <%= render "contact/form", contact: @contact, url: contact_orator_path(@orator, anchor: "form") %>
       </div>
     </div>
   </div>
