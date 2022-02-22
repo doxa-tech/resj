@@ -71,7 +71,7 @@
 
 <% end %>
 
-<% if current_user.belongs_to?(:superadmin) || current_user.belongs_to?(:admin) %>
+<% if current_user.belongs_to?(:superadmin) || current_user.belongs_to?(:admin) || current_user.belongs_to?(:manager) %>
 <div class="administration">
   <h2>Administration</h2>
 
