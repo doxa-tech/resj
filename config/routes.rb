@@ -65,7 +65,7 @@ Rails.application.routes.draw do
   namespace :users do
 
     resources :password_resets, only: [:new, :create, :edit, :update]
-    resources :cards, only: [:edit, :update] do
+    resources :cards, only: [:edit, :update, :destroy] do
       post "transfer", on: :member
     end
 
