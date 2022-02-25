@@ -69,7 +69,7 @@ class OratorsController < ApplicationController
     if params[:themes].present?
       orators = orators.joins(:orator_themes).where(orator_themes: { theme_id: params[:tags] })
     end
-    return orators
+    return orators.order(Arel.sql('RANDOM()'))
   end
 
   def clean(params)

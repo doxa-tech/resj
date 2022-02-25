@@ -1,7 +1,7 @@
 Feature: Update a card
 
   So that the card's information are update
-  as the owner
+  As the owner
   I want to update the card
 
   Background:

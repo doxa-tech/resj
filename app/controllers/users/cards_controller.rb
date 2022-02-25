@@ -21,6 +21,16 @@ class Users::CardsController < ApplicationController
     end
   end
 
+  def destroy
+    @card = current_user.cards.find(params[:id])
+    if params[:name].downcase.strip == @card.name.downcase.strip
+      @card.destroy
+      redirect_to profile_path, success: "Ton groupe a été supprimé"
+    else
+      redirect_to edit_users_card_path(@card), error: "Le nom du groupe n'est pas correct"
+    end
+  end
+
   # transfer a card to a new user
   def transfer
     user = User.find_by_email(params[:email])

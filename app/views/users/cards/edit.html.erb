@@ -28,6 +28,17 @@
       </div>
     <% end %>
 
+    <%= button_to_confirmation "Supprimer le groupe", form: { url: users_card_path(@card), method: :delete }, button_options: {class: "transfer-button"} do %>
+
+      <p>Attention ! Tu t'apprètes à definitivement supprimer ce groupe. Cette action est irréversible !</p>
+      <p>Ecris le nom du groupe pour confirmer la suppression.</p>
+
+      <div class="form-row">
+        <%= label_tag :name, "Nom du groupe" %>
+        <%= text_field_tag :name, nil, placeholder: @card.name %>
+      </div>
+    <% end %>
+
     <div class="date">
       <p>
         <span>Créé le <%= @card.created_at.strftime("%d/%m/%y") %></span>
