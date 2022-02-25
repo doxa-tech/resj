@@ -9,12 +9,14 @@ Feature: Update a card
     And I am signed in
     And I have a complete card
 
+  @javascript
   Scenario: I successfully update the card
     When I visit the card's update page
     And I update the card's name with "Spacestation"
     Then I should see "Spacestation"
     And I should not see "Merci d'avoir confirmé ton groupe"
 
+  @javascript
   Scenario: I update the card with an error
     When I visit the card's update page
     When I update the card's name with ""
