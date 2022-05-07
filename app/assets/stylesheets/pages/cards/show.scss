@@ -1,6 +1,11 @@
 @import "../../global/variables";
 
 .container-cards-show {
+  &.disabled {
+    background: image-url("cards/disabled-card-bg-2.png");
+    background-size: 15px;
+  }
+
   .std-top {
     background-image: image-url("cards/fond-groupe.jpg");
   }

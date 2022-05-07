@@ -303,6 +303,9 @@
 
           &.disabled {
             color: #bbb;
+
+            background: image-url("cards/disabled-card-bg-2.png");
+            background-size: 15px;
           }
 
           &.header {

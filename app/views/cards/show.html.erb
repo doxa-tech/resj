@@ -1,4 +1,8 @@
-<% content_for :id, "container-cards-show" %>
+<% if @card.validity == "disabled" %>
+  <% content_for :id, "container-cards-show disabled" %>
+<% else %>
+  <% content_for :id, "container-cards-show" %>
+<% end %>
 
 <section class="std-top">
   <div class="content-wrapper">
@@ -29,7 +33,7 @@
       <p><%= @card.email %></p>
     </div>
 
-    <p class="last-updated">Dernière mise à jour <%= time_ago_in_words(@card.last_updated) %> (<%= @card.last_updated.strftime("%d/%m/%y") %>)</p>
+    <p class="last-updated">Dernière mise à jour il y a <%= time_ago_in_words(@card.last_updated) %> (<%= @card.last_updated.strftime("%d/%m/%y") %>)</p>
   </div>
 
   <div class="right">

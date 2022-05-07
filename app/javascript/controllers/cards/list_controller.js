@@ -229,6 +229,8 @@ export default class MapController extends ListController {
       if (c.properties.disabled) {
         this.itemTemplateTarget.classList.add("disabled");
         name = name + `<p class="outdated">Ce groupe n'est plus à jour</p>`;
+      } else {
+        this.itemTemplateTarget.classList.remove("disabled");
       }
 
       this.typeTarget.innerHTML = c.properties.type;
