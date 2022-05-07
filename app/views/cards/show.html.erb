@@ -11,6 +11,9 @@
 
     <div class="intro">
       <h2><%= @card.name %></h2>
+      <% if @card.validity == "disabled" %>
+       <p class="outdated">Attention, ce groupe n'as pas été mis à jour depuis longtemps (<%= time_ago_in_words(@card.last_updated) %>).</p>
+      <% end %>
       <p class="bigger"><%= @card.description %></p>
     </div>
 
@@ -24,10 +27,9 @@
       <h3>Contact:</h3>
       <p><%= "#{@card.user.firstname} #{@card.user.lastname}" %></p>
       <p><%= @card.email %></p>
-
-      <h3>Dernière mise à jour:</h3>
-      <p><%= @card.last_updated.strftime("%d/%m/%y") %></p>
     </div>
+
+    <p class="last-updated">Dernière mise à jour <%= time_ago_in_words(@card.last_updated) %> (<%= @card.last_updated.strftime("%d/%m/%y") %>)</p>
   </div>
 
   <div class="right">

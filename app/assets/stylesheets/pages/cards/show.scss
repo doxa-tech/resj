@@ -6,6 +6,12 @@
   }
 
   .std-container {
+    p.outdated {
+      font-weight: bold;
+      color: #ff5e5e;
+      padding: 0 0 20px 0;
+    }
+
     p.website {
       color: $color-red;
       padding: 50px 0 0 0;
@@ -45,6 +51,12 @@
       p {
         padding: 0 0 5px 0;
       }
+    }
+
+    p.last-updated {
+      font-size: 10px;
+      padding: 20px 0 0 0;
+      color: #bbb;
     }
 
     & > div:nth-child(2) {

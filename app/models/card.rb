@@ -55,7 +55,7 @@ class Card < ApplicationRecord
   end
 
   def color
-    case card_type
+    color = case card_type
     when "youth" 
       "255,0,0"
     when "adult"
@@ -63,6 +63,12 @@ class Card < ApplicationRecord
     else 
       "128,128,128"
     end
+
+    if validity == "disabled"
+      color = "200,200,200"
+    end
+
+    color
   end
 
   # used in cards#show to display the card on map
