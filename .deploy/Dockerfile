@@ -1,6 +1,6 @@
 # https://github.com/phusion/passenger-docker
 # Phusion Passenger with Nginx, support for Ruby/NodeJS
-FROM phusion/passenger-customizable:latest
+FROM phusion/passenger-customizable:2.3.0
 
 ENV BUNDLE_WITHOUT=development:test
 ENV BUNDLE_DEPLOYMENT=true
@@ -32,8 +32,8 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 ENV TZ=Europe/Zurich
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-# Ruby 2.7.4
-RUN bash -lc 'rvm --default use ruby-2.7.5'
+# Ruby 2.7.6
+RUN bash -lc 'rvm --default use ruby-2.7.6'
 
 # Activate Nginx (and disable the systemd service)
 RUN rm -f /etc/service/nginx/down
