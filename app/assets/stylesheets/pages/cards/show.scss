@@ -1,11 +1,22 @@
 @import "../../global/variables";
 
 .container-cards-show {
+  &.disabled {
+    background: image-url("cards/disabled-card-bg-2.png");
+    background-size: 15px;
+  }
+
   .std-top {
     background-image: image-url("cards/fond-groupe.jpg");
   }
 
   .std-container {
+    p.outdated {
+      font-weight: bold;
+      color: #ff5e5e;
+      padding: 0 0 20px 0;
+    }
+
     p.website {
       color: $color-red;
       padding: 50px 0 0 0;
@@ -45,6 +56,12 @@
       p {
         padding: 0 0 5px 0;
       }
+    }
+
+    p.last-updated {
+      font-size: 10px;
+      padding: 20px 0 0 0;
+      color: #bbb;
     }
 
     & > div:nth-child(2) {

@@ -17,23 +17,54 @@
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='29' height='29' viewBox='0 0 29 29' xmlns='http://www.w3.org/2000/svg' fill='%23fff'%3E%3Cpath d='M10 13c-.75 0-1.5.75-1.5 1.5S9.25 16 10 16h9c.75 0 1.5-.75 1.5-1.5S19.75 13 19 13h-9z'/%3E%3C/svg%3E") !important;
 }
 
-.mapboxgl-popup-content {
-  background-color: $color-red !important;
-  color: #fff !important;
+.mapboxgl-popup {
+  .mapboxgl-popup-content {
+    padding: 0 !important;
 
-  h5 {
-    text-transform: uppercase;
-    font-size: 1em;
+    & > div {
+      background-color: $color-red !important;
+      color: #fff !important;
+      padding: 10px 10px 15px;
+
+      &.disabled {
+        background: image-url("home/disabled-card-bg.png");
+        background-size: 7px;
+      }
+
+      h5 {
+        text-transform: uppercase;
+        font-size: 1em;
+      }
+
+      a {
+        text-decoration: underline;
+        color: #fff;
+      }
+    }
+
+    p.outdated {
+      padding: 2px 10px 4px;
+      background-color: #ff5e5e;
+      color: #fff;
+      font-style: italic;
+    }
   }
 
-  a {
-    text-decoration: underline;
-    color: #fff;
+  .mapboxgl-popup-tip {
+    border-top-color: $color-red !important;
   }
-}
 
-.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
-  border-top-color: $color-red !important;
+  &.disabled {
+    .mapboxgl-popup-content > div {
+      background: image-url("home/disabled-card-bg.png") !important;
+      background-size: 7px !important;
+      padding: 10px 10px 7px !important;
+    }
+
+    .mapboxgl-popup-tip {
+      border-top-color: #ff5e5e !important;
+    }
+  }
 }
 
 .container-home {
@@ -270,6 +301,13 @@
           padding: 10px 0;
           border-top: 3px solid $color-red;
 
+          &.disabled {
+            color: #bbb;
+
+            background: image-url("cards/disabled-card-bg-2.png");
+            background-size: 15px;
+          }
+
           &.header {
             color: $color-red;
             padding: 5px 0;
@@ -300,6 +338,13 @@
             a {
               text-decoration: none;
               color: inherit;
+            }
+
+            p.outdated {
+              color: #ff5e5e;
+              padding: 10px 0 0 0;
+              font-size: 12px;
+              font-style: italic;
             }
           }
 

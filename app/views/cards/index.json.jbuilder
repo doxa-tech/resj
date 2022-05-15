@@ -11,9 +11,10 @@ json.array! @cards do |card|
 		json.name card.name
 		json.type t("card.card_types.#{card.card_type}")
 		json.description card.description.truncate(180)
-		json.color card.color
+		json.color card_color(card)
 		json.href card_path(card)
 		json.place card.place
 		json.canton card.location.canton.name
+		json.disabled card.validity == "disabled"
 	end
 end

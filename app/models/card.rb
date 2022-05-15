@@ -54,35 +54,6 @@ class Card < ApplicationRecord
     end
   end
 
-  def color
-    case card_type
-    when "youth" 
-      "255,0,0"
-    when "adult"
-      "0,255,0"
-    else 
-      "128,128,128"
-    end
-  end
-
-  # used in cards#show to display the card on map
-  def to_map_feature
-    return {
-      type: "feature",
-      geometry: {
-        type: "point",
-        coordinates: [self.longitude, self.latitude]
-      },
-      properties: {
-        id: self.id,
-        name: self.name,
-        type: I18n.t("card.card_types.#{self.card_type}"),
-        description: self.description.truncate(180),
-        href: Rails.application.routes.url_helpers.card_path(self)
-      }
-    }.to_json
-  end
-
   private
 
   def set_last_updated

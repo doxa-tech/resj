@@ -185,6 +185,7 @@ export default class MapController extends ListController {
       var coordinates = e.features[0].geometry.coordinates.slice();
       var type = e.features[0].properties.type;
       var name = e.features[0].properties.name;
+      var disabled = e.features[0].properties.disabled;
 
       // Ensure that if the map is zoomed out such that multiple
       // copies of the feature are visible, the popup appears
@@ -195,9 +196,15 @@ export default class MapController extends ListController {
 
       map.flyTo({ center: e.features[0].geometry.coordinates });
 
-      new mapboxgl.Popup({ closeButton: false })
+      content = `<div><h5>${type}</h5><p>${name}</p><p><a href="${e.features[0].properties.href}">En savoir plus</a></p></div>`
+
+      if (disabled) {
+        content = content + "<p class='outdated'>Ce groupe n'est plus à jour</p>"
+      }
+
+      new mapboxgl.Popup({ closeButton: false, className: disabled ? 'disabled' : '' })
         .setLngLat(coordinates)
-        .setHTML(`<h5>${type}</h5><p>${name}</p><p><a href="${e.features[0].properties.href}">En savoir plus</a></p>`)
+        .setHTML(content)
         .addTo(map);
     });
 
@@ -217,12 +224,21 @@ export default class MapController extends ListController {
     let content = [];
 
     items.forEach((c) => {
-      this.nameTarget.innerHTML = `<a href="${c.properties.href}">${c.properties.name}</a>`;
+      let name = `<a href="${c.properties.href}">${c.properties.name}</a>`;
+
+      if (c.properties.disabled) {
+        this.itemTemplateTarget.classList.add("disabled");
+        name = name + `<p class="outdated">Ce groupe n'est plus à jour</p>`;
+      } else {
+        this.itemTemplateTarget.classList.remove("disabled");
+      }
+
       this.typeTarget.innerHTML = c.properties.type;
       this.placeTarget.innerHTML = c.properties.place;
       this.cantonTarget.innerHTML = c.properties.canton;
       this.descriptionTarget.innerHTML = c.properties.description;
       this.linkTarget.href = c.properties.href;
+      this.nameTarget.innerHTML = name;
 
       content.push(this.itemTemplateTarget.outerHTML);
     });
