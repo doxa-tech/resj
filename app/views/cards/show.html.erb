@@ -39,7 +39,7 @@
   <div class="right">
     <h2>situation</h2>
 
-    <div data-controller="cards--show" data-cards--show-target="map" data-card="<%= @card.to_map_feature %>">
+    <div data-controller="cards--show" data-cards--show-target="map" data-card="<%= to_map_feature(@card) %>">
       <div class="map-holder">
         <div id="mapbox"></div>
 
