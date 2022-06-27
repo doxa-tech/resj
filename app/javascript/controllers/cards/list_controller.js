@@ -196,10 +196,10 @@ export default class MapController extends ListController {
 
       map.flyTo({ center: e.features[0].geometry.coordinates });
 
-      content = `<div><h5>${type}</h5><p>${name}</p><p><a href="${e.features[0].properties.href}">En savoir plus</a></p></div>`
+      let content = `<div><h5>${type}</h5><p>${name}</p><p><a href="${e.features[0].properties.href}">En savoir plus</a></p></div>`;
 
       if (disabled) {
-        content = content + "<p class='outdated'>Ce groupe n'est plus à jour</p>"
+        content = content + "<p class='outdated'>Ce groupe n'est plus à jour</p>";
       }
 
       new mapboxgl.Popup({ closeButton: false, className: disabled ? 'disabled' : '' })
