@@ -1,4 +1,4 @@
-import { Controller } from "stimulus"
+import { Controller } from "@hotwired/stimulus"
 import Choices from "choices.js"
 
 export default class extends Controller {
@@ -9,7 +9,7 @@ export default class extends Controller {
       placeholderValue: "Sélectionner",
       noChoicesText: "Plus d'option disponible",
       noResultsText: 'Aucun résultat',
-      itemSelectText: "Cliquez pour séléectionner",
+      itemSelectText: "Cliquez pour sélectionner",
       classNames: {
         containerOuter: "choices " + this.element.className
       }

@@ -1,4 +1,4 @@
-import { Controller } from "stimulus"
+import { Controller } from "@hotwired/stimulus"
 
 export default class CardsForm extends Controller {
   static targets = ["form", "step", "previous", "next", "confirmation", "error", "timeline"]

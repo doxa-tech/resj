@@ -1,4 +1,4 @@
-import { Controller } from "stimulus"
+import { Controller } from "@hotwired/stimulus"
 
 export default class SearchController extends Controller {
   static targets = ["form", "input", "list", "filtersBtn", "filtersHolder"]
@@ -7,7 +7,8 @@ export default class SearchController extends Controller {
     let timeout;
 
     this.inputTargets.forEach((i) => {
-      i.addEventListener("input", () => {
+      i.addEventListener("input", (e) => {
+        e.preventDefault();
         clearTimeout(timeout);
         timeout = setTimeout(this.search.bind(this), 800);
       });
@@ -24,7 +25,7 @@ export default class SearchController extends Controller {
   async search() {
     const formData = new FormData(this.formTarget);
     let params = "?";
-    for (var param of formData.entries()) {
+    for (const param of formData.entries()) {
       params += param[0] + "=" + param[1] + "&";
     }
     const items = await this.request(params);

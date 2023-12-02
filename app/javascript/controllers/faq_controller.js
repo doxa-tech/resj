@@ -1,4 +1,4 @@
-import { Controller } from "stimulus"
+import { Controller } from "@hotwired/stimulus"
 
 // This controller opens the summary and sets it a class based on the hash found
 // in the URL.

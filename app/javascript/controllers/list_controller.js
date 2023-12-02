@@ -1,4 +1,4 @@
-import { Controller } from "stimulus"
+import { Controller } from "@hotwired/stimulus"
 
 export default class ListController extends Controller {
   static targets = ["numberTemplate", "items", "number", "numbers", "previous", "next", "total"]

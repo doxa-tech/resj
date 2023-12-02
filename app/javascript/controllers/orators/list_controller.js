@@ -1,4 +1,4 @@
-import ListController from "controllers/list_controller.js"
+import ListController from "../list_controller.js"
 
 export default class extends ListController {
   static targets = [...ListController.targets, "itemTemplate", "title", "themes", "link"];

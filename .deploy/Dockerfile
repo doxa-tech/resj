@@ -1,6 +1,6 @@
 # https://github.com/phusion/passenger-docker
 # Phusion Passenger with Nginx, support for Ruby/NodeJS
-FROM phusion/passenger-customizable:2.3.0
+FROM phusion/passenger-customizable:2.6.0
 
 ENV BUNDLE_WITHOUT=development:test
 ENV BUNDLE_DEPLOYMENT=true
@@ -21,7 +21,7 @@ ENV SITE_BUILD_TIME ${site_build_time}
 RUN apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confold"
 
 # Enable NodeJS and Ruby
-RUN /pd_build/ruby-2.7.*.sh
+RUN /pd_build/ruby-3.1.*.sh
 RUN /pd_build/nodejs.sh
 RUN npm install -g yarn
 
@@ -33,7 +33,7 @@ ENV TZ=Europe/Zurich
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Ruby 2.7.6
-RUN bash -lc 'rvm --default use ruby-2.7.6'
+RUN bash -lc 'rvm --default use ruby-3.1.2'
 
 # Activate Nginx (and disable the systemd service)
 RUN rm -f /etc/service/nginx/down

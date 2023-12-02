@@ -1,4 +1,4 @@
-import { Controller } from "stimulus"
+import { Controller } from "@hotwired/stimulus"
 
 export default class SearchController extends Controller {
   static targets = ["container", "open", "close"]
