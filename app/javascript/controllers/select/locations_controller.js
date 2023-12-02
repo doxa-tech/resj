@@ -27,6 +27,7 @@ export default class extends Controller {
   }
 
   initialize() {
+    let timeout;
 
     this.choice = new Choices(this.element, {
       placeholderValue: "Taper une ville",
@@ -43,7 +44,7 @@ export default class extends Controller {
 
     this.element.addEventListener('search', (event) => {
       clearTimeout(timeout);
-      let timeout = setTimeout(this.request.bind(this), 500);
+      timeout = setTimeout(this.request.bind(this), 500);
     });
       
   };

@@ -7,11 +7,15 @@ export default class SearchController extends Controller {
     let timeout;
 
     this.inputTargets.forEach((i) => {
-      i.addEventListener("input", (e) => {
-        e.preventDefault();
+      i.addEventListener("input", () => {
         clearTimeout(timeout);
         timeout = setTimeout(this.search.bind(this), 800);
       });
+      i.addEventListener("keypress", (e) => {
+        if (e.keyCode == 13) { // Enter
+          e.preventDefault();
+        }
+      })
     });
 
     this.filtersHolderTarget.style.display = "none";

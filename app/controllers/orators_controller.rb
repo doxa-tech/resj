@@ -61,7 +61,7 @@ class OratorsController < ApplicationController
     clean(params)
     orators = Orator.active
     if params[:name].present?
-      orators = orators.where("lastname ilike ?", "%#{params[:name]}%")
+      orators = orators.joins(:user).where("users.lastname ilike :name OR users.firstname ilike :name", name: "%#{params[:name]}%")
     end
     if params[:cantons].present?
       orators = orators.joins(:location).where(locations: { canton_id: params[:cantons] })
