@@ -20,10 +20,8 @@ ENV SITE_BUILD_TIME ${site_build_time}
 # Update the system
 RUN apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confold"
 
-# Enable NodeJS and Ruby
+# Enable Ruby
 RUN /pd_build/ruby-3.1.*.sh
-RUN /pd_build/nodejs.sh
-RUN npm install -g yarn
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
