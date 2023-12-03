@@ -1,4 +1,4 @@
-import MapController from "./list_controller";
+import MapController from "controllers/cards/list_controller";
 
 export default class ShowMap extends MapController {
   static targets = ["map"];

@@ -1,4 +1,4 @@
-import ListController from "../list_controller.js"
+import ListController from "controllers/list_controller"
 import mapboxgl from 'mapbox-gl';
 
 export default class MapController extends ListController {
