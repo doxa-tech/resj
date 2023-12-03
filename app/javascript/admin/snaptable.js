@@ -51,12 +51,10 @@ function snapifyTable(snaptable) {
 
 }
 
-function snapifyTables() {
+export default function snapifyTables() {
 
   document.querySelectorAll(".snaptable").forEach(function(table) {
     snapifyTable(table);
   })
 
 }
-
-document.addEventListener("DOMContentLoaded", snapifyTables);
