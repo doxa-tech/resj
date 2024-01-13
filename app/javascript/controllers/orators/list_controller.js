@@ -3,15 +3,6 @@ import ListController from "controllers/list_controller"
 export default class extends ListController {
   static targets = [...ListController.targets, "itemTemplate", "title", "themes", "link"];
 
-  updateItems(items) {
-    if (items.length < 10) {
-      this.items = []
-    } else {
-      this.items = items;
-    }
-    this.update();
-  }
-
   updateList(items) {
     let content = [];
     items.forEach((c) => {
@@ -32,7 +23,7 @@ export default class extends ListController {
   }
 
   get notFoundMessage() {
-    return `<div class="soon">Bientôt disponible, la liste est en train de se remplir...</div>`
+    return `<div class="soon">Aucun orateur trouvé.</div>`
   }
 
 }
