@@ -7,8 +7,8 @@ RUN gem install bundler:2.4.22
 WORKDIR /usr/src/app
 
 # COPY package.json yarn.lock ./
-COPY package.json ./
-RUN yarn install --check-files
+# COPY package.json ./
+# RUN yarn install --check-files
 
 COPY Gemfile* ./
 RUN bundle install
