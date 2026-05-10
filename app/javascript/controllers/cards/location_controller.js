@@ -22,7 +22,7 @@ export default class LocationController extends Controller {
 
     const map = new mapboxgl.Map({
       container: 'mapbox',
-      style: 'mapbox://styles/nkcr/ck4vla6vz2ir81cnya5cl6uog',
+      style: 'mapbox://styles/nkcr/ckoxc46cg1eqy17pfcfzq79gx',
       minZoom: 6,
       center: [6.637289636687626, 46.60327680658895],
       zoom: zoom,
