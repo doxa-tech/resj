@@ -17,6 +17,8 @@ ENV SITE_BUILD_HASH ${site_build_hash}
 ENV SITE_BUILD_URL ${site_build_url}
 ENV SITE_BUILD_TIME ${site_build_time}
 
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D870AB033FB45BD1
+
 # Update the system
 RUN apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confold"
 
