@@ -12,7 +12,7 @@ export default class LocationController extends Controller {
       return
     }
 
-    mapboxgl.accessToken = 'pk.eyJ1IjoibmtjciIsImEiOiI4UnhLZEx3In0.bakfmpx2lREiNbHn0lWq9Q';
+    mapboxgl.accessToken = 'pk.eyJ1IjoibmtjciIsImEiOiJjbW96NmIxMXAwazZuMnJzODcxOTgwMjJvIn0.dnUk5wEh7m2sWkDgBPSygg';
     var zoom = 0;
     if (window.innerWidth < 626) {
       zoom = 7;
