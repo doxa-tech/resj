@@ -1,4 +1,3 @@
-
 # docker-compose build app
 # docker-compose up
 # docker-compose run --rm app bundle # Gemfile change
@@ -9,28 +8,27 @@
 version: '3.7'
 
 services:
-  app:
-    image: nkcr/resj:v1
-    build:
-      context: .
-    command: ["spring", "server"]
-    environment:
-      - POSTGRES_HOST=pg
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=secret
-      - RAILS_ENV=development
-    volumes:
-      - ./:/usr/src/app
-      - gems:/usr/local/bundle
-      - node-modules:/usr/src/app/node_modules
-      - ${HOME}/.irbrc:/root/.irbrc
-      - ${HOME}/.irb-history:/root/.irb-history
+  # app:
+  #   image: nkcr/resj:v1
+  #   build:
+  #     context: .
+  #   command: [ "spring", "server" ]
+  #   environment:
+  #     - POSTGRES_HOST=pg
+  #     - POSTGRES_USER=postgres
+  #     - POSTGRES_PASSWORD=secret
+  #     - RAILS_ENV=development
+  #   volumes:
+  #     - ./:/usr/src/app
+  #     - gems:/usr/local/bundle
+  #     - node-modules:/usr/src/app/node_modules
+  #     - ${HOME}/.irbrc:/root/.irbrc
+  #     - ${HOME}/.irb-history:/root/.irb-history
 
   web:
     image: nkcr/resj:v1
     command: >
-      bash -c "while !</dev/tcp/pg/5432; do sleep 1; done;
-      bundle exec rails s -b 0.0.0.0"
+      bash -c "while !</dev/tcp/pg/5432; do sleep 1; done; bundle exec rails s -b 0.0.0.0"
     environment:
       - POSTGRES_HOST=pg
       - POSTGRES_USER=postgres
@@ -50,50 +48,49 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=secret
-
-  webpacker:
-    image: nkcr/resj:v1
-    command: ./bin/webpack-dev-server --color
-    volumes:
-      - ./:/usr/src/app
-      - gems:/usr/local/bundle
-      - node-modules:/usr/src/app/node_modules
-    ports:
-      - 3035:3035
+  # webpacker:
+  #   image: nkcr/resj:v1
+  #   command: ./bin/webpack-dev-server --color
+  #   volumes:
+  #     - ./:/usr/src/app
+  #     - gems:/usr/local/bundle
+  #     - node-modules:/usr/src/app/node_modules
+  #   ports:
+  #     - 3035:3035
 
 
 volumes:
   gems:
   node-modules:
 
-# version: '3.0'
-# services:
-#   db:
-#     image: postgres:10
-#     ports:
-#       - 5432:5432
-#     environment:
-#       POSTGRES_PASSWORD: ${DB_USER_PASSWORD}
+    # version: '3.0'
+    # services:
+    #   db:
+    #     image: postgres:10
+    #     ports:
+    #       - 5432:5432
+    #     environment:
+    #       POSTGRES_PASSWORD: ${DB_USER_PASSWORD}
 
-#   webpacker:
-#     image: nkcr/resj:v1
-#     command: ["./scripts/start_webpack_dev.sh"]
-#     volumes:
-#       - .:/opt/dockerrailsdemo:cached
-#     ports:
-#       - 3035:3035
+    #   webpacker:
+    #     image: nkcr/resj:v1
+    #     command: ["./scripts/start_webpack_dev.sh"]
+    #     volumes:
+    #       - .:/opt/dockerrailsdemo:cached
+    #     ports:
+    #       - 3035:3035
 
-#   web:
-#     image: nkcr/resj:v1
-#     build:
-#       context: .
-#       args:
-#         precompileassets: 'not'
-#     links:
-#       - db
-#       - webpacker
-#     ports:
-#       - 3000:3000
-#     command: ["./scripts/wait-for-it.sh", "db:5432", "--", "./scripts/start_rails.sh"]
-#     volumes:
-#       - .:/opt/dockerrailsdemo:cached
+    #   web:
+    #     image: nkcr/resj:v1
+    #     build:
+    #       context: .
+    #       args:
+    #         precompileassets: 'not'
+    #     links:
+    #       - db
+    #       - webpacker
+    #     ports:
+    #       - 3000:3000
+    #     command: ["./scripts/wait-for-it.sh", "db:5432", "--", "./scripts/start_rails.sh"]
+    #     volumes:
+    #       - .:/opt/dockerrailsdemo:cached

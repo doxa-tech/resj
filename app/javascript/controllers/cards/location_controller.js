@@ -12,7 +12,7 @@ export default class LocationController extends Controller {
       return
     }
 
-    mapboxgl.accessToken = 'pk.eyJ1IjoibmtjciIsImEiOiI4UnhLZEx3In0.bakfmpx2lREiNbHn0lWq9Q';
+    mapboxgl.accessToken = 'pk.eyJ1IjoibmtjciIsImEiOiJjbW96NmIxMXAwazZuMnJzODcxOTgwMjJvIn0.dnUk5wEh7m2sWkDgBPSygg';
     var zoom = 0;
     if (window.innerWidth < 626) {
       zoom = 7;
@@ -22,7 +22,7 @@ export default class LocationController extends Controller {
 
     const map = new mapboxgl.Map({
       container: 'mapbox',
-      style: 'mapbox://styles/nkcr/ck4vla6vz2ir81cnya5cl6uog',
+      style: 'mapbox://styles/nkcr/ckoxc46cg1eqy17pfcfzq79gx',
       minZoom: 6,
       center: [6.637289636687626, 46.60327680658895],
       zoom: zoom,
